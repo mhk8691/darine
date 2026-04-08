@@ -5,7 +5,7 @@ import priceFormater from "../PriceFormater/PriceFormater";
 export default function TopPrice() {
   return (
     <Stack direction={"row"} alignItems={"center"} gap={0.5} mt={5}>
-      <Typography variant="body2" fontSize={12} color="textSecondary">
+      <Typography variant="body2" fontSize={12} sx={{ color: "#C2C2BA" }}>
         قیمت الان:
       </Typography>
       <Typography variant="h6" fontSize={22}>
