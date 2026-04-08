@@ -49,7 +49,7 @@ const theme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: red[700],
+      main: "#FCD535",
     },
     secondary: {
       main: cyan[500],
