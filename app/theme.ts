@@ -58,6 +58,10 @@ const theme = createTheme({
       default: "#10100F",
       paper: "#292926",
     },
+    text: {
+      primary: "#EBEBE6",
+      secondary: "#D9D9D3",
+    },
   },
   direction: "rtl",
   breakpoints: {
