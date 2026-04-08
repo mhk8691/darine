@@ -1,29 +1,29 @@
 "use client";
 import { createTheme } from "@mui/material";
-import { cyan, red } from "@mui/material/colors";
+import { cyan } from "@mui/material/colors";
 import localFont from "next/font/local";
 import { prefixer } from "stylis";
 // import rtlPlugin from "stylis-plugin-rtl";
 
-const SamimFont = localFont({
+const IranYekanFont = localFont({
   src: [
     {
-      path: "./fonts/Samim-FD.woff2",
+      path: "./fonts/Qs_Iranyekan.ttf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "./fonts/Samim-Medium-FD.woff2",
+      path: "./fonts/Qs_Iranyekan_medium.ttf",
       weight: "500",
       style: "normal",
     },
     {
-      path: "./fonts/Samim-Bold-FD.woff2",
+      path: "./fonts/Qs_Iranyekan_bold.ttf",
       weight: "700",
       style: "normal",
     },
   ],
-  variable: "--font-samim",
+  variable: "--font-iranyekan",
 });
 
 declare module "@mui/material/styles" {
@@ -44,7 +44,7 @@ export const rtl = {
 };
 const theme = createTheme({
   typography: {
-    fontFamily: `${SamimFont.style.fontFamily}, sans-serif`,
+    fontFamily: `${IranYekanFont.style.fontFamily}, sans-serif`,
   },
   palette: {
     mode: "dark",
@@ -55,7 +55,8 @@ const theme = createTheme({
       main: cyan[500],
     },
     background: {
-      box: "#1E1E1E",
+      default: "#10100F",
+      paper: "#292926",
     },
   },
   direction: "rtl",

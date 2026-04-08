@@ -3,7 +3,6 @@ import { LineChart as LineChartGold } from "@mui/x-charts/LineChart";
 
 const margin = { right: 24 };
 
-
 interface Props {
   data: Array<number>;
   label: string[];
@@ -52,8 +51,8 @@ export default function LineChart({
             color: color,
           },
         ]}
-        xAxis={[{ scaleType: "point", data: label, height: 28 }]}
-        yAxis={[{ width: 50 }]}
+        xAxis={[{ scaleType: "point", data: label, height: 30 }]}
+        yAxis={[{ width: 50,  }]}
         margin={margin}
       >
         {!noGradiant && (
