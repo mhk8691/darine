@@ -30,12 +30,12 @@ declare module "@mui/material/styles" {
   interface BreakpointOverrides {
     xsm: true;
   }
-  interface TypeBackground {
-    box: string;
+  interface TypeText {
+    title: string;
   }
 
   interface PaletteOptions {
-    background?: Partial<TypeBackground>;
+    text?: Partial<TypeText>;
   }
 }
 export const rtl = {
@@ -61,6 +61,7 @@ const theme = createTheme({
     text: {
       primary: "#EBEBE6",
       secondary: "#D9D9D3",
+      title: "#FAF9F6",
     },
   },
   direction: "rtl",

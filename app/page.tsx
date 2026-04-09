@@ -2,6 +2,7 @@ import { Stack } from "@mui/material";
 import ActionButton from "./Components/ActionButton/ActionButton";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import ChartGold from "./Components/ChartGold/ChartGold";
+import Faq from "./Components/Faq/Faq";
 
 export default function page() {
   return (
@@ -29,6 +30,10 @@ export default function page() {
         />
       </Stack>
       <ChartGold positionPrice="top" />
+
+      <Stack width={"70%"} mx={5}>
+        <Faq />
+      </Stack>
     </>
   );
 }
