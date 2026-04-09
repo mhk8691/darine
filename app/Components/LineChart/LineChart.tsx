@@ -10,6 +10,7 @@ interface Props {
   height: string;
   color: string;
   noGradiant: boolean;
+  noLabel: boolean;
 }
 export default function LineChart({
   data,
@@ -18,6 +19,7 @@ export default function LineChart({
   height,
   color,
   noGradiant,
+  noLabel,
 }: Props) {
   return (
     <Box
@@ -51,8 +53,15 @@ export default function LineChart({
             color: color,
           },
         ]}
-        xAxis={[{ scaleType: "point", data: label, height: 30 }]}
-        yAxis={[{ width: 50,  }]}
+        xAxis={[
+          {
+            scaleType: "point",
+            data: label,
+            height: 30,
+            position: noLabel ? "none" : "bottom",
+          },
+        ]}
+        yAxis={[{ width: 50, position: noLabel ? "none" : "left" }]}
         margin={margin}
       >
         {!noGradiant && (
