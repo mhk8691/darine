@@ -1,6 +1,5 @@
-"use client";
 import { Stack } from "@mui/material";
-import OrderDetail from "./Components/OrderDetail/OrderDetail";
+import Test from "./Test";
 
 export default function page() {
   return (
@@ -12,13 +11,7 @@ export default function page() {
       direction={"row"}
       alignItems={"center"}
     >
-      <Stack width={"95%"}>
-        <OrderDetail
-          title="لیست معاملات اخیر"
-          emptyMessage="معامله ای برای شما به ثبت نرسیده است"
-          type="chip"
-        />
-      </Stack>
+      <Test />
     </Stack>
   );
 }

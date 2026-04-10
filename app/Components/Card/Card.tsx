@@ -11,11 +11,10 @@ export default function Card({ style, children }: Props) {
       border={1}
       direction={"column"}
       borderColor={"background.paper"}
-      gap={1}
       sx={{
-        p: 2.5,
-        width: "100%",
-        borderRadius: 3,
+        borderRadius: 2.5,
+        py: 3,
+        px: 4,
 
         ...style,
       }}

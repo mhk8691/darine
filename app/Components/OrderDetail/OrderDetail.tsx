@@ -7,6 +7,7 @@ import FilterButton from "./FilterButton";
 import FilterInput from "./FilterInput";
 import FilterToggleButton from "../FilterToggleButton/FilterToggleButton";
 import { ToggleItemsType } from "@/app/core/Types";
+import Card from "../Card/Card";
 interface Props {
   title: string;
   emptyMessage: string;
@@ -20,13 +21,7 @@ export default function OrderDetail({ title, emptyMessage, type }: Props) {
   const [active, setActive] = useState<number | null>(null);
   const [select, setSelect] = useState(items[0].value);
   return (
-    <Stack
-      sx={{
-        bgcolor: "background.default",
-        borderRadius: 2.5,
-        py: 3,
-        px: 4,
-      }}
+    <Card
     >
       <Typography variant="h2" fontSize={22} mb={4}>
         {title}
@@ -85,6 +80,6 @@ export default function OrderDetail({ title, emptyMessage, type }: Props) {
           {emptyMessage}
         </Typography>
       </Stack>
-    </Stack>
+    </Card>
   );
 }
