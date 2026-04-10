@@ -1,6 +1,5 @@
 import { Divider, Stack, Typography } from "@mui/material";
-import React from "react";
-import priceFormater from "../PriceFormater/PriceFormater";
+import priceFormater from "../../core/PriceFormater";
 
 export default function BottomPrice() {
   return (
@@ -16,19 +15,19 @@ export default function BottomPrice() {
         px={2}
       >
         <Stack direction={"column"} alignItems={"center"} gap={0.5}>
-          <Typography variant="body2" sx={{color:'#C2C2BA'}}>
+          <Typography variant="body2" sx={{ color: "#C2C2BA" }}>
             بالاترین قیمت
           </Typography>
           <Typography variant="body1">{priceFormater(18680000)}</Typography>
         </Stack>
         <Stack direction={"column"} alignItems={"center"} gap={0.5}>
-          <Typography variant="body2" sx={{color:'#C2C2BA'}}>
+          <Typography variant="body2" sx={{ color: "#C2C2BA" }}>
             پایین‌ترین قیمت
           </Typography>
           <Typography variant="body1">{priceFormater(16320000)}</Typography>
         </Stack>
         <Stack direction={"column"} alignItems={"center"} gap={0.5}>
-          <Typography variant="body2" sx={{color:'#C2C2BA'}}>
+          <Typography variant="body2" sx={{ color: "#C2C2BA" }}>
             بالاترین قیمت
           </Typography>
           <Typography variant="body1" color="error">

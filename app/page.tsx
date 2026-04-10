@@ -1,17 +1,10 @@
 import { Stack } from "@mui/material";
-import Test from "./Test";
+import Footer from "./Components/Footer/Footer";
 
 export default function page() {
   return (
-    <Stack
-      width={"100%"}
-      height={"150vh"}
-      bgcolor={"background.paper"}
-      justifyContent={"center"}
-      direction={"row"}
-      alignItems={"center"}
-    >
-      <Test />
+    <Stack>
+      <Footer />
     </Stack>
   );
 }
