@@ -13,24 +13,26 @@ import {
   Typography,
 } from "@mui/material";
 import * as React from "react";
-
 const names = ["تکمیل شده", "در انتظار تایید", "لغو شده"];
 
-const MenuProps = {
-  slotProps: {
-    paper: {
-      sx: {
-        background: "#10100f",
-        border: "1px solid #575753",
-        backdropFilter: "blur(10px)",
-        borderRadius: "8px",
+interface Props {
+  type: "date" | "menu";
+}
+export default function FilterInput({ type }: Props) {
+  const [value, setValue] = React.useState<string>("");
+  const MenuProps = {
+    slotProps: {
+      paper: {
+        sx: {
+          background: "#10100f",
+          border: "1px solid #575753",
+          backdropFilter: "blur(10px)",
+          borderRadius: "8px",
+          display: type === "menu" ? "block" : "none",
+        },
       },
     },
-  },
-};
-
-export default function FilterInput() {
-  const [value, setValue] = React.useState<string>("");
+  };
 
   const handleChange = (event: SelectChangeEvent) => {
     setValue(event.target.value);
@@ -94,7 +96,7 @@ export default function FilterInput() {
                   position: "absolute ",
                 }}
               >
-                وضعیت:
+                {type === "menu" ? "وضعیت:" : "تاریخ:"}
               </Typography>
             );
           }
@@ -108,7 +110,10 @@ export default function FilterInput() {
               }}
             >
               <Stack direction={"row"} alignItems={"center"} gap={0.5}>
-                <Typography>وضعیت: </Typography>
+                <Typography>
+                  {" "}
+                  {type === "menu" ? "وضعیت:" : "تاریخ:"}
+                </Typography>
                 <Typography variant="body1" sx={{ color: "#B29727" }}>
                   {value}
                 </Typography>
@@ -129,29 +134,30 @@ export default function FilterInput() {
           );
         }}
       >
-        {names.map((name) => (
-          <MenuItem
-            key={name}
-            value={name}
-            sx={{
-              color: "#ddd",
+        {type === "menu" &&
+          names.map((name) => (
+            <MenuItem
+              key={name}
+              value={name}
+              sx={{
+                color: "#ddd",
 
-              "&.Mui-selected": {
-                backgroundColor: "#52524f !important",
-              },
+                "&.Mui-selected": {
+                  backgroundColor: "#52524f !important",
+                },
 
-              "&.Mui-selected:hover": {
-                backgroundColor: "#52524f !important",
-              },
+                "&.Mui-selected:hover": {
+                  backgroundColor: "#52524f !important",
+                },
 
-              "&:hover": {
-                backgroundColor: "#52524f",
-              },
-            }}
-          >
-            {name}
-          </MenuItem>
-        ))}
+                "&:hover": {
+                  backgroundColor: "#52524f",
+                },
+              }}
+            >
+              {name}
+            </MenuItem>
+          ))}
       </Select>
     </FormControl>
   );
