@@ -16,6 +16,7 @@ export default function page() {
         <OrderDetail
           title="لیست معاملات اخیر"
           emptyMessage="معامله ای برای شما به ثبت نرسیده است"
+          type="chip"
         />
       </Stack>
     </Stack>

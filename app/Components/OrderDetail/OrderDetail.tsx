@@ -1,14 +1,24 @@
+"use client";
+import FilterListIcon from "@mui/icons-material/FilterList";
 import { Stack, Typography } from "@mui/material";
-import React from "react";
+import Image from "next/image";
+import { useState } from "react";
 import FilterButton from "./FilterButton";
 import FilterInput from "./FilterInput";
-import FilterListIcon from "@mui/icons-material/FilterList";
-import Image from "next/image";
+import FilterToggleButton from "../FilterToggleButton/FilterToggleButton";
+import { ToggleItemsType } from "@/app/core/Types";
 interface Props {
   title: string;
   emptyMessage: string;
+  type: "chip" | "toggle";
 }
-export default function OrderDetail({ title, emptyMessage }: Props) {
+const items: ToggleItemsType[] = [
+  { title: "خرید", value: "buy" },
+  { title: "فروش", value: "sell" },
+];
+export default function OrderDetail({ title, emptyMessage, type }: Props) {
+  const [active, setActive] = useState<number | null>(null);
+  const [select, setSelect] = useState(items[0].value);
   return (
     <Stack
       sx={{
@@ -21,10 +31,30 @@ export default function OrderDetail({ title, emptyMessage }: Props) {
       <Typography variant="h2" fontSize={22} mb={4}>
         {title}
       </Typography>
-      <Stack direction={"row"} gap={2} mb={1}>
-        <FilterButton title="خرید" />
-        <FilterButton title="فروش" />
-      </Stack>
+      {type === "chip" ? (
+        <Stack direction={"row"} gap={2} mb={3}>
+          <FilterButton
+            title="خرید"
+            id={2}
+            active={active}
+            setActive={setActive}
+          />
+          <FilterButton
+            title="فروش"
+            id={1}
+            active={active}
+            setActive={setActive}
+          />
+        </Stack>
+      ) : (
+        <Stack mb={3} width={"fit-content"}>
+          <FilterToggleButton
+            items={items}
+            select={select}
+            setSelect={setSelect}
+          />
+        </Stack>
+      )}
       <Stack gap={2} direction={"row"} alignItems={"center"}>
         <Stack direction={"row"} gap={0.5}>
           <FilterListIcon sx={{ color: "#ADADA9" }} />
