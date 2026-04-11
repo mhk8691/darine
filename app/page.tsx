@@ -1,10 +1,10 @@
 import { Stack } from "@mui/material";
-import Footer from "./Components/Footer/Footer";
+import Navbar from "./Components/NavBar/Navbar";
 
 export default function page() {
   return (
     <Stack>
-      <Footer />
+      <Navbar />
     </Stack>
   );
 }

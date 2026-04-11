@@ -1,9 +1,8 @@
 "use client";
 import { createTheme } from "@mui/material";
-import { cyan } from "@mui/material/colors";
+import rtlPlugin from "@mui/stylis-plugin-rtl";
 import localFont from "next/font/local";
 import { prefixer } from "stylis";
-// import rtlPlugin from "stylis-plugin-rtl";
 
 const IranYekanFont = localFont({
   src: [
@@ -40,7 +39,7 @@ declare module "@mui/material/styles" {
 }
 export const rtl = {
   key: "muirtl",
-  stylisPlugins: [prefixer],
+  stylisPlugins: [prefixer, rtlPlugin],
 };
 const theme = createTheme({
   typography: {
@@ -49,10 +48,11 @@ const theme = createTheme({
   palette: {
     mode: "dark",
     primary: {
+      light: "#FDE378",
       main: "#FCD535",
     },
     secondary: {
-      main: cyan[500],
+      main: "#6DA9E1",
     },
     background: {
       default: "#10100F",
