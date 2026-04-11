@@ -5,6 +5,8 @@ import localFont from "next/font/local";
 import Head from "next/head";
 import "./globals.css";
 import theme, { rtl } from "./theme";
+import Navbar from "./Components/NavBar/Navbar";
+import Footer from "./Components/Footer/Footer";
 
 const IranYekanFont = localFont({
   src: [
@@ -56,8 +58,9 @@ export default function RootLayout({
         <AppRouterCacheProvider options={rtl}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-
+            <Navbar />
             <main style={{ flexGrow: 1 }}>{children}</main>
+            <Footer />
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
