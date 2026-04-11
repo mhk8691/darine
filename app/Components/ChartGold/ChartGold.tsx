@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import Card from "../Card/Card";
 import LineChart from "../LineChart/LineChart";
 import BottomPrice from "./BottomPrice";
@@ -11,25 +11,33 @@ const pData = [
 const xLabels = Array.from({ length: 24 }, (_, i) => `${i}:00`);
 
 interface Props {
-  positionPrice: "top" | "bottom";
+  positionPrice: "top" | "bottom" | "both";
+  chartHeight?: string;
 }
-export default function ChartGold({ positionPrice }: Props) {
+export default function ChartGold({ positionPrice, chartHeight }: Props) {
   return (
     <Card>
-      <Typography variant="h2" fontSize={22}>
+      <Typography
+        variant="h2"
+        fontSize={22}
+        fontWeight={"bold"}
+        sx={{ color: "text.title" }}
+      >
         نمودار لحظه ای قیمت طلا
       </Typography>
-      {positionPrice === "top" && <TopPrice />}
+      {(positionPrice === "top" || positionPrice === "both") && <TopPrice />}
       <LineChart
         width="100%"
-        height="278px"
+        height={chartHeight || "278px"}
         noGradiant={false}
         color="#FFD700"
         data={pData}
         label={xLabels}
         noLabel={false}
       />
-      {positionPrice === "bottom" && <BottomPrice />}
+      {(positionPrice === "bottom" || positionPrice === "both") && (
+        <BottomPrice />
+      )}
     </Card>
   );
 }

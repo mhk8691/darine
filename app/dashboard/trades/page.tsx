@@ -1,10 +1,9 @@
-import Wallet from "@/app/Components/Wallet/Wallet";
-import { Grid } from "@mui/material";
-import React from "react";
-import Trading from "./Trading/Trading";
 import ChartGold from "@/app/Components/ChartGold/ChartGold";
 import OrderDetail from "@/app/Components/OrderDetail/OrderDetail";
+import WalletStatus from "@/app/Components/Wallet/WalletStatus";
 import { ToggleItemsType } from "@/app/core/Types";
+import { Grid } from "@mui/material";
+import Trading from "./Trading/Trading";
 const items: ToggleItemsType[] = [
   { title: "خرید", value: "buy", id: 1 },
   { title: "فروش", value: "sell", id: 2 },
@@ -13,7 +12,7 @@ export default function page() {
   return (
     <Grid container spacing={3}>
       <Grid size={12}>
-        <Wallet />
+        <WalletStatus />
       </Grid>
       <Grid size={12} container>
         <Grid size={4.8}>

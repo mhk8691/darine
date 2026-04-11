@@ -1,20 +1,13 @@
 "use client";
 import { ToggleItemsType } from "@/app/core/Types";
 import { Button } from "@mui/material";
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction } from "react";
 interface Props {
   item: ToggleItemsType;
   active: number | null;
   setActive: Dispatch<SetStateAction<number | null>>;
 }
-export default function FilterButton({
-  active,
-  setActive,
-  item,
-}: Props) {
-  useEffect(()=>{
-    console.log(active)
-  },[])
+export default function FilterButton({ active, setActive, item }: Props) {
   return (
     <Button
       variant="outlined"
