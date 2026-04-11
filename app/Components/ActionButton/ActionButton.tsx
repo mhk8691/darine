@@ -3,12 +3,13 @@ import { Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Link from "next/link";
 import { ReactNode } from "react";
-interface Props {
-  title: string;
+
+export interface ActionButtonType {
+title: string;
   icon: ReactNode;
   link: string;
 }
-export default function ActionButton({ title, icon, link }: Props) {
+export default function ActionButton({ title, icon, link }: ActionButtonType) {
   return (
     <Link href={link}>
       <Stack
@@ -22,7 +23,7 @@ export default function ActionButton({ title, icon, link }: Props) {
         py={4}
         px={3}
       >
-        <Stack direction={"row"} alignItems={"center"} gap={0.5}>
+        <Stack direction={"row"} alignItems={"center"} gap={2}>
           {icon}
           <Typography variant="h6" fontSize={20}>
             {title}
