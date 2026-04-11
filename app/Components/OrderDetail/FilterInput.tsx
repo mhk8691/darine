@@ -44,7 +44,7 @@ export default function FilterInput({ type }: Props) {
   };
 
   return (
-    <FormControl sx={{ width: 260 }}>
+    <FormControl sx={{ maxWidth: "260px", width: "100%" }}>
       <Select
         displayEmpty
         value={value}

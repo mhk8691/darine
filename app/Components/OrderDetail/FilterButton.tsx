@@ -17,7 +17,7 @@ export default function FilterButton({ active, setActive, item }: Props) {
       sx={{
         py: 0.75,
         fontSize: 16,
-        witemth: "fit-content",
+        width: "fit-content",
         borderRadius: "999px",
         px: 2,
         borderColor: active === item.id ? "primary.main" : "#393936",

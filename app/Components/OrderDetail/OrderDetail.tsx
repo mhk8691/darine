@@ -36,7 +36,7 @@ export default function OrderDetail({
         {title}
       </Typography>
       {type === "chip" ? (
-        <Stack direction={"row"} gap={2} mb={3}>
+        <Stack direction={"row"} gap={2} mb={3} flexWrap={"wrap"}>
           {toggleItems.map((item) => (
             <FilterButton
               key={item.id}
@@ -62,7 +62,7 @@ export default function OrderDetail({
             فیلترها:
           </Typography>
         </Stack>
-        <Stack direction={"row"} gap={2}>
+        <Stack direction={"row"} gap={2} width={"100%"} >
           <FilterInput type="menu" />
           <FilterInput type="date" />
         </Stack>
