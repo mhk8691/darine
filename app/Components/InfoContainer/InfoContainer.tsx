@@ -1,4 +1,4 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import Card from "../Card/Card";
 import Typography from "@mui/material/Typography";
 import { Grid, Stack } from "@mui/material";
@@ -8,13 +8,14 @@ interface Props {
   title: string;
   items: ActionButtonType[];
   image: string;
+  style?:CSSProperties
 }
-export default function InfoContainer({ title, items, image }: Props) {
+export default function InfoContainer({ title, items, image,style }: Props) {
   return (
     <Card>
       <Grid container alignItems={"center"}>
         <Grid size={6}>
-          <Typography variant="h6" sx={{ mb: 5 }}>
+          <Typography variant="h6" fontSize={22} sx={{ mb: 5 }}>
             {title}
           </Typography>
           <Stack direction={"column"} gap={1.5}>
@@ -30,7 +31,7 @@ export default function InfoContainer({ title, items, image }: Props) {
         </Grid>
         <Grid size={6}>
           <Stack direction={"row"} justifyContent={"center"}>
-            <Image alt="" width={417} height={185} src={image} />
+            <Image alt="" width={417} height={185} src={image} style={style} />
           </Stack>
         </Grid>
       </Grid>
