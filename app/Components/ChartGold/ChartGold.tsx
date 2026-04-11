@@ -15,22 +15,21 @@ interface Props {
 }
 export default function ChartGold({ positionPrice }: Props) {
   return (
-    <Stack width={"60%"} m={5}>
-      <Card>
-        <Typography variant="h2" fontSize={22}>
-          نمودار لحظه ای قیمت طلا
-        </Typography>
-        {positionPrice === "top" && <TopPrice />}
-        <LineChart
-          width="100%"
-          height="278px"
-          noGradiant={false}
-          color="#FFD700"
-          data={pData}
-          label={xLabels}
-        />
-        {positionPrice === "bottom" && <BottomPrice />}
-      </Card>
-    </Stack>
+    <Card>
+      <Typography variant="h2" fontSize={22}>
+        نمودار لحظه ای قیمت طلا
+      </Typography>
+      {positionPrice === "top" && <TopPrice />}
+      <LineChart
+        width="100%"
+        height="278px"
+        noGradiant={false}
+        color="#FFD700"
+        data={pData}
+        label={xLabels}
+        noLabel={false}
+      />
+      {positionPrice === "bottom" && <BottomPrice />}
+    </Card>
   );
 }

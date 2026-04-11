@@ -71,8 +71,8 @@ export default function FilterInput({ type }: Props) {
           },
 
           "& .MuiSelect-icon": {
-            left: 8,
-            right: "auto",
+            right: 8,
+            left: "auto",
             color: "text.primary",
             display: !value ? "block" : "none",
           },

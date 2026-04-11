@@ -1,50 +1,55 @@
 "use client";
+import { ToggleItemsType } from "@/app/core/Types";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
+import Card from "../Card/Card";
+import FilterToggleButton from "../FilterToggleButton/FilterToggleButton";
 import FilterButton from "./FilterButton";
 import FilterInput from "./FilterInput";
-import FilterToggleButton from "../FilterToggleButton/FilterToggleButton";
-import { ToggleItemsType } from "@/app/core/Types";
-import Card from "../Card/Card";
 interface Props {
   title: string;
   emptyMessage: string;
   type: "chip" | "toggle";
+  toggleItems: ToggleItemsType[];
 }
-const items: ToggleItemsType[] = [
-  { title: "خرید", value: "buy" },
-  { title: "فروش", value: "sell" },
-];
-export default function OrderDetail({ title, emptyMessage, type }: Props) {
-  const [active, setActive] = useState<number | null>(null);
-  const [select, setSelect] = useState(items[0].value);
+
+export default function OrderDetail({
+  title,
+  emptyMessage,
+  type,
+  toggleItems,
+}: Props) {
+  const [active, setActive] = useState<number | null>(toggleItems[0]?.id);
+  const [select, setSelect] = useState(toggleItems[0]?.value);
+
   return (
-    <Card
-    >
-      <Typography variant="h2" fontSize={22} mb={4}>
+    <Card>
+      <Typography
+        variant="h2"
+        fontSize={22}
+        mb={4}
+        fontWeight={500}
+        sx={{ color: "text.title" }}
+      >
         {title}
       </Typography>
       {type === "chip" ? (
         <Stack direction={"row"} gap={2} mb={3}>
-          <FilterButton
-            title="خرید"
-            id={2}
-            active={active}
-            setActive={setActive}
-          />
-          <FilterButton
-            title="فروش"
-            id={1}
-            active={active}
-            setActive={setActive}
-          />
+          {toggleItems.map((item) => (
+            <FilterButton
+              key={item.id}
+              item={item}
+              active={active}
+              setActive={setActive}
+            />
+          ))}
         </Stack>
       ) : (
         <Stack mb={3} width={"fit-content"}>
           <FilterToggleButton
-            items={items}
+            items={toggleItems}
             select={select}
             setSelect={setSelect}
           />

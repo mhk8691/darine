@@ -1,4 +1,4 @@
-import { Divider, Stack, Typography } from "@mui/material";
+import { Box, Divider, Stack, Typography } from "@mui/material";
 import priceFormater from "../../core/PriceFormater";
 
 export default function BottomPrice() {
@@ -18,20 +18,33 @@ export default function BottomPrice() {
           <Typography variant="body2" sx={{ color: "#C2C2BA" }}>
             بالاترین قیمت
           </Typography>
-          <Typography variant="body1">{priceFormater(18680000)}</Typography>
+          <Typography variant="body1" sx={{ color: "text.title" }}>
+            {priceFormater(18680000)}
+            <Box component={"span"} fontSize={14}>
+              تومان
+            </Box>
+          </Typography>
         </Stack>
         <Stack direction={"column"} alignItems={"center"} gap={0.5}>
           <Typography variant="body2" sx={{ color: "#C2C2BA" }}>
             پایین‌ترین قیمت
           </Typography>
-          <Typography variant="body1">{priceFormater(16320000)}</Typography>
+          <Typography variant="body1" sx={{ color: "text.title" }}>
+            {priceFormater(16320000)}
+            <Box component={"span"} fontSize={14}>
+              تومان
+            </Box>
+          </Typography>
         </Stack>
         <Stack direction={"column"} alignItems={"center"} gap={0.5}>
           <Typography variant="body2" sx={{ color: "#C2C2BA" }}>
             بالاترین قیمت
           </Typography>
           <Typography variant="body1" color="error">
-            {(1.11).toLocaleString()} درصد
+            {(1.11).toLocaleString()}{" "}
+            <Box component={"span"} fontSize={14}>
+              درصد
+            </Box>
           </Typography>
         </Stack>
       </Stack>

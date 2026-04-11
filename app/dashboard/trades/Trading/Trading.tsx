@@ -1,9 +1,10 @@
+"use client";
 import { ToggleItemsType } from "@/app/core/Types";
 import { Button, Stack, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import Card from "../Card/Card";
-import FilterToggleButton from "../FilterToggleButton/FilterToggleButton";
-import InputField from "../InputField/InputField";
+import Card from "@/app/Components/Card/Card";
+import FilterToggleButton from "@/app/Components/FilterToggleButton/FilterToggleButton";
+import InputField from "@/app/Components/InputField/InputField";
 // interface Props {
 //   inputList: {
 //     placeholder: string;
@@ -38,7 +39,7 @@ export default function Trading() {
     }
   }, [gold, setGold]);
   return (
-    <Card style={{ gap: 3.5 }}>
+    <Card style={{ gap: 3.5,py:4 }}>
       <Typography variant="h2" fontSize={22}>
         خرید و فروش طلا
       </Typography>

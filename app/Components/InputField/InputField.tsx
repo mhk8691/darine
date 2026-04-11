@@ -42,11 +42,11 @@ export default function InputField({
       onChange={handleChange}
       id="outlined-start-adornment"
       sx={{
-        direction:'ltr',
+        direction: "ltr",
         "& .MuiInputBase-input": {
           py: 0,
           minHeight: "56px",
-          textAlign: value || value === 0 ? "left" : "right",
+          textAlign: value || value === 0 ? "right" : "left",
           pl: 1,
           fontSize: "18px",
         },
@@ -72,12 +72,12 @@ export default function InputField({
       slotProps={{
         input: {
           endAdornment: title && (
-            <InputAdornment position="start">
+            <InputAdornment position="end">
               <Divider
                 orientation="vertical"
                 flexItem
                 sx={{
-                  ml: "14px",
+                  mr: "14px",
                   borderColor: "#393936",
                   border: "1px solid #393936",
                 }}
