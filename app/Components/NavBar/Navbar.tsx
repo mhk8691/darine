@@ -6,9 +6,9 @@ import Image from "next/image";
 import Link from "next/link";
 import ProfileBtn from "./ProfileBtn";
 import SubMenu from "./SubMenu";
-import React from "react";
 const menu: MenuType[] = [
   {
+    id: 1,
     title: "امکانات",
     subMenu: [
       {
@@ -30,6 +30,7 @@ const menu: MenuType[] = [
     ],
   },
   {
+    id: 2,
     title: "قیمت طلا",
     subMenu: [
       {
@@ -54,18 +55,9 @@ const menu: MenuType[] = [
       },
     ],
   },
-  {
-    title: "شعب دارینه",
-    link: "/branches",
-  },
-  {
-    title: "مجوز های دارینه",
-    link: "/license",
-  },
-  {
-    title: "همکاران دارینه",
-    link: "/partners",
-  },
+  { id: 3, title: "شعب دارینه", link: "/branches" },
+  { id: 4, title: "مجوز های دارینه", link: "/license" },
+  { id: 5, title: "همکاران دارینه", link: "/partners" },
 ];
 export default function Navbar() {
   return (
@@ -79,7 +71,6 @@ export default function Navbar() {
         py: 2,
         px: 5,
         bgcolor: "background.default",
-
         width: "100%",
       }}
     >
@@ -98,7 +89,7 @@ export default function Navbar() {
         <Stack direction={"row"} gap={2.5} alignItems={"center"}>
           {menu.map((item, index) =>
             item.link ? (
-              <Link href={item.link} key={index}>
+              <Link href={item.link} key={item.id}>
                 <Typography
                   variant="body1"
                   sx={{
@@ -112,7 +103,7 @@ export default function Navbar() {
                 </Typography>
               </Link>
             ) : (
-              <SubMenu key={item.title} item={item} />
+              <SubMenu key={item.id} item={item} />
             ),
           )}
         </Stack>

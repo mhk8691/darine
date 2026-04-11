@@ -52,8 +52,8 @@ export default function SubMenu({ item }: Props) {
           }}
         >
           <Stack direction={"column"} gap={2}>
-            {item.subMenu?.map((link) => (
-              <Link href={link.link || ""} key={item.link}>
+            {item.subMenu?.map((link,index) => (
+              <Link href={link.link || ""} key={index}>
                 <Typography variant="body2" sx={{ color: "text.secondary" }}>
                   {link.title}
                 </Typography>

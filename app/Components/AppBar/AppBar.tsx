@@ -60,16 +60,15 @@ export default function AppBar() {
         justifyContent: "space-between",
         border: "none",
         pb: 0,
-        bgcolor: "background.paper",
-        borderRadius:1,
-        mt: 5,
+        bgcolor: "background.default",
+        borderRadius: 1,
       }}
     >
-      {items.map((item) => (
+      {items.map((item, index) => (
         <Stack
           component={item.link ? Link : "div"}
           href={item.link}
-          key={item.link}
+          key={index}
           direction={"column"}
           gap={0.5}
           alignItems={"center"}
@@ -83,9 +82,19 @@ export default function AppBar() {
               width: "32px",
               height: "32px",
               objectFit: "contain",
+              scale: pathname === item.link ? 1.15 : 1,
+              transition: "all .3s ease",
             }}
           />
-          <Typography variant="body1" fontSize={16} sx={{ color: "#C2C2BA" }}>
+          <Typography
+            variant="body1"
+            fontSize={16}
+            sx={{
+              color: pathname === item.link ? "text.primary" : "#C2C2BA",
+              scale: pathname === item.link ? 1.1 : 1,
+              transition: "all .3s ease",
+            }}
+          >
             {item.name}
           </Typography>
           {item.link && (
@@ -96,7 +105,7 @@ export default function AppBar() {
                 height: 16,
                 scale: pathname === item.link ? 1 : 0,
                 opacity: pathname === item.link ? 1 : 0,
-                transition:'all .3s ease'
+                transition: "all .3s ease",
               }}
               color="primary"
             >

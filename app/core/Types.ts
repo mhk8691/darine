@@ -3,6 +3,7 @@ export interface ToggleItemsType {
   value: string;
 }
 export interface MenuType {
+  id?:number
   title: string;
   link?: string;
   subMenu?: MenuType[];
