@@ -1,4 +1,5 @@
 "use client";
+import { FaqItem } from "@/app/core/Types";
 import { Divider, Stack, SvgIcon } from "@mui/material";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -6,24 +7,11 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import { JSX, useState } from "react";
 
-type FaqItem = {
-  id: string;
-  question: string;
-  answer: string;
-};
+interface Props {
+  faqData: FaqItem[];
+}
 
-const faqData: FaqItem[] = [
-  {
-    id: "1",
-    question: "چگونه می‌توانم قیمت نهایی طلای خود را محاسبه کنم؟",
-    answer:
-      "با وارد کردن وزن طلا، اجرت ساخت و قیمت روز طلا در ماشین حساب آنلاین، قیمت نهایی طلای شما به‌صورت خودکار محاسبه خواهد شد.",
-  },
-  { id: "2", question: "سوال دوم", answer: "جواب دوم" },
-  { id: "3", question: "سوال سوم", answer: "جواب سوم" },
-];
-
-export default function Faq(): JSX.Element {
+export default function Faq({ faqData }: Props): JSX.Element {
   const [expanded, setExpanded] = useState<string | false>("1");
 
   const handleChange =
@@ -36,7 +24,7 @@ export default function Faq(): JSX.Element {
       <Typography
         variant="h5"
         fontSize={22}
-        sx={{ mb: 2.5, fontWeight: "bold" }}
+        sx={{ mb: 3, fontWeight: "bold" }}
         color="text.title"
       >
         سوالات متداول
@@ -51,7 +39,7 @@ export default function Faq(): JSX.Element {
             onChange={handleChange(item.id)}
             sx={{
               bgcolor: "#10100F",
-              mb: 1,
+              mb: 1.5,
               py: 2.2,
               px: 2,
               borderRadius: "10px !important",

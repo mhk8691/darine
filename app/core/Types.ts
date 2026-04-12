@@ -9,3 +9,8 @@ export interface MenuType {
   link?: string;
   subMenu?: MenuType[];
 }
+export interface FaqItem {
+  id: string;
+  question: string;
+  answer: string;
+}

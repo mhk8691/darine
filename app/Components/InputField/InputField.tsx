@@ -41,13 +41,13 @@ export default function InputField({
       value={formatNumber(value)}
       onChange={handleChange}
       id="outlined-start-adornment"
+      
       sx={{
         direction: "ltr",
         "& .MuiInputBase-input": {
           py: 0,
           minHeight: "56px",
           textAlign: value || value === 0 ? "right" : "left",
-          pl: 1,
           fontSize: "18px",
         },
         "& .MuiOutlinedInput-root": {

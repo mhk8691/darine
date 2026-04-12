@@ -1,0 +1,19 @@
+"use client";
+import Card from "@/app/Components/Card/Card";
+import CustomTabs from "@/app/Components/Tabs/CustomTabs";
+import Typography from "@mui/material/Typography";
+import { ReactNode } from "react";
+import Trading from "./Trading";
+import { Stack } from "@mui/material";
+const tabs = ["فروش "];
+const children: ReactNode[] = [<Trading key={1} />];
+export default function MarginTrade() {
+  return (
+    <Card style={{ px: 0 }}>
+      <Stack px={4}>
+        <Typography variant="h6" fontSize={22}>سفارش تعهدی</Typography>
+      </Stack>
+      <CustomTabs tabList={tabs}>{children}</CustomTabs>
+    </Card>
+  );
+}
