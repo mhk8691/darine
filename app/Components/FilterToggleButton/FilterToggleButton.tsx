@@ -31,8 +31,7 @@ export default function FilterToggleButton({
         position: "relative",
         backgroundColor: "background.paper",
         borderRadius: "10px",
-        px: "6px",
-        py: 0.5,
+        p: "4px",
       }}
     >
       <Box

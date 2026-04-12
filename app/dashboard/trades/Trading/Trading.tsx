@@ -15,8 +15,8 @@ import InputField from "@/app/Components/InputField/InputField";
 //   title: string;
 // }
 const items: ToggleItemsType[] = [
-  { title: "خرید", value: "buy" },
-  { title: "فروش", value: "sell" },
+  { title: "خرید", value: "buy", id: 1 },
+  { title: "فروش", value: "sell", id: 2 },
 ];
 export default function Trading() {
   const [price, setPrice] = useState<number | null>(null);
@@ -39,7 +39,7 @@ export default function Trading() {
     }
   }, [gold, setGold]);
   return (
-    <Card style={{ gap: 3.5,py:4 }}>
+    <Card style={{ gap: 3.5, py: 4 }}>
       <Typography variant="h2" fontSize={22}>
         خرید و فروش طلا
       </Typography>
