@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { SxProps, Typography } from "@mui/material";
 import Card from "../Card/Card";
 import LineChart from "../LineChart/LineChart";
 import BottomPrice from "./BottomPrice";
@@ -13,10 +13,17 @@ const xLabels = Array.from({ length: 24 }, (_, i) => `${i}:00`);
 interface Props {
   positionPrice: "top" | "bottom" | "both";
   chartHeight?: string;
+  cardStyle?: SxProps;
+  priceStyle?:SxProps
 }
-export default function ChartGold({ positionPrice, chartHeight }: Props) {
+export default function ChartGold({
+  positionPrice,
+  chartHeight,
+  cardStyle,
+  priceStyle,
+}: Props) {
   return (
-    <Card>
+    <Card style={cardStyle}>
       <Typography
         variant="h2"
         fontSize={22}
@@ -36,7 +43,7 @@ export default function ChartGold({ positionPrice, chartHeight }: Props) {
         noLabel={false}
       />
       {(positionPrice === "bottom" || positionPrice === "both") && (
-        <BottomPrice />
+        <BottomPrice priceStyle={priceStyle} />
       )}
     </Card>
   );
