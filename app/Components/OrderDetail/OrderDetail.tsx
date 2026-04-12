@@ -35,25 +35,29 @@ export default function OrderDetail({
       >
         {title}
       </Typography>
-      {type === "chip" ? (
-        <Stack direction={"row"} gap={2} mb={3} flexWrap={"wrap"}>
-          {toggleItems.map((item) => (
-            <FilterButton
-              key={item.id}
-              item={item}
-              active={active}
-              setActive={setActive}
-            />
-          ))}
-        </Stack>
-      ) : (
-        <Stack mb={3} width={"fit-content"}>
-          <FilterToggleButton
-            items={toggleItems}
-            select={select}
-            setSelect={setSelect}
-          />
-        </Stack>
+      {toggleItems.length != 0 && (
+        <>
+          {type === "chip" ? (
+            <Stack direction={"row"} gap={2} mb={3} flexWrap={"wrap"}>
+              {toggleItems.map((item) => (
+                <FilterButton
+                  key={item.id}
+                  item={item}
+                  active={active}
+                  setActive={setActive}
+                />
+              ))}
+            </Stack>
+          ) : (
+            <Stack mb={3} width={"fit-content"}>
+              <FilterToggleButton
+                items={toggleItems}
+                select={select}
+                setSelect={setSelect}
+              />
+            </Stack>
+          )}
+        </>
       )}
       <Stack gap={2} direction={"row"} alignItems={"center"}>
         <Stack direction={"row"} gap={0.5}>
@@ -62,7 +66,7 @@ export default function OrderDetail({
             فیلترها:
           </Typography>
         </Stack>
-        <Stack direction={"row"} gap={2} width={"100%"} >
+        <Stack direction={"row"} gap={2} width={"100%"}>
           <FilterInput type="menu" />
           <FilterInput type="date" />
         </Stack>
