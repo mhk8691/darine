@@ -13,11 +13,11 @@ const menu: MenuType[] = [
     subMenu: [
       {
         title: "وام خرید کالا",
-        link: "/loan",
+        link: "/dashboard/loan",
       },
       {
         title: "خرید قسطی طلا",
-        link: "/credit-menu",
+        link: "/dashboard/credit-menu",
       },
       {
         title: "خرید شمش طلا",
@@ -87,7 +87,7 @@ export default function Navbar() {
           }}
         />
         <Stack direction={"row"} gap={2.5} alignItems={"center"}>
-          {menu.map((item, index) =>
+          {menu.map((item) =>
             item.link ? (
               <Link href={item.link} key={item.id}>
                 <Typography

@@ -13,10 +13,12 @@ import {
   SvgIcon,
   Typography,
 } from "@mui/material";
+import Link from "next/link";
 import * as React from "react";
 const options = [
   {
     title: "پروفایل",
+    link: "/dashboard/profile",
     icon: (
       <SvgIcon>
         <svg
@@ -55,6 +57,7 @@ const options = [
   },
   {
     title: "کارت های بانکی",
+    link: "/dashboard/bank-card",
     icon: (
       <SvgIcon>
         <svg
@@ -111,6 +114,7 @@ const options = [
   },
   {
     title: "دعوت از دوستان",
+    link: "/dashboard/invite",
     icon: (
       <SvgIcon>
         <svg
@@ -171,6 +175,7 @@ const options = [
   },
   {
     title: "آالارم قیمت",
+    link: "/dashboard/price-alert",
     icon: (
       <SvgIcon fontSize="small">
         <svg
@@ -327,7 +332,7 @@ export default function ProfileBtn() {
           </Stack>
           <MenuList>
             {options.map((option) => (
-              <Box key={option.title}>
+              <Box component={Link} href={option.link} key={option.title}>
                 <MenuItem
                   onClick={() => setOpen(false)}
                   sx={{
@@ -349,10 +354,21 @@ export default function ProfileBtn() {
             ))}
           </MenuList>
           <Stack px={1.5} direction={"column"} gap={1.5}>
-            <Button variant="contained" color="primary">
+            <Button
+              variant="contained"
+              color="primary"
+              LinkComponent={Link}
+              href="/dashboard/irt-transaction"
+              disableRipple
+              onClick={() => setOpen(false)}
+            >
               افزایش اعتبار
             </Button>
-            <Button variant="outlined" color="error">
+            <Button
+              variant="outlined"
+              color="error"
+              onClick={() => setOpen(false)}
+            >
               خروج
             </Button>
           </Stack>
