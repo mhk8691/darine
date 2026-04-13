@@ -1,10 +1,9 @@
-import React, { ReactNode } from "react";
-import Card from "../Card/Card";
-import Typography from "@mui/material/Typography";
-import { Stack } from "@mui/material";
-import Image from "next/image";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { Stack } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import { ReactNode } from "react";
+import Card from "../Card/Card";
 import GoldBuy from "./GoldBuy";
 interface Props {
   title: string;
@@ -37,7 +36,7 @@ export default function CreditContainer({
       <Typography
         variant="body1"
         fontSize={18}
-        sx={{ color: "text.secondary", mt: 4.5 }}
+        sx={{ color: "text.secondary", mt: 4.5,fontWeight:500 }}
       >
         {description}
       </Typography>
