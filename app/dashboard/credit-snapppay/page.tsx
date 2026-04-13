@@ -1,6 +1,5 @@
 import CreditContainer from "@/app/Components/CreditContainer/CreditContainer";
 import { Box, Grid, Typography } from "@mui/material";
-import Image from "next/image";
 import { ReactNode } from "react";
 const GoldenUnderline = ({ children }: { children: ReactNode }) => {
   return (

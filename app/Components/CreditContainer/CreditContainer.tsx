@@ -6,12 +6,12 @@ import { ReactNode } from "react";
 import Card from "../Card/Card";
 import GoldBuy from "./GoldBuy";
 interface Props {
-  title: RactNod;
+  title: ReactNode;
   banner: ReactNode;
   icon: ReactNode;
   description: string;
   options: string[];
-  tooltip: string;
+  tooltip?: string;
 }
 export default function CreditContainer({
   title,
@@ -23,7 +23,7 @@ export default function CreditContainer({
 }: Props) {
 
   return (
-    <Card>
+    <Card style={{pb:12}}>
       <Stack direction={"row"} alignItems={"center"} gap={1}>
         {title}
         {icon}

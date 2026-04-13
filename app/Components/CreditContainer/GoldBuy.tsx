@@ -7,7 +7,7 @@ import Card from "../Card/Card";
 export default function GoldBuy() {
   const [value, setValue] = useState<null | number>(null);
   return (
-    <Card style={{ gap: 3.5,  mt: 2, mb: 12,width:'50%' }}>
+    <Card style={{ gap: 3.5,  mt: 2,width:'50%' }}>
       <Typography variant="h6" fontSize={18} sx={{ color: "text.title" }}>
         خرید طلای قسطی
       </Typography>
