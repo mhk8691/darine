@@ -5,13 +5,15 @@ import InputAdornment from "@mui/material/InputAdornment";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import { ReactNode } from "react";
+import { SxProps } from "@mui/material";
 
 interface Props {
   placeholder: string;
   icon?: ReactNode;
-  title: string;
+  title?: string;
   value: number | null;
   setValue: React.Dispatch<React.SetStateAction<number | null>>;
+  style?:SxProps
 }
 export default function InputField({
   placeholder,
@@ -19,6 +21,7 @@ export default function InputField({
   icon,
   value,
   setValue,
+  style
 }: Props) {
   const formatNumber = (num: number | null) => {
     if (num === null) return "";
@@ -68,6 +71,7 @@ export default function InputField({
             borderWidth: "1px",
           },
         },
+        ...style,
       }}
       slotProps={{
         input: {
