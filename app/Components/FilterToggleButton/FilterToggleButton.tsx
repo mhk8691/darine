@@ -64,7 +64,6 @@ export default function FilterToggleButton({
             value={item.value}
             disableRipple
             sx={{
-              width: "100%",
               border: "none",
               borderRadius: "10px !important",
               color: "#ADADA9",

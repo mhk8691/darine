@@ -1,17 +1,19 @@
-import * as React from "react";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
+'use client'
+import { SxProps } from "@mui/material";
 import Box from "@mui/material/Box";
-import { Stack } from "@mui/material";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
+import * as React from "react";
 
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
   value: number;
+  noPadding?: boolean;
 }
 
 function CustomTabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
+  const { children, value, index, noPadding = false, ...other } = props;
 
   return (
     <div
@@ -21,7 +23,9 @@ function CustomTabPanel(props: TabPanelProps) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+      {value === index && (
+        <Box sx={{ py: 3, px: noPadding ? 0 : 3 }}>{children}</Box>
+      )}
     </div>
   );
 }
@@ -34,10 +38,20 @@ function a11yProps(index: number) {
 }
 interface Props {
   tabList: string[];
-  // tabPanelList: React.ReactNode[];
   children: React.ReactNode[];
+  style?: SxProps;
+  lineHeight?: string;
+  tabsStyle?: SxProps;
+  noPadding?: boolean;
 }
-export default function CustomTabs({ tabList, children }: Props) {
+export default function CustomTabs({
+  tabList,
+  children,
+  style,
+  lineHeight,
+  tabsStyle,
+  noPadding = false,
+}: Props) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -53,10 +67,11 @@ export default function CustomTabs({ tabList, children }: Props) {
           aria-label="basic tabs example"
           sx={{
             "&.MuiTabs-root .MuiTabs-indicator": {
-              height: "8px",
+              height: lineHeight || "8px",
               borderRadius: "16px",
             },
-            px:4
+            px: 4,
+            ...tabsStyle,
           }}
         >
           {tabList.map((item, index) => (
@@ -70,6 +85,7 @@ export default function CustomTabs({ tabList, children }: Props) {
                 color: "#C2C2BA",
                 width: "50%",
                 mb: 2,
+                ...style,
               }}
               label={item}
               {...a11yProps(index)}
@@ -79,7 +95,12 @@ export default function CustomTabs({ tabList, children }: Props) {
         </Tabs>
       </Box>
       {children.map((item, index) => (
-        <CustomTabPanel value={value} index={index} key={index}>
+        <CustomTabPanel
+          value={value}
+          index={index}
+          key={index}
+          noPadding={noPadding}
+        >
           {item}
         </CustomTabPanel>
       ))}
