@@ -6,7 +6,7 @@ import { ReactNode } from "react";
 import Card from "../Card/Card";
 import GoldBuy from "./GoldBuy";
 interface Props {
-  title: string;
+  title: RactNod;
   banner: ReactNode;
   icon: ReactNode;
   description: string;
@@ -21,15 +21,11 @@ export default function CreditContainer({
   options,
   tooltip,
 }: Props) {
-  const words = title?.trim().split(" ") || [];
-  const lastWord = words.length > 0 ? words[words.length - 1] : "";
-  const firstPart = words.slice(0, -1).join(" ");
+
   return (
     <Card>
       <Stack direction={"row"} alignItems={"center"} gap={1}>
-        <Typography variant="h6" fontSize={22}>
-          {firstPart} <span style={{ color: "#0040ff" }}>{lastWord}</span>
-        </Typography>
+        {title}
         {icon}
       </Stack>
       {banner}

@@ -28,7 +28,15 @@ export default function page() {
       <Grid size={12}>
         <CreditContainer
           description="با استفاده از سرویس خرید اقساطی طلاسی، می‌توانید بدون نیاز به پرداخت نقدی، طلا بخرید."
-          title="خرید اعتباری با دیجی‌پی "
+          title={
+            <Typography variant="h6" fontSize={22}>
+              خرید اعتباری با
+              <Box component={"span"} color={"#007DFA"}>
+                {" "}
+                دیجی پی
+              </Box>
+            </Typography>
+          }
           options={[
             "خرید آنی طلا بدون نیاز به پرداخت نقدی",
             "امکان نقدکردن طلای خریداری شده در لحظه",
