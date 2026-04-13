@@ -10,8 +10,10 @@ interface Props {
   banner: ReactNode;
   icon: ReactNode;
   description: string;
-  options: string[];
+  descriptionSize?:number
+  options?: string[];
   tooltip?: string;
+ optionTitle?:string 
 }
 export default function CreditContainer({
   title,
@@ -20,10 +22,12 @@ export default function CreditContainer({
   description,
   options,
   tooltip,
+  optionTitle,
+  descriptionSize
 }: Props) {
 
   return (
-    <Card style={{pb:12}}>
+    <Card style={{ pb: 12 }}>
       <Stack direction={"row"} alignItems={"center"} gap={1}>
         {title}
         {icon}
@@ -31,32 +35,41 @@ export default function CreditContainer({
       {banner}
       <Typography
         variant="body1"
-        fontSize={18}
-        sx={{ color: "text.secondary", mt: 4.5,fontWeight:500 }}
+        fontSize={descriptionSize || 18}
+        sx={{ color: "text.secondary", mt: 4.5, fontWeight: 500 }}
       >
         {description}
       </Typography>
-      <Typography
-        variant="body1"
-        fontSize={16}
-        sx={{ color: "text.secondary", mt: 3.5, mb: 0.5 }}
-      >
-        مزایای این سرویس:
-      </Typography>
-      <Stack>
-        {options.map((option) => (
-          <Stack direction={"row"} alignItems={"center"} gap={1} key={option}>
-            <FiberManualRecordIcon sx={{ width: 7, height: 25 }} />
-            <Typography
-              variant="body2"
-              fontSize={16}
-              sx={{ color: "text.secondary" }}
-            >
-              {option}
-            </Typography>
+      {options && (
+        <>
+          <Typography
+            variant="body1"
+            fontSize={16}
+            sx={{ color: "text.secondary", mt: 3.5, mb: 0.5 }}
+          >
+            {optionTitle || " مزایای این سرویس:"}
+          </Typography>
+          <Stack>
+            {options.map((option) => (
+              <Stack
+                direction={"row"}
+                alignItems={"center"}
+                gap={1}
+                key={option}
+              >
+                <FiberManualRecordIcon sx={{ width: 7, height: 25 }} />
+                <Typography
+                  variant="body2"
+                  fontSize={16}
+                  sx={{ color: "text.secondary" }}
+                >
+                  {option}
+                </Typography>
+              </Stack>
+            ))}
           </Stack>
-        ))}
-      </Stack>
+        </>
+      )}
       {tooltip && (
         <>
           <Stack

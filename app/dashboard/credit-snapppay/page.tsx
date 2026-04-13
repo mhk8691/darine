@@ -1,27 +1,7 @@
 import CreditContainer from "@/app/Components/CreditContainer/CreditContainer";
+import GoldenUnderline from "@/app/Components/CreditContainer/GoldenUnderline";
 import { Box, Grid, Typography } from "@mui/material";
-import { ReactNode } from "react";
-const GoldenUnderline = ({ children }: { children: ReactNode }) => {
-  return (
-    <Box component="span" position="relative" display="inline-block">
-      <Box
-        width="120%"
-        position="absolute"
-        height={12}
-        bgcolor="#8A751D"
-        borderRadius="999px"
-        bottom={2}
-        left={"50%"}
-        sx={{ transform: "translateX(-50%)" }}
-        zIndex={0}
-      />
 
-      <Box component="span" position="relative" zIndex={1}>
-        {children}
-      </Box>
-    </Box>
-  );
-};
 export default function page() {
   return (
     <Grid container>
