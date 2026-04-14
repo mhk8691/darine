@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import { Stack, Button } from "@mui/material";
 import Link from "next/link";
 import LineChart from "../LineChart/LineChart";
+import { TableGoldDataType } from "@/app/core/Types";
 
 export function createData({
   typeGold,
@@ -18,7 +19,7 @@ export function createData({
   dayChange,
   monthChange,
   weeklyChart,
-}: DataType) {
+}: TableGoldDataType) {
   return {
     typeGold,
     currentRate,
@@ -30,18 +31,10 @@ export function createData({
   };
 }
 
-interface DataType {
-  typeGold: string;
-  currentRate: number;
-  minPriceDay: number;
-  maxPriceDay: number;
-  dayChange: number;
-  monthChange: number;
-  weeklyChart: number;
-}
+
 interface Props {
   heads: string[];
-  data: DataType[];
+  data: TableGoldDataType[];
 }
 export default function GoldTable({ heads, data }: Props) {
   return (
@@ -165,7 +158,6 @@ export default function GoldTable({ heads, data }: Props) {
                 align="center"
                 sx={{ fontSize: "16px", py: 0.9, px: 2.5 }}
               >
-                {/* {row.weeklyChart} */}
                 <Stack direction={"row"} justifyContent={"center"}>
                   <LineChart
                     color="#D12F2F"
