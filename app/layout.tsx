@@ -3,10 +3,10 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Head from "next/head";
+import Footer from "./Components/Footer/Footer";
+import Navbar from "./Components/NavBar/Navbar";
 import "./globals.css";
 import theme, { rtl } from "./theme";
-import Navbar from "./Components/NavBar/Navbar";
-import Footer from "./Components/Footer/Footer";
 
 const IranYekanFont = localFont({
   src: [

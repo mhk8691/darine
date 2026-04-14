@@ -1,6 +1,6 @@
 "use client";
 import { FaqItem } from "@/app/core/Types";
-import { Divider, Stack, SvgIcon } from "@mui/material";
+import { Divider, Stack, SvgIcon, SxProps } from "@mui/material";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -9,9 +9,10 @@ import { JSX, useState } from "react";
 
 interface Props {
   faqData: FaqItem[];
+  titleStyle?: SxProps;
 }
 
-export default function Faq({ faqData }: Props): JSX.Element {
+export default function Faq({ faqData, titleStyle }: Props): JSX.Element {
   const [expanded, setExpanded] = useState<string | false>("1");
 
   const handleChange =
@@ -24,7 +25,7 @@ export default function Faq({ faqData }: Props): JSX.Element {
       <Typography
         variant="h5"
         fontSize={22}
-        sx={{ mb: 3, fontWeight: "bold" }}
+        sx={{ mb: 3, fontWeight: "bold", ...titleStyle }}
         color="text.title"
       >
         سوالات متداول
