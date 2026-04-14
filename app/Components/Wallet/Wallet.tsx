@@ -2,8 +2,8 @@ import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { Divider, Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
-import Card from "../Card/Card";
 import Link from "next/link";
+import Card from "../Container/Container";
 interface Props {
   type: "dashboard" | "wallet";
 }

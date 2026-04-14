@@ -1,13 +1,13 @@
 "use client";
-import { Typography, Button } from "@mui/material";
-import React, { useState } from "react";
+import { Button, Typography } from "@mui/material";
+import { useState } from "react";
+import Card from "../Container/Container";
 import InputField from "../InputField/InputField";
-import Card from "../Card/Card";
 
 export default function GoldBuy() {
   const [value, setValue] = useState<null | number>(null);
   return (
-    <Card style={{ gap: 3.5,  mt: 2,width:'50%' }}>
+    <Card style={{ gap: 3.5, mt: 2, width: "50%" }}>
       <Typography variant="h6" fontSize={18} sx={{ color: "text.title" }}>
         خرید طلای قسطی
       </Typography>

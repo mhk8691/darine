@@ -1,5 +1,5 @@
 "use client";
-import Card from "@/app/Components/Card/Card";
+import Card from "@/app/Components/Container/Container";
 import CustomTabs from "@/app/Components/Tabs/CustomTabs";
 import Typography from "@mui/material/Typography";
 import { ReactNode } from "react";

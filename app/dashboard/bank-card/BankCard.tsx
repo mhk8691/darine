@@ -1,6 +1,6 @@
 "use client";
-import Card from "@/app/Components/Card/Card";
-import { Stack, Typography, IconButton, SvgIcon } from "@mui/material";
+import Card from "@/app/Components/Container/Container";
+import { IconButton, Stack, SvgIcon, Typography } from "@mui/material";
 import Image from "next/image";
 
 export default function BankCard() {

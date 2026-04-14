@@ -4,7 +4,7 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import { Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
-import Card from "../Card/Card";
+import Card from "../Container/Container";
 import FilterToggleButton from "../FilterToggleButton/FilterToggleButton";
 import FilterButton from "./FilterButton";
 import FilterInput from "./FilterInput";

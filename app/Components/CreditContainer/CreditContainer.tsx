@@ -3,17 +3,17 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { ReactNode } from "react";
-import Card from "../Card/Card";
+import Card from "../Container/Container";
 import GoldBuy from "./GoldBuy";
 interface Props {
   title: ReactNode;
   banner: ReactNode;
   icon: ReactNode;
   description: string;
-  descriptionSize?:number
+  descriptionSize?: number;
   options?: string[];
   tooltip?: string;
- optionTitle?:string 
+  optionTitle?: string;
 }
 export default function CreditContainer({
   title,
@@ -23,9 +23,8 @@ export default function CreditContainer({
   options,
   tooltip,
   optionTitle,
-  descriptionSize
+  descriptionSize,
 }: Props) {
-
   return (
     <Card style={{ pb: 12 }}>
       <Stack direction={"row"} alignItems={"center"} gap={1}>

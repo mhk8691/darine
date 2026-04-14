@@ -1,9 +1,9 @@
-import Card from "@/app/Components/Card/Card";
+import Card from "@/app/Components/Container/Container";
 import OrderDetail from "@/app/Components/OrderDetail/OrderDetail";
 import WalletStatus from "@/app/Components/Wallet/WalletStatus";
 import { ToggleItemsType } from "@/app/core/Types";
-import { Grid, Stack, Typography, Button } from "@mui/material";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { Button, Grid, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -37,9 +37,9 @@ export default function page() {
                   fontSize: 16,
                   fontWeight: "bold",
                   borderRadius: 2,
-                  '&:hover':{
-                    bgcolor:'primary.main'
-                  }
+                  "&:hover": {
+                    bgcolor: "primary.main",
+                  },
                 }}
               >
                 افزودن کارت بانکی

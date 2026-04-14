@@ -2,8 +2,8 @@
 import { Stack, SvgIcon, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import Card from "../Card/Card";
 import { usePathname } from "next/navigation";
+import Card from "../Container/Container";
 interface ItemsType {
   name: string;
   image: string;

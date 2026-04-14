@@ -1,10 +1,10 @@
 import ChartGold from "@/app/Components/ChartGold/ChartGold";
+import Card from "@/app/Components/Container/Container";
+import Faq from "@/app/Components/Faq/Faq";
 import WalletStatus from "@/app/Components/Wallet/WalletStatus";
+import { FaqItem } from "@/app/core/Types";
 import { Grid } from "@mui/material";
 import MarginTrade from "./MarginTrade";
-import Faq from "@/app/Components/Faq/Faq";
-import { FaqItem } from "@/app/core/Types";
-import Card from "@/app/Components/Card/Card";
 
 const faqData: FaqItem[] = [
   {

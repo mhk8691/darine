@@ -1,5 +1,5 @@
 "use client";
-import Card from "@/app/Components/Card/Card";
+import Card from "@/app/Components/Container/Container";
 import InputField from "@/app/Components/InputField/InputField";
 import {
   Button,

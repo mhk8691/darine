@@ -1,17 +1,23 @@
-import React, { CSSProperties } from "react";
-import Card from "../Card/Card";
-import Typography from "@mui/material/Typography";
 import { Grid, Stack, SxProps } from "@mui/material";
-import ActionButton, { ActionButtonType } from "../ActionButton/ActionButton";
+import Typography from "@mui/material/Typography";
 import Image from "next/image";
+import { CSSProperties } from "react";
+import ActionButton, { ActionButtonType } from "../ActionButton/ActionButton";
+import Card from "../Container/Container";
 interface Props {
   title: string;
   items: ActionButtonType[];
   image: string;
-  style?:CSSProperties
-  cardStyle?:SxProps
+  style?: CSSProperties;
+  cardStyle?: SxProps;
 }
-export default function InfoContainer({ title, items, image, style, cardStyle }: Props) {
+export default function InfoContainer({
+  title,
+  items,
+  image,
+  style,
+  cardStyle,
+}: Props) {
   return (
     <Card style={cardStyle}>
       <Grid container alignItems={"center"}>

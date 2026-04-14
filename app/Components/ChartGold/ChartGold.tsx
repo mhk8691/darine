@@ -1,5 +1,5 @@
 import { SxProps, Typography } from "@mui/material";
-import Card from "../Card/Card";
+import Card from "../Container/Container";
 import LineChart from "../LineChart/LineChart";
 import BottomPrice from "./BottomPrice";
 import TopPrice from "./TopPrice";
@@ -14,7 +14,7 @@ interface Props {
   positionPrice: "top" | "bottom" | "both";
   chartHeight?: string;
   cardStyle?: SxProps;
-  priceStyle?:SxProps
+  priceStyle?: SxProps;
 }
 export default function ChartGold({
   positionPrice,

@@ -1,4 +1,4 @@
-import Card from "@/app/Components/Card/Card";
+import Card from "@/app/Components/Container/Container";
 import OrderDetail from "@/app/Components/OrderDetail/OrderDetail";
 import CustomTabs from "@/app/Components/Tabs/CustomTabs";
 import { ToggleItemsType } from "@/app/core/Types";

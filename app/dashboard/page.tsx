@@ -1,8 +1,8 @@
 import { Grid, Typography } from "@mui/material";
 import ChartGold from "../Components/ChartGold/ChartGold";
+import Card from "../Components/Container/Container";
 import Wallet from "../Components/Wallet/Wallet";
 import Trading from "./trades/Trading/Trading";
-import Card from "../Components/Card/Card";
 
 export default function page() {
   return (

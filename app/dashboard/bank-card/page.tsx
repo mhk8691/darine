@@ -1,7 +1,7 @@
-import Card from "@/app/Components/Card/Card";
-import { Grid, Typography, Button } from "@mui/material";
-import BankCard from "./BankCard";
+import Card from "@/app/Components/Container/Container";
 import { Add as AddIcon } from "@mui/icons-material";
+import { Button, Grid, Typography } from "@mui/material";
+import BankCard from "./BankCard";
 export default function page() {
   return (
     <Grid container spacing={3}>

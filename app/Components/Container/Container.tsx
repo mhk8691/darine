@@ -4,7 +4,7 @@ interface Props {
   style?: SxProps;
   children: ReactNode;
 }
-export default function Card({ style, children }: Props) {
+export default function Container({ style, children }: Props) {
   return (
     <Stack
       bgcolor={"background.default"}

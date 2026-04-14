@@ -1,6 +1,6 @@
-import { Grid, Stack, Typography } from "@mui/material";
-import Card from "../Card/Card";
 import priceFormater from "@/app/core/PriceFormater";
+import { Grid, Stack, Typography } from "@mui/material";
+import Card from "../Container/Container";
 
 export default function WalletStatus() {
   return (

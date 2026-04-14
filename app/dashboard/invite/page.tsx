@@ -1,4 +1,4 @@
-import Card from "@/app/Components/Card/Card";
+import Card from "@/app/Components/Container/Container";
 import { Divider, Grid, Stack, SvgIcon, Typography } from "@mui/material";
 import Image from "next/image";
 
@@ -13,7 +13,7 @@ export default function page() {
         borderColor={"background.paper"}
         py={3}
         px={4}
-        alignItems={'center'}
+        alignItems={"center"}
         borderRadius={2.5}
       >
         <Grid size={7.5}>
@@ -153,7 +153,7 @@ export default function page() {
             </Stack>
           </Card>
         </Grid>
-        <Grid size={4.5} >
+        <Grid size={4.5}>
           <Image
             alt=""
             src={"/images/mainDark.webp"}
