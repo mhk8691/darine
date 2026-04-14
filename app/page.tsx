@@ -1,5 +1,5 @@
 import { Grid, Stack } from "@mui/material";
-import GoldCard from "./Components/GoldCard/Card";
+import GoldCard from "./Components/GoldCard/GoldCard";
 
 export default function page() {
   return (
