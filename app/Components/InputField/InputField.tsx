@@ -11,8 +11,8 @@ interface Props {
   placeholder: string;
   icon?: ReactNode;
   title?: string;
-  value: number | null;
-  setValue: React.Dispatch<React.SetStateAction<number | null>>;
+  value: number | null | string;
+  setValue: React.Dispatch<React.SetStateAction<number | null | string >>;
   style?:SxProps
 }
 export default function InputField({
@@ -23,7 +23,7 @@ export default function InputField({
   setValue,
   style
 }: Props) {
-  const formatNumber = (num: number | null) => {
+  const formatNumber = (num: number | null | string) => {
     if (num === null) return "";
     return num.toLocaleString();
   };
