@@ -14,6 +14,7 @@ interface Props {
   value: number | null | string;
   setValue: React.Dispatch<React.SetStateAction<number | null | string >>;
   style?:SxProps
+  multiline?:boolean
 }
 export default function InputField({
   placeholder,
@@ -21,7 +22,8 @@ export default function InputField({
   icon,
   value,
   setValue,
-  style
+  style,
+  multiline=false
 }: Props) {
   const formatNumber = (num: number | null | string) => {
     if (num === null) return "";
@@ -44,7 +46,8 @@ export default function InputField({
       value={formatNumber(value)}
       onChange={handleChange}
       id="outlined-start-adornment"
-      
+      multiline={multiline}
+      minRows={2}
       sx={{
         direction: "ltr",
         "& .MuiInputBase-input": {
