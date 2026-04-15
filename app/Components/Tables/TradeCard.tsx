@@ -3,34 +3,43 @@ import Container from "../Container/Container";
 import Typography from "@mui/material/Typography";
 import priceFormater from "@/app/core/PriceFormater";
 import { Box, Stack, Button } from "@mui/material";
-
-export default function TradeCard() {
+interface Props {
+  isDetail: boolean;
+}
+export default function TradeCard({ isDetail }: Props) {
   return (
     <Container
       style={{
         py: 1.5,
-        px:2,
+        px: 2,
         border: 1,
         borderColor: "primary.main",
         bgcolor: "#292926",
-        width: "50%",
-        height:'100%'
+        width: isDetail ? "100%" : "50%",
+        height: "100%",
       }}
     >
-      <Typography variant="body2" sx={{ color: "#ADADA9" }} fontSize={10}>
-        ۱۶:۳۷:۲۲ - ۲۵ فروردین ۱۴۰۵
-      </Typography>
-      <Typography
-        variant="body2"
-        sx={{ color: "#C2C2BA", mt: 1.5 }}
-        fontSize={14}
+      <Stack
+        direction={isDetail ? "row-reverse" : "column"}
+        justifyContent={isDetail ? "space-between" : "center"}
+        alignItems={isDetail ? "center" : "flex-start"}
       >
-        قیمت لحظه‌ای طلا ۱۸ عیار(گرم)
-      </Typography>
+        <Typography variant="body2" sx={{ color: "#ADADA9" }} fontSize={10}>
+          ۱۶:۳۷:۲۲ - ۲۵ فروردین ۱۴۰۵
+        </Typography>
+        <Typography
+          variant="body2"
+          sx={{ color: "#C2C2BA", mt: isDetail ? 0 : 1.5 }}
+          fontSize={14}
+        >
+          قیمت لحظه‌ای طلا ۱۸ عیار(گرم)
+        </Typography>
+      </Stack>
       <Stack
         direction={"row"}
         alignItems={"flex-end"}
         justifyContent={"space-between"}
+        mb={isDetail ? 1.5 : 0}
       >
         <Typography
           variant="body2"
@@ -42,7 +51,11 @@ export default function TradeCard() {
             تومان
           </Box>
         </Typography>
-        <Stack direction={'column'} gap={1} alignItems={'center'}> 
+        <Stack
+          direction={isDetail ? "row" : "column"}
+          gap={1}
+          alignItems={"center"}
+        >
           <Typography variant="body2" fontSize={10} sx={{ color: "#75751" }}>
             (۲۴ ساعت)
           </Typography>
@@ -57,13 +70,21 @@ export default function TradeCard() {
           </Stack>
         </Stack>
       </Stack>
-      <Button
-        variant="contained"
-        color="primary"
-        sx={{ fontSize: 12, fontWeight: "600", borderRadius: 2, py: 1, mt: 2 }}
-      >
-        خرید طلای آب شده
-      </Button>
+      {!isDetail && (
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{
+            fontSize: 12,
+            fontWeight: "600",
+            borderRadius: 2,
+            py: 1,
+            mt: 2,
+          }}
+        >
+          خرید طلای آب شده
+        </Button>
+      )}
     </Container>
   );
 }

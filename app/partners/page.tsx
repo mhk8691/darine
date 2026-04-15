@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import Form from "./Form";
+import Link from "next/link";
 const partnerItems = [
   {
     title: "API - دریافت‌کنندگان سرویس خرید و فروش طلا",
@@ -90,21 +91,23 @@ export default function page() {
               را در اولویت قرار داده‌ایم و در کنار شرکای خود برای خلق ارزش
               پایدار و رضایت مشتریان گام برمی‌داریم.
             </Typography>
-            <Button
-              variant="contained"
-              color="primary"
-              sx={{
-                fontSize: 16,
-                py: 2,
-                width: "fit-content",
-                px: 6,
-                borderRadius: 2,
-                mt: 2,
-                fontWeight: "600",
-              }}
-            >
-              درخواست همکاری
-            </Button>
+            <Link href={"#form"}>
+              <Button
+                variant="contained"
+                color="primary"
+                sx={{
+                  fontSize: 16,
+                  py: 2,
+                  width: "fit-content",
+                  px: 6,
+                  borderRadius: 2,
+                  mt: 2,
+                  fontWeight: "600",
+                }}
+              >
+                درخواست همکاری
+              </Button>
+            </Link>
           </Stack>
           <Stack width={"50%"} direction={"row"} justifyContent={"flex-end"}>
             <Image
@@ -179,7 +182,9 @@ export default function page() {
             </Stack>
           ))}
         </Stack>
-        <Form />
+        <Stack component={"div"} id="form">
+          <Form />
+        </Stack>
       </Container>
       <Divider sx={{ mt: 5 }} />
     </>

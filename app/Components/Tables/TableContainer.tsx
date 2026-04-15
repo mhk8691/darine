@@ -53,7 +53,7 @@ export default function TableContainer({ title, data, faqData }: Props) {
           </Stack>
           <Stack width={"50%"} direction={"row"} gap={1} alignItems={"center"}>
             <PriceAlertCard />
-            <TradeCard />
+            <TradeCard isDetail={false} />
           </Stack>
         </Stack>
         <Grid container spacing={7}>

@@ -15,7 +15,7 @@ export interface FaqItem {
   answer: string;
 }
 export interface TableGoldDataType {
-  typeGold: string;
+  typeGold?: string;
   currentRate: number;
   minPriceDay: number;
   maxPriceDay: number;

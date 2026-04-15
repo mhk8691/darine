@@ -63,7 +63,7 @@ export default function GoldTable({ heads, data }: Props) {
         <TableBody>
           {data.map((row) => (
             <TableRow
-              key={row.typeGold}
+              key={row.currentRate}
               sx={{
                 "&:last-child td": {
                   border: 0,
@@ -71,14 +71,16 @@ export default function GoldTable({ heads, data }: Props) {
                 "&:last-child th": { border: 0 },
               }}
             >
-              <TableCell
-                component="th"
-                scope="row"
-                align="center"
-                sx={{ fontSize: "16px", py: 0.9, px: 2.5 }}
-              >
-                {row.typeGold}
-              </TableCell>
+              {row.typeGold && (
+                <TableCell
+                  component="th"
+                  scope="row"
+                  align="center"
+                  sx={{ fontSize: "16px", py: 0.9, px: 2.5 }}
+                >
+                  {row.typeGold}
+                </TableCell>
+              )}
               <TableCell
                 align="center"
                 sx={{
@@ -161,7 +163,7 @@ export default function GoldTable({ heads, data }: Props) {
                 <Stack direction={"row"} justifyContent={"center"}>
                   <LineChart
                     color="#D12F2F"
-                    width="100%"
+                    width={row.typeGold ? "100%":'70%'}
                     height="50px"
                     noGradiant
                     data={[1, 2, 10]}
@@ -170,20 +172,22 @@ export default function GoldTable({ heads, data }: Props) {
                   />
                 </Stack>
               </TableCell>
-              <TableCell
-                align="center"
-                sx={{ fontSize: "16px", py: 0.9, px: 2.5 }}
-              >
-                <Link href={"/test"}>
-                  <Button
-                    variant="outlined"
-                    color="inherit"
-                    sx={{ borderRadius: 2, p: 0.8 }}
-                  >
-                    مشاهده جزئیات
-                  </Button>
-                </Link>
-              </TableCell>
+              {row.typeGold && (
+                <TableCell
+                  align="center"
+                  sx={{ fontSize: "16px", py: 0.9, px: 2.5 }}
+                >
+                  <Link href={"/test"}>
+                    <Button
+                      variant="outlined"
+                      color="inherit"
+                      sx={{ borderRadius: 2, p: 0.8 }}
+                    >
+                      مشاهده جزئیات
+                    </Button>
+                  </Link>
+                </TableCell>
+              )}
             </TableRow>
           ))}
         </TableBody>

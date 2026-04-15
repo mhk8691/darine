@@ -1,10 +1,8 @@
 "use client";
-import { Box, Button, Grid, Stack, Typography } from "@mui/material";
-import Container from "../Components/Container/Container";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import Link from "next/link";
-import InputField from "../Components/InputField/InputField";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import { useState } from "react";
+import Container from "../Components/Container/Container";
+import InputField from "../Components/InputField/InputField";
 
 export default function Form() {
   const [name, setName] = useState<string | null>(null);

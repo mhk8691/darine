@@ -103,7 +103,7 @@ export default function Faq({ faqData, titleStyle }: Props): JSX.Element {
 
             <AccordionDetails>
               <Divider />
-              <Typography variant="body2" sx={{ mt: 3 }}>
+              <Typography variant="body2" sx={{ mt: 3 ,whiteSpace:'pre-line'}}>
                 {item.answer}
               </Typography>
             </AccordionDetails>
