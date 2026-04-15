@@ -1,4 +1,4 @@
-import { Container, Grid, Stack, Typography } from "@mui/material";
+import { Container, Divider, Grid, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import Faq from "../Components/Faq/Faq";
 import { FaqItem } from "../core/Types";
@@ -74,6 +74,7 @@ export default function page() {
           </Grid>
         </Grid>
       </Container>
+      <Divider sx={{ mt: 11.5 }} />
     </>
   );
 }
