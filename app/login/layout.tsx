@@ -15,6 +15,8 @@ export default function layout({ children }: Props) {
             boxShadow: "0 0 15px #1C1C1B",
             borderTopLeftRadius: 20,
             borderBottomLeftRadius: 20,
+            border: 1,
+            borderColor: "#1C1C1B",
             p: 8,
           }}
         >
