@@ -1,0 +1,169 @@
+import { Divider, Stack, Typography } from "@mui/material";
+import React from "react";
+
+export default function FinalApproval() {
+  return (
+    <Stack
+      border={1}
+      px={4}
+      py={2}
+      borderRadius={2}
+      borderColor={"background.paper"}
+    >
+      <Typography variant="body1" fontSize={18} sx={{ mb: 3 }}>
+        اطلاعات کارت هدیه
+      </Typography>
+      <Stack
+        direction={"row"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+      >
+        <Typography variant="body1" fontSize={14} sx={{ color: "#C2C2BA" }}>
+          وزن طلا
+        </Typography>
+        <Typography variant="body1" fontSize={16}>
+          1 گرم
+        </Typography>
+      </Stack>
+      <Divider sx={{ my: 2 }} />
+      <Stack
+        direction={"row"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+      >
+        <Typography variant="body1" fontSize={14} sx={{ color: "#C2C2BA" }}>
+          قیمت هر گرم طلا
+        </Typography>
+        <Typography variant="body1" fontSize={16}>
+          ۱۷,۶۱۰,۰۰۰ تومان
+        </Typography>
+      </Stack>
+      <Divider sx={{ my: 2 }} />
+
+      <Stack
+        direction={"row"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+      >
+        <Typography variant="body1" fontSize={14} sx={{ color: "#C2C2BA" }}>
+          معادل تومان
+        </Typography>
+        <Typography variant="body1" fontSize={16}>
+          ۱۷,۶۱۰,۰۰۰ تومان
+        </Typography>
+      </Stack>
+      <Divider sx={{ my: 2 }} />
+
+      <Stack
+        direction={"row"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+      >
+        <Typography variant="body1" fontSize={14} sx={{ color: "#C2C2BA" }}>
+          تعداد
+        </Typography>
+        <Typography variant="body1" fontSize={16}>
+          ۱ گرم
+        </Typography>
+      </Stack>
+      <Divider sx={{ my: 2 }} />
+
+      <Stack
+        direction={"row"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+      >
+        <Typography variant="body1" fontSize={14} sx={{ color: "#C2C2BA" }}>
+          کارمزد و مالیات بر ارزش افزوده
+        </Typography>
+        <Typography variant="body1" fontSize={16}>
+          ۲۵۵,۳۴۴ تومان
+        </Typography>
+      </Stack>
+      <Divider sx={{ my: 2 }} />
+
+      <Stack
+        direction={"row"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+      >
+        <Typography variant="body1" fontSize={14} sx={{ color: "#C2C2BA" }}>
+          هزینه بسته‌بندی
+        </Typography>
+        <Typography variant="body1" fontSize={16}>
+          ۱۸۰,۰۰۰ تومان
+        </Typography>
+      </Stack>
+      <Divider sx={{ my: 2 }} />
+
+      <Stack
+        direction={"row"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+      >
+        <Typography variant="body1" fontSize={14} sx={{ color: "#C2C2BA" }}>
+          مبلغ نهایی
+        </Typography>
+        <Typography variant="body1" fontSize={16} fontWeight="bold">
+          ۱۸,۰۴۵,۳۴۵ تومان
+        </Typography>
+      </Stack>
+      <Typography variant="body1" fontSize={18} sx={{ my:3 }}>
+        اطلاعات ارسال
+      </Typography>
+      <Stack
+        direction={"row"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+      >
+        <Typography variant="body1" fontSize={14} sx={{ color: "#C2C2BA" }}>
+         زمان ارسال
+        </Typography>
+        <Typography variant="body1" fontSize={16}>
+         5 تا روز کاری
+        </Typography>
+      </Stack>
+      <Divider sx={{ my: 2 }} />
+      <Stack
+        direction={"row"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+      >
+        <Typography variant="body1" fontSize={14} sx={{ color: "#C2C2BA" }}>
+         هزینه ارسال
+        </Typography>
+        <Typography variant="body1" fontSize={16}>
+         رایگان
+        </Typography>
+      </Stack>
+      <Divider sx={{ my: 2 }} />
+
+      <Stack
+        direction={"row"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+      >
+        <Typography variant="body1" fontSize={14} sx={{ color: "#C2C2BA" }}>
+         کدپستی
+        </Typography>
+        <Typography variant="body1" fontSize={16}>
+         3791111111
+        </Typography>
+      </Stack>
+      <Divider sx={{ my: 2 }} />
+
+      <Stack
+        direction={"row"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+      >
+        <Typography variant="body1" fontSize={14} sx={{ color: "#C2C2BA" }}>
+         آدرس
+        </Typography>
+        <Typography variant="body1" fontSize={16}>
+       1
+        </Typography>
+      </Stack>
+    </Stack>
+  );
+}
