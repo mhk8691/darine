@@ -1,25 +1,84 @@
 "use client";
-import * as React from "react";
+import CheckIcon from "@mui/icons-material/Check";
+import { Stack } from "@mui/material";
 import Box from "@mui/material/Box";
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import WeightDetermination from "./WeightDetermination";
+import Step from "@mui/material/Step";
+import StepConnector, {
+  stepConnectorClasses,
+} from "@mui/material/StepConnector";
+import { StepIconProps } from "@mui/material/StepIcon";
+import StepLabel from "@mui/material/StepLabel";
+import Stepper from "@mui/material/Stepper";
+import { styled } from "@mui/material/styles";
+import * as React from "react";
 import AddressSetting from "./AddressSetting";
 import FinalApproval from "./FinalApproval";
-import { Stack } from "@mui/material";
+import WeightDetermination from "./WeightDetermination";
 
+const CustomConnector = styled(StepConnector)(() => ({
+  [`&.${stepConnectorClasses.alternativeLabel}`]: {
+    top: 12,
+  },
+  [`& .${stepConnectorClasses.line}`]: {
+    borderColor: "#444",
+    borderTopWidth: 2,
+  },
+  [`&.${stepConnectorClasses.active} .${stepConnectorClasses.line}`]: {
+    borderColor: "#facc15",
+  },
+  [`&.${stepConnectorClasses.completed} .${stepConnectorClasses.line}`]: {
+    borderColor: "#facc15",
+  },
+}));
+
+const CustomStepIconRoot = styled("div")<{
+  ownerState: { active?: boolean; completed?: boolean };
+}>(({ ownerState }) => ({
+  width: 30,
+  height: 30,
+  borderRadius: "50%",
+  border: "2px solid",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  backgroundColor: "#0b0b0b",
+
+  borderColor: ownerState.active || ownerState.completed ? "#facc15" : "#444",
+
+  "& .dot": {
+    width: 8,
+    height: 8,
+    borderRadius: "50%",
+    backgroundColor: "#facc15",
+    display: ownerState.active || ownerState.completed ? "block" : "none",
+  },
+}));
+
+function CustomStepIcon(props: StepIconProps) {
+  const { active, completed, className } = props;
+
+  return (
+    <CustomStepIconRoot
+      ownerState={{ active, completed }}
+      className={className}
+      sx={{
+        bgcolor: completed ? "primary.main" : "background.default",
+      }}
+    >
+      {completed ? (
+        <CheckIcon sx={{ fontSize: 16, color: "#000000" }} />
+      ) : (
+        <div className="dot" />
+      )}
+    </CustomStepIconRoot>
+  );
+}
 const steps = ["تعیین وزن", "تعیین آدرس", "تایید نهایی"];
 
 export default function GiftStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set<number>());
-
-  const isStepOptional = (step: number) => {
-    return step === 1;
-  };
 
   const isStepSkipped = (step: number) => {
     return skipped.has(step);
@@ -40,61 +99,63 @@ export default function GiftStepper() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleSkip = () => {
-    if (!isStepOptional(activeStep)) {
-      throw new Error("You can't skip a step that isn't optional.");
-    }
-
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped((prevSkipped) => {
-      const newSkipped = new Set(prevSkipped.values());
-      newSkipped.add(activeStep);
-      return newSkipped;
-    });
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-  };
-
   return (
-    <Box sx={{ width: "100%",mt:5 }}>
+    <Box sx={{ width: "100%", mt: 5 }}>
       <Stepper
         activeStep={activeStep}
         alternativeLabel
+        connector={<CustomConnector />}
         sx={{
           width: "100%",
+
           "& .MuiStep-root": {
             flex: 1,
+            paddingLeft: 0,
+            paddingRight: 0,
           },
+
+          "& .MuiStepLabel-root": {
+            padding: 0,
+            margin: 0,
+          },
+
+          "& .MuiStep-alternativeLabel": {
+            margin: 0,
+          },
+
+          "& .MuiStepConnector-root": {
+            flex: 1,
+          },
+          "& .MuiStepLabel-label": {
+            color: "#aaa",
+            fontSize: 14,
+          },
+          "& .MuiStepLabel-label.Mui-active": {
+            color: "#fff",
+          },
+          "& .MuiStepLabel-label.Mui-completed": {
+            color: "#fff",
+          },
+      
         }}
       >
         {steps.map((label, index) => {
           const stepProps: { completed?: boolean } = {};
-          const labelProps: {
-            optional?: React.ReactNode;
-          } = {};
 
           if (isStepSkipped(index)) {
             stepProps.completed = false;
           }
+
           return (
             <Step key={label} {...stepProps}>
-              <StepLabel {...labelProps}>{label}</StepLabel>
+              <StepLabel StepIconComponent={CustomStepIcon}>{label}</StepLabel>
             </Step>
           );
         })}
       </Stepper>
+
       {activeStep === steps.length ? (
-        <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>
-            All steps completed - you&apos;re finished
-          </Typography>
-          <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-            <Box sx={{ flex: "1 1 auto" }} />
-            <Button onClick={handleReset}>Reset</Button>
-          </Box>
-        </React.Fragment>
+        <></>
       ) : (
         <Stack direction={"row"} justifyContent={"center"} mt={5}>
           <Stack
@@ -112,23 +173,34 @@ export default function GiftStepper() {
             <Stack direction={"row"} gap={3} mt={activeStep === 2 ? 2 : 7}>
               <Button
                 variant="contained"
-                color="primary"
-                onClick={() => handleNext()}
+                onClick={handleNext}
                 sx={{
                   py: 1.5,
                   fontSize: 20,
                   borderRadius: 2,
                   width: activeStep === 0 ? "100%" : "65%",
+                  backgroundColor: "#facc15",
+                  color: "#000",
+                  "&:hover": {
+                    backgroundColor: "#eab308",
+                  },
                 }}
               >
                 {activeStep === 2 ? "تایید سفارش" : "ادامه"}
               </Button>
+
               {activeStep !== 0 && (
                 <Button
                   variant="outlined"
-                  color="inherit"
-                  onClick={() => handleBack()}
-                  sx={{ py: 1.5, fontSize: 20, borderRadius: 2, width: "35%" }}
+                  onClick={handleBack}
+                  sx={{
+                    py: 1.5,
+                    fontSize: 20,
+                    borderRadius: 2,
+                    width: "35%",
+                    borderColor: "#444",
+                    color: "#fff",
+                  }}
                 >
                   بازگشت
                 </Button>
