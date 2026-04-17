@@ -68,6 +68,8 @@ export default function FilterToggleButton({
               borderRadius: "10px !important",
               color: "#ADADA9",
               px: 3,
+              width:'100%',
+              whiteSpace:'nowrap',
               py: 0.8,
               fontSize: "16px",
               transition: "all .2s ease-in",
