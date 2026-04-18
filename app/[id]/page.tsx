@@ -137,7 +137,11 @@ export default function page() {
             </Grid>
           </Grid>
           <Grid size={8}>
-            <ChartGold positionPrice="top" />
+            <ChartGold
+              positionPrice="top"
+              cardStyle={{ pt: 3.5, pb: 2.5 }}
+              chartHeight="240px"
+            />
           </Grid>
           <Grid size={4}>
             <Trading />

@@ -12,7 +12,12 @@ export default function page() {
           <Wallet type="dashboard" />
         </Grid>
         <Grid size={7.2}>
-          <ChartGold positionPrice="both" chartHeight="176px" />
+          <ChartGold
+            positionPrice="both"
+            chartHeight="176px"
+            priceStyle={{ mt: 1.5 }}
+            cardStyle={{ pb: 1.5, pt: 2 }}
+          />
         </Grid>
       </Grid>
       <Grid size={12} container>

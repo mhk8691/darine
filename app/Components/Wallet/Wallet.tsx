@@ -9,7 +9,7 @@ interface Props {
 }
 export default function Wallet({ type }: Props) {
   return (
-    <Card style={{ minHeight: 380, pb: type === "wallet" ? 4.5 : 3 }}>
+    <Card style={{ minHeight: 386, pb: type === "wallet" ? 4.5 : 3 }}>
       <Typography
         variant="h6"
         fontSize={22}

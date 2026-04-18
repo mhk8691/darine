@@ -1,10 +1,16 @@
 import { Box, Divider, Stack, SxProps, Typography } from "@mui/material";
 import priceFormater from "../../core/PriceFormater";
 
-export default function BottomPrice({ priceStyle }: { priceStyle?: SxProps }) {
+export default function BottomPrice({
+  priceStyle,
+  dividerStyle,
+}: {
+  priceStyle?: SxProps;
+  dividerStyle?: SxProps;
+}) {
   return (
     <>
-      <Divider />
+      <Divider sx={dividerStyle} />
 
       <Stack
         direction={"row"}

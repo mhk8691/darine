@@ -14,12 +14,17 @@ export default function page() {
       <Grid size={12}>
         <WalletStatus />
       </Grid>
-      <Grid size={12} container>
+      <Grid size={12} container direction={"row"}>
         <Grid size={4.8}>
           <Trading />
         </Grid>
-        <Grid size={7.2}>
-          <ChartGold positionPrice="bottom" />
+        <Grid size={7.2} height={"100%"}>
+          <ChartGold
+            positionPrice="bottom"
+            priceStyle={{
+              mt: 3,
+            }}
+          />
         </Grid>
       </Grid>
       <Grid size={12}>

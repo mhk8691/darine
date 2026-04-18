@@ -54,7 +54,7 @@ export default function Trading() {
   const [lossLimit, setLossLimit] = useState<number | null>(null);
   const [gold, setGold] = useState<number | null>(null);
   const [select, setSelect] = useState(items[0].value);
-  const [checked, setChecked] = useState(true);
+  const [checked, setChecked] = useState(false);
   const [multiplier, setMultiplier] = useState<number>(1);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);

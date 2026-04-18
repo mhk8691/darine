@@ -15,7 +15,15 @@ export default function page() {
           <Trading />
         </Grid>
         <Grid size={7.2}>
-          <ChartGold positionPrice="bottom" />
+          <ChartGold
+            positionPrice="bottom"
+            cardStyle={{ pt: 5.5,px:2.5 }}
+            priceStyle={{
+              mt: 5,
+              mb: 2.5,
+            }}
+            dividerStyle={{ mt: 5 }}
+          />
         </Grid>
       </Grid>
       <Grid size={12}>

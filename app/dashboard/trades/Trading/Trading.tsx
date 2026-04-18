@@ -39,7 +39,7 @@ export default function Trading() {
     }
   }, [gold, setGold]);
   return (
-    <Card style={{ gap: 3.5, py: 4 }}>
+    <Card style={{ gap: 3.15, py: 3,px:4 }}>
       <Typography variant="h2" fontSize={22}>
         خرید و فروش طلا
       </Typography>

@@ -20,19 +20,19 @@ export default function PriceAlert() {
     setActive((event.target as HTMLInputElement).value);
   };
   return (
-    <Card>
+    <Card >
       <Typography variant="h6" fontSize={22}>
         آلارم قیمت
       </Typography>
       <Typography
         variant="body1"
         fontSize={18}
-        sx={{ color: "text.secondary", mt: "14px" }}
+        sx={{ color: "text.secondary", mt: 2 }}
       >
         با تعیین آلارم قیمت، در صورت رسیدن قیمت طلا به مقدار دلخواهتان، بلافاصله
         از طریق اعلان مطلع خواهید شد.
       </Typography>
-      <Stack sx={{ mt: "30px" }}>
+      <Stack sx={{ mt: 3.1 }}>
         <InputField
           placeholder="مبلغ به تومان"
           title="تومان"
@@ -81,7 +81,6 @@ export default function PriceAlert() {
           borderRadius: 2,
           fontSize: 20,
           py: 1,
-          mb: 2,
           mt: 6,
         }}
       >

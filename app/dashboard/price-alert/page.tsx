@@ -21,7 +21,11 @@ export default function page() {
               pt: "36px",
             }}
             priceStyle={{
-              pt: 2.5,
+              mt: 4,
+              mb: 1.5,
+            }}
+            dividerStyle={{
+              mt: 4,
             }}
           />
         </Grid>

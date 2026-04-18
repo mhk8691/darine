@@ -5,15 +5,7 @@ import InputField from "@/app/Components/InputField/InputField";
 import { ToggleItemsType } from "@/app/core/Types";
 import { Button, Stack, SvgIcon } from "@mui/material";
 import { useEffect, useState } from "react";
-// interface Props {
-//   inputList: {
-//     placeholder: string;
-//     title: string;
-//     state: number | null;
-//     setState: Dispatch<SetStateAction<number | null>>;
-//   }[];
-//   title: string;
-// }
+
 interface Props {
   type: "buy" | "sell";
 }

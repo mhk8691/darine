@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import { LineChart as LineChartGold } from "@mui/x-charts/LineChart";
 
-const margin = { right: 24 };
+const margin = { right: 10, top: 0 };
 
 interface Props {
   data: Array<number>;
@@ -61,7 +61,7 @@ export default function LineChart({
             position: noLabel ? "none" : "bottom",
           },
         ]}
-        yAxis={[{ width: 50, position: noLabel ? "none" : "left" }]}
+        yAxis={[{ width: 40, position: noLabel ? "none" : "left" }]}
         margin={margin}
       >
         {!noGradiant && (

@@ -3,7 +3,7 @@ import priceFormater from "../../core/PriceFormater";
 
 export default function TopPrice() {
   return (
-    <Stack direction={"row"} alignItems={"center"} gap={0.5} mt={3}>
+    <Stack direction={"row"} alignItems={"center"} gap={0.5} mt={1}>
       <Typography variant="body2" fontSize={12} sx={{ color: "#C2C2BA" }}>
         قیمت الان:
       </Typography>
