@@ -28,7 +28,12 @@ export default function GlobalSnackbar() {
   };
 
   return (
-    <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
+    <Snackbar
+      open={open}
+      autoHideDuration={5000}
+      onClose={handleClose}
+      anchorOrigin={{ vertical: "top", horizontal: "left" }}
+    >
       <Alert
         severity={snackbar.type ? "success" : "error"}
         variant="filled"
