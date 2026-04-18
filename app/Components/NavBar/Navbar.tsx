@@ -1,11 +1,11 @@
 import { MenuType } from "@/app/core/Types";
 import DarkModeTwoToneIcon from "@mui/icons-material/DarkModeTwoTone";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Button, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import ProfileBtn from "./ProfileBtn";
 import SubMenu from "./SubMenu";
+import Notification from "./Notification";
 const menu: MenuType[] = [
   {
     id: 1,
@@ -128,12 +128,7 @@ export default function Navbar() {
           ورود به نقره سی
         </Button>
 
-        <NotificationsIcon
-          fontSize="large"
-          sx={{
-            color: "primary.light",
-          }}
-        />
+        <Notification />
         <DarkModeTwoToneIcon
           fontSize="large"
           sx={{

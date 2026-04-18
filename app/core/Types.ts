@@ -23,3 +23,9 @@ export interface TableGoldDataType {
   monthChange: string;
   weeklyChart: number;
 }
+
+export interface NotifItemsType {
+  title: string;
+  message: string;
+  date: string;
+}

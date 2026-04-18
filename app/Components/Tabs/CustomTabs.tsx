@@ -37,12 +37,16 @@ function a11yProps(index: number) {
   };
 }
 interface Props {
-  tabList: string[];
+  tabList: {
+    title:string
+    count?:number
+  }[];
   children: React.ReactNode[];
   style?: SxProps;
   lineHeight?: string;
   tabsStyle?: SxProps;
   noPadding?: boolean;
+  
 }
 export default function CustomTabs({
   tabList,
@@ -87,7 +91,7 @@ export default function CustomTabs({
                 mb: 2,
                 ...style,
               }}
-              label={item}
+              label={item.title}
               {...a11yProps(index)}
               key={index}
             />
