@@ -7,6 +7,7 @@ import Footer from "./Components/Footer/Footer";
 import Navbar from "./Components/NavBar/Navbar";
 import "./globals.css";
 import theme, { rtl } from "./theme";
+import GlobalSnackbar from "./Components/Snackbar/SnackbarRoot";
 
 const IranYekanFont = localFont({
   src: [
@@ -61,6 +62,7 @@ export default function RootLayout({
             <Navbar />
 
             <main style={{ flexGrow: 1, marginTop: "5.5rem" }}>{children}</main>
+            <GlobalSnackbar />
             <Footer />
           </ThemeProvider>
         </AppRouterCacheProvider>

@@ -54,7 +54,9 @@ export default function Notification() {
   const [open, setOpen] = React.useState(false);
   const wrapperRef = React.useRef(null);
 
-  const handleToggle = () => setOpen((prev) => !prev);
+  const handleToggle = () => {
+    setOpen((prev) => !prev);
+  };
 
   const handleClose = (event) => {
     if (wrapperRef.current?.contains(event.target)) return;
