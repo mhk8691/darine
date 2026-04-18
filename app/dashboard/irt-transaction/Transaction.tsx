@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import { ReactNode } from "react";
 import Deposit from "./Deposit";
 import Withdraw from "./Withdraw";
-const tabs = ["واریز ", "برداشت"];
+const tabs = [{ title: "واریز" }, { title: "برداشت" }];
 const children: ReactNode[] = [<Deposit key={1} />, <Withdraw key={2} />];
 export default function Transaction() {
   return (

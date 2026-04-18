@@ -1,7 +1,8 @@
 import Card from "@/app/Components/Container/Container";
-import { Add as AddIcon } from "@mui/icons-material";
-import { Button, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
+import AddCard from "./AddCard";
 import BankCard from "./BankCard";
+import AddCardContainer from "./AddCardContainer";
 export default function page() {
   return (
     <Grid container spacing={3}>
@@ -17,20 +18,7 @@ export default function page() {
               </Grid>
             ))}
           </Grid>
-          <Button
-            variant="contained"
-            sx={{
-              fontSize: 16,
-              width: "fit-content",
-              borderRadius: 2,
-              py: 1,
-              fontWeight: 600,
-              mt: 4,
-            }}
-            startIcon={<AddIcon />}
-          >
-            افزودن کارت جدید
-          </Button>
+          <AddCardContainer />
         </Card>
       </Grid>
     </Grid>

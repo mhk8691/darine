@@ -11,6 +11,7 @@ export default function layout({ children }: Props) {
       sx={{
         px: "40px !important",
         bgcolor: "background.paper",
+        position:'relative'
       }}
     >
       <Stack py={4}>

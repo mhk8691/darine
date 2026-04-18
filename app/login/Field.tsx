@@ -4,28 +4,28 @@ import { Dispatch, SetStateAction } from "react";
 interface Props {
   value: string;
   setValue: Dispatch<SetStateAction<string>>;
-  label: string;
-//   handleChange: () => {};
+  label?: string;
+  placeholder?: string;
 }
 
-export default function Field({ value, setValue, label }: Props) {
+export default function Field({ value, setValue, label, placeholder }: Props) {
   return (
     <TextField
       label={label}
       value={value}
       onChange={(e) => setValue(e.target.value)}
       variant="outlined"
-
+      placeholder={placeholder}
       sx={{
-        width:'100%',
+        width: "100%",
         mt: 2.5,
         "& .MuiOutlinedInput-root": {
-          borderRadius: 2.5,
+          borderRadius: placeholder ? 2 : 2.5,
           "&:hover .MuiOutlinedInput-notchedOutline": {
             borderColor: "#494949",
           },
           "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: "primary.main",
+            borderColor: placeholder ? "#2C2C2B" : "primary.main",
           },
         },
         "& .MuiInputLabel-root": {
