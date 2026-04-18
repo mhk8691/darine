@@ -72,7 +72,9 @@ export default function AppBar() {
           <Stack
             component={item.link ? Link : "div"}
             href={item.link}
-            onClick={() => setOpen(true)}
+            onClick={() => {
+              !item.link ? setOpen(true) : setOpen(false);
+            }}
             key={index}
             direction={"column"}
             gap={0.5}

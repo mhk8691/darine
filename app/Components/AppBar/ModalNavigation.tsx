@@ -136,7 +136,7 @@ export default function ModalNavigation({ open, setOpen }: Props) {
           <Typography variant="body2" fontSize={18}>
             منو
           </Typography>
-          <IconButton>
+          <IconButton onClick={() => setOpen(false)} disableRipple>
             <Close />
           </IconButton>
         </Stack>

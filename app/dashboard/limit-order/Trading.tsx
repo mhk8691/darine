@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import { ReactNode } from "react";
 
 import Trade from "./Trade";
-const tabs = ["خرید ", "فروش"];
+const tabs = [{ title: "خرید " }, { title: "فروش" }];
 const children: ReactNode[] = [
   <Trade key={1} type="buy" />,
   <Trade key={2} type="sell" />,

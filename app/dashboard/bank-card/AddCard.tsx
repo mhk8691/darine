@@ -14,54 +14,48 @@ interface Props {
 }
 export default function AddCard({ setOpen, setValue, open, value }: Props) {
   return (
-    <>
-      <CustomModal
-        open={open}
-        setOpen={setOpen}
-        modalStyle={{
-          px: 2,
-          pb: 2,
-        }}
+    <CustomModal
+      open={open}
+      setOpen={setOpen}
+      modalStyle={{
+        px: 2,
+        pb: 2,
+      }}
+    >
+      <Stack
+        direction={"row"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
       >
-        <Stack
-          direction={"row"}
-          justifyContent={"space-between"}
-          alignItems={"center"}
-        >
-          <Typography variant="body1" fontSize={16}>
-            افزودن کارت جدید
-          </Typography>
-          <IconButton onClick={() => setOpen(false)}>
-            <Close />
-          </IconButton>
-        </Stack>
-        <Typography variant="body1" fontSize={14} sx={{ mt: 3 }}>
-          شماره‌ی کارت بانکی خود را وارد کنید
+        <Typography variant="body1" fontSize={16}>
+          افزودن کارت جدید
         </Typography>
-        <Field
-          value={value}
-          setValue={setValue}
-          placeholder="شماره کارت جدید"
-        />
-        <Button
-          variant="contained"
-          color="primary"
-          sx={{
-            py: 1.4,
-            fontSize: 16,
-            borderRadius: 2,
-            width: "100%",
-            mt: 8,
-            "&.Mui-disabled": {
-              bgcolor: "#393936",
-            },
-          }}
-          disableRipple
-          disabled
-        >
-          ثبت
-        </Button>
-      </CustomModal>
-    </>
+        <IconButton onClick={() => setOpen(false)} disableRipple>
+          <Close />
+        </IconButton>
+      </Stack>
+      <Typography variant="body1" fontSize={14} sx={{ mt: 3 }}>
+        شماره‌ی کارت بانکی خود را وارد کنید
+      </Typography>
+      <Field value={value} setValue={setValue} placeholder="شماره کارت جدید" />
+      <Button
+        variant="contained"
+        color="primary"
+        sx={{
+          py: 1.4,
+          fontSize: 16,
+          borderRadius: 2,
+          width: "100%",
+          mt: 8,
+          "&.Mui-disabled": {
+            bgcolor: "#393936",
+          },
+        }}
+        disableRipple
+        disabled
+      >
+        ثبت
+      </Button>
+    </CustomModal>
   );
 }
