@@ -3,6 +3,7 @@ import Container from "../Container/Container";
 import Typography from "@mui/material/Typography";
 import priceFormater from "@/app/core/PriceFormater";
 import { Box, Stack, Button } from "@mui/material";
+import Link from "next/link";
 interface Props {
   isDetail: boolean;
 }
@@ -71,19 +72,21 @@ export default function TradeCard({ isDetail }: Props) {
         </Stack>
       </Stack>
       {!isDetail && (
-        <Button
-          variant="contained"
-          color="primary"
-          sx={{
-            fontSize: 12,
-            fontWeight: "600",
-            borderRadius: 2,
-            py: 1,
-            mt: 2,
-          }}
-        >
-          خرید طلای آب شده
-        </Button>
+        <Link href={"/dashboard/trades"}>
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{
+              fontSize: 12,
+              fontWeight: "600",
+              borderRadius: 2,
+              py: 1,
+              mt: 2,
+            }}
+          >
+            خرید طلای آب شده
+          </Button>
+        </Link>
       )}
     </Container>
   );

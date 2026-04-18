@@ -2,6 +2,7 @@ import { Button, Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import Container from "../Container/Container";
+import Link from "next/link";
 
 export default function PriceAlertCard() {
   return (
@@ -12,8 +13,8 @@ export default function PriceAlertCard() {
         borderColor: "background.paper",
         width: "50%",
         pt: 4,
-        pb:2,
-        height:'100%'
+        pb: 2,
+        height: "100%",
       }}
     >
       <Stack
@@ -35,13 +36,21 @@ export default function PriceAlertCard() {
         </Stack>
         <Image alt="" src={"/images/alert.webp"} width={82} height={73} />
       </Stack>
-      <Button
-        variant="contained"
-        color="primary"
-        sx={{ fontSize: 12, fontWeight: "600", borderRadius: 2, py: 1, mt: 2 }}
-      >
-        خرید طلای آب شده
-      </Button>
+      <Link href={"/dashboard/price-alert"}>
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{
+            fontSize: 12,
+            fontWeight: "600",
+            borderRadius: 2,
+            py: 1,
+            mt: 2,
+          }}
+        >
+          خرید طلای آب شده
+        </Button>
+      </Link>
     </Container>
   );
 }
