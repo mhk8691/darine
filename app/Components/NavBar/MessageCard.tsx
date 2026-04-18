@@ -9,7 +9,17 @@ interface Props {
 export default function MessageCard({ items, isNotif }: Props) {
   return (
     <>
-      <Stack maxHeight={"300px"} overflow={"auto"}>
+      <Stack
+        maxHeight={"300px"}
+        overflow={"auto"}
+        sx={{
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
+        }}
+      >
         {items.map((item) => (
           <Stack
             key={item.title}
