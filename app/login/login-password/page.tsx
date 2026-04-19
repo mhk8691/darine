@@ -5,11 +5,11 @@ import { useState } from "react";
 import ActionButton from "../ActionButton";
 import Field from "../Field";
 import LoginTab from "../LoginTab";
+import PasswordField from "../PasswordField";
 
 export default function page() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
-  // const [disable, setDisable] = useState(true);
 
   return (
     <Stack>
@@ -27,12 +27,12 @@ export default function page() {
         label="شماره موبایل"
       />
       <Stack mt={0.5}>
-        <Field value={password} setValue={setPassword} label="رمز ورود" />
+        <PasswordField password={password} setPassword={setPassword} />
       </Stack>
-      <Link href={"/login/forget"}>
+      <Link href={"/login/forget"} style={{ marginTop: 24 }}>
         <Typography
           variant="body2"
-          sx={{ color: "#0091F8", mt: 3 }}
+          sx={{ color: "#0091F8" }}
           fontSize={12}
           fontWeight={500}
         >
@@ -71,7 +71,10 @@ export default function page() {
           sx={{ whiteSpace: "nowrap", direction: "row" }}
         >
           حساب کاربری ندارید؟
-          <Box component={"span"} sx={{ color: "#0091F8", fontSize: 14,ml:1 }}>
+          <Box
+            component={"span"}
+            sx={{ color: "#0091F8", fontSize: 14, ml: 1 }}
+          >
             <Link href={"/login/signup"}>ثبت نام</Link>
           </Box>
         </Typography>
