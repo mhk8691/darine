@@ -8,6 +8,7 @@ import Navbar from "./Components/NavBar/Navbar";
 import "./globals.css";
 import theme, { rtl } from "./theme";
 import GlobalSnackbar from "./Components/Snackbar/SnackbarRoot";
+import CustomBreadcrumbs from "./Components/Breadcrumbs/Breadcrumbs";
 
 const IranYekanFont = localFont({
   src: [
@@ -60,8 +61,11 @@ export default function RootLayout({
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <Navbar />
+            <main style={{ flexGrow: 1, marginTop: "5.5rem" }}>
+              <CustomBreadcrumbs />
 
-            <main style={{ flexGrow: 1, marginTop: "5.5rem" }}>{children}</main>
+              {children}
+            </main>
             <GlobalSnackbar />
             <Footer />
           </ThemeProvider>

@@ -8,7 +8,7 @@ export default function Status() {
       bgcolor={"#393936"}
       py={2}
       px={5}
-      mt={1}
+      mt={2}
     >
       <Typography variant="body1" sx={{ color: "text.title" }} fontSize={16}>
         قیمت لحظه ای طلا ۱۸ عیار(گرمی): 17,799,000 تومان{" "}
