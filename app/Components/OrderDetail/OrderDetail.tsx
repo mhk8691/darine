@@ -10,22 +10,22 @@ import FilterButton from "./FilterButton";
 import FilterInput from "./FilterInput";
 interface Props {
   title?: string;
-  emptyMessage: string;
   type: "chip" | "toggle";
   toggleItems: ToggleItemsType[];
   noCard?: boolean;
+  emptyMessage?: string;
 }
 
 export default function OrderDetail({
   title,
-  emptyMessage,
   type,
   toggleItems,
   noCard = false,
+  emptyMessage,
 }: Props) {
   const [active, setActive] = useState<number | null>(toggleItems[0]?.id);
   const [select, setSelect] = useState(toggleItems[0]?.value);
-
+  const [message, setMessage] = useState(toggleItems[0]?.emptyMessage || "");
   return noCard ? (
     <>
       {title && (
@@ -49,6 +49,7 @@ export default function OrderDetail({
                   item={item}
                   active={active}
                   setActive={setActive}
+                  setMessage={setMessage}
                 />
               ))}
             </Stack>
@@ -57,6 +58,7 @@ export default function OrderDetail({
               <FilterToggleButton
                 items={toggleItems}
                 select={select}
+                setMessage={setMessage}
                 setSelect={setSelect}
               />
             </Stack>
@@ -90,7 +92,7 @@ export default function OrderDetail({
           alt=""
         />
         <Typography variant="body2" fontSize={12} sx={{ color: "#C2C2BA" }}>
-          {emptyMessage}
+          {emptyMessage || message}
         </Typography>
       </Stack>
     </>
@@ -117,6 +119,7 @@ export default function OrderDetail({
                   item={item}
                   active={active}
                   setActive={setActive}
+                  setMessage={setMessage}
                 />
               ))}
             </Stack>
@@ -126,6 +129,7 @@ export default function OrderDetail({
                 items={toggleItems}
                 select={select}
                 setSelect={setSelect}
+                setMessage={setMessage}
               />
             </Stack>
           )}
@@ -158,7 +162,7 @@ export default function OrderDetail({
           alt=""
         />
         <Typography variant="body2" fontSize={12} sx={{ color: "#C2C2BA" }}>
-          {emptyMessage}
+          {emptyMessage || message}
         </Typography>
       </Stack>
     </Card>

@@ -8,8 +8,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 const items: ToggleItemsType[] = [
-  { title: "واریز ها", value: "deposits", id: 1 },
-  { title: "کارت ها", value: "cards", id: 2 },
+  { title: "کارت ها", value: "cards", id: 2,emptyMessage:'کارتی برای شما به ثبت نرسیده است' },
+  { title: "واریز ها", value: "deposits", id: 1,emptyMessage:'واریزی برای شما به ثبت نرسیده است' },
 ];
 export default function page() {
   return (
@@ -95,7 +95,6 @@ export default function page() {
       <Grid size={12}>
         <OrderDetail
           type="chip"
-          emptyMessage="کارتی برای شما به ثبت نرسیده است"
           title="لیست تراکنش‌‌های اخیر"
           toggleItems={items}
         />

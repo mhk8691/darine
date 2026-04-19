@@ -7,8 +7,8 @@ import { Grid } from "@mui/material";
 import Cart from "./Cart";
 import Sort from "./Sort";
 const items: ToggleItemsType[] = [
-  { title: "تحویل درب منزل", value: "doorstepdelivery", id: 1 },
-  { title: "تحویل حضوری", value: "personDelivery", id: 2 },
+  { title: "تحویل درب منزل", value: "doorstepdelivery", id: 1,emptyMessage:'سفارشی برای شما به ثبت نرسیده است' },
+  { title: "تحویل حضوری", value: "personDelivery", id: 2,emptyMessage:'سفارشی برای شما به ثبت نرسیده است' },
 ];
 
 export default function page() {
@@ -42,7 +42,6 @@ export default function page() {
       </Grid>
       <Grid size={12}>
         <OrderDetail
-          emptyMessage="سفارشی برای شما به ثبت نرسیده است"
           type="chip"
           title="لیست تحویل‌های اخیر"
           toggleItems={items}

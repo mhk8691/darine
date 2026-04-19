@@ -6,11 +6,16 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Grid, Stack, Typography } from "@mui/material";
 import Transaction from "./Transaction";
 const items: ToggleItemsType[] = [
-  { title: "واریز", value: "deposit", id: 1 },
-  { title: "واریز مستقیم", value: "directDeposit", id: 2 },
-  { title: "واریز ارزی", value: "currencyDeposit", id: 3 },
-  { title: "برداشت", value: "withdraw", id: 4 },
-  { title: "برداشت به نقره سی", value: "silverWithdraw", id: 5 },
+  { title: "واریز", value: "deposit", id: 1, emptyMessage: "واریزی برای شما به ثبت نرسیده است" },
+  { title: "واریز مستقیم", value: "directDeposit", id: 2, emptyMessage: "واریز باشناسه ای برای شما به ثبت نرسیده است" },
+  { title: "واریز ارزی", value: "currencyDeposit", id: 3, emptyMessage: "واریزی برای شما به ثبت نرسیده است" },
+  { title: "برداشت", value: "withdraw", id: 4, emptyMessage: "برداشتی برای شما به ثبت نرسیده است" },
+  {
+    title: "برداشت به نقره سی",
+    value: "silverWithdraw",
+    id: 5,
+    emptyMessage: "برداشتی برای شما به ثبت نرسیده است",
+  },
 ];
 
 export default function page() {
@@ -51,7 +56,6 @@ export default function page() {
           title="لیست تراکنش های اخیر"
           toggleItems={items}
           type="chip"
-          emptyMessage="معامله ای برای شما به ثبت نرسیده است"
         />
       </Grid>
     </Grid>

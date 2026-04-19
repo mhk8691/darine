@@ -9,6 +9,7 @@ interface Props {
   select: string;
   setSelect: React.Dispatch<React.SetStateAction<string>>;
   style?: SxProps;
+  setMessage?: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function FilterToggleButton({
@@ -16,6 +17,7 @@ export default function FilterToggleButton({
   select,
   setSelect,
   style,
+  setMessage,
 }: Props) {
   const handleChange = (
     event: React.MouseEvent<HTMLElement>,
@@ -63,13 +65,18 @@ export default function FilterToggleButton({
             key={item.value}
             value={item.value}
             disableRipple
+            onClick={()=>{
+              if (setMessage){
+                setMessage(item.emptyMessage||'')
+              }
+            }}
             sx={{
               border: "none",
               borderRadius: "10px !important",
               color: "#ADADA9",
               px: 3,
-              width:'100%',
-              whiteSpace:'nowrap',
+              width: "100%",
+              whiteSpace: "nowrap",
               py: 0.8,
               fontSize: "16px",
               transition: "all .2s ease-in",

@@ -1,6 +1,5 @@
 import OrderDetail from "@/app/Components/OrderDetail/OrderDetail";
 import { Grid } from "@mui/material";
-import React from "react";
 
 export default function page() {
   return (

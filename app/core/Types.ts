@@ -2,6 +2,7 @@ export interface ToggleItemsType {
   title: string;
   value: string;
   id: number;
+  emptyMessage?: string;
 }
 export interface MenuType {
   id?: number;

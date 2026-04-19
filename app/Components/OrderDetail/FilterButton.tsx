@@ -6,14 +6,26 @@ interface Props {
   item: ToggleItemsType;
   active: number | null;
   setActive: Dispatch<SetStateAction<number | null>>;
+  setMessage?: Dispatch<SetStateAction<string>>;
 }
-export default function FilterButton({ active, setActive, item }: Props) {
+export default function FilterButton({
+  active,
+  setActive,
+  item,
+  setMessage,
+}: Props) {
+  console.log(setMessage)
   return (
     <Button
       variant="outlined"
       color="inherit"
       disableRipple
-      onClick={() => setActive(item.id)}
+      onClick={() => {
+        setActive(item.id);
+        if(setMessage){
+          setMessage(item.emptyMessage||'');
+        }
+      }}
       sx={{
         py: 0.75,
         fontSize: 16,

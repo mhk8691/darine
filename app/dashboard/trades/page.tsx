@@ -5,8 +5,18 @@ import { ToggleItemsType } from "@/app/core/Types";
 import { Grid } from "@mui/material";
 import Trading from "./Trading/Trading";
 const items: ToggleItemsType[] = [
-  { title: "خرید", value: "buy", id: 1 },
-  { title: "فروش", value: "sell", id: 2 },
+  {
+    title: "خرید",
+    value: "buy",
+    id: 1,
+    emptyMessage: "معامله ای برای شما به ثبت نرسیده است",
+  },
+  {
+    title: "فروش",
+    value: "sell",
+    id: 2,
+    emptyMessage: "معامله ای برای شما به ثبت نرسیده است",
+  },
 ];
 export default function page() {
   return (
@@ -32,7 +42,6 @@ export default function page() {
           title="لیست معاملات اخیر"
           toggleItems={items}
           type="chip"
-          emptyMessage="معامله ای برای شما به ثبت نرسیده است"
         />
       </Grid>
     </Grid>
