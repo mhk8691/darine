@@ -30,3 +30,15 @@ export interface NotifItemsType {
   message: string;
   date: string;
 }
+
+// types/cart.ts
+
+export interface Product {
+  id: string;
+  title: string;
+  price: number;
+}
+
+export interface CartItem extends Product {
+  quantity: number;
+}
