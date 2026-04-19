@@ -1,8 +1,9 @@
 "use client";
 
-import { Breadcrumbs, Link, Stack, Typography } from "@mui/material";
+import { Breadcrumbs, Stack, Typography } from "@mui/material";
 import NavigateBeforeSharp from "@mui/icons-material/NavigateBeforeSharp";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 const breadcrumbNameMap: Record<string, string> = {
   "gold-shop": "خرید شمش طلا",
@@ -52,8 +53,19 @@ export default function CustomBreadcrumbs() {
           alignItems: "center",
         }}
       >
-        <Link underline="hover" color="inherit" href="/" fontSize={12}>
-          خرید طلای آب شده
+        <Link color="inherit" href="/">
+          <Typography
+            variant="body2"
+            fontSize={12}
+            sx={{
+              transition: "all .3s ease",
+              "&:hover": {
+                color: "primary.main",
+              },
+            }}
+          >
+            خرید طلای آب شده
+          </Typography>
         </Link>
 
         {pathnames.map((value, index) => {
@@ -73,12 +85,22 @@ export default function CustomBreadcrumbs() {
           ) : (
             <Link
               key={href}
-              underline="hover"
               color="inherit"
               href={href}
-              fontSize={12}
+              style={{ fontSize: 12 }}
             >
+              <Typography
+                variant="body2"
+                fontSize={12}
+                sx={{
+                  transition: "all .3s ease",
+                  "&:hover": {
+                    color: "primary.main",
+                  },
+                }}
+              >
               {label}
+              </Typography>
             </Link>
           );
         })}
