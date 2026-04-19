@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import priceFormater from "@/app/core/PriceFormater";
 import { Box, Stack, Button } from "@mui/material";
 import Link from "next/link";
+import CircleAnimation from "../CircleAnimation/CircleAnimation";
 interface Props {
   isDetail: boolean;
 }
@@ -25,16 +26,36 @@ export default function TradeCard({ isDetail }: Props) {
         justifyContent={isDetail ? "space-between" : "center"}
         alignItems={isDetail ? "center" : "flex-start"}
       >
-        <Typography variant="body2" sx={{ color: "#ADADA9" }} fontSize={10}>
-          ۱۶:۳۷:۲۲ - ۲۵ فروردین ۱۴۰۵
-        </Typography>
-        <Typography
-          variant="body2"
-          sx={{ color: "#C2C2BA", mt: isDetail ? 0 : 1.5 }}
-          fontSize={14}
+        <Stack
+          direction={"row"}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+          width={!isDetail ? "100%" : "fit-conetent"}
         >
-          قیمت لحظه‌ای طلا ۱۸ عیار(گرم)
-        </Typography>
+          <Typography variant="body2" sx={{ color: "#ADADA9" }} fontSize={10}>
+            ۱۶:۳۷:۲۲ - ۲۵ فروردین ۱۴۰۵
+          </Typography>
+          {!isDetail && (
+            <Stack>
+              <CircleAnimation type="red" />
+            </Stack>
+          )}
+        </Stack>
+
+        <Stack direction={"row"} gap={1.5} alignItems={'center'}>
+          {isDetail && (
+            <Stack>
+              <CircleAnimation type="red" />
+            </Stack>
+          )}
+          <Typography
+            variant="body2"
+            sx={{ color: "#C2C2BA", mt: isDetail ? 0 : 1.5 }}
+            fontSize={14}
+          >
+            قیمت لحظه‌ای طلا ۱۸ عیار(گرم)
+          </Typography>
+        </Stack>
       </Stack>
       <Stack
         direction={"row"}
@@ -82,7 +103,7 @@ export default function TradeCard({ isDetail }: Props) {
               borderRadius: 2,
               py: 1,
               mt: 2,
-              width:'100%'
+              width: "100%",
             }}
           >
             خرید طلای آب شده

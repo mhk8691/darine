@@ -1,3 +1,4 @@
+import CircleAnimation from "@/app/Components/CircleAnimation/CircleAnimation";
 import Card from "@/app/Components/Container/Container";
 import OrderDetail from "@/app/Components/OrderDetail/OrderDetail";
 import Wallet from "@/app/Components/Wallet/Wallet";
@@ -63,9 +64,12 @@ export default function page() {
             mb: 3,
           }}
         >
-          <Typography variant="body2" sx={{ color: "#C2C2BA" }}>
-            قیمت فعلی طلا ۱۸ عیار:
-          </Typography>
+          <Stack direction={"row"} gap={2} alignItems={'center'}>
+            <CircleAnimation type="red" />
+            <Typography variant="body2" sx={{ color: "#C2C2BA" }}>
+              قیمت فعلی طلا ۱۸ عیار:
+            </Typography>
+          </Stack>
           <Stack direction={"row"} gap={0.5} alignItems={"center"}>
             <Typography
               variant="body1"

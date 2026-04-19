@@ -3,6 +3,7 @@ import priceFormater from "@/app/core/PriceFormater";
 import { Grid, Stack, Typography } from "@mui/material";
 import Card from "../Container/Container";
 import { useEffect, useState } from "react";
+import CircleAnimation from "../CircleAnimation/CircleAnimation";
 
 export default function WalletStatus() {
   const [visible, setVisible] = useState(false);
@@ -87,33 +88,36 @@ export default function WalletStatus() {
       <Grid size={4}>
         <Card
           style={{
-            flexDirection: "column",
-            justifyContent: "center",
+            flexDirection: "row",
             alignItems: "center",
-            gap: 0.5,
+            justifyContent: "center",
+            gap: 3,
             py: "27px",
           }}
         >
-          <Typography variant="body1" fontSize={14} sx={{ color: "#C2C2BA" }}>
-            قیمت فعلی طلا ۱۸ عیار
-          </Typography>
-          <Stack direction={"row"} gap={0.5} alignItems={"center"}>
-            <Typography
-              variant="body1"
-              fontSize={20}
-              sx={{ color: "text.title" }}
-              fontWeight={500}
-            >
-              {priceFormater(17329000)}
+          <CircleAnimation type="red" />
+          <Stack direction={"column"} gap={0.5} justifyContent={"center"}>
+            <Typography variant="body1" fontSize={14} sx={{ color: "#C2C2BA" }}>
+              قیمت فعلی طلا ۱۸ عیار
             </Typography>
-            <Typography
-              variant="body1"
-              fontSize={18}
-              sx={{ color: "text.title" }}
-              fontWeight={500}
-            >
-              تومان
-            </Typography>
+            <Stack direction={"row"} gap={0.5} alignItems={"center"}>
+              <Typography
+                variant="body1"
+                fontSize={20}
+                sx={{ color: "text.title" }}
+                fontWeight={500}
+              >
+                {priceFormater(17329000)}
+              </Typography>
+              <Typography
+                variant="body1"
+                fontSize={18}
+                sx={{ color: "text.title" }}
+                fontWeight={500}
+              >
+                تومان
+              </Typography>
+            </Stack>
           </Stack>
         </Card>
       </Grid>
