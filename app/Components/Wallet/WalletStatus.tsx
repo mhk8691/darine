@@ -1,8 +1,17 @@
+"use client";
 import priceFormater from "@/app/core/PriceFormater";
 import { Grid, Stack, Typography } from "@mui/material";
 import Card from "../Container/Container";
+import { useEffect, useState } from "react";
 
 export default function WalletStatus() {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const stored = localStorage.getItem("eyeState");
+    if (stored !== null) {
+      setVisible(stored === "true");
+    }
+  }, []);
   return (
     <Grid container spacing={3}>
       <Grid size={4}>
@@ -25,7 +34,7 @@ export default function WalletStatus() {
               fontWeight={500}
               sx={{ color: "text.title" }}
             >
-              ***
+              {visible ? "۰" : "***"}
             </Typography>
             <Typography
               variant="body1"
@@ -62,7 +71,7 @@ export default function WalletStatus() {
               fontSize={20}
               sx={{ color: "text.title" }}
             >
-              ***
+              {visible ? "۰" : "***"}
             </Typography>
             <Typography
               variant="body1"

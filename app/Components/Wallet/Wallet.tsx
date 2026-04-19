@@ -1,13 +1,16 @@
-import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+"use client";
 import { Divider, Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import Link from "next/link";
 import Card from "../Container/Container";
+import ToggleEyeButton from "./ToggleEyeButton";
+import { useState } from "react";
 interface Props {
   type: "dashboard" | "wallet";
 }
 export default function Wallet({ type }: Props) {
+   const [visible, setVisible] = useState(false);
   return (
     <Card style={{ minHeight: 386, pb: type === "wallet" ? 4.5 : 3 }}>
       <Typography
@@ -51,7 +54,7 @@ export default function Wallet({ type }: Props) {
                   fontSize={20}
                   sx={{ color: "text.title" }}
                 >
-                  ***
+                  {visible ? "۰" : "***"}
                 </Typography>
                 <Typography
                   variant="body1"
@@ -69,10 +72,7 @@ export default function Wallet({ type }: Props) {
               )}
             </Stack>
             <Stack>
-              <VisibilityOutlinedIcon
-                sx={{ color: "#C2C2BA" }}
-                fontSize="small"
-              />
+              <ToggleEyeButton visible={visible} setVisible={setVisible} />
             </Stack>
           </Stack>
           <Stack direction={"row"} justifyContent={"center"}>
@@ -120,7 +120,7 @@ export default function Wallet({ type }: Props) {
                     fontSize={16}
                     sx={{ color: "text.title" }}
                   >
-                    ***
+                    {visible ? "۰" : "***"}
                   </Typography>
                   <Typography
                     variant="body1"
@@ -167,7 +167,7 @@ export default function Wallet({ type }: Props) {
                     fontSize={16}
                     sx={{ color: "text.title" }}
                   >
-                    ***
+                    {visible ? "۰" : "***"}
                   </Typography>
                   <Typography
                     variant="body1"
