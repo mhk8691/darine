@@ -8,6 +8,7 @@ import {
   Typography,
   Button,
 } from "@mui/material";
+import Link from "next/link";
 
 export default function GoldCard() {
   return (
@@ -21,19 +22,23 @@ export default function GoldCard() {
       }}
     >
       <Stack bgcolor={"background.default"} px={0} py={4} borderRadius={2}>
-        <CardMedia
-          sx={{
-            height: 140,
-            p: 0,
-          }}
-          image="/images/product.webp"
-          title="green iguana"
-        />
+        <Link href={"/gold-shop/test"}>
+          <CardMedia
+            sx={{
+              height: 140,
+              p: 0,
+            }}
+            image="/images/product.webp"
+            title="green iguana"
+          />
+        </Link>
       </Stack>
       <CardContent sx={{ px: 0 }}>
-        <Typography gutterBottom variant="h5" fontSize={18} sx={{ px: .5 }}>
-          شمش طلاسی ۱ گرمی ۱۸ عیار
-        </Typography>
+        <Link href={"/gold-shop/test"}>
+          <Typography gutterBottom variant="h5" fontSize={18} sx={{ px: 0.5 }}>
+            شمش طلاسی ۱ گرمی ۱۸ عیار
+          </Typography>
+        </Link>
         <Stack direction={"column"} gap={1} sx={{ mt: 3.5 }}>
           <Stack
             direction={"row"}

@@ -31,7 +31,6 @@ export function createData({
   };
 }
 
-
 interface Props {
   heads: string[];
   data: TableGoldDataType[];
@@ -163,8 +162,8 @@ export default function GoldTable({ heads, data }: Props) {
                 <Stack direction={"row"} justifyContent={"center"}>
                   <LineChart
                     color="#D12F2F"
-                    width={row.typeGold ? "100%":'70%'}
-                    height="50px"
+                    width={row.typeGold ? "90%" : "70%"}
+                    height="40px"
                     noGradiant
                     data={[1, 2, 10]}
                     label={["فروردین", "اردیبهشت", "خرداد"]}

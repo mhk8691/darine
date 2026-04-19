@@ -82,6 +82,7 @@ export default function TradeCard({ isDetail }: Props) {
               borderRadius: 2,
               py: 1,
               mt: 2,
+              width:'100%'
             }}
           >
             خرید طلای آب شده

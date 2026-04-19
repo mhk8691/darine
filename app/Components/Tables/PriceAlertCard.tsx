@@ -46,9 +46,10 @@ export default function PriceAlertCard() {
             borderRadius: 2,
             py: 1,
             mt: 2,
+            width: "100%",
           }}
         >
-          خرید طلای آب شده
+          فعالسازی آلارم
         </Button>
       </Link>
     </Container>
