@@ -1,9 +1,10 @@
 "use client";
 
-import { Breadcrumbs, Stack, Typography } from "@mui/material";
 import NavigateBeforeSharp from "@mui/icons-material/NavigateBeforeSharp";
-import { usePathname } from "next/navigation";
+import { Breadcrumbs, Stack, Typography } from "@mui/material";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const breadcrumbNameMap: Record<string, string> = {
   "gold-shop": "خرید شمش طلا",
@@ -33,10 +34,27 @@ const prefixHiddenRoutes = ["/login", "/dashboard"];
 
 export default function CustomBreadcrumbs() {
   const pathname = usePathname();
+  const [isNotFound, setIsNotFound] = useState(false);
+
+  useEffect(() => {
+    const checkPageStatus = async () => {
+      try {
+        const res = await fetch(pathname, { method: "HEAD" });
+        if (res.status === 404) {
+          setIsNotFound(true);
+        }
+      } catch (error:unknown) {
+        setIsNotFound(true);
+      }
+    };
+
+    checkPageStatus();
+  }, [pathname]);
 
   const shouldHide =
     exactHiddenRoutes.includes(pathname) ||
-    prefixHiddenRoutes.some((route) => pathname.startsWith(route));
+    prefixHiddenRoutes.some((route) => pathname.startsWith(route)) ||
+    isNotFound;
 
   if (shouldHide) return null;
 
@@ -100,7 +118,7 @@ export default function CustomBreadcrumbs() {
                   },
                 }}
               >
-              {label}
+                {label}
               </Typography>
             </Link>
           );
