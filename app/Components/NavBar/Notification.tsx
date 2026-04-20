@@ -68,7 +68,7 @@ export default function Notification() {
             sx={{
               position: "absolute",
               top: "calc(100% + 8px)",
-              right: "-80%",
+              right: "-50%",
               width: "320px",
               overflow: "hidden",
               background: "#111110",

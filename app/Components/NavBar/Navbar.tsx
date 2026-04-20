@@ -1,12 +1,9 @@
 import { MenuType } from "@/app/core/Types";
-import DarkModeTwoToneIcon from "@mui/icons-material/DarkModeTwoTone";
-import { Button, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import ProfileBtn from "./ProfileBtn";
-import SubMenu from "./SubMenu";
-import Notification from "./Notification";
 import ButtonGroupe from "./ButtonGroupe";
+import SubMenu from "./SubMenu";
 const menu: MenuType[] = [
   {
     id: 1,

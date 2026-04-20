@@ -40,12 +40,7 @@ export default function ButtonGroupe() {
 
       {url === "dashboard" && <Notification />}
 
-      <DarkModeTwoTone
-        fontSize="large"
-        sx={{
-          color: "primary.light",
-        }}
-      />
+     
       {url !== "dashboard" && (
         <>
           <IconButton

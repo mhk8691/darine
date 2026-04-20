@@ -27,7 +27,7 @@ export default function page() {
         <Grid size={6.5}>
           <Card
             style={{
-              py: 25.4,
+              py: 24,
               justifyContent: "center",
               flexDirection: "row",
             }}
