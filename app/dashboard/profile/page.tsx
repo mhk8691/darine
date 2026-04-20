@@ -3,6 +3,7 @@ import WalletStatus from "@/app/Components/Wallet/WalletStatus";
 import { Box, Button, Divider, Grid, Stack, Typography } from "@mui/material";
 import BotButton from "./BotButton";
 import ChangeNumber from "./ChangeNumber";
+import ChangePassword from "./ChangePassword";
 
 export default function page() {
   return (
@@ -50,22 +51,7 @@ export default function page() {
               </Typography>
             </Stack>
           </Stack>
-          <Button
-            variant="contained"
-            color="primary"
-            sx={{
-              fontSize: 14,
-              fontWeight: 800,
-              py: 0.5,
-              px: 2,
-              borderRadius: "7px",
-              color: "background.default",
-              width: "fit-content",
-              mt: 5,
-            }}
-          >
-            تنظیم یا تغییر رمز ورود
-          </Button>
+         <ChangePassword/>
           <Stack
             border={1}
             px={2}

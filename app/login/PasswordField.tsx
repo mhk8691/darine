@@ -10,8 +10,9 @@ import React, { Dispatch, SetStateAction, useState } from "react";
 interface Props {
   password: string;
   setPassword: Dispatch<SetStateAction<string>>;
+  label?:string
 }
-export default function PasswordField({ password, setPassword }: Props) {
+export default function PasswordField({ password, setPassword ,label}: Props) {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -27,8 +28,10 @@ export default function PasswordField({ password, setPassword }: Props) {
     event.preventDefault();
   };
   return (
-    <FormControl variant="outlined" sx={{ mt: 2.5 }}>
-      <InputLabel htmlFor="outlined-adornment-password">رمز ورود</InputLabel>
+    <FormControl variant="outlined" sx={{ mt: 2.5, width: "100%" }}>
+      <InputLabel htmlFor="outlined-adornment-password">
+        {label || "رمز ورود"}
+      </InputLabel>
       <OutlinedInput
         value={password}
         onChange={(e) => setPassword(e.target.value)}
