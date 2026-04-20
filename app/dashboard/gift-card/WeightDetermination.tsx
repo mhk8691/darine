@@ -6,17 +6,36 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useEffect, useState } from "react";
-
-export default function WeightDetermination() {
-  const [weight, setWeight] = useState<number | null>(null);
-  const [price, setPrice] = useState<number | null>(null);
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+interface Props {
+  price: number | null;
+  setPrice: Dispatch<SetStateAction<number | null>>;
+  weight: number | null;
+  setWeight: Dispatch<SetStateAction<number | null>>;
+}
+export default function WeightDetermination({
+  price,
+  setPrice,
+  weight,
+  setWeight,
+}: Props) {
   const [count, setCount] = useState<number>(1);
 
   useEffect(() => {
     if (!weight) return;
-    setPrice(weight * 17610000);
-  }, [weight, setWeight, setPrice, price]);
+    const newPrice = weight * 17610000;
+    if (price !== newPrice) {
+      setPrice(newPrice);
+    }
+  }, [weight]);
+
+  useEffect(() => {
+    if (!price) return;
+    const newWeight = price / 17610000;
+    if (weight !== newWeight) {
+      setWeight(newWeight);
+    }
+  }, [price]);
   return (
     <Stack direction={"column"} gap={4}>
       <InputField

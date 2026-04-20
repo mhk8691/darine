@@ -24,6 +24,7 @@ export default function InputField({
   setValue,
   style,
   multiline = false,
+  
 }: Props) {
   const formatNumber = (num: number | null | string) => {
     if (num === null) return "";

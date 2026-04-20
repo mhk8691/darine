@@ -79,20 +79,30 @@ const steps = ["تعیین وزن", "تعیین آدرس", "تایید نهای�
 export default function GiftStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set<number>());
-
+  const [weight, setWeight] = React.useState<number | null>(null);
+  const [price, setPrice] = React.useState<number | null>(null);
   const isStepSkipped = (step: number) => {
     return skipped.has(step);
   };
 
   const handleNext = () => {
     let newSkipped = skipped;
-    if (isStepSkipped(activeStep)) {
+
+    if (activeStep === 0) {
+      if (price) {
+        newSkipped = new Set(newSkipped.values());
+        newSkipped.delete(activeStep);
+
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        setSkipped(newSkipped);
+      }
+    } else {
       newSkipped = new Set(newSkipped.values());
       newSkipped.delete(activeStep);
-    }
 
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped(newSkipped);
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      setSkipped(newSkipped);
+    }
   };
 
   const handleBack = () => {
@@ -136,7 +146,6 @@ export default function GiftStepper() {
           "& .MuiStepLabel-label.Mui-completed": {
             color: "#fff",
           },
-      
         }}
       >
         {steps.map((label, index) => {
@@ -166,7 +175,14 @@ export default function GiftStepper() {
             borderColor={"#292926"}
             width={activeStep === 0 ? "40%" : "50%"}
           >
-            {activeStep === 0 && <WeightDetermination />}
+            {activeStep === 0 && (
+              <WeightDetermination
+                weight={weight}
+                setWeight={setWeight}
+                price={price}
+                setPrice={setPrice}
+              />
+            )}
             {activeStep === 1 && <AddressSetting />}
             {activeStep === 2 && <FinalApproval />}
 
