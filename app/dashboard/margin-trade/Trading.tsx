@@ -7,13 +7,27 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import {
   Button,
   Checkbox,
+  createTheme,
   FormControlLabel,
   Slider,
   Stack,
+  StyledEngineProvider,
+  ThemeProvider,
   Typography,
 } from "@mui/material";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+
+const ltrTheme = createTheme({
+  direction: "ltr",
+  palette: {
+    mode: "dark",
+    primary: {
+      light: "#FDE378",
+      main: "#FCD535",
+    },
+  },
+});
 const items: ToggleItemsType[] = [
   { title: "با قیمت بازار", value: "store", id: 1 },
   { title: "با تعیین قیمت", value: "self", id: 2 },
@@ -95,36 +109,40 @@ export default function Trading() {
             {multiplier}X
           </Typography>
         </Stack>
-        <Slider
-          value={multiplier}
-          onChange={(_, value) => setMultiplier(value as number)}
-          getAriaValueText={valuetext}
-          step={0.5}
-          marks={marks}
-          max={5}
-          min={1}
-          sx={{
-            "& .MuiSlider-thumb.MuiSlider-thumbSizeMedium": {
-              width: "30px",
-              height: "30px",
-            },
-            width: "100%",
-            "&.MuiSlider-root .MuiSlider-rail": {
-              height: 12,
-              color: "rgb(83, 83, 80) !important",
-              width: "100%",
-            },
-            "&.MuiSlider-root .MuiSlider-mark": {
-              height: 8,
-              width: 8,
-              borderRadius: "50%",
-              color: "background.default",
-            },
-            "&.MuiSlider-root .MuiSlider-mark.MuiSlider-markActive": {
-              display: "none",
-            },
-          }}
-        />
+        <StyledEngineProvider injectFirst>
+          <ThemeProvider theme={ltrTheme}>
+            <Slider
+              value={multiplier}
+              onChange={(_, value) => setMultiplier(value as number)}
+              getAriaValueText={valuetext}
+              step={0.5}
+              marks={marks}
+              max={5}
+              min={1}
+              sx={{
+                "& .MuiSlider-thumb.MuiSlider-thumbSizeMedium": {
+                  width: "30px",
+                  height: "30px",
+                },
+                width: "100%",
+                "&.MuiSlider-root .MuiSlider-rail": {
+                  height: 12,
+                  color: "rgb(83, 83, 80) !important",
+                  width: "100%",
+                },
+                "&.MuiSlider-root .MuiSlider-mark": {
+                  height: 8,
+                  width: 8,
+                  borderRadius: "50%",
+                  color: "background.default",
+                },
+                "&.MuiSlider-root .MuiSlider-mark.MuiSlider-markActive": {
+                  display: "none",
+                },
+              }}
+            />
+          </ThemeProvider>
+        </StyledEngineProvider>
       </Stack>
       <Stack px={3} mb={3.5}>
         <FilterToggleButton

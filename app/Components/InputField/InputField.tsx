@@ -12,9 +12,9 @@ interface Props {
   icon?: ReactNode;
   title?: string;
   value: number | null | string;
-  setValue: React.Dispatch<React.SetStateAction<number | null | string >>;
-  style?:SxProps
-  multiline?:boolean
+  setValue: React.Dispatch<React.SetStateAction<number | null | string>>;
+  style?: SxProps;
+  multiline?: boolean;
 }
 export default function InputField({
   placeholder,
@@ -23,7 +23,7 @@ export default function InputField({
   value,
   setValue,
   style,
-  multiline=false
+  multiline = false,
 }: Props) {
   const formatNumber = (num: number | null | string) => {
     if (num === null) return "";
@@ -84,7 +84,7 @@ export default function InputField({
                 orientation="vertical"
                 flexItem
                 sx={{
-                  mr: "14px",
+                  mr: title === "گرم" ? 3 : 1,
                   borderColor: "#393936",
                   border: "1px solid #393936",
                 }}
