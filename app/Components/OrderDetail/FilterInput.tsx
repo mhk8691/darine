@@ -86,7 +86,7 @@ export default function FilterInput() {
             return (
               <Typography
                 sx={{
-                  color: "text.primary",
+                  color: "#7C7C7B",
                   top: "50%",
                   transform: "translateY(-50%)",
                   position: "absolute ",
