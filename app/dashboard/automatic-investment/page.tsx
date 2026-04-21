@@ -6,7 +6,11 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Button, Grid, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "پس انداز خودکار | دارینه",
+  description: "",
+};
 const items: ToggleItemsType[] = [
   { title: "کارت ها", value: "cards", id: 2,emptyMessage:'کارتی برای شما به ثبت نرسیده است' },
   { title: "واریز ها", value: "deposits", id: 1,emptyMessage:'واریزی برای شما به ثبت نرسیده است' },

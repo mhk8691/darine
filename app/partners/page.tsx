@@ -9,6 +9,11 @@ import {
 import Image from "next/image";
 import Form from "./Form";
 import Link from "next/link";
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "همکاران | دارینه",
+  description: "",
+};
 const partnerItems = [
   {
     title: "API - دریافت‌کنندگان سرویس خرید و فروش طلا",

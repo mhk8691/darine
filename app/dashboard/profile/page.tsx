@@ -4,7 +4,11 @@ import { Box, Button, Divider, Grid, Stack, Typography } from "@mui/material";
 import BotButton from "./BotButton";
 import ChangeNumber from "./ChangeNumber";
 import ChangePassword from "./ChangePassword";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "پروفایل | دارینه",
+  description: "",
+};
 export default function page() {
   return (
     <Grid container spacing={3}>

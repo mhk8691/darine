@@ -5,7 +5,11 @@ import RequestForm from "./RequestForm";
 import Description from "./Description";
 import Faq from "../Components/Faq/Faq";
 import { FaqItem } from "../core/Types";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "کارت هدیه سازمانی دارینه | بهترین هدیه برای پرسنل",
+  description: "",
+};
 const faqData: FaqItem[] = [
   {
     id: "1",

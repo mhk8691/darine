@@ -2,7 +2,11 @@ import Container from "@/app/Components/Container/Container";
 import OrderDetail from "@/app/Components/OrderDetail/OrderDetail";
 import { Grid, Typography } from "@mui/material";
 import GiftStepper from "./GiftStepper";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "خرید کارت هدیه | دارینه",
+  description: "",
+};
 export default function page() {
   return (
     <Grid container spacing={3}>

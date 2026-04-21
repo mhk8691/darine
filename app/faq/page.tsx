@@ -1,7 +1,11 @@
 import { Container, Divider } from "@mui/material";
 import Faq from "../Components/Faq/Faq";
 import { FaqItem } from "../core/Types";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "سوالات متداول | دارینه",
+  description: "",
+};
 const faqData: FaqItem[] = [
   {
     id: "1",

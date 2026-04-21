@@ -2,7 +2,11 @@ import CreditContainer from "@/app/Components/CreditContainer/CreditContainer";
 import GoldenUnderline from "@/app/Components/CreditContainer/GoldenUnderline";
 import { Box, Grid, Typography } from "@mui/material";
 import Image from "next/image";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "خرید اعتباری با نسیبا | دارینه",
+  description: "",
+};
 export default function page() {
   return (
     <Grid container>

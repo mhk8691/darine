@@ -4,6 +4,11 @@ import WalletStatus from "@/app/Components/Wallet/WalletStatus";
 import { ToggleItemsType } from "@/app/core/Types";
 import { Grid } from "@mui/material";
 import Trading from "./Trading/Trading";
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "خرید و فروش طلا | دارینه",
+  description: "",
+};
 const items: ToggleItemsType[] = [
   {
     title: "خرید",

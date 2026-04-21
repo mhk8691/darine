@@ -2,7 +2,11 @@ import Card from "@/app/Components/Container/Container";
 import { Divider, Grid, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import RefralButton from "./RefralButton";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "دعوت از دوستان | دارینه",
+  description: "",
+};
 export default function page() {
   return (
     <Grid container spacing={3}>

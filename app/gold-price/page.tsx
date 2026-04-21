@@ -1,6 +1,11 @@
 import React from "react";
 import TableContainer from "../Components/Tables/TableContainer";
 import { FaqItem, TableGoldDataType } from "../core/Types";
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "قیمت طلا امروز آنلاین و لحظه ای | دارینه",
+  description: "",
+};
 const data: { title: string; order: number; data: TableGoldDataType[] }[] = [
   {
     title: "طلا",

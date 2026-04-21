@@ -5,6 +5,11 @@ import Wallet from "@/app/Components/Wallet/Wallet";
 import priceFormater from "@/app/core/PriceFormater";
 import { ToggleItemsType } from "@/app/core/Types";
 import { Grid, Stack, Typography } from "@mui/material";
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "کیف پول | دارینه",
+  description: "",
+};
 const items: ToggleItemsType[] = [
   {
     title: "واریز",

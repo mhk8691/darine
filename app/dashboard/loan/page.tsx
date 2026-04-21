@@ -1,6 +1,10 @@
 import { ActionButtonType } from "@/app/Components/ActionButton/ActionButton";
 import InfoContainer from "@/app/Components/InfoContainer/InfoContainer";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "دریافت اعتبار | دارینه",
+  description: "",
+};
 const items: ActionButtonType[] = [
   {
     title: "اعتبار خرید از ازکی وام",

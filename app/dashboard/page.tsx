@@ -3,7 +3,11 @@ import ChartGold from "../Components/ChartGold/ChartGold";
 import Card from "../Components/Container/Container";
 import Wallet from "../Components/Wallet/Wallet";
 import Trading from "./trades/Trading/Trading";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "داشبورد | دارینه",
+  description: "",
+};
 export default function page() {
   return (
     <Grid container spacing={3}>

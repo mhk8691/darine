@@ -1,5 +1,10 @@
 import { Container, Divider, Stack, Typography } from "@mui/material";
 import Image from "next/image";
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "شعب حضوری  | دارینه",
+  description: "",
+};
 export default function page() {
   return (
     <>

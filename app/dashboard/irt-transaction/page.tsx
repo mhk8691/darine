@@ -5,6 +5,11 @@ import { ToggleItemsType } from "@/app/core/Types";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Grid, Stack, Typography } from "@mui/material";
 import Transaction from "./Transaction";
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "تراکنش های تومان | دارینه",
+  description: "",
+};
 const items: ToggleItemsType[] = [
   { title: "واریز", value: "deposit", id: 1, emptyMessage: "واریزی برای شما به ثبت نرسیده است" },
   { title: "واریز مستقیم", value: "directDeposit", id: 2, emptyMessage: "واریز باشناسه ای برای شما به ثبت نرسیده است" },

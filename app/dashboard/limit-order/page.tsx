@@ -3,7 +3,11 @@ import OrderDetail from "@/app/Components/OrderDetail/OrderDetail";
 import WalletStatus from "@/app/Components/Wallet/WalletStatus";
 import { Grid } from "@mui/material";
 import Trading from "./Trading";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "سفارش با قیمت | دارینه",
+  description: "",
+};
 export default function page() {
   return (
     <Grid container spacing={3}>

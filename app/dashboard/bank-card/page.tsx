@@ -1,8 +1,12 @@
 import Card from "@/app/Components/Container/Container";
 import { Grid, Typography } from "@mui/material";
-import AddCard from "./AddCard";
-import BankCard from "./BankCard";
+import { Metadata } from "next";
 import AddCardContainer from "./AddCardContainer";
+import BankCard from "./BankCard";
+export const metadata: Metadata = {
+  title: "کارت بانکی | دارینه",
+  description: "",
+};
 export default function page() {
   return (
     <Grid container spacing={3}>

@@ -10,7 +10,11 @@ import Link from "next/link";
 import Faq from "../Components/Faq/Faq";
 import { FaqItem } from "../core/Types";
 import Image from "next/image";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "درباره ما | دارینه",
+  description: "",
+};
 const rules = [
   "سرمایه گذاری به صرفه:در دارینه هزینه جداگانه به عنوان اجرت ساخت طلای زینتی پرداخت نخواهید کرد، و به اندازه همان مبلغ، طلای خام به شما تعلق خواهد گرفت.",
   "خرید و فروش طلا با هر میزان سرمایه:شما با هر میزان سرمایه می‌توانید در دارینه اقدام به خرید طلا کنید.",

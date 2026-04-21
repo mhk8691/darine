@@ -1,7 +1,11 @@
 import { Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import Form from "./Form";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "دریافت کارت هدیه | دارینه",
+  description: "",
+};
 export default function page() {
   return (
     <Grid container>

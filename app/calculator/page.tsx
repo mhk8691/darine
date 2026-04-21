@@ -10,7 +10,11 @@ import Calculator from "./Calculator";
 import Link from "next/link";
 import { FaqItem } from "../core/Types";
 import Faq from "../Components/Faq/Faq";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "محاسبه قیمت آنلاین | دارینه",
+  description: "",
+};
 const faqData: FaqItem[] = [
   {
     id: "1",

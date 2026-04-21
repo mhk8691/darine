@@ -5,7 +5,11 @@ import WalletStatus from "@/app/Components/Wallet/WalletStatus";
 import { FaqItem } from "@/app/core/Types";
 import { Grid } from "@mui/material";
 import MarginTrade from "./MarginTrade";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "فروش تعهدی | دارینه",
+  description: "",
+};
 const faqData: FaqItem[] = [
   {
     id: "1",

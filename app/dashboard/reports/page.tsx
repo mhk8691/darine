@@ -4,6 +4,13 @@ import CustomTabs from "@/app/Components/Tabs/CustomTabs";
 import { ToggleItemsType } from "@/app/core/Types";
 import { Grid, Typography } from "@mui/material";
 import { ReactNode } from "react";
+
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "گزارشات | دارینه",
+  description: "",
+};
+
 const dealItems: ToggleItemsType[] = [
   { title: "خرید", value: "buy", id: 1, emptyMessage: "معامله ای برای شما به ثبت نرسیده است" },
   { title: "فروش", value: "sell", id: 2, emptyMessage: "معامله ای برای شما به ثبت نرسیده است" },

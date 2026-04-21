@@ -6,6 +6,12 @@ import { ToggleItemsType } from "@/app/core/Types";
 import { Grid } from "@mui/material";
 import Cart from "./Cart";
 import Sort from "./Sort";
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "دریافت طلا | دارینه",
+  description: "",
+};
+
 const items: ToggleItemsType[] = [
   { title: "تحویل درب منزل", value: "doorstepdelivery", id: 1,emptyMessage:'سفارشی برای شما به ثبت نرسیده است' },
   { title: "تحویل حضوری", value: "personDelivery", id: 2,emptyMessage:'سفارشی برای شما به ثبت نرسیده است' },

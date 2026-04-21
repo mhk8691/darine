@@ -1,7 +1,11 @@
 import { Container, Divider, Stack, Typography, Button } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "مجوزها | دارینه",
+  description: "",
+};
 interface LicenseType {
   title: string;
   description: string;
