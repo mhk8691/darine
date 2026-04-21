@@ -57,7 +57,6 @@ const CustomStepIconRoot = styled("div")<{
 
 function CustomStepIcon(props: StepIconProps) {
   const { active, completed, className } = props;
-
   return (
     <CustomStepIconRoot
       ownerState={{ active, completed }}
@@ -81,6 +80,8 @@ export default function GiftStepper() {
   const [skipped, setSkipped] = React.useState(new Set<number>());
   const [weight, setWeight] = React.useState<number | null>(null);
   const [price, setPrice] = React.useState<number | null>(null);
+  const [open, setOpen] = React.useState(false);
+
   const isStepSkipped = (step: number) => {
     return skipped.has(step);
   };
@@ -96,6 +97,8 @@ export default function GiftStepper() {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
         setSkipped(newSkipped);
       }
+    } else if (activeStep === 1) {
+      setOpen(true);
     } else {
       newSkipped = new Set(newSkipped.values());
       newSkipped.delete(activeStep);
@@ -183,7 +186,9 @@ export default function GiftStepper() {
                 setPrice={setPrice}
               />
             )}
-            {activeStep === 1 && <AddressSetting />}
+            {activeStep === 1 && (
+              <AddressSetting open={open} setOpen={setOpen} />
+            )}
             {activeStep === 2 && <FinalApproval />}
 
             <Stack direction={"row"} gap={3} mt={activeStep === 2 ? 2 : 7}>
@@ -202,7 +207,11 @@ export default function GiftStepper() {
                   },
                 }}
               >
-                {activeStep === 2 ? "تایید سفارش" : "ادامه"}
+                {activeStep === 2
+                  ? "تایید سفارش"
+                  : activeStep === 1
+                    ? "افزودن آدرس"
+                    : "ادامه"}
               </Button>
 
               {activeStep !== 0 && (

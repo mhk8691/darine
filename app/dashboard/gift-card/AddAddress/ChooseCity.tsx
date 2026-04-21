@@ -4,7 +4,7 @@ const ostanItems = ["قم", "تهران", "اصفهان"];
 const cityItems = ["کهک", "قنوات", "تست"];
 export default function ChooseCity() {
   return (
-    <Stack direction={"column"} gap={2}>
+    <Stack direction={"column"} gap={2} mb={15}>
       <SelectField
         label="استان"
         itemsList={ostanItems}
