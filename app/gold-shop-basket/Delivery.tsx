@@ -1,0 +1,77 @@
+import { InfoOutlineRounded } from "@mui/icons-material";
+import { Grid, Stack, Typography } from "@mui/material";
+import { useState } from "react";
+import FilterToggleButton from "../Components/FilterToggleButton/FilterToggleButton";
+import { ToggleItemsType } from "../core/Types";
+
+const toggleItems: ToggleItemsType[] = [
+  { title: "تحویل درب منزل", value: "delivery", id: 1 },
+  { title: "تحویل حضوری", value: "directDelivery", id: 2 },
+];
+
+export default function Delivery() {
+  const [select, setSelect] = useState("delivery");
+  return (
+    <Grid container spacing={2}>
+      <Grid size={7.5}>
+        <Typography variant="body1" fontSize={22} sx={{ mb: 2 }}>
+          نحوه تحویل
+        </Typography>
+        <FilterToggleButton
+          select={select}
+          setSelect={setSelect}
+          items={toggleItems}
+          style={{ py: 1.5 }}
+        />
+        <Typography
+          variant="body1"
+          fontSize={16}
+          fontWeight={"bold"}
+          sx={{ mt: 3 }}
+        >
+          تاریخ تحویل
+        </Typography>
+        <Typography variant="body1" fontSize={16}>
+          سفارش شما تا ۵ روز کاری به آدرس تعیین شده تحویل داده می‌شود.
+        </Typography>
+      </Grid>
+      <Grid size={4.5}>
+        <Stack direction={"row"} alignItems={"center"} gap={1}>
+          <InfoOutlineRounded sx={{ color: "#EF8011" }} />
+          <Typography variant="body1" fontSize={22} sx={{ color: "#EF8011" }}>
+            توجه
+          </Typography>
+        </Stack>
+        <Stack>
+          <Typography
+            variant="body1"
+            fontSize={18}
+            sx={{ color: "#D9D9D3", fontWeight: "600", mt: "10px" }}
+          >
+            {select === "delivery"
+              ? "تحویل امن طلا به سرتاسر ایران"
+              : "تحویل حضوری طلای شما"}
+          </Typography>
+          <Typography
+            variant="body1"
+            fontSize={16}
+            sx={{ color: "#D9D9D3", mt: 1 }}
+          >
+            {select === "delivery"
+              ? "طلاسی طلای شما را از ۳۰ سوت، به هر نقطه از کشور که بخواهید ارسال می‌کند. تمامی مرسولات ارسالی بیمه می‌شوند؛ در صورت بروز هرگونه خسارت، جبران آن با طلاسی است."
+              : "برای تحویل حضوری، لطفاً کارت شناسایی خود را همراه داشته باشید. مراجعه تنها در ساعت و آدرس تعیین‌شده امکان‌پذیر است."}
+          </Typography>
+          {select === "delivery" && (
+            <Typography
+              variant="body1"
+              fontSize={16}
+              sx={{ color: "#D9D9D3", fontWeight: "600", mt: 1 }}
+            >
+              سفارش شما تا ۵ روز کاری به آدرس تعیین شده تحویل داده می‌شود.
+            </Typography>
+          )}
+        </Stack>
+      </Grid>
+    </Grid>
+  );
+}
