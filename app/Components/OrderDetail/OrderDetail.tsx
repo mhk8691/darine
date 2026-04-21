@@ -5,10 +5,10 @@ import { Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
 import Card from "../Container/Container";
-import FilterToggleButton from "../FilterToggleButton/FilterToggleButton";
-import FilterButton from "./FilterButton";
-import FilterInput from "./FilterInput";
 import CustomDatePicker from "../DatePicker/CustomDatePicker";
+import FilterToggleButton from "../FilterToggleButton/FilterToggleButton";
+import SelectField from "../InputField/SelectField";
+import FilterButton from "./FilterButton";
 interface Props {
   title?: string;
   type: "chip" | "toggle";
@@ -16,7 +16,7 @@ interface Props {
   noCard?: boolean;
   emptyMessage?: string;
 }
-
+const names = ["تکمیل شده", "در انتظار تایید", "لغو شده"];
 export default function OrderDetail({
   title,
   type,
@@ -74,7 +74,12 @@ export default function OrderDetail({
           </Typography>
         </Stack>
         <Stack direction={"row"} gap={2} width={"100%"}>
-          <FilterInput  />
+          <SelectField
+            label="وضعیت"
+            itemsList={names}
+            isOrederDetail
+            maxWidth="260px"
+          />
           <CustomDatePicker />
         </Stack>
       </Stack>
@@ -144,7 +149,12 @@ export default function OrderDetail({
           </Typography>
         </Stack>
         <Stack direction={"row"} gap={2} width={"100%"}>
-          <FilterInput  />
+          <SelectField
+            itemsList={names}
+            label="وضعیت"
+            isOrederDetail={true}
+            maxWidth="260px"
+          />
           <CustomDatePicker />
         </Stack>
       </Stack>

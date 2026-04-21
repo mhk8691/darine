@@ -10,12 +10,19 @@ import {
   Select,
   SelectChangeEvent,
   Stack,
+  SxProps,
   Typography,
 } from "@mui/material";
 import * as React from "react";
-const names = ["تکمیل شده", "در انتظار تایید", "لغو شده"];
 
-export default function FilterInput() {
+interface Props {
+  itemsList: string[];
+  label: string;
+  isOrederDetail: boolean;
+  style?:SxProps
+  maxWidth?:string
+}
+export default function SelectField({ label, itemsList, isOrederDetail, style,maxWidth }: Props) {
   const [value, setValue] = React.useState<string>("");
   const MenuProps = {
     slotProps: {
@@ -40,7 +47,7 @@ export default function FilterInput() {
   };
 
   return (
-    <FormControl sx={{ maxWidth: "260px", width: "100%" }}>
+    <FormControl sx={{ maxWidth: maxWidth ||'100%', width: "100%" }}>
       <Select
         displayEmpty
         value={value}
@@ -70,7 +77,11 @@ export default function FilterInput() {
             right: 8,
             left: "auto",
             color: "text.primary",
-            display: !value ? "block" : "none",
+            display: !isOrederDetail
+              ? "block"
+              : isOrederDetail && value
+                ? "none"
+                : "block",
           },
 
           "& .MuiSelect-select": {
@@ -80,6 +91,7 @@ export default function FilterInput() {
             py: 0.9,
             pr: 1,
           },
+          ...style,
         }}
         renderValue={() => {
           if (!value) {
@@ -92,42 +104,49 @@ export default function FilterInput() {
                   position: "absolute ",
                 }}
               >
-                وضعیت
+                {label}
               </Typography>
             );
           }
 
           return (
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                width: "100%",
-              }}
-            >
-              <Stack direction={"row"} alignItems={"center"} gap={0.5}>
-                <Typography> وضعیت</Typography>
-                <Typography variant="body1" sx={{ color: "#B29727" }}>
-                  {value}
-                </Typography>
-              </Stack>
-
-              <IconButton
-                size="small"
-                onClick={handleClear}
-                onMouseDown={(e) => e.stopPropagation()}
-                disableRipple
+            value && (
+              <Box
                 sx={{
-                  color: "#FFFFFF",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100%",
                 }}
               >
-                <CloseIcon fontSize="small" />
-              </IconButton>
-            </Box>
+                <Stack direction={"row"} alignItems={"center"} gap={0.5}>
+                  {isOrederDetail && <Typography>{label}</Typography>}
+                  <Typography
+                    variant="body1"
+                    sx={{ color: isOrederDetail ? "#B29727" : "text.title" }}
+                  >
+                    {value}
+                  </Typography>
+                </Stack>
+
+                {isOrederDetail && (
+                  <IconButton
+                    size="small"
+                    onClick={handleClear}
+                    onMouseDown={(e) => e.stopPropagation()}
+                    disableRipple
+                    sx={{
+                      color: "#FFFFFF",
+                    }}
+                  >
+                    <CloseIcon fontSize="small" />
+                  </IconButton>
+                )}
+              </Box>
+            )
           );
         }}
       >
-        {names.map((name) => (
+        {itemsList.map((name) => (
           <MenuItem
             key={name}
             value={name}
