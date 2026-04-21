@@ -7,7 +7,7 @@ export default function page() {
   return (
     <Grid container spacing={3}>
       <Grid size={12}>
-        <Container>
+        <Container style={{pb:8}}>
           <Typography variant="h6" fontSize={22} sx={{ color: "text.title" }}>
             سفارش کارت هدیه
           </Typography>
