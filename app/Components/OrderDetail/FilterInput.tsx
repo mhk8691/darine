@@ -15,10 +15,7 @@ import {
 import * as React from "react";
 const names = ["تکمیل شده", "در انتظار تایید", "لغو شده"];
 
-interface Props {
-  type: "date" | "menu";
-}
-export default function FilterInput({ type }: Props) {
+export default function FilterInput() {
   const [value, setValue] = React.useState<string>("");
   const MenuProps = {
     slotProps: {
@@ -28,7 +25,6 @@ export default function FilterInput({ type }: Props) {
           border: "1px solid #575753",
           backdropFilter: "blur(10px)",
           borderRadius: "8px",
-          display: type === "menu" ? "block" : "none",
         },
       },
     },
@@ -96,7 +92,7 @@ export default function FilterInput({ type }: Props) {
                   position: "absolute ",
                 }}
               >
-                {type === "menu" ? "وضعیت:" : "تاریخ:"}
+                وضعیت
               </Typography>
             );
           }
@@ -110,10 +106,7 @@ export default function FilterInput({ type }: Props) {
               }}
             >
               <Stack direction={"row"} alignItems={"center"} gap={0.5}>
-                <Typography>
-                  {" "}
-                  {type === "menu" ? "وضعیت:" : "تاریخ:"}
-                </Typography>
+                <Typography> وضعیت</Typography>
                 <Typography variant="body1" sx={{ color: "#B29727" }}>
                   {value}
                 </Typography>
@@ -134,30 +127,29 @@ export default function FilterInput({ type }: Props) {
           );
         }}
       >
-        {type === "menu" &&
-          names.map((name) => (
-            <MenuItem
-              key={name}
-              value={name}
-              sx={{
-                color: "#ddd",
+        {names.map((name) => (
+          <MenuItem
+            key={name}
+            value={name}
+            sx={{
+              color: "#ddd",
 
-                "&.Mui-selected": {
-                  backgroundColor: "#52524f !important",
-                },
+              "&.Mui-selected": {
+                backgroundColor: "#52524f !important",
+              },
 
-                "&.Mui-selected:hover": {
-                  backgroundColor: "#52524f !important",
-                },
+              "&.Mui-selected:hover": {
+                backgroundColor: "#52524f !important",
+              },
 
-                "&:hover": {
-                  backgroundColor: "#52524f",
-                },
-              }}
-            >
-              {name}
-            </MenuItem>
-          ))}
+              "&:hover": {
+                backgroundColor: "#52524f",
+              },
+            }}
+          >
+            {name}
+          </MenuItem>
+        ))}
       </Select>
     </FormControl>
   );

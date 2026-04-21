@@ -8,6 +8,7 @@ import Card from "../Container/Container";
 import FilterToggleButton from "../FilterToggleButton/FilterToggleButton";
 import FilterButton from "./FilterButton";
 import FilterInput from "./FilterInput";
+import CustomDatePicker from "../DatePicker/CustomDatePicker";
 interface Props {
   title?: string;
   type: "chip" | "toggle";
@@ -73,8 +74,8 @@ export default function OrderDetail({
           </Typography>
         </Stack>
         <Stack direction={"row"} gap={2} width={"100%"}>
-          <FilterInput type="menu" />
-          <FilterInput type="date" />
+          <FilterInput  />
+          <CustomDatePicker />
         </Stack>
       </Stack>
       <Stack
@@ -143,8 +144,8 @@ export default function OrderDetail({
           </Typography>
         </Stack>
         <Stack direction={"row"} gap={2} width={"100%"}>
-          <FilterInput type="menu" />
-          <FilterInput type="date" />
+          <FilterInput  />
+          <CustomDatePicker />
         </Stack>
       </Stack>
       <Stack
