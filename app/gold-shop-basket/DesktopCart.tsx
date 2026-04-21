@@ -1,5 +1,7 @@
+"use client";
 import {
   Box,
+  IconButton,
   Stack,
   SxProps,
   Table,
@@ -10,7 +12,9 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "next/image";
-
+import { useState } from "react";
+import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from "@mui/icons-material/Delete";
 const dataStyle: SxProps = {
   py: 1.5,
   fontSize: "16px",
@@ -44,6 +48,7 @@ const items = [
 ];
 
 const DesktopCart = () => {
+  const [count, setCount] = useState(1);
   return (
     <Box dir="rtl">
       <Table
@@ -68,7 +73,7 @@ const DesktopCart = () => {
               ارزش تومان
             </TableCell>
 
-            <TableCell align="center" sx={{ width: "10%", ...headStyle }}>
+            <TableCell align="center" sx={{ width: "15%", ...headStyle }}>
               تعداد
             </TableCell>
 
@@ -122,7 +127,33 @@ const DesktopCart = () => {
               </TableCell>
 
               <TableCell align="center" sx={dataStyle}>
-                {item.count}
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  justifyContent="space-between"
+                  sx={{
+                    border: "1px solid #333333",
+                    borderRadius: 2,
+                    mt: 3,
+                    width: "100%",
+                    py:1
+                  }}
+                >
+                  <IconButton
+                    onClick={() => setCount((prev) => prev + 1)}
+                    disableRipple
+                  >
+                    <AddIcon />
+                  </IconButton>
+                  <Typography fontWeight={600}>{count}</Typography>
+
+                  <IconButton
+                    onClick={() => setCount((prev) => prev - 1)}
+                    disableRipple
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </Stack>
               </TableCell>
 
               <TableCell align="center" sx={dataStyle}>
