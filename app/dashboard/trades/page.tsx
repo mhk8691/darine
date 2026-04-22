@@ -26,18 +26,27 @@ const items: ToggleItemsType[] = [
 export default function page() {
   return (
     <Grid container spacing={3}>
-      <Grid size={12}>
+      <Grid size={{ xs: 0, md: 12 }}>
         <WalletStatus />
       </Grid>
       <Grid size={12} container direction={"row"}>
-        <Grid size={4.8}>
+        <Grid size={{ xs: 12, md: 4.8 }}>
           <Trading />
         </Grid>
-        <Grid size={7.2} height={"100%"}>
+        <Grid size={{ xs: 12, md: 7.2 }} height={"100%"}>
           <ChartGold
             positionPrice="bottom"
             priceStyle={{
-              mt: 3,
+              mt: {
+                xs: 2,
+                sm: 3,
+              },
+            }}
+            cardStyle={{
+              py: {
+                xs: 2,
+                sm: 3,
+              },
             }}
           />
         </Grid>

@@ -22,13 +22,16 @@ export default function FilterButton({
       disableRipple
       onClick={() => {
         setActive(item.id);
-        if(setMessage){
-          setMessage(item.emptyMessage||'');
+        if (setMessage) {
+          setMessage(item.emptyMessage || "");
         }
       }}
       sx={{
         py: 0.75,
-        fontSize: 16,
+        fontSize: {
+          xs: 12,
+          sm: 16,
+        },
         width: "fit-content",
         borderRadius: "999px",
         px: 2,

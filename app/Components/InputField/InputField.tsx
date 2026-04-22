@@ -24,7 +24,6 @@ export default function InputField({
   setValue,
   style,
   multiline = false,
-  
 }: Props) {
   const formatNumber = (num: number | null | string) => {
     if (num === null) return "";
@@ -58,6 +57,7 @@ export default function InputField({
           fontSize: "18px",
         },
         "& .MuiOutlinedInput-root": {
+          borderRadius:2,
           "& fieldset": {
             borderColor: "#494949",
             borderWidth: "1px",
@@ -85,12 +85,23 @@ export default function InputField({
                 orientation="vertical"
                 flexItem
                 sx={{
-                  mr: title === "گرم" ? 3 : 1,
+                  mr: {
+                    xs: title === "گرم" ? 2.5 : 1,
+                    sm: title === "گرم" ? 3 : 1,
+                  },
                   borderColor: "#393936",
                   border: "1px solid #393936",
                 }}
               />
-              <Typography variant="h6" sx={{ fontSize: "18px " }}>
+              <Typography
+                variant="h6"
+                sx={{
+                  fontSize: {
+                    xs: 14,
+                    sm: "18px",
+                  },
+                }}
+              >
                 {title}
               </Typography>
             </InputAdornment>

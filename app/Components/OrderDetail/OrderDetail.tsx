@@ -32,10 +32,15 @@ export default function OrderDetail({
       {title && (
         <Typography
           variant="h2"
-          fontSize={22}
           mb={4}
           fontWeight={500}
-          sx={{ color: "text.title" }}
+          sx={{
+            color: "text.title",
+            fontSize: {
+              xs: 16,
+              md: 22,
+            },
+          }}
         >
           {title}
         </Typography>
@@ -67,7 +72,14 @@ export default function OrderDetail({
         </>
       )}
       <Stack gap={2} direction={"row"} alignItems={"center"}>
-        <Stack direction={"row"} gap={0.5}>
+        <Stack
+          direction={"row"}
+          gap={0.5}
+          display={{
+            xs: "none",
+            sm: "flex",
+          }}
+        >
           <FilterListIcon sx={{ color: "#ADADA9" }} />
           <Typography variant="body2" sx={{ color: "#ADADA9" }}>
             فیلترها:
@@ -103,11 +115,29 @@ export default function OrderDetail({
       </Stack>
     </>
   ) : (
-    <Card>
+    <Card
+      style={{
+        px: {
+          xs: 0,
+          sm: 4,
+        },
+        border: {
+          xs: 0,
+          sm: 1,
+        },
+        borderColor: {
+          xs: "background.paper",
+          sm: "background.paper",
+        },
+      }}
+    >
       {title && (
         <Typography
           variant="h2"
-          fontSize={22}
+          fontSize={{
+            xs: 16,
+            sm: 22,
+          }}
           mb={4}
           fontWeight={500}
           sx={{ color: "text.title" }}
@@ -118,7 +148,15 @@ export default function OrderDetail({
       {toggleItems.length != 0 && (
         <>
           {type === "chip" ? (
-            <Stack direction={"row"} gap={2} mb={3} flexWrap={"wrap"}>
+            <Stack
+              direction={"row"}
+              gap={{
+                xs: 1,
+                sm: 2,
+              }}
+              mb={3}
+              flexWrap={"wrap"}
+            >
               {toggleItems.map((item) => (
                 <FilterButton
                   key={item.id}
@@ -142,7 +180,14 @@ export default function OrderDetail({
         </>
       )}
       <Stack gap={2} direction={"row"} alignItems={"center"}>
-        <Stack direction={"row"} gap={0.5}>
+        <Stack
+          direction={"row"}
+          gap={0.5}
+          display={{
+            xs: "none",
+            sm: "flex",
+          }}
+        >
           <FilterListIcon sx={{ color: "#ADADA9" }} />
           <Typography variant="body2" sx={{ color: "#ADADA9" }}>
             فیلترها:

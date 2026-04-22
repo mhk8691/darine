@@ -3,17 +3,15 @@ import Card from "@/app/Components/Container/Container";
 import FilterToggleButton from "@/app/Components/FilterToggleButton/FilterToggleButton";
 import InputField from "@/app/Components/InputField/InputField";
 import { ToggleItemsType } from "@/app/core/Types";
-import { Button, Stack, Typography } from "@mui/material";
+import {
+  Button,
+  Stack,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { useEffect, useState } from "react";
-// interface Props {
-//   inputList: {
-//     placeholder: string;
-//     title: string;
-//     state: number | null;
-//     setState: Dispatch<SetStateAction<number | null>>;
-//   }[];
-//   title: string;
-// }
+
 const items: ToggleItemsType[] = [
   { title: "خرید", value: "buy", id: 1 },
   { title: "فروش", value: "sell", id: 2 },
@@ -22,6 +20,9 @@ export default function Trading() {
   const [price, setPrice] = useState<number | null>(null);
   const [gold, setGold] = useState<number | null>(null);
   const [select, setSelect] = useState(items[0].value);
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
+
   useEffect(() => {
     if (!price) {
       setGold(null);
@@ -39,15 +40,31 @@ export default function Trading() {
     }
   }, [gold, setGold]);
   return (
-    <Card style={{ gap: 3.15, py: 3,px:4 }}>
-      <Typography variant="h2" fontSize={22}>
-        خرید و فروش طلا
-      </Typography>
+    <Card
+      style={{
+        gap: 3.15,
+        py: 3,
+        px: {
+          xs: 2,
+          sm: 4,
+        },
+      }}
+    >
+      {isDesktop && (
+        <Typography variant="h2" fontSize={22}>
+          خرید و فروش طلا
+        </Typography>
+      )}
       <FilterToggleButton
         items={items}
         select={select}
         setSelect={setSelect}
-        style={{ fontSize: 20 }}
+        style={{
+          fontSize: {
+            xs: 16,
+            sm: 20,
+          },
+        }}
       />
       <Stack
         gap={3.5}
@@ -75,7 +92,7 @@ export default function Trading() {
         color="primary"
         sx={{ borderRadius: 2, fontSize: 16, py: 1.4 }}
       >
-        برداشت
+        {select === "buy" ? "خرید" : "فروش"}
       </Button>
     </Card>
   );
