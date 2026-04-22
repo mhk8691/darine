@@ -11,7 +11,7 @@ interface ItemsType {
   image: string;
   link?: string;
 }
-const items: ItemsType[] = [
+ const AppbarItems: ItemsType[] = [
   {
     name: "داشبورد",
     image: "/images/appbar/home-active-dark.svg",
@@ -68,7 +68,7 @@ export default function AppBar() {
           borderRadius: 1,
         }}
       >
-        {items.map((item, index) => (
+        {AppbarItems.map((item, index) => (
           <Stack
             component={item.link ? Link : "div"}
             href={item.link}

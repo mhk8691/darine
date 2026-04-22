@@ -18,38 +18,97 @@ export default function BottomPrice({
         alignItems={"center"}
         mt={1.5}
         mb={1}
-        px={2}
         sx={priceStyle}
       >
         <Stack direction={"column"} alignItems={"center"} gap={0.5}>
-          <Typography variant="body2" sx={{ color: "#C2C2BA" }}>
+          <Typography
+            variant="body2"
+            fontSize={{
+              xs: 10,
+              sm: 14,
+            }}
+            sx={{ color: "#C2C2BA" }}
+          >
             بالاترین قیمت
           </Typography>
-          <Typography variant="body1" sx={{ color: "text.title" }}>
+          <Typography
+            variant="body1"
+            sx={{ color: "text.title" }}
+            fontSize={{
+              xs: 12,
+              sm: 16,
+            }}
+          >
             {priceFormater(18680000)}
-            <Box component={"span"} fontSize={14}>
+            <Box
+              component={"span"}
+              fontSize={{
+                xs: 8,
+                sm: 14,
+              }}
+            >
               تومان
             </Box>
           </Typography>
         </Stack>
         <Stack direction={"column"} alignItems={"center"} gap={0.5}>
-          <Typography variant="body2" sx={{ color: "#C2C2BA" }}>
+          <Typography
+            variant="body2"
+            fontSize={{
+              xs: 10,
+              sm: 14,
+            }}
+            sx={{ color: "#C2C2BA" }}
+          >
             پایین‌ترین قیمت
           </Typography>
-          <Typography variant="body1" sx={{ color: "text.title" }}>
+          <Typography
+            variant="body1"
+            sx={{ color: "text.title" }}
+            fontSize={{
+              xs: 12,
+              sm: 16,
+            }}
+          >
             {priceFormater(16320000)}
-            <Box component={"span"} fontSize={14}>
+            <Box
+              component={"span"}
+              fontSize={{
+                xs: 8,
+                sm: 14,
+              }}
+            >
               تومان
             </Box>
           </Typography>
         </Stack>
         <Stack direction={"column"} alignItems={"center"} gap={0.5}>
-          <Typography variant="body2" sx={{ color: "#C2C2BA" }}>
-            بالاترین قیمت
+          <Typography
+            variant="body2"
+            fontSize={{
+              xs: 10,
+              sm: 14,
+            }}
+            sx={{ color: "#C2C2BA" }}
+          >
+            تغییرات قیمت
           </Typography>
-          <Typography variant="body1" color="error">
+          <Typography
+            variant="body1"
+            color="error"
+            fontSize={{
+              xs: 12,
+              sm: 16,
+            }}
+          >
             {(1.11).toLocaleString()}{" "}
-            <Box component={"span"} fontSize={14}>
+            <Box
+              component={"span"}
+              fontSize={{
+                xs: 8,
+                sm: 14,
+              }}
+            >
               درصد
             </Box>
           </Typography>

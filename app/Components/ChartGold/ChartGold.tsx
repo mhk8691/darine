@@ -1,12 +1,12 @@
 "use client";
 import { Stack, SxProps, Typography } from "@mui/material";
-import Card from "../Container/Container";
 import LineChart from "../LineChart/LineChart";
 import BottomPrice from "./BottomPrice";
 import TopPrice from "./TopPrice";
 import FilterToggleButton from "../FilterToggleButton/FilterToggleButton";
 import { useState } from "react";
 import { ToggleItemsType } from "@/app/core/Types";
+import Container from "../Container/Container";
 
 const pData = [
   2350, 200, 300, 600, 802, 5000, 3290, 100, 200, 400, 300, 2435, 2450, 2465,
@@ -47,10 +47,13 @@ export default function ChartGold({
 }: Props) {
   const [select, setSelect] = useState(toggleItems[0]?.value);
   return (
-    <Card style={cardStyle}>
+    <Container style={{ px: 2.5, ...cardStyle }}>
       <Typography
         variant="h2"
-        fontSize={22}
+        fontSize={{
+          xs: 14,
+          sm: 22,
+        }}
         fontWeight={"bold"}
         sx={{ color: "text.title" }}
       >
@@ -88,6 +91,6 @@ export default function ChartGold({
       {(positionPrice === "bottom" || positionPrice === "both") && (
         <BottomPrice priceStyle={priceStyle} dividerStyle={dividerStyle} />
       )}
-    </Card>
+    </Container>
   );
 }

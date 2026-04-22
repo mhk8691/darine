@@ -9,9 +9,15 @@ export default function layout({ children }: Props) {
     <Container
       maxWidth={"xl"}
       sx={{
-        px: "40px !important",
-        bgcolor: "background.paper",
-        position:'relative'
+        px: {
+          sm: "20px !important",
+          md: "40px !important",
+        },
+        bgcolor: {
+          xs: "background.default",
+          sm: "background.paper",
+        },
+        position: "relative",
       }}
     >
       <Stack py={4}>

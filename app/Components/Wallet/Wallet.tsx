@@ -1,25 +1,47 @@
 "use client";
-import { Divider, Stack } from "@mui/material";
+import { Divider, Stack, useMediaQuery, useTheme } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import Link from "next/link";
-import Card from "../Container/Container";
 import ToggleEyeButton from "./ToggleEyeButton";
 import { useState } from "react";
+import Container from "../Container/Container";
 interface Props {
   type: "dashboard" | "wallet";
 }
 export default function Wallet({ type }: Props) {
-   const [visible, setVisible] = useState(false);
+  const theme = useTheme();
+
+  const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
+  const [visible, setVisible] = useState(false);
   return (
-    <Card style={{ minHeight: 386, pb: type === "wallet" ? 4.5 : 3 }}>
-      <Typography
-        variant="h6"
-        fontSize={22}
-        sx={{ color: "text.title", mb: 4 }}
-      >
-        کیف پول شما
-      </Typography>
+    <Container
+      style={{
+        minHeight: {
+          xs: 180,
+          sm: 386,
+        },
+        pb: type === "wallet" ? 4.5 : 3,
+        px: {
+          sm: 2,
+          lg: 4,
+        },
+        borderColor: {
+          xs: "background.default",
+          sm: "background.paper",
+        },
+      }}
+    >
+      {isDesktop && (
+        <Typography
+          variant="h6"
+          fontSize={22}
+          sx={{ color: "text.title", mb: 4 }}
+        >
+          کیف پول شما
+        </Typography>
+      )}
+
       <Stack px={type === "wallet" ? 4.5 : 0}>
         <Stack
           sx={{
@@ -95,16 +117,21 @@ export default function Wallet({ type }: Props) {
                 gap={0.5}
                 width={"100%"}
               >
-                <Image
-                  alt=""
-                  src={"/images/simple/goldWallet.svg"}
-                  width={26}
-                  height={100}
-                  style={{ height: "auto" }}
-                />
+                {isDesktop && (
+                  <Image
+                    alt=""
+                    src={"/images/simple/goldWallet.svg"}
+                    width={26}
+                    height={100}
+                    style={{ height: "auto" }}
+                  />
+                )}
                 <Typography
                   variant="body1"
-                  fontSize={12}
+                  fontSize={{
+                    xs: 10,
+                    sm: 12,
+                  }}
                   sx={{ color: "#C2C2BA" }}
                 >
                   موجودی طلا
@@ -117,14 +144,20 @@ export default function Wallet({ type }: Props) {
                 >
                   <Typography
                     variant="body1"
-                    fontSize={16}
+                    fontSize={{
+                      xs: 14,
+                      sm: 16,
+                    }}
                     sx={{ color: "text.title" }}
                   >
                     {visible ? "۰" : "***"}
                   </Typography>
                   <Typography
                     variant="body1"
-                    fontSize={12}
+                    fontSize={{
+                      xs: 10,
+                      sm: 12,
+                    }}
                     fontWeight={500}
                     sx={{ color: "text.title" }}
                   >
@@ -142,16 +175,21 @@ export default function Wallet({ type }: Props) {
                 width={"100%"}
                 gap={0.5}
               >
-                <Image
-                  alt=""
-                  src={"/images/simple/irtWallet.svg"}
-                  width={26}
-                  height={100}
-                  style={{ height: "auto" }}
-                />
+                {isDesktop && (
+                  <Image
+                    alt=""
+                    src={"/images/simple/irtWallet.svg"}
+                    width={26}
+                    height={100}
+                    style={{ height: "auto" }}
+                  />
+                )}
                 <Typography
                   variant="body1"
-                  fontSize={12}
+                  fontSize={{
+                    xs: 10,
+                    sm: 12,
+                  }}
                   sx={{ color: "#C2C2BA" }}
                 >
                   موجودی تومان
@@ -164,14 +202,20 @@ export default function Wallet({ type }: Props) {
                 >
                   <Typography
                     variant="body1"
-                    fontSize={16}
+                    fontSize={{
+                      xs: 14,
+                      sm: 16,
+                    }}
                     sx={{ color: "text.title" }}
                   >
                     {visible ? "۰" : "***"}
                   </Typography>
                   <Typography
                     variant="body1"
-                    fontSize={12}
+                    fontSize={{
+                      xs: 10,
+                      sm: 12,
+                    }}
                     fontWeight={500}
                     sx={{ color: "text.title" }}
                   >
@@ -255,6 +299,6 @@ export default function Wallet({ type }: Props) {
           </Stack>
         )}
       </Stack>
-    </Card>
+    </Container>
   );
 }
