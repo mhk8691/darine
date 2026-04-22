@@ -25,7 +25,14 @@ const items: ToggleItemsType[] = [
 ];
 export default function page() {
   return (
-    <Grid container spacing={3}>
+    <Grid
+      container
+      spacing={{
+        xs: 4,
+        sm: 1,
+        lg: 3,
+      }}
+    >
       <Grid size={{ xs: 0, md: 12 }}>
         <WalletStatus />
       </Grid>

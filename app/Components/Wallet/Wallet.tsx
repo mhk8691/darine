@@ -21,7 +21,13 @@ export default function Wallet({ type }: Props) {
           xs: 180,
           sm: 386,
         },
-        pb: type === "wallet" ? 4.5 : 3,
+        pb:
+          type === "wallet"
+            ? {
+                xs: 0,
+                sm: 4.5,
+              }
+            : 3,
         px: {
           sm: 2,
           lg: 4,
@@ -42,7 +48,17 @@ export default function Wallet({ type }: Props) {
         </Typography>
       )}
 
-      <Stack px={type === "wallet" ? 4.5 : 0}>
+      <Stack
+        px={
+          type === "wallet"
+            ? {
+                xs: 1,
+                sm: 4.5,
+                md: 0,
+              }
+            : 0
+        }
+      >
         <Stack
           sx={{
             height: "134px",
@@ -227,7 +243,14 @@ export default function Wallet({ type }: Props) {
           </Stack>
         </Stack>
         {type === "wallet" && (
-          <Stack mt={14.5} direction={"row"} gap={2}>
+          <Stack
+            mt={{
+              xs: 10,
+              sm: 14.5,
+            }}
+            direction={"row"}
+            gap={2}
+          >
             <Link href={"/dashboard/irt-transaction"} style={{ width: "100%" }}>
               <Stack
                 bgcolor={"#292926"}

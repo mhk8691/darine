@@ -138,7 +138,7 @@ export default function OrderDetail({
             xs: 16,
             sm: 22,
           }}
-          mb={4}
+          mb={{ xs: 2, sm: 4 }}
           fontWeight={500}
           sx={{ color: "text.title" }}
         >

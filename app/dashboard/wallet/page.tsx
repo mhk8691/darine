@@ -1,11 +1,15 @@
 import CircleAnimation from "@/app/Components/CircleAnimation/CircleAnimation";
-import Card from "@/app/Components/Container/Container";
+import {
+  default as Card,
+  default as Container,
+} from "@/app/Components/Container/Container";
 import OrderDetail from "@/app/Components/OrderDetail/OrderDetail";
 import Wallet from "@/app/Components/Wallet/Wallet";
 import priceFormater from "@/app/core/PriceFormater";
 import { ToggleItemsType } from "@/app/core/Types";
 import { Grid, Stack, Typography } from "@mui/material";
 import { Metadata } from "next";
+import Chart from "./Chart";
 export const metadata: Metadata = {
   title: "کیف پول | دارینه",
   description: "",
@@ -44,32 +48,52 @@ const items: ToggleItemsType[] = [
 ];
 export default function page() {
   return (
-    <Grid container spacing={3}>
-      <Grid size={6}>
+    <Grid
+      container
+      spacing={{
+        xs: 4,
+        sm: 1,
+        lg: 3,
+      }}
+    >
+      <Grid size={{ xs: 12, md: 6 }}>
         <Wallet type="wallet" />
-        <Card
-          style={{
-            py: 2.5,
-            justifyContent: "center",
-            flexDirection: "row",
-            mt: 3,
+        <Grid
+          size={12}
+          display={{
+            xs: "none",
+            sm: "block",
           }}
         >
-          <Typography variant="h2" fontSize={12}>
-            نمودار دارایی پس از ۲ روز بعد از اولین خرید شما فعال میشود.
-          </Typography>
-        </Card>
+          <Chart />
+        </Grid>
       </Grid>
-      <Grid size={6}>
-        <Card
+
+      <Grid size={{ xs: 12, md: 6 }}>
+        <Container
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
-            mb: 3,
+            mb: {
+              xs: 1,
+              lg: 3,
+            },
+            py: {
+              sm: 2,
+              lg: 3,
+            },
+            display: {
+              xs: "none",
+              sm: "flex",
+            },
+            px: {
+              sm: 2,
+              lg: 4,
+            },
           }}
         >
-          <Stack direction={"row"} gap={2} alignItems={'center'}>
+          <Stack direction={"row"} gap={2} alignItems={"center"}>
             <CircleAnimation type="red" />
             <Typography variant="body2" sx={{ color: "#C2C2BA" }}>
               قیمت فعلی طلا ۱۸ عیار:
@@ -93,27 +117,64 @@ export default function page() {
               تومان
             </Typography>
           </Stack>
-        </Card>
-        <Card style={{ mb: 3 }}>
+        </Container>
+        <Card
+          style={{
+            mb: {
+              xs: 4,
+              sm: 3,
+            },
+            px: {
+              xs: 2,
+              lg: 4,
+            },
+            py: {
+              xs: 2,
+              lg: 3,
+            },
+          }}
+        >
           <Typography
             variant="h2"
-            fontSize={22}
+            fontSize={{
+              xs: 12,
+              sm: 20,
+              lg: 22,
+            }}
             sx={{ color: "text.primary" }}
             fontWeight={"900"}
           >
             خلاصه فعالیت‌های شما
           </Typography>
-          <Stack mt={4.5} direction={"column"} gap={2.5}>
+          <Stack
+            mt={{
+              xs: 3,
+              lg: 4.5,
+            }}
+            direction={"column"}
+            gap={{
+              xs: 2,
+              sm: 2.5,
+            }}
+          >
             <Stack
               direction={"row"}
               justifyContent={"space-between"}
               alignItems={"center"}
             >
-              <Typography variant="body1" sx={{ color: "#C2C2BA" }}>
+              <Typography
+                variant="body1"
+                sx={{ color: "#C2C2BA" }}
+                fontSize={{ xs: 10, sm: 14, lg: 16 }}
+              >
                 مجموع دارایی شما
               </Typography>
 
-              <Typography variant="h6" sx={{ color: "text.title" }}>
+              <Typography
+                variant="h6"
+                fontSize={{ xs: 12, sm: 18, lg: 20 }}
+                sx={{ color: "text.title" }}
+              >
                 *** تومان
               </Typography>
             </Stack>
@@ -122,11 +183,19 @@ export default function page() {
               justifyContent={"space-between"}
               alignItems={"center"}
             >
-              <Typography variant="body1" sx={{ color: "#C2C2BA" }}>
+              <Typography
+                variant="body1"
+                sx={{ color: "#C2C2BA" }}
+                fontSize={{ xs: 10, sm: 14, lg: 16 }}
+              >
                 سود شما
               </Typography>
 
-              <Typography variant="h6" sx={{ color: "success.main" }}>
+              <Typography
+                variant="h6"
+                fontSize={{ xs: 12, sm: 18, lg: 20 }}
+                sx={{ color: "success.main" }}
+              >
                 *** تومان
               </Typography>
             </Stack>
@@ -135,11 +204,19 @@ export default function page() {
               justifyContent={"space-between"}
               alignItems={"center"}
             >
-              <Typography variant="body1" sx={{ color: "#C2C2BA" }}>
+              <Typography
+                variant="body1"
+                sx={{ color: "#C2C2BA" }}
+                fontSize={{ xs: 10, sm: 14, lg: 16 }}
+              >
                 طلا برداشت شده
               </Typography>
 
-              <Typography variant="h6" sx={{ color: "text.title" }}>
+              <Typography
+                variant="h6"
+                fontSize={{ xs: 12, sm: 18, lg: 20 }}
+                sx={{ color: "text.title" }}
+              >
                 *** گرم
               </Typography>
             </Stack>
@@ -148,11 +225,19 @@ export default function page() {
               justifyContent={"space-between"}
               alignItems={"center"}
             >
-              <Typography variant="body1" sx={{ color: "#C2C2BA" }}>
+              <Typography
+                variant="body1"
+                sx={{ color: "#C2C2BA" }}
+                fontSize={{ xs: 10, sm: 14, lg: 16 }}
+              >
                 کارت هدیه های خریداری شده
               </Typography>
 
-              <Typography variant="h6" sx={{ color: "text.title" }}>
+              <Typography
+                variant="h6"
+                fontSize={{ xs: 12, sm: 18, lg: 20 }}
+                sx={{ color: "text.title" }}
+              >
                 *** تومان
               </Typography>
             </Stack>
@@ -161,11 +246,19 @@ export default function page() {
               justifyContent={"space-between"}
               alignItems={"center"}
             >
-              <Typography variant="body1" sx={{ color: "#C2C2BA" }}>
+              <Typography
+                variant="body1"
+                sx={{ color: "#C2C2BA" }}
+                fontSize={{ xs: 10, sm: 14, lg: 16 }}
+              >
                 کارت هدیه های دریافت شده
               </Typography>
 
-              <Typography variant="h6" sx={{ color: "text.title" }}>
+              <Typography
+                variant="h6"
+                fontSize={{ xs: 12, sm: 18, lg: 20 }}
+                sx={{ color: "text.title" }}
+              >
                 *** تومان
               </Typography>
             </Stack>
@@ -174,11 +267,19 @@ export default function page() {
               justifyContent={"space-between"}
               alignItems={"center"}
             >
-              <Typography variant="body1" sx={{ color: "#C2C2BA" }}>
+              <Typography
+                variant="body1"
+                sx={{ color: "#C2C2BA" }}
+                fontSize={{ xs: 10, sm: 14, lg: 16 }}
+              >
                 تومان درانتظار پردازش
               </Typography>
 
-              <Typography variant="h6" sx={{ color: "text.title" }}>
+              <Typography
+                variant="h6"
+                fontSize={{ xs: 12, sm: 18, lg: 20 }}
+                sx={{ color: "text.title" }}
+              >
                 *** تومان
               </Typography>
             </Stack>
@@ -187,17 +288,34 @@ export default function page() {
               justifyContent={"space-between"}
               alignItems={"center"}
             >
-              <Typography variant="body1" sx={{ color: "#C2C2BA" }}>
+              <Typography
+                variant="body1"
+                sx={{ color: "#C2C2BA" }}
+                fontSize={{ xs: 10, sm: 14, lg: 16 }}
+              >
                 طلا درانتظار پردازش
               </Typography>
 
-              <Typography variant="h6" sx={{ color: "text.title" }}>
+              <Typography
+                variant="h6"
+                fontSize={{ xs: 12, sm: 18, lg: 20 }}
+                sx={{ color: "text.title" }}
+              >
                 *** گرم
               </Typography>
             </Stack>
           </Stack>
         </Card>
-        <Stack mt={3}>
+        <Grid
+          display={{
+            xs: "block",
+            sm: "none",
+          }}
+          size={12}
+        >
+          <Chart />
+        </Grid>
+        <Stack mt={{ xs: 1, sm: 3 }}>
           <OrderDetail
             type="chip"
             title="لیست تراکنش‌‌های اخیر"
