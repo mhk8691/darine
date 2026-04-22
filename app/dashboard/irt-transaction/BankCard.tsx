@@ -9,6 +9,7 @@ import {
   MenuItem,
   Paper,
   Stack,
+  SvgIcon,
   Typography,
 } from "@mui/material";
 import Image from "next/image";
@@ -51,7 +52,7 @@ export default function CustomDropdown() {
   const [value, setValue] = React.useState<number | null>(1);
   const [openModal, setOpenModal] = React.useState(false);
   const selectedItem = names.find((item) => item.id === value);
-  const [cardValue,setCardValue] = React.useState('')
+  const [cardValue, setCardValue] = React.useState("");
   const handleSelect = (id: number) => {
     setValue(id);
     setOpen(false);
@@ -171,11 +172,15 @@ export default function CustomDropdown() {
           onClick={() => setOpenModal(true)}
           variant="outlined"
           color="inherit"
+          disableRipple
           sx={{
+            '&:hover':{
+              bgcolor:'background.default'
+            },
             width: "fit-content",
             fontSize: {
-              xs:12,
-              sm:16
+              xs: 12,
+              sm: 16,
             },
             borderRadius: 2,
             py: 0.75,
@@ -183,63 +188,81 @@ export default function CustomDropdown() {
             mt: 2.5,
           }}
           startIcon={
-            <svg
-              width="20"
-              height="30"
-              viewBox="0 0 29 30"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+            <SvgIcon
+              sx={{
+                width: {
+                  xs: 20,
+                  sm: 30,
+                },
+                height: {
+                  xs: 20,
+                  sm: 30,
+                },
+              }}
             >
-              <path
-                d="M2.41406 10.7715H16.3099"
-                stroke="currentColor"
-                strokeWidth="1.8125"
-                strokeMiterlimit="10"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              ></path>
-              <path
-                d="M7.25 20.4375H9.66667"
-                stroke="currentColor"
-                strokeWidth="1.8125"
-                strokeMiterlimit="10"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              ></path>
-              <path
-                d="M12.6875 20.4375H17.5208"
-                stroke="currentColor"
-                strokeWidth="1.8125"
-                strokeMiterlimit="10"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              ></path>
-              <path
-                d="M26.5807 15.0356V19.9656C26.5807 24.2069 25.5053 25.2702 21.2157 25.2702H7.77906C3.48948 25.2702 2.41406 24.2069 2.41406 19.9656V10.0331C2.41406 5.79185 3.48948 4.72852 7.77906 4.72852H16.3099"
-                stroke="currentColor"
-                strokeWidth="1.8125"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              ></path>
-              <path
-                d="M19.9375 8.05273H26.5833"
-                stroke="currentColor"
-                strokeWidth="1.8125"
-                strokeLinecap="round"
-              ></path>
-              <path
-                d="M23.2578 11.3743V4.72852"
-                stroke="currentColor"
-                strokeWidth="1.8125"
-                strokeLinecap="round"
-              ></path>
-            </svg>
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 29 30"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M2.41406 10.7715H16.3099"
+                  stroke="currentColor"
+                  strokeWidth="1.8125"
+                  strokeMiterlimit="10"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+                <path
+                  d="M7.25 20.4375H9.66667"
+                  stroke="currentColor"
+                  strokeWidth="1.8125"
+                  strokeMiterlimit="10"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+                <path
+                  d="M12.6875 20.4375H17.5208"
+                  stroke="currentColor"
+                  strokeWidth="1.8125"
+                  strokeMiterlimit="10"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+                <path
+                  d="M26.5807 15.0356V19.9656C26.5807 24.2069 25.5053 25.2702 21.2157 25.2702H7.77906C3.48948 25.2702 2.41406 24.2069 2.41406 19.9656V10.0331C2.41406 5.79185 3.48948 4.72852 7.77906 4.72852H16.3099"
+                  stroke="currentColor"
+                  strokeWidth="1.8125"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+                <path
+                  d="M19.9375 8.05273H26.5833"
+                  stroke="currentColor"
+                  strokeWidth="1.8125"
+                  strokeLinecap="round"
+                ></path>
+                <path
+                  d="M23.2578 11.3743V4.72852"
+                  stroke="currentColor"
+                  strokeWidth="1.8125"
+                  strokeLinecap="round"
+                ></path>
+              </svg>
+            </SvgIcon>
           }
         >
           افزودن کارت
         </Button>
       </Stack>
-      <AddCard open={openModal} setOpen={setOpenModal} value={cardValue} setValue={setCardValue} />
+      <AddCard
+        open={openModal}
+        setOpen={setOpenModal}
+        value={cardValue}
+        setValue={setCardValue}
+      />
     </>
   );
 }
