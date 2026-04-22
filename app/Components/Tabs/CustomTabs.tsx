@@ -1,5 +1,5 @@
 'use client'
-import { SxProps } from "@mui/material";
+import { Stack, SxProps } from "@mui/material";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
@@ -64,7 +64,21 @@ export default function CustomTabs({
 
   return (
     <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+      <Box
+        sx={{
+          borderBottom: 1,
+          borderColor: "divider",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          width: "100%",
+          pl: {
+            xs: 1,
+            sm: 3,
+            md: 0,
+          },
+        }}
+      >
         <Tabs
           value={value}
           onChange={handleChange}
@@ -74,7 +88,9 @@ export default function CustomTabs({
               height: lineHeight || "8px",
               borderRadius: "16px",
             },
+            width: "100%",
             px: 4,
+
             ...tabsStyle,
           }}
         >
@@ -85,7 +101,10 @@ export default function CustomTabs({
                 "&.Mui-selected": {
                   color: "text.title",
                 },
-                fontSize: "22px",
+                fontSize: {
+                  xs: 16,
+                  sm: "22px",
+                },
                 color: "#C2C2BA",
                 width: "50%",
                 mb: 2,

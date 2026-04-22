@@ -21,7 +21,12 @@ export default function Withdraw() {
         items={items}
         select={select}
         setSelect={setSelect}
-        style={{ fontSize: 20 }}
+        style={{
+          fontSize: {
+            xs: 12,
+            sm: 18,
+          },
+        }}
       />
       <Stack gap={3.5}>
         <Stack direction={"column"} gap={3}>
@@ -38,7 +43,11 @@ export default function Withdraw() {
               color: "#292926",
               borderRadius: 1.5,
               px: 1,
-              width: "30%",
+              width: "fit-content",
+              fontSize:{
+                xs:12,
+                sm:14
+              }
             }}
           >
             انتخاب کل موجودی
@@ -49,7 +58,10 @@ export default function Withdraw() {
       <Button
         variant="contained"
         color="primary"
-        sx={{ borderRadius: 2, fontSize: 16, py: 1.4 }}
+        sx={{ borderRadius: 2, fontSize:{
+          xs:14,
+          sm:16
+        }, py: 1.4 }}
       >
         برداشت
       </Button>

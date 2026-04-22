@@ -16,12 +16,23 @@ export default function Deposit() {
   const [select, setSelect] = useState(items[0].value);
 
   return (
-    <Card style={{ gap: 3.5, p: 0, border: "none" }}>
+    <Card
+      style={{
+        gap: 3.5,
+        p: 0,
+        border: "none",
+      }}
+    >
       <FilterToggleButton
         items={items}
         select={select}
         setSelect={setSelect}
-        style={{ fontSize: 20 }}
+        style={{
+          fontSize: {
+            xs: 12,
+            sm: 18,
+          },
+        }}
       />
       <Stack gap={3.5}>
         {select === "payment" && (
@@ -39,7 +50,11 @@ export default function Deposit() {
                 color: "#292926",
                 borderRadius: 1.5,
                 px: 1,
-                width: "40%",
+                width: "fit-content",
+                fontSize: {
+                  xs: 12,
+                  sm: 14,
+                },
               }}
             >
               انتخاب حداکثر مقدار واریز
@@ -51,7 +66,14 @@ export default function Deposit() {
       <Button
         variant="contained"
         color="primary"
-        sx={{ borderRadius: 2, fontSize: 16, py: 1.4 }}
+        sx={{
+          borderRadius: 2,
+          fontSize: {
+            xs: 14,
+            sm: 16,
+          },
+          py: 1.4,
+        }}
       >
         {select === "payment" ? "برداشت" : "نمایش اطلاعات مقصد"}
       </Button>

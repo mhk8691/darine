@@ -11,10 +11,30 @@ export const metadata: Metadata = {
   description: "",
 };
 const items: ToggleItemsType[] = [
-  { title: "واریز", value: "deposit", id: 1, emptyMessage: "واریزی برای شما به ثبت نرسیده است" },
-  { title: "واریز مستقیم", value: "directDeposit", id: 2, emptyMessage: "واریز باشناسه ای برای شما به ثبت نرسیده است" },
-  { title: "واریز ارزی", value: "currencyDeposit", id: 3, emptyMessage: "واریزی برای شما به ثبت نرسیده است" },
-  { title: "برداشت", value: "withdraw", id: 4, emptyMessage: "برداشتی برای شما به ثبت نرسیده است" },
+  {
+    title: "واریز",
+    value: "deposit",
+    id: 1,
+    emptyMessage: "واریزی برای شما به ثبت نرسیده است",
+  },
+  {
+    title: "واریز مستقیم",
+    value: "directDeposit",
+    id: 2,
+    emptyMessage: "واریز باشناسه ای برای شما به ثبت نرسیده است",
+  },
+  {
+    title: "واریز ارزی",
+    value: "currencyDeposit",
+    id: 3,
+    emptyMessage: "واریزی برای شما به ثبت نرسیده است",
+  },
+  {
+    title: "برداشت",
+    value: "withdraw",
+    id: 4,
+    emptyMessage: "برداشتی برای شما به ثبت نرسیده است",
+  },
   {
     title: "برداشت به نقره سی",
     value: "silverWithdraw",
@@ -25,29 +45,72 @@ const items: ToggleItemsType[] = [
 
 export default function page() {
   return (
-    <Grid container spacing={3}>
+    <Grid
+      container
+      spacing={{
+        xs: 2,
+
+        lg: 3,
+      }}
+    >
       <Grid size={12}>
         <WalletStatus />
       </Grid>
-      <Grid size={4.8}>
+      <Grid
+        size={{
+          xs: 12,
+          md: 6,
+          lg: 4.8,
+        }}
+        order={{
+          xs: 2,
+          md: 1,
+        }}
+      >
         <Transaction />
       </Grid>
-      <Grid size={7.2}>
+      <Grid
+        size={{
+          xs: 12,
+          md: 6,
+          lg: 7.2,
+        }}
+        order={{
+          xs: 1,
+          md: 2,
+        }}
+      >
         <Card
           style={{
             color: "#EF8011",
+            px: {
+              xs: 2,
+              sm: 4,
+            },
+            py: {
+              xs: 2,
+              sm: 3,
+            },
           }}
         >
-          <Stack direction={"row"} alignItems={"flex-end"} gap={1}>
-            <Typography variant="body2" fontSize={16}>
-              <InfoOutlinedIcon sx={{ mt: 1 }} />
-            </Typography>
-            <Typography variant="h6" fontSize={22} sx={{ mb: 0.3 }}>
+          <Stack direction={"row"} alignItems={"center"} gap={1}>
+            <InfoOutlinedIcon />
+            <Typography
+              variant="h6"
+              fontSize={{
+                xs: 14,
+                md: 22,
+              }}
+            >
               توجه
             </Typography>
           </Stack>
           <Typography
             variant="body1"
+            fontSize={{
+              xs: 12,
+              md: 16,
+            }}
             sx={{ color: "text.secondary", mt: "10px" }}
           >
             واریز ریالی فقط از حساب بانکی به نام خودتان امکان‌پذیر است. در غیر
@@ -56,7 +119,7 @@ export default function page() {
           </Typography>
         </Card>
       </Grid>
-      <Grid size={12}>
+      <Grid size={12} order={3}>
         <OrderDetail
           title="لیست تراکنش های اخیر"
           toggleItems={items}

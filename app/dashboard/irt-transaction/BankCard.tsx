@@ -173,7 +173,10 @@ export default function CustomDropdown() {
           color="inherit"
           sx={{
             width: "fit-content",
-            fontSize: 16,
+            fontSize: {
+              xs:12,
+              sm:16
+            },
             borderRadius: 2,
             py: 0.75,
             px: 3,
@@ -181,7 +184,7 @@ export default function CustomDropdown() {
           }}
           startIcon={
             <svg
-              width="29"
+              width="20"
               height="30"
               viewBox="0 0 29 30"
               fill="none"
