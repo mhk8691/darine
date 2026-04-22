@@ -1,5 +1,5 @@
-'use client'
-import { Stack, SxProps } from "@mui/material";
+"use client";
+import { SxProps } from "@mui/material";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
@@ -38,15 +38,15 @@ function a11yProps(index: number) {
 }
 interface Props {
   tabList: {
-    title:string
-    count?:number
+    title: string;
+    count?: number;
   }[];
   children: React.ReactNode[];
   style?: SxProps;
   lineHeight?: string;
   tabsStyle?: SxProps;
   noPadding?: boolean;
-  
+  setCustomValue?: React.Dispatch<React.SetStateAction<number>>;
 }
 export default function CustomTabs({
   tabList,
@@ -55,11 +55,15 @@ export default function CustomTabs({
   lineHeight,
   tabsStyle,
   noPadding = false,
+  setCustomValue,
 }: Props) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
+    if (setCustomValue) {
+      setCustomValue(newValue);
+    }
   };
 
   return (
