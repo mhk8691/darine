@@ -26,7 +26,7 @@ const rules = [
 export default function page() {
   return (
     <>
-      <Container maxWidth={"lg"} sx={{ mt: 5, px: "60px !important" }}>
+      <Container maxWidth={"lg"} sx={{ mt: 5,}}>
         <Typography
           variant="h6"
           sx={{ color: "text.title" }}

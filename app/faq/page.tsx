@@ -94,7 +94,7 @@ const faqData: FaqItem[] = [
 export default function page() {
   return (
     <>
-      <Container maxWidth={"lg"} sx={{ px: "40px !important", mt: 5 }}>
+      <Container maxWidth={"lg"} sx={{  mt: 5 }}>
         <Faq faqData={faqData} titleStyle={{ fontSize: 30, mb: 5 }} />
       </Container>
       <Divider sx={{ mt: 8.5 }} />

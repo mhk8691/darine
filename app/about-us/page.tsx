@@ -106,7 +106,7 @@ const faqData: FaqItem[] = [
 export default function page() {
   return (
     <>
-      <Container maxWidth={"lg"} sx={{ mt: 5, px: "60px !important" }}>
+      <Container maxWidth={"lg"} sx={{ mt: 5 }}>
         <Image
           src="/images/main.webp"
           alt=""
@@ -208,11 +208,16 @@ export default function page() {
           justifyContent={"space-around"}
           alignItems={"center"}
           bgcolor={"#161823"}
-         borderRadius={2}
+          borderRadius={2}
           py={4}
           mt={4}
         >
-          <Stack direction={"column"} gap={4} width={"50%"} alignItems={'center'}>
+          <Stack
+            direction={"column"}
+            gap={4}
+            width={"50%"}
+            alignItems={"center"}
+          >
             <Typography
               variant="h6"
               sx={{ color: "#ffffff" }}
@@ -245,7 +250,7 @@ export default function page() {
               ثبت نام در دارینه
             </Button>
           </Stack>
-          <Stack width={"50%"} alignItems={'center'}>
+          <Stack width={"50%"} alignItems={"center"}>
             <Image
               src={"/images/middleBanner.webp"}
               alt=""

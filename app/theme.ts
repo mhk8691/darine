@@ -26,9 +26,6 @@ const IranYekanFont = localFont({
 });
 
 declare module "@mui/material/styles" {
-  interface BreakpointOverrides {
-    xsm: true;
-  }
   interface TypeText {
     title: string;
   }
@@ -68,10 +65,9 @@ const theme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
-      xsm: 450,
       sm: 600,
       md: 900,
-      lg: 1200,
+      lg: 1100,
       xl: 1536,
     },
   },
