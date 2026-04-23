@@ -1,10 +1,18 @@
 "use client";
-import { Badge, Button, Divider, IconButton, Stack } from "@mui/material";
+import { Badge, BadgeProps, Button, Divider, IconButton, Stack, styled } from "@mui/material";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import Notification from "./Notification";
 import ProfileBtn from "./ProfileBtn";
-import { DarkModeTwoTone } from "@mui/icons-material";
+
+const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    right: 5,
+    top: 7,
+    border: `2px solid ${(theme.vars ?? theme).palette.background.paper}`,
+    padding: "0 4px",
+  },
+}));
 export default function ButtonGroupe() {
   const pathname = usePathname();
   const router = useRouter();
@@ -40,7 +48,6 @@ export default function ButtonGroupe() {
 
       {url === "dashboard" && <Notification />}
 
-     
       {url !== "dashboard" && (
         <>
           <IconButton
@@ -48,9 +55,9 @@ export default function ButtonGroupe() {
             onClick={() => router.push("/dashboard/gold-receive")}
             sx={{ color: "text.secondary" }}
           >
-            <Badge
+            <StyledBadge
               badgeContent={4}
-              color="primary"
+              color="error"
               anchorOrigin={{
                 vertical: "top",
                 horizontal: "left",
@@ -94,7 +101,7 @@ export default function ButtonGroupe() {
                   strokeLinejoin="round"
                 ></path>
               </svg>
-            </Badge>
+            </StyledBadge>
           </IconButton>
           <Stack direction={"row"} alignItems={"center"}>
             <Divider

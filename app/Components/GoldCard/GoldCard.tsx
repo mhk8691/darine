@@ -76,102 +76,206 @@ export default function GoldCard() {
           borderRadius: 1.5,
         }}
       >
-        <Stack bgcolor={"background.default"} px={0} py={4} borderRadius={2}>
-          {" "}
+        <Stack bgcolor={"background.default"} borderRadius={2}>
           <Link href={"/gold-shop/test"}>
-            {" "}
             <CardMedia
-              sx={{ height: 140, p: 0 }}
+              sx={{
+                height: {
+                  xs: 150,
+                  sm: 180,
+                },
+                width: "100%",
+              }}
               image="/images/product.webp"
               title="green iguana"
-            />{" "}
-          </Link>{" "}
-        </Stack>{" "}
+            />
+          </Link>
+        </Stack>
         <CardContent sx={{ px: 0 }}>
-          {" "}
-          <Link href={"/gold-shop/test"}>
-            {" "}
-            <Typography
-              gutterBottom
-              variant="h5"
-              fontSize={18}
-              sx={{ px: 0.5 }}
-            >
+          <Stack
+            direction={"row"}
+            justifyContent={{
+              xs: "flex-start",
+              sm: "center",
+            }}
+          >
+            <Link href={"/gold-shop/test"}>
               {" "}
-              شمش طلاسی ۱ گرمی ۱۸ عیار{" "}
-            </Typography>{" "}
-          </Link>{" "}
+              <Typography
+                gutterBottom
+                variant="h5"
+                fontSize={{
+                  xs: 14,
+                  sm: 18,
+                }}
+                sx={{ px: 0.5 }}
+              >
+                {" "}
+                شمش طلاسی ۱ گرمی ۱۸ عیار{" "}
+              </Typography>{" "}
+            </Link>{" "}
+          </Stack>
           <Stack direction={"column"} gap={1} sx={{ mt: 3.5 }}>
             {" "}
             <Stack
-              direction={"row"}
-              alignItems={"center"}
+              direction={{
+                xs: "column",
+                sm: "row",
+                md: "column",
+                lg: "row",
+              }}
+              alignItems={{
+                xs: "flex-start",
+                sm: "center",
+                md: "flex-start",
+                lg: "center",
+              }}
               justifyContent={"space-between"}
             >
               {" "}
               <Typography
                 variant="body2"
-                fontSize={12}
+                fontSize={{
+                  xs: 10,
+                  sm: 12,
+                }}
                 sx={{ color: "#C2C2BA" }}
               >
                 {" "}
                 وزن{" "}
-                <Box component={"span"} fontSize={10}>
+                <Box
+                  component={"span"}
+                  fontSize={{
+                    xs: 8,
+                    sm: 10,
+                  }}
+                >
                   {" "}
                   (معادل ۱۸ عیار){" "}
                 </Box>{" "}
                 :{" "}
               </Typography>{" "}
-              <Typography variant="body1" fontSize={16}>
+              <Typography
+                variant="body1"
+                fontSize={{
+                  xs: 14,
+                  sm: 16,
+                  lg: 14,
+                  xl:16
+                }}
+                sx={{ alignSelf: "flex-end" }}
+              >
                 {" "}
                 ۲.۵{" "}
-                <Box component={"span"} fontSize={14}>
+                <Box
+                  component={"span"}
+                  fontSize={{
+                    xs: 12,
+                    sm: 14,
+                  }}
+                >
                   {" "}
                   گرم{" "}
                 </Box>{" "}
               </Typography>{" "}
             </Stack>{" "}
             <Stack
-              direction={"row"}
-              alignItems={"center"}
+              direction={{
+                xs: "column",
+                sm: "row",
+                md: "column",
+                lg: "row",
+              }}
+              alignItems={{
+                xs: "flex-start",
+                sm: "center",
+                md: "flex-start",
+                lg: "center",
+              }}
               justifyContent={"space-between"}
             >
               {" "}
               <Typography
                 variant="body2"
-                fontSize={12}
+                fontSize={{
+                  xs: 10,
+                  sm: 12,
+                }}
                 sx={{ color: "#C2C2BA" }}
               >
                 {" "}
                 گرم طلا:{" "}
               </Typography>{" "}
-              <Typography variant="body1" fontSize={16}>
+              <Typography
+                variant="body1"
+                fontSize={{
+                  xs: 14,
+                  sm: 16,
+                  lg: 14,
+                  xl:16
+                }}
+                sx={{ alignSelf: "flex-end" }}
+              >
                 {" "}
                 ۱.۰۷۵{" "}
-                <Box component={"span"} fontSize={14}>
+                <Box
+                  component={"span"}
+                  fontSize={{
+                    xs: 12,
+                    sm: 14,
+                  }}
+                >
                   {" "}
                   گرم{" "}
                 </Box>{" "}
               </Typography>{" "}
             </Stack>{" "}
             <Stack
-              direction={"row"}
-              alignItems={"center"}
+              direction={{
+                xs: "column",
+                sm: "row",
+                md: "column",
+                lg: "row",
+              }}
+              alignItems={{
+                xs: "flex-start",
+                sm: "center",
+                md: "flex-start",
+                lg: "center",
+              }}
               justifyContent={"space-between"}
             >
               {" "}
               <Typography
                 variant="body2"
-                fontSize={12}
+                fontSize={{
+                  xs: 10,
+                  sm: 12,
+                }}
                 sx={{ color: "#C2C2BA" }}
               >
                 {" "}
                 ارزش تومان:{" "}
               </Typography>{" "}
-              <Typography variant="body1" fontSize={16}>
+              <Typography
+                variant="body1"
+                fontSize={{
+                  xs: 14,
+                  sm: 16,
+                  lg: 14,
+                  xl:16
+                }}
+                sx={{ alignSelf: "flex-end" }}
+              >
                 {" "}
                 {priceFormater(19330693)}{" "}
-                <Box component={"span"} fontSize={14}>
+                <Box
+                  component={"span"}
+                  fontSize={{
+                    xs: 12,
+                    sm: 14,
+                  }}
+                >
                   {" "}
                   تومان{" "}
                 </Box>{" "}

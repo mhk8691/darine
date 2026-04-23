@@ -69,48 +69,53 @@ const faqData: FaqItem[] = [
 
 export default function page() {
   return (
-    <Grid container spacing={3}>
+    <Grid
+      container
+      spacing={{
+        xs: 4,
+        sm: 1,
+        lg: 3,
+      }}
+    >
       <Grid size={12}>
         <WalletStatus />
       </Grid>
-      <Grid size={12} container spacing={3}>
-        <Grid
-          size={{
-            xs: 12,
-            md: 4.8,
+      <Grid
+        size={{
+          xs: 12,
+          md: 4.8,
+        }}
+      >
+        <MarginTrade />
+      </Grid>
+      <Grid
+        size={{
+          xs: 12,
+          md: 7.2,
+        }}
+      >
+        <ChartGold
+          positionPrice="bottom"
+          priceStyle={{
+            mt: {
+              xs: 2,
+              md: 5,
+            },
+            mb: {
+              xs: 0,
+              md: 2.5,
+            },
           }}
-        >
-          <MarginTrade />
-        </Grid>
-        <Grid
-          size={{
-            xs: 12,
-            md: 7.2,
+          cardStyle={{
+            pt: {
+              xs: 2,
+              md: 5.5,
+            },
           }}
-        >
-          <ChartGold
-            positionPrice="bottom"
-            priceStyle={{
-              mt: {
-                xs: 2,
-                md: 5,
-              },
-              mb: {
-                xs: 0,
-                md: 2.5,
-              },
-            }}
-            cardStyle={{
-              pt: {
-                xs: 2,
-                md: 5.5,
-              },
-            }}
-            dividerStyle={{
-              mt:1
-            }}
-          />
-        </Grid>
+          dividerStyle={{
+            mt: 1,
+          }}
+        />
       </Grid>
       <Grid size={12}>
         <Card
