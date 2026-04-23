@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import { LineChart as LineChartGold } from "@mui/x-charts/LineChart";
 
-const margin = { right: 10, top: 0 };
+const margin = {  top: 0,bottom:0,left:10 };
 
 interface Props {
   data: Array<number>;
