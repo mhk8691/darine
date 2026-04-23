@@ -61,17 +61,31 @@ export default function ChartGold({
       </Typography>
       <Stack
         direction={"row"}
-        justifyContent={"flex-end"}
+        justifyContent={{
+          xs: "flex-start",
+          sm: "flex-end",
+        }}
         mb={positionPrice === "top" || positionPrice === "both" ? 0 : 2.5}
+        mt={{
+          xs: 2,
+          sm: 1,
+        }}
       >
-        <Stack width={"35%"}>
+        <Stack
+          width={{
+            md: "45%",
+            lg: "37%",
+          }}
+        >
           <FilterToggleButton
             select={select}
             setSelect={setSelect}
             items={toggleItems}
             style={{
-              fontSize: 12,
-              px: 1.5,
+              fontSize: {
+                xs: 10,
+                sm: 12,
+              },
               py: 0.7,
             }}
           />

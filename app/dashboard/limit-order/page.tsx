@@ -53,7 +53,12 @@ export default function page() {
               md: 5.5,
             },
           }}
-          dividerStyle={{ mt: 5 }}
+          dividerStyle={{
+            mt: {
+              xs: 0,
+              md: 1,
+            },
+          }}
         />
       </Grid>
       <Grid size={12}>
