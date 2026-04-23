@@ -24,7 +24,10 @@ export default function Faq({ faqData, titleStyle }: Props): JSX.Element {
     <Stack>
       <Typography
         variant="h5"
-        fontSize={22}
+        fontSize={{
+          xs: 16,
+          sm: 22,
+        }}
         sx={{ mb: 3, fontWeight: "bold", ...titleStyle }}
         color="text.title"
       >
@@ -53,7 +56,16 @@ export default function Faq({ faqData, titleStyle }: Props): JSX.Element {
             <AccordionSummary
               expandIcon={
                 isOpen ? (
-                  <SvgIcon sx={{ fontSize: 40, color: "#C2C2BA" }}>
+                  <SvgIcon
+                    sx={{
+                      fontSize: {
+                        xs: 24,
+                        sm: 32,
+                        md: 40,
+                      },
+                      color: "#C2C2BA",
+                    }}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -76,7 +88,16 @@ export default function Faq({ faqData, titleStyle }: Props): JSX.Element {
                     </svg>
                   </SvgIcon>
                 ) : (
-                  <SvgIcon sx={{ fontSize: 40, color: "#C2C2BA" }}>
+                  <SvgIcon
+                    sx={{
+                      fontSize: {
+                        xs: 24,
+                        sm: 32,
+                        md: 40,
+                      },
+                      color: "#C2C2BA",
+                    }}
+                  >
                     <svg viewBox="0 0 24 24" fill="none">
                       <circle
                         cx="12"
@@ -96,14 +117,32 @@ export default function Faq({ faqData, titleStyle }: Props): JSX.Element {
                 )
               }
             >
-              <Typography variant="h6" fontSize={18}>
+              <Typography
+                variant="h6"
+                fontSize={{
+                  xs: 14,
+                  sm: 16,
+                  md: 18,
+                }}
+              >
                 {item.question}
               </Typography>
             </AccordionSummary>
 
             <AccordionDetails>
               <Divider />
-              <Typography variant="body2" sx={{ mt: 3 ,whiteSpace:'pre-line'}}>
+              <Typography
+                variant="body2"
+                sx={{
+                  mt: 3,
+                  whiteSpace: "pre-line",
+                  lineHeight:'25px',
+                  fontSize: {
+                    xs: 12,
+                    sm: 14,
+                  },
+                }}
+              >
                 {item.answer}
               </Typography>
             </AccordionDetails>

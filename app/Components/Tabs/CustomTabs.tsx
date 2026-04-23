@@ -37,7 +37,7 @@ function a11yProps(index: number) {
   };
 }
 interface Props {
-  tabList: {
+  tabList?: {
     title: string;
     count?: number;
   }[];
@@ -50,7 +50,6 @@ interface Props {
   tabStyle?: SxProps;
 }
 export default function CustomTabs({
-  tabStyle,
   tabList,
   children,
   style,
@@ -102,7 +101,7 @@ export default function CustomTabs({
             ...tabsStyle,
           }}
         >
-          {tabList.map((item, index) => (
+          {tabList?.map((item, index) => (
             <Tab
               disableRipple
               sx={{

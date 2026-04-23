@@ -5,6 +5,7 @@ import InputField from "@/app/Components/InputField/InputField";
 import { ToggleItemsType } from "@/app/core/Types";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import {
+  Box,
   Button,
   Checkbox,
   createTheme,
@@ -14,6 +15,8 @@ import {
   StyledEngineProvider,
   ThemeProvider,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -73,6 +76,8 @@ export default function Trading() {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
   };
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
   useEffect(() => {
     if (!price) {
       setGold(null);
@@ -91,7 +96,28 @@ export default function Trading() {
   }, [gold, setGold]);
 
   return (
-    <Card style={{ p: 0, border: "none", mt: 2.5 }}>
+    <Card
+      style={{
+        py: {
+          xs: 2,
+          sm: 0,
+        },
+        px: {
+          xs: 2.5,
+          sm: 0,
+        },
+        border: "none",
+        mt: {
+          xs: 0,
+          sm: 2.5,
+        },
+      }}
+    >
+      {!isDesktop && (
+        <Typography variant="body1" sx={{ mb: 0.5 }} fontWeight={"500"}>
+          فروش
+        </Typography>
+      )}
       <Stack mb={5}>
         <Stack
           direction={"row"}
@@ -100,12 +126,25 @@ export default function Trading() {
           mb={2}
         >
           <Stack direction={"row"} alignItems={"center"} gap={1}>
-            <Typography variant="body2" fontSize={20} sx={{ color: "#ADADA9" }}>
+            <Typography
+              variant="body2"
+              fontSize={{
+                xs: 16,
+                sm: 20,
+              }}
+              sx={{ color: "#ADADA9" }}
+            >
               ضریب سفارش
             </Typography>
             <InfoOutlinedIcon color="primary" />
           </Stack>
-          <Typography variant="body2" fontSize={30}>
+          <Typography
+            variant="body2"
+            fontSize={{
+              xs: 18,
+              sm: 30,
+            }}
+          >
             {multiplier}X
           </Typography>
         </Stack>
@@ -149,7 +188,18 @@ export default function Trading() {
           items={items}
           select={select}
           setSelect={setSelect}
-          style={{ fontSize: 20 }}
+          style={{
+            fontSize: {
+              xs: 12,
+              sm: 16,
+              lg: 20,
+            },
+            py: {
+              xs: 1,
+              sm: 1.5,
+              md: 1.2,
+            },
+          }}
         />
       </Stack>
       <Stack gap={3.5}>
@@ -183,7 +233,15 @@ export default function Trading() {
       </Stack>
       <FormControlLabel
         label="تعیین حد سود و حد ضرر"
-        sx={{ mt: 2 }}
+        sx={{
+          mt: 2,
+          "&.MuiFormControlLabel-root .MuiTypography-root": {
+            fontSize: {
+              xs: 12,
+              sm: 16,
+            },
+          },
+        }}
         control={
           <Checkbox
             checked={checked}
@@ -226,7 +284,10 @@ export default function Trading() {
         color="primary"
         sx={{
           borderRadius: 2,
-          fontSize: 20,
+          fontSize: {
+            xs: 14,
+            sm: 20,
+          },
           py: 1,
           mt: checked ? 3.5 : 2,
           mb: 2,
@@ -234,12 +295,20 @@ export default function Trading() {
       >
         ثبت سفارش
       </Button>
-      <Link
+      <Box
+        component={Link}
         href={"/dashboard/margin-rules"}
-        style={{ fontSize: 14, color: "#007AFF", textDecoration: "underline" }}
+        sx={{
+          fontSize:{
+            xs:12,
+            sm:14
+          },
+          color: "#007AFF",
+          textDecoration: "underline",
+        }}
       >
         قوانین و مقررات سفارش تعهدی
-      </Link>
+      </Box>
     </Card>
   );
 }

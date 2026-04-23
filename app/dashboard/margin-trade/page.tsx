@@ -74,20 +74,60 @@ export default function page() {
         <WalletStatus />
       </Grid>
       <Grid size={12} container spacing={3}>
-        <Grid size={4.8}>
+        <Grid
+          size={{
+            xs: 12,
+            md: 4.8,
+          }}
+        >
           <MarginTrade />
         </Grid>
-        <Grid size={7.2}>
+        <Grid
+          size={{
+            xs: 12,
+            md: 7.2,
+          }}
+        >
           <ChartGold
-            positionPrice="both"
-            cardStyle={{ pt: 5.5, px: 2.5 }}
-            dividerStyle={{ mt: 5 }}
-            priceStyle={{ mt: 5 ,mb:2}}
+            positionPrice="bottom"
+            priceStyle={{
+              mt: {
+                xs: 2,
+                md: 5,
+              },
+              mb: {
+                xs: 0,
+                md: 2.5,
+              },
+            }}
+            cardStyle={{
+              pt: {
+                xs: 2,
+                md: 5.5,
+              },
+            }}
+            dividerStyle={{
+              mt:1
+            }}
           />
         </Grid>
       </Grid>
       <Grid size={12}>
-        <Card>
+        <Card
+          style={{
+            px: {
+              xs: 0,
+              sm: 4,
+            },
+            border: {
+              xs: 0,
+              sm: 1,
+            },
+            borderColor: {
+              sm: "background.paper",
+            },
+          }}
+        >
           <Faq faqData={faqData} />
         </Card>
       </Grid>

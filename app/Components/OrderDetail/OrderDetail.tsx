@@ -153,7 +153,6 @@ export default function OrderDetail({
           sm: 1,
         },
         borderColor: {
-          xs: "background.paper",
           sm: "background.paper",
         },
       }}
