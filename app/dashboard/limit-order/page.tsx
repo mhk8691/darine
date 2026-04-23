@@ -10,25 +10,51 @@ export const metadata: Metadata = {
 };
 export default function page() {
   return (
-    <Grid container spacing={3}>
+    <Grid
+      container
+      spacing={{
+        xs: 4,
+        sm: 1,
+        lg: 3,
+      }}
+    >
       <Grid size={12}>
         <WalletStatus />
       </Grid>
-      <Grid size={12} container spacing={3}>
-        <Grid size={4.8}>
-          <Trading />
-        </Grid>
-        <Grid size={7.2}>
-          <ChartGold
-            positionPrice="bottom"
-            cardStyle={{ pt: 5.5,px:2.5 }}
-            priceStyle={{
-              mt: 5,
-              mb: 2.5,
-            }}
-            dividerStyle={{ mt: 5 }}
-          />
-        </Grid>
+      <Grid
+        size={{
+          xs: 12,
+          md: 4.8,
+        }}
+      >
+        <Trading />
+      </Grid>
+      <Grid
+        size={{
+          xs: 12,
+          md: 7.2,
+        }}
+      >
+        <ChartGold
+          positionPrice="bottom"
+          priceStyle={{
+            mt: {
+              xs: 2,
+              md: 5,
+            },
+            mb: {
+              xs: 0,
+              md: 2.5,
+            },
+          }}
+          cardStyle={{
+            pt: {
+              xs: 2,
+              md: 5.5,
+            },
+          }}
+          dividerStyle={{ mt: 5 }}
+        />
       </Grid>
       <Grid size={12}>
         <OrderDetail

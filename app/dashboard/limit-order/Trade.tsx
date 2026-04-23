@@ -37,12 +37,33 @@ export default function Trade({ type }: Props) {
     }
   }, [gold, setGold]);
   return (
-    <Card style={{ gap: 3.5, border: "none", p: 1 }}>
+    <Card
+      style={{
+        gap: 3.5,
+        border: "none",
+        py: 1,
+        px: {
+          xs: 0,
+          sm: 1,
+        },
+      }}
+    >
       <FilterToggleButton
         items={items}
         select={select}
         setSelect={setSelect}
-        style={{ fontSize: 20 }}
+        style={{
+          fontSize: {
+            xs: 12,
+            sm: 16,
+            lg: 20,
+          },
+          py: {
+            xs: 1.5,
+            sm: 2,
+            md: 1.5,
+          },
+        }}
       />
       <Stack gap={3.5}>
         <Stack>
