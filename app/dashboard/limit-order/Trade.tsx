@@ -61,7 +61,7 @@ export default function Trade({ type }: Props) {
           py: {
             xs: 1.5,
             sm: 2,
-            md: 1.5,
+            md:1,
           },
         }}
       />
