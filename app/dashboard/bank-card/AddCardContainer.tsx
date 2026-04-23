@@ -16,14 +16,22 @@ export default function AddCardContainer() {
           borderRadius: 2,
           py: 1,
           fontWeight: 600,
-          mt: 4,
+          mt: {
+            xs: 8,
+            sm: 4,
+          },
         }}
         startIcon={<AddIcon />}
         onClick={() => setOpen(true)}
       >
         افزودن کارت جدید
       </Button>
-      <AddCard open={open} setOpen={setOpen} value={value} setValue={setValue} />
+      <AddCard
+        open={open}
+        setOpen={setOpen}
+        value={value}
+        setValue={setValue}
+      />
     </>
   );
 }

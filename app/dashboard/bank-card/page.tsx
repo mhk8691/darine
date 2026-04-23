@@ -1,5 +1,5 @@
 import Card from "@/app/Components/Container/Container";
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import { Metadata } from "next";
 import AddCardContainer from "./AddCardContainer";
 import BankCard from "./BankCard";
@@ -9,15 +9,42 @@ export const metadata: Metadata = {
 };
 export default function page() {
   return (
-    <Grid container spacing={3}>
+    <Grid container>
       <Grid size={12}>
-        <Card>
-          <Typography variant="h6" fontSize={20} sx={{ color: "text.title" }}>
-            کارت های بانکی شما
-          </Typography>
-          <Grid size={12} spacing={2} container mt={2}>
+        <Card
+          style={{
+            px: {
+              xs: 0,
+              sm: 4,
+            },
+            border: {
+              xs: 0,
+              sm: 1,
+            },
+            borderColor: {
+              sm: "background.paper",
+            },
+          }}
+        >
+          <Grid
+            size={12}
+            spacing={{
+              xs: 2,
+              sm: 1.5,
+            }}
+            container
+            mt={2}
+          >
             {[1, 2, 3, 4, 5].map((item) => (
-              <Grid size={12 / 4} key={item}>
+              <Grid
+                size={{
+                  xs: 12,
+                  sm: 6,
+                  md: 4,
+                  lg: 3,
+                }}
+                key={item}
+              >
                 <BankCard />
               </Grid>
             ))}
