@@ -65,9 +65,9 @@ export default function FilterToggleButton({
             key={item.value}
             value={item.value}
             disableRipple
-            onClick={()=>{
-              if (setMessage){
-                setMessage(item.emptyMessage||'')
+            onClick={() => {
+              if (setMessage) {
+                setMessage(item.emptyMessage || "");
               }
             }}
             sx={{

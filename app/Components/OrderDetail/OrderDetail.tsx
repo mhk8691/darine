@@ -66,6 +66,16 @@ export default function OrderDetail({
                 select={select}
                 setMessage={setMessage}
                 setSelect={setSelect}
+                style={{
+                  fontSize: {
+                    xs: "12px",
+                    sm: "16px",
+                  },
+                  px: {
+                    xs: 1.5,
+                    sm: 3,
+                  },
+                }}
               />
             </Stack>
           )}
@@ -103,12 +113,29 @@ export default function OrderDetail({
         justifyContent={"center"}
         gap={4}
       >
-        <Image
-          src={"/images/emptyTableDark.png"}
-          width={300}
-          height={270}
-          alt=""
-        />
+        <Stack
+          sx={{
+            width: {
+              xs: 184,
+              sm: 300,
+            },
+            height: {
+              xs: 166,
+              sm: 270,
+            },
+          }}
+        >
+          <Image
+            src={"/images/emptyTableDark.png"}
+            width={300}
+            height={270}
+            style={{
+              width: "100%",
+              height: "100%",
+            }}
+            alt=""
+          />
+        </Stack>
         <Typography variant="body2" fontSize={12} sx={{ color: "#C2C2BA" }}>
           {emptyMessage || message}
         </Typography>
@@ -174,6 +201,12 @@ export default function OrderDetail({
                 select={select}
                 setSelect={setSelect}
                 setMessage={setMessage}
+                style={{
+                  fontSize: {
+                    xs: "12px",
+                    sm: "16px",
+                  },
+                }}
               />
             </Stack>
           )}

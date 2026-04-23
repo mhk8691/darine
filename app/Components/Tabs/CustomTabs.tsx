@@ -47,8 +47,10 @@ interface Props {
   tabsStyle?: SxProps;
   noPadding?: boolean;
   setCustomValue?: React.Dispatch<React.SetStateAction<number>>;
+  tabStyle?: SxProps;
 }
 export default function CustomTabs({
+  tabStyle,
   tabList,
   children,
   style,
@@ -86,15 +88,17 @@ export default function CustomTabs({
         <Tabs
           value={value}
           onChange={handleChange}
+          variant="scrollable"
+          scrollButtons="auto"
+          allowScrollButtonsMobile
           aria-label="basic tabs example"
           sx={{
-            "&.MuiTabs-root .MuiTabs-indicator": {
+            "& .MuiTabs-indicator": {
               height: lineHeight || "8px",
               borderRadius: "16px",
             },
             width: "100%",
             px: 4,
-
             ...tabsStyle,
           }}
         >
