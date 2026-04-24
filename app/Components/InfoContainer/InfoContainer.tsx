@@ -31,7 +31,7 @@ export default function InfoContainer({
         ...cardStyle,
       }}
     >
-      <Grid container alignItems={"center"} spacing={{ xs: 3, sm: 2 }}>
+      <Grid container alignItems={"center"} spacing={{ xs: 3, sm: 1 }}>
         <Grid size={{ xs: 12, sm: 6 }} order={{ xs: 2, sm: 1 }}>
           <Typography
             variant="h6"
@@ -64,17 +64,32 @@ export default function InfoContainer({
           </Stack>
         </Grid>
         <Grid size={{ xs: 12, sm: 6 }} order={{ xs: 1, sm: 2 }}>
-          <Stack direction={"row"} justifyContent={"center"}>
-            <Image
-              alt=""
-              width={417}
-              height={185}
-              src={image}
-              style={{
-                height: "auto",
-                objectFit: "cover",
+          <Stack
+            direction={"row"}
+            alignItems={"center"}
+            justifyContent={"center"}
+            width={"100%"}
+          >
+            <Stack
+              width={{
+                xs: "75%",
+                sm: "100%",
+                lg: "70%",
+                xl: "60%",
               }}
-            />
+            >
+              <Image
+                alt=""
+                width={417}
+                height={185}
+                src={image}
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  objectFit: "cover",
+                }}
+              />
+            </Stack>
           </Stack>
         </Grid>
       </Grid>

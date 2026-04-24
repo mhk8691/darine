@@ -33,10 +33,11 @@ export default function ActionButton({ title, icon, link }: ActionButtonType) {
         }}
         px={{
           xs: 1.5,
+          sm: 1,
           md: 3,
         }}
       >
-        <Stack direction={"row"} alignItems={"center"} gap={{xs:1,sm:2}}>
+        <Stack direction={"row"} alignItems={"center"} gap={1}>
           {typeof icon === "string" ? (
             <Stack
               sx={{
@@ -62,7 +63,11 @@ export default function ActionButton({ title, icon, link }: ActionButtonType) {
               />
             </Stack>
           ) : (
-            <Stack>{icon}</Stack>
+            <Stack
+              
+            >
+              {icon}
+            </Stack>
           )}
           <Typography
             variant="h6"
@@ -81,7 +86,8 @@ export default function ActionButton({ title, icon, link }: ActionButtonType) {
             sx={{
               fontSize: {
                 xs: "20px",
-                sm: "33px",
+                sm: "20px",
+                md: "33px",
               },
             }}
           />
