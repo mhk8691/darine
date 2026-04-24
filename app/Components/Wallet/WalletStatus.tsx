@@ -14,7 +14,15 @@ export default function WalletStatus() {
     }
   }, []);
   return (
-    <Grid container spacing={3}>
+    <Grid
+      container
+      spacing={3}
+      mb={{
+        xs: 0,
+        sm: 2,
+        lg: 0,
+      }}
+    >
       <Grid size={4}>
         <Card
           style={{
