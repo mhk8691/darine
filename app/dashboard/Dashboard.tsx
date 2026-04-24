@@ -3,10 +3,10 @@ import { Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import Container from "../Components/Container/Container";
 import Trading from "./limit-order/Trading";
 import MobileAppbar from "./MobileAppbar";
+import Banners from "./Banners";
 
 export default function Dashboard() {
   const theme = useTheme();
-
   const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
   return (
     <>
@@ -47,12 +47,14 @@ export default function Dashboard() {
           </Grid>
         </>
       ) : (
-        <Grid
-          size={12}
-        
-        >
-          <MobileAppbar />
-        </Grid>
+        <>
+          <Grid size={12}>
+            <MobileAppbar />
+          </Grid>
+          <Grid size={12}>
+            <Banners />
+          </Grid>
+        </>
       )}
     </>
   );
