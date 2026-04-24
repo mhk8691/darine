@@ -10,8 +10,9 @@ export default function layout({ children }: Props) {
       maxWidth={"xl"}
       sx={{
         px: {
-          sm: "20px !important",
-          md: "40px !important",
+          xs: "16px !important",
+          md: "24px !important",
+          lg: "40px !important",
         },
         bgcolor: {
           xs: "background.default",

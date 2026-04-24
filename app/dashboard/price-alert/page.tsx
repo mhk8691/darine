@@ -1,10 +1,9 @@
-import ChartGold from "@/app/Components/ChartGold/ChartGold";
 import OrderDetail from "@/app/Components/OrderDetail/OrderDetail";
 import WalletStatus from "@/app/Components/Wallet/WalletStatus";
 import { Grid } from "@mui/material";
-import PriceAlert from "./PriceAlert";
 import { Metadata } from "next";
 import ChartContainer from "./ChartContainer";
+import PriceAlert from "./PriceAlert";
 export const metadata: Metadata = {
   title: "آلارم قیمت | دارینه",
   description: "",

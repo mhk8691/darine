@@ -1,13 +1,21 @@
 "use client";
 
 import InputField from "@/app/Components/InputField/InputField";
-import { Stack, Button } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 import { useState } from "react";
 
 export default function ChangeNumber() {
   const [value, setValue] = useState<number | null>(null);
   return (
-    <Stack direction={"row"} alignItems={"center"} gap={1} mt={5}>
+    <Stack
+      direction={"row"}
+      gap={1}
+      mt={{
+        xs: 2,
+        sm: 5,
+      }}
+      width={"100%"}
+    >
       <InputField
         placeholder="شماره تلفن جدید"
         setValue={setValue}
@@ -32,13 +40,30 @@ export default function ChangeNumber() {
               borderWidth: "1px",
             },
           },
-          width: "79%",
+          width: {
+            xs: "70%",
+            sm: "80%",
+            md: "75%",
+          },
         }}
       />
       <Button
         variant="contained"
         color="primary"
-        sx={{ fontSize: 16, py: 1.6, borderRadius: 2,px:3 }}
+        sx={{
+          fontSize: {
+            xs: 14,
+            sm: 16,
+          },
+          py: 1.6,
+          borderRadius: 2,
+          width: {
+            xs: "30%",
+            sm: "20%",
+            md: "25%",
+          },
+          fontWeight: "600",
+        }}
       >
         ارسال کد
       </Button>

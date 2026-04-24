@@ -54,7 +54,7 @@ export default function InputField({
           py: 0,
           minHeight: "56px",
           textAlign: value || value === 0 ? "right" : "left",
-          fontSize: "18px",
+          fontSize: "16px",
         },
         "& .MuiOutlinedInput-root": {
           borderRadius:2,
