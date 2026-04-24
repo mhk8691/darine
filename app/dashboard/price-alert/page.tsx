@@ -4,36 +4,33 @@ import WalletStatus from "@/app/Components/Wallet/WalletStatus";
 import { Grid } from "@mui/material";
 import PriceAlert from "./PriceAlert";
 import { Metadata } from "next";
+import ChartContainer from "./ChartContainer";
 export const metadata: Metadata = {
   title: "آلارم قیمت | دارینه",
   description: "",
 };
 export default function page() {
   return (
-    <Grid container spacing={3}>
+    <Grid
+      container
+      spacing={{
+        xs: 0,
+        sm: 1,
+        lg: 3,
+      }}
+    >
       <Grid size={12}>
         <WalletStatus />
       </Grid>
-      <Grid size={12} container>
-        <Grid size={4.9}>
-          <PriceAlert />
-        </Grid>
-        <Grid size={7.1}>
-          <ChartGold
-            positionPrice="bottom"
-            cardStyle={{
-              pt: "36px",
-            }}
-            priceStyle={{
-              mt: 4,
-              mb: 1.5,
-            }}
-            dividerStyle={{
-              mt: 4,
-            }}
-          />
-        </Grid>
+      <Grid
+        size={{
+          xs: 12,
+          md: 4.9,
+        }}
+      >
+        <PriceAlert />
       </Grid>
+      <ChartContainer />
       <Grid size={12}>
         <OrderDetail
           type="chip"
