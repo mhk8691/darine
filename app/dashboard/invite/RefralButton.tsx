@@ -19,10 +19,19 @@ export default function RefralButton() {
       direction={"row"}
       justifyContent={"space-between"}
       alignItems={"center"}
-      width={320}
+      width={{
+        xs: "100%",
+        sm: 320,
+      }}
       bgcolor={"background.paper"}
-      px={4}
-      py={1.5}
+      px={{
+        xs: 2,
+        sm: 4,
+      }}
+      py={{
+        xs: 1,
+        sm: 1.5,
+      }}
       borderRadius={2}
       mt={3}
       component={"div"}
@@ -82,11 +91,24 @@ export default function RefralButton() {
             ></path>
           </svg>
         </SvgIcon>
-        <Typography variant="h6" sx={{ color: "text.secondary" }} fontSize={18}>
+        <Typography
+          variant="h6"
+          sx={{ color: "text.secondary" }}
+          fontSize={{
+            xs: 14,
+            sm: 18,
+          }}
+        >
           کپی کد
         </Typography>
       </Stack>
-      <Typography variant="h6" fontSize={20}>
+      <Typography
+        variant="h6"
+        fontSize={{
+          xs: 14,
+          sm: 20,
+        }}
+      >
         WuxwOhzW
       </Typography>
     </Stack>
