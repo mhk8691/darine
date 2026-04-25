@@ -113,14 +113,21 @@ export default function GiftStepper() {
   };
 
   return (
-    <Box sx={{ width: "100%", mt: 5 }}>
+    <Box
+      sx={{
+        width: "100%",
+        mt: {
+          xs: 0,
+          sm: 5,
+        },
+      }}
+    >
       <Stepper
         activeStep={activeStep}
         alternativeLabel
         connector={<CustomConnector />}
         sx={{
           width: "100%",
-
           "& .MuiStep-root": {
             flex: 1,
             paddingLeft: 0,
@@ -141,7 +148,10 @@ export default function GiftStepper() {
           },
           "& .MuiStepLabel-label": {
             color: "#aaa",
-            fontSize: 14,
+            fontSize: {
+              xs: 12,
+              sm: 16,
+            },
           },
           "& .MuiStepLabel-label.Mui-active": {
             color: "#fff",
@@ -171,12 +181,24 @@ export default function GiftStepper() {
       ) : (
         <Stack direction={"row"} justifyContent={"center"} mt={5}>
           <Stack
-            px={activeStep === 2 ? 0 : 5}
-            py={activeStep === 2 ? 0 : 6}
-            border={activeStep === 2 ? 0 : 1}
+            px={{
+              xs: 0,
+              sm: activeStep === 2 ? 0 : 5,
+              
+            }}
+            py={{
+              xs: 0,
+              sm: activeStep === 2 ? 0 : 6,
+            }}
+            border={{
+              xs: 0,
+              sm: activeStep === 2 ? 0 : 1,
+            }}
             borderRadius={activeStep === 2 ? 0 : 1.5}
-            borderColor={"#292926"}
-            width={activeStep === 0 ? "40%" : "50%"}
+            borderColor={{
+              sm: "#292926",
+            }}
+            width={500}
           >
             {activeStep === 0 && (
               <WeightDetermination
@@ -197,9 +219,15 @@ export default function GiftStepper() {
                 onClick={handleNext}
                 sx={{
                   py: 1.5,
-                  fontSize: 20,
+                  fontSize: {
+                    xs: 14,
+                    sm: 20,
+                  },
                   borderRadius: 2,
-                  width: activeStep === 0 ? "100%" : "65%",
+                  width: {
+                    xs: activeStep === 0 ? "100%" : "70%",
+                    sm: activeStep === 0 ? "100%" : "65%",
+                  },
                   backgroundColor: "#facc15",
                   color: "#000",
                   "&:hover": {
@@ -220,9 +248,15 @@ export default function GiftStepper() {
                   onClick={handleBack}
                   sx={{
                     py: 1.5,
-                    fontSize: 20,
+                    fontSize: {
+                      xs: 14,
+                      sm: 20,
+                    },
                     borderRadius: 2,
-                    width: "35%",
+                    width: {
+                      xs: "30%",
+                      sm: "35%",
+                    },
                     borderColor: "#444",
                     color: "#fff",
                   }}

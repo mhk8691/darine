@@ -47,7 +47,6 @@ export default function page() {
       container
       spacing={{
         xs: 2,
-
         lg: 3,
       }}
     >

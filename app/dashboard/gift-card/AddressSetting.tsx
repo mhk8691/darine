@@ -19,7 +19,14 @@ export default function AddressSetting({ open, setOpen }: Props) {
         gap={2}
       >
         <Image src={"/images/location.svg"} alt="" width={77} height={77} />
-        <Typography variant="body2" fontSize={18} sx={{ color: "#D9D9D3" }}>
+        <Typography
+          variant="body2"
+          fontSize={{
+            xs: 12,
+            sm: 18,
+          }}
+          sx={{ color: "#D9D9D3" }}
+        >
           آدرس مورد نظر خود را اضافه کنید.
         </Typography>
       </Stack>

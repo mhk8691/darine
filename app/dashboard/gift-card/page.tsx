@@ -1,8 +1,9 @@
 import Container from "@/app/Components/Container/Container";
 import OrderDetail from "@/app/Components/OrderDetail/OrderDetail";
-import { Grid, Typography } from "@mui/material";
-import GiftStepper from "./GiftStepper";
+import { Grid } from "@mui/material";
 import { Metadata } from "next";
+import GiftStepper from "./GiftStepper";
+import Title from "./Title";
 export const metadata: Metadata = {
   title: "خرید کارت هدیه | دارینه",
   description: "",
@@ -11,10 +12,26 @@ export default function page() {
   return (
     <Grid container spacing={3}>
       <Grid size={12}>
-        <Container style={{pb:8}}>
-          <Typography variant="h6" fontSize={22} sx={{ color: "text.title" }}>
-            سفارش کارت هدیه
-          </Typography>
+        <Container
+          style={{
+            pb: {
+              xs: 0,
+              sm: 8,
+            },
+            px: {
+              xs: 0,
+              sm: 4,
+            },
+            border: {
+              xs: 0,
+              sm: 1,
+            },
+            borderColor: {
+              sm: "background.paper",
+            },
+          }}
+        >
+          <Title />
           <GiftStepper />
         </Container>
       </Grid>
