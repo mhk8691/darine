@@ -126,12 +126,7 @@ export default function page() {
               />
             </Stack>
           </Stack>
-          {/* <Image
-            src={"/images/submitGiftCardDark.webp"}
-            alt=""
-            width={"320"}
-            height={"321"}
-          /> */}
+       
         </Grid>
       </Grid>
       <Grid size={12}>

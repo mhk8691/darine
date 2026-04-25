@@ -99,7 +99,7 @@ export default function Footer() {
                 </Typography>
                 <Stack direction={"column"} gap={1.5}>
                   {aboutLink.map((item) => (
-                    <Link href={item.link} key={item.title}>
+                    <Link href={`/${item.link}`} key={item.title}>
                       <Typography
                         variant="body1"
                         fontSize={14}

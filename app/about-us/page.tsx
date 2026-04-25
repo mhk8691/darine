@@ -5,6 +5,7 @@ import {
   Stack,
   Typography,
   Button,
+  Grid,
 } from "@mui/material";
 import Link from "next/link";
 import Faq from "../Components/Faq/Faq";
@@ -119,13 +120,19 @@ export default function page() {
             variant="h6"
             sx={{ color: "text.title", mb: 2 }}
             fontWeight={500}
-            fontSize={30}
+            fontSize={{
+              xs: 20,
+              sm: 30,
+            }}
           >
             دارینه، پلتفرم خرید و فروش آنلاین طلا خام و بدون اجرت
           </Typography>
           <Typography
             variant="body2"
-            fontSize={16}
+            fontSize={{
+              xs: 14,
+              sm: 16,
+            }}
             lineHeight={"25.6px"}
             sx={{ mb: 1.25 }}
           >
@@ -135,7 +142,10 @@ export default function page() {
           </Typography>
           <Typography
             variant="body2"
-            fontSize={16}
+            fontSize={{
+              xs: 14,
+              sm: 16,
+            }}
             lineHeight={"25.6px"}
             sx={{ mb: 1.25 }}
           >
@@ -160,7 +170,10 @@ export default function page() {
           </Typography>
           <Typography
             variant="body2"
-            fontSize={16}
+            fontSize={{
+              xs: 14,
+              sm: 16,
+            }}
             lineHeight={"25.6px"}
             sx={{ mb: 1.25 }}
           >
@@ -171,7 +184,10 @@ export default function page() {
           </Typography>
           <Typography
             variant="body2"
-            fontSize={16}
+            fontSize={{
+              xs: 14,
+              sm: 16,
+            }}
             lineHeight={"25.6px"}
             sx={{ mb: 1.25 }}
           >
@@ -183,7 +199,10 @@ export default function page() {
           </Typography>
           <Typography
             variant="body2"
-            fontSize={16}
+            fontSize={{
+              xs: 14,
+              sm: 16,
+            }}
             lineHeight={"25.6px"}
             sx={{ mb: 1.25 }}
           >
@@ -194,7 +213,10 @@ export default function page() {
           </Typography>
           <Typography
             variant="body2"
-            fontSize={16}
+            fontSize={{
+              xs: 14,
+              sm: 16,
+            }}
             lineHeight={"25.6px"}
             sx={{ mb: 1.25 }}
           >
@@ -203,67 +225,133 @@ export default function page() {
             دهید. کارت‌های هدیه دارینه در بسته بندی بسیار شیک عرضه می‌شود.
           </Typography>
         </Stack>
-        <Stack
-          direction={"row"}
-          justifyContent={"space-around"}
-          alignItems={"center"}
+        <Grid
           bgcolor={"#161823"}
           borderRadius={2}
           py={4}
           mt={4}
+          container
+          direction={"row"}
+          alignItems={"center"}
+          px={{
+            xs: 7,
+            sm: 7,
+            md: 14,
+          }}
+          spacing={{
+            xs:5,
+            sm:0
+          }}
         >
-          <Stack
-            direction={"column"}
-            gap={4}
-            width={"50%"}
-            alignItems={"center"}
+          <Grid
+            size={{
+              xs: 12,
+              sm: 8,
+              md: 7,
+            }}
+            order={{
+              xs: 2,
+              sm: 1,
+            }}
           >
-            <Typography
-              variant="h6"
-              sx={{ color: "#ffffff" }}
-              fontSize={30}
-              fontWeight={600}
-            >
-              امن‌ترین جا برای پس انداز طلا
-            </Typography>
-            <Button
-              variant="contained"
-              color="primary"
-              endIcon={
-                <Image
-                  src={"/images/simple/arrow-left.svg"}
-                  alt=""
-                  width={32}
-                  height={32}
-                  style={{ marginRight: 10 }}
-                />
-              }
-              sx={{
-                color: "#10100F",
-                fontSize: 14,
-                fontWeight: "600",
-                width: "fit-content",
-                py: 1,
-                px: 2,
+            <Stack
+              direction={"column"}
+              gap={4}
+              alignItems={{
+                xs: "center",
+                sm:'flex-start'
               }}
             >
-              ثبت نام در دارینه
-            </Button>
-          </Stack>
-          <Stack width={"50%"} alignItems={"center"}>
-            <Image
-              src={"/images/middleBanner.webp"}
-              alt=""
-              width={332}
-              height={192}
-            />
-          </Stack>
-        </Stack>
+              <Typography
+                variant="h6"
+                sx={{ color: "#ffffff" }}
+                fontSize={{
+                  xs: 22,
+                  md: 24,
+                  lg: 30,
+                }}
+                fontWeight={500}
+              >
+                امن‌ترین جا برای پس انداز طلا
+              </Typography>
+              <Button
+                variant="contained"
+                color="primary"
+                endIcon={
+                  <Image
+                    src={"/images/simple/arrow-left.svg"}
+                    alt=""
+                    width={32}
+                    height={32}
+                    style={{ marginRight: 10 }}
+                  />
+                }
+                sx={{
+                  color: "#10100F",
+                  fontSize: {
+                    xs: 12,
+                    sm: 14,
+                  },
+                  fontWeight: "600",
+                  width: "fit-content",
+                  py: {
+                    xs: 0.3,
+                    md: 1,
+                  },
+                  px: 1.5,
+                  borderRadius: 2,
+                }}
+              >
+                ثبت نام در دارینه
+              </Button>
+            </Stack>
+          </Grid>
+          <Grid
+            size={{
+              xs: 12,
+              sm: 4,
+              md: 5,
+            }}
+            order={{
+              xs: 1,
+              sm: 2,
+            }}
+          >
+            <Stack
+              direction={"row"}
+              alignItems={"center"}
+              justifyContent={"center"}
+              width={"100%"}
+            >
+              <Stack
+                width={{
+                  xs: "50%",
+                  sm: "100%",
+                }}
+              >
+                <Image
+                  alt=""
+                  width={417}
+                  height={185}
+                  src={"/images/middleBanner.webp"}
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    objectFit: "cover",
+                  }}
+                />
+              </Stack>
+            </Stack>
+          </Grid>
+        </Grid>
         <Typography
           variant="h6"
           sx={{ color: "text.title", mb: 3, mt: 6 }}
           fontWeight={500}
-          fontSize={22}
+          fontSize={{
+            xs: 18,
+            sm: 22,
+          }}
         >
           چرا دارینه؟
         </Typography>
@@ -273,8 +361,12 @@ export default function page() {
               key={index}
               variant="body2"
               component={"li"}
-              fontSize={16}
+              fontSize={{
+                xs: 14,
+                sm: 16,
+              }}
               lineHeight={"25.6px"}
+              sx={{ pl: 2 }}
             >
               {rule}
             </Typography>
