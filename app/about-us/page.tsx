@@ -355,7 +355,7 @@ export default function page() {
         >
           چرا دارینه؟
         </Typography>
-        <Stack component={"ul"} flexDirection={"column"} gap={1} mt={3}>
+        <Stack component={"ul"} flexDirection={"column"} gap={1} mt={3} pl={2.5}>
           {rules.map((rule, index) => (
             <Typography
               key={index}
@@ -366,7 +366,6 @@ export default function page() {
                 sm: 16,
               }}
               lineHeight={"25.6px"}
-              sx={{ pl: 2 }}
             >
               {rule}
             </Typography>
