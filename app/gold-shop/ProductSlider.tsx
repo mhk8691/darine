@@ -24,6 +24,28 @@ export default function ProductSlider() {
       navigation
       modules={[Navigation]}
       className="mySwiper"
+      breakpoints={{
+        0: {
+          slidesPerView: 2.5,
+          spaceBetween: 5,
+        },
+        600: {
+          slidesPerView: 2.5,
+          spaceBetween: 5,
+        },
+        700: {
+          slidesPerView: 3,
+          spaceBetween: 5,
+        },
+        900: {
+          slidesPerView: 3.5,
+          spaceBetween: 20,
+        },
+        1100: {
+          slidesPerView: 4.5,
+          spaceBetween: 25,
+        },
+      }}
     >
       {[1, 2, 3, 4, 5].map((item) => (
         <SwiperSlide key={item}>

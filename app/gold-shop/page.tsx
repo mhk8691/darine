@@ -46,19 +46,54 @@ export default function page() {
     <>
       <Status />
 
-      <Container maxWidth={"xl"} sx={{ px: "40px !important", mt: 5 }}>
+      <Container
+        maxWidth={"xl"}
+        sx={{
+          mt: 5,
+          px: {
+            xs: "16px !important",
+            md: "24px !important",
+            lg: "40px !important",
+          },
+        }}
+      >
         <Grid container gap={6}>
           <Grid size={12}>
-            <Stack direction={"row"} gap={3.5} alignItems={"center"}>
-              <Image
-                alt=""
-                src={"/images/titleImg.webp"}
-                width={80}
-                height={80}
-              />
+            <Stack
+              direction={"row"}
+              gap={{
+                xs: 2,
+                sm: 3.5,
+              }}
+              alignItems={"center"}
+            >
+              <Stack
+                width={{
+                  xs: 48,
+                  sm: 80,
+                }}
+                height={{
+                  xs: 48,
+                  sm: 80,
+                }}
+              >
+                <Image
+                  alt=""
+                  src={"/images/titleImg.webp"}
+                  width={80}
+                  height={80}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                  }}
+                />
+              </Stack>
               <Typography
                 variant="h6"
-                fontSize={30}
+                fontSize={{
+                  xs: 16,
+                  sm: 30,
+                }}
                 sx={{ color: "text.title" }}
               >
                 خرید شمش طلا
@@ -75,7 +110,15 @@ export default function page() {
             <ProductsContainer title="شمش های پارسیان" />
           </Grid>
           <Grid size={12}>
-            <Faq faqData={faqData} titleStyle={{ fontSize: 30 }} />
+            <Faq
+              faqData={faqData}
+              titleStyle={{
+                fontSize: {
+                  xs: 18,
+                  md: 30,
+                },
+              }}
+            />
           </Grid>
         </Grid>
       </Container>

@@ -72,26 +72,35 @@ export default function GoldCard() {
           border: 1,
           borderColor: "#393936",
           background: "rgb(28, 28, 27)",
-          p: 1.5,
+          py: 1.5,
           borderRadius: 1.5,
         }}
       >
-        <Stack bgcolor={"background.default"} borderRadius={2}>
-          <Link href={"/gold-shop/test"}>
-            <CardMedia
-              sx={{
-                height: {
-                  xs: 150,
-                  sm: 180,
-                },
-                width: "100%",
-              }}
-              image="/images/product.webp"
-              title="green iguana"
-            />
-          </Link>
+        <Stack px={1.5}>
+          <Stack bgcolor={"background.default"} borderRadius={2}>
+            <Link href={"/gold-shop/test"}>
+              <CardMedia
+                sx={{
+                  height: {
+                    xs: 150,
+                    sm: 180,
+                  },
+                  width: "100%",
+                }}
+                image="/images/product.webp"
+                title="green iguana"
+              />
+            </Link>
+          </Stack>
         </Stack>
-        <CardContent sx={{ px: 0 }}>
+        <CardContent
+          sx={{
+            px: {
+              xs: 1,
+              sm: 1.5,
+            },
+          }}
+        >
           <Stack
             direction={"row"}
             justifyContent={{
@@ -161,7 +170,7 @@ export default function GoldCard() {
                   xs: 14,
                   sm: 16,
                   lg: 14,
-                  xl:16
+                  xl: 16,
                 }}
                 sx={{ alignSelf: "flex-end" }}
               >
@@ -212,7 +221,7 @@ export default function GoldCard() {
                   xs: 14,
                   sm: 16,
                   lg: 14,
-                  xl:16
+                  xl: 16,
                 }}
                 sx={{ alignSelf: "flex-end" }}
               >
@@ -263,7 +272,7 @@ export default function GoldCard() {
                   xs: 14,
                   sm: 16,
                   lg: 14,
-                  xl:16
+                  xl: 16,
                 }}
                 sx={{ alignSelf: "flex-end" }}
               >
@@ -306,25 +315,34 @@ export default function GoldCard() {
           </Button>
         ) : (
           <Stack
-            direction="row"
-            alignItems="center"
-            justifyContent="space-between"
             sx={{
-              border: "1px solid #FFD700",
-              borderRadius: 2,
-              mt: 3,
-              px: 1,
-              py: 0.5,
+              px: {
+                xs: 1,
+                sm: 1.5,
+              },
             }}
           >
-            <IconButton onClick={addToCart} disableRipple>
-              <AddIcon />
-            </IconButton>
-            <Typography fontWeight={600}>{item.quantity}</Typography>
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="space-between"
+              sx={{
+                border: "1px solid #FFD700",
+                borderRadius: 2,
+                mt: 3,
+                px: 1,
+                py: 0.5,
+              }}
+            >
+              <IconButton onClick={addToCart} disableRipple>
+                <AddIcon />
+              </IconButton>
+              <Typography fontWeight={600}>{item.quantity}</Typography>
 
-            <IconButton onClick={removeItem} disableRipple>
-              <DeleteIcon />
-            </IconButton>
+              <IconButton onClick={removeItem} disableRipple>
+                <DeleteIcon />
+              </IconButton>
+            </Stack>
           </Stack>
         )}
       </Card>
