@@ -13,7 +13,13 @@ export default function page() {
         <CreditContainer
           description="در سرویس اعتبار خرید طلاسی، می‌توانید با سپرده‌گذاری در کیف پول خود، از دیجی‌پی بین ۱۰ تا ۱۰۰ میلیون تومان اعتبار خرید کالا دریافت کنید. این اعتبار در کیف پول دیجی‌پی شما شارژ می‌شود و قابل استفاده در فروشگاه‌های طرف قرارداد دیجی‌پی است."
           title={
-            <Typography variant="h6" fontSize={22}>
+            <Typography
+              variant="h6"
+              fontSize={{
+                xs: 16,
+                sm: 22,
+              }}
+            >
               دریافت اعتبار
               <Box component={"span"} color={"#007DFA"}>
                 {" "}
@@ -53,7 +59,10 @@ export default function page() {
                 alignItems: "center",
                 mt: 3,
               }}
-              fontSize={22}
+              fontSize={{
+                xs: 14,
+                sm: 22,
+              }}
             >
               اعتبار خرید کالا <GoldenUnderline>بدون ضامن</GoldenUnderline> ، با
               پشتوانه <GoldenUnderline>طلاسی</GoldenUnderline>

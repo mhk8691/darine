@@ -3,9 +3,8 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { ReactNode } from "react";
-import Card from "../Container/Container";
-import GoldBuy from "./GoldBuy";
 import Container from "../Container/Container";
+import GoldBuy from "./GoldBuy";
 interface Props {
   title: ReactNode;
   banner: ReactNode;
@@ -41,13 +40,13 @@ export default function CreditContainer({
           xs: 0,
           sm: 3,
         },
-        border:{
-          xs:0,
-          sm:1,
+        border: {
+          xs: 0,
+          sm: 1,
         },
-        borderColor:{
-          sm:'background.paper'
-        }
+        borderColor: {
+          sm: "background.paper",
+        },
       }}
     >
       <Stack direction={"row"} alignItems={"center"} gap={1}>
@@ -61,7 +60,12 @@ export default function CreditContainer({
           xs: 14,
           sm: descriptionSize || 18,
         }}
-        sx={{ color: "text.secondary", mt: 4.5, fontWeight: 500 }}
+        sx={{
+          color: "text.secondary",
+          mt: 4.5,
+          fontWeight: 500,
+          lineHeight: "25.6px",
+        }}
       >
         {description}
       </Typography>
@@ -77,7 +81,7 @@ export default function CreditContainer({
           >
             {optionTitle || " مزایای این سرویس:"}
           </Typography>
-          <Stack>
+          <Stack direction={'column'} gap={1}>
             {options.map((option) => (
               <Stack
                 direction={"row"}
