@@ -76,7 +76,17 @@ const partnerItems = [
 export default function page() {
   return (
     <>
-      <Container maxWidth={"xl"} sx={{ px: "40px !important", mt: 5 }}>
+      <Container
+        maxWidth={"xl"}
+        sx={{
+          px: {
+            xs: "16px !important",
+            md: "24px !important",
+            lg: "40px !important",
+          },
+          mt: 5,
+        }}
+      >
         {/* <Stack direction={"row"} alignItems={"center"}>
           <Stack direction={"column"} gap={3} width={"50%"}>
             <Typography
@@ -336,7 +346,7 @@ export default function page() {
                     alignItems={"center"}
                     justifyContent={"center"}
                     px={{
-                      xs:1,
+                      xs: 1,
                       sm: 2,
                       md: 3,
                     }}

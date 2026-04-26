@@ -26,7 +26,7 @@ const rules = [
 export default function page() {
   return (
     <>
-      <Container maxWidth={"lg"} sx={{ mt: 5,}}>
+      <Container maxWidth={"lg"} sx={{ mt: 5 }}>
         <Typography
           variant="h6"
           sx={{ color: "text.title" }}
@@ -51,14 +51,20 @@ export default function page() {
           >
             <Typography
               variant="body1"
-              fontSize={14}
+              fontSize={{
+                xs: 12,
+                sm: 14,
+              }}
               sx={{ color: "text.title" }}
             >
               کارمزد خرید
             </Typography>
             <Typography
               variant="body1"
-              fontSize={14}
+              fontSize={{
+                xs: 12,
+                sm: 14,
+              }}
               sx={{ color: "text.title" }}
             >
               ۱ درصد
@@ -75,14 +81,20 @@ export default function page() {
           >
             <Typography
               variant="body1"
-              fontSize={14}
+              fontSize={{
+                xs: 12,
+                sm: 14,
+              }}
               sx={{ color: "text.title" }}
             >
               کارمزد خرید
             </Typography>
             <Typography
               variant="body1"
-              fontSize={14}
+              fontSize={{
+                xs: 12,
+                sm: 14,
+              }}
               sx={{ color: "text.title" }}
             >
               ۱ درصد
@@ -93,17 +105,23 @@ export default function page() {
           variant="h6"
           sx={{ color: "text.title", mt: 2 }}
           fontWeight={500}
-          fontSize={22}
+          fontSize={{
+            xs: 18,
+            sm: 22,
+          }}
         >
           قوانین و مقررات دارینه مطابق زیر میباشد.
         </Typography>
-        <Stack component={"ul"} flexDirection={"column"} gap={1} mt={3}>
+        <Stack component={"ul"} flexDirection={"column"} gap={1} mt={3} pl={2.5}>
           {rules.map((rule, index) => (
             <Typography
               key={index}
               variant="body2"
               component={"li"}
-              fontSize={16}
+              fontSize={{
+                xs: 14,
+                sm: 16,
+              }}
               lineHeight={"25.6px"}
             >
               {rule}

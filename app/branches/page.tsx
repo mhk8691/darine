@@ -8,8 +8,17 @@ export const metadata: Metadata = {
 export default function page() {
   return (
     <>
-      <Container maxWidth={"xl"} sx={{ px: "40px !important", mt: 5 }}>
-
+      <Container
+        maxWidth={"xl"}
+        sx={{
+          px: {
+            xs: "16px !important",
+            md: "24px !important",
+            lg: "40px !important",
+          },
+          mt: 5,
+        }}
+      >
         <Grid container spacing={2} display={"flex"} alignItems={"center"}>
           <Grid
             size={{
@@ -23,7 +32,7 @@ export default function page() {
                 xs: 18,
                 sm: 38,
               }}
-              sx={{ color: "text.title",mb:2 }}
+              sx={{ color: "text.title", mb: 2 }}
             >
               دفاتر و شعب دارینــه
             </Typography>
@@ -33,10 +42,12 @@ export default function page() {
                 xs: 14,
                 sm: 20,
               }}
-              sx={{mb:{
-                xs:2,
-                sm:0
-              }}}
+              sx={{
+                mb: {
+                  xs: 2,
+                  sm: 0,
+                },
+              }}
               fontWeight={300}
               lineHeight={"32px"}
             >
