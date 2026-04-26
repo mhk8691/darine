@@ -13,7 +13,13 @@ export default function page() {
         <CreditContainer
           description="با استفاده از سرویس خرید اقساطی طلاسی، می‌توانید بدون نیاز به پرداخت نقدی، طلا بخرید."
           title={
-            <Typography variant="h6" fontSize={22}>
+            <Typography
+              variant="h6"
+              fontSize={{
+                xs: 16,
+                sm: 22,
+              }}
+            >
               خرید اعتباری با
             </Typography>
           }
@@ -134,6 +140,10 @@ export default function page() {
           banner={
             <Typography
               variant="h6"
+              fontSize={{
+                xs: 14,
+                sm: 22,
+              }}
               sx={{
                 wordSpacing: 7,
                 flexDirection: "row",

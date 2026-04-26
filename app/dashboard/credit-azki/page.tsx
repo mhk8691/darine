@@ -13,7 +13,13 @@ export default function page() {
         <CreditContainer
           description="با سرویس جدید طلاسی می‌توانید به‌سادگی و بدون نیاز به وثیقه، به‌صورت اقساطی طلا بخرید. این سرویس با همکاری پلتفرم ازکی‌وام فراهم شده و تا سقف 100 میلیون تومان طلا در اختیار شما قرار می‌دهد."
           title={
-            <Typography variant="h6" fontSize={22}>
+            <Typography
+              variant="h6"
+              fontSize={{
+                xs: 16,
+                sm: 22,
+              }}
+            >
               خرید با اعتبار بانکی
               <Box component={"span"} color={"#007DFA"}>
                 {" "}
@@ -99,13 +105,16 @@ export default function page() {
           banner={
             <Typography
               variant="h6"
+              fontSize={{
+                xs: 14,
+                sm: 22,
+              }}
               sx={{
                 wordSpacing: 4,
                 flexDirection: "row",
                 alignItems: "center",
                 mt: 3,
               }}
-              fontSize={22}
             >
               خرید <GoldenUnderline>اقساطـــی</GoldenUnderline> طلا | بدون ضامن،
               {"  "} بدون <GoldenUnderline> چک </GoldenUnderline>

@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import { ReactNode } from "react";
 import Card from "../Container/Container";
 import GoldBuy from "./GoldBuy";
+import Container from "../Container/Container";
 interface Props {
   title: ReactNode;
   banner: ReactNode;
@@ -26,7 +27,29 @@ export default function CreditContainer({
   descriptionSize,
 }: Props) {
   return (
-    <Card style={{ pb: 12 }}>
+    <Container
+      style={{
+        pb: {
+          xs: 0,
+          sm: 12,
+        },
+        px: {
+          xs: 0,
+          sm: 4,
+        },
+        pt: {
+          xs: 0,
+          sm: 3,
+        },
+        border:{
+          xs:0,
+          sm:1,
+        },
+        borderColor:{
+          sm:'background.paper'
+        }
+      }}
+    >
       <Stack direction={"row"} alignItems={"center"} gap={1}>
         {title}
         {icon}
@@ -34,7 +57,10 @@ export default function CreditContainer({
       {banner}
       <Typography
         variant="body1"
-        fontSize={descriptionSize || 18}
+        fontSize={{
+          xs: 14,
+          sm: descriptionSize || 18,
+        }}
         sx={{ color: "text.secondary", mt: 4.5, fontWeight: 500 }}
       >
         {description}
@@ -43,7 +69,10 @@ export default function CreditContainer({
         <>
           <Typography
             variant="body1"
-            fontSize={16}
+            fontSize={{
+              xs: 12,
+              sm: 16,
+            }}
             sx={{ color: "text.secondary", mt: 3.5, mb: 0.5 }}
           >
             {optionTitle || " مزایای این سرویس:"}
@@ -59,7 +88,10 @@ export default function CreditContainer({
                 <FiberManualRecordIcon sx={{ width: 7, height: 25 }} />
                 <Typography
                   variant="body2"
-                  fontSize={16}
+                  fontSize={{
+                    xs: 12,
+                    sm: 16,
+                  }}
                   sx={{ color: "text.secondary" }}
                 >
                   {option}
@@ -95,6 +127,6 @@ export default function CreditContainer({
           </Stack>
         </>
       )}
-    </Card>
+    </Container>
   );
 }

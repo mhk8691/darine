@@ -13,7 +13,7 @@ export default function page() {
         <CreditContainer
           description="با استفاده از سرویس خرید اقساطی طلاسی، می‌توانید بدون نیاز به پرداخت نقدی، طلا بخرید."
           title={
-            <Typography variant="h6" fontSize={22}>
+            <Typography variant="h6" fontSize={{ xs: 16, sm: 22 }}>
               خرید با اعتبار بانکی
               <Box component={"span"} color={"#007DFA"}>
                 {" "}
@@ -99,6 +99,10 @@ export default function page() {
                 flexDirection: "row",
                 alignItems: "center",
                 mt: 3,
+              }}
+              fontSize={{
+                xs: 14,
+                sm: 22,
               }}
             >
               خرید <GoldenUnderline>اقساطـــی</GoldenUnderline> طلا،{"  "}
