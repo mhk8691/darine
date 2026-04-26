@@ -1,6 +1,6 @@
 import CreditContainer from "@/app/Components/CreditContainer/CreditContainer";
 import GoldenUnderline from "@/app/Components/CreditContainer/GoldenUnderline";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import { Metadata } from "next";
 export const metadata: Metadata = {
@@ -35,12 +35,27 @@ export default function page() {
           ]}
           tooltip="توجه: خرید شما با 3.5 درصد کارمزد محاسبه می‌شود."
           icon={
-            <Image
-              src={"/images/simple/kaman.webp"}
-              alt=""
-              width={40}
-              height={40}
-            />
+            <Stack
+              width={{
+                xs: 30,
+                sm: 40,
+              }}
+              height={{
+                xs: 30,
+                sm: 40,
+              }}
+            >
+              <Image
+                src={"/images/simple/kaman.webp"}
+                alt=""
+                width={40}
+                height={40}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                }}
+              />
+            </Stack>
           }
           banner={
             <Typography

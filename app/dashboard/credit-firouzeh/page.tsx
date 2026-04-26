@@ -31,7 +31,7 @@ export default function page() {
           tooltip="توجه: خرید شما با 3.5 درصد کارمزد محاسبه می‌شود."
           icon={
             <svg
-              width="124"
+              width="100"
               height="49"
               viewBox="0 0 124 49"
               fill="none"
