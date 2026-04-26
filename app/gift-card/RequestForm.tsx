@@ -52,11 +52,20 @@ export default function RequestForm() {
     },
   ];
   return (
-    <Grid container spacing={9}>
+    <Grid
+      container
+      spacing={{
+        xs: 3,
+        sm: 9,
+      }}
+    >
       <Grid size={12}>
         <Typography
           variant="h1"
-          fontSize={30}
+          fontSize={{
+            xs: 16,
+            sm: 30,
+          }}
           fontWeight={"700"}
           sx={{ color: "text.title", textAlign: "center" }}
         >
@@ -67,11 +76,29 @@ export default function RequestForm() {
         <Container
           style={{
             background: "rgb(28, 28, 27)",
-            px: 14,
-            py: 5.5,
+            px: {
+              xs: 2,
+              sm: 10,
+              md: 5,
+              lg: 14,
+            },
+            py: {
+              xs: 2,
+              sm: 5.5,
+            },
+            pb:{
+              xs:6,
+              sm:5.5
+            }
           }}
         >
-          <Typography variant="h6" fontSize={22}>
+          <Typography
+            variant="h6"
+            fontSize={{
+              xs: 14,
+              sm: 22,
+            }}
+          >
             با استفاده از فرم زیر درخواست خود را برای ما ارسال کنید.
           </Typography>
           <Stack
@@ -79,7 +106,10 @@ export default function RequestForm() {
             direction={"row"}
             alignItems={"flex-start"}
             gap={1}
-            p={3}
+            p={{
+              xs: 2,
+              sm: 3,
+            }}
             borderRadius={3}
             mt={3}
           >
@@ -102,7 +132,10 @@ export default function RequestForm() {
           <Grid size={12} container spacing={3} mt={5}>
             {inputList.map((item) => (
               <Grid
-                size={item.placeholder === "توضیحات تکمیلی" ? 12 : 6}
+                size={{
+                  xs: 12,
+                  md: item.placeholder === "توضیحات تکمیلی" ? 12 : 6,
+                }}
                 key={item.placeholder}
               >
                 <InputField
@@ -142,7 +175,21 @@ export default function RequestForm() {
             <Button
               variant="contained"
               color="primary"
-              sx={{ fontSize: 18, borderRadius: 2, py: 1.5, width: "25%",mt:2 }}
+              sx={{
+                fontSize: {
+                  xs: 12,
+                  sm: 18,
+                },
+                borderRadius: 2,
+                py: 1.5,
+                width: {
+                  xs: "30%",
+                  sm: "45%",
+                  md: "30%",
+                  lg: "25%",
+                },
+                mt: 2,
+              }}
             >
               ثبت درخواست
             </Button>

@@ -6,7 +6,11 @@ export default function Description() {
       <Stack direction={"column"} gap={2}>
         <Typography
           variant="body1"
-          fontSize={22}
+          fontSize={{
+            xs: 18,
+            sm: 20,
+            md: 22,
+          }}
           fontWeight={600}
           sx={{ color: "text.title" }}
         >
@@ -14,7 +18,10 @@ export default function Description() {
         </Typography>
         <Typography
           variant="body1"
-          fontSize={16}
+          fontSize={{
+            xs: 14,
+            sm: 16,
+          }}
           fontWeight={400}
           sx={{ color: "text.secondary", lineHeight: "25.6px" }}
         >
@@ -31,7 +38,11 @@ export default function Description() {
       <Stack direction={"column"} gap={2}>
         <Typography
           variant="body1"
-          fontSize={22}
+          fontSize={{
+            xs: 18,
+            sm: 20,
+            md: 22,
+          }}
           fontWeight={600}
           sx={{ color: "text.title" }}
         >
@@ -39,7 +50,10 @@ export default function Description() {
         </Typography>
         <Typography
           variant="body1"
-          fontSize={16}
+          fontSize={{
+            xs: 14,
+            sm: 16,
+          }}
           fontWeight={400}
           sx={{ color: "text.secondary", lineHeight: "25.6px" }}
         >
@@ -55,7 +69,11 @@ export default function Description() {
       <Stack direction={"column"} gap={2}>
         <Typography
           variant="body1"
-          fontSize={22}
+          fontSize={{
+            xs: 18,
+            sm: 20,
+            md: 22,
+          }}
           fontWeight={600}
           sx={{ color: "text.title" }}
         >
@@ -63,7 +81,10 @@ export default function Description() {
         </Typography>
         <Typography
           variant="body1"
-          fontSize={16}
+          fontSize={{
+            xs: 14,
+            sm: 16,
+          }}
           fontWeight={400}
           sx={{ color: "text.secondary", lineHeight: "25.6px" }}
         >
@@ -79,7 +100,10 @@ export default function Description() {
       <Stack direction={"column"} gap={2}>
         <Typography
           variant="body1"
-          fontSize={20}
+          fontSize={{
+            xs:16,
+            sm:20
+          }}
           fontWeight={600}
           sx={{ color: "text.title" }}
         >
@@ -88,7 +112,10 @@ export default function Description() {
         </Typography>
         <Typography
           variant="body1"
-          fontSize={16}
+          fontSize={{
+            xs: 14,
+            sm: 16,
+          }}
           fontWeight={400}
           sx={{ color: "text.secondary", lineHeight: "25.6px" }}
         >
@@ -102,7 +129,10 @@ export default function Description() {
       <Stack direction={"column"} gap={2}>
         <Typography
           variant="body1"
-          fontSize={20}
+          fontSize={{
+            xs:16,
+            sm:20
+          }}
           fontWeight={600}
           sx={{ color: "text.title" }}
         >
@@ -111,7 +141,10 @@ export default function Description() {
         </Typography>
         <Typography
           variant="body1"
-          fontSize={16}
+          fontSize={{
+            xs: 14,
+            sm: 16,
+          }}
           fontWeight={400}
           sx={{ color: "text.secondary", lineHeight: "25.6px" }}
         >
@@ -124,7 +157,10 @@ export default function Description() {
       <Stack direction={"column"} gap={2}>
         <Typography
           variant="body1"
-          fontSize={20}
+          fontSize={{
+            xs:16,
+            sm:20
+          }}
           fontWeight={600}
           sx={{ color: "text.title" }}
         >
@@ -132,7 +168,10 @@ export default function Description() {
         </Typography>
         <Typography
           variant="body1"
-          fontSize={16}
+          fontSize={{
+            xs: 14,
+            sm: 16,
+          }}
           fontWeight={400}
           sx={{ color: "text.secondary", lineHeight: "25.6px" }}
         >
@@ -146,7 +185,10 @@ export default function Description() {
       <Stack direction={"column"} gap={2}>
         <Typography
           variant="body1"
-          fontSize={20}
+          fontSize={{
+            xs:16,
+            sm:20
+          }}
           fontWeight={600}
           sx={{ color: "text.title" }}
         >
@@ -154,7 +196,10 @@ export default function Description() {
         </Typography>
         <Typography
           variant="body1"
-          fontSize={16}
+          fontSize={{
+            xs: 14,
+            sm: 16,
+          }}
           fontWeight={400}
           sx={{ color: "text.secondary", lineHeight: "25.6px" }}
         >
@@ -167,7 +212,11 @@ export default function Description() {
       <Stack direction={"column"} gap={2}>
         <Typography
           variant="body1"
-          fontSize={22}
+          fontSize={{
+            xs: 18,
+            sm: 20,
+            md: 22,
+          }}
           fontWeight={600}
           sx={{ color: "text.title" }}
         >
@@ -175,7 +224,10 @@ export default function Description() {
         </Typography>
         <Typography
           variant="body1"
-          fontSize={16}
+          fontSize={{
+            xs: 14,
+            sm: 16,
+          }}
           fontWeight={400}
           sx={{ color: "text.secondary", lineHeight: "25.6px" }}
         >
@@ -197,7 +249,11 @@ export default function Description() {
       <Stack direction={"column"} gap={2}>
         <Typography
           variant="body1"
-          fontSize={22}
+          fontSize={{
+            xs: 18,
+            sm: 20,
+            md: 22,
+          }}
           fontWeight={600}
           sx={{ color: "text.title" }}
         >
@@ -205,7 +261,10 @@ export default function Description() {
         </Typography>
         <Typography
           variant="body1"
-          fontSize={16}
+          fontSize={{
+            xs: 14,
+            sm: 16,
+          }}
           fontWeight={400}
           sx={{ color: "text.secondary", lineHeight: "25.6px" }}
         >
@@ -225,7 +284,11 @@ export default function Description() {
       <Stack direction={"column"} gap={2}>
         <Typography
           variant="body1"
-          fontSize={22}
+          fontSize={{
+            xs: 18,
+            sm: 20,
+            md: 22,
+          }}
           fontWeight={600}
           sx={{ color: "text.title" }}
         >
@@ -233,7 +296,10 @@ export default function Description() {
         </Typography>
         <Typography
           variant="body1"
-          fontSize={16}
+          fontSize={{
+            xs: 14,
+            sm: 16,
+          }}
           fontWeight={400}
           sx={{ color: "text.secondary", lineHeight: "25.6px" }}
         >

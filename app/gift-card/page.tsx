@@ -39,14 +39,57 @@ const faqData: FaqItem[] = [
 
 export default function page() {
   return (
-    <Container maxWidth={"xl"} sx={{ px: "40px !important", mt: 10 }}>
-      <Grid container spacing={22}>
-        <Grid size={12} container spacing={3}>
-          <Grid size={5}>
-            <Stack direction={"column"} gap={5}>
+    <Container
+      maxWidth={"xl"}
+      sx={{
+        px: {
+          xs: "16px !important",
+          md: "24px !important",
+          lg: "40px !important",
+        },
+        mt: 10,
+      }}
+    >
+      <Grid
+        container
+        spacing={{
+          xs: 7,
+          sm: 10,
+          md: 22,
+        }}
+      >
+        <Grid
+          size={12}
+          container
+          spacing={{
+            xs: 5,
+            md: 3,
+          }}
+        >
+          <Grid
+            size={{
+              xs: 12,
+              md: 5,
+            }}
+          >
+            <Stack
+              direction={"column"}
+              gap={{
+                xs: 2,
+                md: 5,
+              }}
+              alignItems={{
+                xs: "center",
+                md: "flex-start",
+              }}
+            >
               <Typography
                 variant="h1"
-                fontSize={38}
+                fontSize={{
+                  xs: 18,
+                  sm: 30,
+                  md: 38,
+                }}
                 fontWeight={"500"}
                 sx={{ color: "text.title" }}
               >
@@ -54,23 +97,62 @@ export default function page() {
                 <br />
                 <Box component={"span"}>سازمانـی طـلاســــــی</Box>
               </Typography>
-              <Typography variant="h6" fontSize={18}>
+              <Typography
+                variant="h6"
+                fontSize={{
+                  xs: 12,
+                  sm: 16,
+                  md: 18,
+                }}
+                sx={{
+                  width: {
+                    xs: "100%",
+                    sm: "540px",
+                    md: "100%",
+                  },
+                }}
+                textAlign={{
+                  xs: "center",
+                  md: "start",
+                }}
+              >
                 با استفاده از کارت هدیه طلاسی به همکاران، مشتریان و شرکای تجاری
                 خود نشان دهید که برای شما ارزشمند و گرانبها هستند.
               </Typography>
               <Button
                 variant="contained"
                 color="primary"
-                sx={{ fontSize: 18, borderRadius: 2, py: 1.5, width: "50%" }}
+                sx={{
+                  fontSize: {
+                    xs: 12,
+                    sm: 18,
+                  },
+                  borderRadius: 2,
+                  py: 1.5,
+                  width: {
+                    xs: "50%",
+                    sm: "30%",
+                    md: "50%",
+                  },
+                }}
               >
                 ثبت درخواست
               </Button>
             </Stack>
           </Grid>
-          <Grid size={7}>
+          <Grid
+            size={{
+              xs: 12,
+              md: 7,
+            }}
+          >
             <Box
               className="h_iframe-aparat_embed_frame"
-              maxWidth={"80%"}
+              maxWidth={{
+                xs: "85%",
+                sm: "55%",
+                md: "80%",
+              }}
               position={"relative"}
             >
               <Stack

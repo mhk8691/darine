@@ -32,19 +32,37 @@ const options = [
 
 export default function Gift() {
   return (
-    <Grid spacing={9} container>
+    <Grid
+      spacing={{
+        xs: 3,
+        md: 9,
+      }}
+      container
+    >
       <Grid size={12}>
         <Typography
           variant="h1"
-          fontSize={30}
+          fontSize={{
+            xs: 16,
+            sm: 30,
+          }}
           fontWeight={"700"}
           sx={{ color: "text.title" }}
         >
-          کارت هدیه طلاسی را به این افراد هدیه دهید...
+          کارت هدیه دارینه را به این افراد هدیه دهید...
         </Typography>
       </Grid>
       <Grid size={12} container>
-        <Grid size={2.5}>
+        <Grid
+          size={{
+            xs: 0,
+            lg: 2.5,
+          }}
+          display={{
+            xs: "none",
+            lg: "flex",
+          }}
+        >
           <svg
             width="100%"
             height="270"
@@ -220,22 +238,40 @@ export default function Gift() {
             </defs>
           </svg>
         </Grid>
-        <Grid size={9.5} container spacing={10} alignItems={"center"}>
+        <Grid
+          size={{
+            xs: 12,
+            lg: 9.5,
+          }}
+          container
+          spacing={{
+            xs: 1,
+            sm: 5,
+            md: 10,
+          }}
+          alignItems={"center"}
+        >
           {options.map((option) => (
             <Grid
               key={option.title}
-              size={4}
+              size={{
+                xs: 6,
+                md: 4,
+              }}
               bgcolor={"#1C1C1B"}
               border={1}
               borderColor={"#393936"}
               py={3}
               px={2}
               borderRadius={2}
-              height={"90%"}
+              height={257}
             >
               <Typography
                 variant="h6"
-                fontSize={22}
+                fontSize={{
+                  xs: 16,
+                  sm: 22,
+                }}
                 fontWeight={500}
                 sx={{ color: "text.title" }}
               >
@@ -252,7 +288,10 @@ export default function Gift() {
                     <DoneIcon fontSize="small" color="primary" />
                     <Typography
                       variant="body2"
-                      fontSize={16}
+                      fontSize={{
+                        xs: 12,
+                        sm: 16,
+                      }}
                       fontWeight={500}
                       sx={{ color: "text.secondary" }}
                     >
