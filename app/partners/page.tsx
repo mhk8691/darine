@@ -77,17 +77,34 @@ export default function page() {
   return (
     <>
       <Container maxWidth={"xl"} sx={{ px: "40px !important", mt: 5 }}>
-        <Stack direction={"row"} alignItems={"center"}>
+        {/* <Stack direction={"row"} alignItems={"center"}>
           <Stack direction={"column"} gap={3} width={"50%"}>
-            <Typography variant="h6" fontSize={40} sx={{ color: "text.title" }}>
+            <Typography
+              variant="h6"
+              fontSize={{
+                xs: 20,
+                sm: 40,
+              }}
+              sx={{ color: "text.title" }}
+            >
               همکــــاران دارینه
             </Typography>
-            <Typography variant="h6" fontSize={30} sx={{ color: "text.title" }}>
+            <Typography
+              variant="h6"
+              fontSize={{
+                xs: 16,
+                sm: 30,
+              }}
+              sx={{ color: "text.title" }}
+            >
               ما به همکاری با بیش از ۲۰ برندهای شناخته شده افتخار می‌کنیم!
             </Typography>
             <Typography
               variant="h6"
-              fontSize={18}
+              fontSize={{
+                xs: 12,
+                sm: 18,
+              }}
               fontWeight={400}
               sx={{ color: "#D9D9D9" }}
               lineHeight={"25.6px"}
@@ -101,7 +118,10 @@ export default function page() {
                 variant="contained"
                 color="primary"
                 sx={{
-                  fontSize: 16,
+                  fontSize: {
+                    xs: 14,
+                    sm: 16,
+                  },
                   py: 2,
                   width: "fit-content",
                   px: 6,
@@ -126,20 +146,166 @@ export default function page() {
               }}
             />
           </Stack>
-        </Stack>
+        </Stack> */}
+        <Grid container spacing={10}>
+          <Grid container size={12}>
+            <Grid
+              size={{
+                xs: 12,
+                md: 7,
+                lg: 6,
+              }}
+            >
+              <Stack direction={"column"} gap={3}>
+                <Typography
+                  variant="h6"
+                  fontSize={{
+                    xs: 20,
+                    md: 40,
+                  }}
+                  fontWeight={"500"}
+                  sx={{ color: "text.title" }}
+                >
+                  همکــــاران دارینه
+                </Typography>
+                <Typography
+                  variant="h6"
+                  fontSize={{
+                    xs: 16,
+                    md: 30,
+                  }}
+                  sx={{ color: "text.title" }}
+                >
+                  ما به همکاری با بیش از ۲۰ برندهای شناخته شده افتخار می‌کنیم!
+                </Typography>
+
+                <Stack
+                  direction={"row"}
+                  justifyContent={"center"}
+                  display={{
+                    xs: "flex",
+                    md: "none",
+                  }}
+                >
+                  <Image
+                    src={"/images/partners-main.svg"}
+                    alt=""
+                    width={346}
+                    height={361}
+                  />
+                </Stack>
+                <Typography
+                  variant="h6"
+                  fontSize={{
+                    xs: 12,
+                    md: 18,
+                  }}
+                  fontWeight={400}
+                  sx={{ color: "#D9D9D9" }}
+                  lineHeight={"25.6px"}
+                >
+                  ما با انتخاب همکاری‌های حرفه‌ای و مبتنی بر اعتماد، کیفیت و
+                  نوآوری را در اولویت قرار داده‌ایم و در کنار شرکای خود برای خلق
+                  ارزش پایدار و رضایت مشتریان گام برمی‌داریم.
+                </Typography>
+                <Stack
+                  direction={"row"}
+                  justifyContent={{
+                    xs: "center",
+                    md: "flex-start",
+                  }}
+                >
+                  <Link href={"#form"}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      sx={{
+                        fontSize: {
+                          xs: 14,
+                          md: 16,
+                        },
+                        py: {
+                          xs: 1.5,
+                          md: 2,
+                        },
+                        width: "fit-content",
+                        px: {
+                          xs: 10,
+                          md: 6,
+                        },
+                        borderRadius: 2,
+                        mt: 2,
+                        fontWeight: "600",
+                      }}
+                    >
+                      درخواست همکاری
+                    </Button>
+                  </Link>
+                </Stack>
+              </Stack>
+            </Grid>
+            <Grid
+              size={{
+                xs: 12,
+                md: 5,
+                lg: 6,
+              }}
+            >
+              <Stack
+                direction={"row"}
+                justifyContent={"flex-end"}
+                display={{
+                  xs: "none",
+                  md: "flex",
+                }}
+              >
+                <Stack
+                  width={{
+                    xs: "100%",
+                    lg: "75%",
+                  }}
+                >
+                  <Image
+                    src={"/images/partners-main.svg"}
+                    alt=""
+                    width={520}
+                    height={530}
+                    style={{
+                      width: "100%",
+                      height: "auto",
+                    }}
+                  />
+                </Stack>
+              </Stack>
+            </Grid>
+          </Grid>
+        </Grid>
         <Stack direction={"column"} gap={20} mt={15.5}>
           {partnerItems.map((item) => (
-            <Stack direction={"column"} gap={5.5} key={item.title}>
+            <Stack
+              direction={"column"}
+              gap={{
+                xs: 1,
+                md: 5.5,
+              }}
+              key={item.title}
+            >
               <Typography
                 variant="h6"
-                fontSize={30}
+                fontSize={{
+                  xs: 16,
+                  md: 30,
+                }}
                 sx={{ color: "text.title" }}
               >
                 {item.title}
               </Typography>
               <Typography
                 variant="body2"
-                fontSize={20}
+                fontSize={{
+                  xs: 14,
+                  md: 20,
+                }}
                 sx={{ color: "#D9D9D9" }}
               >
                 {item.description}
@@ -147,20 +313,34 @@ export default function page() {
               <Grid
                 container
                 spacing={4}
-                px={9}
+                px={{
+                  sm: 3,
+                  md: 7,
+                  lg: 9,
+                }}
                 justifyContent={"center"}
                 mt={5}
               >
                 {item.images.map((image) => (
                   <Grid
-                    size={2}
+                    size={{
+                      xs: 6,
+                      sm: 12 / 3,
+                      md: 12 / 4.5,
+                      lg: 2,
+                    }}
                     key={image.title}
                     border={1}
                     borderColor={"background.paper"}
                     direction={"row"}
                     alignItems={"center"}
                     justifyContent={"center"}
-                    p={3}
+                    px={{
+                      xs:1,
+                      sm: 2,
+                      md: 3,
+                    }}
+                    py={2}
                     borderRadius={2}
                   >
                     <Stack direction={"column"} gap={1} alignItems={"center"}>

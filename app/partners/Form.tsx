@@ -1,5 +1,12 @@
 "use client";
-import { Box, Button, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { useState } from "react";
 import Container from "../Components/Container/Container";
 import InputField from "../Components/InputField/InputField";
@@ -10,6 +17,8 @@ export default function Form() {
   const [lastName, setLastName] = useState<string | null>(null);
   const [email, setEmail] = useState<number | null>(null);
   const [description, setDescription] = useState<string | null>(null);
+  const theme = useTheme();
+  const isUpMd = useMediaQuery(theme.breakpoints.up("md"));
   const inputList = [
     {
       placeholder: "نام سازمان سفارش دهنده",
@@ -39,6 +48,7 @@ export default function Form() {
       setValue: setDescription,
     },
   ];
+  if (!isUpMd) return null
   return (
     <Grid container spacing={4.5} mt={15.5}>
       <Grid size={12}>
