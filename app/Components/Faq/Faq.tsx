@@ -44,8 +44,14 @@ export default function Faq({ faqData, titleStyle }: Props): JSX.Element {
             sx={{
               bgcolor: "#10100F",
               mb: 1.5,
-              py: 2.2,
-              px: 2,
+              py: {
+                xs: .5,
+                sm: 2.2,
+              },
+              px: {
+                xs: .5,
+                sm: 2,
+              },
               borderRadius: "10px !important",
 
               "&::before": {
@@ -136,7 +142,7 @@ export default function Faq({ faqData, titleStyle }: Props): JSX.Element {
                 sx={{
                   mt: 3,
                   whiteSpace: "pre-line",
-                  lineHeight:'25px',
+                  lineHeight: "25px",
                   fontSize: {
                     xs: 12,
                     sm: 14,
