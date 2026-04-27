@@ -1,10 +1,14 @@
-import { Button, Stack } from "@mui/material";
+"use client";
+import { Button, Stack, useMediaQuery, useTheme } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import Container from "../Container/Container";
 import Link from "next/link";
 
 export default function PriceAlertCard() {
+  const theme = useTheme()
+  const isDesktop = useMediaQuery(theme.breakpoints.up('md'))
+  if (!isDesktop) return null
   return (
     <Container
       style={{

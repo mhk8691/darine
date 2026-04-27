@@ -13,16 +13,48 @@ import Container from "../Container/Container";
 import "./video-style.css";
 export default function HowBuyGold() {
   return (
-    <Container style={{ alignItems: "center", height: "100%",pb:0 }}>
-      <Typography variant="body1" fontSize={22} gutterBottom sx={{mb:5}}>
+    <Container
+      style={{
+        alignItems: "center",
+        height: "100%",
+        pb: {
+          xs: 3,
+          md: 0,
+        },
+        px: {
+          xs: 0,
+          sm: 4,
+        },
+      }}
+    >
+      <Typography
+        variant="body1"
+        fontSize={{
+          xs: 16,
+          sm: 22,
+        }}
+        gutterBottom
+        sx={{ mb: 5 }}
+      >
         چطور طلا بخریم؟
       </Typography>
 
-      <Box className="h_iframe-aparat_embed_frame" position={"relative"}>
+      <Box
+        className="h_iframe-aparat_embed_frame"
+        position={"relative"}
+        mb={2}
+        width={{
+          xs: "250px",
+          sm: "100%",
+        }}
+      >
         <Stack
           position={"absolute"}
           bgcolor={"#1A1A18"}
-          width={"110%"}
+          width={{
+            xs: "110%",
+            sm: "110%",
+          }}
           height={"100%"}
           borderRadius={2}
           left={"50%"}
@@ -61,11 +93,26 @@ export default function HowBuyGold() {
                 ></path>
               </svg>
             </SvgIcon>
-            <Typography variant="body2" fontSize={18} sx={{ ml: 1 }}>
+            <Typography
+              variant="body2"
+              fontSize={{
+                xs: 14,
+                sm: 18,
+              }}
+              sx={{ ml: 1 }}
+            >
               ثبت نام و احراز هویت
             </Typography>
           </AccordionSummary>
-          <AccordionDetails sx={{ py: 0 }}>
+          <AccordionDetails
+            sx={{
+              py: 0,
+              fontSize: {
+                xs: 12,
+                sm: 16,
+              },
+            }}
+          >
             احراز هویت با شماره تلفن و کدملی به صورت آنی
           </AccordionDetails>
         </Accordion>
@@ -92,11 +139,26 @@ export default function HowBuyGold() {
                 ></path>
               </svg>
             </SvgIcon>
-            <Typography variant="body2" fontSize={18} sx={{ ml: 1 }}>
+            <Typography
+              variant="body2"
+              fontSize={{
+                xs: 14,
+                sm: 18,
+              }}
+              sx={{ ml: 1 }}
+            >
               خرید و فروش طلا
             </Typography>
           </AccordionSummary>
-          <AccordionDetails sx={{ py: 0 }}>
+          <AccordionDetails
+            sx={{
+              py: 0,
+              fontSize: {
+                xs: 12,
+                sm: 16,
+              },
+            }}
+          >
             خرید و فروش طلا آنلاین از ۱۰۰ هزار تومان
           </AccordionDetails>
         </Accordion>
@@ -123,11 +185,26 @@ export default function HowBuyGold() {
                 ></path>
               </svg>
             </SvgIcon>
-            <Typography variant="body2" fontSize={18} sx={{ ml: 1 }}>
+            <Typography
+              variant="body2"
+              fontSize={{
+                xs: 14,
+                sm: 18,
+              }}
+              sx={{ ml: 1 }}
+            >
               تحویل فیزیکی طلا
             </Typography>
           </AccordionSummary>
-          <AccordionDetails sx={{ py: 0 }}>
+          <AccordionDetails
+            sx={{
+              py: 0,
+              fontSize: {
+                xs: 12,
+                sm: 16,
+              },
+            }}
+          >
             دریافت حضوری و سریع طلا به صورت شمش ۱۸ یا ۲۴ عیار
           </AccordionDetails>
         </Accordion>

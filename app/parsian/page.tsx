@@ -1,7 +1,6 @@
-import React from "react";
-import TableContainer from "../Components/Tables/TableContainer";
-import { FaqItem, TableGoldDataType } from "../core/Types";
 import { Metadata } from "next";
+import TableContainer from "../Components/Tables/GoldContainer";
+import { FaqItem, TableGoldDataType } from "../core/Types";
 export const metadata: Metadata = {
   title: "قیمت سکه پارسیان امروز  | دارینه",
   description: "",

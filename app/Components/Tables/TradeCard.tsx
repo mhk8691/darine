@@ -17,7 +17,11 @@ export default function TradeCard({ isDetail }: Props) {
         border: 1,
         borderColor: "primary.main",
         bgcolor: "#292926",
-        width: isDetail ? "100%" : "50%",
+        width: {
+          xs: "100%",
+          sm: "307px",
+          md: isDetail ? "100%" : "50%",
+        },
         height: "100%",
       }}
     >
@@ -42,7 +46,7 @@ export default function TradeCard({ isDetail }: Props) {
           )}
         </Stack>
 
-        <Stack direction={"row"} gap={1.5} alignItems={'center'}>
+        <Stack direction={"row"} gap={1.5} alignItems={"center"}>
           {isDetail && (
             <Stack>
               <CircleAnimation type="red" />
