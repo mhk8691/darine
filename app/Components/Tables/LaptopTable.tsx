@@ -135,8 +135,14 @@ export default function LaptopTable({ items, isDetail = true }: Props) {
                 >
                   تغییر ۱ روزه:
                 </Typography>
-                <Typography variant="body2" fontSize={12}>
-                  {item.dayChange}{" "}
+                <Typography
+                  variant="body2"
+                  fontSize={12}
+                  sx={{
+                    color: item.dayChange >= 0 ? "success.main" : "error.main",
+                  }}
+                >
+                  {item.dayChange}%
                 </Typography>
               </Stack>
               <Divider />
@@ -156,8 +162,14 @@ export default function LaptopTable({ items, isDetail = true }: Props) {
                 >
                   تغییر ۱ ماهه:
                 </Typography>
-                <Typography variant="body2" fontSize={12}>
-                  {item.monthChange}
+                <Typography
+                  variant="body2"
+                  fontSize={12}
+                  sx={{
+                    color: item.monthChange >= 0 ? "success.main" : "error.main",
+                  }}
+                >
+                  {item.monthChange}%
                 </Typography>
               </Stack>
               <Divider />

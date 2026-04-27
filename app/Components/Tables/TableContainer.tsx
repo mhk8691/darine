@@ -10,10 +10,10 @@ interface Props {
 }
 export default function TableContainer({ data }: Props) {
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+  const isDesktop = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <>
-      {isDesktop ? (
+      {!isDesktop ? (
         <GoldTable
           data={data}
           heads={[

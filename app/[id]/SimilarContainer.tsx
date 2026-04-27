@@ -1,16 +1,20 @@
 "use client";
-import { Grid, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
-import React from "react";
-import PriceTables from "./PriceTable";
-import MobileTable from "../Components/Tables/MobileTable";
-import { TableGoldDataType } from "../core/Types";
+import {
+  Grid,
+  Stack,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import LaptopTable from "../Components/Tables/LaptopTable";
+import { TableGoldDataType } from "../core/Types";
+import PriceTables from "./PriceTable";
 
 interface Props {
   data: TableGoldDataType[][];
 }
 
-export default function SimilarContainer({ data}: Props) {
+export default function SimilarContainer({ data }: Props) {
   const theme = useTheme();
   const isUpMd = useMediaQuery(theme.breakpoints.up("md"));
   return (

@@ -42,7 +42,7 @@ export default function PriceTables({ title, data }: Props) {
                   <Stack direction={"row"} gap={0.5}>
                     <Box component={"span"}>{item.dayChange} % </Box>
 
-                    {+item.dayChange > 0 ? (
+                    {item.dayChange > 0 ? (
                       <svg
                         width="16"
                         height="16"
@@ -113,8 +113,8 @@ export default function PriceTables({ title, data }: Props) {
                 }
                 sx={{
                   direction: "rtl",
-                  bgcolor: +item.dayChange < 0 ? "#691818" : "#1B4430",
-                  color: +item.dayChange < 0 ? "#CC5151" : "#43AB64",
+                  bgcolor: item.dayChange < 0 ? "#691818" : "#1B4430",
+                  color: item.dayChange < 0 ? "#CC5151" : "#43AB64",
                   width: "85px",
                 }}
               />

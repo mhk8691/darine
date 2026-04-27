@@ -18,7 +18,7 @@ export default function loading() {
           color={"#FCD535"}
           loading={true}
           cssOverride={override}
-          size={70}
+          size={50}
           aria-label="Loading Spinner"
           data-testid="loader"
         />

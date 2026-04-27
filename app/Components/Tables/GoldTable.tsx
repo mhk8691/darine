@@ -145,15 +145,25 @@ export default function GoldTable({ heads, data }: Props) {
               </TableCell>
               <TableCell
                 align="center"
-                sx={{ fontSize: "16px", py: 0.9, px: 2.5 }}
+                sx={{
+                  fontSize: "16px",
+                  py: 0.9,
+                  px: 2.5,
+                  color: row.dayChange >= 0 ? "success.main" : "error.main",
+                }}
               >
-                {row.dayChange}
+                {row.dayChange}%
               </TableCell>
               <TableCell
                 align="center"
-                sx={{ fontSize: "16px", py: 0.9, px: 2.5 }}
+                sx={{
+                  fontSize: "16px",
+                  py: 0.9,
+                  px: 2.5,
+                  color: row.monthChange >= 0 ? "success.main" : "error.main",
+                }}
               >
-                {row.monthChange}
+                {row.monthChange}%
               </TableCell>
               <TableCell
                 align="center"

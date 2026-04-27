@@ -20,8 +20,8 @@ export interface TableGoldDataType {
   currentRate: number;
   minPriceDay: number;
   maxPriceDay: number;
-  dayChange: string;
-  monthChange: string;
+  dayChange: number;
+  monthChange: number;
   weeklyChart: number;
 }
 
