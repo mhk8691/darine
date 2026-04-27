@@ -56,32 +56,35 @@ export default function Calculator() {
   const [wagePercent, setWagePercent] = useState(18);
   const [profitPercent, setProfitPercent] = useState(7);
 
-const calculated = useMemo(() => {
-  const gPrice = weight * goldRate;
+  const calculated = useMemo(() => {
+    const gPrice = weight * goldRate;
 
-  const w = gPrice * (wagePercent / 100);
+    const w = gPrice * (wagePercent / 100);
 
-  const p = (gPrice + w) * (profitPercent / 100);
+    const p = (gPrice + w) * (profitPercent / 100);
 
-  const t = (p + w) * 0.09;
+    const t = (p + w) * 0.09;
 
-  const profitOne = gPrice * 0.01;
+    const profitOne = gPrice * 0.01;
 
-  const total = gPrice + w + p + t;
+    const total = gPrice + w + p + t;
 
-  return {
-    goldPrice: Math.round(gPrice),
-    wage: Math.round(w),
-    profit: Math.round(p),
-    tax: Math.round(t),
-    profitOne: Math.round(profitOne),
-    total: Math.round(total),
-  };
-}, [goldRate, weight, wagePercent, profitPercent]);
+    return {
+      goldPrice: Math.round(gPrice),
+      wage: Math.round(w),
+      profit: Math.round(p),
+      tax: Math.round(t),
+      profitOne: Math.round(profitOne),
+      total: Math.round(total),
+    };
+  }, [goldRate, weight, wagePercent, profitPercent]);
   return (
     <>
       <Grid container size={12} spacing={3}>
-        <Grid size={6}>
+        <Grid size={{
+          xs:12,
+          sm:6
+        }}>
           <TextField
             label="نرخ طلا"
             value={goldRate}
@@ -90,7 +93,10 @@ const calculated = useMemo(() => {
           />
         </Grid>
 
-        <Grid size={6}>
+        <Grid size={{
+          xs:12,
+          sm:6
+        }}>
           <TextField
             label="وزن طلا"
             value={weight}
@@ -99,7 +105,10 @@ const calculated = useMemo(() => {
           />
         </Grid>
 
-        <Grid size={6}>
+        <Grid size={{
+          xs:12,
+          sm:6
+        }}>
           <TextField
             label="اجرت ساخت"
             value={wagePercent}
@@ -108,7 +117,10 @@ const calculated = useMemo(() => {
           />
         </Grid>
 
-        <Grid size={6}>
+        <Grid size={{
+          xs:12,
+          sm:6
+        }}>
           <TextField
             label="سود فروش"
             value={profitPercent}
@@ -117,11 +129,22 @@ const calculated = useMemo(() => {
           />
         </Grid>
       </Grid>
-      <Grid size={6} spacing={2} container  mt={2}>
+      <Grid
+        size={{
+          xs: 12,
+          sm: 6,
+        }}
+        spacing={2}
+        container
+        mt={2}
+      >
         <Stack py={2.5} width={"100%"} bgcolor={"#B29727"} borderRadius={4}>
           <Typography
             variant="body1"
-            fontSize={14}
+            fontSize={{
+              xs: 12,
+              sm: 14,
+            }}
             width={"100%"}
             textAlign={"center"}
           >
@@ -135,12 +158,12 @@ const calculated = useMemo(() => {
           borderRadius={4}
           direction={"column"}
           gap={2}
-          height={278}
+          height={300}
         >
           <Stack
-            direction={"row"}
+            direction={'row'}
             justifyContent={"space-between"}
-            alignItems={"center"}
+            alignItems={'center'}
           >
             <Stack direction={"column"} gap={0.5}>
               <Typography
@@ -153,7 +176,10 @@ const calculated = useMemo(() => {
               </Typography>
               <Typography
                 variant="body1"
-                fontSize={12}
+                fontSize={{
+                  xs: 10,
+                  sm: 12,
+                }}
                 sx={{ color: "#393936" }}
                 fontWeight={500}
               >
@@ -162,25 +188,41 @@ const calculated = useMemo(() => {
             </Stack>
             <Typography
               variant="body1"
-              fontSize={14}
+              fontSize={{
+                xs: 12,
+                sm: 14,
+              }}
               fontWeight={500}
-              sx={{ color: "#10100F" }}
+              sx={{
+                color: "#10100F",
+              }}
             >
               {calculated.goldPrice.toLocaleString()}
-              <Box component={"span"} color={"#292926"} ml={0.5} fontSize={12}>
+              <Box
+                component={"span"}
+                color={"#292926"}
+                ml={0.5}
+                fontSize={{
+                  xs: 10,
+                  sm: 12,
+                }}
+              >
                 تومان
               </Box>
             </Typography>
           </Stack>
           <Stack
-            direction={"row"}
+            direction={'row'}
             justifyContent={"space-between"}
-            alignItems={"center"}
+            alignItems={'center'}
           >
             <Stack direction={"column"} gap={0.5}>
               <Typography
                 variant="body1"
-                fontSize={14}
+                fontSize={{
+                  xs: 12,
+                  sm: 14,
+                }}
                 fontWeight={500}
                 sx={{ color: "#10100F" }}
               >
@@ -188,7 +230,10 @@ const calculated = useMemo(() => {
               </Typography>
               <Typography
                 variant="body1"
-                fontSize={12}
+                fontSize={{
+                  xs: 10,
+                  sm: 12,
+                }}
                 sx={{ color: "#393936" }}
                 fontWeight={500}
               >
@@ -197,25 +242,41 @@ const calculated = useMemo(() => {
             </Stack>
             <Typography
               variant="body1"
-              fontSize={14}
+              fontSize={{
+                xs: 12,
+                sm: 14,
+              }}
               fontWeight={500}
-              sx={{ color: "#10100F" }}
+              sx={{
+                color: "#10100F",
+              }}
             >
               {calculated.wage.toLocaleString()}
-              <Box component={"span"} color={"#292926"} ml={0.5} fontSize={12}>
+              <Box
+                component={"span"}
+                color={"#292926"}
+                ml={0.5}
+                fontSize={{
+                  xs: 10,
+                  sm: 12,
+                }}
+              >
                 تومان
               </Box>
             </Typography>
           </Stack>
           <Stack
-            direction={"row"}
+            direction={'row'}
             justifyContent={"space-between"}
-            alignItems={"center"}
+            alignItems={'center'}
           >
             <Stack direction={"column"} gap={0.5}>
               <Typography
                 variant="body1"
-                fontSize={14}
+                fontSize={{
+                  xs: 12,
+                  sm: 14,
+                }}
                 fontWeight={500}
                 sx={{ color: "#10100F" }}
               >
@@ -223,7 +284,10 @@ const calculated = useMemo(() => {
               </Typography>
               <Typography
                 variant="body1"
-                fontSize={12}
+                fontSize={{
+                  xs: 10,
+                  sm: 12,
+                }}
                 sx={{ color: "#393936" }}
                 fontWeight={500}
               >
@@ -232,25 +296,41 @@ const calculated = useMemo(() => {
             </Stack>
             <Typography
               variant="body1"
-              fontSize={14}
+              fontSize={{
+                xs: 12,
+                sm: 14,
+              }}
               fontWeight={500}
-              sx={{ color: "#10100F" }}
+              sx={{
+                color: "#10100F",
+              }}
             >
               {calculated.profit.toLocaleString()}
-              <Box component={"span"} color={"#292926"} ml={0.5} fontSize={12}>
+              <Box
+                component={"span"}
+                color={"#292926"}
+                ml={0.5}
+                fontSize={{
+                  xs: 10,
+                  sm: 12,
+                }}
+              >
                 تومان
               </Box>
             </Typography>
           </Stack>
           <Stack
-            direction={"row"}
+            direction={'row'}
             justifyContent={"space-between"}
-            alignItems={"center"}
+            alignItems={'center'}
           >
             <Stack direction={"column"} gap={0.5}>
               <Typography
                 variant="body1"
-                fontSize={14}
+                fontSize={{
+                  xs: 12,
+                  sm: 14,
+                }}
                 fontWeight={500}
                 sx={{ color: "#10100F" }}
               >
@@ -258,7 +338,10 @@ const calculated = useMemo(() => {
               </Typography>
               <Typography
                 variant="body1"
-                fontSize={12}
+                fontSize={{
+                  xs: 10,
+                  sm: 12,
+                }}
                 sx={{ color: "#393936" }}
                 fontWeight={500}
               >
@@ -267,12 +350,25 @@ const calculated = useMemo(() => {
             </Stack>
             <Typography
               variant="body1"
-              fontSize={14}
+              fontSize={{
+                xs: 12,
+                sm: 14,
+              }}
               fontWeight={500}
-              sx={{ color: "#10100F" }}
+              sx={{
+                color: "#10100F",
+              }}
             >
               {calculated.tax.toLocaleString()}
-              <Box component={"span"} color={"#292926"} ml={0.5} fontSize={12}>
+              <Box
+                component={"span"}
+                color={"#292926"}
+                ml={0.5}
+                fontSize={{
+                  xs: 10,
+                  sm: 12,
+                }}
+              >
                 تومان
               </Box>
             </Typography>
@@ -291,11 +387,22 @@ const calculated = useMemo(() => {
           </Typography>
         </Stack>
       </Grid>
-      <Grid size={6} spacing={2} container mt={2}>
+      <Grid
+        size={{
+          xs: 12,
+          sm: 6,
+        }}
+        spacing={2}
+        container
+        mt={2}
+      >
         <Stack py={2.5} width={"100%"} bgcolor={"#B29727"} borderRadius={4}>
           <Typography
             variant="body1"
-            fontSize={14}
+            fontSize={{
+              xs: 12,
+              sm: 14,
+            }}
             width={"100%"}
             textAlign={"center"}
           >
@@ -309,17 +416,20 @@ const calculated = useMemo(() => {
           borderRadius={4}
           direction={"column"}
           gap={2}
-          height={278}
+          height={300}
         >
           <Stack
-            direction={"row"}
+            direction={'row'}
             justifyContent={"space-between"}
-            alignItems={"center"}
+            alignItems={'center'}
           >
             <Stack direction={"column"} gap={0.5}>
               <Typography
                 variant="body1"
-                fontSize={14}
+                fontSize={{
+                  xs: 12,
+                  sm: 14,
+                }}
                 fontWeight={500}
                 sx={{ color: "#10100F" }}
               >
@@ -327,7 +437,10 @@ const calculated = useMemo(() => {
               </Typography>
               <Typography
                 variant="body1"
-                fontSize={12}
+                fontSize={{
+                  xs: 10,
+                  sm: 12,
+                }}
                 sx={{ color: "#393936" }}
                 fontWeight={500}
               >
@@ -336,25 +449,41 @@ const calculated = useMemo(() => {
             </Stack>
             <Typography
               variant="body1"
-              fontSize={14}
+              fontSize={{
+                xs: 12,
+                sm: 14,
+              }}
               fontWeight={500}
-              sx={{ color: "#10100F" }}
+              sx={{
+                color: "#10100F",
+              }}
             >
               {calculated.goldPrice.toLocaleString()}
-              <Box component={"span"} color={"#292926"} ml={0.5} fontSize={12}>
+              <Box
+                component={"span"}
+                color={"#292926"}
+                ml={0.5}
+                fontSize={{
+                  xs: 10,
+                  sm: 12,
+                }}
+              >
                 تومان
               </Box>
             </Typography>
           </Stack>
           <Stack
-            direction={"row"}
+            direction={'row'}
             justifyContent={"space-between"}
-            alignItems={"center"}
+            alignItems={'center'}
           >
             <Stack direction={"column"} gap={0.5}>
               <Typography
                 variant="body1"
-                fontSize={14}
+                fontSize={{
+                  xs: 12,
+                  sm: 14,
+                }}
                 fontWeight={500}
                 sx={{ color: "#10100F" }}
               >
@@ -362,7 +491,10 @@ const calculated = useMemo(() => {
               </Typography>
               <Typography
                 variant="body1"
-                fontSize={12}
+                fontSize={{
+                  xs: 10,
+                  sm: 12,
+                }}
                 sx={{ color: "#393936" }}
                 fontWeight={500}
               >
@@ -371,12 +503,25 @@ const calculated = useMemo(() => {
             </Stack>
             <Typography
               variant="body1"
-              fontSize={14}
+              fontSize={{
+                xs: 12,
+                sm: 14,
+              }}
               fontWeight={500}
-              sx={{ color: "#10100F" }}
+              sx={{
+                color: "#10100F",
+              }}
             >
               {calculated.profitOne.toLocaleString()}
-              <Box component={"span"} color={"#292926"} ml={0.5} fontSize={12}>
+              <Box
+                component={"span"}
+                color={"#292926"}
+                ml={0.5}
+                fontSize={{
+                  xs: 10,
+                  sm: 12,
+                }}
+              >
                 تومان
               </Box>
             </Typography>

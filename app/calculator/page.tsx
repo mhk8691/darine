@@ -11,6 +11,7 @@ import Link from "next/link";
 import { FaqItem } from "../core/Types";
 import Faq from "../Components/Faq/Faq";
 import { Metadata } from "next";
+import Image from "next/image";
 export const metadata: Metadata = {
   title: "محاسبه قیمت آنلاین | دارینه",
   description: "",
@@ -63,7 +64,7 @@ const faqData: FaqItem[] = [
 export default function page() {
   return (
     <>
-      <Container maxWidth={"lg"} sx={{ mt: 5 }}>
+      <Container maxWidth={"lg"} sx={{ mt: 5, px: "17px !important" }}>
         <Stack direction={"column"} gap={0.5} alignItems={"center"}>
           <Typography
             variant="h6"
@@ -75,7 +76,10 @@ export default function page() {
           </Typography>
           <Typography
             variant="h6"
-            fontSize={14}
+            fontSize={{
+              xs: 12,
+              sm: 14,
+            }}
             sx={{ color: "text.primary" }}
             fontWeight={700}
           >
@@ -98,7 +102,7 @@ export default function page() {
           <Stack direction={"column"} gap={2}>
             <Typography
               variant="h6"
-              fontSize={22}
+              fontSize={{ xs: 18, sm: 22 }}
               fontWeight={"700"}
               sx={{ color: "text.title" }}
             >
@@ -106,7 +110,10 @@ export default function page() {
             </Typography>
             <Typography
               variant="h6"
-              fontSize={16}
+              fontSize={{
+                xs: 14,
+                sm: 16,
+              }}
               whiteSpace={"pre-line"}
               lineHeight={"32px"}
             >
@@ -131,7 +138,7 @@ export default function page() {
           <Stack direction={"column"} gap={2}>
             <Typography
               variant="h6"
-              fontSize={22}
+              fontSize={{ xs: 18, sm: 22 }}
               fontWeight={"700"}
               sx={{ color: "text.title" }}
             >
@@ -139,7 +146,10 @@ export default function page() {
             </Typography>
             <Typography
               variant="h6"
-              fontSize={16}
+              fontSize={{
+                xs: 14,
+                sm: 16,
+              }}
               whiteSpace={"pre-line"}
               lineHeight={"32px"}
             >
@@ -159,7 +169,7 @@ export default function page() {
           <Stack direction={"column"} gap={2}>
             <Typography
               variant="h6"
-              fontSize={22}
+              fontSize={{ xs: 18, sm: 22 }}
               fontWeight={"700"}
               sx={{ color: "text.title" }}
             >
@@ -167,7 +177,10 @@ export default function page() {
             </Typography>
             <Typography
               variant="h6"
-              fontSize={16}
+              fontSize={{
+                xs: 14,
+                sm: 16,
+              }}
               whiteSpace={"pre-line"}
               lineHeight={"32px"}
             >
@@ -179,7 +192,7 @@ export default function page() {
           <Stack direction={"column"} gap={2}>
             <Typography
               variant="h6"
-              fontSize={22}
+              fontSize={{ xs: 18, sm: 22 }}
               fontWeight={"700"}
               sx={{ color: "text.title" }}
             >
@@ -187,7 +200,10 @@ export default function page() {
             </Typography>
             <Typography
               variant="h6"
-              fontSize={16}
+              fontSize={{
+                xs: 14,
+                sm: 16,
+              }}
               whiteSpace={"pre-line"}
               lineHeight={"32px"}
             >
@@ -214,10 +230,30 @@ export default function page() {
               هستند.
             </Typography>
           </Stack>
+          <Stack direction={"row"} justifyContent={"center"}>
+            <Stack
+              width={{
+                xs: "100%",
+                md: "80%",
+              }}
+              height={{
+                xs: "100%",
+                md: "80%",
+              }}
+            >
+              <Image
+                src={"/images/geram18.webp"}
+                alt=""
+                width={"1200"}
+                height={800}
+                style={{ width: "100%", height: "100%", borderRadius: 8 }}
+              />
+            </Stack>
+          </Stack>
           <Stack direction={"column"} gap={2}>
             <Typography
               variant="h6"
-              fontSize={22}
+              fontSize={{ xs: 18, sm: 22 }}
               fontWeight={"700"}
               sx={{ color: "text.title" }}
             >
@@ -225,7 +261,10 @@ export default function page() {
             </Typography>
             <Typography
               variant="h6"
-              fontSize={16}
+              fontSize={{
+                xs: 14,
+                sm: 16,
+              }}
               whiteSpace={"pre-line"}
               lineHeight={"32px"}
             >
@@ -246,7 +285,7 @@ export default function page() {
           <Stack direction={"column"} gap={2}>
             <Typography
               variant="h6"
-              fontSize={22}
+              fontSize={{ xs: 18, sm: 22 }}
               fontWeight={"700"}
               sx={{ color: "text.title" }}
             >
@@ -254,7 +293,10 @@ export default function page() {
             </Typography>
             <Typography
               variant="h6"
-              fontSize={16}
+              fontSize={{
+                xs: 14,
+                sm: 16,
+              }}
               whiteSpace={"pre-line"}
               lineHeight={"32px"}
             >
@@ -309,7 +351,7 @@ export default function page() {
           <Stack direction={"column"} gap={2}>
             <Typography
               variant="h6"
-              fontSize={22}
+              fontSize={{ xs: 18, sm: 22 }}
               fontWeight={"700"}
               sx={{ color: "text.title" }}
             >
@@ -317,7 +359,10 @@ export default function page() {
             </Typography>
             <Typography
               variant="h6"
-              fontSize={16}
+              fontSize={{
+                xs: 14,
+                sm: 16,
+              }}
               whiteSpace={"pre-line"}
               lineHeight={"32px"}
             >
@@ -332,7 +377,7 @@ export default function page() {
           <Stack direction={"column"} gap={2}>
             <Typography
               variant="h6"
-              fontSize={22}
+              fontSize={{ xs: 18, sm: 22 }}
               fontWeight={"700"}
               sx={{ color: "text.title" }}
             >
@@ -340,7 +385,10 @@ export default function page() {
             </Typography>
             <Typography
               variant="h6"
-              fontSize={16}
+              fontSize={{
+                xs: 14,
+                sm: 16,
+              }}
               whiteSpace={"pre-line"}
               lineHeight={"32px"}
             >
@@ -363,7 +411,7 @@ export default function page() {
           <Stack direction={"column"} gap={2}>
             <Typography
               variant="h6"
-              fontSize={22}
+              fontSize={{ xs: 18, sm: 22 }}
               fontWeight={"700"}
               sx={{ color: "text.title" }}
             >
@@ -371,7 +419,10 @@ export default function page() {
             </Typography>
             <Typography
               variant="h6"
-              fontSize={16}
+              fontSize={{
+                xs: 14,
+                sm: 16,
+              }}
               whiteSpace={"pre-line"}
               lineHeight={"32px"}
             >
@@ -384,7 +435,7 @@ export default function page() {
           <Stack direction={"column"} gap={2}>
             <Typography
               variant="h6"
-              fontSize={22}
+              fontSize={{ xs: 18, sm: 22 }}
               fontWeight={"700"}
               sx={{ color: "text.title" }}
             >
@@ -392,7 +443,10 @@ export default function page() {
             </Typography>
             <Typography
               variant="h6"
-              fontSize={16}
+              fontSize={{
+                xs: 14,
+                sm: 16,
+              }}
               whiteSpace={"pre-line"}
               lineHeight={"32px"}
             >
@@ -404,7 +458,7 @@ export default function page() {
           <Stack direction={"column"} gap={2}>
             <Typography
               variant="h6"
-              fontSize={22}
+              fontSize={{ xs: 18, sm: 22 }}
               fontWeight={"700"}
               sx={{ color: "text.title" }}
             >
@@ -412,7 +466,10 @@ export default function page() {
             </Typography>
             <Typography
               variant="h6"
-              fontSize={16}
+              fontSize={{
+                xs: 14,
+                sm: 16,
+              }}
               whiteSpace={"pre-line"}
               lineHeight={"32px"}
             >
@@ -427,7 +484,7 @@ export default function page() {
           <Faq faqData={faqData} titleStyle={{ mt: 3 }} />
         </Grid>
       </Container>
-      <Divider sx={{mt:11.5}} />
+      <Divider sx={{ mt: 11.5 }} />
     </>
   );
 }
