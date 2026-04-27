@@ -1,11 +1,15 @@
+"use client";
 import Container from "@/app/Components/Container/Container";
 import priceFormater from "@/app/core/PriceFormater";
-import { Box, Button, Stack } from "@mui/material";
+import { Box, Button, Stack, useMediaQuery, useTheme } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
-export default function Cart() {
+export default function DesktopCart() {
+  const theme = useTheme();
+  const isUpMd = useMediaQuery(theme.breakpoints.up("md"));
+  if (!isUpMd) return null;
   return (
-    <Container style={{ px: 0, borderColor: "#575753" }}>
+    <Container style={{ px: 0, borderColor: "#575753", width: "100%" }}>
       <Stack direction={"column"} gap={1} alignItems={"center"} px={1.5}>
         <Stack sx={{ mt: 0.3 }}>
           <svg
