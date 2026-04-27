@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "قیمت طلا امروز آنلاین و لحظه ای | دارینه",
   description: "",
 };
-const data: { title: string; order: number; data: TableGoldDataType[] }[] = [
+export const data: { title: string; order: number; data: TableGoldDataType[] }[] = [
   {
     title: "طلا",
     order: 1,
@@ -51,7 +51,7 @@ const data: { title: string; order: number; data: TableGoldDataType[] }[] = [
         currentRate: 4785,
         minPriceDay: 4714,
         maxPriceDay: 4787,
-        dayChange: " 1.506%",
+        dayChange: "1.506%",
         monthChange: "-9.342%",
         weeklyChart: 2,
       },

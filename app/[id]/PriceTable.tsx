@@ -1,13 +1,10 @@
 import { Box, Chip, Divider, Stack, Typography } from "@mui/material";
 import React from "react";
+import { TableGoldDataType } from "../core/Types";
+import priceFormater from "../core/PriceFormater";
 interface Props {
   title: string;
-  data: {
-    name: string;
-    price: number;
-    persentage: number;
-    unit: string;
-  }[];
+  data: TableGoldDataType[];
 }
 export default function PriceTables({ title, data }: Props) {
   return (
@@ -32,22 +29,20 @@ export default function PriceTables({ title, data }: Props) {
             alignItems={"center"}
             justifyContent={"space-between"}
           >
-            <Typography variant="body1" fontSize={16} >
-              {item.name}
+            <Typography variant="body1" fontSize={16}>
+              {item.typeGold}
             </Typography>
             <Stack direction={"row"} gap={1} alignItems={"center"}>
               <Typography variant="body1" fontSize={16}>
-                {item.price.toLocaleString()} <Box component={'span'} fontSize={12}>
-                  {item.unit}
-                </Box>
+                {priceFormater(item.currentRate)}
               </Typography>
               <Chip
                 variant="filled"
                 label={
                   <Stack direction={"row"} gap={0.5}>
-                    <Box component={"span"}>{item.persentage} % </Box>
+                    <Box component={"span"}>{item.dayChange} % </Box>
 
-                    {item.persentage > 0 ? (
+                    {+item.dayChange > 0 ? (
                       <svg
                         width="16"
                         height="16"
@@ -118,8 +113,8 @@ export default function PriceTables({ title, data }: Props) {
                 }
                 sx={{
                   direction: "rtl",
-                  bgcolor: item.persentage < 0 ? "#691818" : "#1B4430",
-                  color: item.persentage < 0 ? "#CC5151" : "#43AB64",
+                  bgcolor: +item.dayChange < 0 ? "#691818" : "#1B4430",
+                  color: +item.dayChange < 0 ? "#CC5151" : "#43AB64",
                   width: "85px",
                 }}
               />

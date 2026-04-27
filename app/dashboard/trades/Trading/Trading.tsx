@@ -47,6 +47,8 @@ export default function Trading() {
         px: {
           xs: 2,
           sm: 4,
+          md: 2,
+          lg: 4,
         },
       }}
     >

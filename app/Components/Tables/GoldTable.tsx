@@ -165,7 +165,7 @@ export default function GoldTable({ heads, data }: Props) {
                     width={row.typeGold ? "90%" : "70%"}
                     height="40px"
                     noGradiant
-                    data={[1, 2, 10]}
+                    data={[1, 2, 3]}
                     label={["فروردین", "اردیبهشت", "خرداد"]}
                     noLabel={true}
                   />

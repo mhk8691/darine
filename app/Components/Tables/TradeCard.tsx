@@ -15,11 +15,11 @@ export default function TradeCard({ isDetail }: Props) {
         py: 1.5,
         px: 2,
         border: 1,
-        borderColor: "primary.main",
+        borderColor: "primary.light",
         bgcolor: "#292926",
         width: {
           xs: "100%",
-          sm: "307px",
+          sm: isDetail ? "100%" : "307px",
           md: isDetail ? "100%" : "50%",
         },
         height: "100%",

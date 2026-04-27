@@ -6,8 +6,9 @@ import LineChart from "../LineChart/LineChart";
 
 interface Props {
   items: TableGoldDataType[];
+  isDetail?: boolean;
 }
-export default function LaptopTable({ items }: Props) {
+export default function LaptopTable({ items, isDetail = true }: Props) {
   return (
     <Grid container spacing={1}>
       {items.map((item) => (
@@ -28,20 +29,22 @@ export default function LaptopTable({ items }: Props) {
               bgcolor={"#292926"}
               px={1.5}
               py={1}
-              sx={{ borderTopLeftRadius: 8 ,borderTopRightRadius:8}}
+              sx={{ borderTopLeftRadius: 8, borderTopRightRadius: 8 }}
             >
               <Typography variant="body1" fontSize={12} fontWeight={"bold"}>
                 {item.typeGold}
               </Typography>
-              <Link href={"/"}>
-                <Typography
-                  variant="body2"
-                  fontSize={10}
-                  sx={{ color: "#0091F8" }}
-                >
-                  مشاهده جزءیات
-                </Typography>
-              </Link>
+              {isDetail && (
+                <Link href={"/"}>
+                  <Typography
+                    variant="body2"
+                    fontSize={10}
+                    sx={{ color: "#0091F8" }}
+                  >
+                    مشاهده جزئیات
+                  </Typography>
+                </Link>
+              )}
             </Stack>
           </>
           <Stack p={1.5} pt={0}>
