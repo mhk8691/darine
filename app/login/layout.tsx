@@ -7,45 +7,103 @@ interface Props {
 }
 export default function layout({ children }: Props) {
   return (
-    <Container maxWidth={"lg"} sx={{ mt: 3, mb: 5}}>
+    <Container maxWidth={"lg"} sx={{ mt: 3, mb: 5 }}>
       <Grid container>
         <Grid
-          size={6.5}
+          order={{
+            xs: 2,
+            md: 1,
+          }}
+          size={{
+            xs: 12,
+            md: 7,
+            lg: 6,
+          }}
           sx={{
-            boxShadow: "0 0 15px #1C1C1B",
+            boxShadow: {
+              md: "0 0 15px #1C1C1B",
+            },
             borderTopLeftRadius: 20,
             borderBottomLeftRadius: 20,
-            border: 1,
-            borderColor: "#1C1C1B",
-            p: 8,
+            border: {
+              xs: 0,
+              md: 1,
+            },
+            borderColor: {
+              md: "#1C1C1B",
+            },
+            p: {
+              xs: 0,
+              md: 8,
+            },
+            display: "flex",
+            justifyContent: "center",
+            width: "100%",
           }}
         >
-          <Stack mb={5}>
-            <Image
-              src={"/images/logoDark.svg"}
-              width={200}
-              height={100}
-              alt=""
-              style={{
-                height: "auto",
-                objectFit: "contain",
+          <Stack
+            maxWidth={{
+              xs: "468px",
+              md: "100%",
+            }}
+            width={{
+              xs: "468px",
+              md: "100%",
+            }}
+          >
+            <Stack
+              mb={5}
+              display={{
+                xs: "none",
+                md: "flex",
               }}
-            />
+            >
+              <Image
+                src={"/images/logoDark.svg"}
+                width={200}
+                height={100}
+                alt=""
+                style={{
+                  height: "auto",
+                  objectFit: "contain",
+                }}
+              />
+            </Stack>
+            {children}
           </Stack>
-          {children}
         </Grid>
         <Grid
-          size={5.5}
-          p={8}
+          order={{
+            xs: 1,
+            md: 2,
+          }}
+          size={{
+            xs: 12,
+            md: 5,
+            lg: 6,
+          }}
+          p={{
+            xs: 0,
+            md: 8,
+          }}
           sx={{
-            background: `linear-gradient(
+            background: {
+              xs: "bakcground.default",
+              md: `linear-gradient(
 120deg,
  #616055 0%,
   #B2A467 50%,
   #DAC670 100%
 )`,
-            borderTopRightRadius: 20,
-            borderBottomRightRadius: 20,
+            },
+            borderTopRightRadius: {
+              xs: 0,
+              md: 20,
+            },
+            borderBottomRightRadius: {
+              xs: 0,
+              md: 20,
+            },
           }}
         >
           <Stack
@@ -53,16 +111,38 @@ export default function layout({ children }: Props) {
             alignItems={"center"}
             justifyContent={"center"}
           >
-            <Image
-              src={"/images/login2.webp"}
-              width={365}
-              height={290}
-              alt=""
-              style={{
-                objectFit: "contain",
+            <Stack
+              width={{
+                xs: 220,
+                md: 365,
               }}
-            />
-            <Stack direction={"column"} alignItems={"center"} gap={2.5} mt={10}>
+              height={{
+                xs: 220,
+                md: 290,
+              }}
+            >
+              <Image
+                src={"/images/login2.webp"}
+                width={365}
+                height={290}
+                alt=""
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain",
+                }}
+              />
+            </Stack>
+            <Stack
+              direction={"column"}
+              alignItems={"center"}
+              gap={2.5}
+              mt={10}
+              display={{
+                xs: "none",
+                md: "flex",
+              }}
+            >
               <Typography
                 variant="h6"
                 fontSize={20}
