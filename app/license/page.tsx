@@ -133,11 +133,42 @@ export default function page() {
   return (
     <>
       <Container maxWidth={"lg"} sx={{ mt: 5 }}>
-        <Stack direction={"row"} alignItems={"flex-start"}>
-          <Stack direction={"column"} gap={2} width={"50%"} mt={5}>
+        <Stack
+          direction={{
+            xs: "column",
+            sm: "row",
+          }}
+          alignItems={{
+            xs: "center",
+            sm: "flex-start",
+          }}
+          gap={{
+            xs: 5,
+            sm: 0,
+          }}
+        >
+          <Stack
+            direction={"column"}
+            gap={2}
+            width={{
+              xs: "100%",
+              sm: "50%",
+            }}
+            alignItems={{
+              xs: "center",
+              sm: "flex-start",
+            }}
+            mt={{
+              xs: 0,
+              sm: 5,
+            }}
+          >
             <Typography
               variant="h6"
-              fontSize={46}
+              fontSize={{
+                xs: 20,
+                sm: 46,
+              }}
               fontWeight={600}
               sx={{ color: "text.title" }}
             >
@@ -145,9 +176,16 @@ export default function page() {
             </Typography>
             <Typography
               variant="h6"
-              fontSize={16}
+              fontSize={{
+                xs: 12,
+                sm: 16,
+              }}
               fontWeight={300}
               lineHeight={"25.6px"}
+              textAlign={{
+                xs: "center",
+                sm: "start",
+              }}
             >
               طلاسی، پلتفرم معتبر خرید و فروش آنلاین طلای آب‌شده، با برخورداری
               از تمامی مجوزهای قانونی، امنیت و اعتبار را برای کاربران خود به
@@ -156,7 +194,17 @@ export default function page() {
               تضمین‌شده، به خریداران تحویل داده می‌شود.
             </Typography>
           </Stack>
-          <Stack width={"50%"} direction={"row"} justifyContent={"flex-end"}>
+          <Stack
+            width={{
+              xs: "100%",
+              sm: "50%",
+            }}
+            direction={"row"}
+            justifyContent={{
+              xs: "center",
+              sm: "flex-end",
+            }}
+          >
             <Image
               src={"/images/header.svg"}
               alt=""
@@ -169,33 +217,79 @@ export default function page() {
             />
           </Stack>
         </Stack>
-        <Stack direction={"column"} gap={10}>
+        <Stack direction={"column"} gap={10} mt={{ xs: 5, sm: 0 }}>
           {license.map((item) => (
             <Stack key={item.title}>
-              <Typography variant="h6" fontSize={22}>
+              <Typography
+                variant="h6"
+                fontSize={{
+                  xs: 20,
+                  sm: 22,
+                }}
+                textAlign={{
+                  xs: "center",
+                  md: "start",
+                }}
+              >
                 {item.title}
               </Typography>
-              <Stack direction={"row"} gap={4} mt={3}>
+              <Stack
+                direction={{
+                  xs: "column",
+                  md: "row",
+                }}
+                alignItems={{
+                  xs: "center",
+                  md: "flex-start",
+                }}
+                gap={4}
+                mt={3}
+              >
                 <Image src={item.src} alt="" width={144} height={144} />
                 <Stack direction={"column"}>
                   <Typography
                     variant="h6"
-                    fontSize={16}
+                    fontSize={{
+                      xs: 12,
+                      sm: 16,
+                    }}
+                    textAlign={{
+                      xs: "center",
+                      sm: "start",
+                    }}
                     lineHeight={"25.6px"}
                     sx={{ color: "#C2C2BA", whiteSpace: "pre-line" }}
                   >
                     {item.description}
                   </Typography>
-                  <Stack direction={"row"} gap={7} mt={5}>
+                  <Stack
+                    direction={{
+                      xs: "column",
+                      sm: "row",
+                    }}
+                    alignItems={"center"}
+                    gap={{ xs: 3, sm: 7 }}
+                    mt={5}
+                  >
                     {item.action.map((action) => (
                       <Link key={action.title} href={action.link}>
                         <Button
                           variant="contained"
                           color="primary"
                           disableRipple
-                          sx={{ borderRadius: 2, py: 2,fontSize:16 ,width:256,px:1,'&:hover':{
-                            bgcolor:'primary.main'
-                          }}}
+                          sx={{
+                            borderRadius: 2,
+                            py: {
+                              xs: 1,
+                              sm: 2,
+                            },
+                            fontSize: 16,
+                            width: 256,
+                            px: 1,
+                            "&:hover": {
+                              bgcolor: "primary.main",
+                            },
+                          }}
                         >
                           {action.title}
                         </Button>
