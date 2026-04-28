@@ -1,10 +1,9 @@
 "use client";
-import { Box, Divider, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import Link from "next/link";
 import { useState } from "react";
 import ActionButton from "../ActionButton";
 import Field from "../Field";
-import LoginTab from "../LoginTab";
 
 export default function page() {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -13,14 +12,20 @@ export default function page() {
       <Typography
         variant="h6"
         fontWeight={"500"}
-        fontSize={22}
+        fontSize={{
+          xs: 16,
+          md: 22,
+        }}
         sx={{ color: "text.title" }}
       >
         فراموشی رمز عبور
       </Typography>
       <Typography
         variant="body2"
-        fontSize={16}
+        fontSize={{
+          xs: 12,
+          sm: 16,
+        }}
         sx={{ color: "#D9D9D3", mt: 3 }}
       >
         شماره موبایل خود را وارد کنید
@@ -33,8 +38,17 @@ export default function page() {
       />
       <Typography
         variant="body2"
-        sx={{ mt: 9, color: "#C2C2BA" }}
-        fontSize={12}
+        sx={{
+          mt: {
+            xs: 4.5,
+            md: 9,
+          },
+          color: "#C2C2BA",
+        }}
+        fontSize={{
+          xs: 10,
+          md: 12,
+        }}
         fontWeight={500}
       >
         ورود شما به منزله قبول‌{" "}
@@ -49,7 +63,6 @@ export default function page() {
         طلاسی می‌باشد.
       </Typography>
       <ActionButton title={"ادامه"} />
-  
     </Stack>
   );
 }
