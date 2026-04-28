@@ -8,7 +8,17 @@ export const metadata: Metadata = {
 export default function page() {
   return (
     <>
-      <Container maxWidth={"xl"} sx={{ mt: 5, px: "40px !important" }}>
+      <Container
+        maxWidth={"xl"}
+        sx={{
+          mt: 5,
+          px: {
+            xs: "16px !important",
+            md: "24px !important",
+            lg: "40px !important",
+          },
+        }}
+      >
         <Cart />
       </Container>
       <Divider sx={{ mt: 11.5 }} />

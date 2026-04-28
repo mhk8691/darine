@@ -1,8 +1,8 @@
 "use client";
-import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { IconButton, Stack, Typography } from "@mui/material";
+import { useState } from "react";
 
 export default function Counter() {
   const [count, setCount] = useState(1);
@@ -14,16 +14,16 @@ export default function Counter() {
       sx={{
         border: "1px solid #333333",
         borderRadius: 2,
-        width: "100px",
+        width: "120px",
       }}
     >
       <IconButton onClick={() => setCount((prev) => prev + 1)} disableRipple>
-        <AddIcon fontSize="small" />
+        <AddIcon fontSize="small" sx={{ color: "#ADADA9" }} />
       </IconButton>
       <Typography fontWeight={600}>{count}</Typography>
 
       <IconButton onClick={() => setCount((prev) => prev - 1)} disableRipple>
-        <DeleteIcon fontSize="small" />
+        <DeleteIcon fontSize="small" sx={{ color: "#ADADA9" }} />
       </IconButton>
     </Stack>
   );

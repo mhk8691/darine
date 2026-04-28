@@ -1,17 +1,27 @@
 "use client";
-import { useRouter } from "next/navigation";
-import DesktopCart from "./DesktopCart";
-import { Button, IconButton, Stack, Typography } from "@mui/material";
-import { useState } from "react";
-import Delivery from "./Delivery";
-import CustomModal from "../Components/CustomModal/CustomModal";
 import { Close } from "@mui/icons-material";
+import {
+  Button,
+  IconButton,
+  Stack,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import CustomModal from "../Components/CustomModal/CustomModal";
+import Delivery from "./Delivery";
+import DesktopCart from "./DesktopCart";
+import MobileCart from "./MobileCart";
 import OrderConfirmation from "./OrderConfirmation";
 
 export default function Cart() {
   const [step, setStep] = useState(0);
   const [open, setOpen] = useState(false);
   const router = useRouter();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const handleIncrease = () => {
     setStep((prev) => {
       if (prev === 1) {
@@ -33,20 +43,25 @@ export default function Cart() {
     <>
       {step === 0 && (
         <>
-          <Typography
-            variant="h6"
-            fontSize={30}
-            fontWeight={"500"}
-            sx={{ color: "text.title" }}
-          >
-            سبد خرید شما
-          </Typography>
-          <DesktopCart />
+          {!isMobile && (
+            <Typography
+              variant="h6"
+              fontSize={30}
+              fontWeight={"500"}
+              sx={{ color: "text.title" }}
+            >
+              سبد خرید شما
+            </Typography>
+          )}
+          {isMobile ? <MobileCart /> : <DesktopCart />}
         </>
       )}
       {step === 1 && <Delivery />}
       <Stack
-        width={step === 0 ? "50%" : "62%"}
+        width={{
+          xs: "100%",
+          md: step === 0 ? "50%" : "62%",
+        }}
         mt={3}
         direction={"row"}
         gap={2}
@@ -56,10 +71,16 @@ export default function Cart() {
           color="primary"
           disableRipple
           sx={{
-            fontSize: 20,
+            fontSize: {
+              xs: step === 0 ? 20 : 14,
+              md: 20,
+            },
             py: 1.3,
             borderRadius: 2,
-            width: "70%",
+            width: {
+              xs: step === 0 ? "70%" : "100%",
+              md: "70%",
+            },
             "&:hover": {
               bgcolor: "primary.main",
             },
@@ -79,6 +100,10 @@ export default function Cart() {
             width: "30%",
             "&:hover": {
               bgcolor: "background.default",
+            },
+            display: {
+              xs: step === 0 ? "block" : "none",
+              md: "block",
             },
           }}
           onClick={handleDecrease}

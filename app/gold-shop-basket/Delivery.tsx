@@ -13,17 +13,22 @@ export default function Delivery() {
   const [select, setSelect] = useState("delivery");
   return (
     <Grid container spacing={2}>
-      <Grid size={7.5}>
-        <Typography variant="body1" fontSize={22} sx={{ mb: 2 }}>
+      <Grid
+        size={{
+          xs: 12,
+          md: 7.5,
+        }}
+      >
+        {/* <Typography variant="body1" fontSize={22} sx={{ mb: 2 }}>
           نحوه تحویل
-        </Typography>
+        </Typography> */}
         <FilterToggleButton
           select={select}
           setSelect={setSelect}
           items={toggleItems}
           style={{ py: 1.5 }}
         />
-        <Typography
+        {/* <Typography
           variant="body1"
           fontSize={16}
           fontWeight={"bold"}
@@ -33,9 +38,27 @@ export default function Delivery() {
         </Typography>
         <Typography variant="body1" fontSize={16}>
           سفارش شما تا ۵ روز کاری به آدرس تعیین شده تحویل داده می‌شود.
-        </Typography>
+        </Typography> */}
       </Grid>
-      <Grid size={4.5}>
+      <Grid
+        size={{
+          xs: 12,
+          md: 4.5,
+        }}
+        border={{
+          xs: 1,
+          md: 1,
+        }}
+        borderColor={{
+          xs: "background.paper",
+          md: "background.default",
+        }}
+        p={{
+          xs: 2,
+          md: 0,
+        }}
+        borderRadius={2}
+      >
         <Stack direction={"row"} alignItems={"center"} gap={1}>
           <InfoOutlineRounded sx={{ color: "#EF8011" }} />
           <Typography variant="body1" fontSize={22} sx={{ color: "#EF8011" }}>
@@ -45,7 +68,10 @@ export default function Delivery() {
         <Stack>
           <Typography
             variant="body1"
-            fontSize={18}
+            fontSize={{
+              xs: 14,
+              md: 18,
+            }}
             sx={{ color: "#D9D9D3", fontWeight: "600", mt: "10px" }}
           >
             {select === "delivery"
@@ -54,14 +80,17 @@ export default function Delivery() {
           </Typography>
           <Typography
             variant="body1"
-            fontSize={16}
+            fontSize={{
+              xs: 12,
+              md: 16,
+            }}
             sx={{ color: "#D9D9D3", mt: 1 }}
           >
             {select === "delivery"
               ? "طلاسی طلای شما را از ۳۰ سوت، به هر نقطه از کشور که بخواهید ارسال می‌کند. تمامی مرسولات ارسالی بیمه می‌شوند؛ در صورت بروز هرگونه خسارت، جبران آن با طلاسی است."
               : "برای تحویل حضوری، لطفاً کارت شناسایی خود را همراه داشته باشید. مراجعه تنها در ساعت و آدرس تعیین‌شده امکان‌پذیر است."}
           </Typography>
-          {select === "delivery" && (
+          {/* {select === "delivery" && (
             <Typography
               variant="body1"
               fontSize={16}
@@ -69,7 +98,7 @@ export default function Delivery() {
             >
               سفارش شما تا ۵ روز کاری به آدرس تعیین شده تحویل داده می‌شود.
             </Typography>
-          )}
+          )} */}
         </Stack>
       </Grid>
     </Grid>

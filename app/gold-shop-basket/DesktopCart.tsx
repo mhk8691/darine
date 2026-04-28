@@ -17,7 +17,10 @@ import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 const dataStyle: SxProps = {
   py: 1.5,
-  fontSize: "16px",
+  fontSize: {
+    xs: 14,
+    md: "16px",
+  },
   color: "text.primary",
 };
 const headStyle: SxProps = {
@@ -58,26 +61,69 @@ const DesktopCart = () => {
           tableLayout: "fixed",
         }}
       >
-        {/* HEADER */}
         <TableHead>
           <TableRow>
-            <TableCell align="center" sx={{ width: "35%", ...headStyle }}>
+            <TableCell
+              align="center"
+              sx={{
+                width: {
+                  xs: "50%",
+                  md: "35%",
+                },
+                ...headStyle,
+              }}
+            >
               محصول
             </TableCell>
 
-            <TableCell align="center" sx={{ width: "15%", ...headStyle }}>
+            <TableCell
+              align="center"
+              sx={{
+                width: {
+                  xs: "10%",
+                  md: "15%",
+                },
+                ...headStyle,
+              }}
+            >
               مقدار طلا
             </TableCell>
 
-            <TableCell align="center" sx={{ width: "20%", ...headStyle }}>
+            <TableCell
+              align="center"
+              sx={{
+                width: {
+                  xs: "15%",
+                  md: "20%",
+                },
+                ...headStyle,
+              }}
+            >
               ارزش تومان
             </TableCell>
 
-            <TableCell align="center" sx={{ width: "15%", ...headStyle }}>
+            <TableCell
+              align="center"
+              sx={{
+                width: {
+                  xs: "15%",
+                },
+                ...headStyle,
+              }}
+            >
               تعداد
             </TableCell>
 
-            <TableCell align="center" sx={{ width: "20%", ...headStyle }}>
+            <TableCell
+              align="center"
+              sx={{
+                width: {
+                  xs: "20%",
+                  md: "15%",
+                },
+                ...headStyle,
+              }}
+            >
               مبلغ کل
             </TableCell>
           </TableRow>
@@ -108,13 +154,36 @@ const DesktopCart = () => {
             >
               <TableCell align="center" sx={{ ...dataStyle }}>
                 <Stack direction="row" alignItems="center" gap={1}>
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    width={112}
-                    height={112}
-                  />
-                  <Typography variant="body1">{item.title}</Typography>
+                  <Stack
+                    width={{
+                      xs: 80,
+                      md: 112,
+                    }}
+                    height={{
+                      xs: 80,
+                      md: 112,
+                    }}
+                  >
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      width={112}
+                      height={112}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    />
+                  </Stack>
+                  <Typography
+                    variant="body1"
+                    fontSize={{
+                      xs: 14,
+                      md: 16,
+                    }}
+                  >
+                    {item.title}
+                  </Typography>
                 </Stack>
               </TableCell>
 
@@ -134,16 +203,16 @@ const DesktopCart = () => {
                   sx={{
                     border: "1px solid #333333",
                     borderRadius: 2,
-                    mt: 3,
-                    width: "100%",
-                    py:1
+                    py: 1,
+                    minWidth: "75px",
+                    maxWidth: "150px",
                   }}
                 >
                   <IconButton
                     onClick={() => setCount((prev) => prev + 1)}
                     disableRipple
                   >
-                    <AddIcon />
+                    <AddIcon fontSize="small" />
                   </IconButton>
                   <Typography fontWeight={600}>{count}</Typography>
 
@@ -151,7 +220,7 @@ const DesktopCart = () => {
                     onClick={() => setCount((prev) => prev - 1)}
                     disableRipple
                   >
-                    <DeleteIcon />
+                    <DeleteIcon fontSize="small" />
                   </IconButton>
                 </Stack>
               </TableCell>
