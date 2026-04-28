@@ -40,7 +40,7 @@ export default function SendCode() {
           variant="body1"
           fontSize={{
             xs: 12,
-            md: 16,
+            sm: 16,
           }}
           sx={{ color: "#ADADA9" }}
         >
@@ -72,7 +72,7 @@ export default function SendCode() {
             variant="body2"
             fontSize={{
               xs: 10,
-              md: 14,
+              sm: 14,
             }}
           >
             اصلاح شماره موبایل
