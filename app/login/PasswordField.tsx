@@ -37,7 +37,7 @@ export default function PasswordField({ password, setPassword, label }: Props) {
           color: "#C2C2BA",
           fontSize: {
             xs: "14px",
-            md: "16px",
+            sm: "16px",
           },
         },
       }}
@@ -53,7 +53,7 @@ export default function PasswordField({ password, setPassword, label }: Props) {
         sx={{
           fontSize: {
             xs: 14,
-            md: 16,
+            sm: 16,
           },
           borderRadius: 2.5,
           "& .MuiOutlinedInput-notchedOutline": {
