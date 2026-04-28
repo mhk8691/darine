@@ -16,14 +16,20 @@ export default function page() {
       <Typography
         variant="h6"
         fontWeight={"500"}
-        fontSize={22}
+        fontSize={{
+          xs: 16,
+          md: 22,
+        }}
         sx={{ color: "text.title" }}
       >
         اطلاعات کاربری
       </Typography>
       <Typography
         variant="body2"
-        fontSize={16}
+        fontSize={{
+          xs: 12,
+          md: 16,
+        }}
         sx={{ color: "#D9D9D3", mt: 3 }}
       >
         اطلاعات زیر را با توجه به صاحب شماره 09961250980 وارد کنید
