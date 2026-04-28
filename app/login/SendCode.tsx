@@ -26,11 +26,24 @@ export default function SendCode() {
       direction={"row"}
       justifyContent={"space-between"}
       alignItems={"center"}
-      mt={6}
-      mb={4}
+      mt={{
+        xs: 3,
+        md: 6,
+      }}
+      mb={{
+        xs: 0,
+        md: 4,
+      }}
     >
       {time != 0 ? (
-        <Typography variant="body1" fontSize={16} sx={{ color: "#ADADA9" }}>
+        <Typography
+          variant="body1"
+          fontSize={{
+            xs: 12,
+            md: 16,
+          }}
+          sx={{ color: "#ADADA9" }}
+        >
           {formatTime(time)}
         </Typography>
       ) : (
@@ -43,7 +56,10 @@ export default function SendCode() {
             "&:hover": {
               bgcolor: "background.default",
             },
-            fontSize: 16,
+            fontSize: {
+              xs: 12,
+              md: 16,
+            },
           }}
         >
           ارسال مجدد کد
@@ -52,7 +68,13 @@ export default function SendCode() {
 
       <Link href={"/login/forget"}>
         <Stack direction={"row"} gap={1} alignItems={"center"}>
-          <Typography variant="body2" fontSize={14}>
+          <Typography
+            variant="body2"
+            fontSize={{
+              xs: 10,
+              md: 14,
+            }}
+          >
             اصلاح شماره موبایل
           </Typography>
           <svg
