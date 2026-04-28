@@ -10,9 +10,9 @@ import React, { Dispatch, SetStateAction, useState } from "react";
 interface Props {
   password: string;
   setPassword: Dispatch<SetStateAction<string>>;
-  label?:string
+  label?: string;
 }
-export default function PasswordField({ password, setPassword ,label}: Props) {
+export default function PasswordField({ password, setPassword, label }: Props) {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -28,7 +28,20 @@ export default function PasswordField({ password, setPassword ,label}: Props) {
     event.preventDefault();
   };
   return (
-    <FormControl variant="outlined" sx={{ mt: 2.5, width: "100%" }}>
+    <FormControl
+      variant="outlined"
+      sx={{
+        mt: 2.5,
+        width: "100%",
+        "& .MuiInputLabel-root": {
+          color: "#C2C2BA",
+          fontSize: {
+            xs: "14px",
+            md: "16px",
+          },
+        },
+      }}
+    >
       <InputLabel htmlFor="outlined-adornment-password">
         {label || "رمز ورود"}
       </InputLabel>
@@ -38,6 +51,10 @@ export default function PasswordField({ password, setPassword ,label}: Props) {
         id="outlined-adornment-password"
         type={showPassword ? "text" : "password"}
         sx={{
+          fontSize: {
+            xs: 14,
+            md: 16,
+          },
           borderRadius: 2.5,
           "& .MuiOutlinedInput-notchedOutline": {
             borderRadius: 2.5,

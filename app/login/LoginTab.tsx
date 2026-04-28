@@ -10,7 +10,10 @@ export default function LoginTab() {
       <Typography
         variant="h6"
         fontWeight={"500"}
-        fontSize={22}
+        fontSize={{
+          xs: 16,
+          md: 22,
+        }}
         sx={{ color: "text.title" }}
       >
         ورود
@@ -20,7 +23,10 @@ export default function LoginTab() {
           <Stack direction={"column"} alignItems={"center"}>
             <Typography
               variant="body2"
-              fontSize={14}
+              fontSize={{
+                xs:12,
+                md:14
+              }}
               sx={{
                 color:
                   pathname === "/login/login-password"
@@ -28,7 +34,7 @@ export default function LoginTab() {
                     : "#C2C2BA",
                 mb: 1.5,
               }}
-              fontWeight={pathname === "/login/login-password" ? 500 : 400}
+              fontWeight={pathname === "/login/login-password" ? 600: 500}
             >
               ورود با رمز عبور
             </Typography>
@@ -48,13 +54,16 @@ export default function LoginTab() {
           <Stack direction={"column"} alignItems={"center"}>
             <Typography
               variant="body2"
-              fontSize={14}
+              fontSize={{
+                xs:12,
+                md:14
+              }}
               sx={{
                 color:
                   pathname === "/login/login-otp" ? "text.primary" : "#C2C2BA",
                 mb: 1.5,
               }}
-              fontWeight={pathname === "/login/login-otp" ? 500 : 400}
+              fontWeight={pathname === "/login/login-otp" ? 600: 500}
             >
               ورود با رمز یکبار مصرف
             </Typography>

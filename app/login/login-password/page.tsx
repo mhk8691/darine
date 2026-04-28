@@ -16,7 +16,10 @@ export default function page() {
       <LoginTab />
       <Typography
         variant="body2"
-        fontSize={16}
+        fontSize={{
+          xs: 12,
+          md: 16,
+        }}
         sx={{ color: "#D9D9D3", mt: 2 }}
       >
         اطلاعات زیر را وارد کنید
@@ -34,7 +37,7 @@ export default function page() {
           variant="body2"
           sx={{ color: "#0091F8" }}
           fontSize={12}
-          fontWeight={500}
+          fontWeight={600}
         >
           فراموشی رمز عبور
         </Typography>
@@ -42,7 +45,10 @@ export default function page() {
       <Typography
         variant="body2"
         sx={{ mt: 6, color: "#C2C2BA" }}
-        fontSize={12}
+        fontSize={{
+          xs: 10,
+          md: 12,
+        }}
         fontWeight={500}
       >
         ورود شما به منزله قبول‌{" "}
@@ -67,13 +73,23 @@ export default function page() {
         <Divider sx={{ flexGrow: 1 }} />
         <Typography
           variant="body1"
-          fontSize={12}
+          fontSize={{
+            xs: 10,
+            md: 12,
+          }}
           sx={{ whiteSpace: "nowrap", direction: "row" }}
         >
           حساب کاربری ندارید؟
           <Box
             component={"span"}
-            sx={{ color: "#0091F8", fontSize: 14, ml: 1 }}
+            sx={{
+              color: "#0091F8",
+              fontSize: {
+                xs: 12,
+                md: 14,
+              },
+              ml: 1,
+            }}
           >
             <Link href={"/login/signup"}>ثبت نام</Link>
           </Box>

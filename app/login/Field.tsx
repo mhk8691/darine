@@ -20,6 +20,10 @@ export default function Field({ value, setValue, label, placeholder }: Props) {
         width: "100%",
         mt: 2.5,
         "& .MuiOutlinedInput-root": {
+          fontSize: {
+            xs: 14,
+            md: 16,
+          },
           borderRadius: placeholder ? 2 : 2.5,
           "&:hover .MuiOutlinedInput-notchedOutline": {
             borderColor: "#494949",
@@ -30,6 +34,10 @@ export default function Field({ value, setValue, label, placeholder }: Props) {
         },
         "& .MuiInputLabel-root": {
           color: "#C2C2BA",
+          fontSize: {
+            xs: "14px",
+            md: "16px",
+          },
         },
       }}
     />

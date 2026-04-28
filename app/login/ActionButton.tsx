@@ -10,7 +10,10 @@ export default function ActionButton({ title }: Props) {
       color="primary"
       sx={{
         py: 1.4,
-        fontSize: 20,
+        fontSize: {
+          xs: 16,
+          md: 20,
+        },
         borderRadius: 2,
         mt: 3.5,
         "&.Mui-disabled": {
