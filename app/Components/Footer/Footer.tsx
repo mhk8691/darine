@@ -1,24 +1,30 @@
+import InstagramIcon from "@mui/icons-material/Instagram";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import TelegramIcon from "@mui/icons-material/Telegram";
+import TwitterIcon from "@mui/icons-material/Twitter";
 import { Divider, Grid, Stack, SvgIcon, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import TelegramIcon from "@mui/icons-material/Telegram";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-const aboutLink = [
-  { title: "درباره‌ ما", link: "about-us" },
-  { title: "سوالات متداول", link: "faq" },
-  { title: "اپلیکیشن طلاسی", link: "application" },
-  { title: "قوانین و مقررات", link: "rules" },
+import DesktopCertificate from "./DesktopCertificate";
+import LaptopCertificate from "./LaptopCertificate";
+import LinkContainer from "./LinkContainer";
+
+export const installment = [
+  "/images/simple/snapppayLogo.webp",
+  "/images/simple/digipayLogo.webp",
+  "/images/simple/azkivamLogo.webp",
+  "/images/simple/nasiba.webp",
 ];
-const contentLink = [
-  { title: "عیار طلا", link: "/" },
-  { title: "مظنه طلا", link: "/" },
-  { title: "استعلام کد طلا", link: "/" },
-  { title: "استعلام انگ طلای آب شده", link: "/" },
-  { title: "هر گرم طلا چند سوت است؟", link: "/" },
-  { title: "نمودار قیمت طلا در 10 سال گذشته", link: "/" },
+export const certificate = [
+  "/images/simple/nezamSenfi.webp",
+  "/images/simple/enamadSmall.webp",
+  "/images/simple/ecunion.webp",
+  "/images/simple/estjt.webp",
+  "/images/simple/fintech.webp",
+  "/images/simple/khavarmianeQuality.webp",
+  "/images/simple/nikecert.webp",
+  "/images/simple/tuwWorld.webp",
 ];
 const links = [
   { title: "طلای ۱۸ عیار", link: "/" },
@@ -34,22 +40,6 @@ const links = [
   { title: "سکه گرمی", link: "/" },
   { title: "محاسبه قیمت طلا دست دوم", link: "/" },
 ];
-const installment = [
-  "/images/simple/snapppayLogo.webp",
-  "/images/simple/digipayLogo.webp",
-  "/images/simple/azkivamLogo.webp",
-  "/images/simple/nasiba.webp",
-];
-const certificate = [
-  "/images/simple/nezamSenfi.webp",
-  "/images/simple/enamadSmall.webp",
-  "/images/simple/ecunion.webp",
-  "/images/simple/estjt.webp",
-  "/images/simple/fintech.webp",
-  "/images/simple/khavarmianeQuality.webp",
-  "/images/simple/nikecert.webp",
-  "/images/simple/tuwWorld.webp",
-];
 
 export default function Footer() {
   return (
@@ -58,158 +48,80 @@ export default function Footer() {
         container
         sx={{
           bgcolor: "background.default",
-          p: 5,
+          py: 5,
+          px: {
+            xs: "16px !important",
+            md: "24px !important",
+            lg: "40px !important",
+          },
           bottom: 0,
         }}
       >
         <Grid size={2.5} mb={4}>
-          <Image
-            src={"/images/logoDark.svg"}
-            width={100}
-            height={100}
-            alt=""
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "contain",
+          <Stack
+            sx={{
+              minWidth: "176px",
+              minHeight: "32px",
+              maxWidth: "247px",
+              maxHeight: "46px",
             }}
-          />
+          >
+            <Image
+              src={"/images/logoDark.svg"}
+              width={247}
+              height={46}
+              alt=""
+              style={{
+                width:'100%',
+                height:'100%'
+              }}
+            />
+          </Stack>
         </Grid>
         <Grid size={12} container>
-          <Grid size={3.9}>
+          <Grid
+            size={{
+              xs: 12,
+              md: 6,
+              xl: 3,
+            }}
+            display={"flex"}
+            flexDirection={"column"}
+            gap={1}
+          >
             <Typography
               variant="h6"
-              fontSize={16}
+              fontSize={{
+                xs: 12,
+                md: 16,
+              }}
               sx={{ color: "text.secondary" }}
             >
               طلاسی، پلتفرم خرید و فروش آنلاین طلا خام و بدون اجرت، آسان‌ترین و
               امن‌ترین راه را برای حفظ ارزش سرمایه شما ارائه می‌کند.
             </Typography>
+            <Typography
+              variant="h6"
+              fontSize={{
+                xs: 12,
+                md: 16,
+              }}
+              sx={{ color: "text.secondary" }}
+            >
+              آدرس: تهران, میدان هروی, بازار طلای هروی سنتر, پلاک B44
+            </Typography>
           </Grid>
-          <Grid size={3.6}>
-            <Stack direction={"row"} gap={8}>
-              <Stack gap={2}>
-                <Typography
-                  variant="body1"
-                  fontSize={14}
-                  fontWeight={500}
-                  sx={{ color: "text.secondary" }}
-                >
-                  درباره طلاسی
-                </Typography>
-                <Stack direction={"column"} gap={1.5}>
-                  {aboutLink.map((item) => (
-                    <Link href={`/${item.link}`} key={item.title}>
-                      <Typography
-                        variant="body1"
-                        fontSize={14}
-                        fontWeight={400}
-                        key={item.link}
-                        sx={{ color: "text.secondary" }}
-                      >
-                        {item.title}
-                      </Typography>
-                    </Link>
-                  ))}
-                </Stack>
-              </Stack>
-              <Stack gap={2}>
-                <Typography
-                  variant="body1"
-                  fontSize={14}
-                  fontWeight={500}
-                  sx={{ color: "text.secondary" }}
-                >
-                  مطالب مفید
-                </Typography>
-                <Stack direction={"column"} gap={1.5}>
-                  {contentLink.map((item) => (
-                    <Link href={item.link} key={item.title}>
-                      <Typography
-                        variant="body1"
-                        fontSize={14}
-                        fontWeight={400}
-                        key={item.link}
-                        sx={{ color: "text.secondary" }}
-                      >
-                        {item.title}
-                      </Typography>
-                    </Link>
-                  ))}
-                </Stack>
-              </Stack>
-            </Stack>
-          </Grid>
-          <Grid size={4.5}>
-            <Stack direction={"column"} gap={2.5}>
-              <Stack direction={"column"} gap={0.7}>
-                <Typography variant="body1" fontSize={14}>
-                  خرید قسطی
-                </Typography>
-                <Stack direction={"row"} gap={1.5}>
-                  {installment.map((item, index) => (
-                    <Stack
-                      key={index}
-                      border={1}
-                      width={112}
-                      height={96}
-                      borderRadius={2.5}
-                      borderColor={"background.paper"}
-                      direction={"row"}
-                      alignItems={"center"}
-                      justifyContent={"center"}
-                    >
-                      <Image
-                        alt=""
-                        src={item}
-                        width={100}
-                        height={100}
-                        style={{
-                          objectFit: "contain",
-                          width: "70%",
-                          height: "55%",
-                        }}
-                      />
-                    </Stack>
-                  ))}
-                </Stack>
-              </Stack>
-              <Stack direction={"column"} gap={1}>
-                <Typography variant="body1" fontSize={14}>
-                  مجوز ها
-                </Typography>
-                <Stack direction={"row"} gap={1.5} flexWrap="wrap">
-                  {certificate.map((item, index) => (
-                    <Stack
-                      key={index}
-                      border={1}
-                      width="calc(25% - 12px)"
-                      height={96}
-                      borderRadius={2.5}
-                      borderColor={"background.paper"}
-                      direction={"row"}
-                      alignItems={"center"}
-                      justifyContent={"center"}
-                    >
-                      <Image
-                        alt=""
-                        src={item}
-                        width={100}
-                        height={100}
-                        style={{
-                          objectFit: "contain",
-                          width: "70%",
-                          height: "55%",
-                        }}
-                      />
-                    </Stack>
-                  ))}
-                </Stack>
-              </Stack>
-            </Stack>
-          </Grid>
+          <LinkContainer />
+          <DesktopCertificate />
         </Grid>
-        <Grid size={12} mt={7}>
+        <Grid
+          size={12}
+          mt={7}
+          display={{
+            xs: "none",
+            md: "flex",
+          }}
+        >
           <Stack direction={"column"} gap={4}>
             <Typography
               variant="body1"
@@ -242,19 +154,81 @@ export default function Footer() {
           </Stack>
         </Grid>
       </Grid>
-      <Grid container sx={{ mt: 3.5 }}>
-        <Grid size={12} bgcolor={"#393936"} p={4}>
-          <Stack direction={"row"} justifyContent={"space-between"}>
-            <Stack direction={"row"} alignItems={"center"} gap={3}>
-              <Stack direction={"row"} gap={0.5}>
-                <Typography variant="body2" color="text.primary" fontSize={12}>
-                  راه های ارتباطی:
-                </Typography>
-                <Typography variant="body2" color="text.primary" fontSize={12}>
-                  24 ساعته و در 7 روز هفته پاسخگوی شما هستیم.
-                </Typography>
-              </Stack>
-              <Stack direction={"row"} gap={1} alignItems={"center"}>
+      <Grid
+        container
+        sx={{
+          mt: {
+            xs: 0,
+            md: 3.5,
+          },
+        }}
+      >
+        <Grid
+          size={12}
+          bgcolor={{
+            xs: "background.default",
+            md: "#393936",
+          }}
+          py={{
+            xs: 0,
+            md: 4,
+          }}
+          px={{
+            xs: 2,
+            md: 4,
+          }}
+        >
+          <Stack
+            direction={{
+              xs: "column",
+              lg: "row",
+            }}
+            gap={{
+              xs: 4,
+              lg: 0,
+            }}
+            alignItems={"center"}
+            justifyContent={"space-between"}
+          >
+            <Stack
+              direction={{
+                xs: "column",
+                md: "row",
+              }}
+              alignItems={"center"}
+              gap={{
+                xs: 3,
+                md: 0.5,
+              }}
+            >
+              <Typography variant="body2" color="text.primary" fontSize={12}>
+                راه های ارتباطی:
+              </Typography>
+              <Typography variant="body2" color="text.primary" fontSize={12}>
+                24 ساعته و در 7 روز هفته پاسخگوی شما هستیم.
+              </Typography>
+            </Stack>
+            <Stack
+              direction={"row"}
+              justifyContent={"space-between"}
+              alignItems={"center"}
+              width={{
+                xs: "100%",
+                md: "auto",
+              }}
+              gap={{
+                xs: 0,
+                md: 3,
+              }}
+            >
+              <Stack
+                direction={"row"}
+                gap={{
+                  xs: 0.5,
+                  sm: 0.7,
+                }}
+                alignItems={"center"}
+              >
                 <SvgIcon>
                   <svg
                     width="22"
@@ -287,11 +261,26 @@ export default function Footer() {
                   </svg>
                 </SvgIcon>
 
-                <Typography variant="body2" color="text.primary" fontSize={12}>
+                <Typography
+                  variant="body2"
+                  color="text.primary"
+                  fontSize={{
+                    xs: 12,
+                    sm: 14,
+                  }}
+                  sx={{ whiteSpace: "nowrap" }}
+                >
                   پشتیبانی چت آنلاین
                 </Typography>
               </Stack>
-              <Stack direction={"row"} gap={0.7} alignItems={"center"}>
+              <Stack
+                direction={"row"}
+                gap={{
+                  xs: 0.5,
+                  sm: 0.7,
+                }}
+                alignItems={"center"}
+              >
                 <SvgIcon>
                   <svg
                     width="22"
@@ -308,11 +297,26 @@ export default function Footer() {
                     ></path>
                   </svg>
                 </SvgIcon>
-                <Typography variant="body2" color="text.primary">
+                <Typography
+                  variant="body2"
+                  color="text.primary"
+                  fontSize={{
+                    xs: 12,
+                    sm: 14,
+                  }}
+                  sx={{ whiteSpace: "nowrap" }}
+                >
                   02191345910
                 </Typography>
               </Stack>
-              <Stack direction={"row"} gap={0.7} alignItems={"center"}>
+              <Stack
+                direction={"row"}
+                gap={{
+                  xs: 0.5,
+                  sm: 0.7,
+                }}
+                alignItems={"center"}
+              >
                 <SvgIcon>
                   <svg
                     width="22"
@@ -339,7 +343,15 @@ export default function Footer() {
                     ></path>
                   </svg>
                 </SvgIcon>
-                <Typography variant="body2" color="text.primary">
+                <Typography
+                  variant="body2"
+                  color="text.primary"
+                  fontSize={{
+                    xs: 12,
+                    sm: 14,
+                  }}
+                  sx={{ whiteSpace: "nowrap" }}
+                >
                   support@talasea.ir
                 </Typography>
               </Stack>
@@ -409,6 +421,26 @@ export default function Footer() {
           </Stack>
         </Grid>
       </Grid>
+      <LaptopCertificate />
+      <Stack
+        p={2}
+        direction={"row"}
+        alignItems={"center"}
+        justifyContent={"center"}
+        mt={5}
+        display={{
+          md: "none",
+        }}
+        bgcolor={{
+          xs: "transparent",
+          sm: "background.paper",
+        }}
+      >
+        <Typography variant="body2" fontSize={10} sx={{ color: "#C2C2BA" }}>
+          Copyright © 2026 Talasea | شرکت توسعه راهکار الوند ارسباران | version:
+          3.0.3
+        </Typography>
+      </Stack>
     </Stack>
   );
 }

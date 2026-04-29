@@ -225,6 +225,7 @@ const Content = ({
                         variant="body1"
                         fontSize={14}
                         fontWeight={500}
+                        sx={{ whiteSpace: "nowrap" }}
                       >
                         {navigate.name}
                       </Typography>
