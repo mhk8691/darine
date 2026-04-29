@@ -1,5 +1,11 @@
 import { NotifItemsType } from "@/app/core/Types";
-import { Stack, Typography, Button } from "@mui/material";
+import {
+  Stack,
+  Typography,
+  Button,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 
 interface Props {
   items: NotifItemsType[];
@@ -7,10 +13,15 @@ interface Props {
 }
 
 export default function MessageCard({ items, isNotif }: Props) {
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
   return (
     <>
       <Stack
-        maxHeight={"300px"}
+        maxHeight={{
+          xs: "100%",
+          sm: 300,
+        }}
         overflow={"auto"}
         sx={{
           scrollbarWidth: "none",
@@ -51,29 +62,14 @@ export default function MessageCard({ items, isNotif }: Props) {
         ))}
       </Stack>
 
-      <Stack direction={"row"} gap={1}>
-        <Button
-          disableRipple
-          variant={isNotif ? "contained" : "outlined"}
-          color={isNotif ? "primary" : "inherit"}
-          sx={{
-            width: isNotif ? "50%" : "100%",
-            py: 1,
-            borderRadius: 2,
-            "&:hover": {
-              bgcolor: "background.default",
-            },
-          }}
-        >
-          همه ی پیام ها
-        </Button>
-        {isNotif && (
+      {isDesktop && (
+        <Stack direction={"row"} gap={1}>
           <Button
             disableRipple
-            variant="outlined"
-            color="inherit"
+            variant={isNotif ? "contained" : "outlined"}
+            color={isNotif ? "primary" : "inherit"}
             sx={{
-              width: "50%",
+              width: isNotif ? "50%" : "100%",
               py: 1,
               borderRadius: 2,
               "&:hover": {
@@ -81,10 +77,27 @@ export default function MessageCard({ items, isNotif }: Props) {
               },
             }}
           >
-            همه خوانده شود
+            همه ی پیام ها
           </Button>
-        )}
-      </Stack>
+          {isNotif && (
+            <Button
+              disableRipple
+              variant="outlined"
+              color="inherit"
+              sx={{
+                width: "50%",
+                py: 1,
+                borderRadius: 2,
+                "&:hover": {
+                  bgcolor: "background.default",
+                },
+              }}
+            >
+              همه خوانده شود
+            </Button>
+          )}
+        </Stack>
+      )}
     </>
   );
 }
