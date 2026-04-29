@@ -1,6 +1,6 @@
-import React, { ReactNode } from "react";
-import AppBar from "../Components/AppBar/AppBar";
 import { Container, Divider, Stack } from "@mui/material";
+import { ReactNode } from "react";
+import AppbarContainer from "../Components/AppBar/AppbarContainer";
 interface Props {
   children: ReactNode;
 }
@@ -28,7 +28,7 @@ export default function layout({ children }: Props) {
             sm: 4,
           }}
         >
-          <AppBar />
+          <AppbarContainer />
         </Stack>
         <Stack
           pb={{

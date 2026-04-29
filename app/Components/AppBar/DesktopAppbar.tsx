@@ -53,7 +53,7 @@ const AppbarItems: ItemsType[] = [
   },
 ];
 
-export default function AppBar() {
+export default function DesktopAppbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const theme = useTheme()
