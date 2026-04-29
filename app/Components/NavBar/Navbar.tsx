@@ -14,6 +14,8 @@ import SubMenu from "./SubMenu";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 import ModalNavigation from "../AppBar/ModalNavigation";
+import DrawerLink from "./DrawerLink";
+import { usePathname } from "next/navigation";
 
 const menu: MenuType[] = [
   {
@@ -72,6 +74,8 @@ export default function Navbar() {
   const theme = useTheme();
   const isDownLg = useMediaQuery(theme.breakpoints.down("lg"));
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const isDashboard = pathname.split("/")[1] === "dashboard";
   return (
     <>
       <Stack
@@ -81,10 +85,14 @@ export default function Navbar() {
         zIndex={"1000"}
         justifyContent="space-between"
         sx={{
-          py: 2,
+          py: {
+            xs: 1,
+            md: 2,
+          },
           px: {
-            xs: 2.5,
-            md: 5,
+            xs: isDashboard ? 2.5 : 0,
+            md: 3,
+            lg: 5,
           },
           bgcolor: "background.default",
           width: "100%",
@@ -108,9 +116,7 @@ export default function Navbar() {
               width={128}
               height={23}
               alt=""
-              style={{
-                objectFit: "contain",
-              }}
+             
             />
           </Stack>
           {!isDownLg && (
@@ -139,7 +145,11 @@ export default function Navbar() {
         </Stack>
         <ButtonGroupe />
       </Stack>
-      <ModalNavigation open={open} setOpen={setOpen} />
+      {pathname.split("/")[1] === "dashboard" ? (
+        <ModalNavigation open={open} setOpen={setOpen} />
+      ) : (
+        <DrawerLink open={open} setOpen={setOpen} />
+      )}
     </>
   );
 }
