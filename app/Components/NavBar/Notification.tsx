@@ -27,7 +27,6 @@ const notifList: NotifItemsType[] = [
       "محمدحسين کابلي عزیز، رمز عبور شما با موفقیت ثبت شد. در صورت مشاهده فعالیت غیرمجاز، لطفاً به پشتیبانی مراجعه کنید.",
     date: "1405/01/27 15:31:36",
   },
-  
 ];
 const children: ReactNode[] = [
   <MessageCard items={notifList} isNotif key={1} />,
@@ -41,7 +40,7 @@ export default function Notification() {
     setOpen((prev) => !prev);
   };
 
-  const handleClose = (event) => {
+  const handleClose = (event: MouseEvent | TouchEvent) => {
     if (wrapperRef.current?.contains(event.target)) return;
     setOpen(false);
   };
@@ -57,9 +56,12 @@ export default function Notification() {
         >
           <IconButton onClick={handleToggle} disableRipple>
             <NotificationsIcon
-              fontSize="large"
               sx={{
                 color: "primary.light",
+                fontSize: {
+                  xs: 25,
+                  sm: 30,
+                },
               }}
             />
           </IconButton>

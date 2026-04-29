@@ -1,5 +1,15 @@
 "use client";
-import { Badge, BadgeProps, Button, Divider, IconButton, Stack, styled } from "@mui/material";
+import {
+  Badge,
+  BadgeProps,
+  Button,
+  Divider,
+  IconButton,
+  Stack,
+  styled,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import Notification from "./Notification";
@@ -17,10 +27,18 @@ export default function ButtonGroupe() {
   const pathname = usePathname();
   const router = useRouter();
   const url = pathname.split("/")[1];
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   return (
     <Stack
-      direction={"row"}
-      gap={url === "dashboard" ? 1 : 0.5}
+      direction={{
+        xs: "row-reverse",
+        sm: "row",
+      }}
+      gap={{
+        xs: 0,
+        md: url === "dashboard" ? 1 : 0.5,
+      }}
       alignItems={"center"}
     >
       {url === "dashboard" && (
@@ -34,14 +52,19 @@ export default function ButtonGroupe() {
               px: 1,
               border: 1,
               borderRadius: "5px",
-              fontSize: 16,
+              fontSize: {
+                xs: 14,
+                md: 16,
+              },
               py: 1.2,
               "&:hover": {
                 background: "rgb(16, 16, 15)",
               },
+              whiteSpace: "nowrap",
             }}
+            size="small"
           >
-            ورود به نقره سی
+            {isMobile ? "نقره سی" : " ورود به نقره سی"}
           </Button>
         </>
       )}

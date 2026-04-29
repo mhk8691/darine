@@ -25,42 +25,44 @@ export default function SubMenu({ item }: Props) {
     >
       <Stack
         direction="row"
-        gap={0.5}
+        gap={{
+          md: 0,
+          xl: 0.5,
+        }}
         alignItems="center"
-        sx={{ cursor: "pointer" ,py:2}}
-        
+        sx={{ cursor: "pointer", py: 2 }}
       >
         <Typography>{item.title}</Typography>
         <KeyboardArrowDownIcon />
       </Stack>
 
-        <Paper
-          elevation={4}
-          sx={{
-            position: "absolute",
-            top: "100%",
-            left: 0,
-            minWidth: "200%",
-            overflow: "hidden",
-            background: "rgb(17, 17, 16)",
-            boxShadow: "0 0 5px #2E2C26",
-            opacity: open ? 1 : 0,
-            pointerEvents: open ? "auto" : "none",
-            transition: "all .25s cubic-bezier(0.4, 0, 0.2, 1)",
-            transformOrigin: "top center",
-            p: 2,
-          }}
-        >
-          <Stack direction={"column"} gap={2}>
-            {item.subMenu?.map((link,index) => (
-              <Link href={link.link || ""} key={index}>
-                <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                  {link.title}
-                </Typography>
-              </Link>
-            ))}
-          </Stack>
-        </Paper>
+      <Paper
+        elevation={4}
+        sx={{
+          position: "absolute",
+          top: "100%",
+          left: 0,
+          minWidth: "200%",
+          overflow: "hidden",
+          background: "rgb(17, 17, 16)",
+          boxShadow: "0 0 5px #2E2C26",
+          opacity: open ? 1 : 0,
+          pointerEvents: open ? "auto" : "none",
+          transition: "all .25s cubic-bezier(0.4, 0, 0.2, 1)",
+          transformOrigin: "top center",
+          p: 2,
+        }}
+      >
+        <Stack direction={"column"} gap={2}>
+          {item.subMenu?.map((link, index) => (
+            <Link href={link.link || ""} key={index}>
+              <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                {link.title}
+              </Typography>
+            </Link>
+          ))}
+        </Stack>
+      </Paper>
     </Stack>
   );
 }

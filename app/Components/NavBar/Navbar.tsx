@@ -1,9 +1,12 @@
+"use client";
 import { MenuType } from "@/app/core/Types";
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import ButtonGroupe from "./ButtonGroupe";
 import SubMenu from "./SubMenu";
+import MenuIcon from "@mui/icons-material/Menu";
+
 const menu: MenuType[] = [
   {
     id: 1,
@@ -58,6 +61,8 @@ const menu: MenuType[] = [
   { id: 5, title: "همکاران دارینه", link: "/partners" },
 ];
 export default function Navbar() {
+  const theme = useTheme();
+  const isDownLg = useMediaQuery(theme.breakpoints.down('lg'));
   return (
     <Stack
       direction="row"
@@ -67,44 +72,62 @@ export default function Navbar() {
       justifyContent="space-between"
       sx={{
         py: 2,
-        px: 5,
+        px: {
+          xs: 2.5,
+          md: 5,
+        },
         bgcolor: "background.default",
         width: "100%",
       }}
     >
-      <Stack direction={"row"} gap={3} width={"61%"}>
-        <Image
-          src={"/images/logoDark.svg"}
-          width={100}
-          height={100}
-          alt=""
-          style={{
-            width: "23%",
-            height: "auto",
-            objectFit: "contain",
-          }}
-        />
-        <Stack direction={"row"} gap={2.5} alignItems={"center"}>
-          {menu.map((item) =>
-            item.link ? (
-              <Link href={item.link} key={item.id}>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color: "text.secondary",
-                    "&:hover": {
-                      color: "primary.main",
-                    },
-                  }}
-                >
-                  {item.title}
-                </Typography>
-              </Link>
-            ) : (
-              <SubMenu key={item.id} item={item} />
-            ),
-          )}
+      <Stack
+        direction={"row"}
+        gap={3}
+       
+        alignItems={"center"}
+      >
+        <Stack direction={'row'} alignItems={'center'} gap={1}>
+          <MenuIcon fontSize="large" sx={{display:{
+            xs:'block',
+            sm:'none'
+          }}} />
+          <Image
+            src={"/images/logoDark.svg"}
+            width={128}
+            height={23}
+            alt=""
+            style={{
+              objectFit: "contain",
+            }}
+          />
         </Stack>
+        {!isDownLg && (
+          <Stack
+            direction={"row"}
+            gap={2.5}
+            alignItems={"center"}
+          >
+            {menu.map((item) =>
+              item.link ? (
+                <Link href={item.link} key={item.id}>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      color: "text.secondary",
+                      "&:hover": {
+                        color: "primary.main",
+                      },
+                    }}
+                  >
+                    {item.title}
+                  </Typography>
+                </Link>
+              ) : (
+                <SubMenu key={item.id} item={item} />
+              ),
+            )}
+          </Stack>
+        )}
       </Stack>
       <ButtonGroupe />
     </Stack>
