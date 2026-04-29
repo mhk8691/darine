@@ -1,13 +1,24 @@
-import { Close } from "@mui/icons-material";
-import { Divider, Grid, IconButton, Stack, Typography } from "@mui/material";
+import { ArrowForward, Close } from "@mui/icons-material";
+import {
+  Divider,
+  Drawer,
+  Grid,
+  IconButton,
+  Stack,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 import CustomModal from "../CustomModal/CustomModal";
+
 interface Props {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
 }
+
 interface ItemsType {
   title: string;
   navigation: {
@@ -16,12 +27,13 @@ interface ItemsType {
     link: string;
   }[];
 }
+
 const items: ItemsType[] = [
   {
     title: "سفارش",
     navigation: [
       {
-        name: "خرید  و فروش",
+        name: "خرید و فروش",
         image: "/trade-active-dark.svg",
         link: "/trades",
       },
@@ -113,80 +125,158 @@ const items: ItemsType[] = [
     ],
   },
 ];
-export default function ModalNavigation({ open, setOpen }: Props) {
+
+const Content = ({
+  setOpen,
+}: {
+  setOpen: Dispatch<SetStateAction<boolean>>;
+}) => {
   const router = useRouter();
+
   return (
     <>
-      <CustomModal
-        open={open}
-        setOpen={setOpen}
-        modalStyle={{
-          height: "65%",
-          overflow: "auto",
-          px: 5,
-          pb: 2,
+      <Stack
+        direction={"row"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+        mb={{
+          xs: 1,
+          sm: 0,
         }}
       >
-        <Stack
-          direction={"row"}
-          justifyContent={"space-between"}
-          alignItems={"center"}
+        <IconButton onClick={() => setOpen(false)} disableRipple>
+          <Close
+            sx={{
+              display: {
+                xs: "none",
+                sm: "block",
+              },
+            }}
+          />
+          <ArrowForward
+            sx={{
+              display: {
+                sm: "none",
+              },
+            }}
+          />
+        </IconButton>
+        <Typography
+          variant="body2"
+          fontSize={{
+            xs: 16,
+            sm: 18,
+          }}
         >
-          <Stack></Stack>
-          <Typography variant="body2" fontSize={18}>
-            منو
-          </Typography>
-          <IconButton onClick={() => setOpen(false)} disableRipple>
-            <Close />
-          </IconButton>
-        </Stack>
-        <Stack direction={"column"} gap={1.5}>
-          {items.map((item, index) => (
-            <>
-              <Stack key={item.title} direction={"column"} gap={1}>
-                <Typography variant="body1" fontSize={18}>
-                  {item.title}
-                </Typography>
-                <Grid container spacing={2}>
-                  {item.navigation.map((navigate) => (
-                    <Grid
-                      size={4}
-                      bgcolor={"background.paper"}
-                      borderRadius={2}
-                      key={navigate.name}
-                      py={1}
-                      px={1.5}
-                      component={"div"}
-                      onClick={() => {
-                        router.push(`/dashboard${navigate.link}`);
-                        setOpen(false);
-                      }}
-                      sx={{ cursor: "pointer" }}
-                    >
-                      <Stack direction={"column"} alignItems={"center"} gap={1}>
-                        <Image
-                          src={`/images/appbar${navigate.image}`}
-                          alt=""
-                          width={30}
-                          height={30}
-                        />
-                        <Typography
-                          variant="body1"
-                          fontSize={14}
-                          fontWeight={500}
-                        >
-                          {navigate.name}
-                        </Typography>
-                      </Stack>
-                    </Grid>
-                  ))}
-                </Grid>
-              </Stack>
-              {index !== items.length - 1 && <Divider />}
-            </>
-          ))}
-        </Stack>
-      </CustomModal>
+          منو
+        </Typography>
+        <Stack></Stack>
+      </Stack>
+
+      <Stack direction={"column"} gap={1.5}>
+        {items.map((item, index) => (
+          <Stack key={item.title}>
+            <Stack
+              direction={"column"}
+              gap={{
+                xs: 1.5,
+                sm: 1,
+              }}
+            >
+              <Typography
+                variant="body1"
+                fontSize={{
+                  xs: 16,
+                  sm: 18,
+                }}
+              >
+                {item.title}
+              </Typography>
+              <Grid
+                container
+                spacing={{
+                  xs: 1,
+                  sm: 2,
+                }}
+              >
+                {item.navigation.map((navigate) => (
+                  <Grid
+                    size={4}
+                    bgcolor={"background.paper"}
+                    borderRadius={2}
+                    key={navigate.name}
+                    py={1}
+                    px={1.5}
+                    component={"div"}
+                    onClick={() => {
+                      router.push(`/dashboard${navigate.link}`);
+                      setOpen(false);
+                    }}
+                    sx={{ cursor: "pointer" }}
+                  >
+                    <Stack direction={"column"} alignItems={"center"} gap={1}>
+                      <Image
+                        src={`/images/appbar${navigate.image}`}
+                        alt=""
+                        width={30}
+                        height={30}
+                      />
+                      <Typography
+                        variant="body1"
+                        fontSize={14}
+                        fontWeight={500}
+                      >
+                        {navigate.name}
+                      </Typography>
+                    </Stack>
+                  </Grid>
+                ))}
+              </Grid>
+            </Stack>
+            {index !== items.length - 1 && <Divider sx={{ mt: 1.5 }} />}
+          </Stack>
+        ))}
+      </Stack>
     </>
+  );
+};
+
+export default function ModalNavigation({ open, setOpen }: Props) {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  if (isMobile) {
+    return (
+      <Drawer
+        anchor="left"
+        open={open}
+        onClose={() => setOpen(false)}
+        transitionDuration={{ enter: 300, exit: 300 }}
+        PaperProps={{
+          sx: {
+            width: "100vw",
+            p: 2,
+            background: "rgb(16, 16, 15)",
+          },
+        }}
+      >
+        <Content setOpen={setOpen} />
+      </Drawer>
+    );
+  }
+
+  return (
+    <CustomModal
+      open={open}
+      setOpen={setOpen}
+      modalStyle={{
+        height: "65%",
+        overflow: "auto",
+        px: 5,
+        pb: 2,
+      }}
+    >
+      <Content setOpen={setOpen} />
+    </CustomModal>
   );
 }
