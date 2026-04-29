@@ -1,5 +1,5 @@
 "use client";
-import { Stack, SvgIcon, Typography } from "@mui/material";
+import { Stack, SvgIcon, Typography, useMediaQuery, useTheme } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -11,7 +11,7 @@ interface ItemsType {
   image: string;
   link?: string;
 }
- const AppbarItems: ItemsType[] = [
+const AppbarItems: ItemsType[] = [
   {
     name: "داشبورد",
     image: "/images/appbar/home-active-dark.svg",
@@ -56,85 +56,105 @@ interface ItemsType {
 export default function AppBar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const theme = useTheme()
+  const isDesktop = useMediaQuery(theme.breakpoints.up('sm'))
   return (
     <>
-      <Card
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          border: "none",
-          pb: 0,
-          bgcolor: "background.default",
-          borderRadius: 1,
-        }}
-      >
-        {AppbarItems.map((item, index) => (
-          <Stack
-            component={item.link ? Link : "div"}
-            href={item.link}
-            onClick={() => {
-              !item.link ? setOpen(true) : setOpen(false);
+      {isDesktop && (
+        <>
+          <Card
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              border: "none",
+              pb: 0,
+              bgcolor: "background.default",
+              borderRadius: 1,
             }}
-            key={index}
-            direction={"column"}
-            gap={0.5}
-            alignItems={"center"}
-            sx={{ cursor: "pointer" }}
           >
-            <Image
-              alt={item.name}
-              width={100}
-              height={100}
-              src={item.image}
-              style={{
-                width: "32px",
-                height: "32px",
-                objectFit: "contain",
-                scale: pathname === item.link ? 1.15 : 1,
-                transition: "all .3s ease",
-              }}
-            />
-            <Typography
-              variant="body1"
-              fontSize={16}
-              sx={{
-                color: pathname === item.link ? "text.primary" : "#C2C2BA",
-                scale: pathname === item.link ? 1.1 : 1,
-                transition: "all .3s ease",
-              }}
-            >
-              {item.name}
-            </Typography>
-            {item.link && (
-              <SvgIcon
-                sx={{
-                  mt: 0.5,
-                  width: "48px",
-                  height: 16,
-                  scale: pathname === item.link ? 1 : 0,
-                  opacity: pathname === item.link ? 1 : 0,
-                  transition: "all .3s ease",
+            {AppbarItems.map((item, index) => (
+              <Stack
+                component={item.link ? Link : "div"}
+                href={item.link}
+                onClick={() => {
+                  !item.link ? setOpen(true) : setOpen(false);
                 }}
-                color="primary"
+                key={index}
+                direction={"column"}
+                gap={1}
+                alignItems={"center"}
+                sx={{ cursor: "pointer" }}
               >
-                <svg
-                  width="48"
-                  height="16"
-                  viewBox="0 0 48 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
+                <Stack
+                  width={{
+                    xs: 28,
+                    md: 32,
+                  }}
+                  height={{
+                    xs: 28,
+                    md: 32,
+                  }}
                 >
-                  <path
-                    d="M48 16C44.3774 15.9998 13.5849 16.0001 0 16C14.4906 16 12.9323 0 24 0C36.2264 0 33.5094 15.9999 48 16Z"
-                    fill="currentColor"
-                  ></path>
-                </svg>
-              </SvgIcon>
-            )}
-          </Stack>
-        ))}
-      </Card>
-      <ModalNavigation open={open} setOpen={setOpen} />
+                  <Image
+                    alt={item.name}
+                    width={100}
+                    height={100}
+                    src={item.image}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                      scale: pathname === item.link ? 1.15 : 1,
+                      transition: "all .3s ease",
+                    }}
+                  />
+                </Stack>
+                <Typography
+                  variant="body1"
+                  fontSize={{
+                    xs: 12,
+                    md: 16,
+                  }}
+                  sx={{
+                    color: pathname === item.link ? "text.primary" : "#C2C2BA",
+                    scale: pathname === item.link ? 1.1 : 1,
+                    transition: "all .3s ease",
+                  }}
+                >
+                  {item.name}
+                </Typography>
+                {item.link && (
+                  <SvgIcon
+                    sx={{
+                      mt: 0.5,
+                      width: "48px",
+                      height: 16,
+                      scale: pathname === item.link ? 1 : 0,
+                      opacity: pathname === item.link ? 1 : 0,
+                      transition: "all .3s ease",
+                    }}
+                    color="primary"
+                  >
+                    <svg
+                      width="48"
+                      height="16"
+                      viewBox="0 0 48 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M48 16C44.3774 15.9998 13.5849 16.0001 0 16C14.4906 16 12.9323 0 24 0C36.2264 0 33.5094 15.9999 48 16Z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>
+                  </SvgIcon>
+                )}
+              </Stack>
+            ))}
+          </Card>
+          <ModalNavigation open={open} setOpen={setOpen} />
+        </>
+      )}
     </>
   );
 }

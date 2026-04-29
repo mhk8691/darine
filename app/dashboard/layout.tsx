@@ -22,17 +22,28 @@ export default function layout({ children }: Props) {
           position: "relative",
         }}
       >
-        <Stack py={4}>
+        <Stack
+          py={{
+            xs: 0,
+            sm: 4,
+          }}
+        >
           <AppBar />
         </Stack>
-        <Stack pb={8}>{children}</Stack>
+        <Stack
+          pb={{
+            xs: 3,
+            sm: 8,
+          }}
+        >
+          {children}
+        </Stack>
       </Container>
       <Divider
         sx={{
           display: {
             sm: "none",
           },
-          mt:5
         }}
       />
     </>

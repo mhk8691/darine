@@ -11,33 +11,33 @@ interface ItemsType {
    {
      name: "خرید و فروش",
      image: "/images/appbar/trade-active-dark.svg",
-     link: "/dashboard/trades",
+     link: "/trades",
    },
    {
      name: "واریز و برداشت",
      image: "/images/appbar/irtTransaction-active-dark.svg",
-     link: "/dashboard/irt-transaction",
+     link: "/irt-transaction",
    },
    {
      name: "سفارش با قیمت",
      image: "/images/appbar/limitOrder-active-dark.svg",
-     link: "/dashboard/limit-order",
+     link: "/limit-order",
    },
 
    {
      name: "ثبت کارت هدیه",
      image: "/images/appbar/giftCard-active-dark.svg",
-     link: "/dashboard/gift-card-submit",
+     link: "/gift-card-submit",
    },
    {
      name: "خرید اقساطی",
      image: "/images/appbar/credit-active-dark.svg",
-     link: "/dashboard/credit-menu",
+     link: "/credit-menu",
    },
    {
      name: "تحویل فیزیکی",
      image: "/images/appbar/shop-active-dark.svg",
-     link: "/dashboard/gold-receive",
+     link: "/gold-receive",
    },
  ];
 export default function MobileAppbar() {
@@ -61,7 +61,7 @@ export default function MobileAppbar() {
         >
           <Stack direction={"column"} alignItems={"center"} gap={1}>
             <Image src={item.image} alt="" width={30} height={30} />
-            <Typography variant="body1" fontSize={14} fontWeight={500}>
+            <Typography variant="body1" fontSize={12} fontWeight={500} sx={{whiteSpace:'nowrap'}}>
               {item.name}
             </Typography>
           </Stack>
