@@ -31,7 +31,6 @@ export interface NotifItemsType {
   date: string;
 }
 
-// types/cart.ts
 
 export interface Product {
   id: string;
@@ -42,3 +41,4 @@ export interface Product {
 export interface CartItem extends Product {
   quantity: number;
 }
+

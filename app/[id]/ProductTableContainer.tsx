@@ -16,8 +16,8 @@ export default function ProductTableContainer() {
               currentRate: 17596000,
               minPriceDay: 17580000,
               maxPriceDay: 17831000,
-              dayChange: "0.694-",
-              monthChange: "4.246",
+              dayChange: -0.694,
+              monthChange: 4.246,
               weeklyChart: 1,
             },
           ]}
@@ -39,8 +39,8 @@ export default function ProductTableContainer() {
               currentRate: 17596000,
               minPriceDay: 17580000,
               maxPriceDay: 17831000,
-              dayChange: "0.694-",
-              monthChange: "4.246",
+              dayChange: -0.694,
+              monthChange: 4.246,
               weeklyChart: 1,
             },
           ]}

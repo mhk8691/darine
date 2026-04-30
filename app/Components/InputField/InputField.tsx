@@ -7,16 +7,18 @@ import Divider from "@mui/material/Divider";
 import { ReactNode } from "react";
 import { SxProps } from "@mui/material";
 
-interface Props {
+type ValueType = string | number | null;
+
+interface Props<T extends ValueType> {
   placeholder: string;
   icon?: ReactNode;
   title?: string;
-  value: number | null | string;
-  setValue: React.Dispatch<React.SetStateAction<number | null | string>>;
+  value: T;
+  setValue: React.Dispatch<React.SetStateAction<T>>;
   style?: SxProps;
   multiline?: boolean;
 }
-export default function InputField({
+export default function InputField<T extends ValueType>({
   placeholder,
   title,
   icon,
@@ -24,22 +26,36 @@ export default function InputField({
   setValue,
   style,
   multiline = false,
-}: Props) {
-  const formatNumber = (num: number | null | string) => {
-    if (num === null) return "";
-    return num.toLocaleString();
+}: Props<T>) {
+  const formatNumber = (val: ValueType) => {
+    if (val === null || val === "") return "";
+
+    if (typeof val === "number") {
+      return val.toLocaleString();
+    }
+
+    const num = Number(val.replace(/,/g, ""));
+    return isNaN(num) ? val : num.toLocaleString();
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = e.target.value.replace(/,/g, "");
-    if (val === "") {
-      setValue(null);
-    } else {
-      const num = Number(val);
-      setValue(isNaN(num) ? 0 : num);
+    const raw = e.target.value.replace(/,/g, "");
+
+    if (raw === "") {
+      setValue(null as T); // ✅ وقتی خالی شد → null
+      return;
+    }
+
+    const num = Number(raw);
+
+    if (!isNaN(num)) {
+      if (typeof value === "number") {
+        setValue(num as T);
+      } else {
+        setValue(raw as T);
+      }
     }
   };
-
   return (
     <TextField
       placeholder={placeholder}
@@ -53,11 +69,11 @@ export default function InputField({
         "& .MuiInputBase-input": {
           py: 0,
           minHeight: "56px",
-          textAlign: value || value === 0 ? "right" : "left",
+          textAlign: value !== null && value !== "" ? "right" : "left",
           fontSize: "16px",
         },
         "& .MuiOutlinedInput-root": {
-          borderRadius:2,
+          borderRadius: 2,
           "& fieldset": {
             borderColor: "#494949",
             borderWidth: "1px",
