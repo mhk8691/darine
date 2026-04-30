@@ -20,18 +20,21 @@ export default function ChartContainer() {
             priceStyle={{
               mt: {
                 xs: 2,
-                md: 3.5,
+                md: 6,
+                lg: 3.5,
               },
               mb: {
                 xs: 0,
-                md: 1,
+                lg: 1,
               },
             }}
             cardStyle={{
               pt: {
                 xs: 2,
-                md: 4.5,
+                md: 6,
+                lg: 4.5,
               },
+              height: "100%",
             }}
             dividerStyle={{
               mt: {

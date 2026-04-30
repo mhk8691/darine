@@ -1,6 +1,6 @@
 import OrderDetail from "@/app/Components/OrderDetail/OrderDetail";
 import WalletStatus from "@/app/Components/Wallet/WalletStatus";
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { Metadata } from "next";
 import ChartContainer from "./ChartContainer";
 import PriceAlert from "./PriceAlert";
@@ -17,6 +17,7 @@ export default function page() {
         sm: 1,
         lg: 3,
       }}
+      display={"flex"}
     >
       <Grid size={12}>
         <WalletStatus />
@@ -26,10 +27,13 @@ export default function page() {
           xs: 12,
           md: 4.9,
         }}
+        height={"100%"}
       >
-        <PriceAlert />
+        <Box sx={{ height: "100%" }}>
+          <PriceAlert />
+        </Box>
       </Grid>
-      <ChartContainer />
+        <ChartContainer  />
       <Grid size={12}>
         <OrderDetail
           type="chip"

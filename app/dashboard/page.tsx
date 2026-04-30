@@ -36,7 +36,13 @@ export default function page() {
           positionPrice="both"
           chartHeight="176px"
           priceStyle={{ mt: 1.5 }}
-          cardStyle={{ pb: 1.5, pt: 2 }}
+          cardStyle={{
+            pb: {
+              xs: 1.5,
+              md: 0.7,
+            },
+            pt: 2,
+          }}
         />
       </Grid>
       <Grid size={12} container order={{ xs: 1, sm: 2 }}>

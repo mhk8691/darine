@@ -168,6 +168,7 @@ export default function PriceAlert() {
             mt: {
               xs: 3,
               sm: 6,
+              lg: 6,
             },
           }}
         >

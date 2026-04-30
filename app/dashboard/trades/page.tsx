@@ -46,13 +46,13 @@ export default function page() {
             priceStyle={{
               mt: {
                 xs: 2,
-                sm: 3,
+                sm: 2.5,
               },
             }}
             cardStyle={{
               py: {
                 xs: 2,
-                sm: 3,
+                sm: 2.7,
               },
             }}
           />
