@@ -96,6 +96,10 @@ export default function Navbar() {
           },
           bgcolor: "background.default",
           width: "100%",
+          boxShadow: {
+            xs: "0 0 5px #252524",
+            lg:'none'
+          },
         }}
       >
         <Stack direction={"row"} gap={3} alignItems={"center"}>
@@ -116,7 +120,6 @@ export default function Navbar() {
               width={128}
               height={23}
               alt=""
-             
             />
           </Stack>
           {!isDownLg && (

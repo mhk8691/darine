@@ -69,7 +69,7 @@ export default function RootLayout({
                   md: "5.5rem",
                 }}
                 bgcolor={{
-                  sm: "background.paper",
+                  sm: "transparent",
                 }}
               />
               <CustomBreadcrumbs />

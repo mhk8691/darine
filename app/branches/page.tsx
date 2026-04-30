@@ -16,7 +16,10 @@ export default function page() {
             md: "24px !important",
             lg: "40px !important",
           },
-          mt: 5,
+          mt: {
+            xs: 0,
+            sm: 3,
+          },
         }}
       >
         <Grid container spacing={2} display={"flex"} alignItems={"center"}>

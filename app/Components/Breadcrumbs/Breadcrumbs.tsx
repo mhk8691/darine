@@ -43,7 +43,7 @@ export default function CustomBreadcrumbs() {
         if (res.status === 404) {
           setIsNotFound(true);
         }
-      } catch (error:unknown) {
+      } catch (error: unknown) {
         setIsNotFound(true);
       }
     };
@@ -66,10 +66,18 @@ export default function CustomBreadcrumbs() {
         separator={<NavigateBeforeSharp fontSize="small" />}
         aria-label="breadcrumb"
         sx={{
-          px: 5,
+          px: {
+            xs: "16px !important",
+            md: "24px !important",
+            lg: "40px !important",
+          },
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
+          mt: {
+            xs: 0,
+            sm: 3,
+          },
         }}
       >
         <Link color="inherit" href="/">

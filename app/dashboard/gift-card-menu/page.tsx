@@ -1,6 +1,7 @@
 import { ActionButtonType } from "@/app/Components/ActionButton/ActionButton";
 import InfoContainer from "@/app/Components/InfoContainer/InfoContainer";
 import { Metadata } from "next";
+import BackLink from "../BackLink";
 export const metadata: Metadata = {
   title: "منو کارت هدیه | دارینه",
   description: "",
@@ -25,11 +26,14 @@ const items: ActionButtonType[] = [
 
 export default function page() {
   return (
-    <InfoContainer
-      title="کارت هدیه"
-      items={items}
-      image="/images/giftCardMenuDark.webp"
-      style={{ height: "237px" }}
-    />
+    <>
+      <BackLink title="کارت هدیه" />
+      <InfoContainer
+        title="کارت هدیه"
+        items={items}
+        image="/images/giftCardMenuDark.webp"
+        style={{ height: "237px" }}
+      />
+    </>
   );
 }

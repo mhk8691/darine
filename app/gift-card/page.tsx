@@ -47,7 +47,10 @@ export default function page() {
           md: "24px !important",
           lg: "40px !important",
         },
-        mt: 10,
+        mt: {
+          xs: 3,
+          sm: 7,
+        },
       }}
     >
       <Grid

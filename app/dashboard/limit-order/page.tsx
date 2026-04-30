@@ -4,6 +4,7 @@ import WalletStatus from "@/app/Components/Wallet/WalletStatus";
 import { Grid } from "@mui/material";
 import Trading from "./Trading";
 import { Metadata } from "next";
+import BackLink from "../BackLink";
 export const metadata: Metadata = {
   title: "سفارش با قیمت | دارینه",
   description: "",
@@ -18,6 +19,8 @@ export default function page() {
         lg: 3,
       }}
     >
+      <BackLink title="سفارش با قیمت" />
+
       <Grid size={12}>
         <WalletStatus />
       </Grid>

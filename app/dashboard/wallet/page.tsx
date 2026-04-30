@@ -10,6 +10,7 @@ import { ToggleItemsType } from "@/app/core/Types";
 import { Grid, Stack, Typography } from "@mui/material";
 import { Metadata } from "next";
 import Chart from "./Chart";
+import BackLink from "../BackLink";
 export const metadata: Metadata = {
   title: "کیف پول | دارینه",
   description: "",
@@ -51,11 +52,13 @@ export default function page() {
     <Grid
       container
       spacing={{
-        xs: 4,
+        xs: 2,
         sm: 1,
         lg: 3,
       }}
     >
+      <BackLink title="کیف پول شما" />
+
       <Grid size={{ xs: 12, md: 6 }}>
         <Wallet type="wallet" />
         <Grid
@@ -320,7 +323,6 @@ export default function page() {
             type="chip"
             title="لیست تراکنش‌‌های اخیر"
             toggleItems={items}
-         
           />
         </Stack>
       </Grid>

@@ -6,6 +6,7 @@ import { FaqItem } from "@/app/core/Types";
 import { Grid } from "@mui/material";
 import MarginTrade from "./MarginTrade";
 import { Metadata } from "next";
+import BackLink from "../BackLink";
 export const metadata: Metadata = {
   title: "فروش تعهدی | دارینه",
   description: "",
@@ -77,6 +78,8 @@ export default function page() {
         lg: 3,
       }}
     >
+      <BackLink title="سفارش تعهدی" />
+
       <Grid size={12}>
         <WalletStatus />
       </Grid>

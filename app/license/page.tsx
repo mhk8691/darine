@@ -132,7 +132,15 @@ const license: LicenseType[] = [
 export default function page() {
   return (
     <>
-      <Container maxWidth={"lg"} sx={{ mt: 5 }}>
+      <Container
+        maxWidth={"lg"}
+        sx={{
+          mt: {
+            xs: 0,
+            sm: 5,
+          },
+        }}
+      >
         <Stack
           direction={{
             xs: "column",

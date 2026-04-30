@@ -7,6 +7,7 @@ import { Button, Grid, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
+import BackLink from "../BackLink";
 export const metadata: Metadata = {
   title: "پس انداز خودکار | دارینه",
   description: "",
@@ -35,6 +36,7 @@ export default function page() {
         lg: 3,
       }}
     >
+      <BackLink title="پس انداز خودکار" />
       <Grid size={12}>
         <WalletStatus />
       </Grid>
@@ -45,8 +47,8 @@ export default function page() {
           lg: 4.8,
         }}
         order={{
-          xs:2,
-          md:1
+          xs: 2,
+          md: 1,
         }}
       >
         <Card
@@ -101,8 +103,8 @@ export default function page() {
           lg: 7.2,
         }}
         order={{
-          xs:1,
-          md:2
+          xs: 1,
+          md: 2,
         }}
       >
         <Card

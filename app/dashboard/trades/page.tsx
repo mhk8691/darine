@@ -5,6 +5,7 @@ import { ToggleItemsType } from "@/app/core/Types";
 import { Grid } from "@mui/material";
 import Trading from "./Trading/Trading";
 import { Metadata } from "next";
+import BackLink from "../BackLink";
 export const metadata: Metadata = {
   title: "خرید و فروش طلا | دارینه",
   description: "",
@@ -32,6 +33,8 @@ export default function page() {
         lg: 3,
       }}
     >
+      <BackLink title="خرید و فروش" />
+
       <Grid size={12}>
         <WalletStatus />
       </Grid>

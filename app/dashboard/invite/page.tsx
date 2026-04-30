@@ -3,6 +3,7 @@ import { Divider, Grid, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import RefralButton from "./RefralButton";
 import { Metadata } from "next";
+import BackLink from "../BackLink";
 export const metadata: Metadata = {
   title: "دعوت از دوستان | دارینه",
   description: "",
@@ -10,6 +11,8 @@ export const metadata: Metadata = {
 export default function page() {
   return (
     <Grid container spacing={3}>
+      <BackLink title="دعوت از دوستان" />
+
       <Grid
         size={12}
         container

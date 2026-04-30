@@ -1,6 +1,7 @@
 import { ActionButtonType } from "@/app/Components/ActionButton/ActionButton";
 import InfoContainer from "@/app/Components/InfoContainer/InfoContainer";
 import { Metadata } from "next";
+import BackLink from "../BackLink";
 export const metadata: Metadata = {
   title: "دریافت اعتبار | دارینه",
   description: "",
@@ -85,11 +86,14 @@ const items: ActionButtonType[] = [
 
 export default function page() {
   return (
-    <InfoContainer
-      cardStyle={{ pb: 8 }}
-      title="اعتبار خرید کالا"
-      items={items}
-      image="/images/loanMenuDark.webp"
-    />
+    <>
+      <BackLink title="اعتبار خرید کالا" />
+      <InfoContainer
+        cardStyle={{ pb: 8 }}
+        title="اعتبار خرید کالا"
+        items={items}
+        image="/images/loanMenuDark.webp"
+      />
+    </>
   );
 }

@@ -4,6 +4,7 @@ import { Box, Grid } from "@mui/material";
 import { Metadata } from "next";
 import ChartContainer from "./ChartContainer";
 import PriceAlert from "./PriceAlert";
+import BackLink from "../BackLink";
 export const metadata: Metadata = {
   title: "آلارم قیمت | دارینه",
   description: "",
@@ -19,10 +20,15 @@ export default function page() {
       }}
       display={"flex"}
     >
-      <Grid size={12} display={{
-        xs:'none',
-        sm:'flex'
-      }}>
+      <BackLink title="آلارم قیمت" />
+
+      <Grid
+        size={12}
+        display={{
+          xs: "none",
+          sm: "flex",
+        }}
+      >
         <WalletStatus />
       </Grid>
       <Grid
@@ -36,7 +42,7 @@ export default function page() {
           <PriceAlert />
         </Box>
       </Grid>
-        <ChartContainer  />
+      <ChartContainer />
       <Grid size={12}>
         <OrderDetail
           type="chip"

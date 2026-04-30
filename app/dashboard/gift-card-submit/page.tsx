@@ -4,6 +4,7 @@ import Form from "./Form";
 import { Metadata } from "next";
 import DesktopImage from "./DesktopImage";
 import OrderDetail from "@/app/Components/OrderDetail/OrderDetail";
+import BackLink from "../BackLink";
 export const metadata: Metadata = {
   title: "دریافت کارت هدیه | دارینه",
   description: "",
@@ -18,6 +19,8 @@ export default function page() {
         lg: 3,
       }}
     >
+      {" "}
+      <BackLink title="ثبت کد کارت هدیه" />
       <Grid
         size={12}
         bgcolor={"background.default"}
@@ -58,7 +61,13 @@ export default function page() {
               xs: 16,
               sm: 22,
             }}
-            sx={{ color: "text.title" }}
+            sx={{
+              color: "text.title",
+              display: {
+                xs: "none",
+                sm:'block'
+              },
+            }}
           >
             ثبت کد کارت هدیه
           </Typography>
@@ -126,7 +135,6 @@ export default function page() {
               />
             </Stack>
           </Stack>
-       
         </Grid>
       </Grid>
       <Grid size={12}>

@@ -84,7 +84,10 @@ export default function page() {
             md: "24px !important",
             lg: "40px !important",
           },
-          mt: 5,
+          mt: {
+            xs: 0,
+            sm: 5,
+          },
         }}
       >
         {/* <Stack direction={"row"} alignItems={"center"}>

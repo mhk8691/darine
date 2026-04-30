@@ -28,7 +28,15 @@ export default function Profile() {
     >
       <TitleProfile />
 
-      <Stack direction={"row"} gap={2} alignItems={"center"} mt={5}>
+      <Stack
+        direction={"row"}
+        gap={2}
+        alignItems={"center"}
+        mt={{
+          xs: 0,
+          sm: 5,
+        }}
+      >
         <svg
           width="80"
           height="80"

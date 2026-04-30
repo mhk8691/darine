@@ -4,6 +4,7 @@ import { Grid } from "@mui/material";
 import { Metadata } from "next";
 import GiftStepper from "./GiftStepper";
 import Title from "./Title";
+import BackLink from "../BackLink";
 export const metadata: Metadata = {
   title: "خرید کارت هدیه | دارینه",
   description: "",
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
 export default function page() {
   return (
     <Grid container spacing={3}>
+      <BackLink title='سفارش کارت هدیه' />
       <Grid size={12}>
         <Container
           style={{
