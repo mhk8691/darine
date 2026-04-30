@@ -76,83 +76,85 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const isDashboard = pathname.split("/")[1] === "dashboard";
-  return (
-    <>
-      <Stack
-        direction="row"
-        alignItems="center"
-        position="fixed"
-        zIndex={"1000"}
-        justifyContent="space-between"
-        sx={{
-          py: {
-            xs: 1,
-            md: 2,
-          },
-          px: {
-            xs: isDashboard ? 2.5 : 0,
-            md: 3,
-            lg: 5,
-          },
-          bgcolor: "background.default",
-          width: "100%",
-          boxShadow: {
-            xs: "0 0 5px #252524",
-            lg:'none'
-          },
-        }}
-      >
-        <Stack direction={"row"} gap={3} alignItems={"center"}>
-          <Stack direction={"row"} alignItems={"center"} gap={1}>
-            <IconButton onClick={() => setOpen(true)}>
-              <MenuIcon
-                fontSize="large"
-                sx={{
-                  display: {
-                    xs: "block",
-                    sm: "none",
-                  },
-                }}
+  const isLoginPage = pathname?.startsWith("/login");
+  if (isLoginPage) return null;
+    return (
+      <>
+        <Stack
+          direction="row"
+          alignItems="center"
+          position="fixed"
+          zIndex={"1000"}
+          justifyContent="space-between"
+          sx={{
+            py: {
+              xs: 1,
+              md: 2,
+            },
+            px: {
+              xs: isDashboard ? 2.5 : 0,
+              md: 3,
+              lg: 5,
+            },
+            bgcolor: "background.default",
+            width: "100%",
+            boxShadow: {
+              xs: "0 0 5px #252524",
+              lg: "none",
+            },
+          }}
+        >
+          <Stack direction={"row"} gap={3} alignItems={"center"}>
+            <Stack direction={"row"} alignItems={"center"} gap={1}>
+              <IconButton onClick={() => setOpen(true)}>
+                <MenuIcon
+                  fontSize="large"
+                  sx={{
+                    display: {
+                      xs: "block",
+                      sm: "none",
+                    },
+                  }}
+                />
+              </IconButton>
+              <Image
+                src={"/images/logoDark.svg"}
+                width={128}
+                height={23}
+                alt=""
               />
-            </IconButton>
-            <Image
-              src={"/images/logoDark.svg"}
-              width={128}
-              height={23}
-              alt=""
-            />
-          </Stack>
-          {!isDownLg && (
-            <Stack direction={"row"} gap={2.5} alignItems={"center"}>
-              {menu.map((item) =>
-                item.link ? (
-                  <Link href={item.link} key={item.id}>
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        color: "text.secondary",
-                        "&:hover": {
-                          color: "primary.main",
-                        },
-                      }}
-                    >
-                      {item.title}
-                    </Typography>
-                  </Link>
-                ) : (
-                  <SubMenu key={item.id} item={item} />
-                ),
-              )}
             </Stack>
-          )}
+            {!isDownLg && (
+              <Stack direction={"row"} gap={2.5} alignItems={"center"}>
+                {menu.map((item) =>
+                  item.link ? (
+                    <Link href={item.link} key={item.id}>
+                      <Typography
+                        variant="body1"
+                        sx={{
+                          color: "text.secondary",
+                          "&:hover": {
+                            color: "primary.main",
+                          },
+                        }}
+                      >
+                        {item.title}
+                      </Typography>
+                    </Link>
+                  ) : (
+                    <SubMenu key={item.id} item={item} />
+                  ),
+                )}
+              </Stack>
+            )}
+          </Stack>
+          <ButtonGroupe />
         </Stack>
-        <ButtonGroupe />
-      </Stack>
-      {pathname.split("/")[1] === "dashboard" ? (
-        <ModalNavigation open={open} setOpen={setOpen} />
-      ) : (
-        <DrawerLink open={open} setOpen={setOpen} />
-      )}
-    </>
-  );
+        {pathname.split("/")[1] === "dashboard" ? (
+          <ModalNavigation open={open} setOpen={setOpen} />
+        ) : (
+          <DrawerLink open={open} setOpen={setOpen} />
+        )}
+      </>
+    );
 }

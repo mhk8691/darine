@@ -1,3 +1,4 @@
+"use client";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TelegramIcon from "@mui/icons-material/Telegram";
@@ -9,6 +10,7 @@ import React from "react";
 import DesktopCertificate from "./DesktopCertificate";
 import LaptopCertificate from "./LaptopCertificate";
 import LinkContainer from "./LinkContainer";
+import { usePathname } from "next/navigation";
 
 export const installment = [
   "/images/simple/snapppayLogo.webp",
@@ -42,6 +44,9 @@ const links = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+  const isLoginPage = pathname?.startsWith("/login");
+  if (isLoginPage) return null;
   return (
     <Stack>
       <Grid
@@ -72,8 +77,8 @@ export default function Footer() {
               height={46}
               alt=""
               style={{
-                width:'100%',
-                height:'100%'
+                width: "100%",
+                height: "100%",
               }}
             />
           </Stack>

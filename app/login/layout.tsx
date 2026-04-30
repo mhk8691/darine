@@ -7,7 +7,7 @@ interface Props {
 }
 export default function layout({ children }: Props) {
   return (
-    <Container maxWidth={"lg"} sx={{ mt: 3, mb: 5 }}>
+    <Container maxWidth={"lg"} sx={{  my:2 }}>
       <Grid container>
         <Grid
           order={{
