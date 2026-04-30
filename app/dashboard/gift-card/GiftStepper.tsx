@@ -12,9 +12,9 @@ import StepLabel from "@mui/material/StepLabel";
 import Stepper from "@mui/material/Stepper";
 import { styled } from "@mui/material/styles";
 import * as React from "react";
-import AddressSetting from "./AddressSetting";
 import FinalApproval from "./FinalApproval";
 import WeightDetermination from "./WeightDetermination";
+import ChooseAddress from "@/app/Components/ChooseAddress/ChooseAddress";
 
 const CustomConnector = styled(StepConnector)(() => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -184,7 +184,6 @@ export default function GiftStepper() {
             px={{
               xs: 0,
               sm: activeStep === 2 ? 0 : 5,
-              
             }}
             py={{
               xs: 0,
@@ -209,7 +208,11 @@ export default function GiftStepper() {
               />
             )}
             {activeStep === 1 && (
-              <AddressSetting open={open} setOpen={setOpen} />
+              <ChooseAddress
+                open={open}
+                setOpen={setOpen}
+                description=" آدرس مورد نظر خود را اضافه کنید."
+              />
             )}
             {activeStep === 2 && <FinalApproval />}
 

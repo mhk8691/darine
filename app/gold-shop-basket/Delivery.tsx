@@ -3,6 +3,7 @@ import { Grid, Stack, Typography } from "@mui/material";
 import { useState } from "react";
 import FilterToggleButton from "../Components/FilterToggleButton/FilterToggleButton";
 import { ToggleItemsType } from "../core/Types";
+import ChooseAddress from "../Components/ChooseAddress/ChooseAddress";
 
 const toggleItems: ToggleItemsType[] = [
   { title: "تحویل درب منزل", value: "delivery", id: 1 },
@@ -11,8 +12,9 @@ const toggleItems: ToggleItemsType[] = [
 
 export default function Delivery() {
   const [select, setSelect] = useState("delivery");
+  const [open, setOpen] = useState(false);
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={3}>
       <Grid
         size={{
           xs: 12,
@@ -39,6 +41,12 @@ export default function Delivery() {
         <Typography variant="body1" fontSize={16}>
           سفارش شما تا ۵ روز کاری به آدرس تعیین شده تحویل داده می‌شود.
         </Typography> */}
+        <ChooseAddress
+          open={open}
+          setOpen={setOpen}
+          description="برای دریافت کالای انتخاب شده، ابتدا آدرس خود را اضافه کنید"
+          cardStyle={{mt:3}}
+        />
       </Grid>
       <Grid
         size={{

@@ -15,15 +15,21 @@ import {
   Stack,
   TextField,
   Typography,
+  Button,
 } from "@mui/material";
-import { ChangeEvent, useState } from "react";
-export default function AddressList() {
+import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+
+interface Props {
+  setOpenAddAddress: Dispatch<SetStateAction<boolean>>;
+}
+
+export default function AddressList({setOpenAddAddress}:Props) {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("address1");
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setActive((event.target as HTMLInputElement).value);
-    setOpen(false)
+    setOpen(false);
   };
   return (
     <>
@@ -204,6 +210,18 @@ export default function AddressList() {
             </Stack>
           </RadioGroup>
         </FormControl>
+        <Button
+          variant="contained"
+          color="primary"
+          fullWidth
+          sx={{ borderRadius: 2, mt: 2, py: 1.5 }}
+          onClick={()=>{
+            setOpenAddAddress(true)
+            setOpen(false)
+          }}
+        >
+          افزودن آدرس جدید
+        </Button>
       </CustomModal>
     </>
   );

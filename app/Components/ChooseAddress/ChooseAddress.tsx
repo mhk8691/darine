@@ -1,15 +1,21 @@
-"use client";
-import { Stack, Typography } from "@mui/material";
+import { Stack, SxProps, Typography } from "@mui/material";
 import Image from "next/image";
 import { Dispatch, SetStateAction } from "react";
-import AddAddress from "./AddAddress/AddAddress";
+import AddAddress from "./AddAddress";
 interface Props {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
+  description: string;
+  cardStyle?: SxProps;
 }
-export default function AddressSetting({ open, setOpen }: Props) {
+export default function ChooseAddress({
+  open,
+  setOpen,
+  description,
+  cardStyle,
+}: Props) {
   return (
-    <Stack direction={"column"} alignItems={"center"} gap={2}>
+    <Stack direction={"column"} alignItems={"center"} gap={2} sx={cardStyle}>
       <Stack
         component={"div"}
         onClick={() => setOpen(true)}
@@ -27,10 +33,10 @@ export default function AddressSetting({ open, setOpen }: Props) {
           }}
           sx={{ color: "#D9D9D3" }}
         >
-          آدرس مورد نظر خود را اضافه کنید.
+          {description}
         </Typography>
       </Stack>
-      {/* <AddressList /> */}
+      {/* <AddressList setOpenAddAddress={setOpen} /> */}
       <AddAddress open={open} setOpen={setOpen} />
     </Stack>
   );
