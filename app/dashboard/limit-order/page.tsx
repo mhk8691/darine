@@ -13,7 +13,7 @@ export default function page() {
     <Grid
       container
       spacing={{
-        xs: 4,
+        xs: 2,
         sm: 1,
         lg: 3,
       }}

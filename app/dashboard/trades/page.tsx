@@ -28,12 +28,11 @@ export default function page() {
     <Grid
       container
       spacing={{
-        xs: 4,
-        sm: 1,
+        xs: 2,
         lg: 3,
       }}
     >
-      <Grid size={{ xs: 0, md: 12 }}>
+      <Grid size={12}>
         <WalletStatus />
       </Grid>
       <Grid size={12} container direction={"row"}>

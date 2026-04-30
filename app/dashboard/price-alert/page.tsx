@@ -19,7 +19,10 @@ export default function page() {
       }}
       display={"flex"}
     >
-      <Grid size={12}>
+      <Grid size={12} display={{
+        xs:'none',
+        sm:'flex'
+      }}>
         <WalletStatus />
       </Grid>
       <Grid

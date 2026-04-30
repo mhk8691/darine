@@ -1,7 +1,8 @@
 import Container from "@/app/Components/Container/Container";
-import { Divider, Stack, Typography } from "@mui/material";
+import { Divider, Grid, Stack, Typography } from "@mui/material";
 import ChangePassword from "./ChangePassword";
 import TitleProfile from "./TitleProfile";
+import WalletStatus from "@/app/Components/Wallet/WalletStatus";
 
 export default function Profile() {
   return (
@@ -26,6 +27,7 @@ export default function Profile() {
       }}
     >
       <TitleProfile />
+
       <Stack direction={"row"} gap={2} alignItems={"center"} mt={5}>
         <svg
           width="80"
@@ -70,7 +72,17 @@ export default function Profile() {
           </Typography>
         </Stack>
       </Stack>
+
       <ChangePassword />
+      <Grid
+        size={12}
+        display={{
+          sm: "none",
+        }}
+        mt={2}
+      >
+        <WalletStatus />
+      </Grid>
       <Stack
         border={1}
         px={2}

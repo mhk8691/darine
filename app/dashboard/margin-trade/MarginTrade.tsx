@@ -30,39 +30,7 @@ export default function MarginTrade() {
           </Typography>
         )}
       </Stack>
-      {!isDesktop && (
-        <>
-          <Stack
-            direction={"column"}
-            alignItems={"center"}
-            justifyContent={"center"}
-            gap={0.5}
-          >
-            <Typography variant="body1" fontSize={14} sx={{ color: "#C2C2BA" }}>
-              موجودی طلا
-            </Typography>
-            <Stack direction={"row"} gap={0.5} alignItems={"center"}>
-              <Typography
-                variant="body1"
-                fontSize={18}
-                fontWeight={500}
-                sx={{ color: "text.title" }}
-              >
-                {visible ? "۰" : "***"}
-              </Typography>
-              <Typography
-                variant="body1"
-                fontSize={14}
-                fontWeight={500}
-                sx={{ color: "text.title" }}
-              >
-                گرم
-              </Typography>
-            </Stack>
-          </Stack>
-          <Divider sx={{ mt: 3 }} />
-        </>
-      )}
+  
       {isDesktop ? (
         <CustomTabs tabList={tabs}>{children}</CustomTabs>
       ) : (

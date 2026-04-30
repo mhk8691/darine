@@ -1,11 +1,12 @@
 "use client";
-import { Divider, Stack, useMediaQuery, useTheme } from "@mui/material";
+import { Stack, useMediaQuery, useTheme } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import Link from "next/link";
-import ToggleEyeButton from "./ToggleEyeButton";
 import { useState } from "react";
 import Container from "../Container/Container";
+import MobileWalletStatus from "./MobileWalletStatus";
+import ToggleEyeButton from "./ToggleEyeButton";
 interface Props {
   type: "dashboard" | "wallet";
 }
@@ -113,134 +114,7 @@ export default function Wallet({ type }: Props) {
               <ToggleEyeButton visible={visible} setVisible={setVisible} />
             </Stack>
           </Stack>
-          <Stack direction={"row"} justifyContent={"center"}>
-            <Stack
-              direction={"row"}
-              gap={2}
-              alignItems="center"
-              border={1}
-              borderColor={"background.paper"}
-              bgcolor={"background.default"}
-              borderRadius={2.5}
-              justifyContent={"center"}
-              py={2}
-              width={"95%"}
-            >
-              <Stack
-                direction={"column"}
-                justifyContent={"center"}
-                alignItems={"center"}
-                gap={0.5}
-                width={"100%"}
-              >
-                {isDesktop && (
-                  <Image
-                    alt=""
-                    src={"/images/simple/goldWallet.svg"}
-                    width={26}
-                    height={100}
-                    style={{ height: "auto" }}
-                  />
-                )}
-                <Typography
-                  variant="body1"
-                  fontSize={{
-                    xs: 10,
-                    sm: 12,
-                  }}
-                  sx={{ color: "#C2C2BA" }}
-                >
-                  موجودی طلا
-                </Typography>
-                <Stack
-                  direction={"row"}
-                  gap={0.5}
-                  alignItems={"center"}
-                  fontWeight={500}
-                >
-                  <Typography
-                    variant="body1"
-                    fontSize={{
-                      xs: 14,
-                      sm: 16,
-                    }}
-                    sx={{ color: "text.title" }}
-                  >
-                    {visible ? "۰" : "***"}
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    fontSize={{
-                      xs: 10,
-                      sm: 12,
-                    }}
-                    fontWeight={500}
-                    sx={{ color: "text.title" }}
-                  >
-                    گرم
-                  </Typography>
-                </Stack>
-              </Stack>
-
-              <Divider orientation="vertical" flexItem />
-
-              <Stack
-                direction={"column"}
-                justifyContent={"center"}
-                alignItems={"center"}
-                width={"100%"}
-                gap={0.5}
-              >
-                {isDesktop && (
-                  <Image
-                    alt=""
-                    src={"/images/simple/irtWallet.svg"}
-                    width={26}
-                    height={100}
-                    style={{ height: "auto" }}
-                  />
-                )}
-                <Typography
-                  variant="body1"
-                  fontSize={{
-                    xs: 10,
-                    sm: 12,
-                  }}
-                  sx={{ color: "#C2C2BA" }}
-                >
-                  موجودی تومان
-                </Typography>
-                <Stack
-                  direction={"row"}
-                  gap={0.5}
-                  alignItems={"center"}
-                  fontWeight={500}
-                >
-                  <Typography
-                    variant="body1"
-                    fontSize={{
-                      xs: 14,
-                      sm: 16,
-                    }}
-                    sx={{ color: "text.title" }}
-                  >
-                    {visible ? "۰" : "***"}
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    fontSize={{
-                      xs: 10,
-                      sm: 12,
-                    }}
-                    fontWeight={500}
-                    sx={{ color: "text.title" }}
-                  >
-                    تومان
-                  </Typography>
-                </Stack>
-              </Stack>
-            </Stack>
-          </Stack>
+          <MobileWalletStatus visible={visible} isDesktop={isDesktop} />
         </Stack>
         {type === "wallet" && (
           <Stack

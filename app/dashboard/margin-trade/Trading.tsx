@@ -98,10 +98,7 @@ export default function Trading() {
   return (
     <Card
       style={{
-        py: {
-          xs: 2,
-          sm: 0,
-        },
+        py:0,
         px: {
           xs: 2.5,
           sm: 0,

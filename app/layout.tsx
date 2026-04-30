@@ -64,7 +64,7 @@ export default function RootLayout({
             <main style={{ flexGrow: 1 }}>
               <Box
                 height={{
-                  xs: "4rem",
+                  xs: "5rem",
                   sm: "3rem",
                   md: "5.5rem",
                 }}
