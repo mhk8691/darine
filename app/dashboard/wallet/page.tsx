@@ -320,6 +320,7 @@ export default function page() {
             type="chip"
             title="لیست تراکنش‌‌های اخیر"
             toggleItems={items}
+         
           />
         </Stack>
       </Grid>

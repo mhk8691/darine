@@ -95,7 +95,16 @@ export default function OrderDetail({
             فیلترها:
           </Typography>
         </Stack>
-        <Stack direction={"row"} gap={2} width={"100%"}>
+        <Stack
+          direction={"row"}
+          gap={2}
+          width={"100%"}
+          sx={{
+            "& > *": {
+              flex: 1,
+            },
+          }}
+        >
           <SelectField
             label="وضعیت"
             itemsList={names}
@@ -225,7 +234,16 @@ export default function OrderDetail({
             فیلترها:
           </Typography>
         </Stack>
-        <Stack direction={"row"} gap={2} width={"100%"}>
+        <Stack
+          direction={"row"}
+          gap={2}
+          width={"100%"}
+          sx={{
+            "& > *": {
+              flex: 1,
+            },
+          }}
+        >
           <SelectField
             itemsList={names}
             label="وضعیت"
