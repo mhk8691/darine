@@ -170,9 +170,7 @@ export default function page() {
               <span style={{ display: "block", paddingTop: "57%" }}></span>
               <iframe
                 src="https://www.aparat.com/video/video/embed/videohash/vtk22d6/vt/frame"
-                allowFullScreen="true"
-                webkitallowfullscreen="true"
-                mozallowfullscreen="true"
+                allowFullScreen
               ></iframe>
             </Box>
           </Grid>

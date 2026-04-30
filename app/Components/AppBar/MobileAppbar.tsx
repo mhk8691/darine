@@ -59,7 +59,7 @@ const appbarItems = [
           d="M20.5076 16.1245L16.9609 19.6712"
           stroke="currentcolor"
           strokeWidth="1.75"
-          stroke-miterlimit="10"
+          strokeMiterlimit="10"
           strokeLinecap="round"
           strokeLinejoin="round"
         ></path>
@@ -67,7 +67,7 @@ const appbarItems = [
           d="M8.49219 16.1245H20.5089"
           stroke="currentcolor"
           strokeWidth="1.75"
-          stroke-miterlimit="10"
+          strokeMiterlimit="10"
           strokeLinecap="round"
           strokeLinejoin="round"
         ></path>
@@ -75,7 +75,7 @@ const appbarItems = [
           d="M8.49219 11.8782L12.0389 8.33154"
           stroke="currentcolor"
           strokeWidth="1.75"
-          stroke-miterlimit="10"
+          strokeMiterlimit="10"
           strokeLinecap="round"
           strokeLinejoin="round"
         ></path>
@@ -83,7 +83,7 @@ const appbarItems = [
           d="M20.5089 11.877H8.49219"
           stroke="currentcolor"
           strokeWidth="1.75"
-          stroke-miterlimit="10"
+          strokeMiterlimit="10"
           strokeLinecap="round"
           strokeLinejoin="round"
         ></path>

@@ -1,6 +1,5 @@
 "use client";
 import Container from "@/app/Components/Container/Container";
-import Card from "@/app/Components/Container/Container";
 import InputField from "@/app/Components/InputField/InputField";
 import {
   Button,
@@ -16,7 +15,7 @@ import {
 import React, { useState } from "react";
 
 export default function PriceAlert() {
-  const [value, setValue] = useState<number | null>(null);
+  const [value, setValue] = useState("");
   const [active, setActive] = React.useState("one-time");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,21 +68,21 @@ export default function PriceAlert() {
             sm: 0,
           },
           py: {
-            xs:2,
-            sm:0
+            xs: 2,
+            sm: 0,
           },
-          mt:{
-            xs:2,
-            sm:0
+          mt: {
+            xs: 2,
+            sm: 0,
           },
-           border: {
-          xs: 1,
-          sm: 0,
-        },
-        borderColor: {
-          xs: "background.paper",
-          sm: "background.default",
-        },
+          border: {
+            xs: 1,
+            sm: 0,
+          },
+          borderColor: {
+            xs: "background.paper",
+            sm: "background.default",
+          },
         }}
       >
         <Stack

@@ -78,8 +78,8 @@ const steps = ["تعیین وزن", "تعیین آدرس", "تایید نهای�
 export default function GiftStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set<number>());
-  const [weight, setWeight] = React.useState<number | null>(null);
-  const [price, setPrice] = React.useState<number | null>(null);
+  const [weight, setWeight] = React.useState('');
+  const [price, setPrice] = React.useState('');
   const [open, setOpen] = React.useState(false);
 
   const isStepSkipped = (step: number) => {

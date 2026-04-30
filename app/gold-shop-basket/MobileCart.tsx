@@ -1,6 +1,5 @@
 import { Stack, Typography } from "@mui/material";
 import Image from "next/image";
-import React from "react";
 import Counter from "../gold-shop/[productId]/Counter";
 const items = [
   {

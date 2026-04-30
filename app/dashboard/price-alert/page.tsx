@@ -26,7 +26,7 @@ export default function page() {
         size={12}
         display={{
           xs: "none",
-          sm: "flex",
+          sm: "block",
         }}
       >
         <WalletStatus />

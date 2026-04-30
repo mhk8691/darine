@@ -21,7 +21,9 @@ export default function Cart() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
+    noSsr: true,
+  });
   const handleIncrease = () => {
     setStep((prev) => {
       if (prev === 1) {

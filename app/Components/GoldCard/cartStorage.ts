@@ -1,5 +1,3 @@
-// utils/cartStorage.ts
-
 import { CartItem } from "@/app/core/Types";
 
 const CART_KEY = "cart";
@@ -11,5 +9,6 @@ export const getCart = (): CartItem[] => {
 };
 
 export const saveCart = (cart: CartItem[]) => {
+  if (typeof window === "undefined") return;
   localStorage.setItem(CART_KEY, JSON.stringify(cart));
 };

@@ -10,35 +10,40 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const items: ToggleItemsType[] = [
   { title: "خرید", value: "buy", id: 1 },
   { title: "فروش", value: "sell", id: 2 },
 ];
 export default function Trading() {
-  const [price, setPrice] = useState<number | null>(null);
-  const [gold, setGold] = useState<number | null>(null);
+  const [price, setPrice] = useState("");
+  const [gold, setGold] = useState("");
   const [select, setSelect] = useState(items[0].value);
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
 
-  useEffect(() => {
-    if (!price) {
-      setGold(null);
+  const handlePriceChange = (val: string) => {
+    setPrice(val);
+
+    const num = Number(val);
+    if (!isNaN(num)) {
+      setGold(String(num / 17999000));
     } else {
-      const result = price / 17999000;
-      setGold(result);
+      setGold("");
     }
-  }, [price, setPrice]);
-  useEffect(() => {
-    if (!gold) {
-      setPrice(null);
+  };
+
+  const handleGoldChange = (val: string) => {
+    setGold(val);
+
+    const num = Number(val);
+    if (!isNaN(num)) {
+      setPrice(String(num * 17999000));
     } else {
-      const result = gold * 17999000;
-      setPrice(result);
+      setPrice("");
     }
-  }, [gold, setGold]);
+  };
   return (
     <Card
       style={{
@@ -77,7 +82,7 @@ export default function Trading() {
             placeholder={"ملبغ به تومان"}
             title={"تومان"}
             value={price}
-            setValue={setPrice}
+            setValue={handlePriceChange}
           />
         </Stack>
         <Stack>
@@ -85,7 +90,7 @@ export default function Trading() {
             placeholder={"وزن طلا"}
             title={"گرم"}
             value={gold}
-            setValue={setGold}
+            setValue={handleGoldChange}
           />
         </Stack>
       </Stack>

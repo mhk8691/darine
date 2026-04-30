@@ -12,7 +12,7 @@ const items: ToggleItemsType[] = [
   { title: "واریز مستقیم", value: "directPayment", id: 2 },
 ];
 export default function Deposit() {
-  const [price, setPrice] = useState<number | null>(null);
+  const [price, setPrice] = useState('');
   const [select, setSelect] = useState(items[0].value);
 
   return (

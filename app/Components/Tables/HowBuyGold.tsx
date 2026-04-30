@@ -63,11 +63,9 @@ export default function HowBuyGold() {
         <span className="ratio"></span>
         <iframe
           src="https://www.aparat.com/video/video/embed/videohash/vrxuftp/vt/frame"
-          allowFullScreen="true"
-          webkitallowfullscreen="true"
-          mozallowfullscreen="true"
+          allowFullScreen
           title="آموزش خرید طلا از طلاسی"
-        ></iframe>
+        />
       </Box>
       <Stack width={"100%"} mt={2}>
         <Accordion

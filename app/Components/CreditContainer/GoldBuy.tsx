@@ -5,7 +5,7 @@ import InputField from "../InputField/InputField";
 import Container from "../Container/Container";
 
 export default function GoldBuy() {
-  const [value, setValue] = useState<null | number>(null);
+  const [value, setValue] = useState<string>('');
   return (
     <Container
       style={{

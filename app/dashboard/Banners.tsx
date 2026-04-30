@@ -5,30 +5,33 @@ import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 const bannerItems = ["b1.webp", "b2.webp", "b3.webp", "b4.webp", "b5.webp"];
+const styles = {
+  container: {
+    height: 226,
+    background: "#10100F",
+    fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+    fontSize: 14,
+    color: "#fff",
+    borderRadius: 8,
+  } satisfies React.CSSProperties,
+
+  swiper: {
+    width: "100%",
+    height: "100%",
+  } satisfies React.CSSProperties,
+
+  slide: {
+    textAlign: "center",
+    fontSize: 18,
+    background: "#444",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 8,
+  } satisfies React.CSSProperties,
+};
 export default function Banners() {
-  const styles = {
-    container: {
-      height: "226px",
-      background: "#10100F",
-      fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-      fontSize: "14px",
-      color: "#fff",
-      borderRadius: "8px",
-    },
-    swiper: {
-      width: "100%",
-      height: "100%",
-    },
-    slide: {
-      textAlign: "center",
-      fontSize: "18px",
-      background: "#444",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      borderRadius: "8px",
-    },
-  };
+ 
 
   return (
     <div style={styles.container}>
@@ -39,12 +42,12 @@ export default function Banners() {
               <Image
                 src={`/images/banners/${item}`}
                 alt=""
-                width={"500"}
+                width={500}
                 height={226}
                 style={{
                   width: "100%",
                   height: "100%",
-                  borderRadius: "8px",
+                  borderRadius: 8,
                 }}
               />
             </Stack>

@@ -1,148 +1,93 @@
 "use client";
+
 import Card from "@/app/Components/Container/Container";
 import FilterToggleButton from "@/app/Components/FilterToggleButton/FilterToggleButton";
 import InputField from "@/app/Components/InputField/InputField";
 import { ToggleItemsType } from "@/app/core/Types";
 import { Button, Stack, SvgIcon } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface Props {
   type: "buy" | "sell";
 }
+
 const items: ToggleItemsType[] = [
   { title: "در قیمت بالاتر", value: "max", id: 1 },
   { title: "در قیمت پایین تر", value: "min", id: 2 },
 ];
+
+const RATE = 17999000;
+
 export default function Trade({ type }: Props) {
-  const [price, setPrice] = useState<number | null>(null);
-  const [gold, setGold] = useState<number | null>(null);
-  const [TargetPrice, setTargetPrice] = useState<number | null>(null);
+  const [price, setPrice] = useState("");
+  const [targetPrice, setTargetPrice] = useState("");
   const [select, setSelect] = useState(
     type === "sell" ? items[0].value : items[1].value,
   );
-  useEffect(() => {
-    if (!price) {
-      setGold(null);
-    } else {
-      const result = price / 17999000;
-      setGold(result);
-    }
-  }, [price, setPrice]);
-  useEffect(() => {
-    if (!gold) {
-      setPrice(null);
-    } else {
-      const result = gold * 17999000;
-      setPrice(result);
-    }
-  }, [gold, setGold]);
+
+  // 👉 derived value (no state needed)
+  const gold = price ? String(Number(price) / RATE) : "";
+
   return (
     <Card
       style={{
         gap: 3.5,
         border: "none",
         py: 1,
-        px: {
-          xs: 0,
-          sm: 1,
-        },
+        px: { xs: 0, sm: 1 },
       }}
     >
-      <FilterToggleButton
-        items={items}
-        select={select}
-        setSelect={setSelect}
-        style={{
-          fontSize: {
-            xs: 12,
-            sm: 16,
-            lg: 20,
-          },
-          py: {
-            xs: 1,
-            sm: 1.5,
-            md: 1.2,
-          },
-        }}
-      />
+      <FilterToggleButton items={items} select={select} setSelect={setSelect} />
+
       <Stack gap={3.5}>
-        <Stack>
+        {/* Target Price */}
+        <InputField
+          placeholder={type === "buy" ? "قیمت مد نظر خرید" : "قیمت مد نظر فروش"}
+          title="تومان"
+          value={targetPrice}
+          setValue={setTargetPrice}
+        />
+
+        <Stack gap={1.5}>
+          {/* PRICE (source of truth) */}
           <InputField
-            placeholder={
-              type === "buy" ? "قیمت مد نظر خرید" : "قیمت مد نظر فروش"
-            }
-            title={"تومان"}
-            value={TargetPrice}
-            setValue={setTargetPrice}
+            placeholder="مبلغ به تومان"
+            title="تومان"
+            value={price}
+            setValue={setPrice}
           />
-        </Stack>
-        <Stack
-          gap={1.5}
-          flexDirection={type === "buy" ? "column" : "column-reverse"}
-        >
-          <Stack>
-            <InputField
-              placeholder={"ملبغ به تومان"}
-              title={"تومان"}
-              value={price}
-              setValue={setPrice}
-            />
-          </Stack>
-          <Stack direction={"row"} justifyContent={"center"}>
+
+          {/* ICON */}
+          <Stack direction="row" justifyContent="center">
             <SvgIcon
               sx={{
                 bgcolor: "#FEF2C0",
                 borderRadius: "50%",
                 color: "black",
-                width: "35px",
-                height: "35px",
+                width: 35,
+                height: 35,
                 p: 1,
               }}
             >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M6.96781 4.47998L4.48779 2L2.00781 4.47998"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                ></path>
-                <path
-                  d="M4.48438 14V2"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                ></path>
-                <path
-                  d="M9.03125 11.5195L11.5113 13.9995L13.9913 11.5195"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                ></path>
-                <path
-                  d="M11.5156 2V14"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                ></path>
+              <svg width="16" height="16" viewBox="0 0 16 16">
+                <path d="M6.9 4.4L4.4 2 2 4.4" stroke="currentColor" />
+                <path d="M4.4 14V2" stroke="currentColor" />
+                <path d="M9 11.5l2.5 2.5 2.5-2.5" stroke="currentColor" />
+                <path d="M11.5 2v12" stroke="currentColor" />
               </svg>
             </SvgIcon>
           </Stack>
-          <Stack>
-            <InputField
-              placeholder={"وزن طلا"}
-              title={"گرم"}
-              value={gold}
-              setValue={setGold}
-            />
-          </Stack>
+
+          {/* GOLD (derived, NOT editable) */}
+          <InputField
+            placeholder="وزن طلا"
+            title="گرم"
+            value={gold}
+            setValue={() => {}}
+          />
         </Stack>
       </Stack>
+
       <Button
         variant="contained"
         color="primary"

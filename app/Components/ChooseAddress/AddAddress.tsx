@@ -1,11 +1,15 @@
+"use client";
 import CustomModal from "@/app/Components/CustomModal/CustomModal";
 import { Close } from "@mui/icons-material";
 import { Button, IconButton, Stack, Typography } from "@mui/material";
 import { Dispatch, SetStateAction, useState } from "react";
 import ChooseCity from "./ChooseCity";
 import NewAddress from "./NewAddress";
-import Map from "./Map";
+import dynamic from "next/dynamic";
 
+const Map = dynamic(() => import("./Map"), {
+  ssr: false,
+});
 interface Props {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;

@@ -5,7 +5,7 @@ import { Stack, Button, useTheme, useMediaQuery } from "@mui/material";
 import { useState } from "react";
 
 export default function Form() {
-  const [value, setValue] = useState<number | null>(null);
+  const [value, setValue] = useState('');
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
   return (

@@ -12,11 +12,11 @@ import Container from "../Components/Container/Container";
 import InputField from "../Components/InputField/InputField";
 
 export default function Form() {
-  const [name, setName] = useState<string | null>(null);
-  const [phoneNumber, setPhoneNumber] = useState<string | null>(null);
-  const [lastName, setLastName] = useState<string | null>(null);
-  const [email, setEmail] = useState<number | null>(null);
-  const [description, setDescription] = useState<string | null>(null);
+  const [name, setName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [description, setDescription] = useState('');
   const theme = useTheme();
   const isUpMd = useMediaQuery(theme.breakpoints.up("md"));
   const inputList = [

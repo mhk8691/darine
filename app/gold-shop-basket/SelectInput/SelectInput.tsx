@@ -1,3 +1,4 @@
+"use client";
 import CustomModal from "@/app/Components/CustomModal/CustomModal";
 import { Close } from "@mui/icons-material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -94,18 +95,17 @@ export default function SelectInput({
     (opt) => opt.value === selectedValue,
   );
 
-  // استایل مشترک برای هر دو حالت
   const commonSx = {
     ...sx,
     "& .MuiOutlinedInput-root": {
       "& fieldset": {
-        borderColor: error ? "#d32f2f" : "#575753", 
+        borderColor: error ? "#d32f2f" : "#575753",
       },
       "&:hover fieldset": {
-        borderColor: error ? "#d32f2f" : "#575753", 
+        borderColor: error ? "#d32f2f" : "#575753",
       },
       "&.Mui-focused fieldset": {
-        borderColor: error ? "#d32f2f" : "#575753", 
+        borderColor: error ? "#d32f2f" : "#575753",
       },
     },
   };

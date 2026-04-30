@@ -1,24 +1,23 @@
 "use client";
-import React from "react";
+
+import React, { ReactNode } from "react";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
-import { ReactNode } from "react";
 import { SxProps } from "@mui/material";
 
-type ValueType = string | number | null;
-
-interface Props<T extends ValueType> {
+interface Props {
   placeholder: string;
   icon?: ReactNode;
   title?: string;
-  value: T;
-  setValue: React.Dispatch<React.SetStateAction<T>>;
+  value: string;
+  setValue: (value: string) => void;
   style?: SxProps;
   multiline?: boolean;
 }
-export default function InputField<T extends ValueType>({
+
+export default function InputField({
   placeholder,
   title,
   icon,
@@ -26,50 +25,35 @@ export default function InputField<T extends ValueType>({
   setValue,
   style,
   multiline = false,
-}: Props<T>) {
-  const formatNumber = (val: ValueType) => {
-    if (val === null || val === "") return "";
+}: Props) {
+const formatNumber = (val: string) => {
+  if (!val) return "";
 
-    if (typeof val === "number") {
-      return val.toLocaleString();
-    }
+  const safeVal = String(val);
 
-    const num = Number(val.replace(/,/g, ""));
-    return isNaN(num) ? val : num.toLocaleString();
-  };
+  const num = Number(safeVal.replace(/,/g, ""));
+  if (isNaN(num)) return safeVal;
 
+  return num.toLocaleString();
+};
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const raw = e.target.value.replace(/,/g, "");
-
-    if (raw === "") {
-      setValue(null as T); // ✅ وقتی خالی شد → null
-      return;
-    }
-
-    const num = Number(raw);
-
-    if (!isNaN(num)) {
-      if (typeof value === "number") {
-        setValue(num as T);
-      } else {
-        setValue(raw as T);
-      }
-    }
+    setValue(raw);
   };
+
   return (
     <TextField
       placeholder={placeholder}
       value={formatNumber(value)}
       onChange={handleChange}
-      id="outlined-start-adornment"
       multiline={multiline}
-      minRows={2}
+      minRows={multiline ? 2 : undefined}
       sx={{
         direction: "ltr",
         "& .MuiInputBase-input": {
           py: 0,
           minHeight: "56px",
-          textAlign: value !== null && value !== "" ? "right" : "left",
+          textAlign: value ? "right" : "left",
           fontSize: "16px",
         },
         "& .MuiOutlinedInput-root": {
@@ -86,44 +70,28 @@ export default function InputField<T extends ValueType>({
             borderColor: "#494949",
             borderWidth: "1px",
           },
-          "&.Mui-disabled fieldset": {
-            borderColor: "#494949",
-            borderWidth: "1px",
-          },
         },
         ...style,
       }}
       slotProps={{
         input: {
+          startAdornment: icon && (
+            <InputAdornment position="start">{icon}</InputAdornment>
+          ),
           endAdornment: title && (
             <InputAdornment position="end">
               <Divider
                 orientation="vertical"
                 flexItem
                 sx={{
-                  mr: {
-                    xs: title === "گرم" ? 2.5 : 1,
-                    sm: title === "گرم" ? 3 : 1,
-                  },
+                  mr: 1,
                   borderColor: "#393936",
-                  border: "1px solid #393936",
                 }}
               />
-              <Typography
-                variant="h6"
-                sx={{
-                  fontSize: {
-                    xs: 14,
-                    sm: "18px",
-                  },
-                }}
-              >
+              <Typography variant="h6" sx={{ fontSize: 16 }}>
                 {title}
               </Typography>
             </InputAdornment>
-          ),
-          startAdornment: (
-            <InputAdornment position="end">{icon}</InputAdornment>
           ),
         },
       }}

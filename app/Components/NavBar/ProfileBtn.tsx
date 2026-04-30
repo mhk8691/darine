@@ -216,17 +216,19 @@ const options = [
 
 export default function ProfileBtn() {
   const [open, setOpen] = React.useState(false);
-  const wrapperRef = React.useRef(null);
+  const wrapperRef = React.useRef<HTMLDivElement | null>(null);
   const theme = useTheme();
   const isDownMd = useMediaQuery(theme.breakpoints.down("md"));
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const handleToggle = () => setOpen((prev) => !prev);
 
-  const handleClose = (event) => {
-    if (wrapperRef.current?.contains(event.target)) return;
+  const handleClose = (event: MouseEvent | TouchEvent) => {
+    const target = event.target as Node;
+
+    if (wrapperRef.current?.contains(target)) return;
+
     setOpen(false);
   };
-
   return (
     <ClickAwayListener onClickAway={handleClose}>
       <div

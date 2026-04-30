@@ -19,7 +19,7 @@ import {
   useTheme,
 } from "@mui/material";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const ltrTheme = createTheme({
   direction: "ltr",
@@ -65,11 +65,11 @@ function valuetext(value: number) {
   return `${value}X`;
 }
 export default function Trading() {
-  const [price, setPrice] = useState<number | null>(null);
-  const [targetPrice, setTargetPrice] = useState<number | null>(null);
-  const [profitLimit, setProfitLimit] = useState<number | null>(null);
-  const [lossLimit, setLossLimit] = useState<number | null>(null);
-  const [gold, setGold] = useState<number | null>(null);
+  const [price, setPrice] = useState("");
+  const [targetPrice, setTargetPrice] = useState("");
+  const [profitLimit, setProfitLimit] = useState("");
+  const [lossLimit, setLossLimit] = useState("");
+  const [gold, setGold] = useState("");
   const [select, setSelect] = useState(items[0].value);
   const [checked, setChecked] = useState(false);
   const [multiplier, setMultiplier] = useState<number>(1);
@@ -78,27 +78,32 @@ export default function Trading() {
   };
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
-  useEffect(() => {
-    if (!price) {
-      setGold(null);
+  const handlePriceChange = (val: string) => {
+    setPrice(val);
+
+    const num = Number(val);
+    if (!isNaN(num)) {
+      setGold(String(num / 17999000));
     } else {
-      const result = price / 17999000;
-      setGold(result);
+      setGold("");
     }
-  }, [price, setPrice]);
-  useEffect(() => {
-    if (!gold) {
-      setPrice(null);
+  };
+
+  const handleGoldChange = (val: string) => {
+    setGold(val);
+
+    const num = Number(val);
+    if (!isNaN(num)) {
+      setPrice(String(num * 17999000));
     } else {
-      const result = gold * 17999000;
-      setPrice(result);
+      setPrice("");
     }
-  }, [gold, setGold]);
+  };
 
   return (
     <Card
       style={{
-        py:0,
+        py: 0,
         px: {
           xs: 2.5,
           sm: 0,
@@ -215,7 +220,7 @@ export default function Trading() {
             placeholder={"وزن طلا"}
             title={"گرم"}
             value={gold}
-            setValue={setGold}
+            setValue={handleGoldChange}
           />
         </Stack>
 
@@ -224,7 +229,7 @@ export default function Trading() {
             placeholder={"ملبغ کل"}
             title={"تومان"}
             value={price}
-            setValue={setPrice}
+            setValue={handlePriceChange}
           />
         </Stack>
       </Stack>
@@ -296,9 +301,9 @@ export default function Trading() {
         component={Link}
         href={"/dashboard/margin-rules"}
         sx={{
-          fontSize:{
-            xs:12,
-            sm:14
+          fontSize: {
+            xs: 12,
+            sm: 14,
           },
           color: "#007AFF",
           textDecoration: "underline",

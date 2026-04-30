@@ -42,6 +42,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  if (typeof window !== "undefined") {
+    // safe
+    console.log("=>>", window.location.href);
+  }
   return (
     <html lang="fa" dir="rtl">
       <Head>

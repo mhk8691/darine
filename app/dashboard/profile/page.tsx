@@ -19,7 +19,7 @@ export default function page() {
         lg: 3,
       }}
     >
-      <Grid size={12} display={{xs:'none', sm: "flex" }}>
+      <Grid size={12} display={{xs:'none', sm: "block" }}>
         <WalletStatus />
       </Grid>
       <Grid

@@ -120,7 +120,7 @@ const NotificationContent = ({ onClose }: { onClose: () => void }) => {
 
 export default function Notification() {
   const [open, setOpen] = React.useState(false);
-  const wrapperRef = React.useRef(null);
+const wrapperRef = React.useRef<HTMLDivElement | null>(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -128,10 +128,13 @@ export default function Notification() {
     setOpen((prev) => !prev);
   };
 
-  const handleClose = (event?: MouseEvent | TouchEvent) => {
-    if (event && wrapperRef.current?.contains(event.target as Node)) return;
-    setOpen(false);
-  };
+ const handleClose = (event?: MouseEvent | TouchEvent) => {
+   const target = event?.target as Node;
+
+   if (wrapperRef.current && wrapperRef.current.contains(target)) return;
+
+   setOpen(false);
+ };
 
   if (isMobile) {
     return (

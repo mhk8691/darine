@@ -1,5 +1,4 @@
 import { Divider, Stack, Typography } from "@mui/material";
-import React from "react";
 
 export default function FinalApproval() {
   return (
@@ -78,12 +77,14 @@ export default function FinalApproval() {
           ۱۷,۶۱۰,۰۰۰ تومان
         </Typography>
       </Stack>
-      <Divider  sx={{
+      <Divider
+        sx={{
           my: {
             xs: 1,
             sm: 2,
           },
-        }} />
+        }}
+      />
 
       <Stack
         direction={"row"}
@@ -110,12 +111,14 @@ export default function FinalApproval() {
           ۱۷,۶۱۰,۰۰۰ تومان
         </Typography>
       </Stack>
-      <Divider  sx={{
+      <Divider
+        sx={{
           my: {
             xs: 1,
             sm: 2,
           },
-        }} />
+        }}
+      />
 
       <Stack
         direction={"row"}
@@ -142,12 +145,14 @@ export default function FinalApproval() {
           ۱ گرم
         </Typography>
       </Stack>
-      <Divider  sx={{
+      <Divider
+        sx={{
           my: {
             xs: 1,
             sm: 2,
           },
-        }} />
+        }}
+      />
 
       <Stack
         direction={"row"}
@@ -174,12 +179,14 @@ export default function FinalApproval() {
           ۲۵۵,۳۴۴ تومان
         </Typography>
       </Stack>
-      <Divider  sx={{
+      <Divider
+        sx={{
           my: {
             xs: 1,
             sm: 2,
           },
-        }} />
+        }}
+      />
 
       <Stack
         direction={"row"}
@@ -206,12 +213,14 @@ export default function FinalApproval() {
           ۱۸۰,۰۰۰ تومان
         </Typography>
       </Stack>
-      <Divider  sx={{
+      <Divider
+        sx={{
           my: {
             xs: 1,
             sm: 2,
           },
-        }} />
+        }}
+      />
 
       <Stack
         direction={"row"}
@@ -275,12 +284,14 @@ export default function FinalApproval() {
           5 تا روز کاری
         </Typography>
       </Stack>
-      <Divider  sx={{
+      <Divider
+        sx={{
           my: {
             xs: 1,
             sm: 2,
           },
-        }} />
+        }}
+      />
       <Stack
         direction={"row"}
         justifyContent={"space-between"}
@@ -306,12 +317,14 @@ export default function FinalApproval() {
           رایگان
         </Typography>
       </Stack>
-      <Divider  sx={{
+      <Divider
+        sx={{
           my: {
             xs: 1,
             sm: 2,
           },
-        }} />
+        }}
+      />
 
       <Stack
         direction={"row"}
@@ -338,12 +351,14 @@ export default function FinalApproval() {
           3791111111
         </Typography>
       </Stack>
-      <Divider  sx={{
+      <Divider
+        sx={{
           my: {
             xs: 1,
             sm: 2,
           },
-        }} />
+        }}
+      />
 
       <Stack
         direction={"row"}

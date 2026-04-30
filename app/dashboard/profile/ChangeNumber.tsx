@@ -5,7 +5,7 @@ import { Button, Stack } from "@mui/material";
 import { useState } from "react";
 
 export default function ChangeNumber() {
-  const [value, setValue] = useState<number | null>(null);
+  const [value, setValue] = useState('');
   return (
     <Stack
       direction={"row"}
