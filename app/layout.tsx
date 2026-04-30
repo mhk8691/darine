@@ -1,4 +1,4 @@
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
@@ -61,7 +61,17 @@ export default function RootLayout({
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <Navbar />
-            <main style={{ flexGrow: 1, marginTop: "5.5rem" }}>
+            <main style={{ flexGrow: 1 }}>
+              <Box
+                height={{
+                  xs: "4rem",
+                  sm: "3rem",
+                  md: "5.5rem",
+                }}
+                bgcolor={{
+                  sm: "background.paper",
+                }}
+              />
               <CustomBreadcrumbs />
 
               {children}
