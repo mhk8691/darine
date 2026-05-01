@@ -89,14 +89,14 @@ export default function BankCard() {
             fontSize={18}
             sx={{ color: "text.title" }}
           >
-            ۶۱۰۴ ۳۳۱۰ ۸۶۲۹ ۲۰۵۰
+            ۶۱۰۴ ۱۲۳۴ ۵۶۷۸ ۹۱۱۱
           </Typography>
           <Typography
             variant="body2"
             fontSize={18}
             sx={{ color: "text.title" }}
           >
-            IR۸***۰۳۰۹۰۶۹۷۶۸۷
+            IR۸***۰۳۰۹۰۶۹۷۶55
           </Typography>
         </Stack>
       </Card>

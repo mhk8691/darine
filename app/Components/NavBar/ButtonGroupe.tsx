@@ -33,7 +33,7 @@ export default function ButtonGroupe() {
   return (
     <Stack
       direction={{
-        xs: url === 'dashboard' ?"row-reverse":'row',
+        xs: url === "dashboard" ? "row-reverse" : "row",
         sm: "row",
       }}
       gap={{
@@ -49,6 +49,7 @@ export default function ButtonGroupe() {
             variant="outlined"
             color="secondary"
             disableRipple
+            onClick={() => router.push("http://silver.darine.shop/dashboard")}
             sx={{
               px: 1,
               border: 1,
@@ -65,7 +66,7 @@ export default function ButtonGroupe() {
             }}
             size="small"
           >
-            {isMobile ? "نقره سی" : " ورود به نقره سی"}
+            {isMobile ? "نقره " : " ورود به نقره "}
           </Button>
         </>
       )}

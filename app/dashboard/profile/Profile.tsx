@@ -67,7 +67,7 @@ export default function Profile() {
             fontWeight={600}
             sx={{ color: "text.title" }}
           >
-            محمد حسین کابلی
+            محمد محمدی 
           </Typography>
           <Typography
             variant="h6"
@@ -76,7 +76,7 @@ export default function Profile() {
               sm: 18,
             }}
           >
-            09961250980
+            0919123456789
           </Typography>
         </Stack>
       </Stack>
@@ -123,7 +123,7 @@ export default function Profile() {
               sm: 18,
             }}
           >
-            ۱۰ اردیبهشت ۱۳۸۶
+            ۱۰ اردیبهشت 1401
           </Typography>
         </Stack>
         <Divider />
@@ -150,7 +150,7 @@ export default function Profile() {
               sm: 18,
             }}
           >
-            ۰۳۷۳۱۲۸۹۹۱
+            ۰۳۸۱۲۳۴۵۶۶
           </Typography>
         </Stack>
         <Divider />
