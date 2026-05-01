@@ -214,7 +214,7 @@ const Content = ({
                     }}
                     sx={{ cursor: "pointer" }}
                   >
-                    <Stack direction={"column"} alignItems={"center"} gap={1}>
+                    <Stack direction={"column"} alignItems={"center"} gap={1.5}>
                       <Image
                         src={`/images/appbar${navigate.image}`}
                         alt=""
@@ -223,7 +223,10 @@ const Content = ({
                       />
                       <Typography
                         variant="body1"
-                        fontSize={14}
+                        fontSize={{
+                          xs: 12,
+                          sm: 14,
+                        }}
                         fontWeight={500}
                         sx={{ whiteSpace: "nowrap" }}
                       >

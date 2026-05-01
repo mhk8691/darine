@@ -19,10 +19,9 @@ export default function LaptopCertificate() {
           spacing={2}
         >
           {installment.map((item, index) => (
-            <>
+            <React.Fragment key={index}>
               <Grid
                 size={6}
-                key={index}
                 display={"flex"}
                 justifyContent={index % 2 === 0 ? "flex-end" : "flex-start"}
               >
@@ -49,10 +48,10 @@ export default function LaptopCertificate() {
                   />
                 </Stack>
               </Grid>
-            </>
+            </React.Fragment>
           ))}
           {certificate.map((item, index) => (
-            <>
+            <React.Fragment key={index}>
               <Grid
                 size={6}
                 key={index}
@@ -82,7 +81,7 @@ export default function LaptopCertificate() {
                   />
                 </Stack>
               </Grid>
-            </>
+            </React.Fragment>
           ))}
         </Grid>
       )}

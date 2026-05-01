@@ -72,7 +72,7 @@ const menu: MenuType[] = [
 ];
 export default function Navbar() {
   const theme = useTheme();
-  const isDownLg = useMediaQuery(theme.breakpoints.down("lg"));
+  const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const isDashboard = pathname.split("/")[1] === "dashboard";
@@ -124,14 +124,16 @@ export default function Navbar() {
                 }}
               />
             </IconButton>
-            <Image
-              src={"/images/logoDark.svg"}
-              width={128}
-              height={23}
-              alt=""
-            />
+            <Stack component={Link} href={"/dashboard"}>
+              <Image
+                src={"/images/darineh.png"}
+                width={50}
+                height={50}
+                alt=""
+              />{" "}
+            </Stack>
           </Stack>
-          {!isDownLg && (
+          {isUpLg && (
             <Stack direction={"row"} gap={2.5} alignItems={"center"}>
               {menu.map((item) =>
                 item.link ? (

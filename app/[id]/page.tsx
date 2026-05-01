@@ -69,46 +69,14 @@ const faqData: FaqItem[] = [
   },
 ];
 
-// const coinData = [
-//   { name: "سکه امامی", price: 18010000, unit: "تومان", persentage: -2.93 },
-//   {
-//     name: "سکه تمام بهار آزادی",
-//     price: 17990000,
-//     unit: "تومان",
-//     persentage: -3.36,
-//   },
-//   { name: "نیم سکه", price: 96400000, unit: "تومان", persentage: -7.21 },
-//   { name: "ربع سکه", price: 54300000, unit: "تومان", persentage: -9.19 },
-//   { name: "سکه گرمی", price: 27200000, unit: "تومان", persentage: -6.84 },
-//   { name: "سکه پارسیان", price: 21900000, unit: "تومان", persentage: -0.81 },
-// ];
-
-// const goldData = [
-//   {
-//     name: "طلای 18 عیار (کرم)",
-//     price: 17575000,
-//     persentage: -0.81,
-//     unit: "تومان",
-//   },
-//   {
-//     name: "طلای 21 عیار (کرم)",
-//     price: 20504166,
-//     persentage: -0.81,
-//     unit: "تومان",
-//   },
-//   {
-//     name: "طلای 24 عیار (کرم)",
-//     price: 23316166,
-//     persentage: -0.81,
-//     unit: "تومان",
-//   },
-//   { name: "1 مشاغل طلا", price: 76131385, persentage: -0.81, unit: "تومان" },
-//   { name: "انس جهانی طلا", price: 4824, persentage: 0.81, unit: "دلار" },
-//   { name: "آرشده نقدی", price: 76131385, persentage: -0.81, unit: "تومان" },
-//   { name: "طلای دست دوم", price: 17340725, persentage: -0.81, unit: "تومان" },
-// ];
-
-export default function page() {
+interface Props {
+  params: { productId: string };
+}
+export async function generateStaticParams() {
+  return [{ id: "1" }, { id: "2" }, { id: "3" }];
+}
+export default function page({ params }: Props) {
+  console.log(params.productId);
   const newData = [goldData[0].data];
   newData.push(goldData[1].data);
   return (

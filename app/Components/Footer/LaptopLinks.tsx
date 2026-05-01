@@ -69,7 +69,7 @@ export default function LaptopLinks() {
           const isOpen = expanded === item.id;
 
           return (
-            <>
+            <React.Fragment key={item.id}>
               <Accordion
                 key={item.id}
                 expanded={isOpen}
@@ -162,7 +162,7 @@ export default function LaptopLinks() {
                 </AccordionDetails>
               </Accordion>
               <Divider />
-            </>
+            </React.Fragment>
           );
         })}
       </Stack>

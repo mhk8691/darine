@@ -24,19 +24,22 @@ export default function TopPrice() {
             sm: 22,
           }}
           sx={{
-            flexDirection:'row',
-            alignItems:'center'
+            flexDirection: "row",
+            alignItems: "center",
           }}
         >
-          <Box component={"span"} >
-            {priceFormater(18076000)}
-          </Box>
+          <Box component={"span"}>{priceFormater(18076000)}</Box>
           <Box component={"span"} fontSize={{ xs: 12, sm: 14 }}>
             تومان
           </Box>
         </Typography>
-        <Typography variant="body1" sx={{ mr: 0.5 }} color="error" fontSize={{xs:10,sm:16}}>
-          {(1.11).toLocaleString()} -%
+        <Typography
+          variant="body1"
+          sx={{ mr: 0.5 }}
+          color="error"
+          fontSize={{ xs: 10, sm: 16 }}
+        >
+          {new Intl.NumberFormat("fa-IR").format(1.11)} -%
         </Typography>
       </Stack>
     </Stack>

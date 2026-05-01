@@ -101,7 +101,7 @@ export default function BottomPrice({
               sm: 16,
             }}
           >
-            {(1.11).toLocaleString()}{" "}
+            {new Intl.NumberFormat("fa-IR").format(1.11)}
             <Box
               component={"span"}
               fontSize={{

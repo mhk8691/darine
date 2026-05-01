@@ -65,14 +65,14 @@ export default function Footer() {
         <Grid size={2.5} mb={4}>
           <Stack
             sx={{
-              minWidth: "176px",
-              minHeight: "32px",
-              maxWidth: "247px",
-              maxHeight: "46px",
+              minWidth: "100px",
+              minHeight: "100px",
+              maxWidth: "130px",
+              maxHeight: "130px",
             }}
           >
             <Image
-              src={"/images/logoDark.svg"}
+              src={"/images/darineh.png"}
               width={247}
               height={46}
               alt=""

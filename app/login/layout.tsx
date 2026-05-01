@@ -52,16 +52,17 @@ export default function layout({ children }: Props) {
             }}
           >
             <Stack
-              mb={5}
+              mb={4}
               display={{
                 xs: "none",
                 md: "flex",
               }}
+              direction={'row'} justifyContent={'center'}
             >
               <Image
-                src={"/images/logoDark.svg"}
-                width={200}
-                height={100}
+                src={"/images/darineh.png"}
+                width={120}
+                height={120}
                 alt=""
                 style={{
                   height: "auto",
