@@ -1,3 +1,9 @@
+import Navigate from "./Navigate";
+
 export default function page() {
-  return <div>page</div>;
+  return (
+    <>
+      <Navigate />
+    </>
+  );
 }
