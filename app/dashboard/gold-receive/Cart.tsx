@@ -10,10 +10,12 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import { useRouter } from "next/navigation";
 
 export default function Cart() {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up("md"));
+  const router = useRouter()
   return (
     <>
       {isMd && (
@@ -120,7 +122,12 @@ export default function Cart() {
                   fontWeight: "600",
                   borderRadius: 2,
                   mt: 2,
+                  '&:hover':{
+                    bgcolor:'primary.main'
+                  }
                 }}
+                onClick={()=>router.push('/gold-shop-basket')}
+                disableRipple
                 startIcon={
                   <SvgIcon>
                     <svg

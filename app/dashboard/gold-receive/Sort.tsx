@@ -50,7 +50,7 @@ export default function Sort() {
           }}
         />
       </Stack>
-      <IconButton onClick={()=>router.push('/gold-recieve-basket')}>
+      <IconButton onClick={()=>router.push('/gold-shop-basket')}>
         <StyledBadge badgeContent="3" color="error">
           <svg
             width="28"
