@@ -40,7 +40,7 @@ export default function Withdraw() {
             variant="contained"
             sx={{
               bgcolor: "#FEF2C0",
-              color: "text.secondary",
+              color: "black",
               borderRadius: 1.5,
               px: 1,
               width: "fit-content",

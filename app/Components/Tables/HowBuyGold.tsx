@@ -6,15 +6,15 @@ import {
   AccordionSummary,
   Box,
   Stack,
-  SvgIcon,
   useTheme,
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Container from "../Container/Container";
+import { DoneIcon } from "../CustomIcons/CustomIcons";
 import "./video-style.css";
 export default function HowBuyGold() {
-  const theme = useTheme()
-  const isDarkMode = theme.palette.mode === 'dark'
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === "dark";
   return (
     <Container
       style={{
@@ -73,27 +73,13 @@ export default function HowBuyGold() {
       <Stack width={"100%"} mt={2}>
         <Accordion
           sx={{
-            background: isDarkMode ?"rgb(16, 16, 15)":'#FFFFFF',
+            background: isDarkMode ? "rgb(16, 16, 15)" : "#FFFFFF",
             boxShadow: "none",
             "&:before": { display: "none" },
           }}
         >
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-            <SvgIcon>
-              <svg
-                width="30"
-                height="30"
-                viewBox="0 0 30 30"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle cx="15" cy="15" r="10" fill="#1C1C1A"></circle>
-                <path
-                  d="M15 2.5C8.1125 2.5 2.5 8.1125 2.5 15C2.5 21.8875 8.1125 27.5 15 27.5C21.8875 27.5 27.5 21.8875 27.5 15C27.5 8.1125 21.8875 2.5 15 2.5ZM20.975 12.125L13.8875 19.2125C13.7125 19.3875 13.475 19.4875 13.225 19.4875C12.975 19.4875 12.7375 19.3875 12.5625 19.2125L9.025 15.675C8.6625 15.3125 8.6625 14.7125 9.025 14.35C9.3875 13.9875 9.9875 13.9875 10.35 14.35L13.225 17.225L19.65 10.8C20.0125 10.4375 20.6125 10.4375 20.975 10.8C21.3375 11.1625 21.3375 11.75 20.975 12.125Z"
-                  fill="#FCD535"
-                ></path>
-              </svg>
-            </SvgIcon>
+            <DoneIcon />
             <Typography
               variant="body2"
               fontSize={{
@@ -119,27 +105,13 @@ export default function HowBuyGold() {
         </Accordion>
         <Accordion
           sx={{
-            background: isDarkMode ?"rgb(16, 16, 15)":'#FFFFFF',
+            background: isDarkMode ? "rgb(16, 16, 15)" : "#FFFFFF",
             boxShadow: "none",
             "&:before": { display: "none" },
           }}
         >
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-            <SvgIcon>
-              <svg
-                width="30"
-                height="30"
-                viewBox="0 0 30 30"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle cx="15" cy="15" r="10" fill="#1C1C1A"></circle>
-                <path
-                  d="M15 2.5C8.1125 2.5 2.5 8.1125 2.5 15C2.5 21.8875 8.1125 27.5 15 27.5C21.8875 27.5 27.5 21.8875 27.5 15C27.5 8.1125 21.8875 2.5 15 2.5ZM20.975 12.125L13.8875 19.2125C13.7125 19.3875 13.475 19.4875 13.225 19.4875C12.975 19.4875 12.7375 19.3875 12.5625 19.2125L9.025 15.675C8.6625 15.3125 8.6625 14.7125 9.025 14.35C9.3875 13.9875 9.9875 13.9875 10.35 14.35L13.225 17.225L19.65 10.8C20.0125 10.4375 20.6125 10.4375 20.975 10.8C21.3375 11.1625 21.3375 11.75 20.975 12.125Z"
-                  fill="#FCD535"
-                ></path>
-              </svg>
-            </SvgIcon>
+            <DoneIcon />
             <Typography
               variant="body2"
               fontSize={{
@@ -165,27 +137,13 @@ export default function HowBuyGold() {
         </Accordion>
         <Accordion
           sx={{
-            background: isDarkMode ?"rgb(16, 16, 15)":'#FFFFFF',
+            background: isDarkMode ? "rgb(16, 16, 15)" : "#FFFFFF",
             boxShadow: "none",
             "&:before": { display: "none" },
           }}
         >
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-            <SvgIcon>
-              <svg
-                width="30"
-                height="30"
-                viewBox="0 0 30 30"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle cx="15" cy="15" r="10" fill="#1C1C1A"></circle>
-                <path
-                  d="M15 2.5C8.1125 2.5 2.5 8.1125 2.5 15C2.5 21.8875 8.1125 27.5 15 27.5C21.8875 27.5 27.5 21.8875 27.5 15C27.5 8.1125 21.8875 2.5 15 2.5ZM20.975 12.125L13.8875 19.2125C13.7125 19.3875 13.475 19.4875 13.225 19.4875C12.975 19.4875 12.7375 19.3875 12.5625 19.2125L9.025 15.675C8.6625 15.3125 8.6625 14.7125 9.025 14.35C9.3875 13.9875 9.9875 13.9875 10.35 14.35L13.225 17.225L19.65 10.8C20.0125 10.4375 20.6125 10.4375 20.975 10.8C21.3375 11.1625 21.3375 11.75 20.975 12.125Z"
-                  fill="#FCD535"
-                ></path>
-              </svg>
-            </SvgIcon>
+            <DoneIcon />
             <Typography
               variant="body2"
               fontSize={{

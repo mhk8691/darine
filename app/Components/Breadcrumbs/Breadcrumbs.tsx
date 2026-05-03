@@ -16,6 +16,7 @@ const breadcrumbNameMap: Record<string, string> = {
   parsian: "قیمت سکه پارسیان",
   faq: "سوالات متداول",
   rules: "قوانین دارینه",
+  branches: "شعب دارینه",
 };
 
 const exactHiddenRoutes = [

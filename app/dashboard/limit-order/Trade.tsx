@@ -1,6 +1,7 @@
 "use client";
 
 import Card from "@/app/Components/Container/Container";
+import { TransferIcon } from "@/app/Components/CustomIcons/CustomIcons";
 import FilterToggleButton from "@/app/Components/FilterToggleButton/FilterToggleButton";
 import InputField from "@/app/Components/InputField/InputField";
 import { ToggleItemsType } from "@/app/core/Types";
@@ -53,25 +54,21 @@ export default function Trade({ type }: Props) {
             value={price}
             setValue={setPrice}
           />
-
           <Stack direction="row" justifyContent="center">
-            <SvgIcon
+            <Stack
               sx={{
+                display:'flex',
+                justifyContent:'center',
+                alignItems:'center',
                 bgcolor: "#FEF2C0",
                 borderRadius: "50%",
                 color: "black",
                 width: 35,
                 height: 35,
-                p: 1,
               }}
             >
-              <svg width="16" height="16" viewBox="0 0 16 16">
-                <path d="M6.9 4.4L4.4 2 2 4.4" stroke="currentColor" />
-                <path d="M4.4 14V2" stroke="currentColor" />
-                <path d="M9 11.5l2.5 2.5 2.5-2.5" stroke="currentColor" />
-                <path d="M11.5 2v12" stroke="currentColor" />
-              </svg>
-            </SvgIcon>
+              <TransferIcon />
+            </Stack>
           </Stack>
 
           <InputField

@@ -8,19 +8,21 @@ import {
   Stack,
   SvgIcon,
   Typography,
+  useTheme,
 } from "@mui/material";
 import Link from "next/link";
 import React, { useState } from "react";
+import { CollapseIcon, ExpandIcon } from "../CustomIcons/CustomIcons";
 
 const items = [
   {
     id: "1",
     title: "درباره دارینه",
     items: [
-      { title: "درباره‌ ما", link: "about-us" },
-      { title: "سوالات متداول", link: "faq" },
-      { title: "اپلیکیشن طلاسی", link: "application" },
-      { title: "قوانین و مقررات", link: "rules" },
+      { title: "درباره‌ ما", link: "/about-us" },
+      { title: "سوالات متداول", link: "/faq" },
+      { title: "اپلیکیشن طلاسی", link: "/application" },
+      { title: "قوانین و مقررات", link: "/rules" },
     ],
   },
   {
@@ -57,7 +59,8 @@ const items = [
 
 export default function LaptopLinks() {
   const [expanded, setExpanded] = useState<string | false>(false);
-
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === "dark";
   const handleChange =
     (id: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
       setExpanded(isExpanded ? id : false);
@@ -75,7 +78,9 @@ export default function LaptopLinks() {
                 expanded={isOpen}
                 onChange={handleChange(item.id)}
                 sx={{
-                  bgcolor: "background.default",
+                  background: isDarkMode
+                    ? "rgb(16, 16, 15,1)"
+                    : "background.default",
                   py: 1,
                   borderRadius: "10px !important",
                   boxShadow: "none",
@@ -93,22 +98,7 @@ export default function LaptopLinks() {
                           color: "text.subtitle",
                         }}
                       >
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M19.9181 8.94971L13.3981 15.4697C12.6281 16.2397 11.3681 16.2397 10.5981 15.4697L4.07812 8.94971"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeMiterlimit="10"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          ></path>
-                        </svg>
+                        <CollapseIcon />
                       </SvgIcon>
                     ) : (
                       <SvgIcon
@@ -117,22 +107,7 @@ export default function LaptopLinks() {
                           color: "text.subtitle",
                         }}
                       >
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M19.9181 8.94971L13.3981 15.4697C12.6281 16.2397 11.3681 16.2397 10.5981 15.4697L4.07812 8.94971"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeMiterlimit="10"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          ></path>
-                        </svg>
+                        <ExpandIcon />
                       </SvgIcon>
                     )
                   }
