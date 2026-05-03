@@ -40,15 +40,15 @@ export default function GoldTable({ heads, data }: Props) {
     <TableContainer
       component={Paper}
       sx={{
-        bgcolor:'background.default',
-        border:1,
-        borderColor:'background.border',
+        bgcolor: "background.default",
+        border: 1,
+        borderColor: "background.border",
         borderRadius: 3,
-        boxShadow:'none'
+        boxShadow: "none",
       }}
     >
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
+        <TableHead sx={{ bgcolor: "background.paper" }}>
           <TableRow>
             {heads.map((head, index) => (
               <TableCell

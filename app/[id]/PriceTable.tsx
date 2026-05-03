@@ -1,4 +1,4 @@
-import { Box, Chip, Divider, Stack, Typography } from "@mui/material";
+import { Box, Chip, Divider, Stack, Typography, useTheme } from "@mui/material";
 import React from "react";
 import priceFormater from "../core/PriceFormater";
 import { TableGoldDataType } from "../core/Types";
@@ -7,8 +7,10 @@ interface Props {
   data: TableGoldDataType[];
 }
 export default function PriceTables({ title, data }: Props) {
+  const theme = useTheme()
+  const isDarkMode = theme.palette.mode === 'dark'
   return (
-    <Stack border={1} borderColor={"#393936"} borderRadius={2}>
+    <Stack border={1} borderColor={"background.border"} borderRadius={2}>
       <Stack
         bgcolor={"background.paper"}
         py={2}
@@ -117,7 +119,14 @@ export default function PriceTables({ title, data }: Props) {
                 }
                 sx={{
                   direction: "rtl",
-                  bgcolor: item.dayChange < 0 ? "#691818" : "#1B4430",
+                  bgcolor:
+                    item.dayChange < 0
+                      ? isDarkMode
+                        ? "#691818"
+                        : "#8b4646"
+                      : isDarkMode
+                        ? "#1B4430"
+                        : "#ECF7F2",
                   color: item.dayChange < 0 ? "#CC5151" : "#43AB64",
                   width: "85px",
                 }}
