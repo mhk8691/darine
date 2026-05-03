@@ -26,14 +26,13 @@ export default function page() {
         fontSize={{
           xs: 12,
           md: 14,
-          xl:16
+          xl: 16,
         }}
-        sx={{ color: "#D9D9D3", mt: 3 }}
+        sx={{ color: "text.secondary", mt: 3 }}
       >
         کد تایید ارسال شده به شماره موبایل 09961250980 را وارد کنید.
-        <Box component={"span"} display={'block'}>
-        کد تایید
-        علاوه بر پیامک در پیامرسان بله نیز ارسال میشود.
+        <Box component={"span"} display={"block"}>
+          کد تایید علاوه بر پیامک در پیامرسان بله نیز ارسال میشود.
         </Box>
       </Typography>
 

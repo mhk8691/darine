@@ -65,7 +65,7 @@ export default function Delivery() {
               xs: 14,
               md: 18,
             }}
-            sx={{ color: "#D9D9D3", fontWeight: "600", mt: "10px" }}
+            sx={{ color: "text.secondary", fontWeight: "600", mt: "10px" }}
           >
             {select === "delivery"
               ? "تحویل امن طلا به سرتاسر ایران"
@@ -77,7 +77,7 @@ export default function Delivery() {
               xs: 12,
               md: 16,
             }}
-            sx={{ color: "#D9D9D3", mt: 1 }}
+            sx={{ color: "text.secondary", mt: 1 }}
           >
             {select === "delivery"
               ? "طلاسی طلای شما را از ۳۰ سوت، به هر نقطه از کشور که بخواهید ارسال می‌کند. تمامی مرسولات ارسالی بیمه می‌شوند؛ در صورت بروز هرگونه خسارت، جبران آن با طلاسی است."
@@ -87,7 +87,7 @@ export default function Delivery() {
             <Typography
               variant="body1"
               fontSize={16}
-              sx={{ color: "#D9D9D3", fontWeight: "600", mt: 1 }}
+              sx={{ color: "text.secondary", fontWeight: "600", mt: 1 }}
             >
               سفارش شما تا ۵ روز کاری به آدرس تعیین شده تحویل داده می‌شود.
             </Typography>

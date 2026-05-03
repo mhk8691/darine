@@ -28,7 +28,7 @@ export default function page() {
           md: 14,
           xl: 16,
         }}
-        sx={{ color: "#D9D9D3", mt: 3 }}
+        sx={{ color: "text.secondary", mt: 3 }}
       >
         کد تایید ارسال شده به شماره موبایل 09961250980 را وارد کنید.
         <Box component={"span"} display={"block"}>

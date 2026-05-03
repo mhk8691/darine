@@ -29,16 +29,16 @@ export default function LoginTab() {
               }}
               sx={{
                 color:
-                  pathname === "/login/login-password"
+                  pathname === "/login/login-password/"
                     ? "text.primary"
                     : "#C2C2BA",
                 mb: 1.5,
               }}
-              fontWeight={pathname === "/login/login-password" ? 600: 500}
+              fontWeight={pathname === "/login/login-password/" ? 600: 500}
             >
               ورود با رمز عبور
             </Typography>
-            {pathname === "/login/login-password" && (
+            {pathname === "/login/login-password/" && (
               <Divider
                 sx={{
                   border: 2,
@@ -60,14 +60,14 @@ export default function LoginTab() {
               }}
               sx={{
                 color:
-                  pathname === "/login/login-otp" ? "text.primary" : "#C2C2BA",
+                  pathname === "/login/login-otp/" ? "text.primary" : "#C2C2BA",
                 mb: 1.5,
               }}
-              fontWeight={pathname === "/login/login-otp" ? 600: 500}
+              fontWeight={pathname === "/login/login-otp/" ? 600: 500}
             >
               ورود با رمز یکبار مصرف
             </Typography>
-            {pathname === "/login/login-otp" && (
+            {pathname === "/login/login-otp/" && (
               <Divider
                 sx={{
                   border: 2,

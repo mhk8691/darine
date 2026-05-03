@@ -11,7 +11,7 @@ import DesktopCart from "./DesktopCart";
 import MobileCart from "./MobileCart";
 
 export async function generateStaticParams() {
-  return [{ productId: "1" }, { productId: "2" }, { productId: "3" }];
+  return [{ productId: "test" }, { productId: "2" }, { productId: "3" }];
 }
 
 export default function Page({ params }: { params: { productId: string } }) {

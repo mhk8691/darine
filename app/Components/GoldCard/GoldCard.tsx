@@ -78,7 +78,7 @@ export default function GoldCard() {
       >
         <Stack px={1.5}>
           <Stack bgcolor={"background.default"} borderRadius={2}>
-            <Link href={"/gold-shop/test"}>
+            <Link href={"/gold-shop/test/"}>
               <CardMedia
                 sx={{
                   height: {
@@ -108,7 +108,7 @@ export default function GoldCard() {
               sm: "center",
             }}
           >
-            <Link href={"/gold-shop/test"}>
+            <Link href={"/gold-shop/test/"}>
               {" "}
               <Typography
                 gutterBottom

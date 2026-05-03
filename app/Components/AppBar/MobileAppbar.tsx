@@ -36,7 +36,7 @@ const appbarItems = [
         ></path>
       </svg>
     ),
-    link: "/dashboard/reports",
+    link: "/dashboard/reports/",
   },
   {
     name: "سفارش",
@@ -89,7 +89,7 @@ const appbarItems = [
         ></path>
       </svg>
     ),
-    link: "/dashboard/trades",
+    link: "/dashboard/trades/",
   },
   {
     name: "خانه",
@@ -117,7 +117,7 @@ const appbarItems = [
         ></path>
       </svg>
     ),
-    link: "/dashboard",
+    link: "/dashboard/",
   },
   {
     name: "فیزیکی",
@@ -166,7 +166,7 @@ const appbarItems = [
         ></path>
       </svg>
     ),
-    link: "/dashboard/gold-receive",
+    link: "/dashboard/gold-receive/",
   },
   {
     name: "پروفایل",
@@ -215,7 +215,7 @@ const appbarItems = [
         ></path>
       </svg>
     ),
-    link: "/dashboard/profile",
+    link: "/dashboard/profile/",
   },
 ];
 

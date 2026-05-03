@@ -32,7 +32,7 @@ export default function ChooseAddress({
             xs: 12,
             sm: 18,
           }}
-          sx={{ color: "#D9D9D3" }}
+          sx={{ color: "text.secondary" }}
         >
           {description}
         </Typography>

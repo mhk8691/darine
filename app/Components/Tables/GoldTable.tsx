@@ -186,7 +186,7 @@ export default function GoldTable({ heads, data }: Props) {
                   align="center"
                   sx={{ fontSize: "16px", py: 0.9, px: 2.5 }}
                 >
-                  <Link href={"/test"}>
+                  <Link href={"/test/"}>
                     <Button
                       variant="outlined"
                       color="inherit"

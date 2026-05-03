@@ -73,7 +73,7 @@ interface Props {
   params: { productId: string };
 }
 export async function generateStaticParams() {
-  return [{ id: "1" }, { id: "2" }, { id: "3" }];
+  return [{ id: "test" }, { id: "ons" }, { id: "3" }];
 }
 export default function page({ params }: Props) {
   console.log(params.productId);

@@ -89,7 +89,11 @@ export default function OrderConfirmation({ setOpen }: Props) {
         mt={2}
       >
         <InfoOutlineRounded sx={{ color: "#D89654" }} />
-        <Typography variant="body2" fontWeight={500} sx={{ color: "#D9D9D3" }}>
+        <Typography
+          variant="body2"
+          fontWeight={500}
+          sx={{ color: "text.secondary" }}
+        >
           لطفاً پیش از تأیید، اطلاعات وارد شده و آدرس انتخابی روی نقشه را به دقت
           بررسی کنید. آدرس نادرست می‌تواند موجب تأخیر یا برگشت خوردن مرسوله شما
           شود.

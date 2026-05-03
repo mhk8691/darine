@@ -17,7 +17,7 @@ export default function page() {
           xs: 12,
           md: 16,
         }}
-        sx={{ color: "#D9D9D3", mt: 2 }}
+        sx={{ color: "text.secondary", mt: 2 }}
       >
         شماره موبایل خود را وارد کنید
       </Typography>

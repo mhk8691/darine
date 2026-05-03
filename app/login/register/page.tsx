@@ -30,7 +30,7 @@ export default function page() {
           xs: 12,
           md: 16,
         }}
-        sx={{ color: "#D9D9D3", mt: 3 }}
+        sx={{ color: "text.secondary", mt: 3 }}
       >
         اطلاعات زیر را با توجه به صاحب شماره 09961250980 وارد کنید
       </Typography>
