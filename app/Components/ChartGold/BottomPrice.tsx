@@ -27,13 +27,13 @@ export default function BottomPrice({
               xs: 10,
               sm: 14,
             }}
-            sx={{ color: "#C2C2BA" }}
+            sx={{ color: "text.muted" }}
           >
             بالاترین قیمت
           </Typography>
           <Typography
             variant="body1"
-            sx={{ color: "text.title" }}
+            sx={{ color: "text.primary" }}
             fontSize={{
               xs: 12,
               sm: 16,
@@ -46,6 +46,7 @@ export default function BottomPrice({
                 xs: 8,
                 sm: 14,
               }}
+              ml={0.5}
             >
               تومان
             </Box>
@@ -58,13 +59,13 @@ export default function BottomPrice({
               xs: 10,
               sm: 14,
             }}
-            sx={{ color: "#C2C2BA" }}
+            sx={{ color: "text.muted" }}
           >
             پایین‌ترین قیمت
           </Typography>
           <Typography
             variant="body1"
-            sx={{ color: "text.title" }}
+            sx={{ color: "text.primary" }}
             fontSize={{
               xs: 12,
               sm: 16,
@@ -77,6 +78,7 @@ export default function BottomPrice({
                 xs: 8,
                 sm: 14,
               }}
+              ml={0.5}
             >
               تومان
             </Box>
@@ -89,7 +91,7 @@ export default function BottomPrice({
               xs: 10,
               sm: 14,
             }}
-            sx={{ color: "#C2C2BA" }}
+            sx={{ color: "text.muted" }}
           >
             تغییرات قیمت
           </Typography>

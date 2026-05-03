@@ -1,13 +1,13 @@
-'use client'
+"use client";
 import Container from "@/app/Components/Container/Container";
 import {
+  Button,
   Divider,
+  Grid,
   Stack,
   SvgIcon,
-  Button,
-  Grid,
-  useTheme,
   useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { useRouter } from "next/navigation";
@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 export default function Cart() {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up("md"));
-  const router = useRouter()
+  const router = useRouter();
   return (
     <>
       {isMd && (
@@ -56,7 +56,7 @@ export default function Cart() {
               <Typography
                 variant="body1"
                 fontSize={16}
-                sx={{ color: "#C2C2BA" }}
+                sx={{ color: "text.muted" }}
               >
                 همه محصولات دارای ضمانت اصالت و سلامت کالا می‌باشند.
               </Typography>
@@ -71,7 +71,7 @@ export default function Cart() {
                 <Typography
                   variant="body1"
                   fontSize={16}
-                  sx={{ color: "#C2C2BA" }}
+                  sx={{ color: "text.muted" }}
                 >
                   موجودی طلای شما
                 </Typography>
@@ -87,7 +87,7 @@ export default function Cart() {
                 <Typography
                   variant="body1"
                   fontSize={16}
-                  sx={{ color: "#C2C2BA" }}
+                  sx={{ color: "text.muted" }}
                 >
                   موجودی تومان شما
                 </Typography>
@@ -103,7 +103,7 @@ export default function Cart() {
                 <Typography
                   variant="body1"
                   fontSize={16}
-                  sx={{ color: "#C2C2BA" }}
+                  sx={{ color: "text.muted" }}
                 >
                   تعداد محصول
                 </Typography>
@@ -122,11 +122,11 @@ export default function Cart() {
                   fontWeight: "600",
                   borderRadius: 2,
                   mt: 2,
-                  '&:hover':{
-                    bgcolor:'primary.main'
-                  }
+                  "&:hover": {
+                    bgcolor: "primary.main",
+                  },
                 }}
-                onClick={()=>router.push('/gold-shop-basket')}
+                onClick={() => router.push("/gold-shop-basket")}
                 disableRipple
                 startIcon={
                   <SvgIcon>

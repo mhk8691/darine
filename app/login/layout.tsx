@@ -7,7 +7,7 @@ interface Props {
 }
 export default function layout({ children }: Props) {
   return (
-    <Container maxWidth={"lg"} sx={{  my:2 }}>
+    <Container maxWidth={"lg"} sx={{ my: 2 }}>
       <Grid container>
         <Grid
           order={{
@@ -57,7 +57,8 @@ export default function layout({ children }: Props) {
                 xs: "none",
                 md: "flex",
               }}
-              direction={'row'} justifyContent={'center'}
+              direction={"row"}
+              justifyContent={"center"}
             >
               <Image
                 src={"/images/darineh.png"}
@@ -147,7 +148,7 @@ export default function layout({ children }: Props) {
               <Typography
                 variant="h6"
                 fontSize={20}
-                sx={{ color: "#10100F" }}
+                sx={{ color: "background.default" }}
                 fontWeight={600}
               >
                 طلاسی پلتفرم خرید و فروش طلا بدون اجرت

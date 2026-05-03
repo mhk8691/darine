@@ -44,7 +44,7 @@ export default function page() {
       </Link>
       <Typography
         variant="body2"
-        sx={{ mt: 6, color: "#C2C2BA" }}
+        sx={{ mt: 6, color: "text.muted" }}
         fontSize={{
           xs: 10,
           md: 12,

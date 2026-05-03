@@ -1,10 +1,10 @@
 import { NotifItemsType } from "@/app/core/Types";
 import {
+  Button,
   Stack,
   Typography,
-  Button,
-  useTheme,
   useMediaQuery,
+  useTheme,
 } from "@mui/material";
 
 interface Props {
@@ -51,7 +51,7 @@ export default function MessageCard({ items, isNotif }: Props) {
             <Typography
               variant="body2"
               fontSize={14}
-              sx={{ color: "#C2C2BA", lineHeight: "22.4px" }}
+              sx={{ color: "text.muted", lineHeight: "22.4px" }}
             >
               {item.message}
             </Typography>

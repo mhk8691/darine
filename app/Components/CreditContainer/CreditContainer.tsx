@@ -81,7 +81,7 @@ export default function CreditContainer({
           >
             {optionTitle || " مزایای این سرویس:"}
           </Typography>
-          <Stack direction={'column'} gap={1}>
+          <Stack direction={"column"} gap={1}>
             {options.map((option) => (
               <Stack
                 direction={"row"}
@@ -111,7 +111,7 @@ export default function CreditContainer({
             direction={"row"}
             alignItems={"center"}
             gap={1}
-            bgcolor={"#292926"}
+            bgcolor={"background.paper"}
             borderRadius={2}
             p={2}
             width={"fit-content"}

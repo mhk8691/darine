@@ -1,11 +1,11 @@
 "use client";
 
-import { Button, Grid, Stack, Typography } from "@mui/material";
-import Container from "../Components/Container/Container";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { Button, Grid, Stack, Typography } from "@mui/material";
 import Link from "next/link";
-import InputField from "../Components/InputField/InputField";
 import { useState } from "react";
+import Container from "../Components/Container/Container";
+import InputField from "../Components/InputField/InputField";
 
 type FormState = {
   name: string;
@@ -137,7 +137,7 @@ export default function RequestForm() {
                   setValue={item.setValue}
                   style={{
                     width: "100%",
-                    bgcolor: "#10100F",
+                    bgcolor: "background.default",
                     "& .MuiOutlinedInput-root": {
                       "& fieldset": {
                         borderColor: "#393936",

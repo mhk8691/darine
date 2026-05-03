@@ -1,6 +1,6 @@
 import { Button, Stack, Typography } from "@mui/material";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function SendCode() {
   const [time, setTime] = useState<number>(120);
@@ -42,7 +42,7 @@ export default function SendCode() {
             xs: 12,
             sm: 16,
           }}
-          sx={{ color: "#ADADA9" }}
+          sx={{ color: "text.subtitle" }}
         >
           {formatTime(time)}
         </Typography>

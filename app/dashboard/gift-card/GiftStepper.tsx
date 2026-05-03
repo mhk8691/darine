@@ -1,4 +1,5 @@
 "use client";
+import ChooseAddress from "@/app/Components/ChooseAddress/ChooseAddress";
 import CheckIcon from "@mui/icons-material/Check";
 import { Stack } from "@mui/material";
 import Box from "@mui/material/Box";
@@ -14,7 +15,6 @@ import { styled } from "@mui/material/styles";
 import * as React from "react";
 import FinalApproval from "./FinalApproval";
 import WeightDetermination from "./WeightDetermination";
-import ChooseAddress from "@/app/Components/ChooseAddress/ChooseAddress";
 
 const CustomConnector = styled(StepConnector)(() => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -78,8 +78,8 @@ const steps = ["تعیین وزن", "تعیین آدرس", "تایید نهای�
 export default function GiftStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set<number>());
-  const [weight, setWeight] = React.useState('');
-  const [price, setPrice] = React.useState('');
+  const [weight, setWeight] = React.useState("");
+  const [price, setPrice] = React.useState("");
   const [open, setOpen] = React.useState(false);
 
   const isStepSkipped = (step: number) => {
@@ -147,17 +147,18 @@ export default function GiftStepper() {
             flex: 1,
           },
           "& .MuiStepLabel-label": {
-            color: "#aaa",
+            color: "text.subtitle",
             fontSize: {
               xs: 12,
               sm: 16,
             },
           },
           "& .MuiStepLabel-label.Mui-active": {
-            color: "#fff",
+            color: "text.primary",
           },
           "& .MuiStepLabel-label.Mui-completed": {
-            color: "#fff",
+            color: "text.title",
+            fontWeight:'bold'
           },
         }}
       >
@@ -195,7 +196,7 @@ export default function GiftStepper() {
             }}
             borderRadius={activeStep === 2 ? 0 : 1.5}
             borderColor={{
-              sm: "#292926",
+              sm: "background.paper",
             }}
             width={500}
           >
@@ -261,7 +262,7 @@ export default function GiftStepper() {
                       sm: "35%",
                     },
                     borderColor: "#444",
-                    color: "#fff",
+                    color: "text.title",
                   }}
                 >
                   بازگشت

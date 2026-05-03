@@ -112,7 +112,7 @@ export default function DesktopAppbar() {
                 md: 16,
               }}
               sx={{
-                color: pathname === item.link ? "text.primary" : "#C2C2BA",
+                color: pathname === item.link ? "text.primary" : "text.muted",
                 scale: pathname === item.link ? 1.1 : 1,
                 transition: "all .3s ease",
               }}

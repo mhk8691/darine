@@ -12,7 +12,7 @@ const items: ToggleItemsType[] = [
   { title: "به نقره سی", value: "silver", id: 2 },
 ];
 export default function Withdraw() {
-  const [price, setPrice] = useState('');
+  const [price, setPrice] = useState("");
   const [select, setSelect] = useState(items[0].value);
 
   return (
@@ -40,14 +40,14 @@ export default function Withdraw() {
             variant="contained"
             sx={{
               bgcolor: "#FEF2C0",
-              color: "#292926",
+              color: "text.secondary",
               borderRadius: 1.5,
               px: 1,
               width: "fit-content",
-              fontSize:{
-                xs:12,
-                sm:14
-              }
+              fontSize: {
+                xs: 12,
+                sm: 14,
+              },
             }}
           >
             انتخاب کل موجودی
@@ -58,10 +58,14 @@ export default function Withdraw() {
       <Button
         variant="contained"
         color="primary"
-        sx={{ borderRadius: 2, fontSize:{
-          xs:14,
-          sm:16
-        }, py: 1.4 }}
+        sx={{
+          borderRadius: 2,
+          fontSize: {
+            xs: 14,
+            sm: 16,
+          },
+          py: 1.5,
+        }}
       >
         برداشت
       </Button>

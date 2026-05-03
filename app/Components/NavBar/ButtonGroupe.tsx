@@ -132,7 +132,7 @@ export default function ButtonGroupe() {
             <Divider
               orientation="vertical"
               flexItem
-              sx={{ height: 35, borderColor: "#EBEBE6", mr: 1 }}
+              sx={{ height: 35, borderColor: "text.primary", mr: 1 }}
             />
           </Stack>
           <Link href={"/dashboard"}>

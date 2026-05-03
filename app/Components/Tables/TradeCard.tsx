@@ -1,10 +1,9 @@
-import React from "react";
-import Container from "../Container/Container";
-import Typography from "@mui/material/Typography";
 import priceFormater from "@/app/core/PriceFormater";
-import { Box, Stack, Button } from "@mui/material";
+import { Box, Button, Stack } from "@mui/material";
+import Typography from "@mui/material/Typography";
 import Link from "next/link";
 import CircleAnimation from "../CircleAnimation/CircleAnimation";
+import Container from "../Container/Container";
 interface Props {
   isDetail: boolean;
 }
@@ -16,7 +15,7 @@ export default function TradeCard({ isDetail }: Props) {
         px: 2,
         border: 1,
         borderColor: "primary.light",
-        bgcolor: "#292926",
+        bgcolor: "background.paper",
         width: {
           xs: "100%",
           sm: isDetail ? "100%" : "307px",
@@ -36,7 +35,11 @@ export default function TradeCard({ isDetail }: Props) {
           alignItems={"center"}
           width={!isDetail ? "100%" : "fit-conetent"}
         >
-          <Typography variant="body2" sx={{ color: "#ADADA9" }} fontSize={10}>
+          <Typography
+            variant="body2"
+            sx={{ color: "text.subtitle" }}
+            fontSize={10}
+          >
             ۱۶:۳۷:۲۲ - ۲۵ فروردین ۱۴۰۵
           </Typography>
           {!isDetail && (
@@ -54,7 +57,7 @@ export default function TradeCard({ isDetail }: Props) {
           )}
           <Typography
             variant="body2"
-            sx={{ color: "#C2C2BA", mt: isDetail ? 0 : 1.5 }}
+            sx={{ color: "text.muted", mt: isDetail ? 0 : 1.5 }}
             fontSize={14}
           >
             قیمت لحظه‌ای طلا ۱۸ عیار(گرم)

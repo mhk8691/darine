@@ -1,15 +1,16 @@
-import { Box, CssBaseline, ThemeProvider } from "@mui/material";
+import { CssBaseline } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Head from "next/head";
+import CustomBreadcrumbs from "./Components/Breadcrumbs/Breadcrumbs";
 import Footer from "./Components/Footer/Footer";
 import Navbar from "./Components/NavBar/Navbar";
-import "./globals.css";
-import theme, { rtl } from "./theme";
 import GlobalSnackbar from "./Components/Snackbar/SnackbarRoot";
-import CustomBreadcrumbs from "./Components/Breadcrumbs/Breadcrumbs";
+import "./globals.css";
 import SpaceBox from "./SpaceBox";
+import { rtl } from "./theme";
+import CustomThemeProvider from "./theme-provider";
 
 const IranYekanFont = localFont({
   src: [
@@ -63,7 +64,7 @@ export default function RootLayout({
         }}
       >
         <AppRouterCacheProvider options={rtl}>
-          <ThemeProvider theme={theme}>
+          <CustomThemeProvider>
             <CssBaseline />
             <Navbar />
             <main style={{ flexGrow: 1 }}>
@@ -74,7 +75,7 @@ export default function RootLayout({
             </main>
             <GlobalSnackbar />
             <Footer />
-          </ThemeProvider>
+          </CustomThemeProvider>
         </AppRouterCacheProvider>
       </body>
     </html>

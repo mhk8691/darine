@@ -42,7 +42,7 @@ export default function DesktopCart() {
             ></path>
           </svg>
         </Stack>
-        <Typography variant="body1" fontSize={14} sx={{ color: "#C2C2BA" }}>
+        <Typography variant="body1" fontSize={14} sx={{ color: "text.muted" }}>
           همه محصولات دارای ضمانت اصالت و سلامت کالا می‌باشند.
         </Typography>
       </Stack>

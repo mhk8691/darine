@@ -38,7 +38,6 @@ export default function WeightDetermination({
     }
   }, [weight]);
 
-  // price → weight
   useEffect(() => {
     const p = Number(price);
     if (!p) return;
@@ -72,8 +71,8 @@ export default function WeightDetermination({
         disabled
         sx={{
           "& .MuiInputBase-input.Mui-disabled": {
-            color: "#EBEBE6",
-            WebkitTextFillColor: "#EBEBE6",
+            color: "text.primary",
+            WebkitTextFillColor: "text.primary",
           },
         }}
         slotProps={{
@@ -85,7 +84,35 @@ export default function WeightDetermination({
                     disableRipple
                     onClick={() => setCount((c) => c + 1)}
                   >
-                    <Typography>+</Typography>
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M8 12H16"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      ></path>
+                      <path
+                        d="M12 16V8"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      ></path>
+                      <path
+                        d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      ></path>
+                    </svg>
                   </IconButton>
 
                   <Typography>{count}</Typography>
@@ -94,7 +121,28 @@ export default function WeightDetermination({
                     onClick={() => setCount((c) => Math.max(1, c - 1))}
                     disableRipple
                   >
-                    <Typography>-</Typography>
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M8 12H16"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      ></path>
+                      <path
+                        d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      ></path>
+                    </svg>
                   </IconButton>
                 </Stack>
               </InputAdornment>

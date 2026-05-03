@@ -1,8 +1,8 @@
-import * as React from "react";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { ToggleItemsType } from "@/app/core/Types";
 import { Box, SxProps } from "@mui/material";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import * as React from "react";
 
 interface Props {
   items: ToggleItemsType[];
@@ -28,9 +28,9 @@ export default function FilterToggleButton({
       console.log(newAlignment);
     }
   };
-  
+
   const activeIndex = items.findIndex((i) => i.value === select);
-  
+
   return (
     <Box
       sx={{
@@ -49,7 +49,7 @@ export default function FilterToggleButton({
           left: 4,
           height: "calc(100% - 8px)",
           width: `calc(${100 / items.length}% - 8px)`,
-          backgroundColor: "#2a2a2a",
+          bgcolor: "background.paper",
           borderRadius: "6px",
           transition: "transform 0.3s ease",
           transform: `translateX(${activeIndex * 100}%)`,
@@ -65,11 +65,11 @@ export default function FilterToggleButton({
           zIndex: 1,
           display: "flex",
           justifyContent: "center",
-          minWidth: 0, 
-          px:0,
+          minWidth: 0,
+          px: 0,
           flex: "1 1 0",
           overflow: "hidden",
-          textOverflow: "ellipsis", 
+          textOverflow: "ellipsis",
         }}
       >
         {items.map((item) => (
@@ -85,8 +85,8 @@ export default function FilterToggleButton({
             sx={{
               border: "none",
               borderRadius: "6px !important",
-              color: "#ADADA9",
-              px: { xs: 1, sm: 2, md: 1,lg:1 },
+              color: "text.subtitle",
+              px: { xs: 1, sm: 2, md: 1, lg: 1 },
               width: "100%",
               minWidth: { xs: "80px", sm: "80px", md: "auto" },
               whiteSpace: "nowrap",

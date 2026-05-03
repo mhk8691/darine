@@ -1,6 +1,6 @@
 "use client";
 import { ToggleItemsType } from "@/app/core/Types";
-import { Button } from "@mui/material";
+import { Button, useTheme } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
 interface Props {
   item: ToggleItemsType;
@@ -14,7 +14,8 @@ export default function FilterButton({
   item,
   setMessage,
 }: Props) {
-  console.log(setMessage)
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === "dark";
   return (
     <Button
       variant="outlined"
@@ -35,9 +36,19 @@ export default function FilterButton({
         width: "fit-content",
         borderRadius: "999px",
         px: 2,
-        borderColor: active === item.id ? "primary.main" : "#393936",
-        bgcolor: active === item.id ? "#3F3817" : "background.default",
-        color: active === item.id ? "primary.main" : "text.secondary",
+        borderColor: active === item.id ? "primary.main" : "background.paper",
+        bgcolor:
+          active === item.id
+            ? isDarkMode
+              ? "#3F3817"
+              : "#FEF2C0"
+            : "background.default",
+        color:
+          active === item.id
+            ? isDarkMode
+              ? "primary.main"
+              : "text.secondary"
+            : "text.secondary",
       }}
     >
       {item.title}

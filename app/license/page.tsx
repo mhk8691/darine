@@ -1,7 +1,7 @@
-import { Container, Divider, Stack, Typography, Button } from "@mui/material";
+import { Button, Container, Divider, Stack, Typography } from "@mui/material";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "مجوزها | دارینه",
   description: "",
@@ -266,7 +266,7 @@ export default function page() {
                       sm: "start",
                     }}
                     lineHeight={"25.6px"}
-                    sx={{ color: "#C2C2BA", whiteSpace: "pre-line" }}
+                    sx={{ color: "text.muted", whiteSpace: "pre-line" }}
                   >
                     {item.description}
                   </Typography>

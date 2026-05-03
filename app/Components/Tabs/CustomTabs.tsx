@@ -112,7 +112,7 @@ export default function CustomTabs({
                   xs: 16,
                   sm: "22px",
                 },
-                color: "#C2C2BA",
+                color: "text.muted",
                 width: "50%",
                 mb: 2,
                 ...style,

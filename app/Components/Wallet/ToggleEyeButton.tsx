@@ -26,9 +26,12 @@ export default function ToggleEyeButton({ visible, setVisible }: Props) {
   return (
     <IconButton onClick={handleClick}>
       {visible ? (
-        <VisibilityOutlinedIcon sx={{ color: "#C2C2BA" }} fontSize="small" />
+        <VisibilityOutlinedIcon sx={{ color: "text.muted" }} fontSize="small" />
       ) : (
-        <VisibilityOffOutlinedIcon sx={{ color: "#C2C2BA" }} fontSize="small" />
+        <VisibilityOffOutlinedIcon
+          sx={{ color: "text.muted" }}
+          fontSize="small"
+        />
       )}
     </IconButton>
   );

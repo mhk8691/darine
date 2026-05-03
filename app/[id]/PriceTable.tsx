@@ -1,7 +1,7 @@
 import { Box, Chip, Divider, Stack, Typography } from "@mui/material";
 import React from "react";
-import { TableGoldDataType } from "../core/Types";
 import priceFormater from "../core/PriceFormater";
+import { TableGoldDataType } from "../core/Types";
 interface Props {
   title: string;
   data: TableGoldDataType[];
@@ -15,7 +15,11 @@ export default function PriceTables({ title, data }: Props) {
         px={4}
         sx={{ borderTopLeftRadius: 8, borderTopRightRadius: 8 }}
       >
-        <Typography variant="body1" fontSize={16} sx={{ color: "#ADADA9" }}>
+        <Typography
+          variant="body1"
+          fontSize={16}
+          sx={{ color: "text.subtitle" }}
+        >
           {title}
         </Typography>
       </Stack>

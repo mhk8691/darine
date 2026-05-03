@@ -18,12 +18,12 @@ export default function Counter() {
       }}
     >
       <IconButton onClick={() => setCount((prev) => prev + 1)} disableRipple>
-        <AddIcon fontSize="small" sx={{ color: "#ADADA9" }} />
+        <AddIcon fontSize="small" sx={{ color: "text.subtitle" }} />
       </IconButton>
       <Typography fontWeight={600}>{count}</Typography>
 
       <IconButton onClick={() => setCount((prev) => prev - 1)} disableRipple>
-        <DeleteIcon fontSize="small" sx={{ color: "#ADADA9" }} />
+        <DeleteIcon fontSize="small" sx={{ color: "text.subtitle" }} />
       </IconButton>
     </Stack>
   );

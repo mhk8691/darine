@@ -1,15 +1,15 @@
+import { TableGoldDataType } from "@/app/core/Types";
+import { Button, Stack } from "@mui/material";
+import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
-import { Stack, Button } from "@mui/material";
 import Link from "next/link";
 import LineChart from "../LineChart/LineChart";
-import { TableGoldDataType } from "@/app/core/Types";
 
 export function createData({
   typeGold,
@@ -52,7 +52,12 @@ export default function GoldTable({ heads, data }: Props) {
               <TableCell
                 align="center"
                 key={index}
-                sx={{ color: "#ADADA9", fontSize: "16px", px: 2, py: 2.5 }}
+                sx={{
+                  color: "text.subtitle",
+                  fontSize: "16px",
+                  px: 2,
+                  py: 2.5,
+                }}
               >
                 {head}
               </TableCell>

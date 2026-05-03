@@ -58,7 +58,7 @@ const NotificationContent = ({ onClose }: { onClose: () => void }) => {
       >
         <Stack direction={"row"} alignItems={"center"}>
           <IconButton onClick={onClose} disableRipple>
-            <ArrowForward sx={{ color: "#ADADA9" }} />
+            <ArrowForward sx={{ color: "text.subtitle" }} />
           </IconButton>
           <Typography variant="body1" fontSize={16} fontWeight={500}>
             پیام ها
@@ -120,7 +120,7 @@ const NotificationContent = ({ onClose }: { onClose: () => void }) => {
 
 export default function Notification() {
   const [open, setOpen] = React.useState(false);
-const wrapperRef = React.useRef<HTMLDivElement | null>(null);
+  const wrapperRef = React.useRef<HTMLDivElement | null>(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -128,13 +128,13 @@ const wrapperRef = React.useRef<HTMLDivElement | null>(null);
     setOpen((prev) => !prev);
   };
 
- const handleClose = (event?: MouseEvent | TouchEvent) => {
-   const target = event?.target as Node;
+  const handleClose = (event?: MouseEvent | TouchEvent) => {
+    const target = event?.target as Node;
 
-   if (wrapperRef.current && wrapperRef.current.contains(target)) return;
+    if (wrapperRef.current && wrapperRef.current.contains(target)) return;
 
-   setOpen(false);
- };
+    setOpen(false);
+  };
 
   if (isMobile) {
     return (

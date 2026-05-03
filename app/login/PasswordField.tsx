@@ -34,7 +34,7 @@ export default function PasswordField({ password, setPassword, label }: Props) {
         mt: 2.5,
         width: "100%",
         "& .MuiInputLabel-root": {
-          color: "#C2C2BA",
+          color: "text.muted",
           fontSize: {
             xs: "14px",
             sm: "16px",

@@ -1,9 +1,9 @@
 import Card from "@/app/Components/Container/Container";
 import { Divider, Grid, Stack, Typography } from "@mui/material";
-import Image from "next/image";
-import RefralButton from "./RefralButton";
 import { Metadata } from "next";
+import Image from "next/image";
 import BackLink from "../BackLink";
+import RefralButton from "./RefralButton";
 export const metadata: Metadata = {
   title: "دعوت از دوستان | دارینه",
   description: "",
@@ -139,7 +139,7 @@ export default function page() {
                   xs: 10,
                   sm: 12,
                 }}
-                sx={{ color: "#C2C2BA" }}
+                sx={{ color: "text.muted" }}
               >
                 مجموع کاربران دعوت شده توسط شما:
               </Typography>
@@ -162,7 +162,7 @@ export default function page() {
                   xs: 10,
                   sm: 12,
                 }}
-                sx={{ color: "#C2C2BA" }}
+                sx={{ color: "text.muted" }}
               >
                 مجموع کاربران دعوت شده توسط شما:
               </Typography>

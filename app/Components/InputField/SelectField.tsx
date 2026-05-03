@@ -19,19 +19,27 @@ interface Props {
   itemsList: string[];
   label: string;
   isOrederDetail: boolean;
-  style?:SxProps
-  maxWidth?:string
+  style?: SxProps;
+  maxWidth?: string;
 }
-export default function SelectField({ label, itemsList, isOrederDetail, style,maxWidth }: Props) {
+export default function SelectField({
+  label,
+  itemsList,
+  isOrederDetail,
+  style,
+  maxWidth,
+}: Props) {
   const [value, setValue] = React.useState<string>("");
   const MenuProps = {
     slotProps: {
       paper: {
         sx: {
-          background: "#10100f",
-          border: "1px solid #575753",
+          border: 1,
+          borderColor: "background.border",
+          bgcolor: "background.default",
           backdropFilter: "blur(10px)",
           borderRadius: "8px",
+          mt: 0.5,
         },
       },
     },
@@ -47,7 +55,7 @@ export default function SelectField({ label, itemsList, isOrederDetail, style,ma
   };
 
   return (
-    <FormControl sx={{ maxWidth: maxWidth ||'100%', width: "100%" }}>
+    <FormControl sx={{ maxWidth: maxWidth || "100%", width: "100%" }}>
       <Select
         displayEmpty
         value={value}
@@ -57,22 +65,8 @@ export default function SelectField({ label, itemsList, isOrederDetail, style,ma
         MenuProps={MenuProps}
         sx={{
           borderRadius: "8px",
-          color: "#EBEBE6",
+          color: "text.primary",
           fontSize: "18px",
-
-          "& .MuiOutlinedInput-notchedOutline": {
-            borderColor: value ? "#FCD535" : "#575753",
-            transition: "0.2s",
-          },
-
-          "&:hover .MuiOutlinedInput-notchedOutline": {
-            borderColor: value ? "#FCD535" : "#575753",
-          },
-
-          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            border: value ? "1px solid #FCD535" : "1px solid #575753",
-          },
-
           "& .MuiSelect-icon": {
             right: 8,
             left: "auto",
@@ -151,18 +145,9 @@ export default function SelectField({ label, itemsList, isOrederDetail, style,ma
             key={name}
             value={name}
             sx={{
-              color: "#ddd",
-
+              color: "text.primary",
               "&.Mui-selected": {
-                backgroundColor: "#52524f !important",
-              },
-
-              "&.Mui-selected:hover": {
-                backgroundColor: "#52524f !important",
-              },
-
-              "&:hover": {
-                backgroundColor: "#52524f",
+                bgcolor: "background.default",
               },
             }}
           >

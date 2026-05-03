@@ -55,7 +55,7 @@ export default function ChartGold({
           sm: 22,
         }}
         fontWeight={"bold"}
-        sx={{ color: "text.title" }}
+        sx={{ color: "text.primary" }}
       >
         نمودار لحظه ای قیمت طلا
       </Typography>

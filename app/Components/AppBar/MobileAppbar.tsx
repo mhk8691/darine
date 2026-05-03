@@ -245,37 +245,36 @@ export default function MobileAppbar() {
             direction="column"
             alignItems="center"
             component="div"
-            gap={.5}
+            gap={0.5}
             onClick={() => router.push(item.link)}
             sx={{ position: "relative", cursor: "pointer" }}
           >
-          
-              <IconButton
+            <IconButton
+              sx={{
+                position: "relative",
+                p: 0.75,
+                bgcolor: isActive ? "primary.main" : "transparent",
+                transition: "all 0.3s ease",
+                boxShadow: isActive
+                  ? "0px 4px 12px rgba(0, 0, 0, 0.3)"
+                  : "none",
+                zIndex: isActive ? 2 : 1,
+              }}
+            >
+              <SvgIcon
                 sx={{
-                  position: "relative",
-                  p:.75,
-                  bgcolor: isActive ? "primary.main" : "transparent",
-                  transition: "all 0.3s ease",
-                  boxShadow: isActive
-                    ? "0px 4px 12px rgba(0, 0, 0, 0.3)"
-                    : "none",
-                  zIndex: isActive ? 2 : 1,
+                  color: isActive ? "black" : "text.subtitle",
+                  fontSize: 30,
                 }}
               >
-                <SvgIcon
-                  sx={{
-                    color: isActive ? "black" : "#ADADA9",
-                    fontSize: 30,
-                  }}
-                >
-                  {item.icon}
-                </SvgIcon>
-              </IconButton>
+                {item.icon}
+              </SvgIcon>
+            </IconButton>
 
             <Typography
               variant="body2"
               sx={{
-                color:isActive ?'primary.main':"#ADADA9",
+                color: isActive ? "primary.main" : "text.subtitle",
                 fontSize: 10,
               }}
             >

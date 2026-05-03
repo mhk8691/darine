@@ -1,11 +1,11 @@
 "use client";
 
-import React, { ReactNode } from "react";
-import TextField from "@mui/material/TextField";
-import InputAdornment from "@mui/material/InputAdornment";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
 import { SxProps } from "@mui/material";
+import Divider from "@mui/material/Divider";
+import InputAdornment from "@mui/material/InputAdornment";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import React, { ReactNode } from "react";
 
 interface Props {
   placeholder: string;
@@ -26,16 +26,16 @@ export default function InputField({
   style,
   multiline = false,
 }: Props) {
-const formatNumber = (val: string) => {
-  if (!val) return "";
+  const formatNumber = (val: string) => {
+    if (!val) return "";
 
-  const safeVal = String(val);
+    const safeVal = String(val);
 
-  const num = Number(safeVal.replace(/,/g, ""));
-  if (isNaN(num)) return safeVal;
+    const num = Number(safeVal.replace(/,/g, ""));
+    if (isNaN(num)) return safeVal;
 
-  return num.toLocaleString();
-};
+    return num.toLocaleString();
+  };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const raw = e.target.value.replace(/,/g, "");
     setValue(raw);
@@ -56,21 +56,6 @@ const formatNumber = (val: string) => {
           textAlign: value ? "right" : "left",
           fontSize: "16px",
         },
-        "& .MuiOutlinedInput-root": {
-          borderRadius: 2,
-          "& fieldset": {
-            borderColor: "#494949",
-            borderWidth: "1px",
-          },
-          "&:hover fieldset": {
-            borderColor: "#494949",
-            borderWidth: "1px",
-          },
-          "&.Mui-focused fieldset": {
-            borderColor: "#494949",
-            borderWidth: "1px",
-          },
-        },
         ...style,
       }}
       slotProps={{
@@ -85,10 +70,13 @@ const formatNumber = (val: string) => {
                 flexItem
                 sx={{
                   mr: 1,
-                  borderColor: "#393936",
+                  borderColor: "background.paper",
                 }}
               />
-              <Typography variant="h6" sx={{ fontSize: 16 }}>
+              <Typography
+                variant="h6"
+                sx={{ fontSize: 16, color: "text.primary" }}
+              >
                 {title}
               </Typography>
             </InputAdornment>

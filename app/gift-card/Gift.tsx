@@ -217,7 +217,7 @@ export default function Gift() {
                 gradientUnits="userSpaceOnUse"
               >
                 <stop stopColor="#B1B1AB" stopOpacity="0.49"></stop>
-                <stop offset="1" stopColor="#FAF9F6"></stop>
+                <stop offset="1" stopColor="text.title"></stop>
               </linearGradient>
               <clipPath id="clip0_8247_6954">
                 <rect

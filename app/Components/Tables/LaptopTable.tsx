@@ -26,7 +26,7 @@ export default function LaptopTable({ items, isDetail = true }: Props) {
               direction={"row"}
               justifyContent={"space-between"}
               alignItems={"center"}
-              bgcolor={"#292926"}
+              bgcolor={"background.paper"}
               px={1.5}
               py={1}
               sx={{ borderTopLeftRadius: 8, borderTopRightRadius: 8 }}
@@ -59,7 +59,7 @@ export default function LaptopTable({ items, isDetail = true }: Props) {
                   variant="body1"
                   fontSize={10}
                   fontWeight={"bold"}
-                  sx={{ color: "#ADADA9" }}
+                  sx={{ color: "text.subtitle" }}
                 >
                   نرخ فعلی:
                 </Typography>
@@ -83,7 +83,7 @@ export default function LaptopTable({ items, isDetail = true }: Props) {
                   variant="body1"
                   fontSize={10}
                   fontWeight={"bold"}
-                  sx={{ color: "#ADADA9" }}
+                  sx={{ color: "text.subtitle" }}
                 >
                   پایین ترین قیمت روز:
                 </Typography>
@@ -107,7 +107,7 @@ export default function LaptopTable({ items, isDetail = true }: Props) {
                   variant="body1"
                   fontSize={10}
                   fontWeight={"bold"}
-                  sx={{ color: "#ADADA9" }}
+                  sx={{ color: "text.subtitle" }}
                 >
                   بالاترین قیمت روز:
                 </Typography>
@@ -131,7 +131,7 @@ export default function LaptopTable({ items, isDetail = true }: Props) {
                   variant="body1"
                   fontSize={10}
                   fontWeight={"bold"}
-                  sx={{ color: "#ADADA9" }}
+                  sx={{ color: "text.subtitle" }}
                 >
                   تغییر ۱ روزه:
                 </Typography>
@@ -158,7 +158,7 @@ export default function LaptopTable({ items, isDetail = true }: Props) {
                   variant="body1"
                   fontSize={10}
                   fontWeight={"bold"}
-                  sx={{ color: "#ADADA9" }}
+                  sx={{ color: "text.subtitle" }}
                 >
                   تغییر ۱ ماهه:
                 </Typography>
@@ -166,7 +166,8 @@ export default function LaptopTable({ items, isDetail = true }: Props) {
                   variant="body2"
                   fontSize={12}
                   sx={{
-                    color: item.monthChange >= 0 ? "success.main" : "error.main",
+                    color:
+                      item.monthChange >= 0 ? "success.main" : "error.main",
                   }}
                 >
                   {item.monthChange}%
@@ -185,7 +186,7 @@ export default function LaptopTable({ items, isDetail = true }: Props) {
                   variant="body1"
                   fontSize={10}
                   fontWeight={"bold"}
-                  sx={{ color: "#ADADA9" }}
+                  sx={{ color: "text.subtitle" }}
                 >
                   نمودار هفتگی :
                 </Typography>

@@ -17,10 +17,10 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { CartItem, Product } from "@/app/core/Types";
-import CustomModal from "../CustomModal/CustomModal";
-import { getCart, saveCart } from "./cartStorage";
 import { Close } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
+import CustomModal from "../CustomModal/CustomModal";
+import { getCart, saveCart } from "./cartStorage";
 
 const product: Product = {
   id: "gold-1",
@@ -70,10 +70,11 @@ export default function GoldCard() {
       <Card
         sx={{
           border: 1,
-          borderColor: "#393936",
-          background: "rgb(28, 28, 27)",
+          borderColor: "background.paper",
+          bgcolor: "background.default",
           py: 1.5,
           borderRadius: 1.5,
+          boxShadow:'none'
         }}
       >
         <Stack px={1.5}>
@@ -148,7 +149,7 @@ export default function GoldCard() {
                   xs: 10,
                   sm: 12,
                 }}
-                sx={{ color: "#C2C2BA" }}
+                sx={{ color: "text.muted" }}
               >
                 {" "}
                 وزن{" "}
@@ -210,7 +211,7 @@ export default function GoldCard() {
                   xs: 10,
                   sm: 12,
                 }}
-                sx={{ color: "#C2C2BA" }}
+                sx={{ color: "text.muted" }}
               >
                 {" "}
                 گرم طلا:{" "}
@@ -261,7 +262,7 @@ export default function GoldCard() {
                   xs: 10,
                   sm: 12,
                 }}
-                sx={{ color: "#C2C2BA" }}
+                sx={{ color: "text.muted" }}
               >
                 {" "}
                 ارزش تومان:{" "}
@@ -368,7 +369,7 @@ export default function GoldCard() {
             color="primary"
             sx={{
               width: "50%",
-              color: "#10100F",
+              color: "background.default",
               py: 1.3,
               borderRadius: 2,
               fontSize: 16,

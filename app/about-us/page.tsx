@@ -1,17 +1,17 @@
 import {
   Box,
+  Button,
   Container,
   Divider,
+  Grid,
   Stack,
   Typography,
-  Button,
-  Grid,
 } from "@mui/material";
+import { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import Faq from "../Components/Faq/Faq";
 import { FaqItem } from "../core/Types";
-import Image from "next/image";
-import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "درباره ما | دارینه",
   description: "",
@@ -239,8 +239,8 @@ export default function page() {
             md: 14,
           }}
           spacing={{
-            xs:5,
-            sm:0
+            xs: 5,
+            sm: 0,
           }}
         >
           <Grid
@@ -259,7 +259,7 @@ export default function page() {
               gap={4}
               alignItems={{
                 xs: "center",
-                sm:'flex-start'
+                sm: "flex-start",
               }}
             >
               <Typography
@@ -287,7 +287,7 @@ export default function page() {
                   />
                 }
                 sx={{
-                  color: "#10100F",
+                  color: "background.default",
                   fontSize: {
                     xs: 12,
                     sm: 14,
@@ -355,7 +355,13 @@ export default function page() {
         >
           چرا دارینه؟
         </Typography>
-        <Stack component={"ul"} flexDirection={"column"} gap={1} mt={3} pl={2.5}>
+        <Stack
+          component={"ul"}
+          flexDirection={"column"}
+          gap={1}
+          mt={3}
+          pl={2.5}
+        >
           {rules.map((rule, index) => (
             <Typography
               key={index}

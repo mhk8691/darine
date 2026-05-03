@@ -49,7 +49,7 @@ export default function notfound() {
             xs: 16,
             sm: 22,
           },
-          color: "#10100F",
+          color: "background.default",
           mt: 6,
           borderRadius: 2,
           px: 5,

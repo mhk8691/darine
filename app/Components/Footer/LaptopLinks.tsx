@@ -90,7 +90,7 @@ export default function LaptopLinks() {
                       <SvgIcon
                         sx={{
                           fontSize: 30,
-                          color: "#ADADA9",
+                          color: "text.subtitle",
                         }}
                       >
                         <svg
@@ -114,7 +114,7 @@ export default function LaptopLinks() {
                       <SvgIcon
                         sx={{
                           fontSize: 30,
-                          color: "#ADADA9",
+                          color: "text.subtitle",
                         }}
                       >
                         <svg

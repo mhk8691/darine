@@ -6,6 +6,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import LocationPinIcon from "@mui/icons-material/LocationPin";
 import {
+  Button,
   FormControl,
   FormControlLabel,
   IconButton,
@@ -15,7 +16,6 @@ import {
   Stack,
   TextField,
   Typography,
-  Button,
 } from "@mui/material";
 import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 
@@ -23,7 +23,7 @@ interface Props {
   setOpenAddAddress: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function AddressList({setOpenAddAddress}:Props) {
+export default function AddressList({ setOpenAddAddress }: Props) {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("address1");
 
@@ -47,7 +47,7 @@ export default function AddressList({setOpenAddAddress}:Props) {
             fontSize: "20px",
           },
           "&.MuiFormControl-root .MuiFormLabel-root": {
-            color: "#ADADA9",
+            color: "text.subtitle",
           },
           "& .MuiOutlinedInput-root": {
             color: "#ffffff",
@@ -138,7 +138,7 @@ export default function AddressList({setOpenAddAddress}:Props) {
                 />
                 <Stack
                   direction={"row"}
-                  color={"#ADADA9"}
+                  color={"text.subtitle"}
                   gap={0.5}
                   ml={3}
                   alignItems={"center"}
@@ -149,7 +149,7 @@ export default function AddressList({setOpenAddAddress}:Props) {
                 </Stack>
                 <Stack
                   direction={"row"}
-                  color={"#ADADA9"}
+                  color={"text.subtitle"}
                   gap={0.5}
                   ml={3}
                   alignItems={"center"}
@@ -186,7 +186,7 @@ export default function AddressList({setOpenAddAddress}:Props) {
                 />
                 <Stack
                   direction={"row"}
-                  color={"#ADADA9"}
+                  color={"text.subtitle"}
                   gap={0.5}
                   ml={3}
                   alignItems={"center"}
@@ -197,7 +197,7 @@ export default function AddressList({setOpenAddAddress}:Props) {
                 </Stack>
                 <Stack
                   direction={"row"}
-                  color={"#ADADA9"}
+                  color={"text.subtitle"}
                   gap={0.5}
                   ml={3}
                   alignItems={"center"}
@@ -215,9 +215,9 @@ export default function AddressList({setOpenAddAddress}:Props) {
           color="primary"
           fullWidth
           sx={{ borderRadius: 2, mt: 2, py: 1.5 }}
-          onClick={()=>{
-            setOpenAddAddress(true)
-            setOpen(false)
+          onClick={() => {
+            setOpenAddAddress(true);
+            setOpen(false);
           }}
         >
           افزودن آدرس جدید

@@ -4,10 +4,10 @@ import Image from "next/image";
 import Faq from "../Faq/Faq";
 import ApplicationDownload from "./ApplicationDownload";
 import HowBuyGold from "./HowBuyGold";
+import MobileTable from "./MobileTable";
 import PriceAlertCard from "./PriceAlertCard";
 import TableContainer from "./TableContainer";
 import TradeCard from "./TradeCard";
-import MobileTable from "./MobileTable";
 
 interface Props {
   title: string;
@@ -107,7 +107,7 @@ export default function GoldContainer({ title, data, faqData }: Props) {
                   xs: 10,
                   sm: 14,
                 }}
-                sx={{ color: "#C2C2BA", mt: 2 }}
+                sx={{ color: "text.muted", mt: 2 }}
               >
                 بازه‌ تغییرات قیمت ۲۴ ساعت تعیین شده است
               </Typography>
@@ -151,7 +151,7 @@ export default function GoldContainer({ title, data, faqData }: Props) {
                 xs: 10,
                 sm: 14,
               }}
-              sx={{ color: "#C2C2BA", mt: 2 }}
+              sx={{ color: "text.muted", mt: 2 }}
             >
               بازه‌ تغییرات قیمت ۲۴ ساعت تعیین شده است
             </Typography>

@@ -1,7 +1,6 @@
 "use client";
 import CustomModal from "@/app/Components/CustomModal/CustomModal";
 import Field from "@/app/login/Field";
-import PasswordField from "@/app/login/PasswordField";
 import { Close } from "@mui/icons-material";
 import { Button, IconButton, Stack, Typography } from "@mui/material";
 import { useState } from "react";
@@ -51,20 +50,20 @@ export default function ChangePassword() {
         
         <Stack direction={"column"} gap={.5} mt={4}>
           <Stack direction={"row"} gap={1}>
-            <InfoOutlinedIcon sx={{ color: "#C2C2BA" }} />
-            <Typography variant="body2" fontSize={14} sx={{ color: "#C2C2BA" }}>
+            <InfoOutlinedIcon sx={{ color: "text.muted" }} />
+            <Typography variant="body2" fontSize={14} sx={{ color: "text.muted" }}>
               رمز عبور باید بین 6 تا 24 حرف باشد
             </Typography>
           </Stack>
           <Stack direction={"row"} gap={1}>
-            <InfoOutlinedIcon sx={{ color: "#C2C2BA" }} />
-            <Typography variant="body2" fontSize={14} sx={{ color: "#C2C2BA" }}>
+            <InfoOutlinedIcon sx={{ color: "text.muted" }} />
+            <Typography variant="body2" fontSize={14} sx={{ color: "text.muted" }}>
               رمز باید شامل اعداد باشد
             </Typography>
           </Stack>
           <Stack direction={"row"} gap={1}>
-            <InfoOutlinedIcon sx={{ color: "#C2C2BA" }} />
-            <Typography variant="body2" fontSize={14} sx={{ color: "#C2C2BA" }}>
+            <InfoOutlinedIcon sx={{ color: "text.muted" }} />
+            <Typography variant="body2" fontSize={14} sx={{ color: "text.muted" }}>
               رمز باید شامل حروف بزرگتر و کوچکتر باشد
             </Typography>
           </Stack>

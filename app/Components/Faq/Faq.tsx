@@ -42,14 +42,14 @@ export default function Faq({ faqData, titleStyle }: Props): JSX.Element {
             expanded={isOpen}
             onChange={handleChange(item.id)}
             sx={{
-              bgcolor: "#10100F",
+              bgcolor: "background.default",
               mb: 1.5,
               py: {
-                xs: .5,
+                xs: 0.5,
                 sm: 2.2,
               },
               px: {
-                xs: .5,
+                xs: 0.5,
                 sm: 2,
               },
               borderRadius: "10px !important",
@@ -69,7 +69,7 @@ export default function Faq({ faqData, titleStyle }: Props): JSX.Element {
                         sm: 32,
                         md: 40,
                       },
-                      color: "#C2C2BA",
+                      color: "text.muted",
                     }}
                   >
                     <svg
@@ -101,7 +101,7 @@ export default function Faq({ faqData, titleStyle }: Props): JSX.Element {
                         sm: 32,
                         md: 40,
                       },
-                      color: "#C2C2BA",
+                      color: "text.muted",
                     }}
                   >
                     <svg viewBox="0 0 24 24" fill="none">

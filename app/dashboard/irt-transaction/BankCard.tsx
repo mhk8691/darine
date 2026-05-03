@@ -36,7 +36,7 @@ const CardItem = ({ item }: { item: (typeof names)[0] }) => (
   >
     <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
       <Image src={item.icon} width={24} height={24} alt="" />
-      <Typography fontSize={12} sx={{ color: "#C2C2BA" }}>
+      <Typography fontSize={12} sx={{ color: "text.muted" }}>
         {item.bankName}
       </Typography>
     </Box>
@@ -67,17 +67,17 @@ export default function CustomDropdown() {
               width: "100%",
               position: "relative",
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#575753",
+                borderColor: "background.paper",
               },
 
               "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#575753",
+                borderColor: "background.paper",
               },
 
               "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#575753",
+                borderColor: "background.paper",
               },
-              borderColor: "#575753 !imporant",
+              borderColor: "background.paper !imporant",
             }}
           >
             <InputLabel
@@ -88,7 +88,7 @@ export default function CustomDropdown() {
                 bgcolor: "background.default",
                 px: 1,
                 fontSize: 16,
-                color: "#C2C2BA",
+                color: "text.muted",
                 width: "fit-content",
               }}
             >
@@ -107,7 +107,7 @@ export default function CustomDropdown() {
                 px: 1.5,
                 cursor: "pointer",
                 transition: "0.2s",
-                borderColor: "#575753",
+                borderColor: "background.paper",
               }}
             >
               {selectedItem ? (
@@ -120,7 +120,7 @@ export default function CustomDropdown() {
                 style={{
                   transform: open ? "rotate(180deg)" : "rotate(0deg)",
                   transition: "0.2s",
-                  color: "#C2C2BA",
+                  color: "text.muted",
                   zIndex: 2,
                 }}
               />
@@ -137,7 +137,7 @@ export default function CustomDropdown() {
                 pointerEvents: open ? "auto" : "none",
                 transition: "0.25s",
                 zIndex: 10,
-                background: "rgb(16, 16, 15) ",
+                bgcolor: "background.default",
                 borderRadius: 0,
                 mx: 0.5,
               }}
@@ -149,16 +149,8 @@ export default function CustomDropdown() {
                   sx={{
                     py: 2,
                     px: 2,
-                    "&:hover": {
-                      backgroundColor: "rgb(16, 16, 15) !important",
-                    },
-
-                    "&.MuiMenuItem-root": {
-                      backgroundColor: "rgb(16, 16, 15) !important",
-                    },
-
-                    "&.MuiMenuItem-root:hover": {
-                      backgroundColor: "rgb(16, 16, 15) !important",
+                    "&.Mui-selected": {
+                      bgcolor: "background.default",
                     },
                   }}
                 >
@@ -174,8 +166,8 @@ export default function CustomDropdown() {
           color="inherit"
           disableRipple
           sx={{
-            '&:hover':{
-              bgcolor:'background.default'
+            "&:hover": {
+              bgcolor: "background.default",
             },
             width: "fit-content",
             fontSize: {

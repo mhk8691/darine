@@ -1,22 +1,34 @@
 "use client";
 import { Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
 import Image from "next/image";
-import React from "react";
 
 export default function DesktopImage() {
   const theme = useTheme();
-  const isDownMd = useMediaQuery(theme.breakpoints.down("md"));
+  const isUpMd = useMediaQuery(theme.breakpoints.up("md"));
+  const isDarkMode = theme.palette.mode === "dark";
   return (
     <>
-      {isDownMd && (
-        <Grid size={12}>
-          <Stack direction={"row"} justifyContent={"center"} mt={3}>
-            <Image
-              src={"/images/submitGiftCardDark.webp"}
-              alt=""
-              width={"320"}
-              height={"321"}
-            />
+      {isUpMd && (
+        <Grid size={4}>
+          <Stack
+            direction={"row"}
+            alignItems={"center"}
+            justifyContent={"center"}
+            width={"100%"}
+          >
+            <Stack width={"100%"}>
+              <Image
+                alt=""
+                width={417}
+                height={185}
+                src={`/images/${isDarkMode ? "submitGiftCardDark" : "submitGiftCard"}.webp`}
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  objectFit: "cover",
+                }}
+              />
+            </Stack>
           </Stack>
         </Grid>
       )}

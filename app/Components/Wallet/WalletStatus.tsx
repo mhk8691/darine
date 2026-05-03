@@ -7,9 +7,9 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import Card from "../Container/Container";
 import { useEffect, useState } from "react";
 import CircleAnimation from "../CircleAnimation/CircleAnimation";
+import Card from "../Container/Container";
 import MobileWalletStatus from "./MobileWalletStatus";
 
 export default function WalletStatus() {
@@ -50,7 +50,7 @@ export default function WalletStatus() {
               <Typography
                 variant="body1"
                 fontSize={14}
-                sx={{ color: "#C2C2BA" }}
+                sx={{ color: "text.muted" }}
               >
                 موجودی طلا
               </Typography>
@@ -87,7 +87,7 @@ export default function WalletStatus() {
               <Typography
                 variant="body1"
                 fontSize={14}
-                sx={{ color: "#C2C2BA" }}
+                sx={{ color: "text.muted" }}
               >
                 موجودی تومان
               </Typography>
@@ -137,7 +137,7 @@ export default function WalletStatus() {
                 <Typography
                   variant="body1"
                   fontSize={14}
-                  sx={{ color: "#C2C2BA" }}
+                  sx={{ color: "text.muted" }}
                 >
                   قیمت فعلی طلا ۱۸ عیار
                 </Typography>

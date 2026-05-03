@@ -58,9 +58,7 @@ export default function AddAddress({ open, setOpen }: Props) {
               py: 1.3,
               fontSize: 16,
               width: step > 0 ? "50%" : "100%",
-              "&:hover": {
-                bgcolor: "primary.main",
-              },
+             
             }}
           >
             {step === 2 ? "ثبت آدرس" : "ادامه"}
@@ -76,9 +74,7 @@ export default function AddAddress({ open, setOpen }: Props) {
                 py: 1.3,
                 fontSize: 16,
                 width: "50%",
-                "&:hover": {
-                  bgcolor: "background.default",
-                },
+               color:'text.title'
               }}
             >
               بازگشت

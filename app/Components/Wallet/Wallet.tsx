@@ -43,7 +43,7 @@ export default function Wallet({ type }: Props) {
         <Typography
           variant="h6"
           fontSize={22}
-          sx={{ color: "text.title", mb: 4 }}
+          sx={{ color: "text.primary", mb: 4 }}
         >
           کیف پول شما
         </Typography>
@@ -78,7 +78,7 @@ export default function Wallet({ type }: Props) {
               <Typography
                 variant="body2"
                 fontSize={12}
-                sx={{ color: "#C2C2BA" }}
+                sx={{ color: "text.muted" }}
               >
                 ارزش کل دارایی
               </Typography>
@@ -127,7 +127,7 @@ export default function Wallet({ type }: Props) {
           >
             <Link href={"/dashboard/irt-transaction"} style={{ width: "100%" }}>
               <Stack
-                bgcolor={"#292926"}
+                bgcolor={"background.paper"}
                 width={"100%"}
                 direction={"row"}
                 justifyContent={"space-between"}
@@ -161,7 +161,7 @@ export default function Wallet({ type }: Props) {
             </Link>
             <Link href={"/dashboard/irt-transaction"} style={{ width: "100%" }}>
               <Stack
-                bgcolor={"#292926"}
+                bgcolor={"background.paper"}
                 width={"100%"}
                 direction={"row"}
                 justifyContent={"space-between"}

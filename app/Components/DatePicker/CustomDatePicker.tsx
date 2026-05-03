@@ -1,15 +1,15 @@
 "use client";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
+import { InputAdornment, SxProps, TextField, useTheme } from "@mui/material";
 import React from "react";
-import DatePicker, { DateObject } from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import opacity from "react-element-popper/animations/opacity";
 import transition from "react-element-popper/animations/transition";
-import { InputAdornment, SxProps, TextField } from "@mui/material";
-import "react-multi-date-picker/styles/colors/yellow.css";
+import DatePicker, { DateObject } from "react-multi-date-picker";
 import "react-multi-date-picker/styles/backgrounds/bg-dark.css";
+import "react-multi-date-picker/styles/colors/yellow.css";
 
 interface Props {
   style?: SxProps;
@@ -17,11 +17,12 @@ interface Props {
 
 export default function CustomDatePicker({ style }: Props) {
   const [value, setValue] = React.useState<DateObject[] | undefined>(undefined);
-
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === "dark";
   return (
     <DatePicker
       monthYearSeparator="|"
-      className="yellow bg-dark"
+      className={`yellow ${isDarkMode ? "bg-dark" : "bg-light"}`}
       range
       value={value}
       onChange={(val) => setValue(val as DateObject[] | undefined)}
@@ -38,7 +39,7 @@ export default function CustomDatePicker({ style }: Props) {
       calendarPosition="bottom-right"
       style={{
         width: "100%",
-        display: "block", 
+        display: "block",
       }}
       containerClassName="w-full"
     />
@@ -78,35 +79,17 @@ function CustomRangeInput({
       placeholder={"تاریخ"}
       value={displayValue}
       onFocus={onFocus}
-      fullWidth 
+      fullWidth
       sx={{
         direction: "ltr",
-        color: "red",
-        maxWidth:'260px',
+        maxWidth: "260px",
         "& .MuiInputBase-input": {
           py: 1.4,
           fontSize: "14px",
         },
         "& .MuiOutlinedInput-root": {
-          color: "#ffffff",
           opacity: 1,
           borderRadius: 2,
-          "& fieldset": {
-            borderColor: "#494949",
-            borderWidth: "1px",
-          },
-          "&:hover fieldset": {
-            borderColor: "#494949",
-            borderWidth: "1px",
-          },
-          "&.Mui-focused fieldset": {
-            borderColor: "#494949",
-            borderWidth: "1px",
-          },
-          "&.Mui-disabled fieldset": {
-            borderColor: "#494949",
-            borderWidth: "1px",
-          },
         },
         ...style,
       }}

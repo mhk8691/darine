@@ -134,7 +134,7 @@ export default function Trading() {
                 xs: 16,
                 sm: 20,
               }}
-              sx={{ color: "#ADADA9" }}
+              sx={{ color: "text.subtitle" }}
             >
               ضریب سفارش
             </Typography>
@@ -250,7 +250,7 @@ export default function Trading() {
             onChange={handleChange}
             disableRipple
             sx={{
-              color: "#C2C2BA",
+              color: "text.muted",
               "&.Mui-checked": {
                 color: "primary.main",
               },

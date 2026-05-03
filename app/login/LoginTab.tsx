@@ -24,17 +24,17 @@ export default function LoginTab() {
             <Typography
               variant="body2"
               fontSize={{
-                xs:12,
-                md:14
+                xs: 12,
+                md: 14,
               }}
               sx={{
                 color:
                   pathname === "/login/login-password/"
                     ? "text.primary"
-                    : "#C2C2BA",
+                    : "text.muted",
                 mb: 1.5,
               }}
-              fontWeight={pathname === "/login/login-password/" ? 600: 500}
+              fontWeight={pathname === "/login/login-password/" ? 600 : 500}
             >
               ورود با رمز عبور
             </Typography>
@@ -55,15 +55,17 @@ export default function LoginTab() {
             <Typography
               variant="body2"
               fontSize={{
-                xs:12,
-                md:14
+                xs: 12,
+                md: 14,
               }}
               sx={{
                 color:
-                  pathname === "/login/login-otp/" ? "text.primary" : "#C2C2BA",
+                  pathname === "/login/login-otp/"
+                    ? "text.primary"
+                    : "text.muted",
                 mb: 1.5,
               }}
-              fontWeight={pathname === "/login/login-otp/" ? 600: 500}
+              fontWeight={pathname === "/login/login-otp/" ? 600 : 500}
             >
               ورود با رمز یکبار مصرف
             </Typography>

@@ -197,7 +197,7 @@ export default function page({ params }: Props) {
               md: 14,
             }}
             sx={{
-              color: "#C2C2BA",
+              color: "text.muted",
               mb: 1.5,
               mt: {
                 xs: 1,

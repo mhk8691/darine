@@ -8,7 +8,7 @@ const bannerItems = ["b1.webp", "b2.webp", "b3.webp", "b4.webp", "b5.webp"];
 const styles = {
   container: {
     height: 226,
-    background: "#10100F",
+    background: "background.default",
     fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
     fontSize: 14,
     color: "#fff",
@@ -31,8 +31,6 @@ const styles = {
   } satisfies React.CSSProperties,
 };
 export default function Banners() {
- 
-
   return (
     <div style={styles.container}>
       <Swiper spaceBetween={10} style={styles.swiper} loop={true}>

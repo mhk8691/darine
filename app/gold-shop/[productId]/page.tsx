@@ -90,7 +90,7 @@ export default function Page({ params }: { params: { productId: string } }) {
                 mb={{ xs: 4, md: 0 }}
               >
                 <Typography
-                  sx={{ color: "#ADADA9" }}
+                  sx={{ color: "text.subtitle" }}
                   fontSize={{ xs: 12, md: 16 }}
                 >
                   وزن:{" "}
@@ -100,7 +100,7 @@ export default function Page({ params }: { params: { productId: string } }) {
                 </Typography>
 
                 <Typography
-                  sx={{ color: "#ADADA9" }}
+                  sx={{ color: "text.subtitle" }}
                   fontSize={{ xs: 12, md: 16 }}
                 >
                   عیار:{" "}
@@ -110,7 +110,7 @@ export default function Page({ params }: { params: { productId: string } }) {
                 </Typography>
 
                 <Typography
-                  sx={{ color: "#ADADA9" }}
+                  sx={{ color: "text.subtitle" }}
                   fontSize={{ xs: 12, md: 16 }}
                 >
                   کاربرد:{" "}
@@ -130,7 +130,7 @@ export default function Page({ params }: { params: { productId: string } }) {
                 mt={2}
                 display={{ xs: "flex", md: "none" }}
               >
-                <Typography fontSize={12} sx={{ color: "#C2C2BA" }}>
+                <Typography fontSize={12} sx={{ color: "text.muted" }}>
                   ضمانت اصالت کالا
                 </Typography>
               </Stack>

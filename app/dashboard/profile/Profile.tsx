@@ -1,8 +1,8 @@
 import Container from "@/app/Components/Container/Container";
+import WalletStatus from "@/app/Components/Wallet/WalletStatus";
 import { Divider, Grid, Stack, Typography } from "@mui/material";
 import ChangePassword from "./ChangePassword";
 import TitleProfile from "./TitleProfile";
-import WalletStatus from "@/app/Components/Wallet/WalletStatus";
 
 export default function Profile() {
   return (
@@ -67,7 +67,7 @@ export default function Profile() {
             fontWeight={600}
             sx={{ color: "text.title" }}
           >
-            محمد محمدی 
+            محمد محمدی
           </Typography>
           <Typography
             variant="h6"
@@ -108,7 +108,7 @@ export default function Profile() {
         >
           <Typography
             variant="body1"
-            sx={{ color: "#ADADA9" }}
+            sx={{ color: "text.subtitle" }}
             fontSize={{
               xs: 10,
               sm: 14,
@@ -135,7 +135,7 @@ export default function Profile() {
         >
           <Typography
             variant="body1"
-            sx={{ color: "#ADADA9" }}
+            sx={{ color: "text.subtitle" }}
             fontSize={{
               xs: 10,
               sm: 14,
@@ -162,7 +162,7 @@ export default function Profile() {
         >
           <Typography
             variant="body1"
-            sx={{ color: "#ADADA9" }}
+            sx={{ color: "text.subtitle" }}
             fontSize={{
               xs: 10,
               sm: 14,
@@ -189,7 +189,7 @@ export default function Profile() {
         >
           <Typography
             variant="body1"
-            sx={{ color: "#ADADA9" }}
+            sx={{ color: "text.subtitle" }}
             fontSize={{
               xs: 10,
               sm: 14,

@@ -25,15 +25,10 @@ export default function Field({ value, setValue, label, placeholder }: Props) {
             sm: 16,
           },
           borderRadius: placeholder ? 2 : 2.5,
-          "&:hover .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#494949",
-          },
-          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: placeholder ? "#2C2C2B" : "primary.main",
-          },
+         
         },
         "& .MuiInputLabel-root": {
-          color: "#C2C2BA",
+          color: "text.muted",
           fontSize: {
             xs: "14px",
             sm: "16px",

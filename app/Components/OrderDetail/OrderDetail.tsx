@@ -1,7 +1,7 @@
 "use client";
 import { ToggleItemsType } from "@/app/core/Types";
 import FilterListIcon from "@mui/icons-material/FilterList";
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography, useTheme } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
 import Card from "../Container/Container";
@@ -27,6 +27,8 @@ export default function OrderDetail({
   const [active, setActive] = useState<number | null>(toggleItems[0]?.id);
   const [select, setSelect] = useState(toggleItems[0]?.value);
   const [message, setMessage] = useState(toggleItems[0]?.emptyMessage || "");
+  const theme = useTheme()
+  const isDarkMode = theme.palette.mode === 'dark'
   return noCard ? (
     <>
       {title && (
@@ -35,7 +37,7 @@ export default function OrderDetail({
           mb={4}
           fontWeight={500}
           sx={{
-            color: "text.title",
+            color: "text.primary",
             fontSize: {
               xs: 16,
               md: 22,
@@ -90,8 +92,8 @@ export default function OrderDetail({
             sm: "flex",
           }}
         >
-          <FilterListIcon sx={{ color: "#ADADA9" }} />
-          <Typography variant="body2" sx={{ color: "#ADADA9" }}>
+          <FilterListIcon sx={{ color: "text.subtitle" }} />
+          <Typography variant="body2" sx={{ color: "text.subtitle" }}>
             فیلترها:
           </Typography>
         </Stack>
@@ -135,7 +137,7 @@ export default function OrderDetail({
           }}
         >
           <Image
-            src={"/images/emptyTableDark.png"}
+            src={`/images/${isDarkMode ? "emptyTableDark.png" : "emptyTable.webp"}`}
             width={300}
             height={270}
             style={{
@@ -145,7 +147,7 @@ export default function OrderDetail({
             alt=""
           />
         </Stack>
-        <Typography variant="body2" fontSize={12} sx={{ color: "#C2C2BA" }}>
+        <Typography variant="body2" fontSize={12} sx={{ color: "text.muted" }}>
           {emptyMessage || message}
         </Typography>
       </Stack>
@@ -229,8 +231,8 @@ export default function OrderDetail({
             sm: "flex",
           }}
         >
-          <FilterListIcon sx={{ color: "#ADADA9" }} />
-          <Typography variant="body2" sx={{ color: "#ADADA9" }}>
+          <FilterListIcon sx={{ color: "text.subtitle" }} />
+          <Typography variant="body2" sx={{ color: "text.subtitle" }}>
             فیلترها:
           </Typography>
         </Stack>
@@ -262,12 +264,12 @@ export default function OrderDetail({
         gap={4}
       >
         <Image
-          src={"/images/emptyTableDark.png"}
+          src={`/images/${isDarkMode ? "emptyTableDark.png" : "emptyTable.webp"}`}
           width={300}
           height={270}
           alt=""
         />
-        <Typography variant="body2" fontSize={12} sx={{ color: "#C2C2BA" }}>
+        <Typography variant="body2" fontSize={12} sx={{ color: "text.muted" }}>
           {emptyMessage || message}
         </Typography>
       </Stack>

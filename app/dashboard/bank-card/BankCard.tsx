@@ -23,7 +23,11 @@ export default function BankCard() {
               width={36}
               height={36}
             />
-            <Typography variant="body2" fontSize={16} sx={{ color: "#C2C2BA" }}>
+            <Typography
+              variant="body2"
+              fontSize={16}
+              sx={{ color: "text.muted" }}
+            >
               بانک ملت
             </Typography>
           </Stack>
@@ -35,7 +39,7 @@ export default function BankCard() {
                 setCardId(1);
               }}
             >
-              <SvgIcon fontSize="small" sx={{ color: "#C2C2BA" }}>
+              <SvgIcon fontSize="small" sx={{ color: "text.muted" }}>
                 <svg
                   width="18"
                   height="18"
@@ -100,7 +104,12 @@ export default function BankCard() {
           </Typography>
         </Stack>
       </Card>
-      <DeleteCard open={open} setOpen={setOpen} cardId={cardId} setCardId={setCardId} />
+      <DeleteCard
+        open={open}
+        setOpen={setOpen}
+        cardId={cardId}
+        setCardId={setCardId}
+      />
     </>
   );
 }

@@ -34,7 +34,7 @@ export default function page() {
             xs: 4.5,
             md: 9,
           },
-          color: "#C2C2BA",
+          color: "text.muted",
         }}
         fontSize={{
           xs: 10,

@@ -2,13 +2,13 @@
 import { Button, Stack, useMediaQuery, useTheme } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
-import Container from "../Container/Container";
 import Link from "next/link";
+import Container from "../Container/Container";
 
 export default function PriceAlertCard() {
-  const theme = useTheme()
-  const isDesktop = useMediaQuery(theme.breakpoints.up('md'))
-  if (!isDesktop) return null
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+  if (!isDesktop) return null;
   return (
     <Container
       style={{
@@ -33,7 +33,7 @@ export default function PriceAlertCard() {
           <Typography
             variant="body2"
             fontSize={10}
-            sx={{ color: "#C2C2BA", mt: 1 }}
+            sx={{ color: "text.muted", mt: 1 }}
           >
             دیگه هیچ نوسان قیمتی از چشمت دور نمی‌مونه.
           </Typography>

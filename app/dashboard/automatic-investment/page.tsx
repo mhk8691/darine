@@ -4,9 +4,9 @@ import WalletStatus from "@/app/Components/Wallet/WalletStatus";
 import { ToggleItemsType } from "@/app/core/Types";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Button, Grid, Stack, Typography } from "@mui/material";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Metadata } from "next";
 import BackLink from "../BackLink";
 export const metadata: Metadata = {
   title: "پس انداز خودکار | دارینه",
@@ -89,7 +89,11 @@ export default function page() {
               height={270}
               alt=""
             />
-            <Typography variant="body2" fontSize={12} sx={{ color: "#C2C2BA" }}>
+            <Typography
+              variant="body2"
+              fontSize={12}
+              sx={{ color: "text.muted" }}
+            >
               متاسفانه کارت‌های ثبت شده در پنل شما جزو بانک‌های پشتیبانی شده
               نیست.
             </Typography>
@@ -110,6 +114,7 @@ export default function page() {
         <Card
           style={{
             color: "#EF8011",
+            pb:5
           }}
         >
           <Stack direction={"row"} alignItems={"center"} gap={1}>

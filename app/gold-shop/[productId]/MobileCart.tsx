@@ -1,8 +1,8 @@
 "use client";
 import priceFormater from "@/app/core/PriceFormater";
 import { Box, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
-import Counter from "./Counter";
 import Link from "next/link";
+import Counter from "./Counter";
 
 export default function MobileCart() {
   const theme = useTheme();
@@ -18,7 +18,7 @@ export default function MobileCart() {
       bottom={0}
       width={"100%"}
       p={2}
-      sx={{ boxShadow: "0 0 20px #292926" }}
+      sx={{ boxShadow: "0 0 20px background.paper" }}
     >
       <Stack direction={"row"} gap={1}>
         <Link href={"/gold-shop-basket"}>
@@ -66,7 +66,10 @@ export default function MobileCart() {
         <Counter />
       </Stack>
       <Stack direction={"column"} gap={1} alignItems={"flex-end"}>
-        <Typography variant="body1" sx={{ color: "#ADADA9", fontSize: 12 }}>
+        <Typography
+          variant="body1"
+          sx={{ color: "text.subtitle", fontSize: 12 }}
+        >
           قیمت
         </Typography>
         <Typography variant="body2" fontSize={16}>

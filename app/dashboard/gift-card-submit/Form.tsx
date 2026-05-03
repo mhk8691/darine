@@ -5,7 +5,7 @@ import { Stack, Button, useTheme, useMediaQuery } from "@mui/material";
 import { useState } from "react";
 
 export default function Form() {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
   return (
@@ -14,27 +14,6 @@ export default function Form() {
         placeholder="شماره سریال روی کارت هدیه"
         setValue={setValue}
         value={value}
-        style={{
-          "& .MuiOutlinedInput-root": {
-            borderRadius: 2,
-            "& fieldset": {
-              borderColor: "#494949",
-              borderWidth: "1px",
-            },
-            "&:hover fieldset": {
-              borderColor: "#494949",
-              borderWidth: "1px",
-            },
-            "&.Mui-focused fieldset": {
-              borderColor: "#494949",
-              borderWidth: "1px",
-            },
-            "&.Mui-disabled fieldset": {
-              borderColor: "#494949",
-              borderWidth: "1px",
-            },
-          },
-        }}
       />
       <Stack direction={"row"} gap={2} mt={1}>
         <Button

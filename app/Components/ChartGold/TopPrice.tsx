@@ -13,7 +13,7 @@ export default function TopPrice() {
             xs: 10,
             sm: 12,
           }}
-          sx={{ color: "#C2C2BA" }}
+          sx={{ color: "text.muted" }}
         >
           قیمت الان:
         </Typography>

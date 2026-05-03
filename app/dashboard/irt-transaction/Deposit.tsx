@@ -12,7 +12,7 @@ const items: ToggleItemsType[] = [
   { title: "واریز مستقیم", value: "directPayment", id: 2 },
 ];
 export default function Deposit() {
-  const [price, setPrice] = useState('');
+  const [price, setPrice] = useState("");
   const [select, setSelect] = useState(items[0].value);
 
   return (
@@ -47,7 +47,7 @@ export default function Deposit() {
               variant="contained"
               sx={{
                 bgcolor: "#FEF2C0",
-                color: "#292926",
+                color: "text.secondary",
                 borderRadius: 1.5,
                 px: 1,
                 width: "fit-content",
@@ -72,7 +72,7 @@ export default function Deposit() {
             xs: 14,
             sm: 16,
           },
-          py: 1.4,
+          py: 1.5,
         }}
       >
         {select === "payment" ? "برداشت" : "نمایش اطلاعات مقصد"}

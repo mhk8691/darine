@@ -12,11 +12,11 @@ import Container from "../Components/Container/Container";
 import InputField from "../Components/InputField/InputField";
 
 export default function Form() {
-  const [name, setName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [description, setDescription] = useState('');
+  const [name, setName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [description, setDescription] = useState("");
   const theme = useTheme();
   const isUpMd = useMediaQuery(theme.breakpoints.up("md"));
   const inputList = [
@@ -48,7 +48,7 @@ export default function Form() {
       setValue: setDescription,
     },
   ];
-  if (!isUpMd) return null
+  if (!isUpMd) return null;
   return (
     <Grid container spacing={4.5} mt={15.5}>
       <Grid size={12}>
@@ -89,7 +89,7 @@ export default function Form() {
                   style={{
                     width: "100%",
                     borderRadius: 2,
-                    bgcolor: "#10100F",
+                    bgcolor: "background.default",
                     "& .MuiOutlinedInput-root": {
                       borderRadius: 2,
                       "& fieldset": {

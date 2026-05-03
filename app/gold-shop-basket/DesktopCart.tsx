@@ -1,4 +1,6 @@
 "use client";
+import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from "@mui/icons-material/Delete";
 import {
   Box,
   IconButton,
@@ -13,8 +15,6 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
-import AddIcon from "@mui/icons-material/Add";
-import DeleteIcon from "@mui/icons-material/Delete";
 const dataStyle: SxProps = {
   py: 1.5,
   fontSize: {
@@ -24,7 +24,7 @@ const dataStyle: SxProps = {
   color: "text.primary",
 };
 const headStyle: SxProps = {
-  color: "#ADADA9",
+  color: "text.subtitle",
   borderBottom: "none",
   fontSize: "16px",
 };

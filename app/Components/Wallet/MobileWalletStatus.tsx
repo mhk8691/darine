@@ -1,6 +1,5 @@
 import { Divider, Stack, Typography } from "@mui/material";
 import Image from "next/image";
-import React from "react";
 
 export default function MobileWalletStatus({
   visible,
@@ -45,7 +44,7 @@ export default function MobileWalletStatus({
               xs: 10,
               sm: 12,
             }}
-            sx={{ color: "#C2C2BA" }}
+            sx={{ color: "text.muted" }}
           >
             موجودی طلا
           </Typography>
@@ -103,7 +102,7 @@ export default function MobileWalletStatus({
               xs: 10,
               sm: 12,
             }}
-            sx={{ color: "#C2C2BA" }}
+            sx={{ color: "text.muted" }}
           >
             موجودی تومان
           </Typography>

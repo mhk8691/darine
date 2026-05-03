@@ -20,7 +20,7 @@ const rowStyle: SxProps = {
   justifyContent: "space-between",
 };
 const titleStyle: SxProps = {
-  color: "#C2C2BA",
+  color: "text.muted",
   fontWeight: 500,
 };
 interface Props {

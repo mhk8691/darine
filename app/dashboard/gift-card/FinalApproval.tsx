@@ -30,7 +30,7 @@ export default function FinalApproval() {
             xs: 10,
             sm: 14,
           }}
-          sx={{ color: "#C2C2BA" }}
+          sx={{ color: "text.muted" }}
         >
           وزن طلا
         </Typography>
@@ -63,7 +63,7 @@ export default function FinalApproval() {
             xs: 10,
             sm: 14,
           }}
-          sx={{ color: "#C2C2BA" }}
+          sx={{ color: "text.muted" }}
         >
           قیمت هر گرم طلا
         </Typography>
@@ -97,7 +97,7 @@ export default function FinalApproval() {
             xs: 10,
             sm: 14,
           }}
-          sx={{ color: "#C2C2BA" }}
+          sx={{ color: "text.muted" }}
         >
           معادل تومان
         </Typography>
@@ -131,7 +131,7 @@ export default function FinalApproval() {
             xs: 10,
             sm: 14,
           }}
-          sx={{ color: "#C2C2BA" }}
+          sx={{ color: "text.muted" }}
         >
           تعداد
         </Typography>
@@ -165,7 +165,7 @@ export default function FinalApproval() {
             xs: 10,
             sm: 14,
           }}
-          sx={{ color: "#C2C2BA" }}
+          sx={{ color: "text.muted" }}
         >
           کارمزد و مالیات بر ارزش افزوده
         </Typography>
@@ -199,7 +199,7 @@ export default function FinalApproval() {
             xs: 10,
             sm: 14,
           }}
-          sx={{ color: "#C2C2BA" }}
+          sx={{ color: "text.muted" }}
         >
           هزینه بسته‌بندی
         </Typography>
@@ -233,7 +233,7 @@ export default function FinalApproval() {
             xs: 10,
             sm: 14,
           }}
-          sx={{ color: "#C2C2BA" }}
+          sx={{ color: "text.muted" }}
         >
           مبلغ نهایی
         </Typography>
@@ -270,7 +270,7 @@ export default function FinalApproval() {
             xs: 10,
             sm: 14,
           }}
-          sx={{ color: "#C2C2BA" }}
+          sx={{ color: "text.muted" }}
         >
           زمان ارسال
         </Typography>
@@ -303,7 +303,7 @@ export default function FinalApproval() {
             xs: 10,
             sm: 14,
           }}
-          sx={{ color: "#C2C2BA" }}
+          sx={{ color: "text.muted" }}
         >
           هزینه ارسال
         </Typography>
@@ -337,7 +337,7 @@ export default function FinalApproval() {
             xs: 10,
             sm: 14,
           }}
-          sx={{ color: "#C2C2BA" }}
+          sx={{ color: "text.muted" }}
         >
           کدپستی
         </Typography>
@@ -371,7 +371,7 @@ export default function FinalApproval() {
             xs: 10,
             sm: 14,
           }}
-          sx={{ color: "#C2C2BA" }}
+          sx={{ color: "text.muted" }}
         >
           آدرس
         </Typography>

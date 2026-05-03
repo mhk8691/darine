@@ -6,11 +6,11 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import { Divider, Grid, Stack, SvgIcon, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 import DesktopCertificate from "./DesktopCertificate";
 import LaptopCertificate from "./LaptopCertificate";
 import LinkContainer from "./LinkContainer";
-import { usePathname } from "next/navigation";
 
 export const installment = [
   "/images/simple/snapppayLogo.webp",
@@ -441,7 +441,7 @@ export default function Footer() {
           sm: "background.paper",
         }}
       >
-        <Typography variant="body2" fontSize={10} sx={{ color: "#C2C2BA" }}>
+        <Typography variant="body2" fontSize={10} sx={{ color: "text.muted" }}>
           Copyright © 2026 Talasea | شرکت توسعه راهکار الوند ارسباران | version:
           3.0.3
         </Typography>

@@ -1,3 +1,4 @@
+import { useTheme } from "@mui/material";
 import Box from "@mui/material/Box";
 import { LineChart as LineChartGold } from "@mui/x-charts/LineChart";
 
@@ -21,6 +22,9 @@ export default function LineChart({
   noGradiant,
   noLabel,
 }: Props) {
+  const theme = useTheme()
+    const isDarkMode = theme.palette.mode === "dark";
+
   return (
     <Box
       sx={{
@@ -67,8 +71,16 @@ export default function LineChart({
         {!noGradiant && (
           <defs>
             <linearGradient id="goldGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#403D33" stopOpacity={0.4} />
-              <stop offset="100%" stopColor="#1F1E1B" stopOpacity={0} />
+              <stop
+                offset="0%"
+                stopColor={isDarkMode ? "#403D33" : "#FFFBEC"}
+                stopOpacity={0.4}
+              />
+              <stop
+                offset="100%"
+                stopColor={isDarkMode ? "#1F1E1B" : '#FFFFFF'}
+                stopOpacity={0}
+              />
             </linearGradient>
           </defs>
         )}

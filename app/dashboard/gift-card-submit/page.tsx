@@ -1,10 +1,10 @@
-import { Grid, Stack, Typography } from "@mui/material";
-import Image from "next/image";
-import Form from "./Form";
-import { Metadata } from "next";
-import DesktopImage from "./DesktopImage";
 import OrderDetail from "@/app/Components/OrderDetail/OrderDetail";
+import { Grid, Typography } from "@mui/material";
+import { Metadata } from "next";
 import BackLink from "../BackLink";
+import DesktopImage from "./DesktopImage";
+import Form from "./Form";
+import LaptopImage from "./LaptopImage";
 export const metadata: Metadata = {
   title: "دریافت کارت هدیه | دارینه",
   description: "",
@@ -65,7 +65,7 @@ export default function page() {
               color: "text.title",
               display: {
                 xs: "none",
-                sm:'block'
+                sm: "block",
               },
             }}
           >
@@ -90,7 +90,7 @@ export default function page() {
             مقدار طلا به حد برداشت فیزیکی برسد، می‌توانید آن را به‌صورت شمش یا
             سکه تحویل بگیرید. در غیر این صورت، معادل ریالی آن قابل برداشت است.
           </Typography>
-          <DesktopImage />
+          <LaptopImage />
           <Typography
             variant="h6"
             fontSize={{
@@ -108,34 +108,7 @@ export default function page() {
           </Typography>
           <Form />
         </Grid>
-        <Grid
-          size={4}
-          display={{
-            xs: "none",
-            sm: "block",
-          }}
-        >
-          <Stack
-            direction={"row"}
-            alignItems={"center"}
-            justifyContent={"center"}
-            width={"100%"}
-          >
-            <Stack width={"100%"}>
-              <Image
-                alt=""
-                width={417}
-                height={185}
-                src={"/images/submitGiftCardDark.webp"}
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  objectFit: "cover",
-                }}
-              />
-            </Stack>
-          </Stack>
-        </Grid>
+        <DesktopImage />
       </Grid>
       <Grid size={12}>
         <OrderDetail

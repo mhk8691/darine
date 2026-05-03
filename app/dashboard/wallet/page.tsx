@@ -9,8 +9,8 @@ import priceFormater from "@/app/core/PriceFormater";
 import { ToggleItemsType } from "@/app/core/Types";
 import { Grid, Stack, Typography } from "@mui/material";
 import { Metadata } from "next";
-import Chart from "./Chart";
 import BackLink from "../BackLink";
+import Chart from "./Chart";
 export const metadata: Metadata = {
   title: "کیف پول | دارینه",
   description: "",
@@ -98,7 +98,7 @@ export default function page() {
         >
           <Stack direction={"row"} gap={2} alignItems={"center"}>
             <CircleAnimation type="red" />
-            <Typography variant="body2" sx={{ color: "#C2C2BA" }}>
+            <Typography variant="body2" sx={{ color: "text.muted" }}>
               قیمت فعلی طلا ۱۸ عیار:
             </Typography>
           </Stack>
@@ -167,7 +167,7 @@ export default function page() {
             >
               <Typography
                 variant="body1"
-                sx={{ color: "#C2C2BA" }}
+                sx={{ color: "text.muted" }}
                 fontSize={{ xs: 10, sm: 14, lg: 16 }}
               >
                 مجموع دارایی شما
@@ -188,7 +188,7 @@ export default function page() {
             >
               <Typography
                 variant="body1"
-                sx={{ color: "#C2C2BA" }}
+                sx={{ color: "text.muted" }}
                 fontSize={{ xs: 10, sm: 14, lg: 16 }}
               >
                 سود شما
@@ -209,7 +209,7 @@ export default function page() {
             >
               <Typography
                 variant="body1"
-                sx={{ color: "#C2C2BA" }}
+                sx={{ color: "text.muted" }}
                 fontSize={{ xs: 10, sm: 14, lg: 16 }}
               >
                 طلا برداشت شده
@@ -230,7 +230,7 @@ export default function page() {
             >
               <Typography
                 variant="body1"
-                sx={{ color: "#C2C2BA" }}
+                sx={{ color: "text.muted" }}
                 fontSize={{ xs: 10, sm: 14, lg: 16 }}
               >
                 کارت هدیه های خریداری شده
@@ -251,7 +251,7 @@ export default function page() {
             >
               <Typography
                 variant="body1"
-                sx={{ color: "#C2C2BA" }}
+                sx={{ color: "text.muted" }}
                 fontSize={{ xs: 10, sm: 14, lg: 16 }}
               >
                 کارت هدیه های دریافت شده
@@ -272,7 +272,7 @@ export default function page() {
             >
               <Typography
                 variant="body1"
-                sx={{ color: "#C2C2BA" }}
+                sx={{ color: "text.muted" }}
                 fontSize={{ xs: 10, sm: 14, lg: 16 }}
               >
                 تومان درانتظار پردازش
@@ -293,7 +293,7 @@ export default function page() {
             >
               <Typography
                 variant="body1"
-                sx={{ color: "#C2C2BA" }}
+                sx={{ color: "text.muted" }}
                 fontSize={{ xs: 10, sm: 14, lg: 16 }}
               >
                 طلا درانتظار پردازش
