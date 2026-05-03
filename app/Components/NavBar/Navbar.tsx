@@ -77,6 +77,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const isDashboard = pathname.split("/")[1] === "dashboard";
   const isLoginPage = pathname?.startsWith("/login");
+  const isDarkMode = theme.palette.mode == 'dark'
   if (isLoginPage) return null;
   return (
     <>
@@ -99,7 +100,7 @@ export default function Navbar() {
           bgcolor: "background.default",
           width: "100%",
           boxShadow: {
-            xs: "0 0 5px #252524",
+            xs: isDarkMode ? "0 0 5px #252524" : "0 0 5px #EFEEEC",
             lg: "none",
           },
         }}
@@ -143,7 +144,7 @@ export default function Navbar() {
                       sx={{
                         color: "text.secondary",
                         "&:hover": {
-                          color: "primary.main",
+                          color: isDarkMode ? "primary.main":'primary.dark',
                         },
                       }}
                     >

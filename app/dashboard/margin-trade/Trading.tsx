@@ -78,6 +78,7 @@ export default function Trading() {
   };
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
+  const isDarkMode = theme.palette.mode === 'dark'
   const handlePriceChange = (val: string) => {
     setPrice(val);
 
@@ -168,14 +169,14 @@ export default function Trading() {
                 width: "100%",
                 "&.MuiSlider-root .MuiSlider-rail": {
                   height: 12,
-                  color: "rgb(83, 83, 80) !important",
+                  color: `${isDarkMode ? "rgb(83, 83, 80)" : "#DDDDDD"} !important`,
                   width: "100%",
                 },
                 "&.MuiSlider-root .MuiSlider-mark": {
                   height: 8,
                   width: 8,
                   borderRadius: "50%",
-                  color: "background.default",
+                  color: isDarkMode ? "background.default" : "#FFFFFF",
                 },
                 "&.MuiSlider-root .MuiSlider-mark.MuiSlider-markActive": {
                   display: "none",

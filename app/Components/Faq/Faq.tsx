@@ -43,6 +43,7 @@ export default function Faq({ faqData, titleStyle }: Props): JSX.Element {
             onChange={handleChange(item.id)}
             sx={{
               bgcolor: "background.default",
+              boxShadow:'none',
               mb: 1.5,
               py: {
                 xs: 0.5,

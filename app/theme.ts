@@ -111,13 +111,6 @@ export const getTheme = (mode: "light" | "dark" = "light") =>
         defaultProps: {
           disableRipple: true,
         },
-        styleOverrides: {
-          root: {
-            "&:hover": {
-              backgroundColor: "transparent",
-            },
-          },
-        },
       },
 
       MuiButtonBase: {
@@ -133,10 +126,10 @@ export const getTheme = (mode: "light" | "dark" = "light") =>
             "& .MuiOutlinedInput-notchedOutline": {
               borderColor: theme.palette.background.border,
               borderRadius: "8px",
-              transition: "none", 
+              transition: "none",
             },
             "&:hover .MuiOutlinedInput-notchedOutline": {
-              borderColor: theme.palette.background.border, 
+              borderColor: theme.palette.background.border,
               borderWidth: "1px",
             },
             "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
@@ -144,7 +137,7 @@ export const getTheme = (mode: "light" | "dark" = "light") =>
               borderWidth: "1px",
             },
             "&.Mui-active .MuiOutlinedInput-notchedOutline": {
-              borderColor: theme.palette.background.border, 
+              borderColor: theme.palette.background.border,
               borderWidth: "1px",
             },
             "&.Mui-disabled": {
@@ -184,10 +177,10 @@ export const getTheme = (mode: "light" | "dark" = "light") =>
               borderBottomColor: theme.palette.background.border,
             },
             "&:hover:before": {
-              borderBottomColor: theme.palette.background.border, 
+              borderBottomColor: theme.palette.background.border,
             },
             "&.Mui-focused:after": {
-              borderBottomColor: theme.palette.background.border, 
+              borderBottomColor: theme.palette.background.border,
               borderWidth: "1px",
             },
             "&.Mui-disabled": {
@@ -214,10 +207,10 @@ export const getTheme = (mode: "light" | "dark" = "light") =>
             "& .MuiOutlinedInput-notchedOutline": {
               borderColor: theme.palette.background.border,
               borderRadius: "8px",
-              transition: "none", 
+              transition: "none",
             },
             "&:hover .MuiOutlinedInput-notchedOutline": {
-              borderColor: theme.palette.background.border, 
+              borderColor: theme.palette.background.border,
               borderWidth: "1px",
             },
             "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
@@ -225,7 +218,7 @@ export const getTheme = (mode: "light" | "dark" = "light") =>
               borderWidth: "1px",
             },
             "&.Mui-active .MuiOutlinedInput-notchedOutline": {
-              borderColor: theme.palette.background.border, 
+              borderColor: theme.palette.background.border,
               borderWidth: "1px",
             },
             "& .MuiSelect-icon": {

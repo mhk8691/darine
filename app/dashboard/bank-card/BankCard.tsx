@@ -10,7 +10,7 @@ export default function BankCard() {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <Card style={{ px: 2, py: 3 }}>
+      <Card style={{ px: 2, py: 3,borderColor:'background.border' }}>
         <Stack
           direction={"row"}
           justifyContent={"space-between"}

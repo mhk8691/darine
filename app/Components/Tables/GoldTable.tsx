@@ -40,9 +40,11 @@ export default function GoldTable({ heads, data }: Props) {
     <TableContainer
       component={Paper}
       sx={{
-        background: "rgb(16, 16, 15,1) !important",
-        border: "1px solid #393936",
+        bgcolor:'background.default',
+        border:1,
+        borderColor:'background.border',
         borderRadius: 3,
+        boxShadow:'none'
       }}
     >
       <Table sx={{ minWidth: 650 }} aria-label="simple table">

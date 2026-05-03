@@ -119,7 +119,7 @@ export default function page() {
                 sm: 18,
               }}
               fontWeight={400}
-              sx={{ color: "#D9D9D9" }}
+              sx={{ color: "text.subtitle" }}
               lineHeight={"25.6px"}
             >
               ما با انتخاب همکاری‌های حرفه‌ای و مبتنی بر اعتماد، کیفیت و نوآوری
@@ -214,7 +214,7 @@ export default function page() {
                     md: 18,
                   }}
                   fontWeight={400}
-                  sx={{ color: "#D9D9D9" }}
+                  sx={{ color: "text.subtitle" }}
                   lineHeight={"25.6px"}
                 >
                   ما با انتخاب همکاری‌های حرفه‌ای و مبتنی بر اعتماد، کیفیت و
@@ -319,7 +319,7 @@ export default function page() {
                   xs: 14,
                   md: 20,
                 }}
-                sx={{ color: "#D9D9D9" }}
+                sx={{ color: "text.subtitle" }}
               >
                 {item.description}
               </Typography>
@@ -369,7 +369,7 @@ export default function page() {
                       <Typography
                         variant="body2"
                         fontSize={16}
-                        sx={{ color: "#D9D9D9" }}
+                        sx={{ color: "text.subtitle" }}
                       >
                         {image.title}
                       </Typography>

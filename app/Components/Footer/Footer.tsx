@@ -3,7 +3,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import { Divider, Grid, Stack, SvgIcon, Typography } from "@mui/material";
+import { Divider, Grid, Stack, SvgIcon, Typography, useTheme } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -46,6 +46,8 @@ const links = [
 export default function Footer() {
   const pathname = usePathname();
   const isLoginPage = pathname?.startsWith("/login");
+  const theme = useTheme()
+  const isDarkMode = theme.palette.mode === 'dark'
   if (isLoginPage) return null;
   return (
     <Stack>
@@ -172,7 +174,7 @@ export default function Footer() {
           size={12}
           bgcolor={{
             xs: "background.default",
-            md: "#393936",
+            md: isDarkMode ? "#393936" : "#FEF2C0",
           }}
           py={{
             xs: 0,

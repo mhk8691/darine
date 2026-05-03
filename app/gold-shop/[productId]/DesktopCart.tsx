@@ -9,7 +9,7 @@ export default function DesktopCart() {
   const isUpMd = useMediaQuery(theme.breakpoints.up("md"));
   if (!isUpMd) return null;
   return (
-    <Container style={{ px: 0, borderColor: "#575753", width: "100%" }}>
+    <Container style={{ px: 0, borderColor: "background.border", width: "100%" }}>
       <Stack direction={"column"} gap={1} alignItems={"center"} px={1.5}>
         <Stack sx={{ mt: 0.3 }}>
           <svg

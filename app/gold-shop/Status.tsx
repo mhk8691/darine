@@ -1,6 +1,9 @@
-import { Box, Divider, Stack, Typography } from "@mui/material";
+"use client";
+import { Box, Divider, Stack, Typography, useTheme } from "@mui/material";
 
 export default function Status() {
+  const theme = useTheme()
+  const isDarkMode = theme.palette.mode === 'dark'
   return (
     <Stack
       direction={"row"}
@@ -8,7 +11,7 @@ export default function Status() {
         xs: "center",
         sm: "space-between",
       }}
-      bgcolor={"#393936"}
+      bgcolor={isDarkMode?"#393936":'#FEF2C0'}
       py={2}
       px={4}
       mt={2}
@@ -58,10 +61,14 @@ export default function Status() {
       <Divider
         orientation="vertical"
         flexItem
-        sx={{ mx: 1, borderColor: "background.default" ,display:{
-          xs:'flex',
-          lg:'none'
-        }}}
+        sx={{
+          mx: 1,
+          borderColor: "background.default",
+          display: {
+            xs: "flex",
+            lg: "none",
+          },
+        }}
       />
       <Stack
         direction={{

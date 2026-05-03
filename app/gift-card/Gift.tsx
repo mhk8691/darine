@@ -1,4 +1,5 @@
-import { Grid, Stack, Typography } from "@mui/material";
+"use client";
+import { Grid, Stack, Typography, useTheme } from "@mui/material";
 import DoneIcon from "@mui/icons-material/Done";
 const options = [
   {
@@ -31,6 +32,8 @@ const options = [
 ];
 
 export default function Gift() {
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === 'dark';
   return (
     <Grid
       spacing={{
@@ -258,9 +261,9 @@ export default function Gift() {
                 xs: 6,
                 md: 4,
               }}
-              bgcolor={"#1C1C1B"}
+              bgcolor={isDarkMode ? "background.paper" : "background.default"}
               border={1}
-              borderColor={"#393936"}
+              borderColor={"background.border"}
               py={3}
               px={2}
               borderRadius={2}

@@ -248,7 +248,7 @@ const Content = ({
 export default function ModalNavigation({ open, setOpen }: Props) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-
+  const isDarkMode = theme.palette.mode === "dark";
   if (isMobile) {
     return (
       <Drawer
@@ -260,7 +260,7 @@ export default function ModalNavigation({ open, setOpen }: Props) {
           sx: {
             width: "100vw",
             p: 2,
-            background: "rgb(16, 16, 15)",
+            background: isDarkMode ? "rgb(1,1,1,1)" : "rgb(255,255,255,1)",
           },
         }}
       >

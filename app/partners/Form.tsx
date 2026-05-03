@@ -19,6 +19,7 @@ export default function Form() {
   const [description, setDescription] = useState("");
   const theme = useTheme();
   const isUpMd = useMediaQuery(theme.breakpoints.up("md"));
+  const isDarkMode = theme.palette.mode === "dark";
   const inputList = [
     {
       placeholder: "نام سازمان سفارش دهنده",
@@ -64,7 +65,9 @@ export default function Form() {
       <Grid size={12}>
         <Container
           style={{
-            background: "rgb(28, 28, 27)",
+            background: isDarkMode ? "rgb(28, 28, 27)" : "#FFFFFF",
+            border:1,
+            borderColor:'background.border',
             p: 4.5,
           }}
         >

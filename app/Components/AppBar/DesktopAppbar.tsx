@@ -65,7 +65,7 @@ export default function DesktopAppbar() {
           border: "none",
           pb: 0,
           bgcolor: "background.default",
-          borderRadius: 1,
+          borderRadius: 2,
         }}
       >
         {AppbarItems.map((item, index) => (

@@ -221,7 +221,7 @@ export default function ProfileBtn() {
   const isDownMd = useMediaQuery(theme.breakpoints.down("md"));
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const handleToggle = () => setOpen((prev) => !prev);
-
+  const isDarkMode = theme.palette.mode == "dark";
   const handleClose = (event: MouseEvent | TouchEvent) => {
     const target = event.target as Node;
 
@@ -288,7 +288,7 @@ export default function ProfileBtn() {
                   px: 2.5,
                   py: 1.2,
                   "&:hover": {
-                    background: "rgb(16, 16, 15)",
+                    bgcolor: "background.default",
                   },
                   whiteSpace: "nowrap",
                 }}
@@ -317,7 +317,7 @@ export default function ProfileBtn() {
                   </svg>
                 }
               >
-               محمد محمدی
+                محمد محمدی
               </Button>
             )}
           </>
@@ -337,8 +337,8 @@ export default function ProfileBtn() {
               md: "100%",
             },
             overflow: "hidden",
-            background: "#111110",
-            boxShadow: "0 0 5px #2E2C26",
+            background: isDarkMode ? "#111110" : "#FFFFFF",
+            boxShadow: isDarkMode ? "0 0 5px #2E2C26" : "none",
             opacity: open ? 1 : 0,
             transform: open
               ? "translateY(0) scale(1)"
@@ -354,7 +354,7 @@ export default function ProfileBtn() {
               bgcolor={"background.paper"}
               borderRadius={1}
               border={1}
-              borderColor={"#393936"}
+              borderColor={"background.border"}
             >
               <Stack direction={"column"} gap={1} p={1}>
                 <Typography
@@ -391,7 +391,7 @@ export default function ProfileBtn() {
                   sx={{
                     px: 1.5,
                     "&:hover": {
-                      background: "#111110",
+                      background: "background.paper",
                     },
                   }}
                 >

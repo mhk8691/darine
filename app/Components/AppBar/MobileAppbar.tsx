@@ -1,5 +1,11 @@
 "use client";
-import { IconButton, Stack, SvgIcon, Typography } from "@mui/material";
+import {
+  IconButton,
+  Stack,
+  SvgIcon,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import { usePathname, useRouter } from "next/navigation";
 
 const appbarItems = [
@@ -222,7 +228,8 @@ const appbarItems = [
 export default function MobileAppbar() {
   const router = useRouter();
   const pathname = usePathname();
-
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === "dark";
   return (
     <Stack
       position="fixed"
@@ -230,7 +237,7 @@ export default function MobileAppbar() {
       zIndex={10}
       left={0}
       bottom={0}
-      bgcolor="rgb(59, 59, 55, .9)"
+      bgcolor={isDarkMode ? "rgb(59, 59, 55, .9)" : "#FFFFFF"}
       direction="row"
       justifyContent="space-around"
       alignItems="center"

@@ -7,11 +7,14 @@ import {
   Box,
   Stack,
   SvgIcon,
+  useTheme,
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Container from "../Container/Container";
 import "./video-style.css";
 export default function HowBuyGold() {
+  const theme = useTheme()
+  const isDarkMode = theme.palette.mode === 'dark'
   return (
     <Container
       style={{
@@ -19,7 +22,7 @@ export default function HowBuyGold() {
         height: "100%",
         pb: {
           xs: 3,
-          md: 0,
+          md: 2,
         },
         px: {
           xs: 0,
@@ -70,7 +73,7 @@ export default function HowBuyGold() {
       <Stack width={"100%"} mt={2}>
         <Accordion
           sx={{
-            background: "rgb(16, 16, 15)",
+            background: isDarkMode ?"rgb(16, 16, 15)":'#FFFFFF',
             boxShadow: "none",
             "&:before": { display: "none" },
           }}
@@ -116,7 +119,7 @@ export default function HowBuyGold() {
         </Accordion>
         <Accordion
           sx={{
-            background: "rgb(16, 16, 15)",
+            background: isDarkMode ?"rgb(16, 16, 15)":'#FFFFFF',
             boxShadow: "none",
             "&:before": { display: "none" },
           }}
@@ -162,7 +165,7 @@ export default function HowBuyGold() {
         </Accordion>
         <Accordion
           sx={{
-            background: "rgb(16, 16, 15)",
+            background: isDarkMode ?"rgb(16, 16, 15)":'#FFFFFF',
             boxShadow: "none",
             "&:before": { display: "none" },
           }}

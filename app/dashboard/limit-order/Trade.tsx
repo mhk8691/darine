@@ -25,7 +25,6 @@ export default function Trade({ type }: Props) {
     type === "sell" ? items[0].value : items[1].value,
   );
 
-  // 👉 derived value (no state needed)
   const gold = price ? String(Number(price) / RATE) : "";
 
   return (
@@ -40,7 +39,6 @@ export default function Trade({ type }: Props) {
       <FilterToggleButton items={items} select={select} setSelect={setSelect} />
 
       <Stack gap={3.5}>
-        {/* Target Price */}
         <InputField
           placeholder={type === "buy" ? "قیمت مد نظر خرید" : "قیمت مد نظر فروش"}
           title="تومان"
@@ -49,7 +47,6 @@ export default function Trade({ type }: Props) {
         />
 
         <Stack gap={1.5}>
-          {/* PRICE (source of truth) */}
           <InputField
             placeholder="مبلغ به تومان"
             title="تومان"
@@ -57,7 +54,6 @@ export default function Trade({ type }: Props) {
             setValue={setPrice}
           />
 
-          {/* ICON */}
           <Stack direction="row" justifyContent="center">
             <SvgIcon
               sx={{
@@ -78,7 +74,6 @@ export default function Trade({ type }: Props) {
             </SvgIcon>
           </Stack>
 
-          {/* GOLD (derived, NOT editable) */}
           <InputField
             placeholder="وزن طلا"
             title="گرم"

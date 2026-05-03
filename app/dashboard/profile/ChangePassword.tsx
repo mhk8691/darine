@@ -19,7 +19,7 @@ export default function ChangePassword() {
           py: 0.5,
           px: 2,
           borderRadius: "7px",
-          color: "background.default",
+          color: "text.primary",
           width: "fit-content",
           mt: 5,
         }}

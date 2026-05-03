@@ -14,6 +14,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import Notification from "./Notification";
 import ProfileBtn from "./ProfileBtn";
+import ToggleButton from "./ToggleButton";
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -60,7 +61,7 @@ export default function ButtonGroupe() {
               },
               py: 1.2,
               "&:hover": {
-                background: "rgb(16, 16, 15)",
+                bgcolor: "background.default",
               },
               whiteSpace: "nowrap",
             }}
@@ -72,6 +73,7 @@ export default function ButtonGroupe() {
       )}
 
       {url === "dashboard" && <Notification />}
+      <ToggleButton/>
 
       {url !== "dashboard" && (
         <>

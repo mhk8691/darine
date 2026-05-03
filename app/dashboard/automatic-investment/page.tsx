@@ -5,9 +5,9 @@ import { ToggleItemsType } from "@/app/core/Types";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Button, Grid, Stack, Typography } from "@mui/material";
 import { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import BackLink from "../BackLink";
+import EmptyTable from "./EmptyTable";
 export const metadata: Metadata = {
   title: "پس انداز خودکار | دارینه",
   description: "",
@@ -83,12 +83,7 @@ export default function page() {
             justifyContent={"center"}
             gap={4}
           >
-            <Image
-              src={"/images/emptyTableDark.png"}
-              width={300}
-              height={270}
-              alt=""
-            />
+            <EmptyTable />
             <Typography
               variant="body2"
               fontSize={12}
@@ -114,7 +109,7 @@ export default function page() {
         <Card
           style={{
             color: "#EF8011",
-            pb:5
+            pb: 5,
           }}
         >
           <Stack direction={"row"} alignItems={"center"} gap={1}>

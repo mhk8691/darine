@@ -1,7 +1,7 @@
 "use client";
 
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import { Button, Grid, Stack, Typography } from "@mui/material";
+import { Button, Grid, Stack, Typography, useTheme } from "@mui/material";
 import Link from "next/link";
 import { useState } from "react";
 import Container from "../Components/Container/Container";
@@ -18,6 +18,8 @@ type FormState = {
 };
 
 export default function RequestForm() {
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === "dark";
   const [form, setForm] = useState<FormState>({
     name: "",
     id: "",
@@ -89,7 +91,9 @@ export default function RequestForm() {
       <Grid size={12}>
         <Container
           style={{
-            background: "rgb(28, 28, 27)",
+            bgcolor: isDarkMode ? "background.paper" : "background.default",
+            border: 1,
+            borderColor: "background.border",
             px: { xs: 2, sm: 10, md: 5, lg: 14 },
             py: { xs: 2, sm: 5.5 },
             pb: { xs: 6, sm: 5.5 },
@@ -100,7 +104,7 @@ export default function RequestForm() {
           </Typography>
 
           <Stack
-            bgcolor="#32281B"
+            bgcolor={isDarkMode ? "#32281B" : "#FEF4E8"}
             direction="row"
             alignItems="flex-start"
             gap={1}
@@ -138,24 +142,6 @@ export default function RequestForm() {
                   style={{
                     width: "100%",
                     bgcolor: "background.default",
-                    "& .MuiOutlinedInput-root": {
-                      "& fieldset": {
-                        borderColor: "#393936",
-                        borderWidth: "1px",
-                      },
-                      "&:hover fieldset": {
-                        borderColor: "#393936",
-                        borderWidth: "1px",
-                      },
-                      "&.Mui-focused fieldset": {
-                        borderColor: "#393936",
-                        borderWidth: "1px",
-                      },
-                      "&.Mui-disabled fieldset": {
-                        borderColor: "#393936",
-                        borderWidth: "1px",
-                      },
-                    },
                   }}
                   title={
                     item.placeholder === "طلای درخواستی برای هر کارت هدیه"

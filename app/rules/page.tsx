@@ -1,4 +1,5 @@
 import { Container, Divider, Stack, Typography } from "@mui/material";
+import Fee from "./Fee";
 
 const rules = [
   "فرآیند احراز هویت شامل دریافت اطلاعاتی از کاربر ازجمله شماره تماس، کد ملی و اطلاعات بانکی وی میباشد. این اقدامات حریم شخصی وی را نقض نخواهد کرد و هیچ گونه سو استفاده ای انجام نخواهد شد و به هیچ شخص ثالث و ارگانی ارائه نخواهد شد.",
@@ -35,72 +36,7 @@ export default function page() {
         >
           محاسبه کارمزد خرید و فروش طلا در دارینه مطابق زیر می باشد.
         </Typography>
-        <Stack
-          py={3}
-          px={2}
-          mt={2}
-          direction={"column"}
-          gap={2.5}
-          bgcolor={"#B29727"}
-          borderRadius={2}
-        >
-          <Stack
-            direction={"row"}
-            justifyContent={"space-between"}
-            alignItems={"center"}
-          >
-            <Typography
-              variant="body1"
-              fontSize={{
-                xs: 12,
-                sm: 14,
-              }}
-              sx={{ color: "text.title" }}
-            >
-              کارمزد خرید
-            </Typography>
-            <Typography
-              variant="body1"
-              fontSize={{
-                xs: 12,
-                sm: 14,
-              }}
-              sx={{ color: "text.title" }}
-            >
-              ۱ درصد
-            </Typography>
-          </Stack>
-          <Divider
-            sx={{ borderStyle: "dashed", borderColor: "primary.main" }}
-          />
-
-          <Stack
-            direction={"row"}
-            justifyContent={"space-between"}
-            alignItems={"center"}
-          >
-            <Typography
-              variant="body1"
-              fontSize={{
-                xs: 12,
-                sm: 14,
-              }}
-              sx={{ color: "text.title" }}
-            >
-              کارمزد خرید
-            </Typography>
-            <Typography
-              variant="body1"
-              fontSize={{
-                xs: 12,
-                sm: 14,
-              }}
-              sx={{ color: "text.title" }}
-            >
-              ۱ درصد
-            </Typography>
-          </Stack>
-        </Stack>
+       <Fee/>
         <Typography
           variant="h6"
           sx={{ color: "text.title", mt: 2 }}

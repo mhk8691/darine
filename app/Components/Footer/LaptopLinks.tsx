@@ -75,7 +75,7 @@ export default function LaptopLinks() {
                 expanded={isOpen}
                 onChange={handleChange(item.id)}
                 sx={{
-                  background: "rgb(16, 16, 15)",
+                  bgcolor: "background.default",
                   py: 1,
                   borderRadius: "10px !important",
                   boxShadow: "none",
@@ -89,7 +89,7 @@ export default function LaptopLinks() {
                     isOpen ? (
                       <SvgIcon
                         sx={{
-                          fontSize: 30,
+                          fontSize: 25,
                           color: "text.subtitle",
                         }}
                       >
@@ -113,7 +113,7 @@ export default function LaptopLinks() {
                     ) : (
                       <SvgIcon
                         sx={{
-                          fontSize: 30,
+                          fontSize: 25,
                           color: "text.subtitle",
                         }}
                       >

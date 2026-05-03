@@ -48,7 +48,7 @@ export default function AddCard({ setOpen, setValue, open, value }: Props) {
           width: "100%",
           mt: 8,
           "&.Mui-disabled": {
-            bgcolor: "#393936",
+            bgcolor: "background.border",
           },
         }}
         disableRipple

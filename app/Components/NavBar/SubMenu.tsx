@@ -1,7 +1,7 @@
 "use client";
 import { MenuType } from "@/app/core/Types";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { Paper, Stack, Typography } from "@mui/material";
+import { Paper, Stack, Typography, useTheme } from "@mui/material";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -10,7 +10,8 @@ interface Props {
 }
 export default function SubMenu({ item }: Props) {
   const [open, setOpen] = useState(false);
-
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === "dark";
   return (
     <Stack
       component={"div"}
@@ -19,7 +20,7 @@ export default function SubMenu({ item }: Props) {
       sx={{
         position: "relative",
         "&:hover": {
-          color: "primary.main",
+          color: isDarkMode ? "primary.main" : "primary.dark",
         },
       }}
     >
@@ -44,8 +45,8 @@ export default function SubMenu({ item }: Props) {
           left: 0,
           minWidth: "200%",
           overflow: "hidden",
-          background: "rgb(17, 17, 16)",
-          boxShadow: "0 0 5px #2E2C26",
+          background: isDarkMode ? "rgb(17, 17, 16)" : "#FFFFFF",
+          boxShadow: isDarkMode ? "0 0 5px #2E2C26" : "none",
           opacity: open ? 1 : 0,
           pointerEvents: open ? "auto" : "none",
           transition: "all .25s cubic-bezier(0.4, 0, 0.2, 1)",

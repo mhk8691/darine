@@ -160,7 +160,7 @@ export default function page() {
             >
               <Stack
                 position={"absolute"}
-                bgcolor={"#1A1A18"}
+                bgcolor={"background.paper"}
                 width={"110%"}
                 height={"100%"}
                 borderRadius={2}
