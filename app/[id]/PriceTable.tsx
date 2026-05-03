@@ -123,7 +123,7 @@ export default function PriceTables({ title, data }: Props) {
                     item.dayChange < 0
                       ? isDarkMode
                         ? "#691818"
-                        : "#8b4646"
+                        : "#fdc7c7"
                       : isDarkMode
                         ? "#1B4430"
                         : "#ECF7F2",
