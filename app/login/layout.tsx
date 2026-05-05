@@ -1,6 +1,7 @@
-import { Container, Grid, Stack, Typography } from "@mui/material";
+import { Container, Grid, Stack } from "@mui/material";
 import Image from "next/image";
 import { ReactNode } from "react";
+import LoginBanner from "./LoginBanner";
 
 interface Props {
   children?: ReactNode;
@@ -20,9 +21,6 @@ export default function layout({ children }: Props) {
             lg: 6,
           }}
           sx={{
-            boxShadow: {
-              md: "0 0 15px #1C1C1B",
-            },
             borderTopLeftRadius: 20,
             borderBottomLeftRadius: 20,
             border: {
@@ -30,7 +28,7 @@ export default function layout({ children }: Props) {
               md: 1,
             },
             borderColor: {
-              md: "#1C1C1B",
+              md: "background.paper",
             },
             p: {
               xs: 0,
@@ -74,95 +72,7 @@ export default function layout({ children }: Props) {
             {children}
           </Stack>
         </Grid>
-        <Grid
-          order={{
-            xs: 1,
-            md: 2,
-          }}
-          size={{
-            xs: 12,
-            md: 5,
-            lg: 6,
-          }}
-          p={{
-            xs: 0,
-            md: 8,
-          }}
-          sx={{
-            background: {
-              xs: "bakcground.default",
-              md: `linear-gradient(
-120deg,
- #616055 0%,
-  #B2A467 50%,
-  #DAC670 100%
-)`,
-            },
-            borderTopRightRadius: {
-              xs: 0,
-              md: 20,
-            },
-            borderBottomRightRadius: {
-              xs: 0,
-              md: 20,
-            },
-          }}
-        >
-          <Stack
-            direction={"column"}
-            alignItems={"center"}
-            justifyContent={"center"}
-          >
-            <Stack
-              width={{
-                xs: 220,
-                md: 365,
-              }}
-              height={{
-                xs: 220,
-                md: 290,
-              }}
-            >
-              <Image
-                src={"/images/login2.webp"}
-                width={365}
-                height={290}
-                alt=""
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "contain",
-                }}
-              />
-            </Stack>
-            <Stack
-              direction={"column"}
-              alignItems={"center"}
-              gap={2.5}
-              mt={10}
-              display={{
-                xs: "none",
-                md: "flex",
-              }}
-            >
-              <Typography
-                variant="h6"
-                fontSize={20}
-                sx={{ color: "background.default" }}
-                fontWeight={600}
-              >
-                طلاسی پلتفرم خرید و فروش طلا بدون اجرت
-              </Typography>
-              <Typography
-                variant="h6"
-                fontSize={16}
-                sx={{ color: "background.paper" }}
-              >
-                طلاسی بستر آنلاین خرید و فروش طلا
-              </Typography>
-            </Stack>
-          </Stack>
-        </Grid>
+  <LoginBanner/>
       </Grid>
     </Container>
   );

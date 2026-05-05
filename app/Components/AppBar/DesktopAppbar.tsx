@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Card from "../Container/Container";
 import ModalNavigation from "./ModalNavigation";
-import { ActiveArrowIcon } from "../CustomIcons/CustomIcons";
 interface ItemsType {
   name: string;
   image: string;
@@ -132,7 +131,18 @@ export default function DesktopAppbar() {
                 }}
                 color="primary"
               >
-                <ActiveArrowIcon />
+               <svg
+    width="48"
+    height="16"
+    viewBox="0 0 48 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M48 16C44.3774 15.9998 13.5849 16.0001 0 16C14.4906 16 12.9323 0 24 0C36.2264 0 33.5094 15.9999 48 16Z"
+      fill="currentColor"
+    ></path>
+  </svg>
               </SvgIcon>
             )}
           </Stack>
