@@ -11,6 +11,7 @@ import "./globals.css";
 import SpaceBox from "./SpaceBox";
 import { rtl } from "./theme";
 import CustomThemeProvider from "./theme-provider";
+import { AuthProvider } from "@/providers/auth-provider";
 
 const IranYekanFont = localFont({
   src: [
@@ -65,6 +66,8 @@ export default function RootLayout({
       >
         <AppRouterCacheProvider options={rtl}>
           <CustomThemeProvider>
+            <AuthProvider>
+
             <CssBaseline />
             <Navbar />
             <main style={{ flexGrow: 1 }}>
@@ -75,6 +78,7 @@ export default function RootLayout({
             </main>
             <GlobalSnackbar />
             <Footer />
+            </AuthProvider>
           </CustomThemeProvider>
         </AppRouterCacheProvider>
       </body>

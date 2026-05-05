@@ -1,9 +1,10 @@
 import { Button } from "@mui/material";
 interface Props {
   title: string;
-  //   disableFunction:()=>{}
+  isDisable?:boolean
+  handleSubmit?:() => Promise<void>
 }
-export default function ActionButton({ title }: Props) {
+export default function ActionButton({ title ,handleSubmit,isDisable}: Props) {
   return (
     <Button
       variant="contained"
@@ -21,7 +22,8 @@ export default function ActionButton({ title }: Props) {
         },
       }}
       disableRipple
-      disabled
+      onClick={handleSubmit}
+      disabled={isDisable}
     >
       {title}
     </Button>

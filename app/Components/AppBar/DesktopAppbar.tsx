@@ -16,37 +16,37 @@ const AppbarItems: ItemsType[] = [
   {
     name: "داشبورد",
     image: "/images/appbar/home-active-dark.svg",
-    link: "/dashboard/",
+    link: "/dashboard",
   },
   {
     name: "خرید و فروش",
     image: "/images/appbar/trade-active-dark.svg",
-    link: "/dashboard/trades/",
+    link: "/dashboard/trades",
   },
   {
     name: "کیف پول",
     image: "/images/appbar/wallet-active-dark.svg",
-    link: "/dashboard/wallet/",
+    link: "/dashboard/wallet",
   },
   {
     name: "کارت هدیه",
     image: "/images/appbar/giftCard-active-dark.svg",
-    link: "/dashboard/gift-card-menu/",
+    link: "/dashboard/gift-card-menu",
   },
   {
     name: "واریز و برداشت",
     image: "/images/appbar/irtTransaction-active-dark.svg",
-    link: "/dashboard/irt-transaction/",
+    link: "/dashboard/irt-transaction",
   },
   {
     name: "تحویل فیزیکی",
     image: "/images/appbar/shop-active-dark.svg",
-    link: "/dashboard/gold-receive/",
+    link: "/dashboard/gold-receive",
   },
   {
     name: "گزارش ها",
     image: "/images/appbar/reports-active-dark.svg",
-    link: "/dashboard/reports/",
+    link: "/dashboard/reports",
   },
   {
     name: "بیشتر",

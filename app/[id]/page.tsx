@@ -72,9 +72,7 @@ const faqData: FaqItem[] = [
 interface Props {
   params: { productId: string };
 }
-export async function generateStaticParams() {
-  return [{ id: "test" }, { id: "ons" }, { id: "3" }];
-}
+
 export default function page({ params }: Props) {
   console.log(params.productId);
   const newData = [goldData[0].data];

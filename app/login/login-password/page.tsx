@@ -1,15 +1,12 @@
 "use client";
 import { Box, Divider, Stack, Typography } from "@mui/material";
 import Link from "next/link";
-import { useState } from "react";
 import ActionButton from "../ActionButton";
-import Field from "../Field";
 import LoginTab from "../LoginTab";
-import PasswordField from "../PasswordField";
+import LoginPassForm from "./LoginPassForm";
 
 export default function page() {
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [password, setPassword] = useState("");
+
 
   return (
     <Stack>
@@ -24,15 +21,8 @@ export default function page() {
       >
         اطلاعات زیر را وارد کنید
       </Typography>
-      <Field
-        value={phoneNumber}
-        setValue={setPhoneNumber}
-        label="شماره موبایل"
-      />
-      <Stack mt={0.5}>
-        <PasswordField password={password} setPassword={setPassword} />
-      </Stack>
-      <Link href={"/login/forget"} style={{ marginTop: 24 }}>
+    <LoginPassForm>
+        <Link href={"/login/forget"} style={{ marginTop: 24 }}>
         <Typography
           variant="body2"
           sx={{ color: "#0091F8" }}
@@ -62,7 +52,8 @@ export default function page() {
         </Link>{" "}
         طلاسی می‌باشد.
       </Typography>
-      <ActionButton title={"ادامه"} />
+    </LoginPassForm>
+    
       <Stack
         direction={"row"}
         gap={2}

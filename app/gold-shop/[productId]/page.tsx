@@ -10,10 +10,6 @@ import Image from "next/image";
 import DesktopCart from "./DesktopCart";
 import MobileCart from "./MobileCart";
 
-export async function generateStaticParams() {
-  return [{ productId: "test" }, { productId: "2" }, { productId: "3" }];
-}
-
 export default function Page({ params }: { params: { productId: string } }) {
   return (
     <>

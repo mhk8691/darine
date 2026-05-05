@@ -13,27 +13,27 @@ const appbarItems = [
   {
     name: "گزارش ها",
     icon: <ReportsIcon />,
-    link: "/dashboard/reports/",
+    link: "/dashboard/reports",
   },
   {
     name: "سفارش",
     icon: <OrderIcon />,
-    link: "/dashboard/trades/",
+    link: "/dashboard/trades",
   },
   {
     name: "خانه",
     icon: <HomeIcon />,
-    link: "/dashboard/",
+    link: "/dashboard",
   },
   {
     name: "فیزیکی",
     icon: <GoldReceiveIcon />,
-    link: "/dashboard/gold-receive/",
+    link: "/dashboard/gold-receive",
   },
   {
     name: "پروفایل",
     icon: <ProfileIcon />,
-    link: "/dashboard/profile/",
+    link: "/dashboard/profile",
   },
 ];
 
