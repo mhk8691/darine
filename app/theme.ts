@@ -86,6 +86,22 @@ export const getTheme = (mode: "light" | "dark" = "light") =>
       },
     },
     components: {
+      MuiCssBaseline:{
+        styleOverrides:{
+          body:{
+             '&::-webkit-scrollbar':{
+               width:'7px'
+            },
+            '&::-webkit-scrollbar-track':{  
+               background: mode === 'dark'?'#212120':'#F1F1F1',
+  borderRadius: '10px',
+            },'&::-webkit-scrollbar-thumb':{
+               background: mode === 'dark'?'#4D4D4C':'#CCCCCC',
+  borderRadius: '10px',
+            },
+          }
+        }
+      },
       MuiButton: {
         defaultProps: {
           disableRipple: true,
