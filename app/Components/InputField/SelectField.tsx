@@ -30,6 +30,22 @@ export default function SelectField({
   maxWidth,
 }: Props) {
   const [value, setValue] = React.useState<string>("");
+  const [open, setOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!open) return;
+
+    const handleScroll = () => {
+      setOpen(false);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [open]);
+
   const MenuProps = {
     slotProps: {
       paper: {
@@ -47,6 +63,15 @@ export default function SelectField({
 
   const handleChange = (event: SelectChangeEvent) => {
     setValue(event.target.value);
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   const handleClear = (e: React.MouseEvent) => {
@@ -60,6 +85,9 @@ export default function SelectField({
         displayEmpty
         value={value}
         onChange={handleChange}
+        onOpen={handleOpen}
+        onClose={handleClose}
+        open={open}
         IconComponent={KeyboardArrowDownIcon}
         input={<OutlinedInput />}
         MenuProps={MenuProps}
@@ -77,7 +105,6 @@ export default function SelectField({
                 ? "none"
                 : "block",
           },
-
           "& .MuiSelect-select": {
             display: "flex",
             alignItems: "center",
@@ -92,7 +119,7 @@ export default function SelectField({
             return (
               <Typography
                 sx={{
-                  color: "#7C7C7B",
+                  color: "#7C7C7C",
                   top: "50%",
                   transform: "translateY(-50%)",
                   position: "absolute ",
