@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import Container from "../Container/Container";
+import Container from "../Containers/Container/Container";
 import MobileWalletStatus from "./MobileWalletStatus";
 import ToggleEyeButton from "./ToggleEyeButton";
 interface Props {

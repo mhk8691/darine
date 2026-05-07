@@ -9,7 +9,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 import Link from "next/link";
-import LineChart from "../LineChart/LineChart";
+import LineChart from "../../LineChart/LineChart";
 
 export function createData({
   typeGold,

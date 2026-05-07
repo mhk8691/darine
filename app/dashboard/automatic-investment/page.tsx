@@ -1,5 +1,5 @@
-import Card from "@/app/Components/Container/Container";
-import OrderDetail from "@/app/Components/OrderDetail/OrderDetail";
+import Card from "@/app/Components/Containers/Container/Container";
+import OrderDetail from "@/app/Components/Tables/DetailTable/OrderDetail";
 import WalletStatus from "@/app/Components/Wallet/WalletStatus";
 import { ToggleItemsType } from "@/app/core/Types";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";

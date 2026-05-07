@@ -1,5 +1,5 @@
 "use client";
-import Card from "@/app/Components/Container/Container";
+import Card from "@/app/Components/Containers/Container/Container";
 import FilterToggleButton from "@/app/Components/FilterToggleButton/FilterToggleButton";
 import InputField from "@/app/Components/InputField/InputField";
 import { ToggleItemsType } from "@/app/core/Types";

@@ -4,7 +4,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "./styles.css";
 import { Navigation } from "swiper/modules";
-import GoldCard from "../Components/GoldCard/GoldCard";
+import GoldCard from "../Components/ProductCard/ProductCard";
 import { useEffect, useState } from "react";
 
 export default function ProductSlider() {

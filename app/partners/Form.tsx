@@ -8,7 +8,7 @@ import {
   useTheme,
 } from "@mui/material";
 import { useState } from "react";
-import Container from "../Components/Container/Container";
+import Container from "../Components/Containers/Container/Container";
 import InputField from "../Components/InputField/InputField";
 
 export default function Form() {

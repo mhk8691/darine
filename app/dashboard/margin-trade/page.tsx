@@ -1,5 +1,5 @@
-import ChartGold from "@/app/Components/ChartGold/ChartGold";
-import Card from "@/app/Components/Container/Container";
+import ChartGold from "@/app/Components/Chart/ChartGold";
+import Card from "@/app/Components/Containers/Container/Container";
 import Faq from "@/app/Components/Faq/Faq";
 import WalletStatus from "@/app/Components/Wallet/WalletStatus";
 import { FaqItem } from "@/app/core/Types";

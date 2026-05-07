@@ -1,7 +1,7 @@
-import { ActionButtonType } from "@/app/Components/ActionButton/ActionButton";
-import InfoContainer from "@/app/Components/InfoContainer/InfoContainer";
 import { Metadata } from "next";
 import BackLink from "../BackLink";
+import InfoContainer from "@/app/Components/Containers/InfoContainer/InfoContainer";
+import { ActionButtonType } from "@/app/core/Types";
 export const metadata: Metadata = {
   title: "منو کارت هدیه | دارینه",
   description: "",

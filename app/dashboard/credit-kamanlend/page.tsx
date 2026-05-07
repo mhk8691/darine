@@ -1,5 +1,5 @@
-import CreditContainer from "@/app/Components/CreditContainer/CreditContainer";
-import GoldenUnderline from "@/app/Components/CreditContainer/GoldenUnderline";
+import CreditContainer from "@/app/Components/Containers/CreditContainer/CreditContainer";
+import GoldenUnderline from "@/app/Components/Containers/CreditContainer/GoldenUnderline";
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import { Metadata } from "next";

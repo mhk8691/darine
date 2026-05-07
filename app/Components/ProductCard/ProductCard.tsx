@@ -27,7 +27,7 @@ const product: Product = {
   title: "شمش طلاسی ۱ گرمی ۱۸ عیار",
   price: 19330693,
 };
-export default function GoldCard() {
+export default function ProductCard() {
   const [open, setOpen] = useState(false);
   const [cart, setCart] = useState<CartItem[]>([]);
   const item = cart.find((i) => i.id === product.id);

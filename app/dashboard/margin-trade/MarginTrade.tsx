@@ -1,5 +1,5 @@
 "use client";
-import Card from "@/app/Components/Container/Container";
+import Card from "@/app/Components/Containers/Container/Container";
 import CustomTabs from "@/app/Components/Tabs/CustomTabs";
 import { Divider, Stack, useMediaQuery, useTheme } from "@mui/material";
 import Typography from "@mui/material/Typography";

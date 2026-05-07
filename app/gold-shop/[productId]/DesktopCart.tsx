@@ -1,5 +1,5 @@
 "use client";
-import Container from "@/app/Components/Container/Container";
+import Container from "@/app/Components/Containers/Container/Container";
 import { WarrantyIcon } from "@/app/Components/CustomIcons/CustomIcons";
 import priceFormater from "@/app/core/PriceFormater";
 import { Box, Button, Stack, useMediaQuery, useTheme } from "@mui/material";

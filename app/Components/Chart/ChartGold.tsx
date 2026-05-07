@@ -6,7 +6,7 @@ import TopPrice from "./TopPrice";
 import FilterToggleButton from "../FilterToggleButton/FilterToggleButton";
 import { useState } from "react";
 import { ToggleItemsType } from "@/app/core/Types";
-import Container from "../Container/Container";
+import Container from "../Containers/Container/Container";
 
 const pData = [
   2350, 200, 300, 600, 802, 5000, 3290, 100, 200, 400, 300, 2435, 2450, 2465,

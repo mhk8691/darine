@@ -1,5 +1,5 @@
 "use client";
-import OrderDetail from "@/app/Components/OrderDetail/OrderDetail";
+import OrderDetail from "@/app/Components/Tables/DetailTable/OrderDetail";
 import { Grid, useMediaQuery, useTheme } from "@mui/material";
 
 export default function GiftCardList() {

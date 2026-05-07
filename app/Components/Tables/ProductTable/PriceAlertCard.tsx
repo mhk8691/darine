@@ -3,7 +3,7 @@ import { Button, Stack, useMediaQuery, useTheme } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import Link from "next/link";
-import Container from "../Container/Container";
+import Container from "../../Containers/Container/Container";
 
 export default function PriceAlertCard() {
   const theme = useTheme();

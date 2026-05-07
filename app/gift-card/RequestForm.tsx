@@ -4,7 +4,7 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Button, Grid, Stack, Typography, useTheme } from "@mui/material";
 import Link from "next/link";
 import { useState } from "react";
-import Container from "../Components/Container/Container";
+import Container from "../Components/Containers/Container/Container";
 import InputField from "../Components/InputField/InputField";
 
 type FormState = {

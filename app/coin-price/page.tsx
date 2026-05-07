@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import TableContainer from "../Components/Tables/GoldContainer";
+import TableContainer from "../Components/Tables/ProductTable/GoldContainer";
 import { FaqItem, TableGoldDataType } from "../core/Types";
 export const metadata: Metadata = {
   title: "قیمت سکه امروز آنلاین و لحظه ای | دارینه",

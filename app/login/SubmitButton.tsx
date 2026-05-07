@@ -4,7 +4,7 @@ interface Props {
   isDisable?:boolean
   handleSubmit?:() => Promise<void>
 }
-export default function ActionButton({ title ,handleSubmit,isDisable}: Props) {
+export default function SubmitButton({ title ,handleSubmit,isDisable}: Props) {
   return (
     <Button
       variant="contained"

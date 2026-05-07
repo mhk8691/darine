@@ -2,7 +2,7 @@ import priceFormater from "@/app/core/PriceFormater";
 import { TableGoldDataType } from "@/app/core/Types";
 import { Box, Divider, Grid, Stack, Typography } from "@mui/material";
 import Link from "next/link";
-import LineChart from "../LineChart/LineChart";
+import LineChart from "../../LineChart/LineChart";
 
 interface Props {
   items: TableGoldDataType[];

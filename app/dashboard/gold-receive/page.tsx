@@ -1,6 +1,6 @@
-import Container from "@/app/Components/Container/Container";
-import GoldCard from "@/app/Components/GoldCard/GoldCard";
-import OrderDetail from "@/app/Components/OrderDetail/OrderDetail";
+import Container from "@/app/Components/Containers/Container/Container";
+import GoldCard from "@/app/Components/ProductCard/ProductCard";
+import OrderDetail from "@/app/Components/Tables/DetailTable/OrderDetail";
 import WalletStatus from "@/app/Components/Wallet/WalletStatus";
 import { ToggleItemsType } from "@/app/core/Types";
 import { Grid } from "@mui/material";

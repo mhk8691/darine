@@ -2,8 +2,8 @@ import CircleAnimation from "@/app/Components/CircleAnimation/CircleAnimation";
 import {
   default as Card,
   default as Container,
-} from "@/app/Components/Container/Container";
-import OrderDetail from "@/app/Components/OrderDetail/OrderDetail";
+} from "@/app/Components/Containers/Container/Container";
+import OrderDetail from "@/app/Components/Tables/DetailTable/OrderDetail";
 import Wallet from "@/app/Components/Wallet/Wallet";
 import priceFormater from "@/app/core/PriceFormater";
 import { ToggleItemsType } from "@/app/core/Types";

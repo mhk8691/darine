@@ -9,8 +9,8 @@ import {
   useTheme,
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import Container from "../Container/Container";
-import { DoneIcon } from "../CustomIcons/CustomIcons";
+import Container from "../../Containers/Container/Container";
+import { DoneIcon } from "../../CustomIcons/CustomIcons";
 import "./video-style.css";
 export default function HowBuyGold() {
   const theme = useTheme();

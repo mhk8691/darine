@@ -1,5 +1,5 @@
 "use client";
-import ChartGold from "@/app/Components/ChartGold/ChartGold";
+import ChartGold from "@/app/Components/Chart/ChartGold";
 import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
 

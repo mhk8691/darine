@@ -1,5 +1,5 @@
-import CreditContainer from "@/app/Components/CreditContainer/CreditContainer";
-import GoldenUnderline from "@/app/Components/CreditContainer/GoldenUnderline";
+import CreditContainer from "@/app/Components/Containers/CreditContainer/CreditContainer";
+import GoldenUnderline from "@/app/Components/Containers/CreditContainer/GoldenUnderline";
 import { SnappayIcon } from "@/app/Components/CustomIcons/CustomIcons";
 import { Box, Grid, SvgIcon, Typography } from "@mui/material";
 import { Metadata } from "next";

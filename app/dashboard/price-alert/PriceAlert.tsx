@@ -1,5 +1,5 @@
 "use client";
-import Container from "@/app/Components/Container/Container";
+import Container from "@/app/Components/Containers/Container/Container";
 import InputField from "@/app/Components/InputField/InputField";
 import {
   Button,

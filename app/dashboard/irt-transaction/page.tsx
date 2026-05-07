@@ -1,4 +1,4 @@
-import OrderDetail from "@/app/Components/OrderDetail/OrderDetail";
+import OrderDetail from "@/app/Components/Tables/DetailTable/OrderDetail";
 import WalletStatus from "@/app/Components/Wallet/WalletStatus";
 import { ToggleItemsType } from "@/app/core/Types";
 import { Grid } from "@mui/material";

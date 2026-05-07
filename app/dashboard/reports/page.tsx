@@ -1,5 +1,5 @@
-import Card from "@/app/Components/Container/Container";
-import OrderDetail from "@/app/Components/OrderDetail/OrderDetail";
+import Card from "@/app/Components/Containers/Container/Container";
+import OrderDetail from "@/app/Components/Tables/DetailTable/OrderDetail";
 import CustomTabs from "@/app/Components/Tabs/CustomTabs";
 import { ToggleItemsType } from "@/app/core/Types";
 import { Grid, Typography } from "@mui/material";

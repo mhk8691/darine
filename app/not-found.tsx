@@ -2,7 +2,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import Link from "next/link";
-import Container from "./Components/Container/Container";
+import Container from "./Components/Containers/Container/Container";
 
 export default function notfound() {
   return (

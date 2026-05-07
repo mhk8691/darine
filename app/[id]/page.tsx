@@ -1,10 +1,10 @@
 import { Container, Grid, Stack, Typography } from "@mui/material";
 import Image from "next/image";
-import ChartGold from "../Components/ChartGold/ChartGold";
+import ChartGold from "../Components/Chart/ChartGold";
 import Faq from "../Components/Faq/Faq";
-import ApplicationDownload from "../Components/Tables/ApplicationDownload";
-import HowBuyGold from "../Components/Tables/HowBuyGold";
-import TradeCard from "../Components/Tables/TradeCard";
+import ApplicationDownload from "../Components/Tables/ProductTable/ApplicationDownload";
+import HowBuyGold from "../Components/Tables/ProductTable/HowBuyGold";
+import TradeCard from "../Components/Tables/ProductTable/TradeCard";
 import { FaqItem } from "../core/Types";
 import Trading from "../dashboard/trades/Trading/Trading";
 import { data as goldData } from "../gold-price/page";

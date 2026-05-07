@@ -1,15 +1,11 @@
+import { ActionButtonType } from "@/app/core/Types";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import Link from "next/link";
-import { ReactNode } from "react";
 
-export interface ActionButtonType {
-  title: string;
-  icon: ReactNode | string;
-  link: string;
-}
+
 export default function ActionButton({ title, icon, link }: ActionButtonType) {
   return (
     <Link href={link}>

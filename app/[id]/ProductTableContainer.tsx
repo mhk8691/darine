@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import GoldTable from "../Components/Tables/GoldTable";
+import GoldTable from "../Components/Tables/ProductTable/GoldTable";
 import { useMediaQuery, useTheme } from "@mui/material";
-import LaptopTable from "../Components/Tables/LaptopTable";
+import LaptopTable from "../Components/Tables/ProductTable/LaptopTable";
 
 export default function ProductTableContainer() {
   const theme = useTheme();

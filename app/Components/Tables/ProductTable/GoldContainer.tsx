@@ -1,7 +1,7 @@
 import { FaqItem, TableGoldDataType } from "@/app/core/Types";
 import { Container, Divider, Grid, Stack, Typography } from "@mui/material";
 import Image from "next/image";
-import Faq from "../Faq/Faq";
+import Faq from "../../Faq/Faq";
 import ApplicationDownload from "./ApplicationDownload";
 import HowBuyGold from "./HowBuyGold";
 import MobileTable from "./MobileTable";

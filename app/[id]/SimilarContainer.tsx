@@ -6,7 +6,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import LaptopTable from "../Components/Tables/LaptopTable";
+import LaptopTable from "../Components/Tables/ProductTable/LaptopTable";
 import { TableGoldDataType } from "../core/Types";
 import PriceTables from "./PriceTable";
 

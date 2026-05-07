@@ -1,11 +1,11 @@
 import { Box, Container, Grid, Typography, Button, Stack } from "@mui/material";
-import "../Components/Tables/video-style.css";
 import Gift from "./Gift";
 import RequestForm from "./RequestForm";
 import Description from "./Description";
 import Faq from "../Components/Faq/Faq";
 import { FaqItem } from "../core/Types";
 import { Metadata } from "next";
+import '@/app/Components/Tables/ProductTable/video-style.css'
 export const metadata: Metadata = {
   title: "کارت هدیه سازمانی دارینه | بهترین هدیه برای پرسنل",
   description: "",

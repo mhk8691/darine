@@ -2,7 +2,7 @@
 import { Box, Divider, Stack, Typography } from "@mui/material";
 import Link from "next/link";
 import { useState } from "react";
-import ActionButton from "../ActionButton";
+import ActionButton from "../SubmitButton";
 import Field from "../Field";
 
 export default function page() {

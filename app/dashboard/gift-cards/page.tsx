@@ -1,4 +1,4 @@
-import OrderDetail from "@/app/Components/OrderDetail/OrderDetail";
+import OrderDetail from "@/app/Components/Tables/DetailTable/OrderDetail";
 import { Grid } from "@mui/material";
 import { Metadata } from "next";
 import BackLink from "../BackLink";

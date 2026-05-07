@@ -1,6 +1,6 @@
 "use client";
 
-import Card from "@/app/Components/Container/Container";
+import Card from "@/app/Components/Containers/Container/Container";
 import { TransferIcon } from "@/app/Components/CustomIcons/CustomIcons";
 import FilterToggleButton from "@/app/Components/FilterToggleButton/FilterToggleButton";
 import InputField from "@/app/Components/InputField/InputField";

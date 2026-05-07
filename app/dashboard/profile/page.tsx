@@ -1,4 +1,4 @@
-import Container from "@/app/Components/Container/Container";
+import Container from "@/app/Components/Containers/Container/Container";
 import WalletStatus from "@/app/Components/Wallet/WalletStatus";
 import { Grid, Typography } from "@mui/material";
 import { Metadata } from "next";

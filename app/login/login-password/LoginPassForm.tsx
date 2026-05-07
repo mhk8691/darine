@@ -3,7 +3,7 @@ import React, { ReactNode, useState } from 'react'
 import Field from '../Field'
 import { Stack } from '@mui/material'
 import PasswordField from '../PasswordField'
-import ActionButton from '../ActionButton'
+import ActionButton from '../SubmitButton'
 import { useRouter } from 'next/navigation'
 import { loginPassword } from '@/lib/auth'
 

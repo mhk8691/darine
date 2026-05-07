@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import CircleAnimation from "../CircleAnimation/CircleAnimation";
-import Card from "../Container/Container";
+import Card from "../Containers/Container/Container";
 import MobileWalletStatus from "./MobileWalletStatus";
 
 export default function WalletStatus() {

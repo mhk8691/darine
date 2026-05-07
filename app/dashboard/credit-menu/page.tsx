@@ -1,5 +1,5 @@
-import { ActionButtonType } from "@/app/Components/ActionButton/ActionButton";
-import InfoContainer from "@/app/Components/InfoContainer/InfoContainer";
+import InfoContainer from "@/app/Components/Containers/InfoContainer/InfoContainer";
+import { ActionButtonType } from "@/app/core/Types";
 import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "خرید اقساطی طلا | دارینه",

@@ -1,4 +1,4 @@
-import Card from "@/app/Components/Container/Container";
+import Card from "@/app/Components/Containers/Container/Container";
 import { Divider, Grid, Stack, Typography } from "@mui/material";
 import { Metadata } from "next";
 import Image from "next/image";

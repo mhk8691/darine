@@ -1,7 +1,7 @@
 "use client";
 import { Box, Stack, Typography } from "@mui/material";
 import { useState } from "react";
-import ActionButton from "../ActionButton";
+import ActionButton from "../SubmitButton";
 import Field from "../Field";
 import SendCode from "../SendCode";
 

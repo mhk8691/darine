@@ -1,7 +1,7 @@
-import { ActionButtonType } from "@/app/Components/ActionButton/ActionButton";
-import InfoContainer from "@/app/Components/InfoContainer/InfoContainer";
 import { Metadata } from "next";
 import BackLink from "../BackLink";
+import { ActionButtonType } from "@/app/core/Types";
+import InfoContainer from "@/app/Components/Containers/InfoContainer/InfoContainer";
 export const metadata: Metadata = {
   title: "دریافت اعتبار | دارینه",
   description: "",

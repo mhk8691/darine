@@ -1,5 +1,5 @@
 "use client";
-import Card from "@/app/Components/Container/Container";
+import Card from "@/app/Components/Containers/Container/Container";
 import { IconButton, Stack, SvgIcon, Typography } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";

@@ -1,4 +1,4 @@
-import Container from "@/app/Components/Container/Container";
+import Container from "@/app/Components/Containers/Container/Container";
 import { Typography } from "@mui/material";
 
 export default function Chart() {

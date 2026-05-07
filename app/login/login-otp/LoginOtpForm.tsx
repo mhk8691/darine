@@ -1,7 +1,7 @@
 'use client'
 import React, { ReactNode, useState } from 'react'
 import Field from '../Field'
-import ActionButton from '../ActionButton'
+import ActionButton from '../SubmitButton'
 import { useRouter } from 'next/navigation'
 import { loginOtp } from '@/lib/auth'
 

@@ -1,6 +1,6 @@
 "use client";
 import { CartIcon } from "@/app/Components/CustomIcons/CustomIcons";
-import FilterButton from "@/app/Components/OrderDetail/FilterButton";
+import FilterButton from "@/app/Components/Tables/DetailTable/FilterButton";
 import { Badge, BadgeProps, IconButton, Stack, styled } from "@mui/material";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";

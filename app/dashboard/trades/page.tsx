@@ -1,5 +1,5 @@
-import ChartGold from "@/app/Components/ChartGold/ChartGold";
-import OrderDetail from "@/app/Components/OrderDetail/OrderDetail";
+import ChartGold from "@/app/Components/Chart/ChartGold";
+import OrderDetail from "@/app/Components/Tables/DetailTable/OrderDetail";
 import WalletStatus from "@/app/Components/Wallet/WalletStatus";
 import { ToggleItemsType } from "@/app/core/Types";
 import { Grid } from "@mui/material";

@@ -1,5 +1,5 @@
 import React from "react";
-import Container from "../Container/Container";
+import Container from "../../Containers/Container/Container";
 import { Typography, Button } from "@mui/material";
 import Image from "next/image";
 

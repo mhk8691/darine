@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface ToggleItemsType {
   title: string;
   value: string;
@@ -42,3 +44,8 @@ export interface CartItem extends Product {
   quantity: number;
 }
 
+export interface ActionButtonType {
+  title: string;
+  icon: ReactNode | string;
+  link: string;
+}
