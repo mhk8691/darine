@@ -13,6 +13,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 import CustomModal from "../CustomModal/CustomModal";
+import { AppbarItemsType } from "@/app/core/Types";
 
 interface Props {
   open: boolean;
@@ -21,11 +22,7 @@ interface Props {
 
 interface ItemsType {
   title: string;
-  navigation: {
-    name: string;
-    image: string;
-    link: string;
-  }[];
+  navigation: AppbarItemsType[];
 }
 
 const items: ItemsType[] = [

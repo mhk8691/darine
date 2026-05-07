@@ -49,3 +49,8 @@ export interface ActionButtonType {
   icon: ReactNode | string;
   link: string;
 }
+export interface AppbarItemsType {
+  name: string;
+  image: string;
+  link?: string;
+}

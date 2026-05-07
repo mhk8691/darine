@@ -2,12 +2,9 @@
 import { Grid, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-interface ItemsType {
-  name: string;
-  image: string;
-  link?: string;
-}
- const AppbarItems: ItemsType[] = [
+import { AppbarItemsType } from "../core/Types";
+
+ const AppbarItems: AppbarItemsType[] = [
    {
      name: "خرید و فروش",
      image: "/images/appbar/trade-active-dark.svg",

@@ -6,12 +6,9 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Card from "../Containers/Container/Container";
 import ModalNavigation from "./ModalNavigation";
-interface ItemsType {
-  name: string;
-  image: string;
-  link?: string;
-}
-const AppbarItems: ItemsType[] = [
+import { AppbarItemsType } from "@/app/core/Types";
+
+const AppbarItems: AppbarItemsType[] = [
   {
     name: "داشبورد",
     image: "/images/appbar/home-active-dark.svg",
@@ -72,8 +69,12 @@ export default function DesktopAppbar() {
           <Stack
             component={item.link ? Link : "div"}
             href={item.link}
-            onClick={() => {
-              !item.link ? setOpen(true) : setOpen(false);
+            onClick={() =>{
+              if (!item.link){
+                setOpen(true)
+              }else{
+                setOpen(false)
+              }
             }}
             key={index}
             direction={"column"}
