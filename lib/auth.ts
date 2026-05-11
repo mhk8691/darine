@@ -8,10 +8,17 @@ export const loginPassword = async (phoneNumber: string, password: string) => {
 
   return res.data;
 };
-export const loginOtp = async (phoneNumber: string) => {
-  const res = await api.post("/auth/login-otp", { phoneNumber });
+export const loginOtp = async (mobile: string) => {
+  const res = await api.post("/accounts/send-otp", { mobile });
 
   setAccessToken(res.data.accessToken);
+
+  return res.data;
+};
+export const signupOtp = async (mobile: string) => {
+  const res = await api.post("/accounts/send-otp", { mobile });
+
+  // setAccessToken(res.data.accessToken);
 
   return res.data;
 };

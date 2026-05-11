@@ -1,12 +1,9 @@
 "use client";
 import { Box, Divider, Stack, Typography } from "@mui/material";
 import Link from "next/link";
-import { useState } from "react";
-import ActionButton from "../SubmitButton";
-import Field from "../Field";
+import SignupOtpForm from "./SignupOtpForm";
 
 export default function page() {
-  const [phoneNumber, setPhoneNumber] = useState("");
   return (
     <Stack>
       <Typography
@@ -31,12 +28,9 @@ export default function page() {
         شماره موبایلی که به نام خودتان است را وارد کنید
       </Typography>
 
-      <Field
-        value={phoneNumber}
-        setValue={setPhoneNumber}
-        label="شماره موبایل"
-      />
-      <Typography
+     
+     <SignupOtpForm>
+       <Typography
         variant="body2"
         sx={{
           mt: {
@@ -62,7 +56,7 @@ export default function page() {
         </Link>{" "}
         طلاسی می‌باشد.
       </Typography>
-      <ActionButton title={"ادامه"} />
+     </SignupOtpForm>
       <Stack
         direction={"row"}
         gap={2}

@@ -8,7 +8,7 @@ export const api = axios.create({
 
 api.interceptors.response.use(
   res => res,
-  async err => {
+  async err => {  
     if (err.response?.status === 401) {
       console.log(err)
     }
