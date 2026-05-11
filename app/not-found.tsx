@@ -1,22 +1,22 @@
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Image from "next/image";
-import Link from "next/link";
-import Container from "./Components/Containers/Container/Container";
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Image from 'next/image';
+import Link from 'next/link';
+import Container from './Components/Containers/Container/Container';
 
 export default function notfound() {
   return (
     <Container
       style={{
         mt: 5,
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        border: "none",
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        border: 'none',
       }}
     >
-      <Image src={"/images/404.webp"} alt="" width={260} height={260} />
+      <Image src={'/images/404.webp'} alt="" width={260} height={260} />
       <Typography
         variant="h6"
         fontSize={{
@@ -24,7 +24,7 @@ export default function notfound() {
           sm: 30,
         }}
         fontWeight={500}
-        sx={{ mt: 7, textAlign: "center" }}
+        sx={{ mt: 7, textAlign: 'center' }}
       >
         صفحه‌ای که دنبالش بودید پیدا نشد
       </Typography>
@@ -35,10 +35,9 @@ export default function notfound() {
           sm: 18,
         }}
         fontWeight={300}
-        sx={{ mt: 2.5, textAlign: "center" }}
+        sx={{ mt: 2.5, textAlign: 'center' }}
       >
-        به صفحه اصلی بازگردید یا از منوی سایت برای یافتن محتوای دیگر استفاده
-        کنید.
+        به صفحه اصلی بازگردید یا از منوی سایت برای یافتن محتوای دیگر استفاده کنید.
       </Typography>
       <Button
         variant="contained"
@@ -49,13 +48,13 @@ export default function notfound() {
             xs: 16,
             sm: 22,
           },
-          color: "background.default",
+          color: 'background.default',
           mt: 6,
           borderRadius: 2,
           px: 5,
         }}
       >
-        <Link href={"/dashboard"}>بازگشت به صفحه اصلی</Link>
+        <Link href={'/dashboard'}>بازگشت به صفحه اصلی</Link>
       </Button>
     </Container>
   );

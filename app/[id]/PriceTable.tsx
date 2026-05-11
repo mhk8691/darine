@@ -1,31 +1,24 @@
-import { Box, Chip, Divider, Stack, Typography, useTheme } from "@mui/material";
-import React from "react";
-import priceFormater from "../core/PriceFormater";
-import { TableGoldDataType } from "../core/Types";
-import {
-  ErrorArrowIcon,
-  SuccessArrowIcon,
-} from "../Components/CustomIcons/CustomIcons";
+import { Box, Chip, Divider, Stack, Typography, useTheme } from '@mui/material';
+import React from 'react';
+import priceFormater from '../core/PriceFormater';
+import { TableGoldDataType } from '../core/Types';
+import { ErrorArrowIcon, SuccessArrowIcon } from '../Components/CustomIcons/CustomIcons';
 interface Props {
   title: string;
   data: TableGoldDataType[];
 }
 export default function PriceTables({ title, data }: Props) {
   const theme = useTheme();
-  const isDarkMode = theme.palette.mode === "dark";
+  const isDarkMode = theme.palette.mode === 'dark';
   return (
-    <Stack border={1} borderColor={"background.border"} borderRadius={2}>
+    <Stack border={1} borderColor={'background.border'} borderRadius={2}>
       <Stack
-        bgcolor={"background.paper"}
+        bgcolor={'background.paper'}
         py={2}
         px={4}
         sx={{ borderTopLeftRadius: 8, borderTopRightRadius: 8 }}
       >
-        <Typography
-          variant="body1"
-          fontSize={16}
-          sx={{ color: "text.subtitle" }}
-        >
+        <Typography variant="body1" fontSize={16} sx={{ color: 'text.subtitle' }}>
           {title}
         </Typography>
       </Stack>
@@ -35,42 +28,38 @@ export default function PriceTables({ title, data }: Props) {
             py={2}
             pl={4}
             pr={2}
-            direction={"row"}
-            alignItems={"center"}
-            justifyContent={"space-between"}
+            direction={'row'}
+            alignItems={'center'}
+            justifyContent={'space-between'}
           >
             <Typography variant="body1" fontSize={16}>
               {item.typeGold}
             </Typography>
-            <Stack direction={"row"} gap={1} alignItems={"center"}>
+            <Stack direction={'row'} gap={1} alignItems={'center'}>
               <Typography variant="body1" fontSize={16}>
                 {priceFormater(item.currentRate)}
               </Typography>
               <Chip
                 variant="filled"
                 label={
-                  <Stack direction={"row"} gap={0.5}>
-                    <Box component={"span"}>{item.dayChange} % </Box>
+                  <Stack direction={'row'} gap={0.5}>
+                    <Box component={'span'}>{item.dayChange} % </Box>
 
-                    {item.dayChange > 0 ? (
-                      <SuccessArrowIcon />
-                    ) : (
-                      <ErrorArrowIcon />
-                    )}
+                    {item.dayChange > 0 ? <SuccessArrowIcon /> : <ErrorArrowIcon />}
                   </Stack>
                 }
                 sx={{
-                  direction: "rtl",
+                  direction: 'rtl',
                   bgcolor:
                     item.dayChange < 0
                       ? isDarkMode
-                        ? "#691818"
-                        : "#fdc7c7"
+                        ? '#691818'
+                        : '#fdc7c7'
                       : isDarkMode
-                        ? "#1B4430"
-                        : "#ECF7F2",
-                  color: item.dayChange < 0 ? "#CC5151" : "#43AB64",
-                  width: "85px",
+                        ? '#1B4430'
+                        : '#ECF7F2',
+                  color: item.dayChange < 0 ? '#CC5151' : '#43AB64',
+                  width: '85px',
                 }}
               />
             </Stack>

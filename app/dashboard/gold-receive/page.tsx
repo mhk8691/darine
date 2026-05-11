@@ -1,29 +1,29 @@
-import Container from "@/app/Components/Containers/Container/Container";
-import GoldCard from "@/app/Components/ProductCard/ProductCard";
-import OrderDetail from "@/app/Components/Tables/DetailTable/OrderDetail";
-import WalletStatus from "@/app/Components/Wallet/WalletStatus";
-import { ToggleItemsType } from "@/app/core/Types";
-import { Grid } from "@mui/material";
-import Cart from "./Cart";
-import Sort from "./Sort";
-import { Metadata } from "next";
+import Container from '@/app/Components/Containers/Container/Container';
+import GoldCard from '@/app/Components/ProductCard/ProductCard';
+import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
+import WalletStatus from '@/app/Components/Wallet/WalletHeader';
+import { ToggleItemsType } from '@/app/core/Types';
+import { Grid } from '@mui/material';
+import Cart from './Cart';
+import Sort from './Sort';
+import { Metadata } from 'next';
 export const metadata: Metadata = {
-  title: "دریافت طلا | دارینه",
-  description: "",
+  title: 'دریافت طلا | دارینه',
+  description: '',
 };
 
 const items: ToggleItemsType[] = [
   {
-    title: "تحویل درب منزل",
-    value: "doorstepdelivery",
+    title: 'تحویل درب منزل',
+    value: 'doorstepdelivery',
     id: 1,
-    emptyMessage: "سفارشی برای شما به ثبت نرسیده است",
+    emptyMessage: 'سفارشی برای شما به ثبت نرسیده است',
   },
   {
-    title: "تحویل حضوری",
-    value: "personDelivery",
+    title: 'تحویل حضوری',
+    value: 'personDelivery',
     id: 2,
-    emptyMessage: "سفارشی برای شما به ثبت نرسیده است",
+    emptyMessage: 'سفارشی برای شما به ثبت نرسیده است',
   },
 ];
 
@@ -37,12 +37,12 @@ export default function page() {
       }}
     >
       <Grid size={12}>
-        <WalletStatus />
+        <WalletHeader />
       </Grid>
       <Container
         style={{
           pb: 11,
-          width: "100%",
+          width: '100%',
           px: {
             xs: 0,
             sm: 4,
@@ -52,7 +52,7 @@ export default function page() {
             sm: 1,
           },
           borderColor: {
-            sm: "background.paper",
+            sm: 'background.paper',
           },
         }}
       >
@@ -106,11 +106,7 @@ export default function page() {
         </Grid>
       </Container>
       <Grid size={12}>
-        <OrderDetail
-          type="chip"
-          title="لیست تحویل‌های اخیر"
-          toggleItems={items}
-        />
+        <OrderDetail type="chip" title="لیست تحویل‌های اخیر" toggleItems={items} />
       </Grid>
     </Grid>
   );

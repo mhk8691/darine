@@ -1,13 +1,13 @@
-"use client";
-import { Alert } from "@mui/material";
-import Snackbar, { SnackbarCloseReason } from "@mui/material/Snackbar";
-import * as React from "react";
-import { onSnackbar, SnackbarPayload } from "./Snackbar";
+'use client';
+import { Alert } from '@mui/material';
+import Snackbar, { SnackbarCloseReason } from '@mui/material/Snackbar';
+import * as React from 'react';
+import { onSnackbar, SnackbarPayload } from './Snackbar';
 
 export default function GlobalSnackbar() {
   const [open, setOpen] = React.useState(false);
   const [snackbar, setSnackbar] = React.useState<SnackbarPayload>({
-    message: "",
+    message: '',
     type: false,
   });
 
@@ -19,11 +19,8 @@ export default function GlobalSnackbar() {
     return unsubscribe;
   }, []);
 
-  const handleClose = (
-    event: React.SyntheticEvent | Event,
-    reason?: SnackbarCloseReason,
-  ) => {
-    if (reason === "clickaway") return;
+  const handleClose = (event: React.SyntheticEvent | Event, reason?: SnackbarCloseReason) => {
+    if (reason === 'clickaway') return;
     setOpen(false);
   };
 
@@ -32,15 +29,15 @@ export default function GlobalSnackbar() {
       open={open}
       autoHideDuration={5000}
       onClose={handleClose}
-      anchorOrigin={{ vertical: "top", horizontal: "left" }}
+      anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
     >
       <Alert
-        severity={snackbar.type ? "success" : "error"}
+        severity={snackbar.type ? 'success' : 'error'}
         variant="filled"
         sx={{
-          width: "400px",
-          bgcolor: snackbar.type ? "#EAFFE7" : "error:light",
-          color: snackbar.type ? "#33900E" : "",
+          width: '400px',
+          bgcolor: snackbar.type ? '#EAFFE7' : 'error:light',
+          color: snackbar.type ? '#33900E' : '',
         }}
       >
         {snackbar.message}

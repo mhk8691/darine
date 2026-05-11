@@ -1,13 +1,13 @@
-import ChartGold from "@/app/Components/Chart/ChartGold";
-import OrderDetail from "@/app/Components/Tables/DetailTable/OrderDetail";
-import WalletStatus from "@/app/Components/Wallet/WalletStatus";
-import { Grid } from "@mui/material";
-import Trading from "./Trading";
-import { Metadata } from "next";
-import BackLink from "../BackLink";
+import ChartGold from '@/app/Components/Chart/ChartGold';
+import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
+import WalletStatus from '@/app/Components/Wallet/WalletHeader';
+import { Grid } from '@mui/material';
+import Trading from './Trading';
+import { Metadata } from 'next';
+import BackLink from '../BackLink';
 export const metadata: Metadata = {
-  title: "سفارش با قیمت | دارینه",
-  description: "",
+  title: 'سفارش با قیمت | دارینه',
+  description: '',
 };
 export default function page() {
   return (
@@ -22,7 +22,7 @@ export default function page() {
       <BackLink title="سفارش با قیمت" />
 
       <Grid size={12}>
-        <WalletStatus />
+        <WalletHeader />
       </Grid>
       <Grid
         size={{

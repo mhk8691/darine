@@ -1,75 +1,68 @@
-import {
-  Container,
-  Divider,
-  Stack,
-  Typography,
-  Button,
-  Grid,
-} from "@mui/material";
-import Image from "next/image";
-import Form from "./Form";
-import Link from "next/link";
-import { Metadata } from "next";
+import { Container, Divider, Stack, Typography, Button, Grid } from '@mui/material';
+import Image from 'next/image';
+import Form from './Form';
+import Link from 'next/link';
+import { Metadata } from 'next';
 export const metadata: Metadata = {
-  title: "همکاران | دارینه",
-  description: "",
+  title: 'همکاران | دارینه',
+  description: '',
 };
 const partnerItems = [
   {
-    title: "API - دریافت‌کنندگان سرویس خرید و فروش طلا",
+    title: 'API - دریافت‌کنندگان سرویس خرید و فروش طلا',
     description: `با سرویس‌های API طلاسی، معاملات خرید و فروش طلا به صورت یکپارچه، امن و قابل اعتماد در پلتفرم شما مدیریت می‌شود و کاربران تجربه‌ای سریع، ساده و حرفه‌ای خواهند داشت. این ابزار به شما کمک می‌کند خدمات خود را به سرعت گسترش دهید، تعامل کاربران را افزایش دهید و با ارائه تجربه‌ای متمایز، جایگاه برند خود را در بازار تثبیت کنید.`,
     images: [
-      { title: "اسنپ پی", src: "snapp-pay.svg" },
-      { title: "بله", src: "Bale.svg" },
-      { title: "بانکت", src: "banket.svg" },
-      { title: "آپ", src: "asan-pardakht.svg" },
-      { title: "ستاره اول", src: "setare-aval.svg" },
-      { title: "تارا", src: "tara.svg" },
-      { title: "علی بابا", src: "alibaba.svg" },
+      { title: 'اسنپ پی', src: 'snapp-pay.svg' },
+      { title: 'بله', src: 'Bale.svg' },
+      { title: 'بانکت', src: 'banket.svg' },
+      { title: 'آپ', src: 'asan-pardakht.svg' },
+      { title: 'ستاره اول', src: 'setare-aval.svg' },
+      { title: 'تارا', src: 'tara.svg' },
+      { title: 'علی بابا', src: 'alibaba.svg' },
     ],
   },
   {
-    title: "White Label – دریافت‌کنندگان نسخه اختصاصی",
+    title: 'White Label – دریافت‌کنندگان نسخه اختصاصی',
     description: `نسخه اختصاصی طلاسی به شما امکان می‌دهد تجربه طلای دیجیتال را کاملاً با برند و رابط کاربری خود سفارشی کنید و خدماتی امن، حرفه‌ای و منحصر به فرد به کاربران ارائه دهید. این راهکار شما را قادر می‌سازد برند خود را به سطح جدیدی از اعتماد و اعتبار برسانید، خدمات متمایزی ارائه کنید و جایگاه خود را به عنوان یک پیشرو در بازار طلا تثبیت نمایید.`,
     images: [
-      { title: "اوانو", src: "evano.svg" },
-      { title: "خانومی", src: "khanoumi.svg" },
-      { title: "ازکی‌سرمایه", src: "azki-sarmayeh.svg" },
-      { title: "پات لایف", src: "pot-life.svg" },
-      { title: "یکتانت", src: "yektanet.svg" },
-      { title: "کیپا", src: "keepa.svg" },
+      { title: 'اوانو', src: 'evano.svg' },
+      { title: 'خانومی', src: 'khanoumi.svg' },
+      { title: 'ازکی‌سرمایه', src: 'azki-sarmayeh.svg' },
+      { title: 'پات لایف', src: 'pot-life.svg' },
+      { title: 'یکتانت', src: 'yektanet.svg' },
+      { title: 'کیپا', src: 'keepa.svg' },
     ],
   },
   {
-    title: "ارائه‌دهندگان تسهیلات خرید اقساطی",
+    title: 'ارائه‌دهندگان تسهیلات خرید اقساطی',
     description: `با همکاری با طلاسی، می‌توانید به مشتریان خود امکان خرید طلا با شرایط اقساطی آسان و امن بدهید و تجربه‌ای راحت، منعطف و جذاب از خرید طلا برای آن‌ها فراهم کنید. این همکاری نه تنها وفاداری مشتریان را افزایش می‌دهد، بلکه به برند شما قدرت رقابتی و تصویری حرفه‌ای در بازار می‌بخشد و نشان می‌دهد که شما همیشه راهکارهای نوآورانه و مشتری‌محور ارائه می‌دهید.`,
     images: [
-      { title: " دیجی‌پی", src: "digi-pay.svg" },
-      { title: "اسنپ پی", src: "snapp-pay.svg" },
-      { title: "ازکی وام", src: "azki-sarmayeh.svg" },
-      { title: "نسیبا", src: "nasiba.svg" },
-      { title: "فیروزه", src: "firoozeh.svg" },
-      { title: "کمان لند", src: "kamanlend.svg" },
+      { title: ' دیجی‌پی', src: 'digi-pay.svg' },
+      { title: 'اسنپ پی', src: 'snapp-pay.svg' },
+      { title: 'ازکی وام', src: 'azki-sarmayeh.svg' },
+      { title: 'نسیبا', src: 'nasiba.svg' },
+      { title: 'فیروزه', src: 'firoozeh.svg' },
+      { title: 'کمان لند', src: 'kamanlend.svg' },
     ],
   },
   {
-    title: "ارائه‌دهندگان تسهیلات اعتبار خرید کالا",
+    title: 'ارائه‌دهندگان تسهیلات اعتبار خرید کالا',
     description: `با اتصال به شبکه طلاسی، اعتبار خرید کالا را به کاربران خود ارائه دهید و با راهکارهای پرداخت امن و متنوع، تجربه خریدی سریع، ساده و مطمئن برای مشتریانتان ایجاد کنید. این فرصت به شما اجازه می‌دهد خدمات خود را گسترده‌تر کنید، ارزش افزوده بیشتری برای مشتریان خلق کنید و برندتان را به عنوان یک شریک قابل اعتماد و پیشرو در بازار معرفی نمایید.`,
     images: [
-      { title: " دیجی‌پی", src: "digi-pay.svg" },
-      { title: "ازکی‌وام", src: "azki-sarmayeh.svg" },
-      { title: "کیپا", src: "keepa.svg" },
-      { title: "گرند بازار", src: "grand-bazaar.svg" },
+      { title: ' دیجی‌پی', src: 'digi-pay.svg' },
+      { title: 'ازکی‌وام', src: 'azki-sarmayeh.svg' },
+      { title: 'کیپا', src: 'keepa.svg' },
+      { title: 'گرند بازار', src: 'grand-bazaar.svg' },
     ],
   },
   {
-    title: "ارائه‌دهندگان سرویس خدمات",
+    title: 'ارائه‌دهندگان سرویس خدمات',
     description: `همکاری با طلاسی به شما امکان می‌دهد خدمات تخصصی مرتبط با بازار طلا — از خدمات مالی و پرداختی امن، تسویه و درگاه‌های عملیاتی تا لجستیک ارسال، پشتیبانی و سرویس‌های پشتیبانی مشتری — را در پلتفرم خود ارائه دهید. این مشارکت بستری کارآمد و ارزش‌آفرین برای توسعه کسب‌وکار و ارتقای تجربه‌ کاربری فراهم می‌کند.`,
     images: [
-      { title: " جیبیت", src: "jibit.svg" },
-      { title: "تومن", src: "toman.svg" },
-      { title: "وندار", src: "vendar.svg" },
-      { title: "دیجی‌اکسپرس", src: "digi-express.svg" },
+      { title: ' جیبیت', src: 'jibit.svg' },
+      { title: 'تومن', src: 'toman.svg' },
+      { title: 'وندار', src: 'vendar.svg' },
+      { title: 'دیجی‌اکسپرس', src: 'digi-express.svg' },
     ],
   },
 ];
@@ -77,12 +70,12 @@ export default function page() {
   return (
     <>
       <Container
-        maxWidth={"xl"}
+        maxWidth={'xl'}
         sx={{
           px: {
-            xs: "16px !important",
-            md: "24px !important",
-            lg: "40px !important",
+            xs: '16px !important',
+            md: '24px !important',
+            lg: '40px !important',
           },
           mt: {
             xs: 0,
@@ -169,15 +162,15 @@ export default function page() {
                 lg: 6,
               }}
             >
-              <Stack direction={"column"} gap={3}>
+              <Stack direction={'column'} gap={3}>
                 <Typography
                   variant="h6"
                   fontSize={{
                     xs: 20,
                     md: 40,
                   }}
-                  fontWeight={"500"}
-                  sx={{ color: "text.title" }}
+                  fontWeight={'500'}
+                  sx={{ color: 'text.title' }}
                 >
                   همکــــاران دارینه
                 </Typography>
@@ -187,25 +180,20 @@ export default function page() {
                     xs: 16,
                     md: 30,
                   }}
-                  sx={{ color: "text.title" }}
+                  sx={{ color: 'text.title' }}
                 >
                   ما به همکاری با بیش از ۲۰ برندهای شناخته شده افتخار می‌کنیم!
                 </Typography>
 
                 <Stack
-                  direction={"row"}
-                  justifyContent={"center"}
+                  direction={'row'}
+                  justifyContent={'center'}
                   display={{
-                    xs: "flex",
-                    md: "none",
+                    xs: 'flex',
+                    md: 'none',
                   }}
                 >
-                  <Image
-                    src={"/images/partners-main.svg"}
-                    alt=""
-                    width={346}
-                    height={361}
-                  />
+                  <Image src={'/images/partners-main.svg'} alt="" width={346} height={361} />
                 </Stack>
                 <Typography
                   variant="h6"
@@ -214,21 +202,21 @@ export default function page() {
                     md: 18,
                   }}
                   fontWeight={400}
-                  sx={{ color: "text.subtitle" }}
-                  lineHeight={"25.6px"}
+                  sx={{ color: 'text.subtitle' }}
+                  lineHeight={'25.6px'}
                 >
-                  ما با انتخاب همکاری‌های حرفه‌ای و مبتنی بر اعتماد، کیفیت و
-                  نوآوری را در اولویت قرار داده‌ایم و در کنار شرکای خود برای خلق
-                  ارزش پایدار و رضایت مشتریان گام برمی‌داریم.
+                  ما با انتخاب همکاری‌های حرفه‌ای و مبتنی بر اعتماد، کیفیت و نوآوری را در اولویت
+                  قرار داده‌ایم و در کنار شرکای خود برای خلق ارزش پایدار و رضایت مشتریان گام
+                  برمی‌داریم.
                 </Typography>
                 <Stack
-                  direction={"row"}
+                  direction={'row'}
                   justifyContent={{
-                    xs: "center",
-                    md: "flex-start",
+                    xs: 'center',
+                    md: 'flex-start',
                   }}
                 >
-                  <Link href={"#form"}>
+                  <Link href={'#form'}>
                     <Button
                       variant="contained"
                       color="primary"
@@ -241,14 +229,14 @@ export default function page() {
                           xs: 1.5,
                           md: 2,
                         },
-                        width: "fit-content",
+                        width: 'fit-content',
                         px: {
                           xs: 10,
                           md: 6,
                         },
                         borderRadius: 2,
                         mt: 2,
-                        fontWeight: "600",
+                        fontWeight: '600',
                       }}
                     >
                       درخواست همکاری
@@ -265,27 +253,27 @@ export default function page() {
               }}
             >
               <Stack
-                direction={"row"}
-                justifyContent={"flex-end"}
+                direction={'row'}
+                justifyContent={'flex-end'}
                 display={{
-                  xs: "none",
-                  md: "flex",
+                  xs: 'none',
+                  md: 'flex',
                 }}
               >
                 <Stack
                   width={{
-                    xs: "100%",
-                    lg: "75%",
+                    xs: '100%',
+                    lg: '75%',
                   }}
                 >
                   <Image
-                    src={"/images/partners-main.svg"}
+                    src={'/images/partners-main.svg'}
                     alt=""
                     width={520}
                     height={530}
                     style={{
-                      width: "100%",
-                      height: "auto",
+                      width: '100%',
+                      height: 'auto',
                     }}
                   />
                 </Stack>
@@ -293,10 +281,10 @@ export default function page() {
             </Grid>
           </Grid>
         </Grid>
-        <Stack direction={"column"} gap={20} mt={15.5}>
+        <Stack direction={'column'} gap={20} mt={15.5}>
           {partnerItems.map((item) => (
             <Stack
-              direction={"column"}
+              direction={'column'}
               gap={{
                 xs: 1,
                 md: 5.5,
@@ -309,7 +297,7 @@ export default function page() {
                   xs: 16,
                   md: 30,
                 }}
-                sx={{ color: "text.title" }}
+                sx={{ color: 'text.title' }}
               >
                 {item.title}
               </Typography>
@@ -319,7 +307,7 @@ export default function page() {
                   xs: 14,
                   md: 20,
                 }}
-                sx={{ color: "text.subtitle" }}
+                sx={{ color: 'text.subtitle' }}
               >
                 {item.description}
               </Typography>
@@ -331,7 +319,7 @@ export default function page() {
                   md: 7,
                   lg: 9,
                 }}
-                justifyContent={"center"}
+                justifyContent={'center'}
                 mt={5}
               >
                 {item.images.map((image) => (
@@ -344,10 +332,10 @@ export default function page() {
                     }}
                     key={image.title}
                     border={1}
-                    borderColor={"background.paper"}
-                    direction={"row"}
-                    alignItems={"center"}
-                    justifyContent={"center"}
+                    borderColor={'background.paper'}
+                    direction={'row'}
+                    alignItems={'center'}
+                    justifyContent={'center'}
                     px={{
                       xs: 1,
                       sm: 2,
@@ -356,21 +344,17 @@ export default function page() {
                     py={2}
                     borderRadius={2}
                   >
-                    <Stack direction={"column"} gap={1} alignItems={"center"}>
+                    <Stack direction={'column'} gap={1} alignItems={'center'}>
                       <Image
                         alt=""
                         src={`/images/partners/${image.src}`}
                         width={110}
                         height={76}
                         style={{
-                          width: "100%",
+                          width: '100%',
                         }}
                       />
-                      <Typography
-                        variant="body2"
-                        fontSize={16}
-                        sx={{ color: "text.subtitle" }}
-                      >
+                      <Typography variant="body2" fontSize={16} sx={{ color: 'text.subtitle' }}>
                         {image.title}
                       </Typography>
                     </Stack>
@@ -380,7 +364,7 @@ export default function page() {
             </Stack>
           ))}
         </Stack>
-        <Stack component={"div"} id="form">
+        <Stack component={'div'} id="form">
           <Form />
         </Stack>
       </Container>

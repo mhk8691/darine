@@ -1,10 +1,10 @@
-import CreditContainer from "@/app/Components/Containers/CreditContainer/CreditContainer";
-import GoldenUnderline from "@/app/Components/Containers/CreditContainer/GoldenUnderline";
-import { Box, Grid, Typography } from "@mui/material";
-import { Metadata } from "next";
+import CreditContainer from '@/app/Components/Containers/CreditContainer/CreditContainer';
+import GoldenUnderline from '@/app/Components/Containers/CreditContainer/GoldenUnderline';
+import { Box, Grid, Typography } from '@mui/material';
+import { Metadata } from 'next';
 export const metadata: Metadata = {
-  title: "دریافت اعتبار خرید از ازکی وام | دارینه",
-  description: "",
+  title: 'دریافت اعتبار خرید از ازکی وام | دارینه',
+  description: '',
 };
 export default function page() {
   return (
@@ -21,8 +21,8 @@ export default function page() {
               }}
             >
               خرید با اعتبار بانکی
-              <Box component={"span"} color={"#007DFA"}>
-                {" "}
+              <Box component={'span'} color={'#007DFA'}>
+                {' '}
                 ازکی وام
               </Box>
             </Typography>
@@ -101,8 +101,8 @@ export default function page() {
               variant="h6"
               sx={{
                 wordSpacing: 1,
-                flexDirection: "row",
-                alignItems: "center",
+                flexDirection: 'row',
+                alignItems: 'center',
                 mt: 3,
               }}
               fontSize={{
@@ -110,8 +110,8 @@ export default function page() {
                 sm: 22,
               }}
             >
-              اعتبار خرید کالا <GoldenUnderline>بدون ضامن</GoldenUnderline> ، با
-              پشتوانه <GoldenUnderline>طلاسی</GoldenUnderline>
+              اعتبار خرید کالا <GoldenUnderline>بدون ضامن</GoldenUnderline> ، با پشتوانه{' '}
+              <GoldenUnderline>طلاسی</GoldenUnderline>
             </Typography>
           }
         />

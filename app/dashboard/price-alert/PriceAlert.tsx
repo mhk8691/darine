@@ -1,6 +1,6 @@
-"use client";
-import Container from "@/app/Components/Containers/Container/Container";
-import InputField from "@/app/Components/InputField/InputField";
+'use client';
+import Container from '@/app/Components/Containers/Container/Container';
+import InputField from '@/app/Components/InputField/InputField';
 import {
   Button,
   FormControl,
@@ -11,18 +11,18 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
-} from "@mui/material";
-import React, { useState } from "react";
+} from '@mui/material';
+import React, { useState } from 'react';
 
 export default function PriceAlert() {
-  const [value, setValue] = useState("");
-  const [active, setActive] = React.useState("one-time");
+  const [value, setValue] = useState('');
+  const [active, setActive] = React.useState('one-time');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setActive((event.target as HTMLInputElement).value);
   };
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
+  const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   return (
     <Container
       style={{
@@ -35,7 +35,7 @@ export default function PriceAlert() {
           sm: 1,
         },
         borderColor: {
-          sm: "background.paper",
+          sm: 'background.paper',
         },
       }}
     >
@@ -51,15 +51,15 @@ export default function PriceAlert() {
           sm: 18,
         }}
         sx={{
-          color: "text.secondary",
+          color: 'text.secondary',
           mt: {
             xs: 0,
             sm: 2,
           },
         }}
       >
-        با تعیین آلارم قیمت، در صورت رسیدن قیمت طلا به مقدار دلخواهتان، بلافاصله
-        از طریق اعلان مطلع خواهید شد.
+        با تعیین آلارم قیمت، در صورت رسیدن قیمت طلا به مقدار دلخواهتان، بلافاصله از طریق اعلان مطلع
+        خواهید شد.
       </Typography>
       <Container
         style={{
@@ -80,8 +80,8 @@ export default function PriceAlert() {
             sm: 0,
           },
           borderColor: {
-            xs: "background.paper",
-            sm: "background.default",
+            xs: 'background.paper',
+            sm: 'background.default',
           },
         }}
       >
@@ -93,15 +93,10 @@ export default function PriceAlert() {
             },
           }}
         >
-          <InputField
-            placeholder="مبلغ به تومان"
-            title="تومان"
-            value={value}
-            setValue={setValue}
-          />
+          <InputField placeholder="مبلغ به تومان" title="تومان" value={value} setValue={setValue} />
         </Stack>
         <Stack
-          direction={"column"}
+          direction={'column'}
           gap={1}
           mt={{
             xs: 2,
@@ -114,7 +109,7 @@ export default function PriceAlert() {
               xs: 16,
               sm: 18,
             }}
-            sx={{ color: "text.secondary" }}
+            sx={{ color: 'text.secondary' }}
           >
             زمانبندی اعلان:
           </Typography>
@@ -123,14 +118,14 @@ export default function PriceAlert() {
               name="controlled-radio-buttons-group"
               value={active}
               onChange={handleChange}
-              sx={{ flexDirection: "row", justifyContent: "space-between" }}
+              sx={{ flexDirection: 'row', justifyContent: 'space-between' }}
             >
               <FormControlLabel
                 value="one-time"
                 control={<Radio disableRipple disableTouchRipple />}
                 label="فقط یکبار اطلاع بده"
                 sx={{
-                  "& .MuiTypography-root": {
+                  '& .MuiTypography-root': {
                     fontSize: {
                       xs: 14,
                       sm: 18,
@@ -143,7 +138,7 @@ export default function PriceAlert() {
                 control={<Radio disableRipple disableTouchRipple />}
                 label="هربار اطلاع بده"
                 sx={{
-                  "& .MuiTypography-root": {
+                  '& .MuiTypography-root': {
                     fontSize: {
                       xs: 14,
                       sm: 18,

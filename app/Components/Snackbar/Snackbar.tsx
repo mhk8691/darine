@@ -3,10 +3,10 @@ export type SnackbarPayload = {
   type?: boolean;
 };
 
-const EVENT_NAME = "show-snackbar";
+const EVENT_NAME = 'show-snackbar';
 
 export const showSnackbar = (message: string, type: boolean = false) => {
-  if (typeof window === "undefined") return;
+  if (typeof window === 'undefined') return;
 
   window.dispatchEvent(
     new CustomEvent(EVENT_NAME, {
@@ -16,7 +16,7 @@ export const showSnackbar = (message: string, type: boolean = false) => {
 };
 
 export const onSnackbar = (callback: (payload: SnackbarPayload) => void) => {
-  if (typeof window === "undefined") return () => {};
+  if (typeof window === 'undefined') return () => {};
 
   const handler = (event: Event) => {
     const customEvent = event as CustomEvent<SnackbarPayload>;

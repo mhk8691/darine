@@ -1,13 +1,13 @@
-"use client";
-import { Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
-import Container from "../Components/Containers/Container/Container";
-import MobileAppbar from "./MobileAppbar";
-import Banners from "./Banners";
-import Trading from "./trades/Trading/Trading";
+'use client';
+import { Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
+import Container from '../Components/Containers/Container/Container';
+import MobileAppbar from './MobileAppbar';
+import Banners from './Banners';
+import Trading from './trades/Trading/Trading';
 
 export default function Dashboard() {
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
+  const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   return (
     <>
       {isDesktop ? (
@@ -32,11 +32,11 @@ export default function Dashboard() {
                   xs: 160,
                   md: 400,
                 },
-                justifyContent: "center",
-                flexDirection: "row",
+                justifyContent: 'center',
+                flexDirection: 'row',
                 alignItems: {
-                  xs: "flex-start",
-                  md: "center",
+                  xs: 'flex-start',
+                  md: 'center',
                 },
               }}
             >

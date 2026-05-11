@@ -1,18 +1,18 @@
-"use client";
-import Card from "@/app/Components/Containers/Container/Container";
-import FilterToggleButton from "@/app/Components/FilterToggleButton/FilterToggleButton";
-import InputField from "@/app/Components/InputField/InputField";
-import { ToggleItemsType } from "@/app/core/Types";
-import { Button, Stack } from "@mui/material";
-import { useState } from "react";
-import BankCard from "./BankCard";
+'use client';
+import Card from '@/app/Components/Containers/Container/Container';
+import FilterToggleButton from '@/app/Components/FilterToggleButton/FilterToggleButton';
+import InputField from '@/app/Components/InputField/InputField';
+import { ToggleItemsType } from '@/app/core/Types';
+import { Button, Stack } from '@mui/material';
+import { useState } from 'react';
+import BankCard from './BankCard';
 
 const items: ToggleItemsType[] = [
-  { title: "درگاه پرداخت", value: "payment", id: 1 },
-  { title: "واریز مستقیم", value: "directPayment", id: 2 },
+  { title: 'درگاه پرداخت', value: 'payment', id: 1 },
+  { title: 'واریز مستقیم', value: 'directPayment', id: 2 },
 ];
 export default function Deposit() {
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState('');
   const [select, setSelect] = useState(items[0].value);
 
   return (
@@ -20,7 +20,7 @@ export default function Deposit() {
       style={{
         gap: 3.5,
         p: 0,
-        border: "none",
+        border: 'none',
       }}
     >
       <FilterToggleButton
@@ -35,22 +35,17 @@ export default function Deposit() {
         }}
       />
       <Stack gap={3.5}>
-        {select === "payment" && (
-          <Stack direction={"column"} gap={3}>
-            <InputField
-              placeholder={"ملبغ"}
-              title={"تومان"}
-              value={price}
-              setValue={setPrice}
-            />
+        {select === 'payment' && (
+          <Stack direction={'column'} gap={3}>
+            <InputField placeholder={'ملبغ'} title={'تومان'} value={price} setValue={setPrice} />
             <Button
               variant="contained"
               sx={{
-                bgcolor: "#FEF2C0",
-                color: "black",
+                bgcolor: '#FEF2C0',
+                color: 'black',
                 borderRadius: 1.5,
                 px: 1,
-                width: "fit-content",
+                width: 'fit-content',
                 fontSize: {
                   xs: 12,
                   sm: 14,
@@ -61,7 +56,7 @@ export default function Deposit() {
             </Button>
           </Stack>
         )}
-        {select === "directPayment" && <BankCard />}
+        {select === 'directPayment' && <BankCard />}
       </Stack>
       <Button
         variant="contained"
@@ -75,7 +70,7 @@ export default function Deposit() {
           py: 1.5,
         }}
       >
-        {select === "payment" ? "برداشت" : "نمایش اطلاعات مقصد"}
+        {select === 'payment' ? 'برداشت' : 'نمایش اطلاعات مقصد'}
       </Button>
     </Card>
   );

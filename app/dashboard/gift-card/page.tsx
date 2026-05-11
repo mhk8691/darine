@@ -1,18 +1,18 @@
-import Container from "@/app/Components/Containers/Container/Container";
-import OrderDetail from "@/app/Components/Tables/DetailTable/OrderDetail";
-import { Grid } from "@mui/material";
-import { Metadata } from "next";
-import GiftStepper from "./GiftStepper";
-import Title from "./Title";
-import BackLink from "../BackLink";
+import Container from '@/app/Components/Containers/Container/Container';
+import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
+import { Grid } from '@mui/material';
+import { Metadata } from 'next';
+import GiftStepper from './GiftStepper';
+import Title from './Title';
+import BackLink from '../BackLink';
 export const metadata: Metadata = {
-  title: "خرید کارت هدیه | دارینه",
-  description: "",
+  title: 'خرید کارت هدیه | دارینه',
+  description: '',
 };
 export default function page() {
   return (
     <Grid container spacing={3}>
-      <BackLink title='سفارش کارت هدیه' />
+      <BackLink title="سفارش کارت هدیه" />
       <Grid size={12}>
         <Container
           style={{
@@ -29,7 +29,7 @@ export default function page() {
               sm: 1,
             },
             borderColor: {
-              sm: "background.paper",
+              sm: 'background.paper',
             },
           }}
         >

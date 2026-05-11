@@ -1,11 +1,11 @@
-import React from "react";
-import Container from "../../Containers/Container/Container";
-import { Typography, Button } from "@mui/material";
-import Image from "next/image";
+import React from 'react';
+import Container from '../../Containers/Container/Container';
+import { Typography, Button } from '@mui/material';
+import Image from 'next/image';
 
 export default function ApplicationDownload() {
   return (
-    <Container style={{ alignItems: "center", height: "100%" }}>
+    <Container style={{ alignItems: 'center', height: '100%' }}>
       <Typography
         variant="body1"
         fontSize={{
@@ -27,17 +27,12 @@ export default function ApplicationDownload() {
       >
         سرمایه‌گذاری امن و راحت با طلاسی
       </Typography>
-      <Image
-        alt=""
-        src={"/images/application.webp"}
-        width={"350"}
-        height={350}
-      />
+      <Image alt="" src={'/images/application.webp'} width={'350'} height={350} />
       <Button
         variant="contained"
         color="primary"
         sx={{
-          width: "100%",
+          width: '100%',
           borderRadius: 2,
           fontSize: {
             xs: 14,

@@ -1,9 +1,9 @@
-"use client";
-import { SxProps } from "@mui/material";
-import Box from "@mui/material/Box";
-import Tab from "@mui/material/Tab";
-import Tabs from "@mui/material/Tabs";
-import * as React from "react";
+'use client';
+import { SxProps } from '@mui/material';
+import Box from '@mui/material/Box';
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
+import * as React from 'react';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -23,9 +23,7 @@ function CustomTabPanel(props: TabPanelProps) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box sx={{ py: 3, px: noPadding ? 0 : 3 }}>{children}</Box>
-      )}
+      {value === index && <Box sx={{ py: 3, px: noPadding ? 0 : 3 }}>{children}</Box>}
     </div>
   );
 }
@@ -33,7 +31,7 @@ function CustomTabPanel(props: TabPanelProps) {
 function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
   };
 }
 interface Props {
@@ -68,15 +66,15 @@ export default function CustomTabs({
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: '100%' }}>
       <Box
         sx={{
           borderBottom: 1,
-          borderColor: "divider",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-          width: "100%",
+          borderColor: 'divider',
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          width: '100%',
           pl: {
             xs: 1,
             sm: 3,
@@ -92,11 +90,11 @@ export default function CustomTabs({
           allowScrollButtonsMobile
           aria-label="basic tabs example"
           sx={{
-            "& .MuiTabs-indicator": {
-              height: lineHeight || "8px",
-              borderRadius: "16px",
+            '& .MuiTabs-indicator': {
+              height: lineHeight || '8px',
+              borderRadius: '16px',
             },
-            width: "100%",
+            width: '100%',
             px: 4,
             ...tabsStyle,
           }}
@@ -105,15 +103,15 @@ export default function CustomTabs({
             <Tab
               disableRipple
               sx={{
-                "&.Mui-selected": {
-                  color: "text.title",
+                '&.Mui-selected': {
+                  color: 'text.title',
                 },
                 fontSize: {
                   xs: 16,
-                  sm: "22px",
+                  sm: '22px',
                 },
-                color: "text.muted",
-                width: "50%",
+                color: 'text.muted',
+                width: '50%',
                 mb: 2,
                 ...style,
               }}
@@ -125,12 +123,7 @@ export default function CustomTabs({
         </Tabs>
       </Box>
       {children.map((item, index) => (
-        <CustomTabPanel
-          value={value}
-          index={index}
-          key={index}
-          noPadding={noPadding}
-        >
+        <CustomTabPanel value={value} index={index} key={index} noPadding={noPadding}>
           {item}
         </CustomTabPanel>
       ))}

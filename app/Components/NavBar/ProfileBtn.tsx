@@ -1,6 +1,6 @@
-"use client";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+'use client';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import {
   Box,
   Button,
@@ -15,9 +15,9 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
-} from "@mui/material";
-import Link from "next/link";
-import * as React from "react";
+} from '@mui/material';
+import Link from 'next/link';
+import * as React from 'react';
 import {
   ArrowBottomIcon,
   BankCardIcon,
@@ -25,11 +25,11 @@ import {
   PriceAlertIcon,
   UserFillIcon,
   UserIcon,
-} from "../CustomIcons/CustomIcons";
+} from '../CustomIcons/CustomIcons';
 const options = [
   {
-    title: "پروفایل",
-    link: "/dashboard/profile",
+    title: 'پروفایل',
+    link: '/dashboard/profile',
     icon: (
       <SvgIcon>
         <UserFillIcon />
@@ -37,8 +37,8 @@ const options = [
     ),
   },
   {
-    title: "کارت های بانکی",
-    link: "/dashboard/bank-card",
+    title: 'کارت های بانکی',
+    link: '/dashboard/bank-card',
     icon: (
       <SvgIcon>
         <BankCardIcon />
@@ -46,8 +46,8 @@ const options = [
     ),
   },
   {
-    title: "دعوت از دوستان",
-    link: "/dashboard/invite",
+    title: 'دعوت از دوستان',
+    link: '/dashboard/invite',
     icon: (
       <SvgIcon>
         <FriendsIcon />
@@ -55,8 +55,8 @@ const options = [
     ),
   },
   {
-    title: "آالارم قیمت",
-    link: "/dashboard/price-alert",
+    title: 'آالارم قیمت',
+    link: '/dashboard/price-alert',
     icon: (
       <SvgIcon fontSize="small">
         <PriceAlertIcon />
@@ -69,10 +69,10 @@ export default function ProfileBtn() {
   const [open, setOpen] = React.useState(false);
   const wrapperRef = React.useRef<HTMLDivElement | null>(null);
   const theme = useTheme();
-  const isDownMd = useMediaQuery(theme.breakpoints.down("md"));
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isDownMd = useMediaQuery(theme.breakpoints.down('md'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const handleToggle = () => setOpen((prev) => !prev);
-  const isDarkMode = theme.palette.mode == "dark";
+  const isDarkMode = theme.palette.mode == 'dark';
   const handleClose = (event: MouseEvent | TouchEvent) => {
     const target = event.target as Node;
 
@@ -85,8 +85,8 @@ export default function ProfileBtn() {
       <div
         ref={wrapperRef}
         style={{
-          position: "relative",
-          display: "inline-block",
+          position: 'relative',
+          display: 'inline-block',
         }}
       >
         {!isMobile && (
@@ -98,9 +98,7 @@ export default function ProfileBtn() {
             ) : (
               <Button
                 onClick={handleToggle}
-                endIcon={
-                  open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />
-                }
+                endIcon={open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                 variant="outlined"
                 color="inherit"
                 disableRipple
@@ -110,10 +108,10 @@ export default function ProfileBtn() {
                   borderRadius: 2,
                   px: 2.5,
                   py: 1.2,
-                  "&:hover": {
-                    bgcolor: "background.default",
+                  '&:hover': {
+                    bgcolor: 'background.default',
                   },
-                  whiteSpace: "nowrap",
+                  whiteSpace: 'nowrap',
                 }}
                 startIcon={<UserIcon />}
               >
@@ -126,42 +124,36 @@ export default function ProfileBtn() {
         <Paper
           elevation={4}
           sx={{
-            position: "absolute",
-            top: "calc(100% + 8px)",
+            position: 'absolute',
+            top: 'calc(100% + 8px)',
             right: {
-              xs: "-175%",
-              md: "0%",
+              xs: '-175%',
+              md: '0%',
             },
             minWidth: {
-              xs: "13rem",
-              md: "100%",
+              xs: '13rem',
+              md: '100%',
             },
-            overflow: "hidden",
-            background: isDarkMode ? "#111110" : "#FFFFFF",
-            boxShadow: isDarkMode ? "0 0 5px #2E2C26" : "none",
+            overflow: 'hidden',
+            background: isDarkMode ? '#111110' : '#FFFFFF',
+            boxShadow: isDarkMode ? '0 0 5px #2E2C26' : 'none',
             opacity: open ? 1 : 0,
-            transform: open
-              ? "translateY(0) scale(1)"
-              : "translateY(-48px) scale(0.98)",
-            pointerEvents: open ? "auto" : "none",
-            transition: "all .25s cubic-bezier(0.4, 0, 0.2, 1)",
-            transformOrigin: "top center",
+            transform: open ? 'translateY(0) scale(1)' : 'translateY(-48px) scale(0.98)',
+            pointerEvents: open ? 'auto' : 'none',
+            transition: 'all .25s cubic-bezier(0.4, 0, 0.2, 1)',
+            transformOrigin: 'top center',
             py: 1,
           }}
         >
           <Stack px={1}>
             <Stack
-              bgcolor={"background.paper"}
+              bgcolor={'background.paper'}
               borderRadius={1}
               border={1}
-              borderColor={"background.border"}
+              borderColor={'background.border'}
             >
-              <Stack direction={"column"} gap={1} p={1}>
-                <Typography
-                  variant="body1"
-                  sx={{ color: "text.secondary" }}
-                  fontSize={12}
-                >
+              <Stack direction={'column'} gap={1} p={1}>
+                <Typography variant="body1" sx={{ color: 'text.secondary' }} fontSize={12}>
                   موجودی تومان:
                 </Typography>
                 <Typography variant="body2" fontSize={12}>
@@ -169,12 +161,8 @@ export default function ProfileBtn() {
                 </Typography>
               </Stack>
               <Divider />
-              <Stack direction={"column"} gap={1} p={1}>
-                <Typography
-                  variant="body1"
-                  sx={{ color: "text.secondary" }}
-                  fontSize={12}
-                >
+              <Stack direction={'column'} gap={1} p={1}>
+                <Typography variant="body1" sx={{ color: 'text.secondary' }} fontSize={12}>
                   موجودی طلا:
                 </Typography>
                 <Typography variant="body2" fontSize={12}>
@@ -190,12 +178,12 @@ export default function ProfileBtn() {
                   onClick={() => setOpen(false)}
                   sx={{
                     px: 1.5,
-                    "&:hover": {
-                      background: "background.paper",
+                    '&:hover': {
+                      background: 'background.paper',
                     },
                   }}
                 >
-                  <Stack direction={"row"} gap={1} alignItems={"center"}>
+                  <Stack direction={'row'} gap={1} alignItems={'center'}>
                     <Stack>{option.icon}</Stack>
                     <Typography variant="body2" fontWeight={600}>
                       {option.title}
@@ -206,7 +194,7 @@ export default function ProfileBtn() {
               </Box>
             ))}
           </MenuList>
-          <Stack px={1.5} direction={"column"} gap={1.5}>
+          <Stack px={1.5} direction={'column'} gap={1.5}>
             <Button
               variant="contained"
               color="primary"
@@ -217,11 +205,7 @@ export default function ProfileBtn() {
             >
               افزایش اعتبار
             </Button>
-            <Button
-              variant="outlined"
-              color="error"
-              onClick={() => setOpen(false)}
-            >
+            <Button variant="outlined" color="error" onClick={() => setOpen(false)}>
               خروج
             </Button>
           </Stack>

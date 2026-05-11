@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import priceFormater from "@/app/core/PriceFormater";
-import AddIcon from "@mui/icons-material/Add";
-import DeleteIcon from "@mui/icons-material/Delete";
+import priceFormater from '@/app/core/PriceFormater';
+import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
 import {
   Box,
   Button,
@@ -12,19 +12,19 @@ import {
   IconButton,
   Stack,
   Typography,
-} from "@mui/material";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+} from '@mui/material';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
-import { CartItem, Product } from "@/app/core/Types";
-import { Close } from "@mui/icons-material";
-import { useRouter } from "next/navigation";
-import CustomModal from "../CustomModal/CustomModal";
-import { getCart, saveCart } from "./cartStorage";
+import { CartItem, Product } from '@/app/core/Types';
+import { Close } from '@mui/icons-material';
+import { useRouter } from 'next/navigation';
+import CustomModal from '../CustomModal/CustomModal';
+import { getCart, saveCart } from './cartStorage';
 
 const product: Product = {
-  id: "gold-1",
-  title: "شمش طلاسی ۱ گرمی ۱۸ عیار",
+  id: 'gold-1',
+  title: 'شمش طلاسی ۱ گرمی ۱۸ عیار',
   price: 19330693,
 };
 export default function ProductCard() {
@@ -49,9 +49,7 @@ export default function ProductCard() {
     let newCart: CartItem[];
 
     if (exists) {
-      newCart = current.map((i) =>
-        i.id === product.id ? { ...i, quantity: i.quantity + 1 } : i,
-      );
+      newCart = current.map((i) => (i.id === product.id ? { ...i, quantity: i.quantity + 1 } : i));
     } else {
       newCart = [...current, { ...product, quantity: 1 }];
     }
@@ -70,23 +68,23 @@ export default function ProductCard() {
       <Card
         sx={{
           border: 1,
-          borderColor: "background.paper",
-          bgcolor: "background.default",
+          borderColor: 'background.paper',
+          bgcolor: 'background.default',
           py: 1.5,
           borderRadius: 1.5,
-          boxShadow:'none'
+          boxShadow: 'none',
         }}
       >
         <Stack px={1.5}>
-          <Stack bgcolor={"background.default"} borderRadius={2}>
-            <Link href={"/gold-shop/test/"}>
+          <Stack bgcolor={'background.default'} borderRadius={2}>
+            <Link href={'/gold-shop/test/'}>
               <CardMedia
                 sx={{
                   height: {
                     xs: 150,
                     sm: 180,
                   },
-                  width: "100%",
+                  width: '100%',
                 }}
                 image="/images/product.webp"
                 title="green iguana"
@@ -103,14 +101,14 @@ export default function ProductCard() {
           }}
         >
           <Stack
-            direction={"row"}
+            direction={'row'}
             justifyContent={{
-              xs: "flex-start",
-              sm: "center",
+              xs: 'flex-start',
+              sm: 'center',
             }}
           >
-            <Link href={"/gold-shop/test/"}>
-              {" "}
+            <Link href={'/gold-shop/test/'}>
+              {' '}
               <Typography
                 gutterBottom
                 variant="h5"
@@ -120,51 +118,51 @@ export default function ProductCard() {
                 }}
                 sx={{ px: 0.5 }}
               >
-                {" "}
-                شمش طلاسی ۱ گرمی ۱۸ عیار{" "}
-              </Typography>{" "}
-            </Link>{" "}
+                {' '}
+                شمش طلاسی ۱ گرمی ۱۸ عیار{' '}
+              </Typography>{' '}
+            </Link>{' '}
           </Stack>
-          <Stack direction={"column"} gap={1} sx={{ mt: 3.5 }}>
-            {" "}
+          <Stack direction={'column'} gap={1} sx={{ mt: 3.5 }}>
+            {' '}
             <Stack
               direction={{
-                xs: "column",
-                sm: "row",
-                md: "column",
-                lg: "row",
+                xs: 'column',
+                sm: 'row',
+                md: 'column',
+                lg: 'row',
               }}
               alignItems={{
-                xs: "flex-start",
-                sm: "center",
-                md: "flex-start",
-                lg: "center",
+                xs: 'flex-start',
+                sm: 'center',
+                md: 'flex-start',
+                lg: 'center',
               }}
-              justifyContent={"space-between"}
+              justifyContent={'space-between'}
             >
-              {" "}
+              {' '}
               <Typography
                 variant="body2"
                 fontSize={{
                   xs: 10,
                   sm: 12,
                 }}
-                sx={{ color: "text.muted" }}
+                sx={{ color: 'text.muted' }}
               >
-                {" "}
-                وزن{" "}
+                {' '}
+                وزن{' '}
                 <Box
-                  component={"span"}
+                  component={'span'}
                   fontSize={{
                     xs: 8,
                     sm: 10,
                   }}
                 >
-                  {" "}
-                  (معادل ۱۸ عیار){" "}
-                </Box>{" "}
-                :{" "}
-              </Typography>{" "}
+                  {' '}
+                  (معادل ۱۸ عیار){' '}
+                </Box>{' '}
+                :{' '}
+              </Typography>{' '}
               <Typography
                 variant="body1"
                 fontSize={{
@@ -173,49 +171,49 @@ export default function ProductCard() {
                   lg: 14,
                   xl: 16,
                 }}
-                sx={{ alignSelf: "flex-end" }}
+                sx={{ alignSelf: 'flex-end' }}
               >
-                {" "}
-                ۲.۵{" "}
+                {' '}
+                ۲.۵{' '}
                 <Box
-                  component={"span"}
+                  component={'span'}
                   fontSize={{
                     xs: 12,
                     sm: 14,
                   }}
                 >
-                  {" "}
-                  گرم{" "}
-                </Box>{" "}
-              </Typography>{" "}
-            </Stack>{" "}
+                  {' '}
+                  گرم{' '}
+                </Box>{' '}
+              </Typography>{' '}
+            </Stack>{' '}
             <Stack
               direction={{
-                xs: "column",
-                sm: "row",
-                md: "column",
-                lg: "row",
+                xs: 'column',
+                sm: 'row',
+                md: 'column',
+                lg: 'row',
               }}
               alignItems={{
-                xs: "flex-start",
-                sm: "center",
-                md: "flex-start",
-                lg: "center",
+                xs: 'flex-start',
+                sm: 'center',
+                md: 'flex-start',
+                lg: 'center',
               }}
-              justifyContent={"space-between"}
+              justifyContent={'space-between'}
             >
-              {" "}
+              {' '}
               <Typography
                 variant="body2"
                 fontSize={{
                   xs: 10,
                   sm: 12,
                 }}
-                sx={{ color: "text.muted" }}
+                sx={{ color: 'text.muted' }}
               >
-                {" "}
-                گرم طلا:{" "}
-              </Typography>{" "}
+                {' '}
+                گرم طلا:{' '}
+              </Typography>{' '}
               <Typography
                 variant="body1"
                 fontSize={{
@@ -224,49 +222,49 @@ export default function ProductCard() {
                   lg: 14,
                   xl: 16,
                 }}
-                sx={{ alignSelf: "flex-end" }}
+                sx={{ alignSelf: 'flex-end' }}
               >
-                {" "}
-                ۱.۰۷۵{" "}
+                {' '}
+                ۱.۰۷۵{' '}
                 <Box
-                  component={"span"}
+                  component={'span'}
                   fontSize={{
                     xs: 12,
                     sm: 14,
                   }}
                 >
-                  {" "}
-                  گرم{" "}
-                </Box>{" "}
-              </Typography>{" "}
-            </Stack>{" "}
+                  {' '}
+                  گرم{' '}
+                </Box>{' '}
+              </Typography>{' '}
+            </Stack>{' '}
             <Stack
               direction={{
-                xs: "column",
-                sm: "row",
-                md: "column",
-                lg: "row",
+                xs: 'column',
+                sm: 'row',
+                md: 'column',
+                lg: 'row',
               }}
               alignItems={{
-                xs: "flex-start",
-                sm: "center",
-                md: "flex-start",
-                lg: "center",
+                xs: 'flex-start',
+                sm: 'center',
+                md: 'flex-start',
+                lg: 'center',
               }}
-              justifyContent={"space-between"}
+              justifyContent={'space-between'}
             >
-              {" "}
+              {' '}
               <Typography
                 variant="body2"
                 fontSize={{
                   xs: 10,
                   sm: 12,
                 }}
-                sx={{ color: "text.muted" }}
+                sx={{ color: 'text.muted' }}
               >
-                {" "}
-                ارزش تومان:{" "}
-              </Typography>{" "}
+                {' '}
+                ارزش تومان:{' '}
+              </Typography>{' '}
               <Typography
                 variant="body1"
                 fontSize={{
@@ -275,23 +273,23 @@ export default function ProductCard() {
                   lg: 14,
                   xl: 16,
                 }}
-                sx={{ alignSelf: "flex-end" }}
+                sx={{ alignSelf: 'flex-end' }}
               >
-                {" "}
-                {priceFormater(19330693)}{" "}
+                {' '}
+                {priceFormater(19330693)}{' '}
                 <Box
-                  component={"span"}
+                  component={'span'}
                   fontSize={{
                     xs: 12,
                     sm: 14,
                   }}
                 >
-                  {" "}
-                  تومان{" "}
-                </Box>{" "}
-              </Typography>{" "}
-            </Stack>{" "}
-          </Stack>{" "}
+                  {' '}
+                  تومان{' '}
+                </Box>{' '}
+              </Typography>{' '}
+            </Stack>{' '}
+          </Stack>{' '}
         </CardContent>
         {!item ? (
           <Button
@@ -299,11 +297,11 @@ export default function ProductCard() {
             color="inherit"
             sx={{
               borderRadius: 2,
-              width: "100%",
+              width: '100%',
               mt: 3,
               py: 1.5,
-              "&:hover": {
-                bgcolor: "#1C1C1B",
+              '&:hover': {
+                bgcolor: '#1C1C1B',
               },
             }}
             onClick={() => {
@@ -328,7 +326,7 @@ export default function ProductCard() {
               alignItems="center"
               justifyContent="space-between"
               sx={{
-                border: "1px solid #FFD700",
+                border: '1px solid #FFD700',
                 borderRadius: 2,
                 mt: 3,
                 px: 1,
@@ -348,34 +346,34 @@ export default function ProductCard() {
         )}
       </Card>
       <CustomModal open={open} setOpen={setOpen} modalStyle={{ p: 2 }}>
-        <Stack direction={"row"} justifyContent={"flex-end"}>
+        <Stack direction={'row'} justifyContent={'flex-end'}>
           <IconButton onClick={() => setOpen(false)} disableRipple>
             <Close />
           </IconButton>
         </Stack>
-        <Typography variant="h6" fontSize={22} sx={{ color: "#43AB79", mb: 4 }}>
+        <Typography variant="h6" fontSize={22} sx={{ color: '#43AB79', mb: 4 }}>
           این محصول به سبد خرید شما افزوده شد.
         </Typography>
         <Typography variant="body1" fontSize={16}>
           {item?.title}
         </Typography>
-        <Stack direction={"row"} gap={2} mt={5}>
+        <Stack direction={'row'} gap={2} mt={5}>
           <Button
             onClick={() => {
-              router.push("/gold-shop-basket");
+              router.push('/gold-shop-basket');
               setOpen(false);
             }}
             variant="contained"
             color="primary"
             sx={{
-              width: "50%",
-              color: "background.default",
+              width: '50%',
+              color: 'background.default',
               py: 1.3,
               borderRadius: 2,
               fontSize: 16,
               fontWeight: 600,
-              "&:hover": {
-                bgcolor: "primary.main",
+              '&:hover': {
+                bgcolor: 'primary.main',
               },
             }}
             disableRipple
@@ -387,13 +385,13 @@ export default function ProductCard() {
             variant="outlined"
             color="inherit"
             sx={{
-              width: "50%",
+              width: '50%',
               py: 1.3,
               borderRadius: 2,
               fontSize: 16,
               fontWeight: 600,
-              "&:hover": {
-                bgcolor: "background.default",
+              '&:hover': {
+                bgcolor: 'background.default',
               },
             }}
             disableRipple

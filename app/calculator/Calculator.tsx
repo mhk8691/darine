@@ -1,52 +1,45 @@
-"use client";
-import {
-  Box,
-  Grid,
-  Stack,
-  SxProps,
-  TextField,
-  Typography,
-} from "@mui/material";
-import { useMemo, useState } from "react";
+'use client';
+import { Box, Grid, Stack, SxProps, TextField, Typography } from '@mui/material';
+import { useMemo, useState } from 'react';
 const inputStyle: SxProps = {
-  width: "100%",
+  width: '100%',
 
-  "& .MuiInputLabel-root": {
-    color: "#fff",
+  '& .MuiInputLabel-root': {
+    color: '#fff',
   },
 
-  "& .MuiInputLabel-root.Mui-focused": {
-    color: "#fff",
+  '& .MuiInputLabel-root.Mui-focused': {
+    color: '#fff',
   },
 
-  "& .MuiInputLabel-root.MuiFormLabel-filled": {
-    color: "#fff",
+  '& .MuiInputLabel-root.MuiFormLabel-filled': {
+    color: '#fff',
   },
 
-  "& .MuiInputLabel-root.MuiInputLabel-shrink": {
-    color: "text.title",
-    fontSize: "18",
-    fontWeight: "bold",
+  '& .MuiInputLabel-root.MuiInputLabel-shrink': {
+    color: 'text.title',
+    fontSize: '18',
+    fontWeight: 'bold',
   },
 
-  "& .MuiOutlinedInput-root": {
-    "& input": {
-      textAlign: "center",
+  '& .MuiOutlinedInput-root': {
+    '& input': {
+      textAlign: 'center',
       py: 1.8,
     },
     borderRadius: 2.5,
 
-    "& fieldset": {
-      borderColor: "#494949",
+    '& fieldset': {
+      borderColor: '#494949',
     },
-    "&:hover fieldset": {
-      borderColor: "#494949",
+    '&:hover fieldset': {
+      borderColor: '#494949',
     },
-    "&.Mui-focused fieldset": {
-      borderColor: "#494949",
+    '&.Mui-focused fieldset': {
+      borderColor: '#494949',
     },
-    "&.Mui-disabled fieldset": {
-      borderColor: "#494949",
+    '&.Mui-disabled fieldset': {
+      borderColor: '#494949',
     },
   },
 };
@@ -146,39 +139,35 @@ export default function Calculator() {
         container
         mt={2}
       >
-        <Stack py={2.5} width={"100%"} bgcolor={"#B29727"} borderRadius={4}>
+        <Stack py={2.5} width={'100%'} bgcolor={'#B29727'} borderRadius={4}>
           <Typography
             variant="body1"
             fontSize={{
               xs: 12,
               sm: 14,
             }}
-            width={"100%"}
-            textAlign={"center"}
+            width={'100%'}
+            textAlign={'center'}
           >
             خرید طلا از بازار
           </Typography>
         </Stack>
         <Stack
           p={3}
-          width={"100%"}
-          bgcolor={"#E5C231"}
+          width={'100%'}
+          bgcolor={'#E5C231'}
           borderRadius={4}
-          direction={"column"}
+          direction={'column'}
           gap={2}
           height={300}
         >
-          <Stack
-            direction={"row"}
-            justifyContent={"space-between"}
-            alignItems={"center"}
-          >
-            <Stack direction={"column"} gap={0.5}>
+          <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
+            <Stack direction={'column'} gap={0.5}>
               <Typography
                 variant="body1"
                 fontSize={14}
                 fontWeight={500}
-                sx={{ color: "background.default" }}
+                sx={{ color: 'background.default' }}
               >
                 قیمت طلای محصول:
               </Typography>
@@ -188,7 +177,7 @@ export default function Calculator() {
                   xs: 10,
                   sm: 12,
                 }}
-                sx={{ color: "#393936" }}
+                sx={{ color: '#393936' }}
                 fontWeight={500}
               >
                 وزن ✕ نرخ روز طلا
@@ -202,13 +191,13 @@ export default function Calculator() {
               }}
               fontWeight={500}
               sx={{
-                color: "background.default",
+                color: 'background.default',
               }}
             >
               {calculated.goldPrice.toLocaleString()}
               <Box
-                component={"span"}
-                color={"background.paper"}
+                component={'span'}
+                color={'background.paper'}
                 ml={0.5}
                 fontSize={{
                   xs: 10,
@@ -219,12 +208,8 @@ export default function Calculator() {
               </Box>
             </Typography>
           </Stack>
-          <Stack
-            direction={"row"}
-            justifyContent={"space-between"}
-            alignItems={"center"}
-          >
-            <Stack direction={"column"} gap={0.5}>
+          <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
+            <Stack direction={'column'} gap={0.5}>
               <Typography
                 variant="body1"
                 fontSize={{
@@ -232,7 +217,7 @@ export default function Calculator() {
                   sm: 14,
                 }}
                 fontWeight={500}
-                sx={{ color: "background.default" }}
+                sx={{ color: 'background.default' }}
               >
                 اجرت ساخت:
               </Typography>
@@ -242,7 +227,7 @@ export default function Calculator() {
                   xs: 10,
                   sm: 12,
                 }}
-                sx={{ color: "#393936" }}
+                sx={{ color: '#393936' }}
                 fontWeight={500}
               >
                 قیمت طلا ✕ 18 %
@@ -256,13 +241,13 @@ export default function Calculator() {
               }}
               fontWeight={500}
               sx={{
-                color: "background.default",
+                color: 'background.default',
               }}
             >
               {calculated.wage.toLocaleString()}
               <Box
-                component={"span"}
-                color={"background.paper"}
+                component={'span'}
+                color={'background.paper'}
                 ml={0.5}
                 fontSize={{
                   xs: 10,
@@ -273,12 +258,8 @@ export default function Calculator() {
               </Box>
             </Typography>
           </Stack>
-          <Stack
-            direction={"row"}
-            justifyContent={"space-between"}
-            alignItems={"center"}
-          >
-            <Stack direction={"column"} gap={0.5}>
+          <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
+            <Stack direction={'column'} gap={0.5}>
               <Typography
                 variant="body1"
                 fontSize={{
@@ -286,7 +267,7 @@ export default function Calculator() {
                   sm: 14,
                 }}
                 fontWeight={500}
-                sx={{ color: "background.default" }}
+                sx={{ color: 'background.default' }}
               >
                 سود فروش طلا:
               </Typography>
@@ -296,7 +277,7 @@ export default function Calculator() {
                   xs: 10,
                   sm: 12,
                 }}
-                sx={{ color: "#393936" }}
+                sx={{ color: '#393936' }}
                 fontWeight={500}
               >
                 (قیمت طلا + اجرت ساخت) ✕ 7 %
@@ -310,13 +291,13 @@ export default function Calculator() {
               }}
               fontWeight={500}
               sx={{
-                color: "background.default",
+                color: 'background.default',
               }}
             >
               {calculated.profit.toLocaleString()}
               <Box
-                component={"span"}
-                color={"background.paper"}
+                component={'span'}
+                color={'background.paper'}
                 ml={0.5}
                 fontSize={{
                   xs: 10,
@@ -327,12 +308,8 @@ export default function Calculator() {
               </Box>
             </Typography>
           </Stack>
-          <Stack
-            direction={"row"}
-            justifyContent={"space-between"}
-            alignItems={"center"}
-          >
-            <Stack direction={"column"} gap={0.5}>
+          <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
+            <Stack direction={'column'} gap={0.5}>
               <Typography
                 variant="body1"
                 fontSize={{
@@ -340,7 +317,7 @@ export default function Calculator() {
                   sm: 14,
                 }}
                 fontWeight={500}
-                sx={{ color: "background.default" }}
+                sx={{ color: 'background.default' }}
               >
                 مالیات:
               </Typography>
@@ -350,7 +327,7 @@ export default function Calculator() {
                   xs: 10,
                   sm: 12,
                 }}
-                sx={{ color: "#393936" }}
+                sx={{ color: '#393936' }}
                 fontWeight={500}
               >
                 (سود فروش طلا + اجرت ساخت) ✕ 9 %
@@ -364,13 +341,13 @@ export default function Calculator() {
               }}
               fontWeight={500}
               sx={{
-                color: "background.default",
+                color: 'background.default',
               }}
             >
               {calculated.tax.toLocaleString()}
               <Box
-                component={"span"}
-                color={"background.paper"}
+                component={'span'}
+                color={'background.paper'}
                 ml={0.5}
                 fontSize={{
                   xs: 10,
@@ -382,12 +359,12 @@ export default function Calculator() {
             </Typography>
           </Stack>
         </Stack>
-        <Stack py={2.5} width={"100%"} bgcolor={"#E5C231"} borderRadius={4}>
+        <Stack py={2.5} width={'100%'} bgcolor={'#E5C231'} borderRadius={4}>
           <Typography
             variant="body1"
             fontSize={14}
-            width={"100%"}
-            textAlign={"center"}
+            width={'100%'}
+            textAlign={'center'}
             color="background.default"
             fontWeight={600}
           >
@@ -404,34 +381,30 @@ export default function Calculator() {
         container
         mt={2}
       >
-        <Stack py={2.5} width={"100%"} bgcolor={"#B29727"} borderRadius={4}>
+        <Stack py={2.5} width={'100%'} bgcolor={'#B29727'} borderRadius={4}>
           <Typography
             variant="body1"
             fontSize={{
               xs: 12,
               sm: 14,
             }}
-            width={"100%"}
-            textAlign={"center"}
+            width={'100%'}
+            textAlign={'center'}
           >
             خرید طلا از دارینه
           </Typography>
         </Stack>
         <Stack
           p={3}
-          width={"100%"}
-          bgcolor={"#E5C231"}
+          width={'100%'}
+          bgcolor={'#E5C231'}
           borderRadius={4}
-          direction={"column"}
+          direction={'column'}
           gap={2}
           height={300}
         >
-          <Stack
-            direction={"row"}
-            justifyContent={"space-between"}
-            alignItems={"center"}
-          >
-            <Stack direction={"column"} gap={0.5}>
+          <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
+            <Stack direction={'column'} gap={0.5}>
               <Typography
                 variant="body1"
                 fontSize={{
@@ -439,7 +412,7 @@ export default function Calculator() {
                   sm: 14,
                 }}
                 fontWeight={500}
-                sx={{ color: "background.default" }}
+                sx={{ color: 'background.default' }}
               >
                 قیمت طلای محصول:
               </Typography>
@@ -449,7 +422,7 @@ export default function Calculator() {
                   xs: 10,
                   sm: 12,
                 }}
-                sx={{ color: "#393936" }}
+                sx={{ color: '#393936' }}
                 fontWeight={500}
               >
                 وزن ✕ نرخ روز طلا
@@ -463,13 +436,13 @@ export default function Calculator() {
               }}
               fontWeight={500}
               sx={{
-                color: "background.default",
+                color: 'background.default',
               }}
             >
               {calculated.goldPrice.toLocaleString()}
               <Box
-                component={"span"}
-                color={"background.paper"}
+                component={'span'}
+                color={'background.paper'}
                 ml={0.5}
                 fontSize={{
                   xs: 10,
@@ -480,12 +453,8 @@ export default function Calculator() {
               </Box>
             </Typography>
           </Stack>
-          <Stack
-            direction={"row"}
-            justifyContent={"space-between"}
-            alignItems={"center"}
-          >
-            <Stack direction={"column"} gap={0.5}>
+          <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
+            <Stack direction={'column'} gap={0.5}>
               <Typography
                 variant="body1"
                 fontSize={{
@@ -493,7 +462,7 @@ export default function Calculator() {
                   sm: 14,
                 }}
                 fontWeight={500}
-                sx={{ color: "background.default" }}
+                sx={{ color: 'background.default' }}
               >
                 سود فروش طلا:
               </Typography>
@@ -503,7 +472,7 @@ export default function Calculator() {
                   xs: 10,
                   sm: 12,
                 }}
-                sx={{ color: "#393936" }}
+                sx={{ color: '#393936' }}
                 fontWeight={500}
               >
                 قیمت طلا ✕ ۱.۰۰ %
@@ -517,13 +486,13 @@ export default function Calculator() {
               }}
               fontWeight={500}
               sx={{
-                color: "background.default",
+                color: 'background.default',
               }}
             >
               {calculated.profitOne.toLocaleString()}
               <Box
-                component={"span"}
-                color={"background.paper"}
+                component={'span'}
+                color={'background.paper'}
                 ml={0.5}
                 fontSize={{
                   xs: 10,
@@ -535,19 +504,19 @@ export default function Calculator() {
             </Typography>
           </Stack>
         </Stack>
-        <Stack py={2.5} width={"100%"} bgcolor={"#E5C231"} borderRadius={4}>
+        <Stack py={2.5} width={'100%'} bgcolor={'#E5C231'} borderRadius={4}>
           <Typography
             variant="body1"
             fontSize={14}
-            width={"100%"}
-            textAlign={"center"}
+            width={'100%'}
+            textAlign={'center'}
             color="background.default"
             fontWeight={600}
           >
-            مجموع:{" "}
+            مجموع:{' '}
             {calculated.profitOne + calculated.goldPrice > 0
               ? (calculated.profitOne + calculated.goldPrice).toLocaleString()
-              : "۰"}{" "}
+              : '۰'}{' '}
             تومان
           </Typography>
         </Stack>

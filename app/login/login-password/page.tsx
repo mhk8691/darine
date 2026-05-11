@@ -1,13 +1,11 @@
-"use client";
-import { Box, Divider, Stack, Typography } from "@mui/material";
-import Link from "next/link";
-import ActionButton from "../SubmitButton";
-import LoginTab from "../LoginTab";
-import LoginPassForm from "./LoginPassForm";
+'use client';
+import { Box, Divider, Stack, Typography } from '@mui/material';
+import Link from 'next/link';
+import ActionButton from '../SubmitButton';
+import LoginTab from '../LoginTab';
+import LoginPassForm from './LoginPassForm';
 
 export default function page() {
-
-
   return (
     <Stack>
       <LoginTab />
@@ -17,50 +15,39 @@ export default function page() {
           xs: 12,
           md: 16,
         }}
-        sx={{ color: "text.secondary", mt: 2 }}
+        sx={{ color: 'text.secondary', mt: 2 }}
       >
         اطلاعات زیر را وارد کنید
       </Typography>
-    <LoginPassForm>
-        <Link href={"/login/forget"} style={{ marginTop: 24 }}>
+      <LoginPassForm>
+        <Link href={'/login/forget'} style={{ marginTop: 24 }}>
+          <Typography variant="body2" sx={{ color: '#0091F8' }} fontSize={12} fontWeight={600}>
+            فراموشی رمز عبور
+          </Typography>
+        </Link>
         <Typography
           variant="body2"
-          sx={{ color: "#0091F8" }}
-          fontSize={12}
-          fontWeight={600}
-        >
-          فراموشی رمز عبور
-        </Typography>
-      </Link>
-      <Typography
-        variant="body2"
-        sx={{ mt: 6, color: "text.muted" }}
-        fontSize={{
-          xs: 10,
-          md: 12,
-        }}
-        fontWeight={500}
-      >
-        ورود شما به منزله قبول‌{" "}
-        <Link
-          href={"/roules"}
-          style={{
-            color: "#0091F8",
+          sx={{ mt: 6, color: 'text.muted' }}
+          fontSize={{
+            xs: 10,
+            md: 12,
           }}
+          fontWeight={500}
         >
-          قوانین و مقررات‌
-        </Link>{" "}
-        طلاسی می‌باشد.
-      </Typography>
-    </LoginPassForm>
-    
-      <Stack
-        direction={"row"}
-        gap={2}
-        alignItems={"center"}
-        sx={{ width: "100%" }}
-        mt={3}
-      >
+          ورود شما به منزله قبول‌{' '}
+          <Link
+            href={'/roules'}
+            style={{
+              color: '#0091F8',
+            }}
+          >
+            قوانین و مقررات‌
+          </Link>{' '}
+          طلاسی می‌باشد.
+        </Typography>
+      </LoginPassForm>
+
+      <Stack direction={'row'} gap={2} alignItems={'center'} sx={{ width: '100%' }} mt={3}>
         <Divider sx={{ flexGrow: 1 }} />
         <Typography
           variant="body1"
@@ -68,13 +55,13 @@ export default function page() {
             xs: 10,
             md: 12,
           }}
-          sx={{ whiteSpace: "nowrap", direction: "row" }}
+          sx={{ whiteSpace: 'nowrap', direction: 'row' }}
         >
           حساب کاربری ندارید؟
           <Box
-            component={"span"}
+            component={'span'}
             sx={{
-              color: "#0091F8",
+              color: '#0091F8',
               fontSize: {
                 xs: 12,
                 md: 14,
@@ -82,7 +69,7 @@ export default function page() {
               ml: 1,
             }}
           >
-            <Link href={"/login/signup"}>ثبت نام</Link>
+            <Link href={'/login/signup'}>ثبت نام</Link>
           </Box>
         </Typography>
         <Divider sx={{ flexGrow: 1 }} />

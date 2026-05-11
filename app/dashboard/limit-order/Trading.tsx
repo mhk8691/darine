@@ -1,19 +1,16 @@
-"use client";
-import Card from "@/app/Components/Containers/Container/Container";
-import CustomTabs from "@/app/Components/Tabs/CustomTabs";
-import Typography from "@mui/material/Typography";
-import { ReactNode } from "react";
+'use client';
+import Card from '@/app/Components/Containers/Container/Container';
+import CustomTabs from '@/app/Components/Tabs/CustomTabs';
+import Typography from '@mui/material/Typography';
+import { ReactNode } from 'react';
 
-import Trade from "./Trade";
-import { useMediaQuery, useTheme } from "@mui/material";
-const tabs = [{ title: "خرید " }, { title: "فروش" }];
-const children: ReactNode[] = [
-  <Trade key={1} type="buy" />,
-  <Trade key={2} type="sell" />,
-];
+import Trade from './Trade';
+import { useMediaQuery, useTheme } from '@mui/material';
+const tabs = [{ title: 'خرید ' }, { title: 'فروش' }];
+const children: ReactNode[] = [<Trade key={1} type="buy" />, <Trade key={2} type="sell" />];
 export default function Trading() {
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
+  const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   return (
     <Card
       style={{

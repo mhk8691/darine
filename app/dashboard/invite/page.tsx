@@ -1,12 +1,12 @@
-import Card from "@/app/Components/Containers/Container/Container";
-import { Divider, Grid, Stack, Typography } from "@mui/material";
-import { Metadata } from "next";
-import Image from "next/image";
-import BackLink from "../BackLink";
-import RefralButton from "./RefralButton";
+import Card from '@/app/Components/Containers/Container/Container';
+import { Divider, Grid, Stack, Typography } from '@mui/material';
+import { Metadata } from 'next';
+import Image from 'next/image';
+import BackLink from '../BackLink';
+import RefralButton from './RefralButton';
 export const metadata: Metadata = {
-  title: "دعوت از دوستان | دارینه",
-  description: "",
+  title: 'دعوت از دوستان | دارینه',
+  description: '',
 };
 export default function page() {
   return (
@@ -16,34 +16,34 @@ export default function page() {
       <Grid
         size={12}
         container
-        bgcolor={"background.default"}
+        bgcolor={'background.default'}
         border={{
           xs: 0,
           sm: 1,
         }}
         borderColor={{
-          sm: "background.paper",
+          sm: 'background.paper',
         }}
         py={3}
         px={{
           xs: 0,
           sm: 4,
         }}
-        alignItems={"center"}
+        alignItems={'center'}
         borderRadius={2.5}
       >
         <Grid
           size={12}
           display={{
-            xs: "none",
-            sm: "block",
-            md: "none",
+            xs: 'none',
+            sm: 'block',
+            md: 'none',
           }}
         >
           <Typography
             variant="h6"
             sx={{
-              color: "text.title",
+              color: 'text.title',
             }}
             fontSize={{
               xs: 16,
@@ -67,10 +67,10 @@ export default function page() {
           <Typography
             variant="h6"
             sx={{
-              color: "text.title",
+              color: 'text.title',
               display: {
-                xs: "none",
-                md: "block",
+                xs: 'none',
+                md: 'block',
               },
             }}
             fontSize={{
@@ -83,7 +83,7 @@ export default function page() {
           <Typography
             variant="h6"
             sx={{
-              color: "text.secondary",
+              color: 'text.secondary',
               mt: {
                 xs: 0,
                 sm: 2.5,
@@ -94,12 +94,11 @@ export default function page() {
               sm: 18,
             }}
           >
-            با دعوت از دوستان خود ۲۰ درصد از کارمزد هر خرید آن‌ها، برای شما
-            واریز خواهد شد.
+            با دعوت از دوستان خود ۲۰ درصد از کارمزد هر خرید آن‌ها، برای شما واریز خواهد شد.
           </Typography>
           <Typography
             variant="h6"
-            sx={{ color: "text.title", mt: 3 }}
+            sx={{ color: 'text.title', mt: 3 }}
             fontSize={{
               xs: 16,
               sm: 20,
@@ -128,18 +127,18 @@ export default function page() {
                 xs: 12,
                 sm: 14,
               }}
-              sx={{ color: "text.title" }}
+              sx={{ color: 'text.title' }}
             >
               خلاصه فعالیت شما
             </Typography>
-            <Stack direction={"row"} justifyContent={"space-between"} mt={2.5}>
+            <Stack direction={'row'} justifyContent={'space-between'} mt={2.5}>
               <Typography
                 variant="h6"
                 fontSize={{
                   xs: 10,
                   sm: 12,
                 }}
-                sx={{ color: "text.muted" }}
+                sx={{ color: 'text.muted' }}
               >
                 مجموع کاربران دعوت شده توسط شما:
               </Typography>
@@ -149,20 +148,20 @@ export default function page() {
                   xs: 12,
                   sm: 14,
                 }}
-                sx={{ color: "text.title" }}
+                sx={{ color: 'text.title' }}
               >
                 ۰ نفر
               </Typography>
             </Stack>
             <Divider sx={{ my: 1.5 }} />
-            <Stack direction={"row"} justifyContent={"space-between"}>
+            <Stack direction={'row'} justifyContent={'space-between'}>
               <Typography
                 variant="h6"
                 fontSize={{
                   xs: 10,
                   sm: 12,
                 }}
-                sx={{ color: "text.muted" }}
+                sx={{ color: 'text.muted' }}
               >
                 مجموع کاربران دعوت شده توسط شما:
               </Typography>
@@ -172,7 +171,7 @@ export default function page() {
                   xs: 12,
                   sm: 14,
                 }}
-                sx={{ color: "text.title" }}
+                sx={{ color: 'text.title' }}
               >
                 ۰ نفر
               </Typography>
@@ -190,28 +189,23 @@ export default function page() {
             md: 2,
           }}
         >
-          <Stack
-            direction={"row"}
-            alignItems={"center"}
-            justifyContent={"center"}
-            width={"100%"}
-          >
+          <Stack direction={'row'} alignItems={'center'} justifyContent={'center'} width={'100%'}>
             <Stack
               width={{
-                xs: "90%",
-                sm: "60%",
-                md: "100%",
+                xs: '90%',
+                sm: '60%',
+                md: '100%',
               }}
             >
               <Image
                 alt=""
                 width={417}
                 height={185}
-                src={"/images/mainDark.webp"}
+                src={'/images/mainDark.webp'}
                 style={{
-                  width: "100%",
-                  height: "auto",
-                  objectFit: "cover",
+                  width: '100%',
+                  height: 'auto',
+                  objectFit: 'cover',
                 }}
               />
             </Stack>

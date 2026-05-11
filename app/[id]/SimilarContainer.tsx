@@ -1,14 +1,8 @@
-"use client";
-import {
-  Grid,
-  Stack,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
-import LaptopTable from "../Components/Tables/ProductTable/LaptopTable";
-import { TableGoldDataType } from "../core/Types";
-import PriceTables from "./PriceTable";
+'use client';
+import { Grid, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
+import LaptopTable from '../Components/Tables/ProductTable/LaptopTable';
+import { TableGoldDataType } from '../core/Types';
+import PriceTables from './PriceTable';
 
 interface Props {
   data: TableGoldDataType[][];
@@ -16,18 +10,13 @@ interface Props {
 
 export default function SimilarContainer({ data }: Props) {
   const theme = useTheme();
-  const isUpMd = useMediaQuery(theme.breakpoints.up("md"));
+  const isUpMd = useMediaQuery(theme.breakpoints.up('md'));
   return (
     <>
       {isUpMd ? (
         <Grid size={12} container spacing={3}>
           <Grid size={12}>
-            <Typography
-              variant="h6"
-              fontWeight={700}
-              fontSize={22}
-              sx={{ color: "text.title" }}
-            >
+            <Typography variant="h6" fontWeight={700} fontSize={22} sx={{ color: 'text.title' }}>
               قیمت طلا و سکه امروز
             </Typography>
           </Grid>
@@ -47,7 +36,7 @@ export default function SimilarContainer({ data }: Props) {
               md: 22,
             }}
             sx={{
-              color: "text.title",
+              color: 'text.title',
               mb: {
                 xs: 1.5,
                 md: 3,

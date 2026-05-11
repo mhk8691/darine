@@ -1,12 +1,12 @@
-import Card from "@/app/Components/Containers/Container/Container";
-import { Grid } from "@mui/material";
-import { Metadata } from "next";
-import AddCardContainer from "./AddCardContainer";
-import BankCard from "./BankCard";
-import BackLink from "../BackLink";
+import Card from '@/app/Components/Containers/Container/Container';
+import { Grid } from '@mui/material';
+import { Metadata } from 'next';
+import AddCardContainer from './AddCardContainer';
+import BankCard from './BankCard';
+import BackLink from '../BackLink';
 export const metadata: Metadata = {
-  title: "کارت بانکی | دارینه",
-  description: "",
+  title: 'کارت بانکی | دارینه',
+  description: '',
 };
 export default function page() {
   return (
@@ -24,7 +24,7 @@ export default function page() {
               sm: 1,
             },
             borderColor: {
-              sm: "background.paper",
+              sm: 'background.paper',
             },
           }}
         >

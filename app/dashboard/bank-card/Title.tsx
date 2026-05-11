@@ -1,14 +1,14 @@
-"use client";
-import { Typography, useMediaQuery, useTheme } from "@mui/material";
-import React from "react";
+'use client';
+import { Typography, useMediaQuery, useTheme } from '@mui/material';
+import React from 'react';
 
 export default function Title() {
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
+  const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   return (
     <>
       {isDesktop && (
-        <Typography variant="h6" fontSize={20} sx={{ color: "text.title" }}>
+        <Typography variant="h6" fontSize={20} sx={{ color: 'text.title' }}>
           کارت های بانکی شما
         </Typography>
       )}

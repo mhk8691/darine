@@ -1,17 +1,17 @@
-import { Metadata } from "next";
-import TableContainer from "../Components/Tables/ProductTable/GoldContainer";
-import { FaqItem, TableGoldDataType } from "../core/Types";
+import { Metadata } from 'next';
+import TableContainer from '../Components/Tables/ProductTable/GoldContainer';
+import { FaqItem, TableGoldDataType } from '../core/Types';
 export const metadata: Metadata = {
-  title: "قیمت سکه امروز آنلاین و لحظه ای | دارینه",
-  description: "",
+  title: 'قیمت سکه امروز آنلاین و لحظه ای | دارینه',
+  description: '',
 };
 const data: { title: string; order: number; data: TableGoldDataType[] }[] = [
   {
-    title: "سکه",
+    title: 'سکه',
     order: 1,
     data: [
       {
-        typeGold: "سکه امامی",
+        typeGold: 'سکه امامی',
         currentRate: 186510000,
         minPriceDay: 186480000,
         maxPriceDay: 186510000,
@@ -20,7 +20,7 @@ const data: { title: string; order: number; data: TableGoldDataType[] }[] = [
         weeklyChart: 2,
       },
       {
-        typeGold: "سکه تمام بهار آزادی",
+        typeGold: 'سکه تمام بهار آزادی',
         currentRate: 179020000,
         minPriceDay: 178980000,
         maxPriceDay: 179020000,
@@ -29,7 +29,7 @@ const data: { title: string; order: number; data: TableGoldDataType[] }[] = [
         weeklyChart: 2,
       },
       {
-        typeGold: "نیم سکه",
+        typeGold: 'نیم سکه',
         currentRate: 103900000,
         minPriceDay: 98900000,
         maxPriceDay: 103900000,
@@ -38,7 +38,7 @@ const data: { title: string; order: number; data: TableGoldDataType[] }[] = [
         weeklyChart: 2,
       },
       {
-        typeGold: "ربع سکه",
+        typeGold: 'ربع سکه',
         currentRate: 59800000,
         minPriceDay: 56300000,
         maxPriceDay: 59800000,
@@ -47,7 +47,7 @@ const data: { title: string; order: number; data: TableGoldDataType[] }[] = [
         weeklyChart: 2,
       },
       {
-        typeGold: "سکه گرمی",
+        typeGold: 'سکه گرمی',
         currentRate: 29200000,
         minPriceDay: 27200000,
         maxPriceDay: 29200000,
@@ -56,7 +56,7 @@ const data: { title: string; order: number; data: TableGoldDataType[] }[] = [
         weeklyChart: 2,
       },
       {
-        typeGold: "سکه پارسیان ۱ گرمی",
+        typeGold: 'سکه پارسیان ۱ گرمی',
         currentRate: 21295200,
         minPriceDay: 21224400,
         maxPriceDay: 21525600,
@@ -67,11 +67,11 @@ const data: { title: string; order: number; data: TableGoldDataType[] }[] = [
     ],
   },
   {
-    title: "طلا",
+    title: 'طلا',
     order: 2,
     data: [
       {
-        typeGold: "طلای ۱۸ عیار(گرم)",
+        typeGold: 'طلای ۱۸ عیار(گرم)',
         currentRate: 17785000,
         minPriceDay: 17687000,
         maxPriceDay: 18000000,
@@ -80,7 +80,7 @@ const data: { title: string; order: number; data: TableGoldDataType[] }[] = [
         weeklyChart: 2,
       },
       {
-        typeGold: "طلای ۲۱ عیار(گرم)",
+        typeGold: 'طلای ۲۱ عیار(گرم)',
         currentRate: 20703666,
         minPriceDay: 20634833,
         maxPriceDay: 20927666,
@@ -89,7 +89,7 @@ const data: { title: string; order: number; data: TableGoldDataType[] }[] = [
         weeklyChart: 2,
       },
       {
-        typeGold: " طلای ۲۴ عیار(گرم)",
+        typeGold: ' طلای ۲۴ عیار(گرم)',
         currentRate: 23543026,
         minPriceDay: 23464753,
         maxPriceDay: 23797746,
@@ -98,7 +98,7 @@ const data: { title: string; order: number; data: TableGoldDataType[] }[] = [
         weeklyChart: 2,
       },
       {
-        typeGold: "۱ مثقال طلا ",
+        typeGold: '۱ مثقال طلا ',
         currentRate: 76872122,
         minPriceDay: 76616546,
         maxPriceDay: 77703828,
@@ -107,7 +107,7 @@ const data: { title: string; order: number; data: TableGoldDataType[] }[] = [
         weeklyChart: 2,
       },
       {
-        typeGold: "انس جهانی طلا ",
+        typeGold: 'انس جهانی طلا ',
         currentRate: 4785,
         minPriceDay: 4714,
         maxPriceDay: 4787,
@@ -116,7 +116,7 @@ const data: { title: string; order: number; data: TableGoldDataType[] }[] = [
         weeklyChart: 2,
       },
       {
-        typeGold: "آبشده نقدی",
+        typeGold: 'آبشده نقدی',
         currentRate: 76872122,
         minPriceDay: 76616546,
         maxPriceDay: 77703828,
@@ -125,7 +125,7 @@ const data: { title: string; order: number; data: TableGoldDataType[] }[] = [
         weeklyChart: 2,
       },
       {
-        typeGold: " طلای دست دوم",
+        typeGold: ' طلای دست دوم',
         currentRate: 17509445,
         minPriceDay: 17451232,
         maxPriceDay: 17698886,
@@ -138,34 +138,34 @@ const data: { title: string; order: number; data: TableGoldDataType[] }[] = [
 ];
 const faqData: FaqItem[] = [
   {
-    id: "1",
-    question: "سکه طلا چیست و چه انواعی دارد؟",
+    id: '1',
+    question: 'سکه طلا چیست و چه انواعی دارد؟',
     answer:
-      "سکه طلا یکی از مسکوکات رسمی بانک مرکزی است که در چهار نوع تمام سکه، نیم‌سکه، ربع‌سکه و سکه یک گرمی ضرب می‌شود. این سکه‌ها با عیار ۹۰۰ و وزن مشخص عرضه می‌شوند و در بازار ایران نقش مهمی در سرمایه‌گذاری دارند.",
+      'سکه طلا یکی از مسکوکات رسمی بانک مرکزی است که در چهار نوع تمام سکه، نیم‌سکه، ربع‌سکه و سکه یک گرمی ضرب می‌شود. این سکه‌ها با عیار ۹۰۰ و وزن مشخص عرضه می‌شوند و در بازار ایران نقش مهمی در سرمایه‌گذاری دارند.',
   },
   {
-    id: "2",
-    question: "قیمت روز سکه چگونه محاسبه می‌شود؟",
+    id: '2',
+    question: 'قیمت روز سکه چگونه محاسبه می‌شود؟',
     answer:
-      "قیمت سکه بر اساس فرمولی شامل قیمت جهانی اونس طلا، نرخ دلار آزاد، وزن و عیار سکه و هزینه ضرب محاسبه می‌شود. تغییر در هر یک از این عوامل به‌طور مستقیم روی قیمت نهایی سکه تاثیر می‌گذارد.",
+      'قیمت سکه بر اساس فرمولی شامل قیمت جهانی اونس طلا، نرخ دلار آزاد، وزن و عیار سکه و هزینه ضرب محاسبه می‌شود. تغییر در هر یک از این عوامل به‌طور مستقیم روی قیمت نهایی سکه تاثیر می‌گذارد.',
   },
   {
-    id: "3",
-    question: "چه عواملی باعث نوسان قیمت سکه در ایران می‌شود؟",
+    id: '3',
+    question: 'چه عواملی باعث نوسان قیمت سکه در ایران می‌شود؟',
     answer:
-      "مهم‌ترین عوامل عبارت‌اند از: نرخ جهانی طلا، قیمت دلار آزاد، شرایط سیاسی و اقتصادی کشور و میزان عرضه و تقاضا در بازار داخلی.",
+      'مهم‌ترین عوامل عبارت‌اند از: نرخ جهانی طلا، قیمت دلار آزاد، شرایط سیاسی و اقتصادی کشور و میزان عرضه و تقاضا در بازار داخلی.',
   },
   {
-    id: "4",
-    question: "آیا خرید سکه طلا برای سرمایه‌گذاری مناسب است؟",
+    id: '4',
+    question: 'آیا خرید سکه طلا برای سرمایه‌گذاری مناسب است؟',
     answer:
-      "بله. سکه طلا به دلیل نقدشوندگی بالا و ارتباط مستقیم با نرخ جهانی طلا و ارز، یکی از گزینه‌های محبوب و مطمئن برای سرمایه‌گذاری در ایران محسوب می‌شود.",
+      'بله. سکه طلا به دلیل نقدشوندگی بالا و ارتباط مستقیم با نرخ جهانی طلا و ارز، یکی از گزینه‌های محبوب و مطمئن برای سرمایه‌گذاری در ایران محسوب می‌شود.',
   },
   {
-    id: "5",
-    question: "بهترین روش برای استعلام آنلاین قیمت سکه چیست؟",
+    id: '5',
+    question: 'بهترین روش برای استعلام آنلاین قیمت سکه چیست؟',
     answer:
-      "بهترین روش، استفاده از وب‌سایت‌ها و پلتفرم‌های معتبر مانند طلاسی است که قیمت‌ها را به صورت لحظه‌ای و دقیق به‌روزرسانی می‌کنند و امکان تحلیل بازار را نیز فراهم می‌سازند.",
+      'بهترین روش، استفاده از وب‌سایت‌ها و پلتفرم‌های معتبر مانند طلاسی است که قیمت‌ها را به صورت لحظه‌ای و دقیق به‌روزرسانی می‌کنند و امکان تحلیل بازار را نیز فراهم می‌سازند.',
   },
 ];
 export default function page() {

@@ -1,7 +1,7 @@
-"use client";
-import CustomModal from "@/app/Components/CustomModal/CustomModal";
-import { Close } from "@mui/icons-material";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+'use client';
+import CustomModal from '@/app/Components/CustomModal/CustomModal';
+import { Close } from '@mui/icons-material';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import {
   Box,
   IconButton,
@@ -12,8 +12,8 @@ import {
   TextField,
   Theme,
   Typography,
-} from "@mui/material";
-import React, { useState } from "react";
+} from '@mui/material';
+import React, { useState } from 'react';
 
 export interface SelectOption {
   value: string | number;
@@ -35,8 +35,8 @@ export interface SelectInputProps {
   placeholder?: string;
   label?: string;
   fullWidth?: boolean;
-  variant?: "outlined" | "filled" | "standard";
-  size?: "small" | "medium";
+  variant?: 'outlined' | 'filled' | 'standard';
+  size?: 'small' | 'medium';
   disabled?: boolean;
   ModalComponent?: React.ComponentType<ModalProps>;
   error?: boolean;
@@ -49,14 +49,14 @@ export interface SelectInputProps {
 
 export default function SelectInput({
   titleModal,
-  value = "",
+  value = '',
   onChange,
   options = [],
-  placeholder = "Select an option",
-  label = "Select",
+  placeholder = 'Select an option',
+  label = 'Select',
   fullWidth = true,
-  variant = "outlined",
-  size = "medium",
+  variant = 'outlined',
+  size = 'medium',
   disabled = false,
   error = false,
   helperText,
@@ -66,11 +66,8 @@ export default function SelectInput({
 }: SelectInputProps): React.JSX.Element {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const initialValue =
-    value !== "" ? value : options.length > 0 ? options[0].value : "";
-  const [selectedValue, setSelectedValue] = useState<string | number>(
-    initialValue,
-  );
+  const initialValue = value !== '' ? value : options.length > 0 ? options[0].value : '';
+  const [selectedValue, setSelectedValue] = useState<string | number>(initialValue);
 
   const handleOpenModal = (): void => {
     if (!disabled && modalMode) {
@@ -91,21 +88,19 @@ export default function SelectInput({
     onChange?.(newValue);
   };
 
-  const selectedItem: SelectOption | undefined = options.find(
-    (opt) => opt.value === selectedValue,
-  );
+  const selectedItem: SelectOption | undefined = options.find((opt) => opt.value === selectedValue);
 
   const commonSx = {
     ...sx,
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: error ? "#d32f2f" : "#575753",
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: error ? '#d32f2f' : '#575753',
       },
-      "&:hover fieldset": {
-        borderColor: error ? "#d32f2f" : "#575753",
+      '&:hover fieldset': {
+        borderColor: error ? '#d32f2f' : '#575753',
       },
-      "&.Mui-focused fieldset": {
-        borderColor: error ? "#d32f2f" : "#575753",
+      '&.Mui-focused fieldset': {
+        borderColor: error ? '#d32f2f' : '#575753',
       },
     },
   };
@@ -115,7 +110,7 @@ export default function SelectInput({
       <TextField
         select
         label={label}
-        value={selectedValue || ""}
+        value={selectedValue || ''}
         placeholder={placeholder}
         fullWidth={fullWidth}
         variant={variant}
@@ -131,17 +126,11 @@ export default function SelectInput({
         }}
       >
         {options.map((option) => (
-          <MenuItem
-            key={option.value}
-            value={option.value}
-            disabled={option.disabled}
-          >
+          <MenuItem key={option.value} value={option.value} disabled={option.disabled}>
             <Box>
               <div>{option.label}</div>
               {option.description && (
-                <div style={{ fontSize: 12, color: "gray" }}>
-                  {option.description}
-                </div>
+                <div style={{ fontSize: 12, color: 'gray' }}>{option.description}</div>
               )}
             </Box>
           </MenuItem>
@@ -154,7 +143,7 @@ export default function SelectInput({
     ? selectedItem.description
       ? `${selectedItem.label} - ${selectedItem.description}`
       : selectedItem.label
-    : "";
+    : '';
 
   return (
     <>
@@ -176,7 +165,7 @@ export default function SelectInput({
           readOnly: true,
           endAdornment: (
             <InputAdornment position="end">
-              <KeyboardArrowDownIcon sx={{ color: "action.active" }} />
+              <KeyboardArrowDownIcon sx={{ color: 'action.active' }} />
             </InputAdornment>
           ),
         }}
@@ -184,12 +173,7 @@ export default function SelectInput({
 
       <CustomModal open={isModalOpen} setOpen={setIsModalOpen}>
         <Box>
-          <Stack
-            direction={"row"}
-            alignItems={"center"}
-            justifyContent={"space-between"}
-            px={1}
-          >
+          <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} px={1}>
             <Typography variant="h6" fontSize={16}>
               {titleModal}
             </Typography>
@@ -197,7 +181,7 @@ export default function SelectInput({
               <Close />
             </IconButton>
           </Stack>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
             {options.map((option) => (
               <Box
                 key={option.value}
@@ -205,27 +189,23 @@ export default function SelectInput({
                 sx={{
                   p: 1,
                   borderRadius: 1,
-                  cursor: option.disabled ? "not-allowed" : "pointer",
-                  bgcolor:
-                    selectedValue === option.value
-                      ? "action.selected"
-                      : "transparent",
+                  cursor: option.disabled ? 'not-allowed' : 'pointer',
+                  bgcolor: selectedValue === option.value ? 'action.selected' : 'transparent',
                   opacity: option.disabled ? 0.5 : 1,
-                  "&:hover": {
-                    bgcolor: !option.disabled ? "action.hover" : "transparent",
+                  '&:hover': {
+                    bgcolor: !option.disabled ? 'action.hover' : 'transparent',
                   },
-                  transition: "background-color 0.2s",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
+                  transition: 'background-color 0.2s',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
                   fontSize: 12,
                 }}
               >
                 <Box
                   component="span"
                   sx={{
-                    fontWeight:
-                      selectedValue === option.value ? "bold" : "normal",
+                    fontWeight: selectedValue === option.value ? 'bold' : 'normal',
                   }}
                 >
                   {option.label}
@@ -234,9 +214,9 @@ export default function SelectInput({
                   <Box
                     component="span"
                     sx={{
-                      display: "block",
+                      display: 'block',
                       fontSize: 12,
-                      color: "text.secondary",
+                      color: 'text.secondary',
                       mt: 0.5,
                     }}
                   >

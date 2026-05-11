@@ -1,11 +1,11 @@
-import CreditContainer from "@/app/Components/Containers/CreditContainer/CreditContainer";
-import GoldenUnderline from "@/app/Components/Containers/CreditContainer/GoldenUnderline";
-import { Box, Grid, Stack, Typography } from "@mui/material";
-import Image from "next/image";
-import { Metadata } from "next";
+import CreditContainer from '@/app/Components/Containers/CreditContainer/CreditContainer';
+import GoldenUnderline from '@/app/Components/Containers/CreditContainer/GoldenUnderline';
+import { Box, Grid, Stack, Typography } from '@mui/material';
+import Image from 'next/image';
+import { Metadata } from 'next';
 export const metadata: Metadata = {
-  title: "خرید اعتباری با نسیبا | دارینه",
-  description: "",
+  title: 'خرید اعتباری با نسیبا | دارینه',
+  description: '',
 };
 export default function page() {
   return (
@@ -16,37 +16,37 @@ export default function page() {
           title={
             <Typography variant="h6" fontSize={{ xs: 16, sm: 22 }}>
               خرید اعتباری با
-              <Box component={"span"} color={"#007DFA"}>
-                {" "}
+              <Box component={'span'} color={'#007DFA'}>
+                {' '}
                 نسیبا
               </Box>
             </Typography>
           }
           options={[
-            "خرید آنی طلا بدون نیاز به پرداخت نقدی",
-            "امکان نقدکردن طلای خریداری شده در لحظه",
-            "تحویل فیزیکی به‌صورت شمش در هر زمان",
+            'خرید آنی طلا بدون نیاز به پرداخت نقدی',
+            'امکان نقدکردن طلای خریداری شده در لحظه',
+            'تحویل فیزیکی به‌صورت شمش در هر زمان',
           ]}
           tooltip="توجه: خرید شما با 3.5 درصد کارمزد محاسبه می‌شود."
           icon={
             <Stack
               width={{
-                sx: "70px",
+                sx: '70px',
                 sm: 58,
               }}
               height={{
-                sx: "70px",
+                sx: '70px',
                 sm: 47,
               }}
             >
               <Image
-                src={"/images/simple/nasiba.webp"}
+                src={'/images/simple/nasiba.webp'}
                 alt=""
                 width={58}
                 height={47}
                 style={{
-                  width: "100%",
-                  height: "100%",
+                  width: '100%',
+                  height: '100%',
                 }}
               />
             </Stack>
@@ -56,8 +56,8 @@ export default function page() {
               variant="h6"
               sx={{
                 wordSpacing: 7,
-                flexDirection: "row",
-                alignItems: "center",
+                flexDirection: 'row',
+                alignItems: 'center',
                 mt: 3,
               }}
               fontSize={{
@@ -65,9 +65,9 @@ export default function page() {
                 sm: 22,
               }}
             >
-              خرید <GoldenUnderline>اقساطـــی</GoldenUnderline> طلا،{"  "}
+              خرید <GoldenUnderline>اقساطـــی</GoldenUnderline> طلا،{'  '}
               <GoldenUnderline> ساده‌تر </GoldenUnderline>
-              {"  "} از <GoldenUnderline> همیشه </GoldenUnderline>
+              {'  '} از <GoldenUnderline> همیشه </GoldenUnderline>
             </Typography>
           }
         />

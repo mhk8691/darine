@@ -1,8 +1,8 @@
-import Container from "@/app/Components/Containers/Container/Container";
-import WalletStatus from "@/app/Components/Wallet/WalletStatus";
-import { Divider, Grid, Stack, Typography } from "@mui/material";
-import ChangePassword from "./ChangePassword";
-import TitleProfile from "./TitleProfile";
+import Container from '@/app/Components/Containers/Container/Container';
+import WalletStatus from '@/app/Components/Wallet/WalletHeader';
+import { Divider, Grid, Stack, Typography } from '@mui/material';
+import ChangePassword from './ChangePassword';
+import TitleProfile from './TitleProfile';
 
 export default function Profile() {
   return (
@@ -22,16 +22,16 @@ export default function Profile() {
           sm: 1,
         },
         borderColor: {
-          sm: "background.paper",
+          sm: 'background.paper',
         },
       }}
     >
       <TitleProfile />
 
       <Stack
-        direction={"row"}
+        direction={'row'}
         gap={2}
-        alignItems={"center"}
+        alignItems={'center'}
         mt={{
           xs: 0,
           sm: 5,
@@ -65,7 +65,7 @@ export default function Profile() {
               sm: 22,
             }}
             fontWeight={600}
-            sx={{ color: "text.title" }}
+            sx={{ color: 'text.title' }}
           >
             محمد محمدی
           </Typography>
@@ -85,30 +85,25 @@ export default function Profile() {
       <Grid
         size={12}
         display={{
-          sm: "none",
+          sm: 'none',
         }}
         mt={2}
       >
-        <WalletStatus />
+        <WalletHeader />
       </Grid>
       <Stack
         border={1}
         px={2}
-        pt={"14px"}
+        pt={'14px'}
         pb={3}
-        borderColor={"background.paper"}
+        borderColor={'background.paper'}
         borderRadius={2}
         mt={2}
       >
-        <Stack
-          py={"10px"}
-          direction={"row"}
-          justifyContent={"space-between"}
-          alignItems={"center"}
-        >
+        <Stack py={'10px'} direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
           <Typography
             variant="body1"
-            sx={{ color: "text.subtitle" }}
+            sx={{ color: 'text.subtitle' }}
             fontSize={{
               xs: 10,
               sm: 14,
@@ -127,15 +122,10 @@ export default function Profile() {
           </Typography>
         </Stack>
         <Divider />
-        <Stack
-          py={"10px"}
-          direction={"row"}
-          justifyContent={"space-between"}
-          alignItems={"center"}
-        >
+        <Stack py={'10px'} direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
           <Typography
             variant="body1"
-            sx={{ color: "text.subtitle" }}
+            sx={{ color: 'text.subtitle' }}
             fontSize={{
               xs: 10,
               sm: 14,
@@ -154,15 +144,10 @@ export default function Profile() {
           </Typography>
         </Stack>
         <Divider />
-        <Stack
-          py={"10px"}
-          direction={"row"}
-          justifyContent={"space-between"}
-          alignItems={"center"}
-        >
+        <Stack py={'10px'} direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
           <Typography
             variant="body1"
-            sx={{ color: "text.subtitle" }}
+            sx={{ color: 'text.subtitle' }}
             fontSize={{
               xs: 10,
               sm: 14,
@@ -181,15 +166,10 @@ export default function Profile() {
           </Typography>
         </Stack>
         <Divider />
-        <Stack
-          pt={"10px"}
-          direction={"row"}
-          justifyContent={"space-between"}
-          alignItems={"center"}
-        >
+        <Stack pt={'10px'} direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
           <Typography
             variant="body1"
-            sx={{ color: "text.subtitle" }}
+            sx={{ color: 'text.subtitle' }}
             fontSize={{
               xs: 10,
               sm: 14,

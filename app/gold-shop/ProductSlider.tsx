@@ -1,11 +1,11 @@
-"use client";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
-import "./styles.css";
-import { Navigation } from "swiper/modules";
-import GoldCard from "../Components/ProductCard/ProductCard";
-import { useEffect, useState } from "react";
+'use client';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import './styles.css';
+import { Navigation } from 'swiper/modules';
+import GoldCard from '../Components/ProductCard/ProductCard';
+import { useEffect, useState } from 'react';
 
 export default function ProductSlider() {
   const [isClient, setIsClient] = useState(false);
@@ -15,7 +15,7 @@ export default function ProductSlider() {
   }, [isClient, setIsClient]);
 
   if (!isClient) {
-    return <div style={{ height: "300px" }} />;
+    return <div style={{ height: '300px' }} />;
   }
 
   return (

@@ -1,19 +1,19 @@
-"use client";
-import { Stack, useMediaQuery, useTheme } from "@mui/material";
-import Typography from "@mui/material/Typography";
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
-import Container from "../Containers/Container/Container";
-import MobileWalletStatus from "./MobileWalletStatus";
-import ToggleEyeButton from "./ToggleEyeButton";
+'use client';
+import { Stack, useMediaQuery, useTheme } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
+import Container from '../Containers/Container/Container';
+import MobileWalletStatus from './MobileWalletStatus';
+import ToggleEyeButton from './ToggleEyeButton';
 interface Props {
-  type: "dashboard" | "wallet";
+  type: 'dashboard' | 'wallet';
 }
 export default function Wallet({ type }: Props) {
   const theme = useTheme();
 
-  const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
+  const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   const [visible, setVisible] = useState(false);
   return (
     <Container
@@ -23,7 +23,7 @@ export default function Wallet({ type }: Props) {
           sm: 386,
         },
         pb:
-          type === "wallet"
+          type === 'wallet'
             ? {
                 xs: 0,
                 sm: 4.5,
@@ -34,24 +34,20 @@ export default function Wallet({ type }: Props) {
           lg: 4,
         },
         borderColor: {
-          xs: "background.default",
-          sm: "background.paper",
+          xs: 'background.default',
+          sm: 'background.paper',
         },
       }}
     >
       {isDesktop && (
-        <Typography
-          variant="h6"
-          fontSize={22}
-          sx={{ color: "text.primary", mb: 4 }}
-        >
+        <Typography variant="h6" fontSize={22} sx={{ color: 'text.primary', mb: 4 }}>
           کیف پول شما
         </Typography>
       )}
 
       <Stack
         px={
-          type === "wallet"
+          type === 'wallet'
             ? {
                 xs: 1,
                 sm: 4.5,
@@ -62,49 +58,32 @@ export default function Wallet({ type }: Props) {
       >
         <Stack
           sx={{
-            height: "134px",
-            bgcolor: "background.paper",
-            width: "100%",
+            height: '134px',
+            bgcolor: 'background.paper',
+            width: '100%',
             borderRadius: 2.5,
           }}
         >
-          <Stack direction={"row"} justifyContent={"space-between"} p={2}>
-            {type === "dashboard" && <Stack></Stack>}
-            <Stack
-              direction={"column"}
-              gap={1}
-              alignItems={type === "wallet" ? "start" : "center"}
-            >
-              <Typography
-                variant="body2"
-                fontSize={12}
-                sx={{ color: "text.muted" }}
-              >
+          <Stack direction={'row'} justifyContent={'space-between'} p={2}>
+            {type === 'dashboard' && <Stack></Stack>}
+            <Stack direction={'column'} gap={1} alignItems={type === 'wallet' ? 'start' : 'center'}>
+              <Typography variant="body2" fontSize={12} sx={{ color: 'text.muted' }}>
                 ارزش کل دارایی
               </Typography>
-              <Stack
-                direction={"row"}
-                gap={0.5}
-                alignItems={"center"}
-                fontWeight={500}
-              >
-                <Typography
-                  variant="body1"
-                  fontSize={20}
-                  sx={{ color: "text.title" }}
-                >
-                  {visible ? "۰" : "***"}
+              <Stack direction={'row'} gap={0.5} alignItems={'center'} fontWeight={500}>
+                <Typography variant="body1" fontSize={20} sx={{ color: 'text.title' }}>
+                  {visible ? '۰' : '***'}
                 </Typography>
                 <Typography
                   variant="body1"
                   fontSize={14}
                   fontWeight={500}
-                  sx={{ color: "text.title" }}
+                  sx={{ color: 'text.title' }}
                 >
                   تومان
                 </Typography>
               </Stack>
-              {type === "wallet" && (
+              {type === 'wallet' && (
                 <Typography variant="body2" fontSize={10}>
                   ارزش دارایی مجموع دارایی طلا و دارایی نقدی شماست
                 </Typography>
@@ -116,78 +95,52 @@ export default function Wallet({ type }: Props) {
           </Stack>
           <MobileWalletStatus visible={visible} isDesktop={isDesktop} />
         </Stack>
-        {type === "wallet" && (
+        {type === 'wallet' && (
           <Stack
             mt={{
               xs: 10,
               sm: 14.5,
             }}
-            direction={"row"}
+            direction={'row'}
             gap={2}
           >
-            <Link href={"/dashboard/irt-transaction"} style={{ width: "100%" }}>
+            <Link href={'/dashboard/irt-transaction'} style={{ width: '100%' }}>
               <Stack
-                bgcolor={"background.paper"}
-                width={"100%"}
-                direction={"row"}
-                justifyContent={"space-between"}
-                alignItems={"center"}
-                borderRadius={"1.5rem"}
-                sx={{ borderEndEndRadius: "6px", borderStartEndRadius: "6px" }}
+                bgcolor={'background.paper'}
+                width={'100%'}
+                direction={'row'}
+                justifyContent={'space-between'}
+                alignItems={'center'}
+                borderRadius={'1.5rem'}
+                sx={{ borderEndEndRadius: '6px', borderStartEndRadius: '6px' }}
                 pl={0.2}
                 py={0.2}
               >
-                <Stack
-                  bgcolor={"background.default"}
-                  borderRadius={"50%"}
-                  p={1}
-                >
-                  <Image
-                    src={"/images/simple/deposit.svg"}
-                    alt=""
-                    width={30}
-                    height={30}
-                  />
+                <Stack bgcolor={'background.default'} borderRadius={'50%'} p={1}>
+                  <Image src={'/images/simple/deposit.svg'} alt="" width={30} height={30} />
                 </Stack>
-                <Typography
-                  variant="body2"
-                  fontSize={12}
-                  sx={{ color: "text.title" }}
-                >
+                <Typography variant="body2" fontSize={12} sx={{ color: 'text.title' }}>
                   واریز
                 </Typography>
                 <Stack></Stack>
               </Stack>
             </Link>
-            <Link href={"/dashboard/irt-transaction"} style={{ width: "100%" }}>
+            <Link href={'/dashboard/irt-transaction'} style={{ width: '100%' }}>
               <Stack
-                bgcolor={"background.paper"}
-                width={"100%"}
-                direction={"row"}
-                justifyContent={"space-between"}
-                alignItems={"center"}
-                borderRadius={"1.5rem"}
+                bgcolor={'background.paper'}
+                width={'100%'}
+                direction={'row'}
+                justifyContent={'space-between'}
+                alignItems={'center'}
+                borderRadius={'1.5rem'}
                 pl={0.2}
                 py={0.2}
-                sx={{ borderEndEndRadius: "6px", borderStartEndRadius: "6px" }}
+                sx={{ borderEndEndRadius: '6px', borderStartEndRadius: '6px' }}
               >
-                <Stack
-                  bgcolor={"background.default"}
-                  borderRadius={"50%"}
-                  p={1}
-                >
-                  <Image
-                    src={"/images/simple/withdraw.svg"}
-                    alt=""
-                    width={30}
-                    height={30}
-                  />
+                <Stack bgcolor={'background.default'} borderRadius={'50%'} p={1}>
+                  <Image src={'/images/simple/withdraw.svg'} alt="" width={30} height={30} />
                 </Stack>
-                <Typography
-                  variant="body2"
-                  fontSize={12}
-                  sx={{ color: "text.title" }}
-                >
+                <Typography variant="body2" fontSize={12} sx={{ color: 'text.title' }}>
                   برداشت
                 </Typography>
                 <Stack></Stack>

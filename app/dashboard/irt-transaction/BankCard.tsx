@@ -1,5 +1,5 @@
-"use client";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+'use client';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import {
   Box,
   Button,
@@ -11,37 +11,37 @@ import {
   Stack,
   SvgIcon,
   Typography,
-} from "@mui/material";
-import Image from "next/image";
-import * as React from "react";
-import AddCard from "../bank-card/AddCard";
+} from '@mui/material';
+import Image from 'next/image';
+import * as React from 'react';
+import AddCard from '../bank-card/AddCard';
 
 const names = [
   {
     id: 1,
-    icon: "/images/simple/mellat.svg",
-    bankName: "بانک ملت",
-    numberCard: "6104 3310 8629 2050",
+    icon: '/images/simple/mellat.svg',
+    bankName: 'بانک ملت',
+    numberCard: '6104 3310 8629 2050',
   },
 ];
 
 const CardItem = ({ item }: { item: (typeof names)[0] }) => (
   <Box
     sx={{
-      display: "flex",
-      alignItems: "center",
+      display: 'flex',
+      alignItems: 'center',
       gap: 1,
-      width: "100%",
+      width: '100%',
     }}
   >
-    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
       <Image src={item.icon} width={24} height={24} alt="" />
-      <Typography fontSize={12} sx={{ color: "text.muted" }}>
+      <Typography fontSize={12} sx={{ color: 'text.muted' }}>
         {item.bankName}
       </Typography>
     </Box>
 
-    <Typography fontSize={16} sx={{ color: "text.title", direction: "rtl" }}>
+    <Typography fontSize={16} sx={{ color: 'text.title', direction: 'rtl' }}>
       {item.numberCard}
     </Typography>
   </Box>
@@ -52,7 +52,7 @@ export default function CustomDropdown() {
   const [value, setValue] = React.useState<number | null>(1);
   const [openModal, setOpenModal] = React.useState(false);
   const selectedItem = names.find((item) => item.id === value);
-  const [cardValue, setCardValue] = React.useState("");
+  const [cardValue, setCardValue] = React.useState('');
   const handleSelect = (id: number) => {
     setValue(id);
     setOpen(false);
@@ -64,32 +64,32 @@ export default function CustomDropdown() {
         <ClickAwayListener onClickAway={() => setOpen(false)}>
           <FormControl
             sx={{
-              width: "100%",
-              position: "relative",
-              "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "background.paper",
+              width: '100%',
+              position: 'relative',
+              '& .MuiOutlinedInput-notchedOutline': {
+                borderColor: 'background.paper',
               },
 
-              "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "background.paper",
+              '&:hover .MuiOutlinedInput-notchedOutline': {
+                borderColor: 'background.paper',
               },
 
-              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "background.paper",
+              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                borderColor: 'background.paper',
               },
-              borderColor: "background.paper !imporant",
+              borderColor: 'background.paper !imporant',
             }}
           >
             <InputLabel
               shrink={open || !!value}
               sx={{
-                position: "absolute",
+                position: 'absolute',
                 right: 12,
-                bgcolor: "background.default",
+                bgcolor: 'background.default',
                 px: 1,
                 fontSize: 16,
-                color: "text.muted",
-                width: "fit-content",
+                color: 'text.muted',
+                width: 'fit-content',
               }}
             >
               انتخاب کارت بانکی
@@ -98,29 +98,25 @@ export default function CustomDropdown() {
             <Box
               onClick={() => setOpen((prev) => !prev)}
               sx={{
-                border: "1px solid",
-                borderRadius: "8px",
-                height: "56px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
+                border: '1px solid',
+                borderRadius: '8px',
+                height: '56px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
                 px: 1.5,
-                cursor: "pointer",
-                transition: "0.2s",
-                borderColor: "background.paper",
+                cursor: 'pointer',
+                transition: '0.2s',
+                borderColor: 'background.paper',
               }}
             >
-              {selectedItem ? (
-                <CardItem item={selectedItem} />
-              ) : (
-                <Stack></Stack>
-              )}
+              {selectedItem ? <CardItem item={selectedItem} /> : <Stack></Stack>}
 
               <KeyboardArrowDownIcon
                 style={{
-                  transform: open ? "rotate(180deg)" : "rotate(0deg)",
-                  transition: "0.2s",
-                  color: "text.muted",
+                  transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
+                  transition: '0.2s',
+                  color: 'text.muted',
                   zIndex: 2,
                 }}
               />
@@ -128,16 +124,16 @@ export default function CustomDropdown() {
 
             <Paper
               sx={{
-                position: "absolute",
-                top: "100%",
+                position: 'absolute',
+                top: '100%',
                 left: 0,
-                width: "98%",
+                width: '98%',
                 opacity: open ? 1 : 0,
-                transform: open ? "translateY(-10px)" : "translateY(-40px)",
-                pointerEvents: open ? "auto" : "none",
-                transition: "0.25s",
+                transform: open ? 'translateY(-10px)' : 'translateY(-40px)',
+                pointerEvents: open ? 'auto' : 'none',
+                transition: '0.25s',
                 zIndex: 10,
-                bgcolor: "background.default",
+                bgcolor: 'background.default',
                 borderRadius: 0,
                 mx: 0.5,
               }}
@@ -149,8 +145,8 @@ export default function CustomDropdown() {
                   sx={{
                     py: 2,
                     px: 2,
-                    "&.Mui-selected": {
-                      bgcolor: "background.default",
+                    '&.Mui-selected': {
+                      bgcolor: 'background.default',
                     },
                   }}
                 >
@@ -166,10 +162,10 @@ export default function CustomDropdown() {
           color="inherit"
           disableRipple
           sx={{
-            "&:hover": {
-              bgcolor: "background.default",
+            '&:hover': {
+              bgcolor: 'background.default',
             },
-            width: "fit-content",
+            width: 'fit-content',
             fontSize: {
               xs: 12,
               sm: 16,
@@ -249,12 +245,7 @@ export default function CustomDropdown() {
           افزودن کارت
         </Button>
       </Stack>
-      <AddCard
-        open={openModal}
-        setOpen={setOpenModal}
-        value={cardValue}
-        setValue={setCardValue}
-      />
+      <AddCard open={openModal} setOpen={setOpenModal} value={cardValue} setValue={setCardValue} />
     </>
   );
 }

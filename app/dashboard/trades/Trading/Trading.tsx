@@ -1,27 +1,21 @@
-"use client";
-import Card from "@/app/Components/Containers/Container/Container";
-import FilterToggleButton from "@/app/Components/FilterToggleButton/FilterToggleButton";
-import InputField from "@/app/Components/InputField/InputField";
-import { ToggleItemsType } from "@/app/core/Types";
-import {
-  Button,
-  Stack,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
-import { useState } from "react";
+'use client';
+import Card from '@/app/Components/Containers/Container/Container';
+import FilterToggleButton from '@/app/Components/FilterToggleButton/FilterToggleButton';
+import InputField from '@/app/Components/InputField/InputField';
+import { ToggleItemsType } from '@/app/core/Types';
+import { Button, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { useState } from 'react';
 
 const items: ToggleItemsType[] = [
-  { title: "خرید", value: "buy", id: 1 },
-  { title: "فروش", value: "sell", id: 2 },
+  { title: 'خرید', value: 'buy', id: 1 },
+  { title: 'فروش', value: 'sell', id: 2 },
 ];
 export default function Trading() {
-  const [price, setPrice] = useState("");
-  const [gold, setGold] = useState("");
+  const [price, setPrice] = useState('');
+  const [gold, setGold] = useState('');
   const [select, setSelect] = useState(items[0].value);
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
+  const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
 
   const handlePriceChange = (val: string) => {
     setPrice(val);
@@ -30,7 +24,7 @@ export default function Trading() {
     if (!isNaN(num)) {
       setGold(String(num / 17999000));
     } else {
-      setGold("");
+      setGold('');
     }
   };
 
@@ -41,7 +35,7 @@ export default function Trading() {
     if (!isNaN(num)) {
       setPrice(String(num * 17999000));
     } else {
-      setPrice("");
+      setPrice('');
     }
   };
   return (
@@ -73,33 +67,26 @@ export default function Trading() {
           },
         }}
       />
-      <Stack
-        gap={3.5}
-        flexDirection={select === "buy" ? "column" : "column-reverse"}
-      >
+      <Stack gap={3.5} flexDirection={select === 'buy' ? 'column' : 'column-reverse'}>
         <Stack>
           <InputField
-            placeholder={"ملبغ به تومان"}
-            title={"تومان"}
+            placeholder={'ملبغ به تومان'}
+            title={'تومان'}
             value={price}
             setValue={handlePriceChange}
           />
         </Stack>
         <Stack>
           <InputField
-            placeholder={"وزن طلا"}
-            title={"گرم"}
+            placeholder={'وزن طلا'}
+            title={'گرم'}
             value={gold}
             setValue={handleGoldChange}
           />
         </Stack>
       </Stack>
-      <Button
-        variant="contained"
-        color="primary"
-        sx={{ borderRadius: 2, fontSize: 16, py: 1.4 }}
-      >
-        {select === "buy" ? "خرید" : "فروش"}
+      <Button variant="contained" color="primary" sx={{ borderRadius: 2, fontSize: 16, py: 1.4 }}>
+        {select === 'buy' ? 'خرید' : 'فروش'}
       </Button>
     </Card>
   );

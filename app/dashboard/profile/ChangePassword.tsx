@@ -1,13 +1,13 @@
-"use client";
-import CustomModal from "@/app/Components/CustomModal/CustomModal";
-import Field from "@/app/login/Field";
-import { Close } from "@mui/icons-material";
-import { Button, IconButton, Stack, Typography } from "@mui/material";
-import { useState } from "react";
+'use client';
+import CustomModal from '@/app/Components/CustomModal/CustomModal';
+import Field from '@/app/login/Field';
+import { Close } from '@mui/icons-material';
+import { Button, IconButton, Stack, Typography } from '@mui/material';
+import { useState } from 'react';
 
 export default function ChangePassword() {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
   return (
     <>
       <Button
@@ -18,9 +18,9 @@ export default function ChangePassword() {
           fontWeight: 800,
           py: 0.5,
           px: 2,
-          borderRadius: "7px",
-          color: "black",
-          width: "fit-content",
+          borderRadius: '7px',
+          color: 'black',
+          width: 'fit-content',
           mt: 5,
         }}
         onClick={() => setOpen(true)}
@@ -28,11 +28,7 @@ export default function ChangePassword() {
         تنظیم یا تغییر رمز ورود
       </Button>
       <CustomModal open={open} setOpen={setOpen} modalStyle={{ py: 3, px: 2 }}>
-        <Stack
-          direction={"row"}
-          justifyContent={"space-between"}
-          alignItems={"center"}
-        >
+        <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
           <Typography variant="body1" fontSize={16}>
             فراموشی رمز عبور
           </Typography>
@@ -76,11 +72,11 @@ export default function ChangePassword() {
           sx={{
             py: 1.3,
             fontSize: 22,
-            width: "100%",
+            width: '100%',
             borderRadius: 2,
             mt: 6,
-            "&:hover": {
-              bgcolor: "primary.main",
+            '&:hover': {
+              bgcolor: 'primary.main',
             },
           }}
         >

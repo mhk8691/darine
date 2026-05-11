@@ -1,10 +1,10 @@
-import { Button } from "@mui/material";
+import { Button } from '@mui/material';
 interface Props {
   title: string;
-  isDisable?:boolean
-  handleSubmit?:() => Promise<void>
+  isDisable?: boolean;
+  handleSubmit?: () => Promise<void>;
 }
-export default function SubmitButton({ title ,handleSubmit,isDisable}: Props) {
+export default function SubmitButton({ title, handleSubmit, isDisable }: Props) {
   return (
     <Button
       variant="contained"
@@ -17,8 +17,8 @@ export default function SubmitButton({ title ,handleSubmit,isDisable}: Props) {
         },
         borderRadius: 2,
         mt: 3.5,
-        "&.Mui-disabled": {
-          bgcolor: "#393936",
+        '&.Mui-disabled': {
+          bgcolor: '#393936',
         },
       }}
       disableRipple

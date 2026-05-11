@@ -1,22 +1,22 @@
-"use client";
-import { Stack, Typography } from "@mui/material";
-import Link from "next/link";
-import { useState } from "react";
-import ActionButton from "../SubmitButton";
-import Field from "../Field";
+'use client';
+import { Stack, Typography } from '@mui/material';
+import Link from 'next/link';
+import { useState } from 'react';
+import ActionButton from '../SubmitButton';
+import Field from '../Field';
 
 export default function page() {
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState('');
   return (
     <Stack>
       <Typography
         variant="h6"
-        fontWeight={"500"}
+        fontWeight={'500'}
         fontSize={{
           xs: 16,
           md: 22,
         }}
-        sx={{ color: "text.title" }}
+        sx={{ color: 'text.title' }}
       >
         فراموشی رمز عبور
       </Typography>
@@ -26,16 +26,12 @@ export default function page() {
           xs: 12,
           sm: 16,
         }}
-        sx={{ color: "text.secondary", mt: 3 }}
+        sx={{ color: 'text.secondary', mt: 3 }}
       >
         شماره موبایل خود را وارد کنید
       </Typography>
 
-      <Field
-        value={phoneNumber}
-        setValue={setPhoneNumber}
-        label="شماره موبایل"
-      />
+      <Field value={phoneNumber} setValue={setPhoneNumber} label="شماره موبایل" />
       <Typography
         variant="body2"
         sx={{
@@ -43,7 +39,7 @@ export default function page() {
             xs: 4.5,
             md: 9,
           },
-          color: "text.muted",
+          color: 'text.muted',
         }}
         fontSize={{
           xs: 10,
@@ -51,18 +47,18 @@ export default function page() {
         }}
         fontWeight={500}
       >
-        ورود شما به منزله قبول‌{" "}
+        ورود شما به منزله قبول‌{' '}
         <Link
-          href={"/roules"}
+          href={'/roules'}
           style={{
-            color: "#0091F8",
+            color: '#0091F8',
           }}
         >
           قوانین و مقررات‌
-        </Link>{" "}
+        </Link>{' '}
         طلاسی می‌باشد.
       </Typography>
-      <ActionButton title={"ادامه"} />
+      <ActionButton title={'ادامه'} />
     </Stack>
   );
 }

@@ -1,20 +1,20 @@
 import { Grid, Stack, Typography } from '@mui/material';
 import Link from 'next/link';
-import React from 'react'
+import React from 'react';
 
 export const aboutLink = [
-  { title: "درباره‌ ما", link: "about-us" },
-  { title: "سوالات متداول", link: "faq" },
-  { title: "اپلیکیشن طلاسی", link: "application" },
-  { title: "قوانین و مقررات", link: "rules" },
+  { title: 'درباره‌ ما', link: 'about-us' },
+  { title: 'سوالات متداول', link: 'faq' },
+  { title: 'اپلیکیشن طلاسی', link: 'application' },
+  { title: 'قوانین و مقررات', link: 'rules' },
 ];
 export const contentLink = [
-  { title: "عیار طلا", link: "/" },
-  { title: "مظنه طلا", link: "/" },
-  { title: "استعلام کد طلا", link: "/" },
-  { title: "استعلام انگ طلای آب شده", link: "/" },
-  { title: "هر گرم طلا چند سوت است؟", link: "/" },
-  { title: "نمودار قیمت طلا در 10 سال گذشته", link: "/" },
+  { title: 'عیار طلا', link: '/' },
+  { title: 'مظنه طلا', link: '/' },
+  { title: 'استعلام کد طلا', link: '/' },
+  { title: 'استعلام انگ طلای آب شده', link: '/' },
+  { title: 'هر گرم طلا چند سوت است؟', link: '/' },
+  { title: 'نمودار قیمت طلا در 10 سال گذشته', link: '/' },
 ];
 
 export default function DesktopLinks() {
@@ -25,23 +25,23 @@ export default function DesktopLinks() {
         md: 6,
         xl: 4.5,
       }}
-      display={"flex"}
+      display={'flex'}
       justifyContent={{
-        xs: "center",
-        xl: "flex-start",
+        xs: 'center',
+        xl: 'flex-start',
       }}
     >
-      <Stack direction={"row"} gap={8}>
+      <Stack direction={'row'} gap={8}>
         <Stack gap={2}>
           <Typography
             variant="body1"
             fontSize={14}
             fontWeight={500}
-            sx={{ color: "text.secondary" }}
+            sx={{ color: 'text.secondary' }}
           >
             درباره طلاسی
           </Typography>
-          <Stack direction={"column"} gap={1.5}>
+          <Stack direction={'column'} gap={1.5}>
             {aboutLink.map((item) => (
               <Link href={`/${item.link}`} key={item.title}>
                 <Typography
@@ -49,7 +49,7 @@ export default function DesktopLinks() {
                   fontSize={14}
                   fontWeight={400}
                   key={item.link}
-                  sx={{ color: "text.secondary" }}
+                  sx={{ color: 'text.secondary' }}
                 >
                   {item.title}
                 </Typography>
@@ -62,11 +62,11 @@ export default function DesktopLinks() {
             variant="body1"
             fontSize={14}
             fontWeight={500}
-            sx={{ color: "text.secondary" }}
+            sx={{ color: 'text.secondary' }}
           >
             مطالب مفید
           </Typography>
-          <Stack direction={"column"} gap={1.5}>
+          <Stack direction={'column'} gap={1.5}>
             {contentLink.map((item) => (
               <Link href={item.link} key={item.title}>
                 <Typography
@@ -74,7 +74,7 @@ export default function DesktopLinks() {
                   fontSize={14}
                   fontWeight={400}
                   key={item.link}
-                  sx={{ color: "text.secondary" }}
+                  sx={{ color: 'text.secondary' }}
                 >
                   {item.title}
                 </Typography>

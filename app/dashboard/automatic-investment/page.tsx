@@ -1,29 +1,29 @@
-import Card from "@/app/Components/Containers/Container/Container";
-import OrderDetail from "@/app/Components/Tables/DetailTable/OrderDetail";
-import WalletStatus from "@/app/Components/Wallet/WalletStatus";
-import { ToggleItemsType } from "@/app/core/Types";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import { Button, Grid, Stack, Typography } from "@mui/material";
-import { Metadata } from "next";
-import Link from "next/link";
-import BackLink from "../BackLink";
-import EmptyTable from "./EmptyTable";
+import Card from '@/app/Components/Containers/Container/Container';
+import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
+import WalletStatus from '@/app/Components/Wallet/WalletHeader';
+import { ToggleItemsType } from '@/app/core/Types';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { Button, Grid, Stack, Typography } from '@mui/material';
+import { Metadata } from 'next';
+import Link from 'next/link';
+import BackLink from '../BackLink';
+import EmptyTable from './EmptyTable';
 export const metadata: Metadata = {
-  title: "پس انداز خودکار | دارینه",
-  description: "",
+  title: 'پس انداز خودکار | دارینه',
+  description: '',
 };
 const items: ToggleItemsType[] = [
   {
-    title: "کارت ها",
-    value: "cards",
+    title: 'کارت ها',
+    value: 'cards',
     id: 2,
-    emptyMessage: "کارتی برای شما به ثبت نرسیده است",
+    emptyMessage: 'کارتی برای شما به ثبت نرسیده است',
   },
   {
-    title: "واریز ها",
-    value: "deposits",
+    title: 'واریز ها',
+    value: 'deposits',
     id: 1,
-    emptyMessage: "واریزی برای شما به ثبت نرسیده است",
+    emptyMessage: 'واریزی برای شما به ثبت نرسیده است',
   },
 ];
 export default function page() {
@@ -38,7 +38,7 @@ export default function page() {
     >
       <BackLink title="پس انداز خودکار" />
       <Grid size={12}>
-        <WalletStatus />
+        <WalletHeader />
       </Grid>
       <Grid
         size={{
@@ -53,13 +53,13 @@ export default function page() {
       >
         <Card
           style={{
-            flexDirection: "column",
-            alignItems: "center",
+            flexDirection: 'column',
+            alignItems: 'center',
             gap: 5,
             pb: 8,
           }}
         >
-          <Link href={"/dashboard/bank-card"}>
+          <Link href={'/dashboard/bank-card'}>
             <Button
               disableRipple
               variant="contained"
@@ -67,30 +67,20 @@ export default function page() {
                 py: 1,
                 px: 2,
                 fontSize: 16,
-                fontWeight: "bold",
+                fontWeight: 'bold',
                 borderRadius: 2,
-                "&:hover": {
-                  bgcolor: "primary.main",
+                '&:hover': {
+                  bgcolor: 'primary.main',
                 },
               }}
             >
               افزودن کارت بانکی
             </Button>
           </Link>
-          <Stack
-            direction={"column"}
-            alignItems={"center"}
-            justifyContent={"center"}
-            gap={4}
-          >
+          <Stack direction={'column'} alignItems={'center'} justifyContent={'center'} gap={4}>
             <EmptyTable />
-            <Typography
-              variant="body2"
-              fontSize={12}
-              sx={{ color: "text.muted" }}
-            >
-              متاسفانه کارت‌های ثبت شده در پنل شما جزو بانک‌های پشتیبانی شده
-              نیست.
+            <Typography variant="body2" fontSize={12} sx={{ color: 'text.muted' }}>
+              متاسفانه کارت‌های ثبت شده در پنل شما جزو بانک‌های پشتیبانی شده نیست.
             </Typography>
           </Stack>
         </Card>
@@ -108,11 +98,11 @@ export default function page() {
       >
         <Card
           style={{
-            color: "#EF8011",
+            color: '#EF8011',
             pb: 5,
           }}
         >
-          <Stack direction={"row"} alignItems={"center"} gap={1}>
+          <Stack direction={'row'} alignItems={'center'} gap={1}>
             <InfoOutlinedIcon />
             <Typography
               variant="h6"
@@ -127,25 +117,20 @@ export default function page() {
           <Typography
             variant="body1"
             sx={{
-              color: "text.secondary",
-              mt: "10px",
+              color: 'text.secondary',
+              mt: '10px',
               fontSize: {
                 xs: 12,
                 md: 16,
               },
             }}
           >
-            در حال حاضر پس‌انداز خودکار فقط توسط بانک‌ کشاورزی و پارسیان و آینده
-            پشتیبانی می‌شود.
+            در حال حاضر پس‌انداز خودکار فقط توسط بانک‌ کشاورزی و پارسیان و آینده پشتیبانی می‌شود.
           </Typography>
         </Card>
       </Grid>
       <Grid size={12} order={3}>
-        <OrderDetail
-          type="chip"
-          title="لیست تراکنش‌‌های اخیر"
-          toggleItems={items}
-        />
+        <OrderDetail type="chip" title="لیست تراکنش‌‌های اخیر" toggleItems={items} />
       </Grid>
     </Grid>
   );

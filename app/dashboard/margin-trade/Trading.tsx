@@ -1,9 +1,9 @@
-"use client";
-import Card from "@/app/Components/Containers/Container/Container";
-import FilterToggleButton from "@/app/Components/FilterToggleButton/FilterToggleButton";
-import InputField from "@/app/Components/InputField/InputField";
-import { ToggleItemsType } from "@/app/core/Types";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+'use client';
+import Card from '@/app/Components/Containers/Container/Container';
+import FilterToggleButton from '@/app/Components/FilterToggleButton/FilterToggleButton';
+import InputField from '@/app/Components/InputField/InputField';
+import { ToggleItemsType } from '@/app/core/Types';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import {
   Box,
   Button,
@@ -17,59 +17,59 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
-} from "@mui/material";
-import Link from "next/link";
-import React, { useState } from "react";
+} from '@mui/material';
+import Link from 'next/link';
+import React, { useState } from 'react';
 
 const ltrTheme = createTheme({
-  direction: "ltr",
+  direction: 'ltr',
   palette: {
-    mode: "dark",
+    mode: 'dark',
     primary: {
-      light: "#FDE378",
-      main: "#FCD535",
+      light: '#FDE378',
+      main: '#FCD535',
     },
   },
 });
 const items: ToggleItemsType[] = [
-  { title: "با قیمت بازار", value: "store", id: 1 },
-  { title: "با تعیین قیمت", value: "self", id: 2 },
+  { title: 'با قیمت بازار', value: 'store', id: 1 },
+  { title: 'با تعیین قیمت', value: 'self', id: 2 },
 ];
 const marks = [
   {
     value: 1,
-    label: "۱X",
+    label: '۱X',
   },
 
   {
     value: 2,
-    label: "۲X",
+    label: '۲X',
   },
 
   {
     value: 3,
-    label: "۳X",
+    label: '۳X',
   },
 
   {
     value: 4,
-    label: "۴X",
+    label: '۴X',
   },
 
   {
     value: 5,
-    label: "۵X",
+    label: '۵X',
   },
 ];
 function valuetext(value: number) {
   return `${value}X`;
 }
 export default function Trading() {
-  const [price, setPrice] = useState("");
-  const [targetPrice, setTargetPrice] = useState("");
-  const [profitLimit, setProfitLimit] = useState("");
-  const [lossLimit, setLossLimit] = useState("");
-  const [gold, setGold] = useState("");
+  const [price, setPrice] = useState('');
+  const [targetPrice, setTargetPrice] = useState('');
+  const [profitLimit, setProfitLimit] = useState('');
+  const [lossLimit, setLossLimit] = useState('');
+  const [gold, setGold] = useState('');
   const [select, setSelect] = useState(items[0].value);
   const [checked, setChecked] = useState(false);
   const [multiplier, setMultiplier] = useState<number>(1);
@@ -77,8 +77,8 @@ export default function Trading() {
     setChecked(event.target.checked);
   };
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
-  const isDarkMode = theme.palette.mode === 'dark'
+  const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
+  const isDarkMode = theme.palette.mode === 'dark';
   const handlePriceChange = (val: string) => {
     setPrice(val);
 
@@ -86,7 +86,7 @@ export default function Trading() {
     if (!isNaN(num)) {
       setGold(String(num / 17999000));
     } else {
-      setGold("");
+      setGold('');
     }
   };
 
@@ -97,7 +97,7 @@ export default function Trading() {
     if (!isNaN(num)) {
       setPrice(String(num * 17999000));
     } else {
-      setPrice("");
+      setPrice('');
     }
   };
 
@@ -109,7 +109,7 @@ export default function Trading() {
           xs: 2.5,
           sm: 0,
         },
-        border: "none",
+        border: 'none',
         mt: {
           xs: 0,
           sm: 2.5,
@@ -117,25 +117,20 @@ export default function Trading() {
       }}
     >
       {!isDesktop && (
-        <Typography variant="body1" sx={{ mb: 0.5 }} fontWeight={"500"}>
+        <Typography variant="body1" sx={{ mb: 0.5 }} fontWeight={'500'}>
           فروش
         </Typography>
       )}
       <Stack mb={5}>
-        <Stack
-          direction={"row"}
-          justifyContent={"space-between"}
-          alignItems={"center"}
-          mb={2}
-        >
-          <Stack direction={"row"} alignItems={"center"} gap={1}>
+        <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} mb={2}>
+          <Stack direction={'row'} alignItems={'center'} gap={1}>
             <Typography
               variant="body2"
               fontSize={{
                 xs: 16,
                 sm: 20,
               }}
-              sx={{ color: "text.subtitle" }}
+              sx={{ color: 'text.subtitle' }}
             >
               ضریب سفارش
             </Typography>
@@ -162,24 +157,24 @@ export default function Trading() {
               max={5}
               min={1}
               sx={{
-                "& .MuiSlider-thumb.MuiSlider-thumbSizeMedium": {
-                  width: "30px",
-                  height: "30px",
+                '& .MuiSlider-thumb.MuiSlider-thumbSizeMedium': {
+                  width: '30px',
+                  height: '30px',
                 },
-                width: "100%",
-                "&.MuiSlider-root .MuiSlider-rail": {
+                width: '100%',
+                '&.MuiSlider-root .MuiSlider-rail': {
                   height: 12,
-                  color: `${isDarkMode ? "rgb(83, 83, 80)" : "#DDDDDD"} !important`,
-                  width: "100%",
+                  color: `${isDarkMode ? 'rgb(83, 83, 80)' : '#DDDDDD'} !important`,
+                  width: '100%',
                 },
-                "&.MuiSlider-root .MuiSlider-mark": {
+                '&.MuiSlider-root .MuiSlider-mark': {
                   height: 8,
                   width: 8,
-                  borderRadius: "50%",
-                  color: isDarkMode ? "background.default" : "#FFFFFF",
+                  borderRadius: '50%',
+                  color: isDarkMode ? 'background.default' : '#FFFFFF',
                 },
-                "&.MuiSlider-root .MuiSlider-mark.MuiSlider-markActive": {
-                  display: "none",
+                '&.MuiSlider-root .MuiSlider-mark.MuiSlider-markActive': {
+                  display: 'none',
                 },
               }}
             />
@@ -206,11 +201,11 @@ export default function Trading() {
         />
       </Stack>
       <Stack gap={3.5}>
-        {select === "self" && (
+        {select === 'self' && (
           <Stack>
             <InputField
-              placeholder={"قیمت هدف"}
-              title={"تومان"}
+              placeholder={'قیمت هدف'}
+              title={'تومان'}
               value={targetPrice}
               setValue={setTargetPrice}
             />
@@ -218,8 +213,8 @@ export default function Trading() {
         )}
         <Stack>
           <InputField
-            placeholder={"وزن طلا"}
-            title={"گرم"}
+            placeholder={'وزن طلا'}
+            title={'گرم'}
             value={gold}
             setValue={handleGoldChange}
           />
@@ -227,8 +222,8 @@ export default function Trading() {
 
         <Stack>
           <InputField
-            placeholder={"ملبغ کل"}
-            title={"تومان"}
+            placeholder={'ملبغ کل'}
+            title={'تومان'}
             value={price}
             setValue={handlePriceChange}
           />
@@ -238,7 +233,7 @@ export default function Trading() {
         label="تعیین حد سود و حد ضرر"
         sx={{
           mt: 2,
-          "&.MuiFormControlLabel-root .MuiTypography-root": {
+          '&.MuiFormControlLabel-root .MuiTypography-root': {
             fontSize: {
               xs: 12,
               sm: 16,
@@ -251,13 +246,13 @@ export default function Trading() {
             onChange={handleChange}
             disableRipple
             sx={{
-              color: "text.muted",
-              "&.Mui-checked": {
-                color: "primary.main",
+              color: 'text.muted',
+              '&.Mui-checked': {
+                color: 'primary.main',
               },
             }}
             slotProps={{
-              input: { "aria-label": "controlled" },
+              input: { 'aria-label': 'controlled' },
             }}
           />
         }
@@ -266,16 +261,16 @@ export default function Trading() {
         <Stack gap={3.5} mt={2}>
           <Stack>
             <InputField
-              placeholder={"حد سود سفارش"}
-              title={"تومان"}
+              placeholder={'حد سود سفارش'}
+              title={'تومان'}
               value={profitLimit}
               setValue={setProfitLimit}
             />
           </Stack>
           <Stack>
             <InputField
-              placeholder={"حد ضرر سفارش"}
-              title={"تومان"}
+              placeholder={'حد ضرر سفارش'}
+              title={'تومان'}
               value={lossLimit}
               setValue={setLossLimit}
             />
@@ -300,14 +295,14 @@ export default function Trading() {
       </Button>
       <Box
         component={Link}
-        href={"/dashboard/margin-rules"}
+        href={'/dashboard/margin-rules'}
         sx={{
           fontSize: {
             xs: 12,
             sm: 14,
           },
-          color: "#007AFF",
-          textDecoration: "underline",
+          color: '#007AFF',
+          textDecoration: 'underline',
         }}
       >
         قوانین و مقررات سفارش تعهدی

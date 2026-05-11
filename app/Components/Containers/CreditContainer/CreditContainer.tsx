@@ -1,10 +1,10 @@
-import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import { Stack } from "@mui/material";
-import Typography from "@mui/material/Typography";
-import { ReactNode } from "react";
-import Container from "../Container/Container";
-import GoldBuy from "./GoldBuy";
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { Stack } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import { ReactNode } from 'react';
+import Container from '../Container/Container';
+import GoldBuy from './GoldBuy';
 interface Props {
   title: ReactNode;
   banner: ReactNode;
@@ -45,11 +45,11 @@ export default function CreditContainer({
           sm: 1,
         },
         borderColor: {
-          sm: "background.paper",
+          sm: 'background.paper',
         },
       }}
     >
-      <Stack direction={"row"} alignItems={"center"} gap={1}>
+      <Stack direction={'row'} alignItems={'center'} gap={1}>
         {title}
         {icon}
       </Stack>
@@ -61,10 +61,10 @@ export default function CreditContainer({
           sm: descriptionSize || 18,
         }}
         sx={{
-          color: "text.secondary",
+          color: 'text.secondary',
           mt: 4.5,
           fontWeight: 500,
-          lineHeight: "25.6px",
+          lineHeight: '25.6px',
         }}
       >
         {description}
@@ -77,18 +77,13 @@ export default function CreditContainer({
               xs: 12,
               sm: 16,
             }}
-            sx={{ color: "text.secondary", mt: 3.5, mb: 0.5 }}
+            sx={{ color: 'text.secondary', mt: 3.5, mb: 0.5 }}
           >
-            {optionTitle || " مزایای این سرویس:"}
+            {optionTitle || ' مزایای این سرویس:'}
           </Typography>
-          <Stack direction={"column"} gap={1}>
+          <Stack direction={'column'} gap={1}>
             {options.map((option) => (
-              <Stack
-                direction={"row"}
-                alignItems={"center"}
-                gap={1}
-                key={option}
-              >
+              <Stack direction={'row'} alignItems={'center'} gap={1} key={option}>
                 <FiberManualRecordIcon sx={{ width: 7, height: 25 }} />
                 <Typography
                   variant="body2"
@@ -96,7 +91,7 @@ export default function CreditContainer({
                     xs: 12,
                     sm: 16,
                   }}
-                  sx={{ color: "text.secondary" }}
+                  sx={{ color: 'text.secondary' }}
                 >
                   {option}
                 </Typography>
@@ -108,25 +103,25 @@ export default function CreditContainer({
       {tooltip && (
         <>
           <Stack
-            direction={"row"}
-            alignItems={"center"}
+            direction={'row'}
+            alignItems={'center'}
             gap={1}
-            bgcolor={"background.paper"}
+            bgcolor={'background.paper'}
             borderRadius={2}
             p={2}
-            width={"fit-content"}
+            width={'fit-content'}
             mt={2}
           >
-            <InfoOutlinedIcon sx={{ color: "#C1884E" }} />
+            <InfoOutlinedIcon sx={{ color: '#C1884E' }} />
             <Typography
               variant="body2"
               fontSize={14}
-              sx={{ color: "text.secondary", fontWeight: 600 }}
+              sx={{ color: 'text.secondary', fontWeight: 600 }}
             >
               {tooltip}
             </Typography>
           </Stack>
-          <Stack direction={"row"} justifyContent={"center"} width={"100%"}>
+          <Stack direction={'row'} justifyContent={'center'} width={'100%'}>
             <GoldBuy />
           </Stack>
         </>

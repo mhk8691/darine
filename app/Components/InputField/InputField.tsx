@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { SxProps } from "@mui/material";
-import Divider from "@mui/material/Divider";
-import InputAdornment from "@mui/material/InputAdornment";
-import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
-import React, { ReactNode } from "react";
+import { SxProps } from '@mui/material';
+import Divider from '@mui/material/Divider';
+import InputAdornment from '@mui/material/InputAdornment';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import React, { ReactNode } from 'react';
 
 interface Props {
   placeholder: string;
@@ -27,17 +27,17 @@ export default function InputField({
   multiline = false,
 }: Props) {
   const formatNumber = (val: string) => {
-    if (!val) return "";
+    if (!val) return '';
 
     const safeVal = String(val);
 
-    const num = Number(safeVal.replace(/,/g, ""));
+    const num = Number(safeVal.replace(/,/g, ''));
     if (isNaN(num)) return safeVal;
 
     return num.toLocaleString();
   };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const raw = e.target.value.replace(/,/g, "");
+    const raw = e.target.value.replace(/,/g, '');
     setValue(raw);
   };
 
@@ -49,20 +49,18 @@ export default function InputField({
       multiline={multiline}
       minRows={multiline ? 2 : undefined}
       sx={{
-        direction: "ltr",
-        "& .MuiInputBase-input": {
+        direction: 'ltr',
+        '& .MuiInputBase-input': {
           py: 0,
-          minHeight: "56px",
-          textAlign: value ? "right" : "left",
-          fontSize: "16px",
+          minHeight: '56px',
+          textAlign: value ? 'right' : 'left',
+          fontSize: '16px',
         },
         ...style,
       }}
       slotProps={{
         input: {
-          startAdornment: icon && (
-            <InputAdornment position="start">{icon}</InputAdornment>
-          ),
+          startAdornment: icon && <InputAdornment position="start">{icon}</InputAdornment>,
           endAdornment: title && (
             <InputAdornment position="end">
               <Divider
@@ -70,13 +68,10 @@ export default function InputField({
                 flexItem
                 sx={{
                   mr: 1,
-                  borderColor: "background.paper",
+                  borderColor: 'background.paper',
                 }}
               />
-              <Typography
-                variant="h6"
-                sx={{ fontSize: 16, color: "text.primary" }}
-              >
+              <Typography variant="h6" sx={{ fontSize: 16, color: 'text.primary' }}>
                 {title}
               </Typography>
             </InputAdornment>

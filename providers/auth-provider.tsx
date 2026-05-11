@@ -1,8 +1,8 @@
 // providers/auth-provider.tsx
-"use client";
+'use client';
 
-import { createContext, useContext, useEffect, useState } from "react";
-import { getMe } from "@/lib/auth";
+import { createContext, useContext, useEffect, useState } from 'react';
+import { getMe } from '@/lib/auth';
 
 type User = {
   id: string;
@@ -30,11 +30,7 @@ export const AuthProvider = ({ children }: any) => {
     fetchUser();
   }, []);
 
-  return (
-    <AuthContext.Provider value={{ user, setUser, loading }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={{ user, setUser, loading }}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => useContext(AuthContext);

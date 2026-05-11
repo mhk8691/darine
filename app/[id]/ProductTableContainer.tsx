@@ -1,12 +1,12 @@
-"use client";
-import React from "react";
-import GoldTable from "../Components/Tables/ProductTable/GoldTable";
-import { useMediaQuery, useTheme } from "@mui/material";
-import LaptopTable from "../Components/Tables/ProductTable/LaptopTable";
+'use client';
+import React from 'react';
+import GoldTable from '../Components/Tables/ProductTable/GoldTable';
+import { useMediaQuery, useTheme } from '@mui/material';
+import LaptopTable from '../Components/Tables/ProductTable/LaptopTable';
 
 export default function ProductTableContainer() {
   const theme = useTheme();
-  const isUpMd = useMediaQuery(theme.breakpoints.up("md"));
+  const isUpMd = useMediaQuery(theme.breakpoints.up('md'));
   return (
     <>
       {isUpMd ? (
@@ -22,12 +22,12 @@ export default function ProductTableContainer() {
             },
           ]}
           heads={[
-            "نرخ فعلی",
-            "پایین‌ترین قیمت روز",
-            "بالاترین قیمت روز",
-            "تغییر ۱ روزه",
-            "تغییر ۱ ماهه",
-            "نمودار هفتگی",
+            'نرخ فعلی',
+            'پایین‌ترین قیمت روز',
+            'بالاترین قیمت روز',
+            'تغییر ۱ روزه',
+            'تغییر ۱ ماهه',
+            'نمودار هفتگی',
           ]}
         />
       ) : (
@@ -35,7 +35,7 @@ export default function ProductTableContainer() {
           isDetail={false}
           items={[
             {
-              typeGold: "طلای 18 عیار(گرم)",
+              typeGold: 'طلای 18 عیار(گرم)',
               currentRate: 17596000,
               minPriceDay: 17580000,
               maxPriceDay: 17831000,

@@ -1,13 +1,13 @@
-import { FaqItem, TableGoldDataType } from "@/app/core/Types";
-import { Container, Divider, Grid, Stack, Typography } from "@mui/material";
-import Image from "next/image";
-import Faq from "../../Faq/Faq";
-import ApplicationDownload from "./ApplicationDownload";
-import HowBuyGold from "./HowBuyGold";
-import MobileTable from "./MobileTable";
-import PriceAlertCard from "./PriceAlertCard";
-import TableContainer from "./TableContainer";
-import TradeCard from "./TradeCard";
+import { FaqItem, TableGoldDataType } from '@/app/core/Types';
+import { Container, Divider, Grid, Stack, Typography } from '@mui/material';
+import Image from 'next/image';
+import Faq from '../../Faq/Faq';
+import ApplicationDownload from './ApplicationDownload';
+import HowBuyGold from './HowBuyGold';
+import MobileTable from './MobileTable';
+import PriceAlertCard from './PriceAlertCard';
+import TableContainer from './TableContainer';
+import TradeCard from './TradeCard';
 
 interface Props {
   title: string;
@@ -19,58 +19,58 @@ export default function GoldContainer({ title, data, faqData }: Props) {
   return (
     <>
       <Container
-        maxWidth={"xl"}
+        maxWidth={'xl'}
         sx={{
           px: {
-            xs: "16px !important",
-            md: "24px !important",
-            lg: "40px !important",
+            xs: '16px !important',
+            md: '24px !important',
+            lg: '40px !important',
           },
           mt: 5,
         }}
       >
         <Stack
           direction={{
-            xs: "column",
-            sm: "row",
+            xs: 'column',
+            sm: 'row',
           }}
-          justifyContent={"space-between"}
+          justifyContent={'space-between'}
           alignItems={{
-            xs: "flex-start",
-            sm: "center",
+            xs: 'flex-start',
+            sm: 'center',
           }}
           spacing={{
             xs: 2,
             sm: 0,
           }}
         >
-          <Stack direction={"column"} gap={4}>
+          <Stack direction={'column'} gap={4}>
             <Stack
-              direction={"row"}
+              direction={'row'}
               gap={{
                 xs: 1,
                 md: 3.5,
               }}
-              alignItems={"center"}
+              alignItems={'center'}
             >
               <Stack
                 width={{
-                  xs: "40px",
-                  sm: "80px",
+                  xs: '40px',
+                  sm: '80px',
                 }}
                 height={{
-                  xs: "40px",
-                  sm: "80px",
+                  xs: '40px',
+                  sm: '80px',
                 }}
               >
                 <Image
                   alt=""
-                  src={"/images/gold.webp"}
+                  src={'/images/gold.webp'}
                   width={80}
                   height={80}
                   style={{
-                    width: "100%",
-                    height: "100%",
+                    width: '100%',
+                    height: '100%',
                   }}
                 />
               </Stack>
@@ -80,15 +80,15 @@ export default function GoldContainer({ title, data, faqData }: Props) {
                   xs: 16,
                   sm: 38,
                 }}
-                sx={{ color: "text.title" }}
+                sx={{ color: 'text.title' }}
               >
                 قیمت {title}
               </Typography>
             </Stack>
             <Stack
               display={{
-                xs: "none",
-                sm: "flex",
+                xs: 'none',
+                sm: 'flex',
               }}
             >
               <Typography
@@ -97,7 +97,7 @@ export default function GoldContainer({ title, data, faqData }: Props) {
                   xs: 14,
                   sm: 22,
                 }}
-                sx={{ color: "text.title" }}
+                sx={{ color: 'text.title' }}
               >
                 قیمت لحظه ای {title} امروز
               </Typography>
@@ -107,7 +107,7 @@ export default function GoldContainer({ title, data, faqData }: Props) {
                   xs: 10,
                   sm: 14,
                 }}
-                sx={{ color: "text.muted", mt: 2 }}
+                sx={{ color: 'text.muted', mt: 2 }}
               >
                 بازه‌ تغییرات قیمت ۲۴ ساعت تعیین شده است
               </Typography>
@@ -115,15 +115,15 @@ export default function GoldContainer({ title, data, faqData }: Props) {
           </Stack>
           <Stack
             width={{
-              xs: "100%",
-              sm: "fit-content",
+              xs: '100%',
+              sm: 'fit-content',
             }}
-            direction={"row"}
+            direction={'row'}
             gap={1}
-            alignItems={"center"}
+            alignItems={'center'}
             justifyContent={{
-              xs: "flex-end",
-              md: "center",
+              xs: 'flex-end',
+              md: 'center',
             }}
           >
             <PriceAlertCard />
@@ -131,8 +131,8 @@ export default function GoldContainer({ title, data, faqData }: Props) {
           </Stack>
           <Stack
             display={{
-              xs: "flex",
-              sm: "none",
+              xs: 'flex',
+              sm: 'none',
             }}
           >
             <Typography
@@ -141,7 +141,7 @@ export default function GoldContainer({ title, data, faqData }: Props) {
                 xs: 14,
                 sm: 22,
               }}
-              sx={{ color: "text.title" }}
+              sx={{ color: 'text.title' }}
             >
               قیمت لحظه ای {title} امروز
             </Typography>
@@ -151,7 +151,7 @@ export default function GoldContainer({ title, data, faqData }: Props) {
                 xs: 10,
                 sm: 14,
               }}
-              sx={{ color: "text.muted", mt: 2 }}
+              sx={{ color: 'text.muted', mt: 2 }}
             >
               بازه‌ تغییرات قیمت ۲۴ ساعت تعیین شده است
             </Typography>
@@ -175,7 +175,7 @@ export default function GoldContainer({ title, data, faqData }: Props) {
                     md: 22,
                   }}
                   sx={{
-                    color: "text.title",
+                    color: 'text.title',
                     mb: {
                       xs: 1.5,
                       md: 3,
@@ -188,7 +188,7 @@ export default function GoldContainer({ title, data, faqData }: Props) {
               <TableContainer data={item.data} />
             </Grid>
           ))}
-          <Grid size={12} container alignItems={"stretch"} height={"100%"}>
+          <Grid size={12} container alignItems={'stretch'} height={'100%'}>
             <Grid
               size={{
                 xs: 12,

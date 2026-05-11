@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
-import L from "leaflet";
-import "leaflet/dist/leaflet.css";
-import Button from "@mui/material/Button";
+import { useState, useEffect } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import Button from '@mui/material/Button';
 
 type Position = {
   lat: number;
@@ -10,7 +10,7 @@ type Position = {
 };
 
 const customIcon = L.divIcon({
-  className: "",
+  className: '',
   html: `
     <div style="
       width: 20px;
@@ -50,18 +50,14 @@ export default function Map() {
         });
       },
       () => {
-        alert("اجازه لوکیشن داده نشد ❌");
+        alert('اجازه لوکیشن داده نشد ❌');
       },
     );
   };
 
   return (
     <div>
-      <MapContainer
-        center={defaultCenter}
-        zoom={13}
-        style={{ height: "258px", width: "100%" }}
-      >
+      <MapContainer center={defaultCenter} zoom={13} style={{ height: '258px', width: '100%' }}>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
         <MapController position={position} />
@@ -78,7 +74,7 @@ export default function Map() {
         color="inherit"
         size="small"
         onClick={getUserLocation}
-        sx={{ mt: 2 ,borderRadius:2}}
+        sx={{ mt: 2, borderRadius: 2 }}
       >
         مکان فعلی من
       </Button>

@@ -1,15 +1,14 @@
-import InfoContainer from "@/app/Components/Containers/InfoContainer/InfoContainer";
-import { ActionButtonType } from "@/app/core/Types";
-import { Metadata } from "next";
+import InfoContainer from '@/app/Components/Containers/InfoContainer/InfoContainer';
+import { ActionButtonType } from '@/app/core/Types';
+import { Metadata } from 'next';
 export const metadata: Metadata = {
-  title: "خرید اقساطی طلا | دارینه",
-  description: "",
+  title: 'خرید اقساطی طلا | دارینه',
+  description: '',
 };
 const items: ActionButtonType[] = [
-  
   {
-    title: "خرید با اسنپ پی",
-    link: "/dashboard/credit-snapppay",
+    title: 'خرید با اسنپ پی',
+    link: '/dashboard/credit-snapppay',
     icon: (
       <svg
         width="38"
@@ -32,8 +31,8 @@ const items: ActionButtonType[] = [
     ),
   },
   {
-    title: "خرید با از کی وام",
-    link: "/dashboard/credit-azki",
+    title: 'خرید با از کی وام',
+    link: '/dashboard/credit-azki',
     icon: (
       <svg
         width="38"
@@ -99,13 +98,13 @@ const items: ActionButtonType[] = [
     ),
   },
   {
-    title: "خرید با نسیبا",
-    link: "/dashboard/credit-nasiba",
-    icon: "/images/simple/nasibaMenu.webp",
+    title: 'خرید با نسیبا',
+    link: '/dashboard/credit-nasiba',
+    icon: '/images/simple/nasibaMenu.webp',
   },
   {
-    title: "خرید با فیروزه",
-    link: "/dashboard/credit-firouzeh",
+    title: 'خرید با فیروزه',
+    link: '/dashboard/credit-firouzeh',
     icon: (
       <svg
         width="38"
@@ -154,30 +153,19 @@ const items: ActionButtonType[] = [
         </g>
         <defs>
           <clipPath id="clip0_14813_68153">
-            <rect
-              width="20.8421"
-              height="22"
-              fill="white"
-              transform="translate(0 2.67578)"
-            ></rect>
+            <rect width="20.8421" height="22" fill="white" transform="translate(0 2.67578)"></rect>
           </clipPath>
         </defs>
       </svg>
     ),
   },
   {
-    title: "خرید با کمانلند",
-    link: "/dashboard/credit-kamanlend",
-    icon: "/images/simple/kamanMenu.webp",
+    title: 'خرید با کمانلند',
+    link: '/dashboard/credit-kamanlend',
+    icon: '/images/simple/kamanMenu.webp',
   },
 ];
 
 export default function page() {
-  return (
-    <InfoContainer
-      title="خرید اقساطی طلا"
-      items={items}
-      image="/images/menuDark.webp"
-    />
-  );
+  return <InfoContainer title="خرید اقساطی طلا" items={items} image="/images/menuDark.webp" />;
 }

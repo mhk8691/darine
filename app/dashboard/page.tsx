@@ -1,11 +1,11 @@
-import { Grid } from "@mui/material";
-import { Metadata } from "next";
-import ChartGold from "../Components/Chart/ChartGold";
-import Wallet from "../Components/Wallet/Wallet";
-import Dashboard from "./Dashboard";
+import { Grid } from '@mui/material';
+import { Metadata } from 'next';
+import ChartGold from '../Components/Chart/ChartGold';
+import Wallet from '../Components/Wallet/Wallet';
+import Dashboard from './Dashboard';
 export const metadata: Metadata = {
-  title: "داشبورد | دارینه",
-  description: "",
+  title: 'داشبورد | دارینه',
+  description: '',
 };
 export default function page() {
   return (

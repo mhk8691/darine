@@ -1,15 +1,15 @@
-import { Metadata } from "next";
-import BackLink from "../BackLink";
-import { ActionButtonType } from "@/app/core/Types";
-import InfoContainer from "@/app/Components/Containers/InfoContainer/InfoContainer";
+import { Metadata } from 'next';
+import BackLink from '../BackLink';
+import { ActionButtonType } from '@/app/core/Types';
+import InfoContainer from '@/app/Components/Containers/InfoContainer/InfoContainer';
 export const metadata: Metadata = {
-  title: "دریافت اعتبار | دارینه",
-  description: "",
+  title: 'دریافت اعتبار | دارینه',
+  description: '',
 };
 const items: ActionButtonType[] = [
   {
-    title: "اعتبار خرید از ازکی وام",
-    link: "/dashboard/loan-azki",
+    title: 'اعتبار خرید از ازکی وام',
+    link: '/dashboard/loan-azki',
     icon: (
       <svg
         width="33"
@@ -66,21 +66,16 @@ const items: ActionButtonType[] = [
         </g>
         <defs>
           <clipPath id="clip0_6208_91298">
-            <rect
-              width="31"
-              height="31"
-              fill="white"
-              transform="translate(2 8.03711)"
-            ></rect>
+            <rect width="31" height="31" fill="white" transform="translate(2 8.03711)"></rect>
           </clipPath>
         </defs>
       </svg>
     ),
   },
   {
-    title: "اعتبار خرید از دیجی پی",
-    link: "/dashboard/loan-digi",
-    icon: "/images/simple/loanDigi.svg",
+    title: 'اعتبار خرید از دیجی پی',
+    link: '/dashboard/loan-digi',
+    icon: '/images/simple/loanDigi.svg',
   },
 ];
 

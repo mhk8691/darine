@@ -1,31 +1,27 @@
-"use client";
+'use client';
 
-import { Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { useRouter } from "next/navigation";
-import { ArrowLeftIcon } from "../Components/CustomIcons/CustomIcons";
+import { Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { useRouter } from 'next/navigation';
+import { ArrowLeftIcon } from '../Components/CustomIcons/CustomIcons';
 
 export default function BackLink({ title }: { title: string }) {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const router = useRouter();
-  if(!isMobile) return null
+  if (!isMobile) return null;
   return (
     <Stack
-      direction={"row"}
+      direction={'row'}
       gap={1}
-      alignItems={"center"}
-      component={"div"}
+      alignItems={'center'}
+      component={'div'}
       onClick={() => router.back()}
       sx={{
-        cursor:'pointer'
+        cursor: 'pointer',
       }}
     >
-      <ArrowLeftIcon/>
-      <Typography
-        variant="body1"
-        fontWeight={600}
-        sx={{ color: "text.title", mb: 0.5 }}
-      >
+      <ArrowLeftIcon />
+      <Typography variant="body1" fontWeight={600} sx={{ color: 'text.title', mb: 0.5 }}>
         {title}
       </Typography>
     </Stack>

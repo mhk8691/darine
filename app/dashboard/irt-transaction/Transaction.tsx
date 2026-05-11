@@ -1,21 +1,17 @@
-"use client";
-import Card from "@/app/Components/Containers/Container/Container";
-import CustomTabs from "@/app/Components/Tabs/CustomTabs";
-import Typography from "@mui/material/Typography";
-import { Dispatch, ReactNode, SetStateAction } from "react";
-import Deposit from "./Deposit";
-import Withdraw from "./Withdraw";
-import { useMediaQuery, useTheme } from "@mui/material";
-const tabs = [{ title: "واریز" }, { title: "برداشت" }];
+'use client';
+import Card from '@/app/Components/Containers/Container/Container';
+import CustomTabs from '@/app/Components/Tabs/CustomTabs';
+import Typography from '@mui/material/Typography';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
+import Deposit from './Deposit';
+import Withdraw from './Withdraw';
+import { useMediaQuery, useTheme } from '@mui/material';
+const tabs = [{ title: 'واریز' }, { title: 'برداشت' }];
 const children: ReactNode[] = [<Deposit key={1} />, <Withdraw key={2} />];
-export default function Transaction({
-  setValue,
-}: {
-  setValue: Dispatch<SetStateAction<number>>;
-}) {
+export default function Transaction({ setValue }: { setValue: Dispatch<SetStateAction<number>> }) {
   const theme = useTheme();
 
-  const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
+  const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   return (
     <Card
       style={{
@@ -34,7 +30,7 @@ export default function Transaction({
       <CustomTabs
         tabList={tabs}
         setCustomValue={setValue}
-        tabsStyle={{ alignItems: "center", justifyContent: "center" }}
+        tabsStyle={{ alignItems: 'center', justifyContent: 'center' }}
       >
         {children}
       </CustomTabs>

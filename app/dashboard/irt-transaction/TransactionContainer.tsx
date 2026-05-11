@@ -1,9 +1,9 @@
-"use client";
-import Container from "@/app/Components/Containers/Container/Container";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import { Box, Grid, Stack, Typography } from "@mui/material";
-import Transaction from "./Transaction";
-import { useState } from "react";
+'use client';
+import Container from '@/app/Components/Containers/Container/Container';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { Box, Grid, Stack, Typography } from '@mui/material';
+import Transaction from './Transaction';
+import { useState } from 'react';
 
 export default function TransactionContainer() {
   const [value, setValue] = useState(0);
@@ -35,7 +35,7 @@ export default function TransactionContainer() {
       >
         <Container
           style={{
-            color: "#EF8011",
+            color: '#EF8011',
             px: {
               xs: 2,
               sm: 4,
@@ -46,7 +46,7 @@ export default function TransactionContainer() {
             },
           }}
         >
-          <Stack direction={"row"} alignItems={"center"} gap={1}>
+          <Stack direction={'row'} alignItems={'center'} gap={1}>
             <InfoOutlinedIcon />
             <Typography
               variant="h6"
@@ -65,22 +65,21 @@ export default function TransactionContainer() {
                 xs: 12,
                 md: 16,
               }}
-              sx={{ color: "text.secondary", mt: "10px" }}
+              sx={{ color: 'text.secondary', mt: '10px' }}
             >
-              واریز ریالی فقط از حساب بانکی به نام خودتان امکان‌پذیر است. در غیر
-              این صورت، مبلغ در حالت انتظار قرار می‌گیرد و پس از پیگیری شما، طی
-              ۳ روز کاری به حساب شما باز می‌گردد.
+              واریز ریالی فقط از حساب بانکی به نام خودتان امکان‌پذیر است. در غیر این صورت، مبلغ در
+              حالت انتظار قرار می‌گیرد و پس از پیگیری شما، طی ۳ روز کاری به حساب شما باز می‌گردد.
             </Typography>
           ) : (
-            <Box component={"ul"} px={3}>
+            <Box component={'ul'} px={3}>
               <Typography
                 variant="body1"
                 fontSize={{
                   xs: 12,
                   md: 16,
                 }}
-                component={"li"}
-                sx={{ color: "text.secondary", mt: "10px" }}
+                component={'li'}
+                sx={{ color: 'text.secondary', mt: '10px' }}
               >
                 برداشت ریالی فقط به کارت‌های ثبت شده امکان‌پذیر است.
               </Typography>
@@ -90,12 +89,11 @@ export default function TransactionContainer() {
                   xs: 12,
                   md: 16,
                 }}
-                component={"li"}
-                sx={{ color: "text.secondary", mt: "10px" }}
+                component={'li'}
+                sx={{ color: 'text.secondary', mt: '10px' }}
               >
-                کاربر گرامی به دلیل شرایط پیش آمده و محدودیت اعلامی از سمت بانک
-                مرکزی، سامانه پایا به یک سیکل در روز (ساعت 15) کاهش یافته و
-                تسویه برداشت ها ممکن است زمانبر شود .
+                کاربر گرامی به دلیل شرایط پیش آمده و محدودیت اعلامی از سمت بانک مرکزی، سامانه پایا
+                به یک سیکل در روز (ساعت 15) کاهش یافته و تسویه برداشت ها ممکن است زمانبر شود .
               </Typography>
             </Box>
           )}

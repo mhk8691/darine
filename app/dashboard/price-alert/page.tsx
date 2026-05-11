@@ -1,13 +1,13 @@
-import OrderDetail from "@/app/Components/Tables/DetailTable/OrderDetail";
-import WalletStatus from "@/app/Components/Wallet/WalletStatus";
-import { Box, Grid } from "@mui/material";
-import { Metadata } from "next";
-import ChartContainer from "./ChartContainer";
-import PriceAlert from "./PriceAlert";
-import BackLink from "../BackLink";
+import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
+import WalletStatus from '@/app/Components/Wallet/WalletHeader';
+import { Box, Grid } from '@mui/material';
+import { Metadata } from 'next';
+import ChartContainer from './ChartContainer';
+import PriceAlert from './PriceAlert';
+import BackLink from '../BackLink';
 export const metadata: Metadata = {
-  title: "آلارم قیمت | دارینه",
-  description: "",
+  title: 'آلارم قیمت | دارینه',
+  description: '',
 };
 export default function page() {
   return (
@@ -18,27 +18,27 @@ export default function page() {
         sm: 1,
         lg: 3,
       }}
-      display={"flex"}
+      display={'flex'}
     >
       <BackLink title="آلارم قیمت" />
 
       <Grid
         size={12}
         display={{
-          xs: "none",
-          sm: "block",
+          xs: 'none',
+          sm: 'block',
         }}
       >
-        <WalletStatus />
+        <WalletHeader />
       </Grid>
       <Grid
         size={{
           xs: 12,
           md: 4.9,
         }}
-        height={"100%"}
+        height={'100%'}
       >
-        <Box sx={{ height: "100%" }}>
+        <Box sx={{ height: '100%' }}>
           <PriceAlert />
         </Box>
       </Grid>

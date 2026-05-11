@@ -1,35 +1,31 @@
-'use client'
-import React, { ReactNode, useState } from 'react'
-import Field from '../Field'
-import ActionButton from '../SubmitButton'
-import { useRouter } from 'next/navigation'
-import { loginOtp } from '@/lib/auth'
+'use client';
+import React, { ReactNode, useState } from 'react';
+import Field from '../Field';
+import ActionButton from '../SubmitButton';
+import { useRouter } from 'next/navigation';
+import { loginOtp } from '@/lib/auth';
 
-interface Props{
-    children:ReactNode
+interface Props {
+  children: ReactNode;
 }
 
-export default function LoginOtpForm({children}:Props) {
-    const router = useRouter()
-      const [phoneNumber, setPhoneNumber] = useState("");
-      const handleLogin = async () => {
+export default function LoginOtpForm({ children }: Props) {
+  const router = useRouter();
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const handleLogin = async () => {
     try {
       await loginOtp(phoneNumber);
-      router.push("/dashboard");
+      router.push('/dashboard');
     } catch (err) {
       console.log(err);
     }
   };
   return (
     <>
-      <Field
-        value={phoneNumber}
-        setValue={setPhoneNumber}
-        label="شماره موبایل"
-      />
-    
+      <Field value={phoneNumber} setValue={setPhoneNumber} label="شماره موبایل" />
+
       {children}
-      <ActionButton title={"ادامه"}  isDisable={false} handleSubmit={handleLogin} />
+      <ActionButton title={'ادامه'} isDisable={false} handleSubmit={handleLogin} />
     </>
-  )
+  );
 }

@@ -1,8 +1,8 @@
-"use client";
-import { keyframes } from "@emotion/react";
-import { Box } from "@mui/material";
+'use client';
+import { keyframes } from '@emotion/react';
+import { Box } from '@mui/material';
 
-type CircleType = "green" | "red";
+type CircleType = 'green' | 'red';
 
 const pulse = (colorDark: string, colorLight: string) => keyframes`
   0% {
@@ -21,19 +21,16 @@ const pulse = (colorDark: string, colorLight: string) => keyframes`
   }
 `;
 
-const colors: Record<
-  CircleType,
-  { main: string; dark: string; light: string }
-> = {
+const colors: Record<CircleType, { main: string; dark: string; light: string }> = {
   green: {
-    main: "#2ECC71",
-    dark: "#1B5E20",
-    light: "#66BB6A",
+    main: '#2ECC71',
+    dark: '#1B5E20',
+    light: '#66BB6A',
   },
   red: {
-    main: "#E74C3C",
-    dark: "#5C1A16",
-    light: "#F1948A",
+    main: '#E74C3C',
+    dark: '#5C1A16',
+    light: '#F1948A',
   },
 };
 
@@ -41,20 +38,18 @@ interface CircleAnimationProps {
   type?: CircleType;
 }
 
-export default function CircleAnimation({
-  type = "green",
-}: CircleAnimationProps) {
+export default function CircleAnimation({ type = 'green' }: CircleAnimationProps) {
   const theme = colors[type];
 
   return (
     <Box
       sx={{
-        position: "relative",
+        position: 'relative',
         width: 12,
         height: 12,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
       <Box
@@ -62,7 +57,7 @@ export default function CircleAnimation({
           width: 12,
           height: 12,
           bgcolor: theme.main,
-          borderRadius: "50%",
+          borderRadius: '50%',
           zIndex: 2,
         }}
       />
@@ -70,10 +65,10 @@ export default function CircleAnimation({
       {/* رینگ پالس */}
       <Box
         sx={{
-          position: "absolute",
+          position: 'absolute',
           width: 16,
           height: 16,
-          borderRadius: "50%",
+          borderRadius: '50%',
           bgcolor: theme.dark,
           animation: `${pulse(theme.dark, theme.light)} 2.5s infinite ease-out`,
         }}

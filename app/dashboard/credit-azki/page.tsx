@@ -1,11 +1,11 @@
-import CreditContainer from "@/app/Components/Containers/CreditContainer/CreditContainer";
-import GoldenUnderline from "@/app/Components/Containers/CreditContainer/GoldenUnderline";
-import { AzkiIcon } from "@/app/Components/CustomIcons/CustomIcons";
-import { Box, Grid, Typography } from "@mui/material";
-import { Metadata } from "next";
+import CreditContainer from '@/app/Components/Containers/CreditContainer/CreditContainer';
+import GoldenUnderline from '@/app/Components/Containers/CreditContainer/GoldenUnderline';
+import { AzkiIcon } from '@/app/Components/CustomIcons/CustomIcons';
+import { Box, Grid, Typography } from '@mui/material';
+import { Metadata } from 'next';
 export const metadata: Metadata = {
-  title: "خرید اعتباری با ازکی وام | دارینه",
-  description: "",
+  title: 'خرید اعتباری با ازکی وام | دارینه',
+  description: '',
 };
 export default function page() {
   return (
@@ -22,18 +22,18 @@ export default function page() {
               }}
             >
               خرید با اعتبار بانکی
-              <Box component={"span"} color={"#007DFA"}>
-                {" "}
+              <Box component={'span'} color={'#007DFA'}>
+                {' '}
                 ازکی وام
               </Box>
             </Typography>
           }
           options={[
-            "سقف وام تا 100 میلیون تومان",
-            "بدون نیاز به وثیقه، چک یا ضامن",
-            "بازپرداخت اقساطی ۱۲ تا ۱۸ ماهه",
-            "خرید امن و مستقیم از طلاسی",
-            "میزان طلای خریداری شما تا پایان بازپرداخت اقساط ، قابل برداشت نخواهد بود.",
+            'سقف وام تا 100 میلیون تومان',
+            'بدون نیاز به وثیقه، چک یا ضامن',
+            'بازپرداخت اقساطی ۱۲ تا ۱۸ ماهه',
+            'خرید امن و مستقیم از طلاسی',
+            'میزان طلای خریداری شما تا پایان بازپرداخت اقساط ، قابل برداشت نخواهد بود.',
           ]}
           icon={<AzkiIcon />}
           banner={
@@ -45,13 +45,13 @@ export default function page() {
               }}
               sx={{
                 wordSpacing: 4,
-                flexDirection: "row",
-                alignItems: "center",
+                flexDirection: 'row',
+                alignItems: 'center',
                 mt: 3,
               }}
             >
               خرید <GoldenUnderline>اقساطـــی</GoldenUnderline> طلا | بدون ضامن،
-              {"  "} بدون <GoldenUnderline> چک </GoldenUnderline>
+              {'  '} بدون <GoldenUnderline> چک </GoldenUnderline>
             </Typography>
           }
         />

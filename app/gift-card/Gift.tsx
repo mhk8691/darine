@@ -1,34 +1,24 @@
-"use client";
-import { Grid, Stack, Typography, useTheme } from "@mui/material";
-import DoneIcon from "@mui/icons-material/Done";
-import { GiftIcon } from "../Components/CustomIcons/CustomIcons";
+'use client';
+import { Grid, Stack, Typography, useTheme } from '@mui/material';
+import DoneIcon from '@mui/icons-material/Done';
+import { GiftIcon } from '../Components/CustomIcons/CustomIcons';
 const options = [
   {
-    title: "همکاران",
+    title: 'همکاران',
     list: [
-      "پاداش عملکرد",
-      "هدایای مناسبتی (نوروز، یلدا، تولد)",
-      "رفاهیات سازمانی",
-      "قدردانی و سپاس‌گزاری",
+      'پاداش عملکرد',
+      'هدایای مناسبتی (نوروز، یلدا، تولد)',
+      'رفاهیات سازمانی',
+      'قدردانی و سپاس‌گزاری',
     ],
   },
   {
-    title: "مشتریان",
-    list: [
-      "جایزه مسابقات",
-      "پاداش باشگاه مشتریان",
-      "قرعه‌کشی",
-      "مشتریان وفادار",
-    ],
+    title: 'مشتریان',
+    list: ['جایزه مسابقات', 'پاداش باشگاه مشتریان', 'قرعه‌کشی', 'مشتریان وفادار'],
   },
   {
-    title: "شرکای تجاری",
-    list: [
-      "هدایای سازمانی مناسبتی",
-      "قدردانی و سپاس‌گزاری",
-      "بازاریابی",
-      "تقویت روابط کاری",
-    ],
+    title: 'شرکای تجاری',
+    list: ['هدایای سازمانی مناسبتی', 'قدردانی و سپاس‌گزاری', 'بازاریابی', 'تقویت روابط کاری'],
   },
 ];
 
@@ -50,8 +40,8 @@ export default function Gift() {
             xs: 16,
             sm: 30,
           }}
-          fontWeight={"700"}
-          sx={{ color: "text.title" }}
+          fontWeight={'700'}
+          sx={{ color: 'text.title' }}
         >
           کارت هدیه دارینه را به این افراد هدیه دهید...
         </Typography>
@@ -63,11 +53,11 @@ export default function Gift() {
             lg: 2.5,
           }}
           display={{
-            xs: "none",
-            lg: "flex",
+            xs: 'none',
+            lg: 'flex',
           }}
         >
-          <GiftIcon/>
+          <GiftIcon />
         </Grid>
         <Grid
           size={{
@@ -80,7 +70,7 @@ export default function Gift() {
             sm: 5,
             md: 10,
           }}
-          alignItems={"center"}
+          alignItems={'center'}
         >
           {options.map((option) => (
             <Grid
@@ -89,9 +79,9 @@ export default function Gift() {
                 xs: 6,
                 md: 4,
               }}
-              bgcolor={isDarkMode ? "background.paper" : "background.default"}
+              bgcolor={isDarkMode ? 'background.paper' : 'background.default'}
               border={1}
-              borderColor={"background.border"}
+              borderColor={'background.border'}
               py={3}
               px={2}
               borderRadius={2}
@@ -104,18 +94,13 @@ export default function Gift() {
                   sm: 22,
                 }}
                 fontWeight={500}
-                sx={{ color: "text.title" }}
+                sx={{ color: 'text.title' }}
               >
                 {option.title}
               </Typography>
-              <Stack direction={"column"} gap={1} mt={2.5}>
+              <Stack direction={'column'} gap={1} mt={2.5}>
                 {option.list.map((item) => (
-                  <Stack
-                    key={item}
-                    direction={"row"}
-                    gap={0.5}
-                    alignItems={"center"}
-                  >
+                  <Stack key={item} direction={'row'} gap={0.5} alignItems={'center'}>
                     <DoneIcon fontSize="small" color="primary" />
                     <Typography
                       variant="body2"
@@ -124,7 +109,7 @@ export default function Gift() {
                         sm: 16,
                       }}
                       fontWeight={500}
-                      sx={{ color: "text.secondary" }}
+                      sx={{ color: 'text.secondary' }}
                     >
                       {item}
                     </Typography>

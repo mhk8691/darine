@@ -1,18 +1,9 @@
-"use client";
+'use client';
 
-import {
-  MinusSquareIcon,
-  PlusSquareleIcon,
-} from "@/app/Components/CustomIcons/CustomIcons";
-import InputField from "@/app/Components/InputField/InputField";
-import {
-  IconButton,
-  InputAdornment,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { MinusSquareIcon, PlusSquareleIcon } from '@/app/Components/CustomIcons/CustomIcons';
+import InputField from '@/app/Components/InputField/InputField';
+import { IconButton, InputAdornment, Stack, TextField, Typography } from '@mui/material';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 interface Props {
   price: string;
@@ -23,12 +14,7 @@ interface Props {
 
 const GOLD_RATE = 17610000;
 
-export default function WeightDetermination({
-  price,
-  setPrice,
-  weight,
-  setWeight,
-}: Props) {
+export default function WeightDetermination({ price, setPrice, weight, setWeight }: Props) {
   const [count, setCount] = useState<number>(1);
 
   useEffect(() => {
@@ -55,28 +41,18 @@ export default function WeightDetermination({
 
   return (
     <Stack direction="column" gap={4}>
-      <InputField
-        placeholder="وزن"
-        title="گرم"
-        value={weight}
-        setValue={setWeight}
-      />
+      <InputField placeholder="وزن" title="گرم" value={weight} setValue={setWeight} />
 
-      <InputField
-        placeholder="معادل تومان"
-        title="تومان"
-        value={price}
-        setValue={setPrice}
-      />
+      <InputField placeholder="معادل تومان" title="تومان" value={price} setValue={setPrice} />
 
       <TextField
         label="تعداد"
         value={`${count} عدد`}
         disabled
         sx={{
-          "& .MuiInputBase-input.Mui-disabled": {
-            color: "text.primary",
-            WebkitTextFillColor: "text.primary",
+          '& .MuiInputBase-input.Mui-disabled': {
+            color: 'text.primary',
+            WebkitTextFillColor: 'text.primary',
           },
         }}
         slotProps={{
@@ -84,19 +60,13 @@ export default function WeightDetermination({
             endAdornment: (
               <InputAdornment position="end">
                 <Stack direction="row" alignItems="center">
-                  <IconButton
-                    disableRipple
-                    onClick={() => setCount((c) => c + 1)}
-                  >
+                  <IconButton disableRipple onClick={() => setCount((c) => c + 1)}>
                     <PlusSquareleIcon />
                   </IconButton>
 
                   <Typography>{count}</Typography>
 
-                  <IconButton
-                    onClick={() => setCount((c) => Math.max(1, c - 1))}
-                    disableRipple
-                  >
+                  <IconButton onClick={() => setCount((c) => Math.max(1, c - 1))} disableRipple>
                     <MinusSquareIcon />
                   </IconButton>
                 </Stack>

@@ -1,4 +1,4 @@
-import { ArrowForward, Close } from "@mui/icons-material";
+import { ArrowForward, Close } from '@mui/icons-material';
 import {
   Divider,
   Drawer,
@@ -8,12 +8,12 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
-} from "@mui/material";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { Dispatch, SetStateAction } from "react";
-import CustomModal from "../CustomModal/CustomModal";
-import { AppbarItemsType } from "@/app/core/Types";
+} from '@mui/material';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { Dispatch, SetStateAction } from 'react';
+import CustomModal from '../CustomModal/CustomModal';
+import { AppbarItemsType } from '@/app/core/Types';
 
 interface Props {
   open: boolean;
@@ -27,115 +27,111 @@ interface ItemsType {
 
 const items: ItemsType[] = [
   {
-    title: "سفارش",
+    title: 'سفارش',
     navigation: [
       {
-        name: "خرید و فروش",
-        image: "/trade-active-dark.svg",
-        link: "/trades",
+        name: 'خرید و فروش',
+        image: '/trade-active-dark.svg',
+        link: '/trades',
       },
       {
-        name: "سفارش با قیمت",
-        image: "/limitOrder-active-dark.svg",
-        link: "/limit-order",
+        name: 'سفارش با قیمت',
+        image: '/limitOrder-active-dark.svg',
+        link: '/limit-order',
       },
       {
-        name: "سفارش تعهدی",
-        image: "/marginOrder-active-dark.svg",
-        link: "/margin-trade",
+        name: 'سفارش تعهدی',
+        image: '/marginOrder-active-dark.svg',
+        link: '/margin-trade',
       },
     ],
   },
   {
-    title: "کیف پول",
+    title: 'کیف پول',
     navigation: [
       {
-        name: "دارایی ها",
-        image: "/wallet-active-dark.svg",
-        link: "/wallet",
+        name: 'دارایی ها',
+        image: '/wallet-active-dark.svg',
+        link: '/wallet',
       },
       {
-        name: "واریز و برداشت",
-        image: "/irtTransaction-active-dark.svg",
-        link: "/irt-transaction",
+        name: 'واریز و برداشت',
+        image: '/irtTransaction-active-dark.svg',
+        link: '/irt-transaction',
       },
       {
-        name: "کارت های بانکی",
-        image: "/irtTransaction-active-dark.svg",
-        link: "/bank-card",
+        name: 'کارت های بانکی',
+        image: '/irtTransaction-active-dark.svg',
+        link: '/bank-card',
       },
     ],
   },
   {
-    title: "امکانات",
+    title: 'امکانات',
     navigation: [
       {
-        name: "خرید اقساطی",
-        image: "/credit-active-dark.svg",
-        link: "/credit-menu",
+        name: 'خرید اقساطی',
+        image: '/credit-active-dark.svg',
+        link: '/credit-menu',
       },
       {
-        name: "اعتبار خرید کالا",
-        image: "/loan-active-dark.svg",
-        link: "/loan",
+        name: 'اعتبار خرید کالا',
+        image: '/loan-active-dark.svg',
+        link: '/loan',
       },
       {
-        name: "تحویل فیزیکی",
-        image: "/shop-active-dark.svg",
-        link: "/gold-receive",
+        name: 'تحویل فیزیکی',
+        image: '/shop-active-dark.svg',
+        link: '/gold-receive',
       },
       {
-        name: "کارت هدیه",
-        image: "/giftCard-active-dark.svg",
-        link: "/gift-card-menu",
+        name: 'کارت هدیه',
+        image: '/giftCard-active-dark.svg',
+        link: '/gift-card-menu',
       },
       {
-        name: "پس انداز خودکار",
-        image: "/automatic-active-dark.svg",
-        link: "/automatic-investment",
+        name: 'پس انداز خودکار',
+        image: '/automatic-active-dark.svg',
+        link: '/automatic-investment',
       },
       {
-        name: "آلارم قیمت",
-        image: "/priceAlert-active-dark.svg",
-        link: "/price-alert",
+        name: 'آلارم قیمت',
+        image: '/priceAlert-active-dark.svg',
+        link: '/price-alert',
       },
     ],
   },
   {
-    title: "سایر",
+    title: 'سایر',
     navigation: [
       {
-        name: "گزارش ها",
-        image: "/reports-active-dark.svg",
-        link: "/reports",
+        name: 'گزارش ها',
+        image: '/reports-active-dark.svg',
+        link: '/reports',
       },
       {
-        name: "دعوت از دوستان",
-        image: "/invite-active-dark.svg",
-        link: "/invite",
+        name: 'دعوت از دوستان',
+        image: '/invite-active-dark.svg',
+        link: '/invite',
       },
       {
-        name: "پروفایل",
-        image: "/profile-active-dark.svg",
-        link: "/profile",
+        name: 'پروفایل',
+        image: '/profile-active-dark.svg',
+        link: '/profile',
       },
     ],
   },
 ];
 
-const Content = ({
-  setOpen,
-}: {
-  setOpen: Dispatch<SetStateAction<boolean>>;
-}) => {
+const Content = ({ setOpen }: { setOpen: Dispatch<SetStateAction<boolean>> }) => {
   const router = useRouter();
 
   return (
     <>
       <Stack
-        direction={"row"}
-        justifyContent={"space-between"}
-        alignItems={"center"}
+        direction={'row'}
+        justifyContent={'space-between'}
+        alignItems={'center'}
         mb={{
           xs: 1,
           sm: 0,
@@ -145,15 +141,15 @@ const Content = ({
           <Close
             sx={{
               display: {
-                xs: "none",
-                sm: "block",
+                xs: 'none',
+                sm: 'block',
               },
             }}
           />
           <ArrowForward
             sx={{
               display: {
-                sm: "none",
+                sm: 'none',
               },
             }}
           />
@@ -170,11 +166,11 @@ const Content = ({
         <Stack></Stack>
       </Stack>
 
-      <Stack direction={"column"} gap={1.5}>
+      <Stack direction={'column'} gap={1.5}>
         {items.map((item, index) => (
           <Stack key={item.title}>
             <Stack
-              direction={"column"}
+              direction={'column'}
               gap={{
                 xs: 1.5,
                 sm: 1,
@@ -199,19 +195,19 @@ const Content = ({
                 {item.navigation.map((navigate) => (
                   <Grid
                     size={4}
-                    bgcolor={"background.paper"}
+                    bgcolor={'background.paper'}
                     borderRadius={2}
                     key={navigate.name}
                     py={1}
                     px={1.5}
-                    component={"div"}
+                    component={'div'}
                     onClick={() => {
                       router.push(`/dashboard${navigate.link}`);
                       setOpen(false);
                     }}
-                    sx={{ cursor: "pointer" }}
+                    sx={{ cursor: 'pointer' }}
                   >
-                    <Stack direction={"column"} alignItems={"center"} gap={1.5}>
+                    <Stack direction={'column'} alignItems={'center'} gap={1.5}>
                       <Image
                         src={`/images/appbar${navigate.image}`}
                         alt=""
@@ -225,7 +221,7 @@ const Content = ({
                           sm: 14,
                         }}
                         fontWeight={500}
-                        sx={{ whiteSpace: "nowrap" }}
+                        sx={{ whiteSpace: 'nowrap' }}
                       >
                         {navigate.name}
                       </Typography>
@@ -244,8 +240,8 @@ const Content = ({
 
 export default function ModalNavigation({ open, setOpen }: Props) {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const isDarkMode = theme.palette.mode === "dark";
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isDarkMode = theme.palette.mode === 'dark';
   if (isMobile) {
     return (
       <Drawer
@@ -255,9 +251,9 @@ export default function ModalNavigation({ open, setOpen }: Props) {
         transitionDuration={{ enter: 300, exit: 300 }}
         PaperProps={{
           sx: {
-            width: "100vw",
+            width: '100vw',
             p: 2,
-            background: isDarkMode ? "rgb(1,1,1,1)" : "rgb(255,255,255,1)",
+            background: isDarkMode ? 'rgb(1,1,1,1)' : 'rgb(255,255,255,1)',
           },
         }}
       >
@@ -271,8 +267,8 @@ export default function ModalNavigation({ open, setOpen }: Props) {
       open={open}
       setOpen={setOpen}
       modalStyle={{
-        height: "65%",
-        overflow: "auto",
+        height: '65%',
+        overflow: 'auto',
         px: 5,
         pb: 2,
       }}

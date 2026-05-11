@@ -1,11 +1,5 @@
-import { NotifItemsType } from "@/app/core/Types";
-import {
-  Button,
-  Stack,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { NotifItemsType } from '@/app/core/Types';
+import { Button, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 
 interface Props {
   items: NotifItemsType[];
@@ -14,34 +8,34 @@ interface Props {
 
 export default function MessageCard({ items, isNotif }: Props) {
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
+  const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   return (
     <>
       <Stack
         maxHeight={{
-          xs: "100%",
+          xs: '100%',
           sm: 300,
         }}
-        overflow={"auto"}
+        overflow={'auto'}
         sx={{
-          scrollbarWidth: "none",
-          msOverflowStyle: "none",
-          "&::-webkit-scrollbar": {
-            display: "none",
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+          '&::-webkit-scrollbar': {
+            display: 'none',
           },
         }}
       >
         {items.map((item) => (
           <Stack
             key={item.title}
-            direction={"column"}
+            direction={'column'}
             gap={1}
             px={1}
             py={2}
             borderRadius={2}
             sx={{
-              "&:hover": {
-                bgcolor: "background.paper",
+              '&:hover': {
+                bgcolor: 'background.paper',
               },
             }}
           >
@@ -51,11 +45,11 @@ export default function MessageCard({ items, isNotif }: Props) {
             <Typography
               variant="body2"
               fontSize={14}
-              sx={{ color: "text.muted", lineHeight: "22.4px" }}
+              sx={{ color: 'text.muted', lineHeight: '22.4px' }}
             >
               {item.message}
             </Typography>
-            <Typography variant="body1" fontSize={14} sx={{ color: "#757571" }}>
+            <Typography variant="body1" fontSize={14} sx={{ color: '#757571' }}>
               {item.date}
             </Typography>
           </Stack>
@@ -63,17 +57,17 @@ export default function MessageCard({ items, isNotif }: Props) {
       </Stack>
 
       {isDesktop && (
-        <Stack direction={"row"} gap={1}>
+        <Stack direction={'row'} gap={1}>
           <Button
             disableRipple
-            variant={isNotif ? "contained" : "outlined"}
-            color={isNotif ? "primary" : "inherit"}
+            variant={isNotif ? 'contained' : 'outlined'}
+            color={isNotif ? 'primary' : 'inherit'}
             sx={{
-              width: isNotif ? "50%" : "100%",
+              width: isNotif ? '50%' : '100%',
               py: 1,
               borderRadius: 2,
-              "&:hover": {
-                bgcolor: "background.default",
+              '&:hover': {
+                bgcolor: 'background.default',
               },
             }}
           >
@@ -85,11 +79,11 @@ export default function MessageCard({ items, isNotif }: Props) {
               variant="outlined"
               color="inherit"
               sx={{
-                width: "50%",
+                width: '50%',
                 py: 1,
                 borderRadius: 2,
-                "&:hover": {
-                  bgcolor: "background.default",
+                '&:hover': {
+                  bgcolor: 'background.default',
                 },
               }}
             >

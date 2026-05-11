@@ -1,14 +1,8 @@
-import { Divider, Stack, Typography } from "@mui/material";
+import { Divider, Stack, Typography } from '@mui/material';
 
 export default function FinalApproval() {
   return (
-    <Stack
-      border={1}
-      px={4}
-      py={2}
-      borderRadius={2}
-      borderColor={"background.paper"}
-    >
+    <Stack border={1} px={4} py={2} borderRadius={2} borderColor={'background.paper'}>
       <Typography
         variant="body1"
         fontSize={{
@@ -19,18 +13,14 @@ export default function FinalApproval() {
       >
         اطلاعات کارت هدیه
       </Typography>
-      <Stack
-        direction={"row"}
-        justifyContent={"space-between"}
-        alignItems={"center"}
-      >
+      <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
         <Typography
           variant="body1"
           fontSize={{
             xs: 10,
             sm: 14,
           }}
-          sx={{ color: "text.muted" }}
+          sx={{ color: 'text.muted' }}
         >
           وزن طلا
         </Typography>
@@ -52,18 +42,14 @@ export default function FinalApproval() {
           },
         }}
       />
-      <Stack
-        direction={"row"}
-        justifyContent={"space-between"}
-        alignItems={"center"}
-      >
+      <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
         <Typography
           variant="body1"
           fontSize={{
             xs: 10,
             sm: 14,
           }}
-          sx={{ color: "text.muted" }}
+          sx={{ color: 'text.muted' }}
         >
           قیمت هر گرم طلا
         </Typography>
@@ -86,18 +72,14 @@ export default function FinalApproval() {
         }}
       />
 
-      <Stack
-        direction={"row"}
-        justifyContent={"space-between"}
-        alignItems={"center"}
-      >
+      <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
         <Typography
           variant="body1"
           fontSize={{
             xs: 10,
             sm: 14,
           }}
-          sx={{ color: "text.muted" }}
+          sx={{ color: 'text.muted' }}
         >
           معادل تومان
         </Typography>
@@ -120,18 +102,14 @@ export default function FinalApproval() {
         }}
       />
 
-      <Stack
-        direction={"row"}
-        justifyContent={"space-between"}
-        alignItems={"center"}
-      >
+      <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
         <Typography
           variant="body1"
           fontSize={{
             xs: 10,
             sm: 14,
           }}
-          sx={{ color: "text.muted" }}
+          sx={{ color: 'text.muted' }}
         >
           تعداد
         </Typography>
@@ -154,18 +132,14 @@ export default function FinalApproval() {
         }}
       />
 
-      <Stack
-        direction={"row"}
-        justifyContent={"space-between"}
-        alignItems={"center"}
-      >
+      <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
         <Typography
           variant="body1"
           fontSize={{
             xs: 10,
             sm: 14,
           }}
-          sx={{ color: "text.muted" }}
+          sx={{ color: 'text.muted' }}
         >
           کارمزد و مالیات بر ارزش افزوده
         </Typography>
@@ -188,18 +162,14 @@ export default function FinalApproval() {
         }}
       />
 
-      <Stack
-        direction={"row"}
-        justifyContent={"space-between"}
-        alignItems={"center"}
-      >
+      <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
         <Typography
           variant="body1"
           fontSize={{
             xs: 10,
             sm: 14,
           }}
-          sx={{ color: "text.muted" }}
+          sx={{ color: 'text.muted' }}
         >
           هزینه بسته‌بندی
         </Typography>
@@ -222,18 +192,14 @@ export default function FinalApproval() {
         }}
       />
 
-      <Stack
-        direction={"row"}
-        justifyContent={"space-between"}
-        alignItems={"center"}
-      >
+      <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
         <Typography
           variant="body1"
           fontSize={{
             xs: 10,
             sm: 14,
           }}
-          sx={{ color: "text.muted" }}
+          sx={{ color: 'text.muted' }}
         >
           مبلغ نهایی
         </Typography>
@@ -259,18 +225,14 @@ export default function FinalApproval() {
       >
         اطلاعات ارسال
       </Typography>
-      <Stack
-        direction={"row"}
-        justifyContent={"space-between"}
-        alignItems={"center"}
-      >
+      <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
         <Typography
           variant="body1"
           fontSize={{
             xs: 10,
             sm: 14,
           }}
-          sx={{ color: "text.muted" }}
+          sx={{ color: 'text.muted' }}
         >
           زمان ارسال
         </Typography>
@@ -292,18 +254,14 @@ export default function FinalApproval() {
           },
         }}
       />
-      <Stack
-        direction={"row"}
-        justifyContent={"space-between"}
-        alignItems={"center"}
-      >
+      <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
         <Typography
           variant="body1"
           fontSize={{
             xs: 10,
             sm: 14,
           }}
-          sx={{ color: "text.muted" }}
+          sx={{ color: 'text.muted' }}
         >
           هزینه ارسال
         </Typography>
@@ -326,18 +284,14 @@ export default function FinalApproval() {
         }}
       />
 
-      <Stack
-        direction={"row"}
-        justifyContent={"space-between"}
-        alignItems={"center"}
-      >
+      <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
         <Typography
           variant="body1"
           fontSize={{
             xs: 10,
             sm: 14,
           }}
-          sx={{ color: "text.muted" }}
+          sx={{ color: 'text.muted' }}
         >
           کدپستی
         </Typography>
@@ -360,18 +314,14 @@ export default function FinalApproval() {
         }}
       />
 
-      <Stack
-        direction={"row"}
-        justifyContent={"space-between"}
-        alignItems={"center"}
-      >
+      <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
         <Typography
           variant="body1"
           fontSize={{
             xs: 10,
             sm: 14,
           }}
-          sx={{ color: "text.muted" }}
+          sx={{ color: 'text.muted' }}
         >
           آدرس
         </Typography>

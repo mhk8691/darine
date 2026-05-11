@@ -1,10 +1,10 @@
-"use client";
-import CustomModal from "@/app/Components/CustomModal/CustomModal";
-import { Close } from "@mui/icons-material";
-import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
-import EmailIcon from "@mui/icons-material/Email";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import LocationPinIcon from "@mui/icons-material/LocationPin";
+'use client';
+import CustomModal from '@/app/Components/CustomModal/CustomModal';
+import { Close } from '@mui/icons-material';
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import EmailIcon from '@mui/icons-material/Email';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import LocationPinIcon from '@mui/icons-material/LocationPin';
 import {
   Button,
   FormControl,
@@ -16,8 +16,8 @@ import {
   Stack,
   TextField,
   Typography,
-} from "@mui/material";
-import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+} from '@mui/material';
+import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
 
 interface Props {
   setOpenAddAddress: Dispatch<SetStateAction<boolean>>;
@@ -25,7 +25,7 @@ interface Props {
 
 export default function AddressList({ setOpenAddAddress }: Props) {
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState("address1");
+  const [active, setActive] = useState('address1');
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setActive((event.target as HTMLInputElement).value);
@@ -34,42 +34,42 @@ export default function AddressList({ setOpenAddAddress }: Props) {
   return (
     <>
       <TextField
-        label={"آدرس تحویل"}
+        label={'آدرس تحویل'}
         onClick={() => setOpen(true)}
-        defaultValue={"تست"}
+        defaultValue={'تست'}
         sx={{
-          direction: "ltr",
-          width: "100%",
-          "& .MuiInputBase-input": {
-            "&:hover": {
-              cursor: "default",
+          direction: 'ltr',
+          width: '100%',
+          '& .MuiInputBase-input': {
+            '&:hover': {
+              cursor: 'default',
             },
-            fontSize: "20px",
+            fontSize: '20px',
           },
-          "&.MuiFormControl-root .MuiFormLabel-root": {
-            color: "text.subtitle",
+          '&.MuiFormControl-root .MuiFormLabel-root': {
+            color: 'text.subtitle',
           },
-          "& .MuiOutlinedInput-root": {
-            color: "#ffffff",
+          '& .MuiOutlinedInput-root': {
+            color: '#ffffff',
             opacity: 1,
 
             borderRadius: 2,
 
-            "& fieldset": {
-              borderColor: "#494949",
-              borderWidth: "1px",
+            '& fieldset': {
+              borderColor: '#494949',
+              borderWidth: '1px',
             },
-            "&:hover fieldset": {
-              borderColor: "#494949",
-              borderWidth: "1px",
+            '&:hover fieldset': {
+              borderColor: '#494949',
+              borderWidth: '1px',
             },
-            "&.Mui-focused fieldset": {
-              borderColor: "#494949",
-              borderWidth: "1px",
+            '&.Mui-focused fieldset': {
+              borderColor: '#494949',
+              borderWidth: '1px',
             },
-            "&.Mui-disabled fieldset": {
-              borderColor: "#494949",
-              borderWidth: "1px",
+            '&.Mui-disabled fieldset': {
+              borderColor: '#494949',
+              borderWidth: '1px',
             },
           },
         }}
@@ -85,11 +85,7 @@ export default function AddressList({ setOpenAddAddress }: Props) {
         }}
       />
       <CustomModal open={open} setOpen={setOpen} modalStyle={{ pb: 2 }}>
-        <Stack
-          direction={"row"}
-          justifyContent={"space-between"}
-          alignItems={"center"}
-        >
+        <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
           <Typography variant="body1" fontSize={16} fontWeight={600}>
             انتخاب آدرس
           </Typography>
@@ -102,57 +98,55 @@ export default function AddressList({ setOpenAddAddress }: Props) {
             <Close />
           </IconButton>
         </Stack>
-        <FormControl sx={{ width: "100%", mt: 2 }}>
+        <FormControl sx={{ width: '100%', mt: 2 }}>
           <RadioGroup
             name="controlled-radio-buttons-group"
             value={active}
             onChange={handleChange}
             sx={{
-              flexDirection: "column",
+              flexDirection: 'column',
               gap: 1,
             }}
           >
             <Stack
-              direction={"row"}
-              justifyContent={"space-between"}
-              alignItems={"flex-start"}
+              direction={'row'}
+              justifyContent={'space-between'}
+              alignItems={'flex-start'}
               border={1}
-              borderColor={
-                active === "address1" ? "primary.main" : "background.paper"
-              }
+              borderColor={active === 'address1' ? 'primary.main' : 'background.paper'}
               px={1.5}
               py={1}
               pb={2}
               borderRadius={2}
             >
-              <Stack direction={"column"}>
+              <Stack direction={'column'}>
                 <FormControlLabel
                   value="address1"
                   control={<Radio disableRipple disableTouchRipple />}
                   label="آدرس ۱"
                   sx={{
-                    "& .MuiTypography-root": {
+                    '& .MuiTypography-root': {
                       fontSize: 14,
                     },
                   }}
                 />
                 <Stack
-                  direction={"row"}
-                  color={"text.subtitle"}
+                  direction={'row'}
+                  color={'text.subtitle'}
                   gap={0.5}
                   ml={3}
-                  alignItems={"center"}
+                  alignItems={'center'}
                   pb={1}
                 >
                   <LocationPinIcon fontSize="small" />
                   <Typography variant="body2">تهران</Typography>
                 </Stack>
                 <Stack
-                  direction={"row"}
-                  color={"text.subtitle"}
+                  direction={'row'}
+                  color={'text.subtitle'}
                   gap={0.5}
                   ml={3}
-                  alignItems={"center"}
+                  alignItems={'center'}
                 >
                   <EmailIcon fontSize="small" />
                   <Typography variant="body2">۱۲۳۴۵۶۷</Typography>
@@ -161,46 +155,44 @@ export default function AddressList({ setOpenAddAddress }: Props) {
               <DeleteOutlineOutlinedIcon sx={{ mt: 1 }} />
             </Stack>
             <Stack
-              direction={"row"}
-              justifyContent={"space-between"}
-              alignItems={"flex-start"}
+              direction={'row'}
+              justifyContent={'space-between'}
+              alignItems={'flex-start'}
               border={1}
-              borderColor={
-                active === "address2" ? "primary.main" : "background.paper"
-              }
+              borderColor={active === 'address2' ? 'primary.main' : 'background.paper'}
               px={1.5}
               py={1}
               pb={2}
               borderRadius={2}
             >
-              <Stack direction={"column"}>
+              <Stack direction={'column'}>
                 <FormControlLabel
                   value="address2"
                   control={<Radio disableRipple disableTouchRipple />}
                   label="آدرس 2"
                   sx={{
-                    "& .MuiTypography-root": {
+                    '& .MuiTypography-root': {
                       fontSize: 14,
                     },
                   }}
                 />
                 <Stack
-                  direction={"row"}
-                  color={"text.subtitle"}
+                  direction={'row'}
+                  color={'text.subtitle'}
                   gap={0.5}
                   ml={3}
-                  alignItems={"center"}
+                  alignItems={'center'}
                   pb={1}
                 >
                   <LocationPinIcon fontSize="small" />
                   <Typography variant="body2">تهران</Typography>
                 </Stack>
                 <Stack
-                  direction={"row"}
-                  color={"text.subtitle"}
+                  direction={'row'}
+                  color={'text.subtitle'}
                   gap={0.5}
                   ml={3}
-                  alignItems={"center"}
+                  alignItems={'center'}
                 >
                   <EmailIcon fontSize="small" />
                   <Typography variant="body2">۱۲۳۴۵۶۷</Typography>

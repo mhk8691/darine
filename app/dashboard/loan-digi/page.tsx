@@ -1,10 +1,10 @@
-import CreditContainer from "@/app/Components/Containers/CreditContainer/CreditContainer";
-import GoldenUnderline from "@/app/Components/Containers/CreditContainer/GoldenUnderline";
-import { Box, Grid, Typography } from "@mui/material";
-import { Metadata } from "next";
+import CreditContainer from '@/app/Components/Containers/CreditContainer/CreditContainer';
+import GoldenUnderline from '@/app/Components/Containers/CreditContainer/GoldenUnderline';
+import { Box, Grid, Typography } from '@mui/material';
+import { Metadata } from 'next';
 export const metadata: Metadata = {
-  title: "دریافت اعتبار خرید دیجی پی | دارینه",
-  description: "",
+  title: 'دریافت اعتبار خرید دیجی پی | دارینه',
+  description: '',
 };
 export default function page() {
   return (
@@ -21,8 +21,8 @@ export default function page() {
               }}
             >
               دریافت اعتبار
-              <Box component={"span"} color={"#007DFA"}>
-                {" "}
+              <Box component={'span'} color={'#007DFA'}>
+                {' '}
                 دیجی پی
               </Box>
             </Typography>
@@ -46,17 +46,17 @@ export default function page() {
           }
           optionTitle="نکات مهم:"
           options={[
-            " مبلغ سپرده‌(% بیشتر از اعتبار خرید درخواستی)، نقش ضامن دارد و تا زمانی که در کیف پول طلاسی باقی بماند، اعتبار شما فعال خواهد بود.",
-            " با این سپرده می‌توانید در طلاسی طلا خرید و فروش کنید، اما امکان برداشت ریالی یا تحویل فیزیکی آن وجود ندارد.",
-            " بازپرداخت خرید اقساطی از طریق دیجی‌پی انجام می‌شود و ارتباطی با طلاسی ندارد.",
+            ' مبلغ سپرده‌(% بیشتر از اعتبار خرید درخواستی)، نقش ضامن دارد و تا زمانی که در کیف پول طلاسی باقی بماند، اعتبار شما فعال خواهد بود.',
+            ' با این سپرده می‌توانید در طلاسی طلا خرید و فروش کنید، اما امکان برداشت ریالی یا تحویل فیزیکی آن وجود ندارد.',
+            ' بازپرداخت خرید اقساطی از طریق دیجی‌پی انجام می‌شود و ارتباطی با طلاسی ندارد.',
           ]}
           banner={
             <Typography
               variant="h6"
               sx={{
                 wordSpacing: 1,
-                flexDirection: "row",
-                alignItems: "center",
+                flexDirection: 'row',
+                alignItems: 'center',
                 mt: 3,
               }}
               fontSize={{
@@ -64,8 +64,8 @@ export default function page() {
                 sm: 22,
               }}
             >
-              اعتبار خرید کالا <GoldenUnderline>بدون ضامن</GoldenUnderline> ، با
-              پشتوانه <GoldenUnderline>طلاسی</GoldenUnderline>
+              اعتبار خرید کالا <GoldenUnderline>بدون ضامن</GoldenUnderline> ، با پشتوانه{' '}
+              <GoldenUnderline>طلاسی</GoldenUnderline>
             </Typography>
           }
         />

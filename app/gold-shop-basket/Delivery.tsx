@@ -1,18 +1,18 @@
-import { InfoOutlineRounded } from "@mui/icons-material";
-import { Grid, Stack, Typography } from "@mui/material";
-import { useState } from "react";
-import FilterToggleButton from "../Components/FilterToggleButton/FilterToggleButton";
-import { ToggleItemsType } from "../core/Types";
-import DirectDelivery from "./DirectDelivery";
-import HouseDelivery from "./HouseDelivery";
+import { InfoOutlineRounded } from '@mui/icons-material';
+import { Grid, Stack, Typography } from '@mui/material';
+import { useState } from 'react';
+import FilterToggleButton from '../Components/FilterToggleButton/FilterToggleButton';
+import { ToggleItemsType } from '../core/Types';
+import DirectDelivery from './DirectDelivery';
+import HouseDelivery from './HouseDelivery';
 
 const toggleItems: ToggleItemsType[] = [
-  { title: "تحویل درب منزل", value: "delivery", id: 1 },
-  { title: "تحویل حضوری", value: "directDelivery", id: 2 },
+  { title: 'تحویل درب منزل', value: 'delivery', id: 1 },
+  { title: 'تحویل حضوری', value: 'directDelivery', id: 2 },
 ];
 
 export default function Delivery() {
-  const [select, setSelect] = useState("delivery");
+  const [select, setSelect] = useState('delivery');
 
   return (
     <Grid container spacing={3}>
@@ -31,7 +31,7 @@ export default function Delivery() {
           items={toggleItems}
           style={{ py: 1.5 }}
         />
-        {select === "delivery" ? <HouseDelivery /> : <DirectDelivery />}
+        {select === 'delivery' ? <HouseDelivery /> : <DirectDelivery />}
       </Grid>
       <Grid
         size={{
@@ -43,8 +43,8 @@ export default function Delivery() {
           md: 1,
         }}
         borderColor={{
-          xs: "background.paper",
-          md: "background.default",
+          xs: 'background.paper',
+          md: 'background.default',
         }}
         p={{
           xs: 2,
@@ -52,9 +52,9 @@ export default function Delivery() {
         }}
         borderRadius={2}
       >
-        <Stack direction={"row"} alignItems={"center"} gap={1}>
-          <InfoOutlineRounded sx={{ color: "#EF8011" }} />
-          <Typography variant="body1" fontSize={22} sx={{ color: "#EF8011" }}>
+        <Stack direction={'row'} alignItems={'center'} gap={1}>
+          <InfoOutlineRounded sx={{ color: '#EF8011' }} />
+          <Typography variant="body1" fontSize={22} sx={{ color: '#EF8011' }}>
             توجه
           </Typography>
         </Stack>
@@ -65,11 +65,9 @@ export default function Delivery() {
               xs: 14,
               md: 18,
             }}
-            sx={{ color: "text.secondary", fontWeight: "600", mt: "10px" }}
+            sx={{ color: 'text.secondary', fontWeight: '600', mt: '10px' }}
           >
-            {select === "delivery"
-              ? "تحویل امن طلا به سرتاسر ایران"
-              : "تحویل حضوری طلای شما"}
+            {select === 'delivery' ? 'تحویل امن طلا به سرتاسر ایران' : 'تحویل حضوری طلای شما'}
           </Typography>
           <Typography
             variant="body1"
@@ -77,11 +75,11 @@ export default function Delivery() {
               xs: 12,
               md: 16,
             }}
-            sx={{ color: "text.secondary", mt: 1 }}
+            sx={{ color: 'text.secondary', mt: 1 }}
           >
-            {select === "delivery"
-              ? "طلاسی طلای شما را از ۳۰ سوت، به هر نقطه از کشور که بخواهید ارسال می‌کند. تمامی مرسولات ارسالی بیمه می‌شوند؛ در صورت بروز هرگونه خسارت، جبران آن با طلاسی است."
-              : "برای تحویل حضوری، لطفاً کارت شناسایی خود را همراه داشته باشید. مراجعه تنها در ساعت و آدرس تعیین‌شده امکان‌پذیر است."}
+            {select === 'delivery'
+              ? 'طلاسی طلای شما را از ۳۰ سوت، به هر نقطه از کشور که بخواهید ارسال می‌کند. تمامی مرسولات ارسالی بیمه می‌شوند؛ در صورت بروز هرگونه خسارت، جبران آن با طلاسی است.'
+              : 'برای تحویل حضوری، لطفاً کارت شناسایی خود را همراه داشته باشید. مراجعه تنها در ساعت و آدرس تعیین‌شده امکان‌پذیر است.'}
           </Typography>
           {/* {select === "delivery" && (
             <Typography

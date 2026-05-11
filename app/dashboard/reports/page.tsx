@@ -1,104 +1,104 @@
-import Card from "@/app/Components/Containers/Container/Container";
-import OrderDetail from "@/app/Components/Tables/DetailTable/OrderDetail";
-import CustomTabs from "@/app/Components/Tabs/CustomTabs";
-import { ToggleItemsType } from "@/app/core/Types";
-import { Grid, Typography } from "@mui/material";
-import { ReactNode } from "react";
+import Card from '@/app/Components/Containers/Container/Container';
+import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
+import CustomTabs from '@/app/Components/Tabs/CustomTabs';
+import { ToggleItemsType } from '@/app/core/Types';
+import { Grid, Typography } from '@mui/material';
+import { ReactNode } from 'react';
 
-import { Metadata } from "next";
+import { Metadata } from 'next';
 export const metadata: Metadata = {
-  title: "گزارشات | دارینه",
-  description: "",
+  title: 'گزارشات | دارینه',
+  description: '',
 };
 
 const dealItems: ToggleItemsType[] = [
   {
-    title: "خرید",
-    value: "buy",
+    title: 'خرید',
+    value: 'buy',
     id: 1,
-    emptyMessage: "معامله ای برای شما به ثبت نرسیده است",
+    emptyMessage: 'معامله ای برای شما به ثبت نرسیده است',
   },
   {
-    title: "فروش",
-    value: "sell",
+    title: 'فروش',
+    value: 'sell',
     id: 2,
-    emptyMessage: "معامله ای برای شما به ثبت نرسیده است",
+    emptyMessage: 'معامله ای برای شما به ثبت نرسیده است',
   },
 ];
 const depositItems: ToggleItemsType[] = [
   {
-    title: "درگاه پرداخت",
-    value: "paymentGateway",
+    title: 'درگاه پرداخت',
+    value: 'paymentGateway',
     id: 1,
-    emptyMessage: "واریزی برای شما به ثبت نرسیده است",
+    emptyMessage: 'واریزی برای شما به ثبت نرسیده است',
   },
   {
-    title: "واریز مستقیم",
-    value: "directDeposit",
+    title: 'واریز مستقیم',
+    value: 'directDeposit',
     id: 2,
-    emptyMessage: "واریز باشناسه ای برای شما به ثبت نرسیده است",
+    emptyMessage: 'واریز باشناسه ای برای شما به ثبت نرسیده است',
   },
   {
-    title: "واریز از نقره سی",
-    value: "silverDeposit",
+    title: 'واریز از نقره سی',
+    value: 'silverDeposit',
     id: 3,
-    emptyMessage: "واریزی برای شما به ثبت نرسیده است",
+    emptyMessage: 'واریزی برای شما به ثبت نرسیده است',
   },
 ];
 const withdrawItems: ToggleItemsType[] = [
   {
-    title: "برداشت به حساب بانکی",
-    value: "bankAccount",
+    title: 'برداشت به حساب بانکی',
+    value: 'bankAccount',
     id: 1,
-    emptyMessage: "برداشتی برای شما به ثبت نرسیده است",
+    emptyMessage: 'برداشتی برای شما به ثبت نرسیده است',
   },
   {
-    title: "برداشت به نقره سی",
-    value: "silver",
+    title: 'برداشت به نقره سی',
+    value: 'silver',
     id: 2,
-    emptyMessage: "برداشتی برای شما به ثبت نرسیده است",
+    emptyMessage: 'برداشتی برای شما به ثبت نرسیده است',
   },
 ];
 const giftItems: ToggleItemsType[] = [
   {
-    title: "خریداری شده",
-    value: "buy",
+    title: 'خریداری شده',
+    value: 'buy',
     id: 1,
-    emptyMessage: "کارت هدیه‌ای توسط شما خریداری نشده است.",
+    emptyMessage: 'کارت هدیه‌ای توسط شما خریداری نشده است.',
   },
   {
-    title: "دریافت شده",
-    value: "receive",
+    title: 'دریافت شده',
+    value: 'receive',
     id: 2,
-    emptyMessage: "کارت هدیه‌ای برای شما به ثبت نرسیده است",
+    emptyMessage: 'کارت هدیه‌ای برای شما به ثبت نرسیده است',
   },
 ];
 const receiveItems: ToggleItemsType[] = [
   {
-    title: "حضوری",
-    value: "buy",
+    title: 'حضوری',
+    value: 'buy',
     id: 1,
-    emptyMessage: "سفارشی برای شما به ثبت نرسیده است",
+    emptyMessage: 'سفارشی برای شما به ثبت نرسیده است',
   },
   {
-    title: "درب منزل",
-    value: "recive",
+    title: 'درب منزل',
+    value: 'recive',
     id: 2,
-    emptyMessage: "سفارشی برای شما به ثبت نرسیده است",
+    emptyMessage: 'سفارشی برای شما به ثبت نرسیده است',
   },
 ];
 const autoItems: ToggleItemsType[] = [
   {
-    title: "کارت",
-    value: "card",
+    title: 'کارت',
+    value: 'card',
     id: 1,
-    emptyMessage: "کارتی برای شما به ثبت نرسیده است",
+    emptyMessage: 'کارتی برای شما به ثبت نرسیده است',
   },
   {
-    title: "واریز",
-    value: "deposit",
+    title: 'واریز',
+    value: 'deposit',
     id: 2,
-    emptyMessage: "واریزی برای شما به ثبت نرسیده است",
+    emptyMessage: 'واریزی برای شما به ثبت نرسیده است',
   },
 ];
 
@@ -113,27 +113,27 @@ const children: ReactNode[] = [
     noCard
     toggleItems={[]}
     type="toggle"
-    emptyMessage={"سفارشی برای شما به ثبت نرسیده است"}
+    emptyMessage={'سفارشی برای شما به ثبت نرسیده است'}
   />,
   <OrderDetail
     key={7}
     noCard
     toggleItems={[]}
     type="toggle"
-    emptyMessage={"اعتباری برای شما به ثبت نرسیده است"}
+    emptyMessage={'اعتباری برای شما به ثبت نرسیده است'}
   />,
   <OrderDetail key={8} noCard toggleItems={autoItems} type="toggle" />,
   ,
 ];
 const tabs = [
-  { title: "معاملات" },
-  { title: "واریز" },
-  { title: "برداشت" },
-  { title: "کارت هدیه" },
-  { title: "تحویل فیزیکی" },
-  { title: "سفارش با قیمت" },
-  { title: "اعتبار خرید" },
-  { title: "پس‌انداز خودکار" },
+  { title: 'معاملات' },
+  { title: 'واریز' },
+  { title: 'برداشت' },
+  { title: 'کارت هدیه' },
+  { title: 'تحویل فیزیکی' },
+  { title: 'سفارش با قیمت' },
+  { title: 'اعتبار خرید' },
+  { title: 'پس‌انداز خودکار' },
 ];
 export default function page() {
   return (
@@ -150,7 +150,7 @@ export default function page() {
               sm: 1,
             },
             borderColor: {
-              sm: "background.paper",
+              sm: 'background.paper',
             },
           }}
         >
@@ -166,13 +166,13 @@ export default function page() {
           <CustomTabs
             tabList={tabs}
             style={{
-              width: "auto",
+              width: 'auto',
               fontSize: 18,
               mb: 0.5,
             }}
             lineHeight="6px"
-            tabsStyle={{ px: 0, mt: 3, minWidth: "auto" }}
-            tabStyle={{ minWidth: "auto" }}
+            tabsStyle={{ px: 0, mt: 3, minWidth: 'auto' }}
+            tabStyle={{ minWidth: 'auto' }}
             noPadding={true}
           >
             {children}

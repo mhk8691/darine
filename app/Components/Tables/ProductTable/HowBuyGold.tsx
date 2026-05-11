@@ -1,25 +1,18 @@
-"use client";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Box,
-  Stack,
-  useTheme,
-} from "@mui/material";
-import Typography from "@mui/material/Typography";
-import Container from "../../Containers/Container/Container";
-import { DoneIcon } from "../../CustomIcons/CustomIcons";
-import "./video-style.css";
+'use client';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Accordion, AccordionDetails, AccordionSummary, Box, Stack, useTheme } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import Container from '../../Containers/Container/Container';
+import { DoneIcon } from '../../CustomIcons/CustomIcons';
+import './video-style.css';
 export default function HowBuyGold() {
   const theme = useTheme();
-  const isDarkMode = theme.palette.mode === "dark";
+  const isDarkMode = theme.palette.mode === 'dark';
   return (
     <Container
       style={{
-        alignItems: "center",
-        height: "100%",
+        alignItems: 'center',
+        height: '100%',
         pb: {
           xs: 3,
           md: 2,
@@ -44,24 +37,24 @@ export default function HowBuyGold() {
 
       <Box
         className="h_iframe-aparat_embed_frame"
-        position={"relative"}
+        position={'relative'}
         mb={2}
         width={{
-          xs: "250px",
-          sm: "100%",
+          xs: '250px',
+          sm: '100%',
         }}
       >
         <Stack
-          position={"absolute"}
-          bgcolor={"#1A1A18"}
+          position={'absolute'}
+          bgcolor={'#1A1A18'}
           width={{
-            xs: "110%",
-            sm: "110%",
+            xs: '110%',
+            sm: '110%',
           }}
-          height={"100%"}
+          height={'100%'}
           borderRadius={2}
-          left={"50%"}
-          sx={{ transform: "translateX(-50%) rotate(-8deg)" }}
+          left={'50%'}
+          sx={{ transform: 'translateX(-50%) rotate(-8deg)' }}
         ></Stack>
         <span className="ratio"></span>
         <iframe
@@ -70,12 +63,12 @@ export default function HowBuyGold() {
           title="آموزش خرید طلا از طلاسی"
         />
       </Box>
-      <Stack width={"100%"} mt={2}>
+      <Stack width={'100%'} mt={2}>
         <Accordion
           sx={{
-            background: isDarkMode ? "rgb(16, 16, 15)" : "#FFFFFF",
-            boxShadow: "none",
-            "&:before": { display: "none" },
+            background: isDarkMode ? 'rgb(16, 16, 15)' : '#FFFFFF',
+            boxShadow: 'none',
+            '&:before': { display: 'none' },
           }}
         >
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -105,9 +98,9 @@ export default function HowBuyGold() {
         </Accordion>
         <Accordion
           sx={{
-            background: isDarkMode ? "rgb(16, 16, 15)" : "#FFFFFF",
-            boxShadow: "none",
-            "&:before": { display: "none" },
+            background: isDarkMode ? 'rgb(16, 16, 15)' : '#FFFFFF',
+            boxShadow: 'none',
+            '&:before': { display: 'none' },
           }}
         >
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -137,9 +130,9 @@ export default function HowBuyGold() {
         </Accordion>
         <Accordion
           sx={{
-            background: isDarkMode ? "rgb(16, 16, 15)" : "#FFFFFF",
-            boxShadow: "none",
-            "&:before": { display: "none" },
+            background: isDarkMode ? 'rgb(16, 16, 15)' : '#FFFFFF',
+            boxShadow: 'none',
+            '&:before': { display: 'none' },
           }}
         >
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>

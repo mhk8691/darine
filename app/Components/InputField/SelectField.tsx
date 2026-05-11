@@ -1,6 +1,6 @@
-"use client";
-import CloseIcon from "@mui/icons-material/Close";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+'use client';
+import CloseIcon from '@mui/icons-material/Close';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import {
   Box,
   FormControl,
@@ -12,8 +12,8 @@ import {
   Stack,
   SxProps,
   Typography,
-} from "@mui/material";
-import * as React from "react";
+} from '@mui/material';
+import * as React from 'react';
 
 interface Props {
   itemsList: string[];
@@ -22,14 +22,8 @@ interface Props {
   style?: SxProps;
   maxWidth?: string;
 }
-export default function SelectField({
-  label,
-  itemsList,
-  isOrederDetail,
-  style,
-  maxWidth,
-}: Props) {
-  const [value, setValue] = React.useState<string>("");
+export default function SelectField({ label, itemsList, isOrederDetail, style, maxWidth }: Props) {
+  const [value, setValue] = React.useState<string>('');
   const [open, setOpen] = React.useState(false);
 
   React.useEffect(() => {
@@ -39,10 +33,10 @@ export default function SelectField({
       setOpen(false);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, [open]);
 
@@ -51,10 +45,10 @@ export default function SelectField({
       paper: {
         sx: {
           border: 1,
-          borderColor: "background.border",
-          bgcolor: "background.default",
-          backdropFilter: "blur(10px)",
-          borderRadius: "8px",
+          borderColor: 'background.border',
+          bgcolor: 'background.default',
+          backdropFilter: 'blur(10px)',
+          borderRadius: '8px',
           mt: 0.5,
         },
       },
@@ -76,11 +70,11 @@ export default function SelectField({
 
   const handleClear = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setValue("");
+    setValue('');
   };
 
   return (
-    <FormControl sx={{ maxWidth: maxWidth || "100%", width: "100%" }}>
+    <FormControl sx={{ maxWidth: maxWidth || '100%', width: '100%' }}>
       <Select
         displayEmpty
         value={value}
@@ -92,22 +86,18 @@ export default function SelectField({
         input={<OutlinedInput />}
         MenuProps={MenuProps}
         sx={{
-          borderRadius: "8px",
-          color: "text.primary",
-          fontSize: "18px",
-          "& .MuiSelect-icon": {
+          borderRadius: '8px',
+          color: 'text.primary',
+          fontSize: '18px',
+          '& .MuiSelect-icon': {
             right: 8,
-            left: "auto",
-            color: "text.primary",
-            display: !isOrederDetail
-              ? "block"
-              : isOrederDetail && value
-                ? "none"
-                : "block",
+            left: 'auto',
+            color: 'text.primary',
+            display: !isOrederDetail ? 'block' : isOrederDetail && value ? 'none' : 'block',
           },
-          "& .MuiSelect-select": {
-            display: "flex",
-            alignItems: "center",
+          '& .MuiSelect-select': {
+            display: 'flex',
+            alignItems: 'center',
             gap: 1,
             py: 0.9,
             pr: 1,
@@ -119,10 +109,10 @@ export default function SelectField({
             return (
               <Typography
                 sx={{
-                  color: "#7C7C7C",
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  position: "absolute ",
+                  color: '#7C7C7C',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  position: 'absolute ',
                 }}
               >
                 {label}
@@ -134,16 +124,16 @@ export default function SelectField({
             value && (
               <Box
                 sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  width: "100%",
+                  display: 'flex',
+                  alignItems: 'center',
+                  width: '100%',
                 }}
               >
-                <Stack direction={"row"} alignItems={"center"} gap={0.5}>
+                <Stack direction={'row'} alignItems={'center'} gap={0.5}>
                   {isOrederDetail && <Typography>{label}</Typography>}
                   <Typography
                     variant="body1"
-                    sx={{ color: isOrederDetail ? "#B29727" : "text.title" }}
+                    sx={{ color: isOrederDetail ? '#B29727' : 'text.title' }}
                   >
                     {value}
                   </Typography>
@@ -156,7 +146,7 @@ export default function SelectField({
                     onMouseDown={(e) => e.stopPropagation()}
                     disableRipple
                     sx={{
-                      color: "#FFFFFF",
+                      color: '#FFFFFF',
                     }}
                   >
                     <CloseIcon fontSize="small" />
@@ -172,9 +162,9 @@ export default function SelectField({
             key={name}
             value={name}
             sx={{
-              color: "text.primary",
-              "&.Mui-selected": {
-                bgcolor: "background.default",
+              color: 'text.primary',
+              '&.Mui-selected': {
+                bgcolor: 'background.default',
               },
             }}
           >

@@ -1,20 +1,20 @@
-import Container from "@/app/Components/Containers/Container/Container";
-import { Typography } from "@mui/material";
+import Container from '@/app/Components/Containers/Container/Container';
+import { Typography } from '@mui/material';
 
 export default function Chart() {
   return (
     <Container
       style={{
-        justifyContent: "center",
-        flexDirection: "row",
+        justifyContent: 'center',
+        flexDirection: 'row',
         alignItems: {
-          sm: "center",
-          xs:'flex-start'
+          sm: 'center',
+          xs: 'flex-start',
         },
         mt: 3,
         height: {
-          xs: "200px",
-          sm: "60px",
+          xs: '200px',
+          sm: '60px',
         },
       }}
     >

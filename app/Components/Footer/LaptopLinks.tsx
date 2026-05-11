@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import {
   Accordion,
   AccordionDetails,
@@ -9,50 +9,50 @@ import {
   SvgIcon,
   Typography,
   useTheme,
-} from "@mui/material";
-import Link from "next/link";
-import React, { useState } from "react";
-import { CollapseIcon, ExpandIcon } from "../CustomIcons/CustomIcons";
+} from '@mui/material';
+import Link from 'next/link';
+import React, { useState } from 'react';
+import { CollapseIcon, ExpandIcon } from '../CustomIcons/CustomIcons';
 
 const items = [
   {
-    id: "1",
-    title: "درباره دارینه",
+    id: '1',
+    title: 'درباره دارینه',
     items: [
-      { title: "درباره‌ ما", link: "/about-us" },
-      { title: "سوالات متداول", link: "/faq" },
-      { title: "اپلیکیشن طلاسی", link: "/application" },
-      { title: "قوانین و مقررات", link: "/rules" },
+      { title: 'درباره‌ ما', link: '/about-us' },
+      { title: 'سوالات متداول', link: '/faq' },
+      { title: 'اپلیکیشن طلاسی', link: '/application' },
+      { title: 'قوانین و مقررات', link: '/rules' },
     ],
   },
   {
-    id: "2",
-    title: "مطالب مفید",
+    id: '2',
+    title: 'مطالب مفید',
     items: [
-      { title: "عیار طلا", link: "/" },
-      { title: "مظنه طلا", link: "/" },
-      { title: "استعلام کد طلا", link: "/" },
-      { title: "استعلام انگ طلای آب شده", link: "/" },
-      { title: "هر گرم طلا چند سوت است؟", link: "/" },
-      { title: "نمودار قیمت طلا در 10 سال گذشته", link: "/" },
+      { title: 'عیار طلا', link: '/' },
+      { title: 'مظنه طلا', link: '/' },
+      { title: 'استعلام کد طلا', link: '/' },
+      { title: 'استعلام انگ طلای آب شده', link: '/' },
+      { title: 'هر گرم طلا چند سوت است؟', link: '/' },
+      { title: 'نمودار قیمت طلا در 10 سال گذشته', link: '/' },
     ],
   },
   {
-    id: "3",
-    title: "لینک های مفید",
+    id: '3',
+    title: 'لینک های مفید',
     items: [
-      { title: "طلای ۱۸ عیار", link: "/" },
-      { title: "طلای ۲۱ عیار", link: "/" },
-      { title: "طلای ۲۴ عیار", link: "/" },
-      { title: "طلای دست دوم", link: "/" },
-      { title: "مثقال طلا", link: "/" },
-      { title: "قیمت طلا آب شده", link: "/" },
-      { title: "سکه امامی", link: "/" },
-      { title: "سکه بهار آزادی", link: "/" },
-      { title: "نیم سکه", link: "/" },
-      { title: "ربع سکه", link: "/" },
-      { title: "سکه گرمی", link: "/" },
-      { title: "محاسبه قیمت طلا دست دوم", link: "/" },
+      { title: 'طلای ۱۸ عیار', link: '/' },
+      { title: 'طلای ۲۱ عیار', link: '/' },
+      { title: 'طلای ۲۴ عیار', link: '/' },
+      { title: 'طلای دست دوم', link: '/' },
+      { title: 'مثقال طلا', link: '/' },
+      { title: 'قیمت طلا آب شده', link: '/' },
+      { title: 'سکه امامی', link: '/' },
+      { title: 'سکه بهار آزادی', link: '/' },
+      { title: 'نیم سکه', link: '/' },
+      { title: 'ربع سکه', link: '/' },
+      { title: 'سکه گرمی', link: '/' },
+      { title: 'محاسبه قیمت طلا دست دوم', link: '/' },
     ],
   },
 ];
@@ -60,11 +60,10 @@ const items = [
 export default function LaptopLinks() {
   const [expanded, setExpanded] = useState<string | false>(false);
   const theme = useTheme();
-  const isDarkMode = theme.palette.mode === "dark";
-  const handleChange =
-    (id: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
-      setExpanded(isExpanded ? id : false);
-    };
+  const isDarkMode = theme.palette.mode === 'dark';
+  const handleChange = (id: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
+    setExpanded(isExpanded ? id : false);
+  };
   return (
     <Grid size={12} mt={2}>
       <Stack>
@@ -78,14 +77,12 @@ export default function LaptopLinks() {
                 expanded={isOpen}
                 onChange={handleChange(item.id)}
                 sx={{
-                  background: isDarkMode
-                    ? "rgb(16, 16, 15,1)"
-                    : "background.default",
+                  background: isDarkMode ? 'rgb(16, 16, 15,1)' : 'background.default',
                   py: 1,
-                  borderRadius: "10px !important",
-                  boxShadow: "none",
-                  "&::before": {
-                    display: "none",
+                  borderRadius: '10px !important',
+                  boxShadow: 'none',
+                  '&::before': {
+                    display: 'none',
                   },
                 }}
               >
@@ -95,7 +92,7 @@ export default function LaptopLinks() {
                       <SvgIcon
                         sx={{
                           fontSize: 25,
-                          color: "text.subtitle",
+                          color: 'text.subtitle',
                         }}
                       >
                         <CollapseIcon />
@@ -104,7 +101,7 @@ export default function LaptopLinks() {
                       <SvgIcon
                         sx={{
                           fontSize: 25,
-                          color: "text.subtitle",
+                          color: 'text.subtitle',
                         }}
                       >
                         <ExpandIcon />
@@ -122,8 +119,8 @@ export default function LaptopLinks() {
                         variant="body2"
                         sx={{
                           mt: 1,
-                          whiteSpace: "preLine",
-                          lineHeight: "25px",
+                          whiteSpace: 'preLine',
+                          lineHeight: '25px',
                           fontSize: {
                             xs: 12,
                             sm: 14,

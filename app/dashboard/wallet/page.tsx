@@ -1,53 +1,56 @@
-import CircleAnimation from "@/app/Components/CircleAnimation/CircleAnimation";
+import CircleAnimation from '@/app/Components/CircleAnimation/CircleAnimation';
 import {
   default as Card,
   default as Container,
-} from "@/app/Components/Containers/Container/Container";
-import OrderDetail from "@/app/Components/Tables/DetailTable/OrderDetail";
-import Wallet from "@/app/Components/Wallet/Wallet";
-import priceFormater from "@/app/core/PriceFormater";
-import { ToggleItemsType } from "@/app/core/Types";
-import { Grid, Stack, Typography } from "@mui/material";
-import { Metadata } from "next";
-import BackLink from "../BackLink";
-import Chart from "./Chart";
+} from '@/app/Components/Containers/Container/Container';
+import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
+import Wallet from '@/app/Components/Wallet/Wallet';
+import priceFormater from '@/app/core/PriceFormater';
+import { ToggleItemsType } from '@/app/core/Types';
+import { Grid, Stack, Typography } from '@mui/material';
+import { Metadata } from 'next';
+import BackLink from '../BackLink';
+import Chart from './Chart';
+import { getAssets } from '@/lib/getAssets/getAssets';
 export const metadata: Metadata = {
-  title: "کیف پول | دارینه",
-  description: "",
+  title: 'کیف پول | دارینه',
+  description: '',
 };
 const items: ToggleItemsType[] = [
   {
-    title: "واریز",
-    value: "deposit",
+    title: 'واریز',
+    value: 'deposit',
     id: 1,
-    emptyMessage: "واریزی برای شما به ثبت نرسیده است",
+    emptyMessage: 'واریزی برای شما به ثبت نرسیده است',
   },
   {
-    title: "واریز مستقیم",
-    value: "directDeposit",
+    title: 'واریز مستقیم',
+    value: 'directDeposit',
     id: 2,
-    emptyMessage: "واریز باشناسه ای برای شما به ثبت نرسیده است",
+    emptyMessage: 'واریز باشناسه ای برای شما به ثبت نرسیده است',
   },
   {
-    title: "واریز از نقره سی",
-    value: "silverDeposit",
+    title: 'واریز از نقره سی',
+    value: 'silverDeposit',
     id: 3,
-    emptyMessage: "واریزی برای شما به ثبت نرسیده است",
+    emptyMessage: 'واریزی برای شما به ثبت نرسیده است',
   },
   {
-    title: "برداشت",
-    value: "withdraw",
+    title: 'برداشت',
+    value: 'withdraw',
     id: 4,
-    emptyMessage: "برداشتی برای شما به ثبت نرسیده است",
+    emptyMessage: 'برداشتی برای شما به ثبت نرسیده است',
   },
   {
-    title: "برداشت به نقره سی",
-    value: "silverWithdraw",
+    title: 'برداشت به نقره سی',
+    value: 'silverWithdraw',
     id: 5,
-    emptyMessage: "برداشتی برای شما به ثبت نرسیده است",
+    emptyMessage: 'برداشتی برای شما به ثبت نرسیده است',
   },
 ];
-export default function page() {
+export default async function page() {
+  const data = await getAssets();
+  console.log(data);
   return (
     <Grid
       container
@@ -64,8 +67,8 @@ export default function page() {
         <Grid
           size={12}
           display={{
-            xs: "none",
-            sm: "block",
+            xs: 'none',
+            sm: 'block',
           }}
         >
           <Chart />
@@ -75,9 +78,9 @@ export default function page() {
       <Grid size={{ xs: 12, md: 6 }}>
         <Container
           style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
             mb: {
               xs: 1,
               lg: 3,
@@ -87,8 +90,8 @@ export default function page() {
               lg: 3,
             },
             display: {
-              xs: "none",
-              sm: "flex",
+              xs: 'none',
+              sm: 'flex',
             },
             px: {
               sm: 2,
@@ -96,27 +99,17 @@ export default function page() {
             },
           }}
         >
-          <Stack direction={"row"} gap={2} alignItems={"center"}>
+          <Stack direction={'row'} gap={2} alignItems={'center'}>
             <CircleAnimation type="red" />
-            <Typography variant="body2" sx={{ color: "text.muted" }}>
+            <Typography variant="body2" sx={{ color: 'text.muted' }}>
               قیمت فعلی طلا ۱۸ عیار:
             </Typography>
           </Stack>
-          <Stack direction={"row"} gap={0.5} alignItems={"center"}>
-            <Typography
-              variant="body1"
-              fontSize={20}
-              sx={{ color: "text.title" }}
-              fontWeight={500}
-            >
+          <Stack direction={'row'} gap={0.5} alignItems={'center'}>
+            <Typography variant="body1" fontSize={20} sx={{ color: 'text.title' }} fontWeight={500}>
               {priceFormater(17329000)}
             </Typography>
-            <Typography
-              variant="body1"
-              fontSize={18}
-              sx={{ color: "text.title" }}
-              fontWeight={500}
-            >
+            <Typography variant="body1" fontSize={18} sx={{ color: 'text.title' }} fontWeight={500}>
               تومان
             </Typography>
           </Stack>
@@ -144,8 +137,8 @@ export default function page() {
               sm: 20,
               lg: 22,
             }}
-            sx={{ color: "text.primary" }}
-            fontWeight={"900"}
+            sx={{ color: 'text.primary' }}
+            fontWeight={'900'}
           >
             خلاصه فعالیت‌های شما
           </Typography>
@@ -154,20 +147,16 @@ export default function page() {
               xs: 3,
               lg: 4.5,
             }}
-            direction={"column"}
+            direction={'column'}
             gap={{
               xs: 2,
               sm: 2.5,
             }}
           >
-            <Stack
-              direction={"row"}
-              justifyContent={"space-between"}
-              alignItems={"center"}
-            >
+            <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
               <Typography
                 variant="body1"
-                sx={{ color: "text.muted" }}
+                sx={{ color: 'text.muted' }}
                 fontSize={{ xs: 10, sm: 14, lg: 16 }}
               >
                 مجموع دارایی شما
@@ -176,19 +165,15 @@ export default function page() {
               <Typography
                 variant="h6"
                 fontSize={{ xs: 12, sm: 18, lg: 20 }}
-                sx={{ color: "text.title" }}
+                sx={{ color: 'text.title' }}
               >
                 *** تومان
               </Typography>
             </Stack>
-            <Stack
-              direction={"row"}
-              justifyContent={"space-between"}
-              alignItems={"center"}
-            >
+            <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
               <Typography
                 variant="body1"
-                sx={{ color: "text.muted" }}
+                sx={{ color: 'text.muted' }}
                 fontSize={{ xs: 10, sm: 14, lg: 16 }}
               >
                 سود شما
@@ -197,19 +182,15 @@ export default function page() {
               <Typography
                 variant="h6"
                 fontSize={{ xs: 12, sm: 18, lg: 20 }}
-                sx={{ color: "success.main" }}
+                sx={{ color: 'success.main' }}
               >
                 *** تومان
               </Typography>
             </Stack>
-            <Stack
-              direction={"row"}
-              justifyContent={"space-between"}
-              alignItems={"center"}
-            >
+            <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
               <Typography
                 variant="body1"
-                sx={{ color: "text.muted" }}
+                sx={{ color: 'text.muted' }}
                 fontSize={{ xs: 10, sm: 14, lg: 16 }}
               >
                 طلا برداشت شده
@@ -218,19 +199,15 @@ export default function page() {
               <Typography
                 variant="h6"
                 fontSize={{ xs: 12, sm: 18, lg: 20 }}
-                sx={{ color: "text.title" }}
+                sx={{ color: 'text.title' }}
               >
                 *** گرم
               </Typography>
             </Stack>
-            <Stack
-              direction={"row"}
-              justifyContent={"space-between"}
-              alignItems={"center"}
-            >
+            <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
               <Typography
                 variant="body1"
-                sx={{ color: "text.muted" }}
+                sx={{ color: 'text.muted' }}
                 fontSize={{ xs: 10, sm: 14, lg: 16 }}
               >
                 کارت هدیه های خریداری شده
@@ -239,19 +216,15 @@ export default function page() {
               <Typography
                 variant="h6"
                 fontSize={{ xs: 12, sm: 18, lg: 20 }}
-                sx={{ color: "text.title" }}
+                sx={{ color: 'text.title' }}
               >
                 *** تومان
               </Typography>
             </Stack>
-            <Stack
-              direction={"row"}
-              justifyContent={"space-between"}
-              alignItems={"center"}
-            >
+            <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
               <Typography
                 variant="body1"
-                sx={{ color: "text.muted" }}
+                sx={{ color: 'text.muted' }}
                 fontSize={{ xs: 10, sm: 14, lg: 16 }}
               >
                 کارت هدیه های دریافت شده
@@ -260,19 +233,15 @@ export default function page() {
               <Typography
                 variant="h6"
                 fontSize={{ xs: 12, sm: 18, lg: 20 }}
-                sx={{ color: "text.title" }}
+                sx={{ color: 'text.title' }}
               >
                 *** تومان
               </Typography>
             </Stack>
-            <Stack
-              direction={"row"}
-              justifyContent={"space-between"}
-              alignItems={"center"}
-            >
+            <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
               <Typography
                 variant="body1"
-                sx={{ color: "text.muted" }}
+                sx={{ color: 'text.muted' }}
                 fontSize={{ xs: 10, sm: 14, lg: 16 }}
               >
                 تومان درانتظار پردازش
@@ -281,19 +250,15 @@ export default function page() {
               <Typography
                 variant="h6"
                 fontSize={{ xs: 12, sm: 18, lg: 20 }}
-                sx={{ color: "text.title" }}
+                sx={{ color: 'text.title' }}
               >
                 *** تومان
               </Typography>
             </Stack>
-            <Stack
-              direction={"row"}
-              justifyContent={"space-between"}
-              alignItems={"center"}
-            >
+            <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
               <Typography
                 variant="body1"
-                sx={{ color: "text.muted" }}
+                sx={{ color: 'text.muted' }}
                 fontSize={{ xs: 10, sm: 14, lg: 16 }}
               >
                 طلا درانتظار پردازش
@@ -302,7 +267,7 @@ export default function page() {
               <Typography
                 variant="h6"
                 fontSize={{ xs: 12, sm: 18, lg: 20 }}
-                sx={{ color: "text.title" }}
+                sx={{ color: 'text.title' }}
               >
                 *** گرم
               </Typography>
@@ -311,19 +276,15 @@ export default function page() {
         </Card>
         <Grid
           display={{
-            xs: "block",
-            sm: "none",
+            xs: 'block',
+            sm: 'none',
           }}
           size={12}
         >
           <Chart />
         </Grid>
         <Stack mt={{ xs: 1, sm: 3 }}>
-          <OrderDetail
-            type="chip"
-            title="لیست تراکنش‌‌های اخیر"
-            toggleItems={items}
-          />
+          <OrderDetail type="chip" title="لیست تراکنش‌‌های اخیر" toggleItems={items} />
         </Stack>
       </Grid>
     </Grid>

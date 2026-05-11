@@ -1,11 +1,11 @@
-"use client";
-import ChartGold from "@/app/Components/Chart/ChartGold";
-import { Grid, useMediaQuery, useTheme } from "@mui/material";
-import React from "react";
+'use client';
+import ChartGold from '@/app/Components/Chart/ChartGold';
+import { Grid, useMediaQuery, useTheme } from '@mui/material';
+import React from 'react';
 
 export default function ChartContainer() {
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
+  const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   return (
     <>
       {isDesktop && (
@@ -34,7 +34,7 @@ export default function ChartContainer() {
                 md: 6,
                 lg: 4.5,
               },
-              height: "100%",
+              height: '100%',
             }}
             dividerStyle={{
               mt: {

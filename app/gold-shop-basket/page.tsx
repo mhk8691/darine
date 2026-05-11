@@ -1,37 +1,37 @@
-import { Container, Divider, Stack, Typography } from "@mui/material";
-import { Metadata } from "next";
-import Cart from "./Cart";
+import { Container, Divider, Stack, Typography } from '@mui/material';
+import { Metadata } from 'next';
+import Cart from './Cart';
 export const metadata: Metadata = {
-  title: "خرید شمش طلا 18 و 24 عیار آنلاین و قیمت روز | دارینه",
-  description: "",
+  title: 'خرید شمش طلا 18 و 24 عیار آنلاین و قیمت روز | دارینه',
+  description: '',
 };
 export default function page() {
   return (
     <>
       <Stack
-        direction={"row"}
+        direction={'row'}
         justifyContent={{
-          xs: "center",
-          sm: "space-between",
+          xs: 'center',
+          sm: 'space-between',
         }}
-        bgcolor={"#393936"}
+        bgcolor={'#393936'}
         py={1.5}
         px={4}
         spacing={0}
       >
         <Stack
-          direction={"row"}
-          justifyContent={"space-between"}
-          alignItems={"center"}
+          direction={'row'}
+          justifyContent={'space-between'}
+          alignItems={'center'}
           gap={0.5}
           width={{
-            xs: "100%",
-            md: "auto",
+            xs: '100%',
+            md: 'auto',
           }}
         >
           <Typography
             variant="body1"
-            sx={{ color: "text.title" }}
+            sx={{ color: 'text.title' }}
             fontSize={{
               xs: 10,
               lg: 14,
@@ -54,24 +54,24 @@ export default function page() {
 
         <Stack
           direction={{
-            xs: "column",
-            sm: "row",
+            xs: 'column',
+            sm: 'row',
           }}
-          alignItems={"center"}
+          alignItems={'center'}
           gap={0.5}
-          justifyContent={"space-between"}
+          justifyContent={'space-between'}
           width={{
-            xs: "50%",
-            md: "auto",
+            xs: '50%',
+            md: 'auto',
           }}
           display={{
-            xs: "none",
-            md: "flex",
+            xs: 'none',
+            md: 'flex',
           }}
         >
           <Typography
             variant="body1"
-            sx={{ color: "text.title" }}
+            sx={{ color: 'text.title' }}
             fontSize={{
               xs: 10,
               lg: 14,
@@ -93,13 +93,13 @@ export default function page() {
         </Stack>
       </Stack>
       <Container
-        maxWidth={"xl"}
+        maxWidth={'xl'}
         sx={{
           mt: 5,
           px: {
-            xs: "16px !important",
-            md: "24px !important",
-            lg: "40px !important",
+            xs: '16px !important',
+            md: '24px !important',
+            lg: '40px !important',
           },
         }}
       >

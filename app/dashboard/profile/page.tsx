@@ -1,13 +1,13 @@
-import Container from "@/app/Components/Containers/Container/Container";
-import WalletStatus from "@/app/Components/Wallet/WalletStatus";
-import { Grid, Typography } from "@mui/material";
-import { Metadata } from "next";
-import Buttons from "./Buttons";
-import ChangeNumber from "./ChangeNumber";
-import Profile from "./Profile";
+import Container from '@/app/Components/Containers/Container/Container';
+import WalletStatus from '@/app/Components/Wallet/WalletHeader';
+import { Grid, Typography } from '@mui/material';
+import { Metadata } from 'next';
+import Buttons from './Buttons';
+import ChangeNumber from './ChangeNumber';
+import Profile from './Profile';
 export const metadata: Metadata = {
-  title: "پروفایل | دارینه",
-  description: "",
+  title: 'پروفایل | دارینه',
+  description: '',
 };
 export default function page() {
   return (
@@ -19,8 +19,8 @@ export default function page() {
         lg: 3,
       }}
     >
-      <Grid size={12} display={{xs:'none', sm: "block" }}>
-        <WalletStatus />
+      <Grid size={12} display={{ xs: 'none', sm: 'block' }}>
+        <WalletHeader />
       </Grid>
       <Grid
         size={{
@@ -58,7 +58,7 @@ export default function page() {
               xs: 14,
               sm: 22,
             }}
-            sx={{ color: "text.title" }}
+            sx={{ color: 'text.title' }}
           >
             فعالسازی ربات تلگرام
           </Typography>
@@ -70,9 +70,9 @@ export default function page() {
             }}
             mt={2.5}
           >
-            شما می‌توانید در این بخش، ارسال کد ورود به پنل کاربری طلاسی را در
-            حساب تلگرام خود را فعال کنید، تا در مواقع اختلال در زیرساخت‌های
-            مخابراتی، بتوانید به راحتی وارد حساب طلاسی خود شوید.
+            شما می‌توانید در این بخش، ارسال کد ورود به پنل کاربری طلاسی را در حساب تلگرام خود را
+            فعال کنید، تا در مواقع اختلال در زیرساخت‌های مخابراتی، بتوانید به راحتی وارد حساب طلاسی
+            خود شوید.
           </Typography>
           <Buttons />
         </Container>
@@ -103,7 +103,7 @@ export default function page() {
               sm: 1,
             },
             borderColor: {
-              sm: "background.paper",
+              sm: 'background.paper',
             },
           }}
         >
@@ -113,7 +113,7 @@ export default function page() {
               xs: 16,
               sm: 22,
             }}
-            sx={{ color: "text.title" }}
+            sx={{ color: 'text.title' }}
           >
             تغییر شماره تلفن
           </Typography>

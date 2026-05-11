@@ -1,4 +1,4 @@
-import Navigate from "./Navigate";
+import Navigate from './Navigate';
 
 export default function page() {
   return (
