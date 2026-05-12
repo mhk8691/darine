@@ -1,11 +1,11 @@
 import ChartGold from '@/app/Components/Chart/ChartGold';
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
-import WalletStatus from '@/app/Components/Wallet/WalletHeader';
 import { ToggleItemsType } from '@/app/core/Types';
 import { Grid } from '@mui/material';
 import Trading from './Trading/Trading';
 import { Metadata } from 'next';
 import BackLink from '../BackLink';
+import WalletHeader from '@/app/Components/Wallet/WalletHeader';
 export const metadata: Metadata = {
   title: 'خرید و فروش طلا | دارینه',
   description: '',

@@ -2,9 +2,14 @@
 import Card from '@/app/Components/Containers/Container/Container';
 import FilterToggleButton from '@/app/Components/FilterToggleButton/FilterToggleButton';
 import InputField from '@/app/Components/InputField/InputField';
-import { ToggleItemsType } from '@/app/core/Types';
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+import { BuyGoldDataType, ToggleItemsType } from '@/app/core/Types';
+import { goldBuy } from '@/lib/gold/goldBuy';
+import { goldSell } from '@/lib/gold/goldSell';
 import { Button, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { isAxiosError } from 'axios';
 import { useState } from 'react';
+import TradeGoldConfirmation from './TradeGoldConfirmation';
 
 const items: ToggleItemsType[] = [
   { title: 'خرید', value: 'buy', id: 1 },
@@ -14,6 +19,8 @@ export default function Trading() {
   const [price, setPrice] = useState('');
   const [gold, setGold] = useState('');
   const [select, setSelect] = useState(items[0].value);
+  const [open,setOpen] = useState(true)
+  const  [buyInfo,setBuyInfo] = useState<BuyGoldDataType>({} as BuyGoldDataType)
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
 
@@ -38,7 +45,31 @@ export default function Trading() {
       setPrice('');
     }
   };
+
+  const handleBuyGold = async ()=>{
+    try{
+      const response = await goldBuy(price)
+      setOpen(true)
+      setBuyInfo(response.data.data)
+    }catch(error:unknown){
+      if (isAxiosError(error)){
+        showSnackbar(error.response?.data.message)
+      }
+    }
+  }
+    const handleSellGold = async ()=>{
+    try{
+      const response = await goldSell(gold)
+      setOpen(true)
+      console.log(response.data.data)
+    }catch(error:unknown){
+      if (isAxiosError(error)){
+        showSnackbar(error.response?.data.message)
+      }
+    }
+  }
   return (
+    <>
     <Card
       style={{
         gap: 3.15,
@@ -85,9 +116,11 @@ export default function Trading() {
           />
         </Stack>
       </Stack>
-      <Button variant="contained" color="primary" sx={{ borderRadius: 2, fontSize: 16, py: 1.4 }}>
+      <Button variant="contained" color="primary" onClick={()=>select === 'buy' ? handleBuyGold():handleSellGold()} sx={{ borderRadius: 2, fontSize: 16, py: 1.4 }}>
         {select === 'buy' ? 'خرید' : 'فروش'}
       </Button>
     </Card>
+    <TradeGoldConfirmation title={select === 'buy' ? 'تایید خرید طلا':'تایید فروش طلا'} open={open} setOpen={setOpen} data={buyInfo} />
+    </>
   );
 }
