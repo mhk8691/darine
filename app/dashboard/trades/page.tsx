@@ -6,24 +6,12 @@ import Trading from './Trading/Trading';
 import { Metadata } from 'next';
 import BackLink from '../BackLink';
 import WalletHeader from '@/app/Components/Wallet/WalletHeader';
+import DetailTable from './DetailTable';
 export const metadata: Metadata = {
   title: 'خرید و فروش طلا | دارینه',
   description: '',
 };
-const items: ToggleItemsType[] = [
-  {
-    title: 'خرید',
-    value: 'buy',
-    id: 1,
-    emptyMessage: 'معامله ای برای شما به ثبت نرسیده است',
-  },
-  {
-    title: 'فروش',
-    value: 'sell',
-    id: 2,
-    emptyMessage: 'معامله ای برای شما به ثبت نرسیده است',
-  },
-];
+
 export default function page() {
   return (
     <Grid
@@ -61,7 +49,7 @@ export default function page() {
         </Grid>
       </Grid>
       <Grid size={12}>
-        <OrderDetail title="لیست معاملات اخیر" toggleItems={items} type="chip" />
+        <DetailTable/>
       </Grid>
     </Grid>
   );

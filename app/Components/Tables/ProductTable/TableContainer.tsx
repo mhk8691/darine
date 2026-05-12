@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import GoldTable from './GoldTable';
+import CustomTable from './CustomTable';
 import { TableGoldDataType } from '@/app/core/Types';
 import { useMediaQuery, useTheme } from '@mui/material';
 import LaptopTable from './LaptopTable';
@@ -14,7 +14,7 @@ export default function TableContainer({ data }: Props) {
   return (
     <>
       {!isDesktop ? (
-        <GoldTable
+        <CustomTable
           data={data}
           heads={[
             'نوع طلا',

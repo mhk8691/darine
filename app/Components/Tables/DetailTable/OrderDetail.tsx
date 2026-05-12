@@ -9,12 +9,15 @@ import CustomDatePicker from '../../DatePicker/CustomDatePicker';
 import FilterToggleButton from '../../FilterToggleButton/FilterToggleButton';
 import SelectField from '../../InputField/SelectField';
 import FilterButton from './FilterButton';
+import CustomTable from '../ProductTable/CustomTable';
 interface Props {
   title?: string;
   type: 'chip' | 'toggle';
   toggleItems: ToggleItemsType[];
   noCard?: boolean;
   emptyMessage?: string;
+  tableHead:string[]
+  tableBody:[]
 }
 const names = ['تکمیل شده', 'در انتظار تایید', 'لغو شده'];
 export default function OrderDetail({
@@ -23,6 +26,8 @@ export default function OrderDetail({
   toggleItems,
   noCard = false,
   emptyMessage,
+  tableHead,
+  tableBody
 }: Props) {
   const [active, setActive] = useState<number | null>(toggleItems[0]?.id);
   const [select, setSelect] = useState(toggleItems[0]?.value);
@@ -245,7 +250,10 @@ export default function OrderDetail({
           <CustomDatePicker />
         </Stack>
       </Stack>
-      <Stack
+      {
+        tableBody.length > 0 ? <Stack mt={3}>
+        <CustomTable data={tableBody} heads={tableHead} />
+  </Stack> :<Stack
         mt={10}
         mb={8}
         direction={'column'}
@@ -263,6 +271,8 @@ export default function OrderDetail({
           {emptyMessage || message}
         </Typography>
       </Stack>
+      }
+ 
     </Card>
   );
 }

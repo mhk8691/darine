@@ -1,12 +1,13 @@
 'use client';
 
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+import { RefrraDataType } from '@/app/core/Types';
 import { Stack, SvgIcon, Typography, useTheme } from '@mui/material';
 
-export default function RefralButton() {
+export default function RefralButton({referralData}:{referralData:RefrraDataType}) {
   const handleClick = async () => {
     try {
-      await navigator.clipboard.writeText('https://t.me/talaseaBot?start=WOmMQhRxxr');
+      await navigator.clipboard.writeText(referralData.referral_code);
       showSnackbar('کپی شد', true);
     } catch (err) {
       console.error('failed to copy', err);
@@ -109,7 +110,7 @@ export default function RefralButton() {
           sm: 20,
         }}
       >
-        WuxwOhzW
+        {referralData.referral_code}
       </Typography>
     </Stack>
   );

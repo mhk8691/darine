@@ -1,4 +1,3 @@
-'use client'
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { ProductDateType } from '@/app/core/Types';
 import  api  from '@/lib/api';

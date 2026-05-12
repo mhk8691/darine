@@ -33,9 +33,9 @@ export function createData({
 
 interface Props {
   heads: string[];
-  data: TableGoldDataType[];
+  data: [];
 }
-export default function GoldTable({ heads, data }: Props) {
+export default function CustomTable({ heads, data }: Props) {
   return (
     <TableContainer
       component={Paper}
@@ -67,9 +67,9 @@ export default function GoldTable({ heads, data }: Props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((row) => (
+          {data?.map((row) => (
             <TableRow
-              key={row.currentRate}
+              key={row?.currentRate}
               sx={{
                 '&:last-child td': {
                   border: 0,
@@ -77,14 +77,14 @@ export default function GoldTable({ heads, data }: Props) {
                 '&:last-child th': { border: 0 },
               }}
             >
-              {row.typeGold && (
+              {row?.typeGold && (
                 <TableCell
                   component="th"
                   scope="row"
                   align="center"
                   sx={{ fontSize: '16px', py: 0.9, px: 2.5 }}
                 >
-                  {row.typeGold}
+                  {row?.typeGold}
                 </TableCell>
               )}
               <TableCell
@@ -95,7 +95,7 @@ export default function GoldTable({ heads, data }: Props) {
                 }}
               >
                 <Stack direction={'row'} alignItems={'center'} gap={0.5} justifyContent={'center'}>
-                  <Typography variant="body1">{row.currentRate.toLocaleString()}</Typography>
+                  <Typography variant="body1">{row?.currentRate.toLocaleString()}</Typography>
                   <Typography variant="body2" fontSize={12}>
                     تومان
                   </Typography>
@@ -109,7 +109,7 @@ export default function GoldTable({ heads, data }: Props) {
                 }}
               >
                 <Stack direction={'row'} alignItems={'center'} gap={0.5} justifyContent={'center'}>
-                  <Typography variant="body1">{row.minPriceDay.toLocaleString()}</Typography>
+                  <Typography variant="body1">{row?.minPriceDay.toLocaleString()}</Typography>
                   <Typography variant="body2" fontSize={12}>
                     تومان
                   </Typography>
@@ -123,7 +123,7 @@ export default function GoldTable({ heads, data }: Props) {
                 }}
               >
                 <Stack direction={'row'} alignItems={'center'} gap={0.5} justifyContent={'center'}>
-                  <Typography variant="body1">{row.maxPriceDay.toLocaleString()}</Typography>
+                  <Typography variant="body1">{row?.maxPriceDay.toLocaleString()}</Typography>
                   <Typography variant="body2" fontSize={12}>
                     تومان
                   </Typography>
@@ -135,10 +135,10 @@ export default function GoldTable({ heads, data }: Props) {
                   fontSize: '16px',
                   py: 0.9,
                   px: 2.5,
-                  color: row.dayChange >= 0 ? 'success.main' : 'error.main',
+                  color: row?.dayChange >= 0 ? 'success.main' : 'error.main',
                 }}
               >
-                {row.dayChange}%
+                {row?.dayChange}%
               </TableCell>
               <TableCell
                 align="center"
@@ -146,16 +146,16 @@ export default function GoldTable({ heads, data }: Props) {
                   fontSize: '16px',
                   py: 0.9,
                   px: 2.5,
-                  color: row.monthChange >= 0 ? 'success.main' : 'error.main',
+                  color: row?.monthChange >= 0 ? 'success.main' : 'error.main',
                 }}
               >
-                {row.monthChange}%
+                {row?.monthChange}%
               </TableCell>
               <TableCell align="center" sx={{ fontSize: '16px', py: 0.9, px: 2.5 }}>
                 <Stack direction={'row'} justifyContent={'center'}>
                   <LineChart
                     color="#D12F2F"
-                    width={row.typeGold ? '90%' : '70%'}
+                    width={row?.typeGold ? '90%' : '70%'}
                     height="40px"
                     noGradiant
                     data={[1, 2, 3]}
@@ -164,7 +164,7 @@ export default function GoldTable({ heads, data }: Props) {
                   />
                 </Stack>
               </TableCell>
-              {row.typeGold && (
+              {row?.typeGold && (
                 <TableCell align="center" sx={{ fontSize: '16px', py: 0.9, px: 2.5 }}>
                   <Link href={'/test/'}>
                     <Button variant="outlined" color="inherit" sx={{ borderRadius: 2, p: 0.8 }}>
