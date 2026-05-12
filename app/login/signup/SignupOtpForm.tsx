@@ -4,8 +4,8 @@ import Field from '../Field';
 import ActionButton from '../SubmitButton';
 import { useRouter } from 'next/navigation';
 import { signupOtp } from '@/lib/auth';
-import axios from 'axios';
-import BASE_URL from '@/app/core/BASE_URL';
+import { isAxiosError } from 'axios';
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 
 interface Props {
   children: ReactNode;
@@ -17,9 +17,14 @@ export default function SignupOtpForm({ children }: Props) {
   const handleSignup = async () => {
     try {
       const res = await signupOtp(mobile);
-      //   router.push("/dashboard");
-    } catch (err) {
-      console.log(err);
+      if (res.status === 200) {
+        showSnackbar(res.data.message, true);
+        router.push(`/login/verify-otp/?phone=${mobile}`);
+      }
+    } catch (err: unknown) {
+      if (isAxiosError(err)) {
+        showSnackbar(err.response?.data.mobile, false);
+      }
     }
   };
   return (

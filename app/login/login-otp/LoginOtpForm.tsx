@@ -4,6 +4,7 @@ import Field from '../Field';
 import ActionButton from '../SubmitButton';
 import { useRouter } from 'next/navigation';
 import { loginOtp } from '@/lib/auth';
+import SubmitButton from '../SubmitButton';
 
 interface Props {
   children: ReactNode;
@@ -25,7 +26,7 @@ export default function LoginOtpForm({ children }: Props) {
       <Field value={phoneNumber} setValue={setPhoneNumber} label="شماره موبایل" />
 
       {children}
-      <ActionButton title={'ادامه'} isDisable={false} handleSubmit={handleLogin} />
+      <SubmitButton title={'ادامه'} isDisable={false} handleSubmit={handleLogin} />
     </>
   );
 }

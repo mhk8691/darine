@@ -2,8 +2,9 @@ import { Button, Stack, Typography } from '@mui/material';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { EditIcon } from '../Components/CustomIcons/CustomIcons';
+import { signupOtp } from '@/lib/auth';
 
-export default function SendCode() {
+export default function SendCode({phoneNumber}:{phoneNumber:string}) {
   const [time, setTime] = useState<number>(120);
 
   useEffect(() => {
@@ -22,6 +23,7 @@ export default function SendCode() {
 
     return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
   };
+ 
   return (
     <Stack
       direction={'row'}
@@ -52,7 +54,10 @@ export default function SendCode() {
           variant="text"
           color="success"
           disableRipple
-          onClick={() => setTime(120)}
+          onClick={() =>{
+            signupOtp(phoneNumber)
+             setTime(120)
+          }}
           sx={{
             '&:hover': {
               bgcolor: 'background.default',

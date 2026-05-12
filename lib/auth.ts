@@ -1,6 +1,7 @@
 import { LoginDtaType } from '@/app/core/Types';
 import { api } from './api';
 import { setAccessToken, clearAccessToken } from './token';
+import { RegisterFormType } from '@/app/login/register/RegisterForm';
 
 export const loginPassword = async (phoneNumber: string, password: string) => {
   const res = await api.post<LoginDtaType>('/auth/login-password', { phoneNumber, password });
@@ -15,14 +16,23 @@ export const loginOtp = async (mobile: string) => {
   return res.data;
 };
 export const signupOtp = async (mobile: string) => {
-  const res = await api.post('/accounts/send-otp', { mobile });
-
-  // setAccessToken(res.data.accessToken);
-
-  return res.data;
+  const res = await api.post<{
+    message:string
+  }>('/accounts/send-otp/', { mobile });
+  return res;
 };
-export const register = async (data: []) => {
-  return api.post('/auth/register', data);
+export const verifyOtp = async (mobile:string,code:string)=>{
+    const res = await api.post<{
+    message:string
+    mobile:string
+  }>('/accounts/verify-otp/', { mobile,code });
+  return res;
+}
+export const register = async (data: RegisterFormType) => {
+  const response = await api.post<{
+    message:string
+  }>('/accounts/complete-register/', data);
+  return response
 };
 
 export const logout = async () => {
