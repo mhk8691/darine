@@ -1,4 +1,3 @@
-'use client';
 import { Box, Divider, Stack, Typography } from '@mui/material';
 import Link from 'next/link';
 import SignupOtpForm from './SignupOtpForm';

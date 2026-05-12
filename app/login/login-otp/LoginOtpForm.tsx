@@ -5,6 +5,8 @@ import ActionButton from '../SubmitButton';
 import { useRouter } from 'next/navigation';
 import { loginOtp } from '@/lib/auth';
 import SubmitButton from '../SubmitButton';
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+import { isAxiosError } from 'axios';
 
 interface Props {
   children: ReactNode;
@@ -15,10 +17,15 @@ export default function LoginOtpForm({ children }: Props) {
   const [phoneNumber, setPhoneNumber] = useState('');
   const handleLogin = async () => {
     try {
-      await loginOtp(phoneNumber);
-      router.push('/dashboard');
+      const res = await loginOtp(phoneNumber);
+      if (res.status === 200) {
+              showSnackbar(res.data.message, true);
+              router.push(`/login/verify-otp/?phone=${phoneNumber}&type=login`);
+            }
     } catch (err) {
-      console.log(err);
+      if (isAxiosError(err)){
+        showSnackbar(err.response?.data.message)
+      }
     }
   };
   return (

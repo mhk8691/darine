@@ -11,9 +11,9 @@ export const loginPassword = async (phoneNumber: string, password: string) => {
   return res.data;
 };
 export const loginOtp = async (mobile: string) => {
-  const res = await api.post<LoginDtaType>('/accounts/send-otp', { mobile });
-  setAccessToken(res.data.data.access);
-  return res.data;
+  const res = await api.post<{message:string}>('/accounts/send-otp/', { mobile });
+
+  return res;
 };
 export const signupOtp = async (mobile: string) => {
   const res = await api.post<{
@@ -21,11 +21,18 @@ export const signupOtp = async (mobile: string) => {
   }>('/accounts/send-otp/', { mobile });
   return res;
 };
-export const verifyOtp = async (mobile:string,code:string)=>{
+export const verifySignupOtp = async (mobile:string,code:string)=>{
     const res = await api.post<{
     message:string
     mobile:string
   }>('/accounts/verify-otp/', { mobile,code });
+  return res;
+}
+export const verifyLoginOtp = async (mobile:string,code:string)=>{
+    const res = await api.post<LoginDtaType>('/accounts/login/otp/', { mobile,code });
+    
+
+    setAccessToken(res.data.data.access);
   return res;
 }
 export const register = async (data: RegisterFormType) => {

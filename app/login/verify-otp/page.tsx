@@ -1,22 +1,20 @@
 import { Box, Stack, Typography } from '@mui/material';
-import Link from 'next/link';
-import { ArrowLeftIcon } from '@/app/Components/CustomIcons/CustomIcons';
-import VerifyOtp from './VerifyOtp';
+import BackLink from '@/app/dashboard/BackLink';
+import VerifyLoginOtpForm from './VerifyLoginOtpForm';
+import VerifySignupOtpForm from './VerifySignupOtpForm';
 
 interface Props {
   searchParams: {
     phone: string; 
+    type:string
   };
 }
 
 export default async function page({searchParams}:Props) {
-  const { phone } = await searchParams;
-  console.log('=>>',phone)
+  const { phone ,type} = await searchParams;
   return (
     <Stack>
-        <Link href={'/login/signup'}>
-<Stack direction={'row'} alignItems={'center'} gap={1}>
-  <ArrowLeftIcon/>
+      <BackLink fontSize='30' />
   <Typography
         variant="h6"
         fontWeight={'500'}
@@ -28,8 +26,6 @@ export default async function page({searchParams}:Props) {
       >
         کد تایید
       </Typography>
-</Stack>
-        </Link>
     
    
 
@@ -47,7 +43,9 @@ export default async function page({searchParams}:Props) {
           کد تایید علاوه بر پیامک در پیامرسان بله نیز ارسال میشود.
         </Box>
       </Typography>
-        <VerifyOtp phoneNumber={phone} />
+        {
+          type === 'login' ? <VerifyLoginOtpForm phoneNumber={phone} />:<VerifySignupOtpForm phoneNumber={phone} />
+        }
     
     </Stack>
   );
