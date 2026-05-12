@@ -1,6 +1,7 @@
 'use client';
 
 import InputField from '@/app/Components/InputField/InputField';
+import { giftCardSubmit } from '@/lib/giftCard/giftCard';
 import { Stack, Button, useTheme, useMediaQuery } from '@mui/material';
 import { useState } from 'react';
 
@@ -30,6 +31,7 @@ export default function Form() {
             },
             borderRadius: 2,
           }}
+          onClick={()=>giftCardSubmit(value)}
         >
           ثبت
         </Button>
