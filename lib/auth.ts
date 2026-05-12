@@ -4,7 +4,7 @@ import { setAccessToken, clearAccessToken } from './token';
 import { RegisterFormType } from '@/app/login/register/RegisterForm';
 
 export const loginPassword = async (phoneNumber: string, password: string) => {
-  const res = await api.post<LoginDtaType>('/auth/login-password', { phoneNumber, password });
+  const res = await api.post<LoginDtaType>('/accounts/login/password/', { mobile:phoneNumber, password });
 
   setAccessToken(res.data.data.access);
 

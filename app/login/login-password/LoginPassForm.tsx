@@ -6,6 +6,8 @@ import PasswordField from '../PasswordField';
 import ActionButton from '../SubmitButton';
 import { useRouter } from 'next/navigation';
 import { loginPassword } from '@/lib/auth';
+import { isAxiosError } from 'axios';
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 
 interface Props {
   children: ReactNode;
@@ -19,8 +21,10 @@ export default function LoginPassForm({ children }: Props) {
     try {
       await loginPassword(phoneNumber, password);
       router.push('/dashboard');
-    } catch (err) {
-      console.log(err);
+    } catch (error:unknown) {
+      if(isAxiosError(error)){
+        showSnackbar(error.response?.data.error)
+      }
     }
   };
   return (
