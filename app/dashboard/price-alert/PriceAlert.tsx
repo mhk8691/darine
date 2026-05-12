@@ -1,6 +1,7 @@
 'use client';
 import Container from '@/app/Components/Containers/Container/Container';
 import InputField from '@/app/Components/InputField/InputField';
+import { addPriceAlert } from '@/lib/priceAlert/priceAlert';
 import {
   Button,
   FormControl,
@@ -16,8 +17,10 @@ import React, { useState } from 'react';
 
 export default function PriceAlert() {
   const [value, setValue] = useState('');
-  const [active, setActive] = React.useState('one-time');
-
+  const [active, setActive] = React.useState('ONCE');
+  const handlePriceAlert = async ()=>{
+    await addPriceAlert(value,active)
+  }
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setActive((event.target as HTMLInputElement).value);
   };
@@ -121,7 +124,7 @@ export default function PriceAlert() {
               sx={{ flexDirection: 'row', justifyContent: 'space-between' }}
             >
               <FormControlLabel
-                value="one-time"
+                value="ONCE"
                 control={<Radio disableRipple disableTouchRipple />}
                 label="فقط یکبار اطلاع بده"
                 sx={{
@@ -152,6 +155,7 @@ export default function PriceAlert() {
         <Button
           variant="contained"
           color="primary"
+          onClick={handlePriceAlert}
           sx={{
             borderRadius: 2,
             fontSize: {

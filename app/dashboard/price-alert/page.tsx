@@ -1,3 +1,4 @@
+'use client'
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import WalletHeader from '@/app/Components/Wallet/WalletHeader';
 import { Box, Grid } from '@mui/material';
@@ -5,11 +6,22 @@ import { Metadata } from 'next';
 import ChartContainer from './ChartContainer';
 import PriceAlert from './PriceAlert';
 import BackLink from '../BackLink';
-export const metadata: Metadata = {
-  title: 'آلارم قیمت | دارینه',
-  description: '',
-};
+import { useEffect, useState } from 'react';
+import { PriceAlertsDataType } from '@/app/core/Types';
+import { getPriceAlerts } from '@/lib/priceAlert/priceAlert';
+// export const metadata: Metadata = {
+//   title: 'آلارم قیمت | دارینه',
+//   description: '',
+// };
 export default function page() {
+  const [priceAlerts,setPriceAlerts]= useState<[]>([])
+  useEffect(()=>{
+    const getData = async ()=>{
+      const response = await getPriceAlerts()
+      setPriceAlerts(response || [])
+    }
+    getData()
+  },[setPriceAlerts,priceAlerts])
   return (
     <Grid
       container

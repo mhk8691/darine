@@ -16,8 +16,8 @@ interface Props {
   toggleItems: ToggleItemsType[];
   noCard?: boolean;
   emptyMessage?: string;
-  tableHead:string[]
-  tableBody:[]
+  tableHead?:string[]
+  tableBody?:[]
 }
 const names = ['تکمیل شده', 'در انتظار تایید', 'لغو شده'];
 export default function OrderDetail({
@@ -251,7 +251,7 @@ export default function OrderDetail({
         </Stack>
       </Stack>
       {
-        tableBody.length > 0 ? <Stack mt={3}>
+        tableBody?.length > 0 ? <Stack mt={3}>
         <CustomTable data={tableBody} heads={tableHead} />
   </Stack> :<Stack
         mt={10}
