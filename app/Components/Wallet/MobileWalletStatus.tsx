@@ -1,12 +1,16 @@
+import priceFormater from '@/app/core/PriceFormater';
+import { AssetsDataType } from '@/app/core/Types';
 import { Divider, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 
 export default function MobileWalletStatus({
   visible,
   isDesktop,
+  assets
 }: {
   visible: boolean;
   isDesktop: boolean;
+  assets:AssetsDataType
 }) {
   return (
     <Stack direction={'row'} justifyContent={'center'}>
@@ -57,7 +61,7 @@ export default function MobileWalletStatus({
               }}
               sx={{ color: 'text.title' }}
             >
-              {visible ? '۰' : '***'}
+              {visible ? priceFormater(assets.gold_balance_gr) : '***'}
             </Typography>
             <Typography
               variant="body1"
@@ -110,7 +114,7 @@ export default function MobileWalletStatus({
               }}
               sx={{ color: 'text.title' }}
             >
-              {visible ? '۰' : '***'}
+              {visible ? priceFormater(assets.wallet_balance_toman) : '***'}
             </Typography>
             <Typography
               variant="body1"

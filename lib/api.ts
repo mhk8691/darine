@@ -107,7 +107,7 @@ instance.interceptors.response.use(
 
         localStorage.removeItem('user');
 
-        window.location.href = '/login';
+        window.location.href = '/login/login-password';
 
         return Promise.reject(err);
       } finally {

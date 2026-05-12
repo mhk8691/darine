@@ -3,18 +3,28 @@ import { Stack, useMediaQuery, useTheme } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Container from '../Containers/Container/Container';
 import MobileWalletStatus from './MobileWalletStatus';
 import ToggleEyeButton from './ToggleEyeButton';
+import { AssetsDataType } from '@/app/core/Types';
+import { getAssets } from '@/lib/getAssets/getAssets';
+import priceFormater from '@/app/core/PriceFormater';
 interface Props {
   type: 'dashboard' | 'wallet';
 }
 export default function Wallet({ type }: Props) {
   const theme = useTheme();
-
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   const [visible, setVisible] = useState(false);
+  const [assets,setAssets] = useState<AssetsDataType>({}as AssetsDataType)
+  useEffect(()=>{
+    const getData = async ()=>{
+      const response = await getAssets()
+      setAssets(response)
+    }
+    getData()
+  },[])
   return (
     <Container
       style={{
@@ -72,7 +82,7 @@ export default function Wallet({ type }: Props) {
               </Typography>
               <Stack direction={'row'} gap={0.5} alignItems={'center'} fontWeight={500}>
                 <Typography variant="body1" fontSize={20} sx={{ color: 'text.title' }}>
-                  {visible ? '۰' : '***'}
+                  {visible ? priceFormater(assets.total_assets_value) : '***'}
                 </Typography>
                 <Typography
                   variant="body1"
@@ -93,7 +103,7 @@ export default function Wallet({ type }: Props) {
               <ToggleEyeButton visible={visible} setVisible={setVisible} />
             </Stack>
           </Stack>
-          <MobileWalletStatus visible={visible} isDesktop={isDesktop} />
+          <MobileWalletStatus visible={visible} isDesktop={isDesktop} assets={assets} />
         </Stack>
         {type === 'wallet' && (
           <Stack
