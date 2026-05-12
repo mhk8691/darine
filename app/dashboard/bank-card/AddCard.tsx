@@ -6,13 +6,23 @@ import { Dispatch, SetStateAction } from 'react';
 
 import Field from '@/app/login/Field';
 import { Close } from '@mui/icons-material';
+import { addBankCard, getBankCard } from '@/lib/bankCard/bankCard';
+import { BankCardDataType } from '@/app/core/Types';
 interface Props {
   setOpen: Dispatch<SetStateAction<boolean>>;
   open: boolean;
   setValue: Dispatch<SetStateAction<string>>;
   value: string;
+  setBankCardData: Dispatch<SetStateAction<BankCardDataType[]>>
 }
-export default function AddCard({ setOpen, setValue, open, value }: Props) {
+export default function AddCard({ setOpen, setValue, open, value,setBankCardData }: Props) {
+  const handleAddBankCard = async ()=>{
+  await addBankCard(value)
+    const response = await getBankCard()
+  setBankCardData(response && response?.length > 0 ? response :[])
+  setValue('')
+  setOpen(false)
+  }
   return (
     <CustomModal
       open={open}
@@ -48,7 +58,7 @@ export default function AddCard({ setOpen, setValue, open, value }: Props) {
           },
         }}
         disableRipple
-        disabled
+        onClick={handleAddBankCard}
       >
         ثبت
       </Button>

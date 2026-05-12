@@ -1,14 +1,28 @@
 import CustomModal from '@/app/Components/CustomModal/CustomModal';
+import { BankCardDataType } from '@/app/core/Types';
+import { getBankCard, removeBankCard } from '@/lib/bankCard/bankCard';
 import { Close } from '@mui/icons-material';
 import { Button, IconButton, Stack, Typography } from '@mui/material';
 import { Dispatch, SetStateAction } from 'react';
 interface Props {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  cardId: number | null;
-  setCardId: Dispatch<SetStateAction<number | null>>;
+  cardId: number;
+  setBankCardData: Dispatch<SetStateAction<BankCardDataType[]>>;
+  setCardId:Dispatch<SetStateAction<number>>
+  bankCardData:BankCardDataType[]
 }
-export default function DeleteCard({ open, setOpen, cardId, setCardId }: Props) {
+export default function RemoveCard({ open, setOpen, cardId ,setBankCardData,setCardId,bankCardData}: Props) {
+  const handleRemove = async ()=>{
+    await removeBankCard(cardId)
+    const response = await getBankCard()
+    setBankCardData(response && response?.length > 0 ? response :[])
+    setCardId(0)
+    setOpen(false)
+  }
+  const selectedCard = bankCardData?.find(
+  (item) => item.id === cardId
+);
   return (
     <>
       <CustomModal
@@ -28,7 +42,7 @@ export default function DeleteCard({ open, setOpen, cardId, setCardId }: Props) 
           </IconButton>
         </Stack>
         <Typography variant="body1" fontSize={15} fontWeight={'500'} sx={{ mt: 3 }}>
-          آیا از حذف کارت بانکی با شماره 6104 3310 8629 2050 اطمینان دارید؟
+          آیا از حذف کارت بانکی با شماره {selectedCard?.card_number} اطمینان دارید؟
         </Typography>
         <Stack direction={'row'} gap={2} mt={4}>
           <Button
@@ -43,7 +57,7 @@ export default function DeleteCard({ open, setOpen, cardId, setCardId }: Props) 
                 bgcolor: 'primary.main',
               },
             }}
-            onClick={() => setOpen(false)}
+            onClick={handleRemove}
             disableRipple
           >
             حذف

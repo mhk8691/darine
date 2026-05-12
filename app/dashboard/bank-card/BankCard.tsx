@@ -1,22 +1,36 @@
 'use client';
 import Card from '@/app/Components/Containers/Container/Container';
-import { IconButton, Stack, SvgIcon, Typography } from '@mui/material';
+import { Grid, IconButton, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
-import { useState } from 'react';
-import DeleteCard from './DeleteCard';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { RemoveIcon } from '@/app/Components/CustomIcons/CustomIcons';
+import { BankCardDataType } from '@/app/core/Types';
+import RemoveCard from './RemoveCard';
 
-export default function BankCard() {
-  const [cardId, setCardId] = useState<number | null>(null);
+export default function BankCard({bankCardData,setBankCardData}:{bankCardData:BankCardDataType[],setBankCardData:Dispatch<SetStateAction<BankCardDataType[]>>
+}) {
+  const [cardId, setCardId] = useState<number>(0);
+
   const [open, setOpen] = useState(false);
   return (
-    <>
+     <>
+     {
+      bankCardData.map((item)=>(
+      <Grid
+      key={item.id}
+                size={{
+                  xs: 12,
+                  sm: 6,
+                  md: 4,
+                  lg: 3,
+                }}
+              >
       <Card style={{ px: 2, py: 3, borderColor: 'background.border' }}>
         <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
           <Stack direction={'row'} gap={1} alignItems={'center'}>
             <Image src={'/images/simple/mellat.svg'} alt={''} width={36} height={36} />
             <Typography variant="body2" fontSize={16} sx={{ color: 'text.muted' }}>
-              بانک ملت
+             {item.bank_name}
             </Typography>
           </Stack>
           <Stack>
@@ -24,7 +38,7 @@ export default function BankCard() {
               disableRipple
               onClick={() => {
                 setOpen(true);
-                setCardId(1);
+                setCardId(item.id);
               }}
             >
               <RemoveIcon />
@@ -33,14 +47,18 @@ export default function BankCard() {
         </Stack>
         <Stack mt={2}>
           <Typography variant="body2" fontSize={18} sx={{ color: 'text.title' }}>
-            ۶۱۰۴ ۱۲۳۴ ۵۶۷۸ ۹۱۱۱
+            {item.card_number}
           </Typography>
           <Typography variant="body2" fontSize={18} sx={{ color: 'text.title' }}>
             IR۸***۰۳۰۹۰۶۹۷۶55
           </Typography>
         </Stack>
       </Card>
-      <DeleteCard open={open} setOpen={setOpen} cardId={cardId} setCardId={setCardId} />
-    </>
+    </Grid>
+
+      ))
+     }
+<RemoveCard open={open} setOpen={setOpen} cardId={cardId} setBankCardData={setBankCardData} setCardId={setCardId} bankCardData={bankCardData} />
+     </>
   );
 }
