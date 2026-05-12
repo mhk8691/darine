@@ -1,17 +1,16 @@
+'use client'
 import Container from '@/app/Components/Containers/Container/Container';
 import GoldCard from '@/app/Components/ProductCard/ProductCard';
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import WalletHeader from '@/app/Components/Wallet/WalletHeader';
-import { ToggleItemsType } from '@/app/core/Types';
+import { ProductDateType, ToggleItemsType } from '@/app/core/Types';
 import { Grid } from '@mui/material';
 import Cart from './Cart';
 import Sort from './Sort';
 import { Metadata } from 'next';
 import { getProducts } from '@/lib/getProducts/getProducts';
-export const metadata: Metadata = {
-  title: 'دریافت طلا | دارینه',
-  description: '',
-};
+import { useEffect, useState } from 'react';
+
 
 const items: ToggleItemsType[] = [
   {
@@ -28,9 +27,16 @@ const items: ToggleItemsType[] = [
   },
 ];
 
-export default async function page() {
-  const productsData = await getProducts()
-  console.log('=>>',productsData)
+export default  function page() {
+  const [productData,setProductData] = useState<ProductDateType[]>([] )
+ 
+  useEffect(()=>{
+    const getData = async ()=>{
+ const response = await getProducts()
+ setProductData(response || [])
+    }
+    getData()
+  },[])
   return (
     <Grid
       container
@@ -73,7 +79,7 @@ export default async function page() {
             }}
           >
             {
-              productsData?.map((item)=>(
+              productData?.map((item)=>(
 <Grid
               size={{
                 xs: 6,
