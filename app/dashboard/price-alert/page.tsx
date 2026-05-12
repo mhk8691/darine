@@ -1,5 +1,5 @@
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
-import WalletStatus from '@/app/Components/Wallet/WalletHeader';
+import WalletHeader from '@/app/Components/Wallet/WalletHeader';
 import { Box, Grid } from '@mui/material';
 import { Metadata } from 'next';
 import ChartContainer from './ChartContainer';

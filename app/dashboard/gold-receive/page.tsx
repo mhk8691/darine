@@ -1,7 +1,7 @@
 import Container from '@/app/Components/Containers/Container/Container';
 import GoldCard from '@/app/Components/ProductCard/ProductCard';
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
-import WalletStatus from '@/app/Components/Wallet/WalletHeader';
+import WalletHeader from '@/app/Components/Wallet/WalletHeader';
 import { ToggleItemsType } from '@/app/core/Types';
 import { Grid } from '@mui/material';
 import Cart from './Cart';

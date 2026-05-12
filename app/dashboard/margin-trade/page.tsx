@@ -1,7 +1,7 @@
 import ChartGold from '@/app/Components/Chart/ChartGold';
 import Card from '@/app/Components/Containers/Container/Container';
 import Faq from '@/app/Components/Faq/Faq';
-import WalletStatus from '@/app/Components/Wallet/WalletHeader';
+import WalletHeader from '@/app/Components/Wallet/WalletHeader';
 import { FaqItem } from '@/app/core/Types';
 import { Grid } from '@mui/material';
 import MarginTrade from './MarginTrade';

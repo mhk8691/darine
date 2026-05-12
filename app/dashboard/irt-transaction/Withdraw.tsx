@@ -2,10 +2,12 @@
 import Card from '@/app/Components/Containers/Container/Container';
 import FilterToggleButton from '@/app/Components/FilterToggleButton/FilterToggleButton';
 import InputField from '@/app/Components/InputField/InputField';
-import { ToggleItemsType } from '@/app/core/Types';
+import { BankCardDataType, ToggleItemsType } from '@/app/core/Types';
 import { Button, Stack } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BankCard from './BankCard';
+import { silverWidthdraw } from '@/lib/withdraw/withdraw';
+import { getBankCard } from '@/lib/bankCard/bankCard';
 
 const items: ToggleItemsType[] = [
   { title: 'به حساب بانکی', value: 'bank', id: 1 },
@@ -14,7 +16,19 @@ const items: ToggleItemsType[] = [
 export default function Withdraw() {
   const [price, setPrice] = useState('');
   const [select, setSelect] = useState(items[0].value);
+  const [bankCardsData,setBankCardsData] = useState<BankCardDataType[]>([])
+  const [selectedCard,setSelectedCard] = useState<number>(1)
+  const handleWithdraw  = async ()=>{
+    const response = await silverWidthdraw(price,select === 'silver' ? 'silver':'card',selectedCard)
+  }
 
+ useEffect(()=>{
+  const getData = async ()=>{
+    const response = await getBankCard()
+    setBankCardsData(response && response.length > 0 ? response : [])
+  }
+  getData()
+ },[])
   return (
     <Card style={{ gap: 3.5, p: 0, border: 'none' }}>
       <FilterToggleButton
@@ -48,7 +62,7 @@ export default function Withdraw() {
             انتخاب کل موجودی
           </Button>
         </Stack>
-        {select !== 'silver' && <BankCard />}
+        {select !== 'silver' && <BankCard bankCardsData={bankCardsData} setBankCardsData={setBankCardsData} setSelectedCard={setSelectedCard} selectedCard={selectedCard} />}
       </Stack>
       <Button
         variant="contained"
@@ -61,6 +75,7 @@ export default function Withdraw() {
           },
           py: 1.5,
         }}
+        onClick={handleWithdraw}
       >
         برداشت
       </Button>

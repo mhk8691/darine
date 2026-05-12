@@ -1,5 +1,5 @@
 import Container from '@/app/Components/Containers/Container/Container';
-import WalletStatus from '@/app/Components/Wallet/WalletHeader';
+import WalletHeader from '@/app/Components/Wallet/WalletHeader';
 import { Divider, Grid, Stack, Typography } from '@mui/material';
 import ChangePassword from './ChangePassword';
 import TitleProfile from './TitleProfile';

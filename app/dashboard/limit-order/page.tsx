@@ -1,6 +1,6 @@
 import ChartGold from '@/app/Components/Chart/ChartGold';
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
-import WalletStatus from '@/app/Components/Wallet/WalletHeader';
+import WalletHeader from '@/app/Components/Wallet/WalletHeader';
 import { Grid } from '@mui/material';
 import Trading from './Trading';
 import { Metadata } from 'next';
