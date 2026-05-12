@@ -1,12 +1,9 @@
 'use client';
 import { Stack, Typography } from '@mui/material';
 import Link from 'next/link';
-import { useState } from 'react';
-import ActionButton from '../SubmitButton';
-import Field from '../Field';
+import ForgetPasswordForm from './ForgetPasswordForm';
 
 export default function page() {
-  const [phoneNumber, setPhoneNumber] = useState('');
   return (
     <Stack>
       <Typography
@@ -31,8 +28,9 @@ export default function page() {
         شماره موبایل خود را وارد کنید
       </Typography>
 
-      <Field value={phoneNumber} setValue={setPhoneNumber} label="شماره موبایل" />
-      <Typography
+      <ForgetPasswordForm>
+
+        <Typography
         variant="body2"
         sx={{
           mt: {
@@ -58,7 +56,7 @@ export default function page() {
         </Link>{' '}
         طلاسی می‌باشد.
       </Typography>
-      <ActionButton title={'ادامه'} />
+      </ForgetPasswordForm>
     </Stack>
   );
 }

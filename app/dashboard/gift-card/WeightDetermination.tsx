@@ -10,12 +10,14 @@ interface Props {
   setPrice: Dispatch<SetStateAction<string>>;
   weight: string;
   setWeight: Dispatch<SetStateAction<string>>;
+  setCount:Dispatch<SetStateAction<number>>
+  count:number
 }
 
 const GOLD_RATE = 17610000;
 
-export default function WeightDetermination({ price, setPrice, weight, setWeight }: Props) {
-  const [count, setCount] = useState<number>(1);
+export default function WeightDetermination({ price, setPrice, weight, setWeight,count,setCount }: Props) {
+ 
 
   useEffect(() => {
     const w = Number(weight);

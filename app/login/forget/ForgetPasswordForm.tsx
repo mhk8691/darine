@@ -1,9 +1,8 @@
 'use client';
 import React, { ReactNode, useState } from 'react';
 import Field from '../Field';
-import ActionButton from '../SubmitButton';
 import { useRouter } from 'next/navigation';
-import { loginOtp } from '@/lib/auth';
+import { forgetPassword } from '@/lib/auth';
 import SubmitButton from '../SubmitButton';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { isAxiosError } from 'axios';
@@ -12,15 +11,15 @@ interface Props {
   children: ReactNode;
 }
 
-export default function LoginOtpForm({ children }: Props) {
+export default function ForgetPasswordForm({ children }: Props) {
   const router = useRouter();
   const [phoneNumber, setPhoneNumber] = useState('');
   const handleLogin = async () => {
     try {
-      const res = await loginOtp(phoneNumber);
+      const res = await forgetPassword(phoneNumber);
       if (res.status === 200) {
               showSnackbar(res.data.message, true);
-              router.push(`/login/verify-otp/?phone=${phoneNumber}&type=login`);
+              router.push(`/login/forget-verify/?phone=${phoneNumber}`);
             }
     } catch (err) {
       if (isAxiosError(err)){

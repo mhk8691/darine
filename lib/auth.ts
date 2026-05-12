@@ -29,6 +29,16 @@ export const loginOtp = async (mobile: string) => {
   return res;
 };
 
+export const forgetPassword = async (mobile: string) => {
+  const res = await api.post<{
+    message: string;
+  }>('/accounts/reset-password/request/', {
+    mobile,
+  });
+
+  return res;
+};
+
 export const signupOtp = async (mobile: string) => {
   const res = await api.post<{
     message: string;
@@ -50,6 +60,35 @@ export const verifySignupOtp = async (
     mobile,
     code,
   });
+
+  return res;
+};
+export const verifyForgerOtp = async (
+  mobile: string,
+  code: string,
+) => {
+  const res = await api.post<{message:string}>(
+    '/accounts/reset-password/confirm/',
+    {
+      mobile,
+      code,
+    },
+  );
+
+  const data = res.data;
+
+  // access token فقط داخل memory
+  setAccessToken(data.access);
+
+  // user داخل localStorage
+  localStorage.setItem(
+    'user',
+    JSON.stringify({
+      full_name: data.full_name,
+      role: data.role,
+      status: data.status,
+    }),
+  );
 
   return res;
 };

@@ -22,8 +22,7 @@ export default function AddAddress({ open, setOpen }: Props) {
         <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} mb={2}>
           <Typography variant="body1" fontSize={16} fontWeight={600}>
             {step === 0 && ' انتخاب شهر'}
-            {step === 1 && 'موقعیت روی نقشه'}
-            {step === 2 && 'آدرس جدید'}
+            {step === 1 && 'آدرس جدید'}
           </Typography>
           <IconButton
             onClick={() => {
@@ -35,15 +34,14 @@ export default function AddAddress({ open, setOpen }: Props) {
           </IconButton>
         </Stack>
         {step === 0 && <ChooseCity />}
-        {step === 1 && <Map />}
-        {step === 2 && <NewAddress />}
+        {step === 1 && <NewAddress />}
 
         <Stack direction={'row'} gap={3} mt={3}>
           <Button
             variant="contained"
             color="primary"
             disableRipple
-            onClick={() => setStep((prev) => (prev < 2 ? prev + 1 : 1))}
+            onClick={() => setStep((prev) => (prev < 1 ? prev + 1 : 1))}
             sx={{
               borderRadius: 2,
               py: 1.3,
@@ -51,7 +49,7 @@ export default function AddAddress({ open, setOpen }: Props) {
               width: step > 0 ? '50%' : '100%',
             }}
           >
-            {step === 2 ? 'ثبت آدرس' : 'ادامه'}
+            {step === 1 ? 'ثبت آدرس' : 'ادامه'}
           </Button>
           {step > 0 && (
             <Button

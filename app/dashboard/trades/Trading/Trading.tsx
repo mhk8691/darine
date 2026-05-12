@@ -19,7 +19,7 @@ export default function Trading() {
   const [price, setPrice] = useState('');
   const [gold, setGold] = useState('');
   const [select, setSelect] = useState(items[0].value);
-  const [open,setOpen] = useState(true)
+  const [open,setOpen] = useState(false)
   const  [buyInfo,setBuyInfo] = useState<BuyGoldDataType>({} as BuyGoldDataType)
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
@@ -53,7 +53,7 @@ export default function Trading() {
       setBuyInfo(response.data.data)
     }catch(error:unknown){
       if (isAxiosError(error)){
-        showSnackbar(error.response?.data.message)
+        showSnackbar(error.response?.data.error)
       }
     }
   }
@@ -64,7 +64,7 @@ export default function Trading() {
       console.log(response.data.data)
     }catch(error:unknown){
       if (isAxiosError(error)){
-        showSnackbar(error.response?.data.message)
+        showSnackbar(error.response?.data.error)
       }
     }
   }

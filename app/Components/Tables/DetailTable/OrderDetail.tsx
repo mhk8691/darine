@@ -16,8 +16,6 @@ interface Props {
   toggleItems: ToggleItemsType[];
   noCard?: boolean;
   emptyMessage?: string;
-  tableHead?:string[]
-  tableBody?:[]
 }
 const names = ['تکمیل شده', 'در انتظار تایید', 'لغو شده'];
 export default function OrderDetail({
@@ -26,14 +24,13 @@ export default function OrderDetail({
   toggleItems,
   noCard = false,
   emptyMessage,
-  tableHead,
-  tableBody
 }: Props) {
   const [active, setActive] = useState<number | null>(toggleItems[0]?.id);
   const [select, setSelect] = useState(toggleItems[0]?.value);
   const [message, setMessage] = useState(toggleItems[0]?.emptyMessage || '');
   const theme = useTheme();
   const isDarkMode = theme.palette.mode === 'dark';
+  const [value,setValue] = useState('')
   return noCard ? (
     <>
       {title && (
@@ -246,14 +243,11 @@ export default function OrderDetail({
             },
           }}
         >
-          <SelectField itemsList={names} label="وضعیت" isOrederDetail={true} maxWidth="260px" />
+          <SelectField itemsList={names} label="وضعیت" isOrederDetail={true} maxWidth="260px" value={value} setValue={setValue} />
           <CustomDatePicker />
         </Stack>
       </Stack>
-      {
-        tableBody?.length > 0 ? <Stack mt={3}>
-        <CustomTable data={tableBody} heads={tableHead} />
-  </Stack> :<Stack
+     <Stack
         mt={10}
         mb={8}
         direction={'column'}
@@ -271,7 +265,6 @@ export default function OrderDetail({
           {emptyMessage || message}
         </Typography>
       </Stack>
-      }
  
     </Card>
   );

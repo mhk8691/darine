@@ -14,7 +14,7 @@ import { getPriceAlerts } from '@/lib/priceAlert/priceAlert';
 //   description: '',
 // };
 export default function page() {
-  const [priceAlerts,setPriceAlerts]= useState<[]>([])
+  const [priceAlerts,setPriceAlerts]= useState<PriceAlertsDataType[]>([])
   useEffect(()=>{
     const getData = async ()=>{
       const response = await getPriceAlerts()

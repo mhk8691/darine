@@ -1,12 +1,12 @@
-'use client';
-import { Box, Stack, Typography } from '@mui/material';
-import { useState } from 'react';
-import ActionButton from '../SubmitButton';
-import Field from '../Field';
-import SendCode from '../SendCode';
-
-export default function page() {
-  const [verifyCode, setVerifyCode] = useState('');
+import {  Stack, Typography } from '@mui/material';
+import VerifyOtpCode from './VerifyOtpCode';
+interface Props {
+  searchParams: {
+    phone: string; 
+  };
+}
+export default async function page({searchParams}:Props) {
+ const { phone } = await searchParams;
 
   return (
     <Stack>
@@ -30,15 +30,11 @@ export default function page() {
         }}
         sx={{ color: 'text.secondary', mt: 3 }}
       >
-        کد تایید ارسال شده به شماره موبایل 09961250980 را وارد کنید.
-        <Box component={'span'} display={'block'}>
-          کد تایید علاوه بر پیامک در پیامرسان بله نیز ارسال میشود.
-        </Box>
+        کد تایید ارسال شده به شماره موبایل {phone} را وارد کنید.
+     
       </Typography>
 
-      <Field value={verifyCode} setValue={setVerifyCode} label="کد تایید" />
-      <SendCode />
-      <ActionButton title={'تایید'} />
+      <VerifyOtpCode phone={phone} />
     </Stack>
   );
 }

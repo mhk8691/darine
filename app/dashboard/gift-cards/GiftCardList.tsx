@@ -23,10 +23,7 @@ export default function GiftCardList() {
         toggleItems={[]}
         type="chip"
         emptyMessage="کارت هدیه‌ای توسط شما خریداری نشده است."
-        tableBody={giftCards}
-        tableHead={[
-          'شماره سریال','وزن','استفاده شده','تاریخ ایجاد',
-        ]}
+      
       />
     </Grid>
   );

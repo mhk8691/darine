@@ -74,6 +74,7 @@ export default function GiftStepper() {
   const [skipped, setSkipped] = React.useState(new Set<number>());
   const [weight, setWeight] = React.useState('');
   const [price, setPrice] = React.useState('');
+   const [count, setCount] = React.useState<number>(1);
   const [open, setOpen] = React.useState(false);
 
   const isStepSkipped = (step: number) => {
@@ -200,6 +201,8 @@ export default function GiftStepper() {
                 setWeight={setWeight}
                 price={price}
                 setPrice={setPrice}
+                count={count}
+                setCount={setCount}
               />
             )}
             {activeStep === 1 && (
