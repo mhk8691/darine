@@ -7,6 +7,7 @@ import { Grid } from '@mui/material';
 import Cart from './Cart';
 import Sort from './Sort';
 import { Metadata } from 'next';
+import { getProducts } from '@/lib/getProducts/getProducts';
 export const metadata: Metadata = {
   title: 'دریافت طلا | دارینه',
   description: '',
@@ -27,7 +28,9 @@ const items: ToggleItemsType[] = [
   },
 ];
 
-export default function page() {
+export default async function page() {
+  const productsData = await getProducts()
+  console.log('=>>',productsData)
   return (
     <Grid
       container
@@ -69,38 +72,21 @@ export default function page() {
               md: 2,
             }}
           >
-            <Grid
+            {
+              productsData?.map((item)=>(
+<Grid
               size={{
                 xs: 6,
                 md: 4,
               }}
+              key={item.id}
             >
-              <GoldCard />
+              <GoldCard item={item} />
             </Grid>
-            <Grid
-              size={{
-                xs: 6,
-                md: 4,
-              }}
-            >
-              <GoldCard />
-            </Grid>
-            <Grid
-              size={{
-                xs: 6,
-                md: 4,
-              }}
-            >
-              <GoldCard />
-            </Grid>
-            <Grid
-              size={{
-                xs: 6,
-                md: 4,
-              }}
-            >
-              <GoldCard />
-            </Grid>
+              ))
+            }
+            
+         
           </Grid>
           <Cart />
         </Grid>

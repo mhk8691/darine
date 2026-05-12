@@ -11,7 +11,6 @@ import { Grid, Stack, Typography } from '@mui/material';
 import { Metadata } from 'next';
 import BackLink from '../BackLink';
 import Chart from './Chart';
-import { getAssets } from '@/lib/getAssets/getAssets';
 export const metadata: Metadata = {
   title: 'کیف پول | دارینه',
   description: '',
@@ -49,8 +48,6 @@ const items: ToggleItemsType[] = [
   },
 ];
 export default async function page() {
-  const data = await getAssets();
-  console.log(data);
   return (
     <Grid
       container
