@@ -46,7 +46,7 @@ export default function CustomTable({ heads,children }: Props) {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead sx={{ bgcolor: 'background.paper' }}>
           <TableRow>
-            {heads.map((head, index) => (
+            {heads?.map((head, index) => (
               <TableCell
                 align="center"
                 key={index}

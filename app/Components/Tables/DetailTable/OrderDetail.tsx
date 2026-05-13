@@ -3,19 +3,21 @@ import { ToggleItemsType } from '@/app/core/Types';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { Stack, Typography, useTheme } from '@mui/material';
 import Image from 'next/image';
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import Card from '../../Containers/Container/Container';
 import CustomDatePicker from '../../DatePicker/CustomDatePicker';
 import FilterToggleButton from '../../FilterToggleButton/FilterToggleButton';
 import SelectField from '../../InputField/SelectField';
 import FilterButton from './FilterButton';
-import CustomTable from '../ProductTable/CustomTable';
+import CustomTable from '../CustomTable';
 interface Props {
   title?: string;
   type: 'chip' | 'toggle';
   toggleItems: ToggleItemsType[];
   noCard?: boolean;
   emptyMessage?: string;
+  tableBody:ReactNode
+  tableHead:string[]
 }
 const names = ['تکمیل شده', 'در انتظار تایید', 'لغو شده'];
 export default function OrderDetail({
@@ -24,6 +26,8 @@ export default function OrderDetail({
   toggleItems,
   noCard = false,
   emptyMessage,
+  tableBody,
+  tableHead
 }: Props) {
   const [active, setActive] = useState<number | null>(toggleItems[0]?.id);
   const [select, setSelect] = useState(toggleItems[0]?.value);
@@ -247,7 +251,7 @@ export default function OrderDetail({
           <CustomDatePicker />
         </Stack>
       </Stack>
-     <Stack
+     {/* <Stack
         mt={10}
         mb={8}
         direction={'column'}
@@ -264,8 +268,14 @@ export default function OrderDetail({
         <Typography variant="body2" fontSize={12} sx={{ color: 'text.muted' }}>
           {emptyMessage || message}
         </Typography>
+      </Stack> */}
+      <Stack mt={5}>
+        <CustomTable heads={tableHead}>
+        {
+          tableBody
+        }
+      </CustomTable>
       </Stack>
- 
     </Card>
   );
 }

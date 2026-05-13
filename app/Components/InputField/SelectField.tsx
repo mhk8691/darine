@@ -21,8 +21,8 @@ interface Props {
   isOrederDetail: boolean;
   style?: SxProps;
   maxWidth?: string;
-  value:string
-  setValue:React.Dispatch<React.SetStateAction<string>>
+  value?:string
+  setValue?:React.Dispatch<React.SetStateAction<string>>
 }
 export default function SelectField({ label, itemsList, isOrederDetail, style, maxWidth,value,setValue }: Props) {
   const [open, setOpen] = React.useState(false);
@@ -57,7 +57,7 @@ export default function SelectField({ label, itemsList, isOrederDetail, style, m
   };
 
   const handleChange = (event: SelectChangeEvent) => {
-    setValue(event.target.value);
+    setValue && setValue(event.target.value);
     setOpen(false);
   };
 
@@ -71,7 +71,7 @@ export default function SelectField({ label, itemsList, isOrederDetail, style, m
 
   const handleClear = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setValue('');
+    setValue && setValue('');
   };
 
   return (
