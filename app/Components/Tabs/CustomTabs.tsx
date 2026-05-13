@@ -60,6 +60,7 @@ export default function CustomTabs({
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
+  
     if (setCustomValue) {
       setCustomValue(newValue);
     }
