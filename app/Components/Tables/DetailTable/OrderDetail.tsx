@@ -18,6 +18,7 @@ interface Props {
   emptyMessage?: string;
   tableBody:ReactNode
   tableHead:string[]
+  listLength:number
 }
 const names = ['تکمیل شده', 'در انتظار تایید', 'لغو شده'];
 export default function OrderDetail({
@@ -27,7 +28,7 @@ export default function OrderDetail({
   noCard = false,
   emptyMessage,
   tableBody,
-  tableHead
+  tableHead,listLength
 }: Props) {
   const [active, setActive] = useState<number | null>(toggleItems[0]?.id);
   const [select, setSelect] = useState(toggleItems[0]?.value);
@@ -251,7 +252,15 @@ export default function OrderDetail({
           <CustomDatePicker />
         </Stack>
       </Stack>
-     {/* <Stack
+      {
+        listLength > 0 ?  <Stack mt={5}>
+        <CustomTable heads={tableHead}>
+        {
+          tableBody
+        }
+      </CustomTable>
+      </Stack>:(
+          <Stack
         mt={10}
         mb={8}
         direction={'column'}
@@ -268,14 +277,11 @@ export default function OrderDetail({
         <Typography variant="body2" fontSize={12} sx={{ color: 'text.muted' }}>
           {emptyMessage || message}
         </Typography>
-      </Stack> */}
-      <Stack mt={5}>
-        <CustomTable heads={tableHead}>
-        {
-          tableBody
-        }
-      </CustomTable>
       </Stack>
+        )
+      }
+     
+     
     </Card>
   );
 }

@@ -20,6 +20,7 @@ export default function GiftCardList() {
   return (
     <Grid size={12}>
       <OrderDetail
+      listLength={giftCards.length}
         title={isDesktop ? 'لیست کارت‌های هدیه شما' : ''}
         toggleItems={[]}
         type="chip"

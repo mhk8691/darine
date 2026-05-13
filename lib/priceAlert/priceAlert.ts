@@ -19,7 +19,7 @@ export const removePriceAlert = async (id:number) => {
     const res = await api.delete<{
       message:string
     }>(`/gold/price-alerts/${id}/`);
-    showSnackbar(res.data.message,true)
+    // showSnackbar(res.data.message,true)
     return res.data;
   }catch(error:unknown){
     if (isAxiosError(error)){

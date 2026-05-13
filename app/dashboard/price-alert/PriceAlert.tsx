@@ -1,7 +1,8 @@
 'use client';
 import Container from '@/app/Components/Containers/Container/Container';
 import InputField from '@/app/Components/InputField/InputField';
-import { addPriceAlert } from '@/lib/priceAlert/priceAlert';
+import { PriceAlertsDataType } from '@/app/core/Types';
+import { addPriceAlert, getPriceAlerts } from '@/lib/priceAlert/priceAlert';
 import {
   Button,
   FormControl,
@@ -13,13 +14,15 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 
-export default function PriceAlert() {
+export default function PriceAlert({setPriceAlert}:{setPriceAlert:Dispatch<SetStateAction<PriceAlertsDataType[]>>}) {
   const [value, setValue] = useState('');
   const [active, setActive] = React.useState('ONCE');
   const handlePriceAlert = async ()=>{
     await addPriceAlert(value,active)
+       const response = await getPriceAlerts()
+            setPriceAlert(response && response?.length > 0 ? response :[])
   }
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setActive((event.target as HTMLInputElement).value);

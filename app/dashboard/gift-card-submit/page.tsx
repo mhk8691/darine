@@ -125,6 +125,7 @@ export default function page() {
       </Grid>
       <Grid size={12}>
         <OrderDetail
+         listLength={giftCards.length}
           title="کارت هدیه های شما"
           toggleItems={[]}
           type="chip"

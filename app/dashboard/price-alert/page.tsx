@@ -1,7 +1,7 @@
 'use client'
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import WalletHeader from '@/app/Components/Wallet/WalletHeader';
-import { Box, Grid, Stack, TableBody, TableCell, TableRow, Typography } from '@mui/material';
+import { Box, Grid, Stack, TableBody, TableCell, TableRow, Typography, Button } from '@mui/material';
 import { Metadata } from 'next';
 import ChartContainer from './ChartContainer';
 import PriceAlert from './PriceAlert';
@@ -11,20 +11,24 @@ import { PriceAlertsDataType } from '@/app/core/Types';
 import { getPriceAlerts } from '@/lib/priceAlert/priceAlert';
 import { formatDate } from '@/app/core/FormatDate';
 import priceFormater from '@/app/core/PriceFormater';
+import RemovePriceAlertModal from './RemovePriceAlert';
 // export const metadata: Metadata = {
 //   title: 'آلارم قیمت | دارینه',
 //   description: '',
 // };
 export default function page() {
   const [priceAlerts,setPriceAlerts]= useState<PriceAlertsDataType[]>([])
+  const [open,setOpen] = useState(false)
+  const [priceAlertId,setPriceAlertId] = useState(0)
   useEffect(()=>{
     const getData = async ()=>{
       const response = await getPriceAlerts()
       setPriceAlerts(response || [])
     }
     getData()
-  },[setPriceAlerts,priceAlerts])
+  },[setPriceAlerts])
   return (
+    <>
     <Grid
       container
       spacing={{
@@ -53,7 +57,7 @@ export default function page() {
         height={'100%'}
       >
         <Box sx={{ height: '100%' }}>
-          <PriceAlert />
+          <PriceAlert setPriceAlert={setPriceAlerts} />
         </Box>
       </Grid>
       <ChartContainer />
@@ -68,7 +72,9 @@ export default function page() {
             'نوع آلارم',
             'وضعیت',
             'تاریخ',
+            'حذف'
           ]}
+          listLength={priceAlerts.length}
           tableBody={(<TableBody>
           {priceAlerts?.map((row) => (
             <TableRow
@@ -84,7 +90,7 @@ export default function page() {
               <TableCell
                 align="center"
                 sx={{
-                  py: 2.5,
+                  py: 2,
                   px: 2.5,
                 }}
               >
@@ -98,7 +104,7 @@ export default function page() {
               <TableCell
                 align="center"
                 sx={{
-                  py: 2.5,
+                  py: 2,
                   px: 2.5,
                 }}
               >
@@ -110,14 +116,14 @@ export default function page() {
               <TableCell
                 align="center"
                 sx={{
-                  py: 2.5,
+                  py: 2,
                   px: 2.5,
                 }}
               >
                 <Stack direction={'row'} alignItems={'center'} gap={0.5} justifyContent={'center'}>
                   <Typography variant="body1" sx={{
                     color:row.is_active ? 'success.main':'error.main'
-                  }}>{row.is_active ? 'استفاده شده' :'استفاده نشده'}</Typography>
+                  }}>{row.is_active ? 'فعال' :'غیر فعال'}</Typography>
             
                 </Stack>
               </TableCell>
@@ -125,11 +131,29 @@ export default function page() {
                 align="center"
                 sx={{
                   fontSize: '16px',
-                  py: 2.5,
+                  py: 2,
                   px: 2.5,
                 }}
               >
                 {formatDate(row.created_at)}
+              </TableCell>
+                  <TableCell
+                align="center"
+                sx={{
+                  fontSize: '16px',
+                  py: 2,
+                  px: 2.5,
+                }}
+              >
+                <Button variant="outlined" color='error' onClick={()=>{
+                  setPriceAlertId(row.id)
+                  setOpen(true)
+                }} sx={{
+                  py:1.2,
+                  px:1.5
+                }}>
+                  حذف آلارم
+                </Button>
               </TableCell>
             </TableRow>
           ))}
@@ -137,5 +161,7 @@ export default function page() {
         />
       </Grid>
     </Grid>
+    <RemovePriceAlertModal priceAlertId={priceAlertId} open={open} setOpen={setOpen} setPriceAlertId={setPriceAlertId} setPriceAlert={setPriceAlerts}  />
+    </>
   );
 }
