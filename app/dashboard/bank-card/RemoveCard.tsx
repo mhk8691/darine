@@ -1,6 +1,6 @@
 import CustomModal from '@/app/Components/CustomModal/CustomModal';
 import { BankCardDataType } from '@/app/core/Types';
-import { getBankCard, removeBankCard } from '@/lib/bankCard/bankCard';
+import { getBankCard, removeBankCard } from '@/lib/getbankCard/bankCard';
 import { Close } from '@mui/icons-material';
 import { Button, IconButton, Stack, Typography } from '@mui/material';
 import { Dispatch, SetStateAction } from 'react';

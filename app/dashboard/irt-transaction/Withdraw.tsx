@@ -7,7 +7,7 @@ import { Button, Stack } from '@mui/material';
 import { useEffect, useState } from 'react';
 import BankCard from './BankCard';
 import { silverWidthdraw } from '@/lib/withdraw/withdraw';
-import { getBankCard } from '@/lib/bankCard/bankCard';
+import { getBankCard } from '@/lib/getbankCard/bankCard';
 
 const items: ToggleItemsType[] = [
   { title: 'به حساب بانکی', value: 'bank', id: 1 },

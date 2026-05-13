@@ -6,7 +6,7 @@ import { Dispatch, SetStateAction } from 'react';
 
 import Field from '@/app/login/Field';
 import { Close } from '@mui/icons-material';
-import { addBankCard, getBankCard } from '@/lib/bankCard/bankCard';
+import { addBankCard, getBankCard } from '@/lib/getbankCard/bankCard';
 import { BankCardDataType } from '@/app/core/Types';
 interface Props {
   setOpen: Dispatch<SetStateAction<boolean>>;

@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import AddCard from './AddCard';
 import BankCard from './BankCard';  
 import { BankCardDataType } from '@/app/core/Types';
-import { getBankCard } from '@/lib/bankCard/bankCard';
+import { getBankCard } from '@/lib/getbankCard/bankCard';
 export default function CardContainer() {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState('');
