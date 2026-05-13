@@ -1,12 +1,12 @@
-import {  Stack, Typography } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 import VerifyOtpCode from './VerifyOtpCode';
 interface Props {
   searchParams: {
-    phone: string; 
+    phone: string;
   };
 }
-export default async function page({searchParams}:Props) {
- const { phone } = await searchParams;
+export default async function page({ searchParams }: Props) {
+  const { phone } = await searchParams;
 
   return (
     <Stack>
@@ -31,7 +31,6 @@ export default async function page({searchParams}:Props) {
         sx={{ color: 'text.secondary', mt: 3 }}
       >
         کد تایید ارسال شده به شماره موبایل {phone} را وارد کنید.
-     
       </Typography>
 
       <VerifyOtpCode phone={phone} />

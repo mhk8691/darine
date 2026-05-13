@@ -29,33 +29,32 @@ export default function page() {
       </Typography>
 
       <ForgetPasswordForm>
-
         <Typography
-        variant="body2"
-        sx={{
-          mt: {
-            xs: 4.5,
-            md: 9,
-          },
-          color: 'text.muted',
-        }}
-        fontSize={{
-          xs: 10,
-          md: 12,
-        }}
-        fontWeight={500}
-      >
-        ورود شما به منزله قبول‌{' '}
-        <Link
-          href={'/roules'}
-          style={{
-            color: '#0091F8',
+          variant="body2"
+          sx={{
+            mt: {
+              xs: 4.5,
+              md: 9,
+            },
+            color: 'text.muted',
           }}
+          fontSize={{
+            xs: 10,
+            md: 12,
+          }}
+          fontWeight={500}
         >
-          قوانین و مقررات‌
-        </Link>{' '}
-        طلاسی می‌باشد.
-      </Typography>
+          ورود شما به منزله قبول‌{' '}
+          <Link
+            href={'/roules'}
+            style={{
+              color: '#0091F8',
+            }}
+          >
+            قوانین و مقررات‌
+          </Link>{' '}
+          طلاسی می‌باشد.
+        </Typography>
       </ForgetPasswordForm>
     </Stack>
   );

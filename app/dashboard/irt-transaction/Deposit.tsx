@@ -2,7 +2,7 @@
 import Card from '@/app/Components/Containers/Container/Container';
 import FilterToggleButton from '@/app/Components/FilterToggleButton/FilterToggleButton';
 import InputField from '@/app/Components/InputField/InputField';
-import { ToggleItemsType } from '@/app/core/Types';
+import { BankCardDataType, ToggleItemsType } from '@/app/core/Types';
 import { Button, Stack } from '@mui/material';
 import { useState } from 'react';
 import BankCard from './BankCard';
@@ -14,7 +14,8 @@ const items: ToggleItemsType[] = [
 export default function Deposit() {
   const [price, setPrice] = useState('');
   const [select, setSelect] = useState(items[0].value);
-
+  const [bankCardsData, setBankCardsData] = useState<BankCardDataType[]>([]);
+  const [selectedCard, setSelectedCard] = useState<number>(1);
   return (
     <Card
       style={{
@@ -56,7 +57,14 @@ export default function Deposit() {
             </Button>
           </Stack>
         )}
-        {select === 'directPayment' && <BankCard />}
+        {select === 'directPayment' && (
+          <BankCard
+            bankCardsData={bankCardsData}
+            setBankCardsData={setBankCardsData}
+            setSelectedCard={setSelectedCard}
+            selectedCard={selectedCard}
+          />
+        )}
       </Stack>
       <Button
         variant="contained"

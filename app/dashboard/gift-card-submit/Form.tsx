@@ -31,7 +31,7 @@ export default function Form() {
             },
             borderRadius: 2,
           }}
-          onClick={()=>giftCardSubmit(value)}
+          onClick={() => giftCardSubmit(value)}
         >
           ثبت
         </Button>

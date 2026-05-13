@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import Card from '@/app/Components/Containers/Container/Container';
 import CustomTabs from '@/app/Components/Tabs/CustomTabs';
 import { Grid, Typography } from '@mui/material';
@@ -16,16 +16,7 @@ import ReceiveTable from './ReceiveTable';
 //   description: '',
 // };
 
-const tabUrl = [
-  'trades',
-  'deposits',
-  'withdrawals',
-  'giftcards',
-  'physical_orders',
-]
-
-
-
+const tabUrl = ['trades', 'deposits', 'withdrawals', 'giftcards', 'physical_orders'];
 
 // const autoItems: ToggleItemsType[] = [
 //   {
@@ -45,9 +36,9 @@ const tabUrl = [
 const children: ReactNode[] = [
   <TradesTable key={1} />,
   <DepositTable key={2} />,
-  <WithdrawTable key={3} /> ,
+  <WithdrawTable key={3} />,
   <GiftTable key={4} />,
- <ReceiveTable key={5} />
+  <ReceiveTable key={5} />,
   // <OrderDetail
   //   key={6}
   //   noCard
@@ -63,7 +54,6 @@ const children: ReactNode[] = [
   //   emptyMessage={'اعتباری برای شما به ثبت نرسیده است'}
   // />,
   // <OrderDetail key={8} noCard toggleItems={autoItems} type="toggle" />,
-  ,
 ];
 const tabs = [
   { title: 'معاملات' },
@@ -76,15 +66,15 @@ const tabs = [
   // { title: 'پس‌انداز خودکار' },
 ];
 export default function page() {
-  const [value,setValue] = useState(0)
-  const [data,setData] = useState([])
-  useEffect(()=>{
-    const getData = async ()=>{
-      const response = await getReports(tabUrl[value])
-      setData(response)
-    }
-    getData()
-  },[value])
+  const [value, setValue] = useState(0);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const getData = async () => {
+      const response = await getReports(tabUrl[value]);
+      setData(response);
+    };
+    getData();
+  }, [value]);
   return (
     <Grid container spacing={3}>
       <Grid size={12}>

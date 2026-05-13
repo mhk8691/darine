@@ -70,6 +70,9 @@ export default function page() {
           toggleItems={[]}
           type="chip"
           emptyMessage="سفارشی برای شما به ثبت نرسیده است"
+          tableBody={<></>}
+          tableHead={[]}
+          listLength={0}
         />
       </Grid>
     </Grid>

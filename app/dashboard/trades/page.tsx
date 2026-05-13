@@ -49,7 +49,7 @@ export default function page() {
         </Grid>
       </Grid>
       <Grid size={12}>
-        <DetailTable/>
+        <DetailTable />
       </Grid>
     </Grid>
   );

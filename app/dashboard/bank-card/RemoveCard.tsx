@@ -9,20 +9,25 @@ interface Props {
   setOpen: Dispatch<SetStateAction<boolean>>;
   cardId: number;
   setBankCardData: Dispatch<SetStateAction<BankCardDataType[]>>;
-  setCardId:Dispatch<SetStateAction<number>>
-  bankCardData:BankCardDataType[]
+  setCardId: Dispatch<SetStateAction<number>>;
+  bankCardData: BankCardDataType[];
 }
-export default function RemoveCard({ open, setOpen, cardId ,setBankCardData,setCardId,bankCardData}: Props) {
-  const handleRemove = async ()=>{
-    await removeBankCard(cardId)
-    const response = await getBankCard()
-    setBankCardData(response && response?.length > 0 ? response :[])
-    setCardId(0)
-    setOpen(false)
-  }
-  const selectedCard = bankCardData?.find(
-  (item) => item.id === cardId
-);
+export default function RemoveCard({
+  open,
+  setOpen,
+  cardId,
+  setBankCardData,
+  setCardId,
+  bankCardData,
+}: Props) {
+  const handleRemove = async () => {
+    await removeBankCard(cardId);
+    const response = await getBankCard();
+    setBankCardData(response && response?.length > 0 ? response : []);
+    setCardId(0);
+    setOpen(false);
+  };
+  const selectedCard = bankCardData?.find((item) => item.id === cardId);
   return (
     <>
       <CustomModal

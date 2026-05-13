@@ -43,6 +43,9 @@ export default function page() {
           toggleItems={[]}
           type="chip"
           emptyMessage="کارت هدیه‌ای توسط شما خریداری نشده است."
+          listLength={0}
+          tableBody={<></>}
+          tableHead={[]}
         />
       </Grid>
     </Grid>

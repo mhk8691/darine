@@ -21,10 +21,18 @@ interface Props {
   isOrederDetail: boolean;
   style?: SxProps;
   maxWidth?: string;
-  value?:string
-  setValue?:React.Dispatch<React.SetStateAction<string>>
+  value?: string;
+  setValue?: React.Dispatch<React.SetStateAction<string>>;
 }
-export default function SelectField({ label, itemsList, isOrederDetail, style, maxWidth,value,setValue }: Props) {
+export default function SelectField({
+  label,
+  itemsList,
+  isOrederDetail,
+  style,
+  maxWidth,
+  value,
+  setValue,
+}: Props) {
   const [open, setOpen] = React.useState(false);
 
   React.useEffect(() => {

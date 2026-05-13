@@ -5,17 +5,17 @@ import VerifySignupOtpForm from './VerifySignupOtpForm';
 
 interface Props {
   searchParams: {
-    phone: string; 
-    type:string
+    phone: string;
+    type: string;
   };
 }
 
-export default async function page({searchParams}:Props) {
-  const { phone ,type} = await searchParams;
+export default async function page({ searchParams }: Props) {
+  const { phone, type } = await searchParams;
   return (
     <Stack>
-      <BackLink fontSize='30' />
-  <Typography
+      <BackLink fontSize="30" />
+      <Typography
         variant="h6"
         fontWeight={'500'}
         fontSize={{
@@ -26,8 +26,6 @@ export default async function page({searchParams}:Props) {
       >
         کد تایید
       </Typography>
-    
-   
 
       <Typography
         variant="body2"
@@ -43,10 +41,11 @@ export default async function page({searchParams}:Props) {
           کد تایید علاوه بر پیامک در پیامرسان بله نیز ارسال میشود.
         </Box>
       </Typography>
-        {
-          type === 'login' ? <VerifyLoginOtpForm phoneNumber={phone} />:<VerifySignupOtpForm phoneNumber={phone} />
-        }
-    
+      {type === 'login' ? (
+        <VerifyLoginOtpForm phoneNumber={phone} />
+      ) : (
+        <VerifySignupOtpForm phoneNumber={phone} />
+      )}
     </Stack>
   );
 }

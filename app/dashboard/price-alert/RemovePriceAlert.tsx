@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import CustomModal from '@/app/Components/CustomModal/CustomModal';
 import { BankCardDataType, PriceAlertsDataType } from '@/app/core/Types';
 import { getPriceAlerts, removePriceAlert } from '@/lib/priceAlert/priceAlert';
@@ -9,18 +9,24 @@ interface Props {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
   priceAlertId: number;
-  setPriceAlert: Dispatch<SetStateAction< PriceAlertsDataType[]>>;
-  setPriceAlertId:Dispatch<SetStateAction<number>>
+  setPriceAlert: Dispatch<SetStateAction<PriceAlertsDataType[]>>;
+  setPriceAlertId: Dispatch<SetStateAction<number>>;
 }
-export default function RemovePriceAlertModal({ open, setOpen, priceAlertId ,setPriceAlert,setPriceAlertId,}: Props) {
-      const handleRemove = async ()=>{
-        await removePriceAlert(priceAlertId)
-        const response = await getPriceAlerts()
-        setPriceAlert(response && response?.length > 0 ? response :[])
-        setPriceAlertId(0)
-        setOpen(false)
-      }
-    
+export default function RemovePriceAlertModal({
+  open,
+  setOpen,
+  priceAlertId,
+  setPriceAlert,
+  setPriceAlertId,
+}: Props) {
+  const handleRemove = async () => {
+    await removePriceAlert(priceAlertId);
+    const response = await getPriceAlerts();
+    setPriceAlert(response && response?.length > 0 ? response : []);
+    setPriceAlertId(0);
+    setOpen(false);
+  };
+
   return (
     <>
       <CustomModal
@@ -40,7 +46,7 @@ export default function RemovePriceAlertModal({ open, setOpen, priceAlertId ,set
           </IconButton>
         </Stack>
         <Typography variant="body1" fontSize={15} fontWeight={'500'} sx={{ mt: 3 }}>
-         آیا از انجام این عمل اطمینان دارید؟
+          آیا از انجام این عمل اطمینان دارید؟
         </Typography>
         <Stack direction={'row'} gap={2} mt={4}>
           <Button
@@ -80,5 +86,5 @@ export default function RemovePriceAlertModal({ open, setOpen, priceAlertId ,set
         </Stack>
       </CustomModal>
     </>
-  )
+  );
 }

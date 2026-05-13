@@ -6,10 +6,10 @@ interface Props {
   setValue: Dispatch<SetStateAction<string>>;
   label?: string;
   placeholder?: string;
-  style?:SxProps
+  style?: SxProps;
 }
 
-export default function Field({ value, setValue, label, placeholder,style }: Props) {
+export default function Field({ value, setValue, label, placeholder, style }: Props) {
   return (
     <TextField
       label={label}
@@ -34,7 +34,7 @@ export default function Field({ value, setValue, label, placeholder,style }: Pro
             sm: '16px',
           },
         },
-        ...style
+        ...style,
       }}
     />
   );

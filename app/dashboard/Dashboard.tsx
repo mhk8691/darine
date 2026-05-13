@@ -26,12 +26,14 @@ export default function Dashboard() {
               xs: 12,
             }}
           >
-            <AllAssets  style={{
+            <AllAssets
+              style={{
                 minHeight: {
                   xs: 160,
                   md: 400,
                 },
-              }} />
+              }}
+            />
           </Grid>
         </>
       ) : (

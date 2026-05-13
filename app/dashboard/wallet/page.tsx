@@ -68,14 +68,15 @@ export default async function page() {
             sm: 'block',
           }}
         >
-          <AllAssets style={{
-           
-        mt: 3,
-        minHeight: {
-          xs: '200px',
-          sm: '60px',
-        },
-          }} />
+          <AllAssets
+            style={{
+              mt: 3,
+              minHeight: {
+                xs: '200px',
+                sm: '60px',
+              },
+            }}
+          />
         </Grid>
       </Grid>
 
@@ -285,17 +286,25 @@ export default async function page() {
           }}
           size={12}
         >
-          <AllAssets style={{
-         
-        mt: 3,
-        minHeight: {
-          xs: '200px',
-          sm: '60px',
-        },
-          }} />
+          <AllAssets
+            style={{
+              mt: 3,
+              minHeight: {
+                xs: '200px',
+                sm: '60px',
+              },
+            }}
+          />
         </Grid>
         <Stack mt={{ xs: 1, sm: 3 }}>
-          <OrderDetail type="chip" title="لیست تراکنش‌‌های اخیر" toggleItems={items} tableBody={<></>} listLength={0} tableHead={[]} />
+          <OrderDetail
+            type="chip"
+            title="لیست تراکنش‌‌های اخیر"
+            toggleItems={items}
+            tableBody={<></>}
+            listLength={0}
+            tableHead={[]}
+          />
         </Stack>
       </Grid>
     </Grid>

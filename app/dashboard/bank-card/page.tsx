@@ -29,7 +29,7 @@ export default function page() {
             },
           }}
         >
-     <CardContainer/>
+          <CardContainer />
         </Card>
       </Grid>
     </Grid>

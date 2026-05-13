@@ -58,7 +58,14 @@ export default function page() {
       </Grid>
       <TransactionContainer />
       <Grid size={12} order={3}>
-        <OrderDetail title="لیست تراکنش های اخیر" toggleItems={items} type="chip" />
+        <OrderDetail
+          title="لیست تراکنش های اخیر"
+          toggleItems={items}
+          type="chip"
+          tableBody={<></>}
+          tableHead={[]}
+          listLength={0}
+        />
       </Grid>
     </Grid>
   );

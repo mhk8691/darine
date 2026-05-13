@@ -4,7 +4,7 @@ import { Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { ArrowLeftIcon } from '../Components/CustomIcons/CustomIcons';
 
-export default function BackLink({ title,fontSize }: { title?: string ,fontSize?:string}) {
+export default function BackLink({ title, fontSize }: { title?: string; fontSize?: string }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const router = useRouter();

@@ -685,8 +685,14 @@ export const DoneIcon = () => (
     ></path>
   </svg>
 );
-export const ArrowLeftIcon = ({fontSize}:{fontSize?:string}) => (
-  <svg width={fontSize||21 } height={fontSize||21} viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+export const ArrowLeftIcon = ({ fontSize }: { fontSize?: string }) => (
+  <svg
+    width={fontSize || 21}
+    height={fontSize || 21}
+    viewBox="0 0 21 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <path
       d="M12.7441 4.94141L17.8025 9.99974L12.7441 15.0581"
       stroke="currentColor"

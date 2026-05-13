@@ -1,6 +1,6 @@
-import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail'
+import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import { ToggleItemsType } from '@/app/core/Types';
-import React from 'react'
+import React from 'react';
 
 const depositItems: ToggleItemsType[] = [
   {
@@ -25,6 +25,14 @@ const depositItems: ToggleItemsType[] = [
 
 export default function DepositTable() {
   return (
-    <OrderDetail key={2} noCard toggleItems={depositItems} type="toggle" />
-  )
+    <OrderDetail
+      key={2}
+      noCard
+      toggleItems={depositItems}
+      type="toggle"
+      tableBody={<></>}
+      tableHead={[]}
+      listLength={0}
+    />
+  );
 }

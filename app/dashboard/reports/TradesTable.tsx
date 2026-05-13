@@ -1,6 +1,6 @@
-import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail'
+import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import { ToggleItemsType } from '@/app/core/Types';
-import React from 'react'
+import React from 'react';
 
 const trades: ToggleItemsType[] = [
   {
@@ -19,6 +19,14 @@ const trades: ToggleItemsType[] = [
 
 export default function TradesTable() {
   return (
-    <OrderDetail key={1} noCard toggleItems={trades} type="toggle" tableBody={<></>} tableHead={[]} listLength={0} />
-  )
+    <OrderDetail
+      key={1}
+      noCard
+      toggleItems={trades}
+      type="toggle"
+      tableBody={<></>}
+      tableHead={[]}
+      listLength={0}
+    />
+  );
 }

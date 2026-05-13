@@ -6,11 +6,11 @@ import Image from 'next/image';
 export default function MobileWalletStatus({
   visible,
   isDesktop,
-  assets
+  assets,
 }: {
   visible: boolean;
   isDesktop: boolean;
-  assets:AssetsDataType
+  assets: AssetsDataType;
 }) {
   return (
     <Stack direction={'row'} justifyContent={'center'}>

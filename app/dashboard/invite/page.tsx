@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import Card from '@/app/Components/Containers/Container/Container';
 import { Divider, Grid, Stack, Typography } from '@mui/material';
 import { Metadata } from 'next';
@@ -14,14 +14,14 @@ import { getreferral } from '@/lib/getRefrral/getRefrral';
 //   description: '',
 // };
 export default function page() {
-  const [referralData,setreferralData] = useState<RefrraDataType>({} as RefrraDataType)
-  useEffect(()=>{
-    const getData = async ()=>{
-      const response = await getreferral()
-      setreferralData(response || {} as RefrraDataType)
-    }
-    getData()
-  },[])
+  const [referralData, setreferralData] = useState<RefrraDataType>({} as RefrraDataType);
+  useEffect(() => {
+    const getData = async () => {
+      const response = await getreferral();
+      setreferralData(response || ({} as RefrraDataType));
+    };
+    getData();
+  }, []);
   return (
     <Grid container spacing={3}>
       <BackLink title="دعوت از دوستان" />
@@ -107,7 +107,8 @@ export default function page() {
               sm: 18,
             }}
           >
-            با دعوت از دوستان خود {referralData.commission_rate} از کارمزد هر خرید آن‌ها، برای شما واریز خواهد شد.
+            با دعوت از دوستان خود {referralData.commission_rate} از کارمزد هر خرید آن‌ها، برای شما
+            واریز خواهد شد.
           </Typography>
           <Typography
             variant="h6"

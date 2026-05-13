@@ -158,13 +158,19 @@ export interface WalletHeaderDataType {
   gold_balance_gr: number;
   toman_balance: number;
 }
-export interface RefrraDataType {    "referral_code": string,    "total_invited": number,    "total_earned_toman": number,    "commission_rate": string,    "message": string}
+export interface RefrraDataType {
+  referral_code: string;
+  total_invited: number;
+  total_earned_toman: number;
+  commission_rate: string;
+  message: string;
+}
 
-export interface PriceAlertsDataType{
-  id:number,
-  target_price:number
-  alert_type:string
-  alert_type_display:string
-  is_active:boolean
-  created_at:string
+export interface PriceAlertsDataType {
+  id: number;
+  target_price: number;
+  alert_type: string;
+  alert_type_display: string;
+  is_active: boolean;
+  created_at: string;
 }

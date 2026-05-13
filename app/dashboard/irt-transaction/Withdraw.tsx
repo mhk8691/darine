@@ -16,19 +16,23 @@ const items: ToggleItemsType[] = [
 export default function Withdraw() {
   const [price, setPrice] = useState('');
   const [select, setSelect] = useState(items[0].value);
-  const [bankCardsData,setBankCardsData] = useState<BankCardDataType[]>([])
-  const [selectedCard,setSelectedCard] = useState<number>(1)
-  const handleWithdraw  = async ()=>{
-    const response = await silverWidthdraw(price,select === 'silver' ? 'silver':'card',selectedCard)
-  }
+  const [bankCardsData, setBankCardsData] = useState<BankCardDataType[]>([]);
+  const [selectedCard, setSelectedCard] = useState<number>(1);
+  const handleWithdraw = async () => {
+    const response = await silverWidthdraw(
+      price,
+      select === 'silver' ? 'silver' : 'card',
+      selectedCard,
+    );
+  };
 
- useEffect(()=>{
-  const getData = async ()=>{
-    const response = await getBankCard()
-    setBankCardsData(response && response.length > 0 ? response : [])
-  }
-  getData()
- },[])
+  useEffect(() => {
+    const getData = async () => {
+      const response = await getBankCard();
+      setBankCardsData(response && response.length > 0 ? response : []);
+    };
+    getData();
+  }, []);
   return (
     <Card style={{ gap: 3.5, p: 0, border: 'none' }}>
       <FilterToggleButton
@@ -62,7 +66,14 @@ export default function Withdraw() {
             انتخاب کل موجودی
           </Button>
         </Stack>
-        {select !== 'silver' && <BankCard bankCardsData={bankCardsData} setBankCardsData={setBankCardsData} setSelectedCard={setSelectedCard} selectedCard={selectedCard} />}
+        {select !== 'silver' && (
+          <BankCard
+            bankCardsData={bankCardsData}
+            setBankCardsData={setBankCardsData}
+            setSelectedCard={setSelectedCard}
+            selectedCard={selectedCard}
+          />
+        )}
       </Stack>
       <Button
         variant="contained"

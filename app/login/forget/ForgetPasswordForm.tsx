@@ -18,12 +18,12 @@ export default function ForgetPasswordForm({ children }: Props) {
     try {
       const res = await forgetPassword(phoneNumber);
       if (res.status === 200) {
-              showSnackbar(res.data.message, true);
-              router.push(`/login/forget-verify/?phone=${phoneNumber}`);
-            }
+        showSnackbar(res.data.message, true);
+        router.push(`/login/forget-verify/?phone=${phoneNumber}`);
+      }
     } catch (err) {
-      if (isAxiosError(err)){
-        showSnackbar(err.response?.data.message)
+      if (isAxiosError(err)) {
+        showSnackbar(err.response?.data.message);
       }
     }
   };

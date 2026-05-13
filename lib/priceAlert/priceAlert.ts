@@ -1,40 +1,43 @@
 import { BankCardDataType, PriceAlertsDataType } from '@/app/core/Types';
-import  api  from '../api';
+import api from '../api';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 
 export const getPriceAlerts = async () => {
-  try{
+  try {
     const res = await api.get<PriceAlertsDataType[]>('/gold/price-alerts/');
-  return res.data;
-  }catch(error:unknown){
-    if (isAxiosError(error)){
-        showSnackbar(error.response?.data.message)
+    return res.data;
+  } catch (error: unknown) {
+    if (isAxiosError(error)) {
+      showSnackbar(error.response?.data.message);
     }
   }
 };
 
-export const removePriceAlert = async (id:number) => {
-  try{
+export const removePriceAlert = async (id: number) => {
+  try {
     const res = await api.delete<{
-      message:string
+      message: string;
     }>(`/gold/price-alerts/${id}/`);
     // showSnackbar(res.data.message,true)
     return res.data;
-  }catch(error:unknown){
-    if (isAxiosError(error)){
-        showSnackbar(error.response?.data.message)
+  } catch (error: unknown) {
+    if (isAxiosError(error)) {
+      showSnackbar(error.response?.data.message);
     }
   }
 };
 
-export const addPriceAlert = async (targetPrice:string,alertType:string) => {
-  try{
-    const res = await api.post('/gold/price-alerts/',{target_price:targetPrice,alert_type:alertType});
+export const addPriceAlert = async (targetPrice: string, alertType: string) => {
+  try {
+    const res = await api.post('/gold/price-alerts/', {
+      target_price: targetPrice,
+      alert_type: alertType,
+    });
     return res.data;
-  }catch(error:unknown){
-    if (isAxiosError(error)){
-        showSnackbar(error.response?.data.error)
+  } catch (error: unknown) {
+    if (isAxiosError(error)) {
+      showSnackbar(error.response?.data.error);
     }
   }
 };

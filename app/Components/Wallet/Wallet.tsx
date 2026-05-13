@@ -17,14 +17,14 @@ export default function Wallet({ type }: Props) {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   const [visible, setVisible] = useState(false);
-  const [assets,setAssets] = useState<AssetsDataType>({}as AssetsDataType)
-  useEffect(()=>{
-    const getData = async ()=>{
-      const response = await getAssets()
-      setAssets(response)
-    }
-    getData()
-  },[])
+  const [assets, setAssets] = useState<AssetsDataType>({} as AssetsDataType);
+  useEffect(() => {
+    const getData = async () => {
+      const response = await getAssets();
+      setAssets(response);
+    };
+    getData();
+  }, []);
   return (
     <Container
       style={{

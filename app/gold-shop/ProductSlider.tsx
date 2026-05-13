@@ -6,6 +6,7 @@ import './styles.css';
 import { Navigation } from 'swiper/modules';
 import GoldCard from '../Components/ProductCard/ProductCard';
 import { useEffect, useState } from 'react';
+import { ProductDateType } from '../core/Types';
 
 export default function ProductSlider() {
   const [isClient, setIsClient] = useState(false);
@@ -49,7 +50,7 @@ export default function ProductSlider() {
     >
       {[1, 2, 3, 4, 5].map((item) => (
         <SwiperSlide key={item}>
-          <GoldCard />
+          <GoldCard item={{} as ProductDateType} />
         </SwiperSlide>
       ))}
     </Swiper>

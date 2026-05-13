@@ -21,9 +21,9 @@ export default function LoginPassForm({ children }: Props) {
     try {
       await loginPassword(phoneNumber, password);
       router.push('/dashboard');
-    } catch (error:unknown) {
-      if(isAxiosError(error)){
-        showSnackbar(error.response?.data.error)
+    } catch (error: unknown) {
+      if (isAxiosError(error)) {
+        showSnackbar(error.response?.data.error);
       }
     }
   };

@@ -27,7 +27,7 @@ const product: Product = {
   title: 'شمش طلاسی ۱ گرمی ۱۸ عیار',
   price: 19330693,
 };
-export default function ProductCard({item}:{item:ProductDateType}) {
+export default function ProductCard({ item }: { item: ProductDateType }) {
   const [open, setOpen] = useState(false);
   const [cart, setCart] = useState<CartItem[]>([]);
   const index = cart.find((i) => i.id === product.id);
@@ -108,7 +108,6 @@ export default function ProductCard({item}:{item:ProductDateType}) {
             }}
           >
             <Link href={'/gold-shop/test/'}>
-             
               <Typography
                 gutterBottom
                 variant="h5"
@@ -123,7 +122,6 @@ export default function ProductCard({item}:{item:ProductDateType}) {
             </Link>
           </Stack>
           <Stack direction={'column'} gap={1} sx={{ mt: 3.5 }}>
-           
             <Stack
               direction={{
                 xs: 'column',
@@ -139,7 +137,6 @@ export default function ProductCard({item}:{item:ProductDateType}) {
               }}
               justifyContent={'space-between'}
             >
-             
               <Typography
                 variant="body2"
                 fontSize={{
@@ -148,7 +145,6 @@ export default function ProductCard({item}:{item:ProductDateType}) {
                 }}
                 sx={{ color: 'text.muted' }}
               >
-               
                 وزن
                 <Box
                   component={'span'}
@@ -157,7 +153,6 @@ export default function ProductCard({item}:{item:ProductDateType}) {
                     sm: 10,
                   }}
                 >
-                 
                   (معادل {item.category.split('_')[0]} عیار)
                 </Box>
                 :
@@ -172,7 +167,6 @@ export default function ProductCard({item}:{item:ProductDateType}) {
                 }}
                 sx={{ alignSelf: 'flex-end' }}
               >
-               
                 {item.weight}
                 <Box
                   component={'span'}
@@ -181,7 +175,6 @@ export default function ProductCard({item}:{item:ProductDateType}) {
                     sm: 14,
                   }}
                 >
-                 
                   گرم
                 </Box>
               </Typography>
@@ -201,7 +194,6 @@ export default function ProductCard({item}:{item:ProductDateType}) {
               }}
               justifyContent={'space-between'}
             >
-             
               <Typography
                 variant="body2"
                 fontSize={{
@@ -210,7 +202,6 @@ export default function ProductCard({item}:{item:ProductDateType}) {
                 }}
                 sx={{ color: 'text.muted' }}
               >
-               
                 گرم طلا:
               </Typography>
               <Typography
@@ -223,8 +214,7 @@ export default function ProductCard({item}:{item:ProductDateType}) {
                 }}
                 sx={{ alignSelf: 'flex-end' }}
               >
-               
-               {item.total_weight_with_fees}
+                {item.total_weight_with_fees}
                 <Box
                   component={'span'}
                   fontSize={{
@@ -232,7 +222,6 @@ export default function ProductCard({item}:{item:ProductDateType}) {
                     sm: 14,
                   }}
                 >
-                 
                   گرم
                 </Box>
               </Typography>
@@ -252,7 +241,6 @@ export default function ProductCard({item}:{item:ProductDateType}) {
               }}
               justifyContent={'space-between'}
             >
-             
               <Typography
                 variant="body2"
                 fontSize={{
@@ -261,7 +249,6 @@ export default function ProductCard({item}:{item:ProductDateType}) {
                 }}
                 sx={{ color: 'text.muted' }}
               >
-               
                 ارزش تومان:
               </Typography>
               <Typography
@@ -274,7 +261,6 @@ export default function ProductCard({item}:{item:ProductDateType}) {
                 }}
                 sx={{ alignSelf: 'flex-end' }}
               >
-               
                 {priceFormater(19330693)}
                 <Box
                   component={'span'}
@@ -283,7 +269,6 @@ export default function ProductCard({item}:{item:ProductDateType}) {
                     sm: 14,
                   }}
                 >
-                 
                   تومان
                 </Box>
               </Typography>

@@ -4,14 +4,14 @@ import { useState } from 'react';
 const provinceItems = ['قم', 'تهران', 'اصفهان'];
 const cityItems = ['کهک', 'قنوات', 'تست'];
 export default function ChooseCity() {
-  const [province,setProvince] = useState('')
-  const [city,setCity] = useState('')
+  const [province, setProvince] = useState('');
+  const [city, setCity] = useState('');
 
   return (
     <Stack direction={'column'} gap={2} mb={15}>
       <SelectField
-      value={province}
-      setValue={setProvince}
+        value={province}
+        setValue={setProvince}
         label="استان"
         itemsList={provinceItems}
         isOrederDetail={false}

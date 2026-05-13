@@ -16,9 +16,9 @@ interface Props {
   toggleItems: ToggleItemsType[];
   noCard?: boolean;
   emptyMessage?: string;
-  tableBody:ReactNode
-  tableHead:string[]
-  listLength:number
+  tableBody: ReactNode;
+  tableHead: string[];
+  listLength: number;
 }
 const names = ['تکمیل شده', 'در انتظار تایید', 'لغو شده'];
 export default function OrderDetail({
@@ -28,14 +28,15 @@ export default function OrderDetail({
   noCard = false,
   emptyMessage,
   tableBody,
-  tableHead,listLength
+  tableHead,
+  listLength,
 }: Props) {
   const [active, setActive] = useState<number | null>(toggleItems[0]?.id);
   const [select, setSelect] = useState(toggleItems[0]?.value);
   const [message, setMessage] = useState(toggleItems[0]?.emptyMessage || '');
   const theme = useTheme();
   const isDarkMode = theme.palette.mode === 'dark';
-  const [value,setValue] = useState('')
+  const [value, setValue] = useState('');
   return noCard ? (
     <>
       {title && (
@@ -248,40 +249,41 @@ export default function OrderDetail({
             },
           }}
         >
-          <SelectField itemsList={names} label="وضعیت" isOrederDetail={true} maxWidth="260px" value={value} setValue={setValue} />
+          <SelectField
+            itemsList={names}
+            label="وضعیت"
+            isOrederDetail={true}
+            maxWidth="260px"
+            value={value}
+            setValue={setValue}
+          />
           <CustomDatePicker />
         </Stack>
       </Stack>
-      {
-        listLength > 0 ?  <Stack mt={5}>
-        <CustomTable heads={tableHead}>
-        {
-          tableBody
-        }
-      </CustomTable>
-      </Stack>:(
-          <Stack
-        mt={10}
-        mb={8}
-        direction={'column'}
-        alignItems={'center'}
-        justifyContent={'center'}
-        gap={4}
-      >
-        <Image
-          src={`/images/${isDarkMode ? 'emptyTableDark.png' : 'emptyTable.webp'}`}
-          width={300}
-          height={270}
-          alt=""
-        />
-        <Typography variant="body2" fontSize={12} sx={{ color: 'text.muted' }}>
-          {emptyMessage || message}
-        </Typography>
-      </Stack>
-        )
-      }
-     
-     
+      {listLength > 0 ? (
+        <Stack mt={5}>
+          <CustomTable heads={tableHead}>{tableBody}</CustomTable>
+        </Stack>
+      ) : (
+        <Stack
+          mt={10}
+          mb={8}
+          direction={'column'}
+          alignItems={'center'}
+          justifyContent={'center'}
+          gap={4}
+        >
+          <Image
+            src={`/images/${isDarkMode ? 'emptyTableDark.png' : 'emptyTable.webp'}`}
+            width={300}
+            height={270}
+            alt=""
+          />
+          <Typography variant="body2" fontSize={12} sx={{ color: 'text.muted' }}>
+            {emptyMessage || message}
+          </Typography>
+        </Stack>
+      )}
     </Card>
   );
 }

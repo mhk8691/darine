@@ -2,18 +2,12 @@ import axios from 'axios';
 
 import BASE_URL from '@/app/core/BASE_URL';
 
-import {
-  clearTokens,
-  getAccessToken,
-  getRefreshToken,
-  setAccessToken,
-} from './token';
+import { clearTokens, getAccessToken, getRefreshToken, setAccessToken } from './token';
 
 const api = axios.create({
   baseURL: BASE_URL,
   withCredentials: true,
 });
-
 
 // =========================
 // REQUEST INTERCEPTOR
@@ -28,7 +22,6 @@ api.interceptors.request.use((config) => {
 
   return config;
 });
-
 
 // =========================
 // REFRESH
@@ -60,12 +53,9 @@ const refreshAccessToken = async () => {
     throw new Error('No refresh token');
   }
 
-  const response = await axios.post(
-    `${BASE_URL}/accounts/token/refresh/`,
-    {
-      refresh,
-    },
-  );
+  const response = await axios.post(`${BASE_URL}/accounts/token/refresh/`, {
+    refresh,
+  });
 
   const newAccess = response.data.access;
 
@@ -73,7 +63,6 @@ const refreshAccessToken = async () => {
 
   return newAccess;
 };
-
 
 // =========================
 // RESPONSE INTERCEPTOR
@@ -85,19 +74,14 @@ api.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    if (
-      error.response?.status === 401 &&
-      !originalRequest._retry
-    ) {
+    if (error.response?.status === 401 && !originalRequest._retry) {
       if (isRefreshing) {
-        return new Promise(
-          (resolve, reject) => {
-            failedQueue.push({
-              resolve,
-              reject,
-            });
-          },
-        ).then(() => api(originalRequest));
+        return new Promise((resolve, reject) => {
+          failedQueue.push({
+            resolve,
+            reject,
+          });
+        }).then(() => api(originalRequest));
       }
 
       originalRequest._retry = true;
@@ -116,8 +100,7 @@ api.interceptors.response.use(
         clearTokens();
 
         if (typeof window !== 'undefined') {
-          window.location.href =
-            '/login/login-password';
+          window.location.href = '/login/login-password';
         }
 
         return Promise.reject(err);

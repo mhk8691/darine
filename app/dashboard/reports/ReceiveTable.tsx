@@ -1,6 +1,6 @@
-import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail'
+import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import { ToggleItemsType } from '@/app/core/Types';
-import React from 'react'
+import React from 'react';
 
 const receiveItems: ToggleItemsType[] = [
   {
@@ -19,6 +19,14 @@ const receiveItems: ToggleItemsType[] = [
 
 export default function ReceiveTable() {
   return (
-    <OrderDetail key={1} noCard toggleItems={receiveItems} type="toggle" tableBody={<></>} tableHead={[]} listLength={0} />
-  )
+    <OrderDetail
+      key={1}
+      noCard
+      toggleItems={receiveItems}
+      type="toggle"
+      tableBody={<></>}
+      tableHead={[]}
+      listLength={0}
+    />
+  );
 }

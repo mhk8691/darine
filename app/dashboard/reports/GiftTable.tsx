@@ -1,6 +1,6 @@
-import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail'
+import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import { ToggleItemsType } from '@/app/core/Types';
-import React from 'react'
+import React from 'react';
 
 const giftItems: ToggleItemsType[] = [
   {
@@ -19,6 +19,14 @@ const giftItems: ToggleItemsType[] = [
 
 export default function GiftTable() {
   return (
-     <OrderDetail key={3} noCard toggleItems={giftItems} type="toggle" tableBody={<></>} tableHead={[]} listLength={0} />
-  )
+    <OrderDetail
+      key={3}
+      noCard
+      toggleItems={giftItems}
+      type="toggle"
+      tableBody={<></>}
+      tableHead={[]}
+      listLength={0}
+    />
+  );
 }

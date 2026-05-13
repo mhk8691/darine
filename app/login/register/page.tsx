@@ -4,16 +4,16 @@ import RegisterForm from './RegisterForm';
 
 interface Props {
   searchParams: {
-    phone: string; 
+    phone: string;
   };
 }
 
-export default async function page({searchParams}:Props) {
-  const {phone} = await searchParams
+export default async function page({ searchParams }: Props) {
+  const { phone } = await searchParams;
   return (
     <Stack>
-  <BackLink fontSize='30' />
-  <Typography
+      <BackLink fontSize="30" />
+      <Typography
         variant="h6"
         fontWeight={'500'}
         fontSize={{
@@ -24,7 +24,7 @@ export default async function page({searchParams}:Props) {
       >
         اطلاعات کاربری
       </Typography>
-     
+
       <Typography
         variant="body2"
         fontSize={{
@@ -35,8 +35,7 @@ export default async function page({searchParams}:Props) {
       >
         اطلاعات زیر را با توجه به صاحب شماره {phone} وارد کنید
       </Typography>
-        <RegisterForm phoneNumber={phone} />
-   
+      <RegisterForm phoneNumber={phone} />
     </Stack>
   );
 }

@@ -1,21 +1,10 @@
 'use client';
 
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
-import {
-  getMe,
-  logout as logoutRequest,
-  User,
-} from '@/lib/auth';
+import { getMe, logout as logoutRequest, User } from '@/lib/auth';
 
-import {
-  getRefreshToken,
-} from '@/lib/token';
+import { getRefreshToken } from '@/lib/token';
 
 type AuthContextType = {
   user: User | null;
@@ -25,19 +14,12 @@ type AuthContextType = {
   logout: () => Promise<void>;
 };
 
-const AuthContext =
-  createContext<AuthContextType | null>(null);
+const AuthContext = createContext<AuthContextType | null>(null);
 
-export function AuthProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const [user, setUser] =
-    useState<User | null>(null);
+export function AuthProvider({ children }: { children: React.ReactNode }) {
+  const [user, setUser] = useState<User | null>(null);
 
-  const [loading, setLoading] =
-    useState(true);
+  const [loading, setLoading] = useState(true);
 
   const fetchUser = async () => {
     try {
@@ -86,13 +68,10 @@ export function AuthProvider({
 }
 
 export const useAuth = () => {
-  const context =
-    useContext(AuthContext);
+  const context = useContext(AuthContext);
 
   if (!context) {
-    throw new Error(
-      'useAuth must be used inside AuthProvider',
-    );
+    throw new Error('useAuth must be used inside AuthProvider');
   }
 
   return context;

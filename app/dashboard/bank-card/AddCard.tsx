@@ -13,16 +13,16 @@ interface Props {
   open: boolean;
   setValue: Dispatch<SetStateAction<string>>;
   value: string;
-  setBankCardData: Dispatch<SetStateAction<BankCardDataType[]>>
+  setBankCardData: Dispatch<SetStateAction<BankCardDataType[]>>;
 }
-export default function AddCard({ setOpen, setValue, open, value,setBankCardData }: Props) {
-  const handleAddBankCard = async ()=>{
-  await addBankCard(value)
-    const response = await getBankCard()
-  setBankCardData(response && response?.length > 0 ? response :[])
-  setValue('')
-  setOpen(false)
-  }
+export default function AddCard({ setOpen, setValue, open, value, setBankCardData }: Props) {
+  const handleAddBankCard = async () => {
+    await addBankCard(value);
+    const response = await getBankCard();
+    setBankCardData(response && response?.length > 0 ? response : []);
+    setValue('');
+    setOpen(false);
+  };
   return (
     <CustomModal
       open={open}

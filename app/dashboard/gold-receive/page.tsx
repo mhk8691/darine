@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import Container from '@/app/Components/Containers/Container/Container';
 import GoldCard from '@/app/Components/ProductCard/ProductCard';
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
@@ -10,7 +10,6 @@ import Sort from './Sort';
 import { Metadata } from 'next';
 import { getProducts } from '@/lib/getProducts/getProducts';
 import { useEffect, useState } from 'react';
-
 
 const items: ToggleItemsType[] = [
   {
@@ -27,16 +26,16 @@ const items: ToggleItemsType[] = [
   },
 ];
 
-export default  function page() {
-  const [productData,setProductData] = useState<ProductDateType[]>([] )
- 
-  useEffect(()=>{
-    const getData = async ()=>{
- const response = await getProducts()
- setProductData(response || [])
-    }
-    getData()
-  },[])
+export default function page() {
+  const [productData, setProductData] = useState<ProductDateType[]>([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const response = await getProducts();
+      setProductData(response || []);
+    };
+    getData();
+  }, []);
   return (
     <Grid
       container
@@ -78,27 +77,30 @@ export default  function page() {
               md: 2,
             }}
           >
-            {
-              productData?.map((item)=>(
-<Grid
-              size={{
-                xs: 6,
-                md: 4,
-              }}
-              key={item.id}
-            >
-              <GoldCard item={item} />
-            </Grid>
-              ))
-            }
-            
-         
+            {productData?.map((item) => (
+              <Grid
+                size={{
+                  xs: 6,
+                  md: 4,
+                }}
+                key={item.id}
+              >
+                <GoldCard item={item} />
+              </Grid>
+            ))}
           </Grid>
           <Cart />
         </Grid>
       </Container>
       <Grid size={12}>
-        <OrderDetail type="chip" title="لیست تحویل‌های اخیر" toggleItems={items} />
+        <OrderDetail
+          type="chip"
+          title="لیست تحویل‌های اخیر"
+          toggleItems={items}
+          tableBody={<></>}
+          tableHead={[]}
+          listLength={0}
+        />
       </Grid>
     </Grid>
   );

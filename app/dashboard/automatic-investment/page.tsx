@@ -130,7 +130,14 @@ export default function page() {
         </Card>
       </Grid>
       <Grid size={12} order={3}>
-        <OrderDetail type="chip" title="لیست تراکنش‌‌های اخیر" toggleItems={items} />
+        <OrderDetail
+          type="chip"
+          title="لیست تراکنش‌‌های اخیر"
+          toggleItems={items}
+          tableBody={<></>}
+          tableHead={[]}
+          listLength={0}
+        />
       </Grid>
     </Grid>
   );

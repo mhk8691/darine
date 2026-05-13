@@ -31,7 +31,7 @@ interface Props {
   heads: string[];
   children: ReactNode;
 }
-export default function CustomTable({ heads,children }: Props) {
+export default function CustomTable({ heads, children }: Props) {
   return (
     <TableContainer
       component={Paper}
@@ -62,9 +62,7 @@ export default function CustomTable({ heads,children }: Props) {
             ))}
           </TableRow>
         </TableHead>
-            {
-              children
-            }
+        {children}
       </Table>
     </TableContainer>
   );

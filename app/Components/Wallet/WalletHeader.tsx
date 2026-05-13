@@ -5,11 +5,21 @@ import { useEffect, useState } from 'react';
 import CircleAnimation from '../CircleAnimation/CircleAnimation';
 import Card from '../Containers/Container/Container';
 import MobileWalletStatus from './MobileWalletStatus';
+import { getAssets } from '@/lib/getAssets/getAssets';
+import { AssetsDataType } from '@/app/core/Types';
 
 export default function WalletHeader() {
   const [visible, setVisible] = useState(false);
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
+  const [assets, setAssets] = useState<AssetsDataType>({} as AssetsDataType);
+  useEffect(() => {
+    const getData = async () => {
+      const response = await getAssets();
+      setAssets(response);
+    };
+    getData();
+  }, []);
   useEffect(() => {
     const stored = localStorage.getItem('eyeState');
     if (stored !== null) {
@@ -137,7 +147,7 @@ export default function WalletHeader() {
           </Grid>
         </Grid>
       ) : (
-        <MobileWalletStatus isDesktop={isDesktop} visible={visible} />
+        <MobileWalletStatus isDesktop={isDesktop} visible={visible} assets={assets} />
       )}
     </>
   );

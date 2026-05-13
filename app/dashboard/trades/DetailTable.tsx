@@ -1,7 +1,7 @@
-'use client'
-import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail'
+'use client';
+import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import { ToggleItemsType } from '@/app/core/Types';
-import React from 'react'
+import React from 'react';
 const items: ToggleItemsType[] = [
   {
     title: 'خرید',
@@ -18,6 +18,13 @@ const items: ToggleItemsType[] = [
 ];
 export default function DetailTable() {
   return (
-    <OrderDetail title="لیست معاملات اخیر" toggleItems={items} type="chip" tableBody={[]} tableHead={[]} />
-  )
+    <OrderDetail
+      title="لیست معاملات اخیر"
+      toggleItems={items}
+      type="chip"
+      tableBody={[]}
+      tableHead={[]}
+      listLength={0}
+    />
+  );
 }

@@ -16,9 +16,7 @@ import * as React from 'react';
 import AddCard from '../bank-card/AddCard';
 import { BankCardDataType } from '@/app/core/Types';
 
-
-
-const CardItem = ({ item }: { item: BankCardDataType}) => (
+const CardItem = ({ item }: { item: BankCardDataType }) => (
   <Box
     sx={{
       display: 'flex',
@@ -40,7 +38,17 @@ const CardItem = ({ item }: { item: BankCardDataType}) => (
   </Box>
 );
 
-export default function BankCards({bankCardsData,setBankCardsData,setSelectedCard,selectedCard}:{bankCardsData:BankCardDataType[],setBankCardsData:React.Dispatch<React.SetStateAction<BankCardDataType[]>>,setSelectedCard:React.Dispatch<React.SetStateAction<number>>,selectedCard:number}) {
+export default function BankCards({
+  bankCardsData,
+  setBankCardsData,
+  setSelectedCard,
+  selectedCard,
+}: {
+  bankCardsData: BankCardDataType[];
+  setBankCardsData: React.Dispatch<React.SetStateAction<BankCardDataType[]>>;
+  setSelectedCard: React.Dispatch<React.SetStateAction<number>>;
+  selectedCard: number;
+}) {
   const [open, setOpen] = React.useState(false);
   const [openModal, setOpenModal] = React.useState(false);
   const selectedItem = bankCardsData.find((item) => item.id === selectedCard);
@@ -237,7 +245,13 @@ export default function BankCards({bankCardsData,setBankCardsData,setSelectedCar
           افزودن کارت
         </Button>
       </Stack>
-      <AddCard open={openModal} setOpen={setOpenModal} value={cardValue} setValue={setCardValue} setBankCardData={setBankCardsData} />
+      <AddCard
+        open={openModal}
+        setOpen={setOpenModal}
+        value={cardValue}
+        setValue={setCardValue}
+        setBankCardData={setBankCardsData}
+      />
     </>
   );
 }
