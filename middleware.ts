@@ -1,25 +1,30 @@
 import { NextResponse } from 'next/server';
-
 import type { NextRequest } from 'next/server';
 
-export function middleware(
-  req: NextRequest,
-) {
-  const access =
-    req.cookies.get('accessToken');
+export function middleware(req: NextRequest) {
+  const access = req.cookies.get('accessToken');
+  const pathname = req.nextUrl.pathname;
 
-  const pathname =
-    req.nextUrl.pathname;
+  const isHome = pathname === '/';
+  const isDashboard = pathname.startsWith('/dashboard');
 
-  const isProtected =
-    pathname.startsWith('/dashboard');
+  // اگر روی صفحه اصلی بود
+  if (isHome) {
+    if (access) {
+      return NextResponse.redirect(
+        new URL('/dashboard', req.url),
+      );
+    } else {
+      return NextResponse.redirect(
+        new URL('/login/login-password', req.url),
+      );
+    }
+  }
 
-  if (isProtected && !access) {
+  // اگر وارد داشبورد شد ولی لاگین نیست
+  if (isDashboard && !access) {
     return NextResponse.redirect(
-      new URL(
-        '/login/login-password',
-        req.url,
-      ),
+      new URL('/login/login-password', req.url),
     );
   }
 
@@ -27,5 +32,5 @@ export function middleware(
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*'],
+  matcher: ['/', '/dashboard/:path*'],
 };

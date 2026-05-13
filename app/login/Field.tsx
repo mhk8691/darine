@@ -1,14 +1,15 @@
 'use client';
-import { TextField } from '@mui/material';
+import { SxProps, TextField } from '@mui/material';
 import { Dispatch, SetStateAction } from 'react';
 interface Props {
   value: string;
   setValue: Dispatch<SetStateAction<string>>;
   label?: string;
   placeholder?: string;
+  style?:SxProps
 }
 
-export default function Field({ value, setValue, label, placeholder }: Props) {
+export default function Field({ value, setValue, label, placeholder,style }: Props) {
   return (
     <TextField
       label={label}
@@ -33,6 +34,7 @@ export default function Field({ value, setValue, label, placeholder }: Props) {
             sm: '16px',
           },
         },
+        ...style
       }}
     />
   );

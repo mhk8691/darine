@@ -1,13 +1,50 @@
 'use client';
 import CustomModal from '@/app/Components/CustomModal/CustomModal';
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import Field from '@/app/login/Field';
-import { Close } from '@mui/icons-material';
+import PasswordField from '@/app/login/PasswordField';
+import { forgetPassword, verifyForgetOtp } from '@/lib/auth';
+import { Close, InfoOutlined } from '@mui/icons-material';
 import { Button, IconButton, Stack, Typography } from '@mui/material';
+import { isAxiosError } from 'axios';
 import { useState } from 'react';
 
 export default function ChangePassword() {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [otpCode, setOtpCode] = useState('');
+  const [step,setStep] = useState(0)
+const [password,setPassword] = useState('')
+const [repeatPassword,setRepeatPassword] = useState('')
+  const handleClick = async ()=>{
+    if (step === 0){
+      try{
+        const response = await forgetPassword(phoneNumber)
+        showSnackbar(response.data.message,true)
+      }catch(error:unknown){
+        if(isAxiosError(error)){
+          showSnackbar(error.response?.data.error)
+        }
+      }
+      setStep(1)
+    }else if (step ==1){
+      
+      
+      setStep(2)
+    }
+    else if (step ===2){
+      try{
+        const response = await verifyForgetOtp(phoneNumber,otpCode,password)
+        showSnackbar(response.data.message,true)
+      }catch(error:unknown){
+        if(isAxiosError(error)){
+          showSnackbar(error.response?.data.error)
+        }
+      }
+      setStep(0)
+      setOpen(false)
+    }
+  }
   return (
     <>
       <Button
@@ -37,34 +74,47 @@ export default function ChangePassword() {
           </IconButton>
         </Stack>
         <Typography variant="body1" fontSize={16} sx={{ my: 3 }}>
-          به منظور تغییر رمزعبور باید کدی به شماره موبایل شما ارسال شود.
+          {
+            step === 0 ? 'به منظور تغییر رمزعبور باید کدی به شماره موبایل شما ارسال شود.' : step === 1 ? `کدتایید ارسال شده به شماره موبایل ${phoneNumber} را وارد کنید`:'رمز عبور جدید را با توجه به شرایط ذکر شده تعیین کنید.'
+          }
+         
+         
         </Typography>
-        <Field setValue={setValue} value={value} label="شماره موبایل شما" />
-        {/* 
-        <PasswordField password={value} setPassword={setValue} />
-        <PasswordField password={value} setPassword={setValue} label="تایید رمز عبور" />
+        {
+          step === 0 ? (<Field setValue={setPhoneNumber} value={phoneNumber} label="شماره موبایل شما" />)
+          :step === 1?<Field setValue={setOtpCode} value={otpCode} label="کد تایید" />:(
+            <>
+            <PasswordField password={password} setPassword={setPassword} />
+        <PasswordField password={repeatPassword} setPassword={setRepeatPassword} label="تایید رمز عبور" />
         
         <Stack direction={"column"} gap={.5} mt={4}>
           <Stack direction={"row"} gap={1}>
-            <InfoOutlinedIcon sx={{ color: "text.muted" }} />
+            <InfoOutlined sx={{ color: "text.muted" }} />
             <Typography variant="body2" fontSize={14} sx={{ color: "text.muted" }}>
               رمز عبور باید بین 6 تا 24 حرف باشد
             </Typography>
           </Stack>
           <Stack direction={"row"} gap={1}>
-            <InfoOutlinedIcon sx={{ color: "text.muted" }} />
+            <InfoOutlined sx={{ color: "text.muted" }} />
             <Typography variant="body2" fontSize={14} sx={{ color: "text.muted" }}>
               رمز باید شامل اعداد باشد
             </Typography>
           </Stack>
           <Stack direction={"row"} gap={1}>
-            <InfoOutlinedIcon sx={{ color: "text.muted" }} />
+            <InfoOutlined sx={{ color: "text.muted" }} />
             <Typography variant="body2" fontSize={14} sx={{ color: "text.muted" }}>
               رمز باید شامل حروف بزرگتر و کوچکتر باشد
             </Typography>
           </Stack>
-        </Stack> */}
-        {/* <Field setValue={setValue} value={value} label="کد تایید" /> */}
+        </Stack>
+            </>
+          )
+        }
+        
+        
+        
+        
+        
         <Button
           variant="contained"
           color="primary"
@@ -79,8 +129,11 @@ export default function ChangePassword() {
               bgcolor: 'primary.main',
             },
           }}
+          onClick={handleClick}
         >
-          ارسال کد
+         {
+          step <2 ? 'ادامه':'تایید'
+         }
         </Button>
       </CustomModal>
     </>

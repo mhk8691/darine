@@ -15,9 +15,6 @@ export type User = {
 };
 
 
-// ======================
-// GET USER
-// ======================
 
 export const getMe = async (): Promise<User> => {
   const res = await api.get('/accounts/me/');
@@ -26,9 +23,6 @@ export const getMe = async (): Promise<User> => {
 };
 
 
-// ======================
-// LOGIN PASSWORD
-// ======================
 
 export const loginPassword = async (
   mobile: string,
@@ -52,9 +46,6 @@ export const loginPassword = async (
 };
 
 
-// ======================
-// LOGIN OTP
-// ======================
 
 export const verifyLoginOtp = async (
   mobile: string,
@@ -78,19 +69,18 @@ export const verifyLoginOtp = async (
 };
 
 
-// ======================
-// FORGET PASSWORD OTP
-// ======================
 
-export const verifyForgerOtp = async (
+export const verifyForgetOtp = async (
   mobile: string,
   code: string,
+  password:string
 ) => {
   const res = await api.post(
     '/accounts/reset-password/confirm/',
     {
       mobile,
       code,
+      new_password:password
     },
   );
 
@@ -98,9 +88,6 @@ export const verifyForgerOtp = async (
 };
 
 
-// ======================
-// OTP
-// ======================
 
 export const loginOtp = async (
   mobile: string,
@@ -140,9 +127,6 @@ export const verifySignupOtp = async (
 };
 
 
-// ======================
-// REGISTER
-// ======================
 
 export const register = async (
   data: RegisterFormType,
@@ -153,11 +137,17 @@ export const register = async (
   );
 };
 
-
-// ======================
-// LOGOUT
-// ======================
-
+export const changeNumberRequest = async (phoneNumber:string)=>{
+  return api.post<{message:string}>('/accounts/change-mobile/request/', {
+    new_mobile:phoneNumber,
+  });
+}
+export const changeNumberConfirm = async (phoneNumber:string,code:string)=>{
+  return api.post<{message:string}>('/accounts/change-mobile/confirm/', {
+    new_mobile:phoneNumber,
+    code,
+  });
+}
 export const logout = async () => {
   try {
     await api.post('/auth/logout/');
