@@ -1,12 +1,12 @@
-import { LoginDtaType } from '@/app/core/Types';
-import  api  from './api';
+import { RegisterFormType } from '@/app/login/register/RegisterForm';
+
+import api from './api';
 
 import {
+  clearTokens,
   setAccessToken,
-  clearAccessToken,
+  setRefreshToken,
 } from './token';
-
-import { RegisterFormType } from '@/app/login/register/RegisterForm';
 
 export type User = {
   full_name: string;
@@ -16,96 +16,13 @@ export type User = {
 
 
 // ======================
-// OTP
+// GET USER
 // ======================
 
-export const loginOtp = async (mobile: string) => {
-  const res = await api.post<{
-    message: string;
-  }>('/accounts/send-otp/', {
-    mobile,
-  });
+export const getMe = async (): Promise<User> => {
+  const res = await api.get('/accounts/me/');
 
-  return res;
-};
-
-export const forgetPassword = async (mobile: string) => {
-  const res = await api.post<{
-    message: string;
-  }>('/accounts/reset-password/request/', {
-    mobile,
-  });
-
-  return res;
-};
-
-export const signupOtp = async (mobile: string) => {
-  const res = await api.post<{
-    message: string;
-  }>('/accounts/send-otp/', {
-    mobile,
-  });
-
-  return res;
-};
-
-export const verifySignupOtp = async (
-  mobile: string,
-  code: string,
-) => {
-  const res = await api.post<{
-    message: string;
-    mobile: string;
-  }>('/accounts/verify-otp/', {
-    mobile,
-    code,
-  });
-
-  return res;
-};
-export const verifyForgerOtp = async (
-  mobile: string,
-  code: string,
-) => {
-  const res = await api.post<{message:string}>(
-    '/accounts/reset-password/confirm/',
-    {
-      mobile,
-      code,
-    },
-  );
-
-  const data = res.data;
-
-  // access token فقط داخل memory
-  setAccessToken(data.access);
-
-  // user داخل localStorage
-  localStorage.setItem(
-    'user',
-    JSON.stringify({
-      full_name: data.full_name,
-      role: data.role,
-      status: data.status,
-    }),
-  );
-
-  return res;
-};
-
-
-// ======================
-// REGISTER
-// ======================
-
-export const register = async (
-  data: RegisterFormType,
-) => {
-  const response = await api.post<{
-    message: string;
-  }>('/accounts/complete-register/', data);
-
-  return response;
+  return res.data;
 };
 
 
@@ -114,33 +31,24 @@ export const register = async (
 // ======================
 
 export const loginPassword = async (
-  phoneNumber: string,
+  mobile: string,
   password: string,
 ) => {
-  const res = await api.post<LoginDtaType>(
+  const res = await api.post(
     '/accounts/login/password/',
     {
-      mobile: phoneNumber,
+      mobile,
       password,
     },
   );
 
   const data = res.data;
 
-  // access token فقط داخل memory
   setAccessToken(data.access);
 
-  // user داخل localStorage
-  localStorage.setItem(
-    'user',
-    JSON.stringify({
-      full_name: data.full_name,
-      role: data.role,
-      status: data.status,
-    }),
-  );
+  setRefreshToken(data.refresh);
 
-  return res.data;
+  return data;
 };
 
 
@@ -152,7 +60,7 @@ export const verifyLoginOtp = async (
   mobile: string,
   code: string,
 ) => {
-  const res = await api.post<LoginDtaType>(
+  const res = await api.post(
     '/accounts/login/otp/',
     {
       mobile,
@@ -162,20 +70,87 @@ export const verifyLoginOtp = async (
 
   const data = res.data;
 
-  // access token فقط داخل memory
   setAccessToken(data.access);
 
-  // user داخل localStorage
-  localStorage.setItem(
-    'user',
-    JSON.stringify({
-      full_name: data.full_name,
-      role: data.role,
-      status: data.status,
-    }),
+  setRefreshToken(data.refresh);
+
+  return data;
+};
+
+
+// ======================
+// FORGET PASSWORD OTP
+// ======================
+
+export const verifyForgerOtp = async (
+  mobile: string,
+  code: string,
+) => {
+  const res = await api.post(
+    '/accounts/reset-password/confirm/',
+    {
+      mobile,
+      code,
+    },
   );
 
-  return res;
+  return res.data;
+};
+
+
+// ======================
+// OTP
+// ======================
+
+export const loginOtp = async (
+  mobile: string,
+) => {
+  return api.post('/accounts/send-otp/', {
+    mobile,
+  });
+};
+
+export const forgetPassword = async (
+  mobile: string,
+) => {
+  return api.post(
+    '/accounts/reset-password/request/',
+    {
+      mobile,
+    },
+  );
+};
+
+export const signupOtp = async (
+  mobile: string,
+) => {
+  return api.post('/accounts/send-otp/', {
+    mobile,
+  });
+};
+
+export const verifySignupOtp = async (
+  mobile: string,
+  code: string,
+) => {
+  return api.post('/accounts/verify-otp/', {
+    mobile,
+    code,
+  });
+};
+
+
+// ======================
+// REGISTER
+// ======================
+
+export const register = async (
+  data: RegisterFormType,
+) => {
+  return api.post(
+    '/accounts/complete-register/',
+    data,
+  );
 };
 
 
@@ -185,23 +160,8 @@ export const verifyLoginOtp = async (
 
 export const logout = async () => {
   try {
-    await api.post('/auth/logout');
+    await api.post('/auth/logout/');
   } finally {
-    clearAccessToken();
-
-    localStorage.removeItem('user');
+    clearTokens();
   }
-};
-
-
-// ======================
-// GET USER
-// ======================
-
-export const getMe = (): User | null => {
-  const user = localStorage.getItem('user');
-
-  if (!user) return null;
-
-  return JSON.parse(user);
 };

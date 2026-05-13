@@ -1,18 +1,15 @@
-import axios, {
-  AxiosError,
-  AxiosInstance,
-  InternalAxiosRequestConfig,
-} from 'axios';
+import axios from 'axios';
 
 import BASE_URL from '@/app/core/BASE_URL';
 
 import {
-  clearAccessToken,
+  clearTokens,
   getAccessToken,
+  getRefreshToken,
   setAccessToken,
 } from './token';
 
-const instance: AxiosInstance = axios.create({
+const api = axios.create({
   baseURL: BASE_URL,
   withCredentials: true,
 });
@@ -22,92 +19,106 @@ const instance: AxiosInstance = axios.create({
 // REQUEST INTERCEPTOR
 // =========================
 
-instance.interceptors.request.use(
-  (config: InternalAxiosRequestConfig) => {
-    const token = getAccessToken();
+api.interceptors.request.use((config) => {
+  const access = getAccessToken();
 
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
+  if (access) {
+    config.headers.Authorization = `Bearer ${access}`;
+  }
 
-    return config;
-  },
-);
+  return config;
+});
 
 
 // =========================
-// RESPONSE INTERCEPTOR
+// REFRESH
 // =========================
 
 let isRefreshing = false;
-let failedQueue: any[] = [];
 
-const processQueue = (
-  error: any,
-  token: string | null = null,
-) => {
-  failedQueue.forEach((prom) => {
+let failedQueue: {
+  resolve: (value?: unknown) => void;
+  reject: (reason?: any) => void;
+}[] = [];
+
+const processQueue = (error?: any) => {
+  failedQueue.forEach((p) => {
     if (error) {
-      prom.reject(error);
+      p.reject(error);
     } else {
-      prom.resolve(token);
+      p.resolve(true);
     }
   });
 
   failedQueue = [];
 };
 
-instance.interceptors.response.use(
-  (res) => res,
+const refreshAccessToken = async () => {
+  const refresh = getRefreshToken();
 
-  async (error: AxiosError) => {
-    const originalRequest: any = error.config;
+  if (!refresh) {
+    throw new Error('No refresh token');
+  }
+
+  const response = await axios.post(
+    `${BASE_URL}/accounts/token/refresh/`,
+    {
+      refresh,
+    },
+  );
+
+  const newAccess = response.data.access;
+
+  setAccessToken(newAccess);
+
+  return newAccess;
+};
+
+
+// =========================
+// RESPONSE INTERCEPTOR
+// =========================
+
+api.interceptors.response.use(
+  (response) => response,
+
+  async (error) => {
+    const originalRequest = error.config;
 
     if (
       error.response?.status === 401 &&
       !originalRequest._retry
     ) {
       if (isRefreshing) {
-        return new Promise((resolve, reject) => {
-          failedQueue.push({ resolve, reject });
-        })
-          .then((token) => {
-            originalRequest.headers.Authorization = `Bearer ${token}`;
-
-            return instance(originalRequest);
-          })
-          .catch((err) => Promise.reject(err));
+        return new Promise(
+          (resolve, reject) => {
+            failedQueue.push({
+              resolve,
+              reject,
+            });
+          },
+        ).then(() => api(originalRequest));
       }
 
       originalRequest._retry = true;
+
       isRefreshing = true;
 
       try {
-        const res = await axios.post(
-          `${BASE_URL}/accounts/token/refresh/`,
-          {},
-          {
-            withCredentials: true,
-          },
-        );
+        await refreshAccessToken();
 
-        const newAccess = res.data.access;
+        processQueue();
 
-        setAccessToken(newAccess);
-
-        processQueue(null, newAccess);
-
-        originalRequest.headers.Authorization = `Bearer ${newAccess}`;
-
-        return instance(originalRequest);
+        return api(originalRequest);
       } catch (err) {
-        processQueue(err, null);
+        processQueue(err);
 
-        clearAccessToken();
+        clearTokens();
 
-        localStorage.removeItem('user');
-
-        window.location.href = '/login/login-password';
+        if (typeof window !== 'undefined') {
+          window.location.href =
+            '/login/login-password';
+        }
 
         return Promise.reject(err);
       } finally {
@@ -119,4 +130,4 @@ instance.interceptors.response.use(
   },
 );
 
-export default instance;
+export default api;

@@ -1,23 +1,31 @@
 import { NextResponse } from 'next/server';
+
 import type { NextRequest } from 'next/server';
 
-export function middleware(req: NextRequest) {
-  const { pathname } = req.nextUrl;
-  const token = req.cookies.get('refreshToken');
+export function middleware(
+  req: NextRequest,
+) {
+  const access =
+    req.cookies.get('accessToken');
 
-  const isProtected = pathname.startsWith('/dashboard');
+  const pathname =
+    req.nextUrl.pathname;
 
-  // if (isProtected && !token) {
-  //   return NextResponse.redirect(new URL("/login/login-password", req.url));
-  // }
+  const isProtected =
+    pathname.startsWith('/dashboard');
 
-  if (pathname === '/') {
-    return NextResponse.redirect(new URL('/dashboard', req.url));
+  if (isProtected && !access) {
+    return NextResponse.redirect(
+      new URL(
+        '/login/login-password',
+        req.url,
+      ),
+    );
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/', '/dashboard/:path*'],
+  matcher: ['/dashboard/:path*'],
 };

@@ -7,58 +7,51 @@ import {
   useState,
 } from 'react';
 
-import instance from '@/lib/api';
+import {
+  getMe,
+  logout as logoutRequest,
+  User,
+} from '@/lib/auth';
 
 import {
-  clearAccessToken,
-  setAccessToken,
+  getRefreshToken,
 } from '@/lib/token';
-
-import { getMe, User } from '@/lib/auth';
 
 type AuthContextType = {
   user: User | null;
-  setUser: React.Dispatch<
-    React.SetStateAction<User | null>
-  >;
   loading: boolean;
+  authenticated: boolean;
+  refetchUser: () => Promise<void>;
+  logout: () => Promise<void>;
 };
 
 const AuthContext =
   createContext<AuthContextType | null>(null);
 
-export const AuthProvider = ({
+export function AuthProvider({
   children,
 }: {
   children: React.ReactNode;
-}) => {
-  const [user, setUser] = useState<User | null>(null);
+}) {
+  const [user, setUser] =
+    useState<User | null>(null);
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] =
+    useState(true);
 
-  const initializeAuth = async () => {
+  const fetchUser = async () => {
     try {
-      // اگر refresh cookie معتبر باشد
-      // access جدید می‌گیریم
-      const res = await instance.post(
-        '/accounts/token/refresh/',
-      );
+      const refresh = getRefreshToken();
 
-      const access = res.data.access;
-
-      setAccessToken(access);
-
-      // user را از localStorage می‌خوانیم
-      const storedUser = getMe();
-
-      if (storedUser) {
-        setUser(storedUser);
+      if (!refresh) {
+        setUser(null);
+        return;
       }
-    } catch (error) {
-      clearAccessToken();
 
-      localStorage.removeItem('user');
+      const me = await getMe();
 
+      setUser(me);
+    } catch {
       setUser(null);
     } finally {
       setLoading(false);
@@ -66,24 +59,35 @@ export const AuthProvider = ({
   };
 
   useEffect(() => {
-    initializeAuth();
+    fetchUser();
   }, []);
+
+  const logout = async () => {
+    try {
+      await logoutRequest();
+    } finally {
+      setUser(null);
+    }
+  };
 
   return (
     <AuthContext.Provider
       value={{
         user,
-        setUser,
         loading,
+        authenticated: !!user,
+        refetchUser: fetchUser,
+        logout,
       }}
     >
       {children}
     </AuthContext.Provider>
   );
-};
+}
 
 export const useAuth = () => {
-  const context = useContext(AuthContext);
+  const context =
+    useContext(AuthContext);
 
   if (!context) {
     throw new Error(
