@@ -177,7 +177,7 @@ export default function page() {
                 }}
                 sx={{ color: 'text.muted' }}
               >
-                مجموع کاربران دعوت شده توسط شما:
+               مجموع دریافتی شما از دعوت دوستان:
               </Typography>
               <Typography
                 variant="h6"
