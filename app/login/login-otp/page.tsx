@@ -2,7 +2,7 @@
 import { Box, Divider, Stack, Typography } from '@mui/material';
 import Link from 'next/link';
 import LoginTab from '../LoginTab';
-import LoginOtpForm from '../forget/ForgetPasswordForm';
+import LoginOtpForm from './LoginOtpForm';
 
 export default function page() {
   return (

@@ -18,10 +18,7 @@ export default function VerifyLoginOtpForm({ phoneNumber }: Props) {
   const handleLoginVerifyOtp = async () => {
     try {
       const res = await verifyLoginOtp(phoneNumber, verifyCode);
-      if (res.status === 200) {
         router.push('/dashboard');
-        console.log('200');
-      }
     } catch (error: unknown) {
       if (isAxiosError(error)) {
         showSnackbar(error.response?.data.message, false);
