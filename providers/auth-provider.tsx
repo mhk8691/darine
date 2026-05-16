@@ -1,10 +1,13 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
-
-import { getMe, logout as logoutRequest, User } from '@/lib/auth';
-
-import { getRefreshToken } from '@/lib/token';
+import { getMe, User,logout as logoutRequest } from '@/lib/auth';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  useCallback,
+} from 'react';
 
 type AuthContextType = {
   user: User | null;
@@ -18,39 +21,35 @@ const AuthContext = createContext<AuthContextType | null>(null);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
-
   const [loading, setLoading] = useState(true);
 
-  const fetchUser = async () => {
+  const fetchUser = useCallback(async () => {
     try {
-      const refresh = getRefreshToken();
-
-      if (!refresh) {
-        setUser(null);
-        return;
-      }
-
       const me = await getMe();
-
       setUser(me);
-    } catch {
+    } catch (error) {
+      console.error('Fetch user error:', error);
       setUser(null);
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchUser();
-  }, []);
+  }, [fetchUser]);
 
-  const logout = async () => {
+  const logout = useCallback(async () => {
     try {
       await logoutRequest();
+    } catch (error) {
+      console.error('Logout error:', error);
     } finally {
       setUser(null);
+      // می‌توانید به صفحه لاگین ریدایرکت کنید
+      window.location.href = '/login/login-password';
     }
-  };
+  }, []);
 
   return (
     <AuthContext.Provider
@@ -69,10 +68,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
-
   if (!context) {
     throw new Error('useAuth must be used inside AuthProvider');
   }
-
   return context;
 };

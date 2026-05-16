@@ -7,6 +7,7 @@ import { register } from '@/lib/auth';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { useRouter } from 'next/navigation';
+import PasswordField from '../PasswordField';
 
 export interface RegisterFormType {
   mobile: string;
@@ -26,6 +27,8 @@ export default function RegisterForm({ phoneNumber }: { phoneNumber: string }) {
   const [birthMonth, setBirthMonth] = useState('');
   const [birthYear, setBirthYear] = useState('');
   const [password, setPassword] = useState('');
+  const [repeatPassword, setRepeatPassword] = useState('');
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const router = useRouter();
@@ -39,6 +42,7 @@ export default function RegisterForm({ phoneNumber }: { phoneNumber: string }) {
       first_name: firstName,
       last_name: lastName,
       password,
+      confirm_password:repeatPassword
     };
     try {
       const response = await register(newRegisterForm);
@@ -80,7 +84,11 @@ export default function RegisterForm({ phoneNumber }: { phoneNumber: string }) {
         </Grid>
         <Grid size={12}>
           {/* <Field value={inviteCode} setValue={setInviteCode} label="کد معرف (اختیاری)" /> */}
-          <Field value={password} setValue={setPassword} label="رمز عبور" />
+          <PasswordField password={password} setPassword={setPassword} label="رمز عبور" />
+        </Grid>
+         <Grid size={12}>
+          {/* <Field value={inviteCode} setValue={setInviteCode} label="کد معرف (اختیاری)" /> */}
+          <PasswordField password={repeatPassword} setPassword={setRepeatPassword} label="تکرار رمز عبور" />
         </Grid>
       </Grid>
 

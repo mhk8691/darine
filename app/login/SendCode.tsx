@@ -17,7 +17,7 @@ export default function SendCode({ phoneNumber }: { phoneNumber: string }) {
 
     return () => clearInterval(interval);
   }, [time]);
-
+ 
   const formatTime = (seconds: number): string => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;

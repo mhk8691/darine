@@ -2,22 +2,23 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(req: NextRequest) {
-  const access = req.cookies.get('accessToken');
-  const pathname = req.nextUrl.pathname;
+  const { pathname } = req.nextUrl;
+  
+  // استفاده از نام صحیح کوکی‌ها
+  const refreshToken = req.cookies.get('refreshToken');
+  const accessToken = req.cookies.get('accessToken');
 
-  const isHome = pathname === '/';
-  const isDashboard = pathname.startsWith('/dashboard');
+  const isProtected = pathname.startsWith('/dashboard');
 
-  if (isHome) {
-    if (access) {
-      return NextResponse.redirect(new URL('/dashboard', req.url));
-    } else {
-      return NextResponse.redirect(new URL('/login/login-password', req.url));
-    }
+  // ریدایرکت به لاگین اگر توکن وجود نداشت
+  if (isProtected && !refreshToken && !accessToken) {
+    const loginUrl = new URL('/login/login-password', req.url);
+    return NextResponse.redirect(loginUrl);
   }
 
-  if (isDashboard && !access) {
-    return NextResponse.redirect(new URL('/login/login-password', req.url));
+  // ریدایرکت روت اصلی به dashboard
+  if (pathname === '/') {
+    return NextResponse.redirect(new URL('/dashboard', req.url));
   }
 
   return NextResponse.next();

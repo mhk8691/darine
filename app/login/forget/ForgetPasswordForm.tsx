@@ -2,7 +2,7 @@
 import React, { ReactNode, useState } from 'react';
 import Field from '../Field';
 import { useRouter } from 'next/navigation';
-import { forgetPassword } from '@/lib/auth';
+import { forgetPasswordRequest } from '@/lib/auth';
 import SubmitButton from '../SubmitButton';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { isAxiosError } from 'axios';
@@ -16,7 +16,7 @@ export default function ForgetPasswordForm({ children }: Props) {
   const [phoneNumber, setPhoneNumber] = useState('');
   const handleLogin = async () => {
     try {
-      const res = await forgetPassword(phoneNumber);
+      const res = await forgetPasswordRequest(phoneNumber);
       if (res.status === 200) {
         showSnackbar(res.data.message, true);
         router.push(`/login/forget-verify/?phone=${phoneNumber}`);
@@ -30,7 +30,6 @@ export default function ForgetPasswordForm({ children }: Props) {
   return (
     <>
       <Field value={phoneNumber} setValue={setPhoneNumber} label="شماره موبایل" />
-
       {children}
       <SubmitButton title={'ادامه'} isDisable={false} handleSubmit={handleLogin} />
     </>

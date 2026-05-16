@@ -20,8 +20,7 @@ export default function LoginPassForm({ children }: Props) {
   const handleLogin = async () => {
     try {
       await loginPassword(phoneNumber, password);
-      router.push('/dashboard');
-      window.location.href = '/dashboard';
+      router.replace('/dashboard');
     } catch (error: unknown) {
       if (isAxiosError(error)) {
         showSnackbar(error.response?.data.error);

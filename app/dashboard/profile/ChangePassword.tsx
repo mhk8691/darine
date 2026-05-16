@@ -2,12 +2,12 @@
 import CustomModal from '@/app/Components/CustomModal/CustomModal';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import Field from '@/app/login/Field';
-import PasswordField from '@/app/login/PasswordField';
-import { forgetPassword, verifyForgetOtp } from '@/lib/auth';
-import { Close, InfoOutlined } from '@mui/icons-material';
+import { fogetPasswordComplete, forgetPasswordRequest, verifyForgetOtp } from '@/lib/auth';
+import { Close } from '@mui/icons-material';
 import { Button, IconButton, Stack, Typography } from '@mui/material';
 import { isAxiosError } from 'axios';
 import { useState } from 'react';
+import CompletePassword from './CompletePassword';
 
 export default function ChangePassword() {
   const [open, setOpen] = useState(false);
@@ -19,7 +19,7 @@ export default function ChangePassword() {
   const handleClick = async () => {
     if (step === 0) {
       try {
-        const response = await forgetPassword(phoneNumber);
+        const response = await forgetPasswordRequest(phoneNumber);
         showSnackbar(response.data.message, true);
       } catch (error: unknown) {
         if (isAxiosError(error)) {
@@ -31,15 +31,26 @@ export default function ChangePassword() {
       setStep(2);
     } else if (step === 2) {
       try {
-        const response = await verifyForgetOtp(phoneNumber, otpCode, password);
+        const response = await verifyForgetOtp(phoneNumber, otpCode);
         showSnackbar(response.data.message, true);
+        setStep(3);
       } catch (error: unknown) {
         if (isAxiosError(error)) {
           showSnackbar(error.response?.data.error);
         }
       }
-      setStep(0);
-      setOpen(false);
+      
+    }else{
+         try {
+        const response = await fogetPasswordComplete(phoneNumber, otpCode,password,repeatPassword);
+        showSnackbar(response.data.message, true);
+        setStep(0);
+        setOpen(false)
+      } catch (error: unknown) {
+        if (isAxiosError(error)) {
+          showSnackbar(error.response?.data.error);
+        }
+      }
     }
   };
   return (
@@ -82,35 +93,7 @@ export default function ChangePassword() {
         ) : step === 1 ? (
           <Field setValue={setOtpCode} value={otpCode} label="کد تایید" />
         ) : (
-          <>
-            <PasswordField password={password} setPassword={setPassword} />
-            <PasswordField
-              password={repeatPassword}
-              setPassword={setRepeatPassword}
-              label="تایید رمز عبور"
-            />
-
-            <Stack direction={'column'} gap={0.5} mt={4}>
-              <Stack direction={'row'} gap={1}>
-                <InfoOutlined sx={{ color: 'text.muted' }} />
-                <Typography variant="body2" fontSize={14} sx={{ color: 'text.muted' }}>
-                  رمز عبور باید بین 6 تا 24 حرف باشد
-                </Typography>
-              </Stack>
-              <Stack direction={'row'} gap={1}>
-                <InfoOutlined sx={{ color: 'text.muted' }} />
-                <Typography variant="body2" fontSize={14} sx={{ color: 'text.muted' }}>
-                  رمز باید شامل اعداد باشد
-                </Typography>
-              </Stack>
-              <Stack direction={'row'} gap={1}>
-                <InfoOutlined sx={{ color: 'text.muted' }} />
-                <Typography variant="body2" fontSize={14} sx={{ color: 'text.muted' }}>
-                  رمز باید شامل حروف بزرگتر و کوچکتر باشد
-                </Typography>
-              </Stack>
-            </Stack>
-          </>
+       <CompletePassword password={password} repeatPassword={password} setPassword={setPassword} setRepeatPassword={setRepeatPassword} />
         )}
 
         <Button
