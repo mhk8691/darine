@@ -99,9 +99,9 @@ api.interceptors.response.use(
 
         clearTokens();
 
-        if (typeof window !== 'undefined') {
-          window.location.href = '/login/login-password';
-        }
+        // if (typeof window !== 'undefined') {
+        //   window.location.href = '/login/login-password';
+        // }
 
         return Promise.reject(err);
       } finally {

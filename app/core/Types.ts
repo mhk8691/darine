@@ -69,7 +69,7 @@ export interface LoginDtaType {
   full_name: string;
 }
 
-export interface BuySilverDataType {
+export interface BuyGoldDataType {
   details: {
     weight_gr: number;
     price_per_gram: number;

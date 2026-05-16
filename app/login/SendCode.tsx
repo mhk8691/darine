@@ -3,10 +3,11 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { EditIcon } from '../Components/CustomIcons/CustomIcons';
 import { signupOtp } from '@/lib/auth';
+import { useRouter } from 'next/navigation';
 
 export default function SendCode({ phoneNumber }: { phoneNumber: string }) {
   const [time, setTime] = useState<number>(120);
-
+  const router = useRouter()
   useEffect(() => {
     if (time <= 0) return;
 
@@ -72,8 +73,7 @@ export default function SendCode({ phoneNumber }: { phoneNumber: string }) {
         </Button>
       )}
 
-      <Link href={'/login/forget'}>
-        <Stack direction={'row'} gap={1} alignItems={'center'}>
+        <Stack direction={'row'} gap={1} alignItems={'center'} component={'div'} onClick={()=>router.back()} sx={{cursor:'pointer'}}>
           <Typography
             variant="body2"
             fontSize={{
@@ -85,7 +85,6 @@ export default function SendCode({ phoneNumber }: { phoneNumber: string }) {
           </Typography>
           <EditIcon />
         </Stack>
-      </Link>
     </Stack>
   );
 }

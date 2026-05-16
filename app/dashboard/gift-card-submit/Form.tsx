@@ -3,12 +3,14 @@
 import InputField from '@/app/Components/InputField/InputField';
 import { giftCardSubmit } from '@/lib/giftCard/giftCard';
 import { Stack, Button, useTheme, useMediaQuery } from '@mui/material';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 export default function Form() {
   const [value, setValue] = useState('');
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
+  const router = useRouter()
   return (
     <Stack direction={'column'} gap={1} mt={3.5}>
       <InputField placeholder="شماره سریال روی کارت هدیه" setValue={setValue} value={value} />
@@ -48,6 +50,7 @@ export default function Form() {
               py: 1,
               borderRadius: 2,
             }}
+            onClick={()=>router.back()}
           >
             بازگشت
           </Button>

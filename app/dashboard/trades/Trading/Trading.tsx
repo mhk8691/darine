@@ -3,7 +3,7 @@ import Card from '@/app/Components/Containers/Container/Container';
 import FilterToggleButton from '@/app/Components/FilterToggleButton/FilterToggleButton';
 import InputField from '@/app/Components/InputField/InputField';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
-import { BuyGoldDataType, ToggleItemsType } from '@/app/core/Types';
+import {  BuyGoldDataType, ToggleItemsType } from '@/app/core/Types';
 import { goldBuy } from '@/lib/gold/goldBuy';
 import { goldSell } from '@/lib/gold/goldSell';
 import { Button, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';

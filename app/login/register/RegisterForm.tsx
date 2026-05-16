@@ -84,7 +84,7 @@ export default function RegisterForm({ phoneNumber }: { phoneNumber: string }) {
         </Grid>
       </Grid>
 
-      <SubmitButton title={'ورود'} handleSubmit={handleRegister} />
+      <SubmitButton title={'ثبت نام'} handleSubmit={handleRegister} />
     </>
   );
 }
