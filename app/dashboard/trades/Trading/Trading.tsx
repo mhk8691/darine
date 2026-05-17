@@ -53,7 +53,7 @@ export default function Trading() {
       // setBuyInfo(response.data.details)
     } catch (error: unknown) {
       if (isAxiosError(error)) {
-        showSnackbar(error.response?.data.error);
+        showSnackbar(error.response?.data.message);
       }
     }
   };
@@ -63,7 +63,7 @@ export default function Trading() {
       setOpen(true);
     } catch (error: unknown) {
       if (isAxiosError(error)) {
-        showSnackbar(error.response?.data.error);
+        showSnackbar(error.response?.data.message);
       }
     }
   };

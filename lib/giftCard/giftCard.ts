@@ -9,7 +9,7 @@ export const giftCardSubmit = async (serialNumber: string) => {
     showSnackbar(response.data.message, true);
   } catch (error: unknown) {
     if (isAxiosError(error)) {
-      showSnackbar(error.response?.data.error);
+      showSnackbar(error.response?.data.message);
     }
   }
 };

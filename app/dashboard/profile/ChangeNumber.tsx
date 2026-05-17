@@ -18,7 +18,7 @@ export default function ChangeNumber() {
         setStep(1);
       } catch (error: unknown) {
         if (isAxiosError(error)) {
-          showSnackbar(error.response?.data.error);
+          showSnackbar(error.response?.data.message);
         }
       }
     } else if (step === 1) {
@@ -30,7 +30,7 @@ export default function ChangeNumber() {
         setPhoneNumber('');
       } catch (error: unknown) {
         if (isAxiosError(error)) {
-          showSnackbar(error.response?.data.error);
+          showSnackbar(error.response?.data.message);
         }
       }
     }

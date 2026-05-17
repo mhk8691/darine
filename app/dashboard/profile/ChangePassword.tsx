@@ -23,7 +23,7 @@ export default function ChangePassword() {
         showSnackbar(response.data.message, true);
       } catch (error: unknown) {
         if (isAxiosError(error)) {
-          showSnackbar(error.response?.data.error);
+          showSnackbar(error.response?.data.message);
         }
       }
       setStep(1);
@@ -36,7 +36,7 @@ export default function ChangePassword() {
         setStep(3);
       } catch (error: unknown) {
         if (isAxiosError(error)) {
-          showSnackbar(error.response?.data.error);
+          showSnackbar(error.response?.data.message);
         }
       }
       
@@ -48,7 +48,7 @@ export default function ChangePassword() {
         setOpen(false)
       } catch (error: unknown) {
         if (isAxiosError(error)) {
-          showSnackbar(error.response?.data.error);
+          showSnackbar(error.response?.data.message);
         }
       }
     }

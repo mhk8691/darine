@@ -9,7 +9,7 @@ export const getreferral = async () => {
     return res.data;
   } catch (error: unknown) {
     if (isAxiosError(error)) {
-      showSnackbar(error.response?.data.error);
+      showSnackbar(error.response?.data.message);
     }
   }
 };

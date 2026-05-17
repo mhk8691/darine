@@ -37,7 +37,7 @@ export const addPriceAlert = async (targetPrice: string, alertType: string) => {
     return res.data;
   } catch (error: unknown) {
     if (isAxiosError(error)) {
-      showSnackbar(error.response?.data.error);
+      showSnackbar(error.response?.data.message);
     }
   }
 };

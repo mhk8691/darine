@@ -22,7 +22,7 @@ export default function VerifyOtpCode({ phone }: { phone: string }) {
         setStep(1)
     } catch (error: unknown) {
       if (isAxiosError(error)) {
-        showSnackbar(error.response?.data.error, false);
+        showSnackbar(error.response?.data.message, false);
       }
     }
   };
@@ -33,7 +33,7 @@ export default function VerifyOtpCode({ phone }: { phone: string }) {
         router.push('/login/login-password')
     } catch (error: unknown) {
       if (isAxiosError(error)) {
-        showSnackbar(error.response?.data.error, false);
+        showSnackbar(error.response?.data.message, false);
       }
     }
   }

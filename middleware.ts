@@ -10,16 +10,14 @@ export function middleware(req: NextRequest) {
 
   const isProtected = pathname.startsWith('/dashboard');
 
-  // ریدایرکت به لاگین اگر توکن وجود نداشت
-  if (isProtected && !refreshToken && !accessToken) {
-    const loginUrl = new URL('/login/login-password', req.url);
-    return NextResponse.redirect(loginUrl);
-  }
+  // if (isProtected && !refreshToken) {
+  //   const loginUrl = new URL('/login/login-password', req.url);
+  //   return NextResponse.redirect(loginUrl);
+  // }
 
-  // ریدایرکت روت اصلی به dashboard
-  if (pathname === '/') {
-    return NextResponse.redirect(new URL('/dashboard', req.url));
-  }
+  // if (pathname === '/') {
+  //   return NextResponse.redirect(new URL('/dashboard', req.url));
+  // }
 
   return NextResponse.next();
 }

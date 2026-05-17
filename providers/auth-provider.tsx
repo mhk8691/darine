@@ -1,6 +1,7 @@
 'use client';
 
 import { getMe, User,logout as logoutRequest } from '@/lib/auth';
+import { useRouter } from 'next/navigation';
 import {
   createContext,
   useContext,
@@ -22,7 +23,7 @@ const AuthContext = createContext<AuthContextType | null>(null);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-
+  const router = useRouter()
   const fetchUser = useCallback(async () => {
     try {
       const me = await getMe();
@@ -46,8 +47,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       console.error('Logout error:', error);
     } finally {
       setUser(null);
-      // می‌توانید به صفحه لاگین ریدایرکت کنید
-      window.location.href = '/login/login-password';
+      router.push('/login/login-password')
     }
   }, []);
 
