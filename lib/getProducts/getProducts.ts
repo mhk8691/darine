@@ -1,10 +1,10 @@
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { ProductDateType } from '@/app/core/Types';
-import api from '@/lib/api';
+import api, { ApiResponse } from '@/lib/api';
 import { isAxiosError } from 'axios';
 export const getProducts = async () => {
   try {
-    const response = await api.get<ProductDateType[]>('/gold/products/');
+    const response = await api.get<ApiResponse<ProductDateType[]>>('/gold/products/');
     console.log('232');
     return response.data;
   } catch (error: unknown) {

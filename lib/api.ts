@@ -1,58 +1,112 @@
 import BASE_URL from '@/app/core/BASE_URL';
-import axios from 'axios';
+import axios, {
+  AxiosError,
+  AxiosInstance,
+  InternalAxiosRequestConfig,
+} from 'axios';
 
-const api = axios.create({
+
+
+export interface ApiResponse<T> {
+  message: string;
+  data: T;
+}
+
+
+interface RetryAxiosRequestConfig extends InternalAxiosRequestConfig {
+  _retry?: boolean;
+}
+
+
+
+const api: AxiosInstance = axios.create({
   baseURL: BASE_URL,
-  withCredentials: true, 
+  withCredentials: true,
 });
 
-let isRefreshing = false;
-let failedQueue: any[] = [];
 
-const processQueue = (error?: any) => {
-  failedQueue.forEach((p) => {
+let isRefreshing = false;
+
+type FailedQueueItem = {
+  resolve: () => void;
+  reject: (error: AxiosError) => void;
+};
+
+let failedQueue: FailedQueueItem[] = [];
+
+const processQueue = (error?: AxiosError) => {
+  failedQueue.forEach((promise) => {
     if (error) {
-      p.reject(error);
+      promise.reject(error);
     } else {
-      p.resolve(true);
+      promise.resolve();
     }
   });
+
   failedQueue = [];
 };
 
+
+
 api.interceptors.response.use(
-  (res) => res,
-  async (error) => {
-    const originalRequest = error.config;
+  (response) => response,
+
+  async (error: AxiosError) => {
+    const originalRequest = error.config as RetryAxiosRequestConfig;
 
     if (
       error.response?.status === 401 &&
+      originalRequest &&
       !originalRequest._retry
     ) {
+      /**
+       * اگر رفرش توکن در حال انجام بود
+       * درخواست‌ها داخل صف میرن
+       */
       if (isRefreshing) {
         return new Promise((resolve, reject) => {
-          failedQueue.push({ resolve, reject });
-        }).then(() => api(originalRequest));
+          failedQueue.push({
+            resolve: () => resolve(api(originalRequest)),
+            reject,
+          });
+        });
       }
 
       originalRequest._retry = true;
       isRefreshing = true;
 
       try {
+        /**
+         * Refresh Token
+         */
         await api.post('/accounts/token/refresh/');
+
         processQueue();
+
+        /**
+         * اجرای مجدد درخواست قبلی
+         */
         return api(originalRequest);
-      } catch (err) {
-        processQueue(err);
+      } catch (refreshError) {
+        processQueue(refreshError as AxiosError);
+
+        /**
+         * Logout User
+         */
         if (typeof window !== 'undefined') {
-          await api.post('/accounts/logout/');
+          try {
+            await api.post('/accounts/logout/');
+          } catch (_) {}
+
           window.location.href = '/login/login-password';
         }
-        return Promise.reject(err);
+
+        return Promise.reject(refreshError);
       } finally {
         isRefreshing = false;
       }
     }
+
     return Promise.reject(error);
   },
 );

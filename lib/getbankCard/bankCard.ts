@@ -1,12 +1,12 @@
 import { BankCardDataType } from '@/app/core/Types';
-import api from '../api';
+import api, { ApiResponse } from '../api';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 
 export const getBankCard = async () => {
   try {
-    const res = await api.get<BankCardDataType[]>('/accounts/cards/');
-    return res.data;
+    const res = await api.get<ApiResponse<BankCardDataType[]>>('/accounts/cards/');
+    return res.data.data;
   } catch (error: unknown) {
     if (isAxiosError(error)) {
       showSnackbar(error.response?.data.message);
