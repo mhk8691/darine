@@ -1,17 +1,15 @@
 import { RegisterFormType } from '@/app/login/register/RegisterForm';
 import { isAxiosError } from 'axios';
-import api from './api';
+import api, { ApiResponse } from './api';
 
 export type User = {
   full_name: string;
-  role: string;
-  status: string;
+
+  "id":number,"mobile":string,"first_name":string,"last_name":string,"national_code":string,"birth_date":string,
 };
 
 
-// ======================
-// OTP
-// ======================
+
 
 export const changeNumberRequest = async (phoneNumber: string) => {
   return api.post<{ message: string }>("/accounts/change-mobile/request/", {
@@ -179,6 +177,6 @@ export const logout = async () => {
 // ======================
 
 export const getMe = async (): Promise<User> => {
-  const res = await api.get('/accounts/profile/');
-  return res.data;
+  const res = await api.get<ApiResponse<User>>('/accounts/profile/');
+  return res.data.data;
 };

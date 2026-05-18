@@ -28,9 +28,7 @@ export default function ChangePassword() {
       }
       setStep(1);
     } else if (step == 1) {
-      setStep(2);
-    } else if (step === 2) {
-      try {
+       try {
         const response = await verifyForgetOtp(phoneNumber, otpCode);
         showSnackbar(response.data.message, true);
         setStep(3);
@@ -39,6 +37,16 @@ export default function ChangePassword() {
           showSnackbar(error.response?.data.message);
         }
       }
+      setStep(2);
+    } else if (step === 2) {
+      try {
+           const res = await fogetPasswordComplete(phoneNumber, otpCode,password,repeatPassword);
+             showSnackbar(res.data.message, true);
+         } catch (error: unknown) {
+           if (isAxiosError(error)) {
+             showSnackbar(error.response?.data.message, false);
+           }
+         }
       
     }else{
          try {
@@ -77,7 +85,10 @@ export default function ChangePassword() {
           <Typography variant="body1" fontSize={16}>
             فراموشی رمز عبور
           </Typography>
-          <IconButton onClick={() => setOpen(false)} disableRipple>
+          <IconButton onClick={() => {
+            setOpen(false)
+            setStep(0)
+          }} disableRipple>
             <Close />
           </IconButton>
         </Stack>

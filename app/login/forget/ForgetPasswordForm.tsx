@@ -14,7 +14,7 @@ interface Props {
 export default function ForgetPasswordForm({ children }: Props) {
   const router = useRouter();
   const [phoneNumber, setPhoneNumber] = useState('');
-  const handleLogin = async () => {
+  const handleClick = async () => {
     try {
       const res = await forgetPasswordRequest(phoneNumber);
       if (res.status === 200) {
@@ -31,7 +31,7 @@ export default function ForgetPasswordForm({ children }: Props) {
     <>
       <Field value={phoneNumber} setValue={setPhoneNumber} label="شماره موبایل" />
       {children}
-      <SubmitButton title={'ادامه'} isDisable={false} handleSubmit={handleLogin} />
+      <SubmitButton title={'ادامه'} isDisable={false} handleSubmit={handleClick} />
     </>
   );
 }

@@ -26,6 +26,9 @@ import {
   UserFillIcon,
   UserIcon,
 } from '../CustomIcons/CustomIcons';
+import { getMe, User } from '@/lib/auth';
+import { isAxiosError } from 'axios';
+import { showSnackbar } from '../Snackbar/Snackbar';
 const options = [
   {
     title: 'پروفایل',
@@ -66,6 +69,7 @@ const options = [
 ];
 
 export default function ProfileBtn() {
+    const [user, setUser] = React.useState<User | null>(null);
   const [open, setOpen] = React.useState(false);
   const wrapperRef = React.useRef<HTMLDivElement | null>(null);
   const theme = useTheme();
@@ -73,6 +77,21 @@ export default function ProfileBtn() {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const handleToggle = () => setOpen((prev) => !prev);
   const isDarkMode = theme.palette.mode == 'dark';
+   const fetchUser = React.useCallback(async () => {
+    try {
+      const me = await getMe();
+      setUser(me);
+    } catch (error:unknown) {
+      if (isAxiosError(error)){
+        showSnackbar(error.response?.data.message)
+
+      }
+      setUser(null);
+    }
+  }, []);
+React.useEffect(()=>{
+  fetchUser()
+},[fetchUser])
   const handleClose = (event: MouseEvent | TouchEvent) => {
     const target = event.target as Node;
 
@@ -115,7 +134,7 @@ export default function ProfileBtn() {
                 }}
                 startIcon={<UserIcon />}
               >
-                محمد محمدی
+              {user?.full_name}
               </Button>
             )}
           </>
