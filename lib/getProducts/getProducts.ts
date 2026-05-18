@@ -6,7 +6,7 @@ export const getProducts = async () => {
   try {
     const response = await api.get<ApiResponse<ProductDateType[]>>('/gold/products/');
     console.log('232');
-    return response.data;
+    return response.data.data;
   } catch (error: unknown) {
     if (isAxiosError(error)) {
       showSnackbar(error.response?.data.message);

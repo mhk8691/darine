@@ -5,7 +5,7 @@ import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 
 export const getPriceAlerts = async () => {
   try {
-    const res = await api.get<ApiResponse<PriceAlertsDataType[]>>('/gold/price-alerts/');
+    const res = await api.get<PriceAlertsDataType[]>('/gold/price-alerts/');
     return res.data;
   } catch (error: unknown) {
     if (isAxiosError(error)) {

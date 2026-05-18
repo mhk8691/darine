@@ -3,7 +3,7 @@ import api, { ApiResponse } from '../api';
 
 export const getAssets = async () => {
   const res = await api.get<ApiResponse<AssetsDataType>>('/gold/assets/');
-  return res.data;
+  return res.data.data;
 };
 
 // export const getAllAssets = async () => {

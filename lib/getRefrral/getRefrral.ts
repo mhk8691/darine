@@ -6,7 +6,7 @@ import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 export const getreferral = async () => {
   try {
     const res = await api.get<ApiResponse<RefrraDataType>>('/gold/referral/');
-    return res.data;
+    return res.data.data;
   } catch (error: unknown) {
     if (isAxiosError(error)) {
       showSnackbar(error.response?.data.message);
