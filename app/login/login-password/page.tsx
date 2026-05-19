@@ -1,7 +1,5 @@
-'use client';
 import { Box, Divider, Stack, Typography } from '@mui/material';
 import Link from 'next/link';
-import ActionButton from '../SubmitButton';
 import LoginTab from '../LoginTab';
 import LoginPassForm from './LoginPassForm';
 
