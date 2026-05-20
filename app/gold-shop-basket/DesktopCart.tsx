@@ -15,6 +15,7 @@ import {
 } from '@mui/material';
 import Image from 'next/image';
 import { useState } from 'react';
+import { ProductDateType } from '../core/Types';
 const dataStyle: SxProps = {
   py: 1.5,
   fontSize: {
@@ -29,28 +30,11 @@ const headStyle: SxProps = {
   fontSize: '16px',
 };
 
-const items = [
-  {
-    id: 1,
-    title: 'شمش طلاسی 1 گرمی 18 عیار',
-    weight: '۲.۶۲۵ گرم',
-    price: '۴۵,۰۴۲,۰۸۶',
-    count: 1,
-    total: '۴۵,۰۴۲,۰۸۶ تومان',
-    image: '/images/product.webp',
-  },
-  {
-    id: 2,
-    title: 'شمش طلاسی 1 گرمی 18 عیار',
-    weight: '۲.۶۲۵ گرم',
-    price: '۴۵,۰۴۲,۰۸۶',
-    count: 1,
-    total: '۴۵,۰۴۲,۰۸۶ تومان',
-    image: '/images/product.webp',
-  },
-];
 
-const DesktopCart = () => {
+interface Props{
+  cartData:ProductDateType[]
+}
+const DesktopCart = ({cartData}:Props) => {
   const [count, setCount] = useState(1);
   return (
     <Box dir="rtl">
@@ -130,7 +114,7 @@ const DesktopCart = () => {
         </TableHead>
 
         <TableBody>
-          {items.map((item) => (
+          {cartData.map((item) => (
             <TableRow
               key={item.id}
               sx={{
@@ -166,7 +150,7 @@ const DesktopCart = () => {
                   >
                     <Image
                       src={item.image}
-                      alt={item.title}
+                      alt={item.name}
                       width={112}
                       height={112}
                       style={{
@@ -182,7 +166,7 @@ const DesktopCart = () => {
                       md: 16,
                     }}
                   >
-                    {item.title}
+                    {item.name}
                   </Typography>
                 </Stack>
               </TableCell>
@@ -192,7 +176,7 @@ const DesktopCart = () => {
               </TableCell>
 
               <TableCell align="center" sx={dataStyle}>
-                {item.price}
+                {item.total_weight_with_fees}
               </TableCell>
 
               <TableCell align="center" sx={dataStyle}>
@@ -220,7 +204,7 @@ const DesktopCart = () => {
               </TableCell>
 
               <TableCell align="center" sx={dataStyle}>
-                {item.total}
+                {item.total_weight_with_fees}
               </TableCell>
             </TableRow>
           ))}
