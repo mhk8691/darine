@@ -3,13 +3,16 @@ import Card from '@/app/Components/Containers/Container/Container';
 import FilterToggleButton from '@/app/Components/FilterToggleButton/FilterToggleButton';
 import InputField from '@/app/Components/InputField/InputField';
 import { BankCardDataType, DepositDataType, ToggleItemsType } from '@/app/core/Types';
-import { Button, Stack, Typography } from '@mui/material';
+import { Box, Button, Stack, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import BankCard from './BankCard';
 import { getBankCard } from '@/lib/getbankCard/bankCard';
 import Container from '@/app/Components/Containers/Container/Container';
 import DepositConfirm from './DepositConfirm';
-import { getGoldDeposit, goldDeposit } from '@/lib/deposit/deposit';
+import {  goldDeposit, uploadReceipt } from '@/lib/deposit/deposit';
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+import { isAxiosError } from 'axios';
+import { Upload } from '@mui/icons-material';
 
 const items: ToggleItemsType[] = [
   { title: 'درگاه پرداخت', value: 'payment', id: 1 },
@@ -24,6 +27,7 @@ export default function Deposit() {
     const [depositData, setDepositData] = useState<DepositDataType | null>(
     null
   );
+  const [receipt,setReceipt] = useState<null| File>(null)
   useEffect(() => {
     const getData = async () => {
       const response = await getBankCard();
@@ -31,11 +35,33 @@ export default function Deposit() {
     };
     getData();
   }, []);
-  const handleDirectPayment = async () => {
-    setOpen(true)
-  };
+
   const handlePayment = async ()=>{
 const response = await goldDeposit(price);
+  }
+
+    const handleDirectPayment =  () => {
+    setOpen(true)
+  };
+  const handleUploadReceipt = async()=>{
+    if (!receipt) return null
+    const formData = new FormData()
+      formData.append('receipt',receipt)
+    try{
+      const response =await uploadReceipt(formData)
+        showSnackbar(response?.message)
+    }catch(error:unknown){
+      if (isAxiosError(error)){
+        showSnackbar(error.response?.data.message)
+      }
+    }
+  }
+  const handleClick = ()=>{
+    if (!depositData){
+      handleDirectPayment()
+    }else{
+      handleUploadReceipt()
+    }
   }
   return (
     <>
@@ -141,11 +167,32 @@ const response = await goldDeposit(price);
               {depositData.owner}
             </Typography>
           </Stack>
-          <Typography variant="body2" fontSize={12} sx={{mt:2}}>
-            به اپلیکیشن همراه‌بانک یا خودپرداز بانک بروید و مبلغ مورد نظرتان را
-            واریز کنید.مبلغ واریزی مطابق با سیکل پایا به حساب شما در طلاسی
-            افزوده می‌شود.
-          </Typography>
+        <Stack component={'label'} htmlFor="upload-file" width={'100%'} direction={'row'} justifyContent={'center'} mt={3}>
+  <Button 
+    variant="outlined" 
+    color="secondary" 
+    startIcon={<Upload />}
+    component="span" 
+    sx={{
+      width:'100%',
+      py:1.5,borderRadius:2
+    }}
+  >
+    بارگذاری رسید
+  </Button>
+</Stack>
+
+          <Box 
+          component={'input'}
+            type="file" 
+  id="upload-file" 
+  style={{ display: 'none' }} 
+    accept="image/*"
+  onChange={(e) => {
+    const image =e?.target?.files[0]
+    setReceipt(image)
+     }}
+          />
         </Container>
         </>
       }
@@ -177,9 +224,11 @@ const response = await goldDeposit(price);
           },
           py: 1.5,
         }}
-        onClick={handleDirectPayment}
+        onClick={handleClick}
       >
-        نمایش اطلاعات مقصد
+        {
+          !depositData ? 'نمایش اطلاعات مقصد' : 'تایید'
+        }
       </Button>}
     </Card>
     <DepositConfirm setDepositData={setDepositData} setOpen={setOpen} open={open} />

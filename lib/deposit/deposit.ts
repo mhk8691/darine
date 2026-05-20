@@ -17,6 +17,17 @@ export const goldDeposit = async (amount: string) => {
     }
   }
 };
+export const uploadReceipt = async (data:FormData) => {
+    const response = await api.post<{ message: string }>("/silver/deposit/", {
+      recipt:data.get('receipt')
+    }, {
+      headers: {
+      'Content-Type': 'multipart/form-data',
+    }
+    },);
+    return response.data;
+  
+  }
 export const getGoldDeposit = async () => {
   try {
     const response = await api.get<DepositDataType>("/gold/deposit/");
