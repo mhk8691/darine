@@ -1,8 +1,6 @@
 'use client';
 
 import priceFormater from '@/app/core/PriceFormater';
-import AddIcon from '@mui/icons-material/Add';
-import DeleteIcon from '@mui/icons-material/Delete';
 import {
   Box,
   Button,
@@ -14,54 +12,40 @@ import {
   Typography,
 } from '@mui/material';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-import { CartItem, Product, ProductDateType } from '@/app/core/Types';
+import {  ProductDateType } from '@/app/core/Types';
 import { Close } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import CustomModal from '../CustomModal/CustomModal';
-import { getCart, saveCart } from './cartStorage';
+import Counter from '@/app/gold-shop/[productId]/Counter';
+import { addToCart } from '@/lib/cart/cart';
+import { isAxiosError } from 'axios';
+import { showSnackbar } from '../Snackbar/Snackbar';
 
-const product: Product = {
-  id: 'gold-1',
-  title: 'شمش طلاسی ۱ گرمی ۱۸ عیار',
-  price: 19330693,
-};
+
 export default function ProductCard({ item }: { item: ProductDateType }) {
   const [open, setOpen] = useState(false);
-  const [cart, setCart] = useState<CartItem[]>([]);
-  const index = cart.find((i) => i.id === product.id);
   const router = useRouter();
-  useEffect(() => {
-    setCart(getCart());
-  }, []);
+  const [count,setCount] =useState(item.id)
 
-  const updateCart = (newCart: CartItem[]) => {
-    setCart(newCart);
-    saveCart(newCart);
-  };
+  
 
-  const addToCart = () => {
-    const current = getCart();
-
-    const exists = current.find((i) => i.id === product.id);
-
-    let newCart: CartItem[];
-
-    if (exists) {
-      newCart = current.map((i) => (i.id === product.id ? { ...i, quantity: i.quantity + 1 } : i));
-    } else {
-      newCart = [...current, { ...product, quantity: 1 }];
+  const handleAddToCart = async (id:number) => {
+   try{
+     const response = await addToCart(id)
+     showSnackbar(response.message,true)
+   }catch(error:unknown){
+    if (isAxiosError(error)){
+      showSnackbar(error.response?.data.message)
     }
-
-    updateCart(newCart);
+   }
+    
   };
 
-  const removeItem = () => {
-    const current = getCart();
-    const updated = current.filter((i) => i.id !== product.id);
-    updateCart(updated);
-  };
+  // const removeItem = () => {
+   
+  // };
 
   return (
     <>
@@ -275,7 +259,7 @@ export default function ProductCard({ item }: { item: ProductDateType }) {
             </Stack>
           </Stack>
         </CardContent>
-        {!index ? (
+        {!1 ? (
           <Button
             variant="outlined"
             color="inherit"
@@ -289,7 +273,7 @@ export default function ProductCard({ item }: { item: ProductDateType }) {
               },
             }}
             onClick={() => {
-              addToCart();
+              handleAddToCart(item.id);
               setOpen(true);
             }}
             disableRipple
@@ -297,36 +281,7 @@ export default function ProductCard({ item }: { item: ProductDateType }) {
             افزودن به سبد خرید
           </Button>
         ) : (
-          <Stack
-            sx={{
-              px: {
-                xs: 1,
-                sm: 1.5,
-              },
-            }}
-          >
-            <Stack
-              direction="row"
-              alignItems="center"
-              justifyContent="space-between"
-              sx={{
-                border: '1px solid #FFD700',
-                borderRadius: 2,
-                mt: 3,
-                px: 1,
-                py: 0.5,
-              }}
-            >
-              <IconButton onClick={addToCart} disableRipple>
-                <AddIcon />
-              </IconButton>
-              <Typography fontWeight={600}>{index.quantity}</Typography>
-
-              <IconButton onClick={removeItem} disableRipple>
-                <DeleteIcon />
-              </IconButton>
-            </Stack>
-          </Stack>
+          <Counter count={count} setCount={setCount} />
         )}
       </Card>
       <CustomModal open={open} setOpen={setOpen} modalStyle={{ p: 2 }}>
@@ -339,7 +294,7 @@ export default function ProductCard({ item }: { item: ProductDateType }) {
           این محصول به سبد خرید شما افزوده شد.
         </Typography>
         <Typography variant="body1" fontSize={16}>
-          {index?.title}
+          {item?.name}
         </Typography>
         <Stack direction={'row'} gap={2} mt={5}>
           <Button

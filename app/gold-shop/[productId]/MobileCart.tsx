@@ -4,8 +4,10 @@ import priceFormater from '@/app/core/PriceFormater';
 import { Box, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import Link from 'next/link';
 import Counter from './Counter';
+import { useState } from 'react';
 
 export default function MobileCart() {
+  const [count,setCount] = useState(1)
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.down('md'));
   if (!isDesktop) return null;
@@ -27,7 +29,7 @@ export default function MobileCart() {
             <CartIcon color="black" />
           </Stack>
         </Link>
-        <Counter />
+        <Counter count={count} setCount={setCount} />
       </Stack>
       <Stack direction={'column'} gap={1} alignItems={'flex-end'}>
         <Typography variant="body1" sx={{ color: 'text.subtitle', fontSize: 12 }}>

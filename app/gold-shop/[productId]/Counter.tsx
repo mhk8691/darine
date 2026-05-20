@@ -2,10 +2,14 @@
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { IconButton, Stack, Typography } from '@mui/material';
-import { useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
-export default function Counter() {
-  const [count, setCount] = useState(1);
+interface Props{
+  count:number,
+  setCount:Dispatch<SetStateAction<number>>
+  
+}
+export default function Counter({count,setCount}:Props) {
   return (
     <Stack
       direction="row"

@@ -1,6 +1,7 @@
 import { Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 import Counter from '../gold-shop/[productId]/Counter';
+import { useState } from 'react';
 const items = [
   {
     id: 1,
@@ -23,6 +24,7 @@ const items = [
 ];
 
 export default function MobileCart() {
+  const [count,setCount] = useState(1)
   return (
     <Stack direction={'column'} gap={2}>
       {items.map((item) => (
@@ -49,7 +51,8 @@ export default function MobileCart() {
               </Typography>
             </Stack>
           </Stack>
-          <Counter />
+          <Counter count={count}
+setCount={setCount} />
         </Stack>
       ))}
     </Stack>
