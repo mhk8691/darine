@@ -5,11 +5,26 @@ import { Metadata } from 'next';
 import GiftStepper from './GiftStepper';
 import Title from './Title';
 import BackLink from '../BackLink';
+import { getGiftCardList } from '@/lib/reports/getReports';
+import { isAxiosError } from 'axios';
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+import GiftCardTable from '../gift-cards/GiftCardTable';
 export const metadata: Metadata = {
   title: 'خرید کارت هدیه | دارینه',
   description: '',
 };
-export default function page() {
+export default async function page() {
+  const getData = async ()=>{
+     try{
+            const response = await getGiftCardList();
+            return response
+          }catch(error:unknown){
+            if (isAxiosError(error)){
+              showSnackbar(error.response?.data.message)
+            }
+          }
+  }
+  const giftCardList = await getData()
   return (
     <Grid container spacing={3}>
       <BackLink title="سفارش کارت هدیه" />
@@ -44,7 +59,7 @@ export default function page() {
           type="chip"
           emptyMessage="کارت هدیه‌ای توسط شما خریداری نشده است."
           listLength={0}
-          tableBody={<></>}
+          tableBody={<GiftCardTable giftCardsList={giftCardList || []} />}
           tableHead={[]}
         />
       </Grid>

@@ -27,44 +27,29 @@ export default function Trading() {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
 
-
-     useEffect(() => {
-    const handleLivePrice = async ()=>{
-    try{
-      const response = await getAssets()
-      setLivePrice(response.current_gold_price)
+  useEffect(() => {
+  const handleLivePrice = async () => {
+    try {
+      const response = await getAssets();
+      setLivePrice(response.current_gold_price);
       setWalletBalance(response.toman_balance)
-    }catch(error:unknown){
-      if (isAxiosError(error)){
-        showSnackbar(error.response?.data.message)
+    } catch (error: unknown) {
+      if (isAxiosError(error)) {
+        showSnackbar(error.response?.data.message);
       }
     }
-  }
-handleLivePrice()
-    
-    const interval = setInterval(() => {
-      handleLivePrice();
-    }, 45 * 1000);
+  };
+  
+  handleLivePrice();
+  
+  const interval = setInterval(() => {
+    handleLivePrice();
+  }, 45000); 
 
-    return () => clearInterval(interval);
-  }, []);
-    useEffect(() => {
-  if (!livePrice) return;
+  return () => clearInterval(interval);
+}, []);
 
-  if (price) {
-    const num = Number(price);
-    if (!isNaN(num)) {
-      setGold(String(num / livePrice));
-    }
-  }
-
-  if (gold) {
-    const num = Number(gold);
-    if (!isNaN(num)) {
-      setPrice(String(num * livePrice));
-    }
-  }
-}, [livePrice]);
+  
   const handlePriceChange =  async (val: string) => {
     setPrice(val);
     const num = Number(val);

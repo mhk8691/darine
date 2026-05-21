@@ -27,25 +27,26 @@ export default function WeightDetermination({
   setCount,
 }: Props) {
     const [livePrice,setLivePrice] = useState(0)
-    useEffect(() => {
-      const handleLivePrice = async ()=>{
-      try{
-        const response = await getAssets()
-        setLivePrice(response.current_gold_price)
-      }catch(error:unknown){
-        if (isAxiosError(error)){
-          showSnackbar(error.response?.data.message)
-        }
+  useEffect(() => {
+  const handleLivePrice = async () => {
+    try {
+      const response = await getAssets();
+      setLivePrice(response.current_gold_price);
+    } catch (error: unknown) {
+      if (isAxiosError(error)) {
+        showSnackbar(error.response?.data.message);
       }
     }
-  handleLivePrice()
-      
-      const interval = setInterval(() => {
-        handleLivePrice();
-      }, 45 * livePrice);
+  };
   
-      return () => clearInterval(interval);
-    }, []);
+  handleLivePrice();
+  
+  const interval = setInterval(() => {
+    handleLivePrice();
+  }, 45000); 
+
+  return () => clearInterval(interval);
+}, []);
 const handlePriceChange =  async (val: string) => {
     setPrice(val);
     const num = Number(val);

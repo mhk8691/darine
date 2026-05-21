@@ -4,7 +4,7 @@ import BackLink from '../BackLink';
 import DesktopImage from './DesktopImage';
 import Form from './Form';
 import LaptopImage from './LaptopImage';
-import GiftCardTable from './GiftCardTable';
+import GiftCardOrder from './GiftCardOrder';
 export const metadata: Metadata = {
   title: 'دریافت کارت هدیه | دارینه',
   description: '',
@@ -112,7 +112,7 @@ export default function page() {
         <DesktopImage />
       </Grid>
       <Grid size={12}>
-       <GiftCardTable/>
+       <GiftCardOrder/>
       </Grid>
     </Grid>
   );

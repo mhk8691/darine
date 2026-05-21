@@ -1,43 +1,12 @@
-'use client';
-import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
-import { formatDate } from '@/app/core/FormatDate';
-import { GiftCardListType } from '@/app/core/Types';
-import { getGiftCardList } from '@/lib/reports/getReports';
-import {
-  Grid,
-  Stack,
-  TableBody,
-  TableCell,
-  TableRow,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material';
-import { useEffect, useState } from 'react';
+import { formatDate } from '@/app/core/FormatDate'
+import { GiftCardListType } from '@/app/core/Types'
+import { Stack, TableBody, TableCell, TableRow, Typography } from '@mui/material'
+import React from 'react'
 
-export default function GiftCardList() {
-  const [giftCards, setGiftCards] = useState<GiftCardListType[]>([] as GiftCardListType[]);
-  const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
-  useEffect(() => {
-    const getData = async () => {
-      const response = await getGiftCardList();
-      setGiftCards(response || []);
-    };
-    getData();
-  }, []);
+export default function GiftCardTable({giftCardsList}:{giftCardsList:GiftCardListType[]}) {
   return (
-    <Grid size={12}>
-      <OrderDetail
-        listLength={giftCards.length}
-        title={isDesktop ? 'لیست کارت‌های هدیه شما' : ''}
-        toggleItems={[]}
-        type="chip"
-        emptyMessage="کارت هدیه‌ای توسط شما خریداری نشده است."
-        tableHead={['شماره سریال', 'وزن', 'وضعیت', 'تاریخ']}
-        tableBody={
-          <TableBody>
-            {giftCards?.map((row) => (
+    <TableBody>
+            {giftCardsList?.map((row) => (
               <TableRow
                 key={row?.serial_number}
                 sx={{
@@ -118,8 +87,5 @@ export default function GiftCardList() {
               </TableRow>
             ))}
           </TableBody>
-        }
-      />
-    </Grid>
-  );
+  )
 }
