@@ -84,6 +84,7 @@ handleLivePrice()
   const handleSellGold = async () => {
     try {
       const response = await goldSell(gold);
+      showSnackbar(response.data.message,true)
       setOpen(true);
     } catch (error: unknown) {
       if (isAxiosError(error)) {
