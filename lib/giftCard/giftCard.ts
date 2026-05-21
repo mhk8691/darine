@@ -1,6 +1,8 @@
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
-import api from '@/lib/api';
+import api, { ApiResponse } from '@/lib/api';
 import { isAxiosError } from 'axios';
+  import { GiftCardListType } from '@/app/core/Types';
+
 export const giftCardSubmit = async (serialNumber: string) => {
   try {
     const response = await api.post<{
@@ -20,3 +22,8 @@ export const giftCardOrder = async (weight:string,quantity:number,province:strin
     }>('/gold/gift-card/order/', { weight_per_card: weight ,quantity,province,city,address});
     return response.data
   }
+
+export const getGiftCardList = async () => {
+    const response = await api.get<ApiResponse<GiftCardListType[]>>('/gold/gift-card/list/');
+    return response.data.data;
+};

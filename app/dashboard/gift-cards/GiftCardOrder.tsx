@@ -2,7 +2,6 @@
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import { GiftCardListType } from '@/app/core/Types';
-import { getGiftCardList } from '@/lib/reports/getReports';
 import {
   Grid,
   useMediaQuery,
@@ -11,6 +10,7 @@ import {
 import { isAxiosError } from 'axios';
 import { useEffect, useState } from 'react';
 import GiftCardTable from './GiftCardTable';
+import { getGiftCardList } from '@/lib/giftCard/giftCard';
 
 export default function GiftCardOrder() {
   const [giftCardList, setGetGiftCardList] = useState<GiftCardListType[]>([] as GiftCardListType[]);
