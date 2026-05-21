@@ -61,7 +61,7 @@ export default function MobileWalletStatus({
               }}
               sx={{ color: 'text.title' }}
             >
-              {visible ? priceFormater(assets.gold_balance_gr) : '***'}
+              {visible ? assets.gold_balance_gr : '***'}
             </Typography>
             <Typography
               variant="body1"
