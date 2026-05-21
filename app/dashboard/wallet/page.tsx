@@ -1,11 +1,8 @@
-import CircleAnimation from '@/app/Components/CircleAnimation/CircleAnimation';
 import {
   default as Card,
-  default as Container,
 } from '@/app/Components/Containers/Container/Container';
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import Wallet from '@/app/Components/Wallet/Wallet';
-import priceFormater from '@/app/core/PriceFormater';
 import { ToggleItemsType } from '@/app/core/Types';
 import { Grid, Stack, Typography } from '@mui/material';
 import { Metadata } from 'next';
@@ -81,44 +78,7 @@ export default async function page() {
       </Grid>
 
       <Grid size={{ xs: 12, md: 6 }}>
-        <Container
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            mb: {
-              xs: 1,
-              lg: 3,
-            },
-            py: {
-              sm: 2,
-              lg: 3,
-            },
-            display: {
-              xs: 'none',
-              sm: 'flex',
-            },
-            px: {
-              sm: 2,
-              lg: 4,
-            },
-          }}
-        >
-          <Stack direction={'row'} gap={2} alignItems={'center'}>
-            <CircleAnimation type="red" />
-            <Typography variant="body2" sx={{ color: 'text.muted' }}>
-              قیمت فعلی طلا ۱۸ عیار:
-            </Typography>
-          </Stack>
-          <Stack direction={'row'} gap={0.5} alignItems={'center'}>
-            <Typography variant="body1" fontSize={20} sx={{ color: 'text.title' }} fontWeight={500}>
-              {priceFormater(17329000)}
-            </Typography>
-            <Typography variant="body1" fontSize={18} sx={{ color: 'text.title' }} fontWeight={500}>
-              تومان
-            </Typography>
-          </Stack>
-        </Container>
+       
         <Card
           style={{
             mb: {
