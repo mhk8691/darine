@@ -2,7 +2,7 @@ import { AllAssetsDataType, AssetsDataType } from '@/app/core/Types';
 import api, { ApiResponse } from '../api';
 
 export const getAssets = async () => {
-  const res = await api.get<ApiResponse<AssetsDataType>>('/gold/assets/');
+  const res = await api.get<ApiResponse<AssetsDataType>>('/gold/balance/');
   return res.data.data;
 };
 

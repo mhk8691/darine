@@ -7,6 +7,8 @@ import Card from '../Containers/Container/Container';
 import MobileWalletStatus from './MobileWalletStatus';
 import { getAssets } from '@/lib/getAssets/getAssets';
 import { AssetsDataType } from '@/app/core/Types';
+import { isAxiosError } from 'axios';
+import { showSnackbar } from '../Snackbar/Snackbar';
 
 export default function WalletHeader() {
   const [visible, setVisible] = useState(false);
@@ -15,10 +17,21 @@ export default function WalletHeader() {
   const [assets, setAssets] = useState<AssetsDataType>({} as AssetsDataType);
   useEffect(() => {
     const getData = async () => {
-      const response = await getAssets();
-      setAssets(response);
+      try{
+const response = await getAssets();
+        setAssets(response);
+      }catch(error:unknown){
+        if (isAxiosError(error)){
+          showSnackbar(error.response?.data.message)
+        }
+      }
     };
     getData();
+        const interval = setInterval(() => {
+      getData();
+    }, 45 * 1000);
+
+    return () => clearInterval(interval);
   }, []);
   useEffect(() => {
     const stored = localStorage.getItem('eyeState');
@@ -61,7 +74,7 @@ export default function WalletHeader() {
                   fontWeight={500}
                   sx={{ color: 'text.title' }}
                 >
-                  {visible ? '۰' : '***'}
+                  {visible ? assets.gold_balance_gr : '***'}
                 </Typography>
                 <Typography
                   variant="body1"
@@ -89,7 +102,7 @@ export default function WalletHeader() {
               </Typography>
               <Stack direction={'row'} gap={0.5} alignItems={'center'} fontWeight={500}>
                 <Typography variant="body1" fontSize={20} sx={{ color: 'text.title' }}>
-                  {visible ? '۰' : '***'}
+                  {visible ? assets.toman_balance : '***'}
                 </Typography>
                 <Typography
                   variant="body1"
@@ -112,14 +125,14 @@ export default function WalletHeader() {
                 py: '27px',
               }}
             >
-              <Stack
+              {/* <Stack
                 display={{
                   xs: 'none',
                   md: 'flex',
                 }}
               >
                 <CircleAnimation type="red" />
-              </Stack>
+              </Stack> */}
               <Stack direction={'column'} gap={0.5} justifyContent={'center'}>
                 <Typography variant="body1" fontSize={14} sx={{ color: 'text.muted' }}>
                   قیمت فعلی طلا ۱۸ عیار
@@ -131,7 +144,7 @@ export default function WalletHeader() {
                     sx={{ color: 'text.title' }}
                     fontWeight={500}
                   >
-                    {priceFormater(17329000)}
+                    {priceFormater(assets.current_gold_price)}
                   </Typography>
                   <Typography
                     variant="body1"

@@ -4,11 +4,12 @@ import FilterToggleButton from '@/app/Components/FilterToggleButton/FilterToggle
 import InputField from '@/app/Components/InputField/InputField';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import {  BuyGoldDataType, ToggleItemsType } from '@/app/core/Types';
+import { getAssets } from '@/lib/getAssets/getAssets';
 import { goldBuy } from '@/lib/gold/goldBuy';
 import { goldSell } from '@/lib/gold/goldSell';
 import { Button, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { isAxiosError } from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // import TradeGoldConfirmation from './TradeGoldConfirmation';
 
 const items: ToggleItemsType[] = [
@@ -19,37 +20,60 @@ export default function Trading() {
   const [price, setPrice] = useState('');
   const [gold, setGold] = useState('');
   const [select, setSelect] = useState(items[0].value);
+  const [livePrice,setLivePrice] = useState(0)
+  const [walletBalance,setWalletBalance] = useState(0)
   const [open, setOpen] = useState(false);
   const [buyInfo, setBuyInfo] = useState<BuyGoldDataType>({} as BuyGoldDataType);
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
+  
+     useEffect(() => {
+    const handleLivePrice = async ()=>{
+    try{
+      const response = await getAssets()
+      setLivePrice(response.current_gold_price)
+      setWalletBalance(response.toman_balance)
+    }catch(error:unknown){
+      if (isAxiosError(error)){
+        showSnackbar(error.response?.data.message)
+      }
+    }
+  }
+handleLivePrice()
+    
+    const interval = setInterval(() => {
+      handleLivePrice();
+    }, 45 * 1000);
 
-  const handlePriceChange = (val: string) => {
+    return () => clearInterval(interval);
+  }, []);
+  const handlePriceChange =  async (val: string) => {
     setPrice(val);
-
     const num = Number(val);
     if (!isNaN(num)) {
-      setGold(String(num / 17999000));
+      setGold(String(num / livePrice));
     } else {
       setGold('');
     }
   };
 
-  const handleGoldChange = (val: string) => {
+  const handleGoldChange =async (val: string) => {
     setGold(val);
-
     const num = Number(val);
     if (!isNaN(num)) {
-      setPrice(String(num * 17999000));
+      setPrice(String(num * livePrice));
     } else {
       setPrice('');
     }
   };
 
   const handleBuyGold = async () => {
+    const methood = walletBalance > 0 ? 'WALLET':'GATEWAY'
     try {
-      const response = await goldBuy(price);
-      setOpen(true);
+      const response = await goldBuy(price,methood,gold);
+      showSnackbar(response.data.message,true)
+      setGold('')
+      setPrice('')
       // setBuyInfo(response.data.details)
     } catch (error: unknown) {
       if (isAxiosError(error)) {
