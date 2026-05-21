@@ -1,12 +1,16 @@
 import SelectField from '@/app/Components/InputField/SelectField';
 import { Stack } from '@mui/material';
-import { useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 const provinceItems = ['قم', 'تهران', 'اصفهان'];
 const cityItems = ['کهک', 'قنوات', 'تست'];
-export default function ChooseCity() {
-  const [province, setProvince] = useState('');
-  const [city, setCity] = useState('');
 
+interface Props{
+  province:string
+  setProvince:Dispatch<SetStateAction<string>>
+    city:string
+  setCity:Dispatch<SetStateAction<string>>
+}
+export default function ChooseCity({province,setProvince,city,setCity}:Props) {
   return (
     <Stack direction={'column'} gap={2} mb={15}>
       <SelectField

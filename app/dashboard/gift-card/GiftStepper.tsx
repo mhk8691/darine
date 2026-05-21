@@ -13,6 +13,9 @@ import { styled } from '@mui/material/styles';
 import * as React from 'react';
 import FinalApproval from './FinalApproval';
 import WeightDetermination from './WeightDetermination';
+import { giftCardOrder } from '@/lib/giftCard/giftCard';
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+import { isAxiosError } from 'axios';
 
 const CustomConnector = styled(StepConnector)(() => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -76,12 +79,24 @@ export default function GiftStepper() {
   const [price, setPrice] = React.useState('');
   const [count, setCount] = React.useState<number>(1);
   const [open, setOpen] = React.useState(false);
-
+  const [address, setAddress] = React.useState('تست');
+    const [province, setProvince] = React.useState('');
+  const [city, setCity] = React.useState('');
+  const giftCard = async ()=>{
+    try{
+      const response = await giftCardOrder(weight,count,province,city,address)
+      showSnackbar(response.message,true)
+    }catch(error:unknown){
+      if (isAxiosError(error)){
+        showSnackbar(error.response?.data.message)
+      }
+    }
+  }
   const isStepSkipped = (step: number) => {
     return skipped.has(step);
   };
 
-  const handleNext = () => {
+  const handleNext =async () => {
     let newSkipped = skipped;
 
     if (activeStep === 0) {
@@ -95,9 +110,9 @@ export default function GiftStepper() {
     } else if (activeStep === 1) {
       setOpen(true);
     } else {
-      newSkipped = new Set(newSkipped.values());
-      newSkipped.delete(activeStep);
-
+      // newSkipped = new Set(newSkipped.values());
+      // newSkipped.delete(activeStep);
+          await giftCard()
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
       setSkipped(newSkipped);
     }
@@ -207,12 +222,19 @@ export default function GiftStepper() {
             )}
             {activeStep === 1 && (
               <ChooseAddress
+              setActiveStep={setActiveStep}
                 open={open}
                 setOpen={setOpen}
                 description=" آدرس مورد نظر خود را اضافه کنید."
+                address={address}
+setAddress={setAddress}
+province={province}
+setProvince={setProvince}
+city={city}
+setCity={setCity}
               />
             )}
-            {activeStep === 2 && <FinalApproval />}
+            {activeStep === 2 && <FinalApproval city={city} price={price} province={province} address={address} count={count} weight={weight} />}
 
             <Stack direction={'row'} gap={3} mt={activeStep === 2 ? 2 : 7}>
               <Button

@@ -8,8 +8,15 @@ interface Props {
   setOpen: Dispatch<SetStateAction<boolean>>;
   description: string;
   cardStyle?: SxProps;
+  address:string
+setAddress:Dispatch<SetStateAction<string>>
+province:string
+setProvince:Dispatch<SetStateAction<string>>
+city:string
+setCity:Dispatch<SetStateAction<string>>
+setActiveStep:React.Dispatch<React.SetStateAction<number>>
 }
-export default function ChooseAddress({ open, setOpen, description, cardStyle }: Props) {
+export default function ChooseAddress({ open, setOpen, description, cardStyle,setAddress,address,province,setCity,city,setProvince ,setActiveStep}: Props) {
   return (
     <Stack direction={'column'} alignItems={'center'} gap={2} sx={cardStyle}>
       <Stack
@@ -33,7 +40,12 @@ export default function ChooseAddress({ open, setOpen, description, cardStyle }:
         </Typography>
       </Stack>
       {/* <AddressList setOpenAddAddress={setOpen} /> */}
-      <AddAddress open={open} setOpen={setOpen} />
+      <AddAddress open={open} setOpen={setOpen}   setActiveStep={setActiveStep}              address={address}
+setAddress={setAddress}
+province={province}
+setProvince={setProvince}
+city={city}
+setCity={setCity} />
     </Stack>
   );
 }

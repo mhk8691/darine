@@ -2,7 +2,10 @@
 
 import { MinusSquareIcon, PlusSquareleIcon } from '@/app/Components/CustomIcons/CustomIcons';
 import InputField from '@/app/Components/InputField/InputField';
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+import { getAssets } from '@/lib/getAssets/getAssets';
 import { IconButton, InputAdornment, Stack, TextField, Typography } from '@mui/material';
+import { isAxiosError } from 'axios';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 interface Props {
@@ -14,7 +17,6 @@ interface Props {
   count: number;
 }
 
-const GOLD_RATE = 17610000;
 
 export default function WeightDetermination({
   price,
@@ -24,33 +26,50 @@ export default function WeightDetermination({
   count,
   setCount,
 }: Props) {
-  useEffect(() => {
-    const w = Number(weight);
-    if (!w) return;
-
-    const newPrice = (w * GOLD_RATE).toString();
-
-    if (price !== newPrice) {
-      setPrice(newPrice);
+    const [livePrice,setLivePrice] = useState(0)
+    useEffect(() => {
+      const handleLivePrice = async ()=>{
+      try{
+        const response = await getAssets()
+        setLivePrice(response.current_gold_price)
+      }catch(error:unknown){
+        if (isAxiosError(error)){
+          showSnackbar(error.response?.data.message)
+        }
+      }
     }
-  }, [weight]);
-
-  useEffect(() => {
-    const p = Number(price);
-    if (!p) return;
-
-    const newWeight = (p / GOLD_RATE).toString();
-
-    if (weight !== newWeight) {
-      setWeight(newWeight);
+  handleLivePrice()
+      
+      const interval = setInterval(() => {
+        handleLivePrice();
+      }, 45 * livePrice);
+  
+      return () => clearInterval(interval);
+    }, []);
+const handlePriceChange =  async (val: string) => {
+    setPrice(val);
+    const num = Number(val);
+    if (!isNaN(num)) {
+      setWeight(String(num / livePrice));
+    } else {
+      setWeight('');
     }
-  }, [price]);
+  };
 
+  const handleWeightChange =async (val: string) => {
+    setWeight(val);
+    const num = Number(val);
+    if (!isNaN(num)) {
+      setPrice(String(num * livePrice));
+    } else {
+      setPrice('');
+    }
+  };
   return (
     <Stack direction="column" gap={4}>
-      <InputField placeholder="وزن" title="گرم" value={weight} setValue={setWeight} />
+      <InputField placeholder="وزن" title="گرم" value={weight} setValue={handleWeightChange} />
 
-      <InputField placeholder="معادل تومان" title="تومان" value={price} setValue={setPrice} />
+      <InputField placeholder="معادل تومان" title="تومان" value={price} setValue={handlePriceChange} />
 
       <TextField
         label="تعداد"

@@ -1,6 +1,16 @@
+import priceFormater from '@/app/core/PriceFormater';
 import { Divider, Stack, Typography } from '@mui/material';
 
-export default function FinalApproval() {
+interface Props{
+  weight:string
+  price:string
+  count:number
+  city:string
+  address:string
+province:string
+}
+
+export default function FinalApproval({weight,price,count,city,province,address}:Props) {
   return (
     <Stack border={1} px={4} py={2} borderRadius={2} borderColor={'background.paper'}>
       <Typography
@@ -31,7 +41,7 @@ export default function FinalApproval() {
             sm: 16,
           }}
         >
-          1 گرم
+          {weight} گرم
         </Typography>
       </Stack>
       <Divider
@@ -60,19 +70,19 @@ export default function FinalApproval() {
             sm: 16,
           }}
         >
-          ۱۷,۶۱۰,۰۰۰ تومان
+          {priceFormater(+price)} تومان
         </Typography>
       </Stack>
-      <Divider
+      {/* <Divider
         sx={{
           my: {
             xs: 1,
             sm: 2,
           },
         }}
-      />
+      /> */}
 
-      <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
+      {/* <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
         <Typography
           variant="body1"
           fontSize={{
@@ -92,7 +102,7 @@ export default function FinalApproval() {
         >
           ۱۷,۶۱۰,۰۰۰ تومان
         </Typography>
-      </Stack>
+      </Stack> */}
       <Divider
         sx={{
           my: {
@@ -120,19 +130,19 @@ export default function FinalApproval() {
             sm: 16,
           }}
         >
-          ۱ گرم
+         {count}
         </Typography>
       </Stack>
-      <Divider
+      {/* <Divider
         sx={{
           my: {
             xs: 1,
             sm: 2,
           },
         }}
-      />
+      /> */}
 
-      <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
+      {/* <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
         <Typography
           variant="body1"
           fontSize={{
@@ -152,7 +162,7 @@ export default function FinalApproval() {
         >
           ۲۵۵,۳۴۴ تومان
         </Typography>
-      </Stack>
+      </Stack> */}
       <Divider
         sx={{
           my: {
@@ -162,7 +172,7 @@ export default function FinalApproval() {
         }}
       />
 
-      <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
+      {/* <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
         <Typography
           variant="body1"
           fontSize={{
@@ -182,17 +192,17 @@ export default function FinalApproval() {
         >
           ۱۸۰,۰۰۰ تومان
         </Typography>
-      </Stack>
-      <Divider
+      </Stack> */}
+      {/* <Divider
         sx={{
           my: {
             xs: 1,
             sm: 2,
           },
         }}
-      />
+      /> */}
 
-      <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
+      {/* <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
         <Typography
           variant="body1"
           fontSize={{
@@ -213,7 +223,7 @@ export default function FinalApproval() {
         >
           ۱۸,۰۴۵,۳۴۵ تومان
         </Typography>
-      </Stack>
+      </Stack> */}
       <Typography
         variant="body1"
         fontSize={{
@@ -284,7 +294,7 @@ export default function FinalApproval() {
         }}
       />
 
-      <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
+      {/* <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
         <Typography
           variant="body1"
           fontSize={{
@@ -304,15 +314,15 @@ export default function FinalApproval() {
         >
           3791111111
         </Typography>
-      </Stack>
-      <Divider
+      </Stack> */}
+      {/* <Divider
         sx={{
           my: {
             xs: 1,
             sm: 2,
           },
         }}
-      />
+      /> */}
 
       <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
         <Typography
@@ -332,7 +342,7 @@ export default function FinalApproval() {
             sm: 16,
           }}
         >
-          1
+          {`${province},${city},${address}`}
         </Typography>
       </Stack>
     </Stack>

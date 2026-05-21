@@ -1,6 +1,6 @@
 import InputField from '@/app/Components/InputField/InputField';
 import { Grid, SxProps } from '@mui/material';
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 
 const inputStyle: SxProps = {
   width: '100%',
@@ -8,12 +8,15 @@ const inputStyle: SxProps = {
     textAlign: 'left',
   },
 };
-
-export default function NewAddress() {
-  const [address, setAddress] = useState('تست');
-  const [plaque, setPlaque] = useState('');
-  const [unit, setUnit] = useState('');
-  const [postCode, setPostCode] = useState('');
+interface Props{
+      address:string
+  setAddress:Dispatch<SetStateAction<string>>
+}
+export default function NewAddress({address,
+setAddress}:Props) {
+  // const [plaque, setPlaque] = useState('');
+  // const [unit, setUnit] = useState('');
+  // const [postCode, setPostCode] = useState('');
   return (
     <Grid container spacing={2} width={'100%'}>
       <Grid size={12}>
@@ -24,7 +27,7 @@ export default function NewAddress() {
           style={inputStyle}
         />
       </Grid>
-      <Grid size={6}>
+      {/* <Grid size={6}>
         <InputField placeholder="پلاک" value={plaque} setValue={setPlaque} style={inputStyle} />
       </Grid>
       <Grid size={6}>
@@ -37,7 +40,7 @@ export default function NewAddress() {
           setValue={setPostCode}
           style={inputStyle}
         />
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 }

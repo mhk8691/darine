@@ -16,12 +16,13 @@ export default function HouseDelivery() {
       <Typography variant="body1" fontSize={16}>
         سفارش شما تا ۵ روز کاری به آدرس تعیین شده تحویل داده می‌شود.
       </Typography> */}
-      <ChooseAddress
+      {/* <ChooseAddress
         open={open}
         setOpen={setOpen}
         description="برای دریافت کالای انتخاب شده، ابتدا آدرس خود را اضافه کنید"
         cardStyle={{ mt: 3 }}
-      />
+
+      /> */}
     </>
   );
 }

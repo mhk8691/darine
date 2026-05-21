@@ -5,17 +5,25 @@ import { Button, IconButton, Stack, Typography } from '@mui/material';
 import { Dispatch, SetStateAction, useState } from 'react';
 import ChooseCity from './ChooseCity';
 import NewAddress from './NewAddress';
-import dynamic from 'next/dynamic';
+import { giftCardOrder } from '@/lib/giftCard/giftCard';
+import { showSnackbar } from '../Snackbar/Snackbar';
+import { isAxiosError } from 'axios';
 
-const Map = dynamic(() => import('./Map'), {
-  ssr: false,
-});
+
 interface Props {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
+    address:string
+setAddress:Dispatch<SetStateAction<string>>
+province:string
+setProvince:Dispatch<SetStateAction<string>>
+city:string
+setCity:Dispatch<SetStateAction<string>>
+setActiveStep:React.Dispatch<React.SetStateAction<number>>
 }
-export default function AddAddress({ open, setOpen }: Props) {
+export default function AddAddress({ open, setOpen,setAddress,address,province,setCity,city,setProvince,setActiveStep }: Props) {
   const [step, setStep] = useState(0);
+
   return (
     <>
       <CustomModal open={open} setOpen={setOpen} modalStyle={{ px: 1.5, pb: 2 }}>
@@ -33,15 +41,23 @@ export default function AddAddress({ open, setOpen }: Props) {
             <Close />
           </IconButton>
         </Stack>
-        {step === 0 && <ChooseCity />}
-        {step === 1 && <NewAddress />}
+        {step === 0 && <ChooseCity city={city} setCity={setCity} province={province} setProvince={setProvince} />}
+        {step === 1 && <NewAddress setAddress={setAddress} address={address} />}
 
         <Stack direction={'row'} gap={3} mt={3}>
           <Button
             variant="contained"
             color="primary"
             disableRipple
-            onClick={() => setStep((prev) => (prev < 1 ? prev + 1 : 1))}
+          onClick={() => {
+    if (step < 1) {
+        setStep((prev) => prev + 1);
+    } else {
+        setStep(0);
+        setActiveStep(2)
+        setOpen(false);
+    }
+}}
             sx={{
               borderRadius: 2,
               py: 1.3,
