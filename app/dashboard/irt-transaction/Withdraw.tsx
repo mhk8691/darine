@@ -6,8 +6,10 @@ import { BankCardDataType, ToggleItemsType } from '@/app/core/Types';
 import { Button, Stack } from '@mui/material';
 import { useEffect, useState } from 'react';
 import BankCard from './BankCard';
-import { silverWidthdraw } from '@/lib/withdraw/withdraw';
+import { goldWidthdraw } from '@/lib/withdraw/withdraw';
 import { getBankCard } from '@/lib/getbankCard/bankCard';
+import { isAxiosError } from 'axios';
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 
 const items: ToggleItemsType[] = [
   { title: 'به حساب بانکی', value: 'bank', id: 1 },
@@ -19,11 +21,18 @@ export default function Withdraw() {
   const [bankCardsData, setBankCardsData] = useState<BankCardDataType[]>([]);
   const [selectedCard, setSelectedCard] = useState<number>(1);
   const handleWithdraw = async () => {
-    const response = await silverWidthdraw(
+ try{
+     const response = await goldWidthdraw(
       price,
-      select === 'silver' ? 'silver' : 'card',
-      selectedCard,
+      select === 'silver' ? 'SILVER' : 'BANK',
+      selectedCard?selectedCard:undefined,
     );
+    showSnackbar(response.message)
+ }catch(error:unknown){
+  if (isAxiosError(error)){
+    showSnackbar(error.response?.data.message)
+  }
+ }
   };
 
   useEffect(() => {
