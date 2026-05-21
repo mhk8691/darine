@@ -114,7 +114,7 @@ export default function MobileWalletStatus({
               }}
               sx={{ color: 'text.title' }}
             >
-              {visible ? priceFormater(assets.wallet_balance_toman) : '***'}
+              {visible ? priceFormater(assets.toman_balance) : '***'}
             </Typography>
             <Typography
               variant="body1"

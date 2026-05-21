@@ -102,7 +102,7 @@ const response = await getAssets();
               </Typography>
               <Stack direction={'row'} gap={0.5} alignItems={'center'} fontWeight={500}>
                 <Typography variant="body1" fontSize={20} sx={{ color: 'text.title' }}>
-                  {visible ? assets.toman_balance : '***'}
+                  {visible ? priceFormater(assets.toman_balance) : '***'}
                 </Typography>
                 <Typography
                   variant="body1"

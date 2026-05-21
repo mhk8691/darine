@@ -5,6 +5,7 @@ import { ToggleItemsType } from '@/app/core/Types';
 import { Grid } from '@mui/material';
 import Cart from './Cart';
 import Sort from './Sort';
+import Products from './Products';
 
 const items: ToggleItemsType[] = [
   {
@@ -34,10 +35,10 @@ export default function page() {
       <Grid size={12}>
         <WalletHeader />
       </Grid>
-      <Container
+           <Container
         style={{
           pb: 11,
-          width: '100%',
+          width: "100%",
           px: {
             xs: 0,
             sm: 4,
@@ -47,11 +48,10 @@ export default function page() {
             sm: 1,
           },
           borderColor: {
-            sm: 'background.paper',
+            sm: "background.paper",
           },
         }}
       >
-        <Sort />
         <Grid container spacing={1} size={12}>
           <Grid
             size={{
@@ -64,7 +64,7 @@ export default function page() {
               md: 2,
             }}
           >
-          
+           <Products/>
           </Grid>
           <Cart />
         </Grid>
