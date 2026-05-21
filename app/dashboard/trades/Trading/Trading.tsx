@@ -26,7 +26,8 @@ export default function Trading() {
   const [buyInfo, setBuyInfo] = useState<BuyGoldDataType>({} as BuyGoldDataType);
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
-  
+
+
      useEffect(() => {
     const handleLivePrice = async ()=>{
     try{
@@ -47,6 +48,23 @@ handleLivePrice()
 
     return () => clearInterval(interval);
   }, []);
+    useEffect(() => {
+  if (!livePrice) return;
+
+  if (price) {
+    const num = Number(price);
+    if (!isNaN(num)) {
+      setGold(String(num / livePrice));
+    }
+  }
+
+  if (gold) {
+    const num = Number(gold);
+    if (!isNaN(num)) {
+      setPrice(String(num * livePrice));
+    }
+  }
+}, [livePrice]);
   const handlePriceChange =  async (val: string) => {
     setPrice(val);
     const num = Number(val);
