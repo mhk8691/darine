@@ -9,14 +9,14 @@ import BankCard from './BankCard';
 import { getBankCard } from '@/lib/getbankCard/bankCard';
 import Container from '@/app/Components/Containers/Container/Container';
 import DepositConfirm from './DepositConfirm';
-import {  goldDeposit, uploadReceipt } from '@/lib/deposit/deposit';
+import {  goldDeposit } from '@/lib/deposit/deposit';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { isAxiosError } from 'axios';
 import { Upload } from '@mui/icons-material';
 
 const items: ToggleItemsType[] = [
-  { title: 'درگاه پرداخت', value: 'payment', id: 1 },
-  { title: 'واریز مستقیم', value: 'directPayment', id: 2 },
+  { title: 'درگاه پرداخت', value: 'gateway', id: 1 },
+  { title: 'واریز مستقیم', value: 'receipt', id: 2 },
 ];
 export default function Deposit() {
   const [price, setPrice] = useState('');
@@ -36,31 +36,34 @@ export default function Deposit() {
     getData();
   }, []);
 
-  const handlePayment = async ()=>{
-const response = await goldDeposit(price);
-  }
+  
 
-    const handleDirectPayment =  () => {
-    setOpen(true)
-  };
-  const handleUploadReceipt = async()=>{
-    if (!receipt) return null
+    const handleDeposit =async  (method:'RECEIPT'|'GATEWAY') => {
     const formData = new FormData()
-      formData.append('receipt',receipt)
+      formData.append('amount',price)
+      if (method === 'RECEIPT'){
+        if (!receipt) return null
+        formData.append('receipt',receipt)
+        formData.append('method','RECEIPT')
+      }
+      else{
+         formData.append('method','GATEWAY')
+      }
     try{
-      const response =await uploadReceipt(formData)
+      const response =await goldDeposit(formData)
         showSnackbar(response?.message)
     }catch(error:unknown){
       if (isAxiosError(error)){
         showSnackbar(error.response?.data.message)
       }
     }
-  }
+  };
+
   const handleClick = ()=>{
-    if (!depositData){
-      handleDirectPayment()
+    if (!depositData && select === 'gateway'){
+      handleDeposit('GATEWAY')
     }else{
-      handleUploadReceipt()
+      handleDeposit('RECEIPT')
     }
   }
   return (
@@ -84,7 +87,7 @@ const response = await goldDeposit(price);
         }}
       />
       <Stack gap={3.5}>
-        {select === 'payment' && (
+        {select === 'gateway' && (
           <Stack direction={'column'} gap={3}>
             <InputField placeholder={'ملبغ'} title={'تومان'} value={price} setValue={setPrice} />
             <Button
@@ -105,7 +108,7 @@ const response = await goldDeposit(price);
             </Button>
           </Stack>
         )}
-        {select === 'directPayment' && (
+        {select === 'receipt' && (
           <BankCard
             bankCardsData={bankCardsData}
             setBankCardsData={setBankCardsData}
@@ -115,7 +118,7 @@ const response = await goldDeposit(price);
         )}
       </Stack>
           {
-        depositData && select != 'payment'&& <>
+        depositData && select != 'receipt'&& <>
           <Typography variant="body2" fontSize={12} fontWeight={"bold"}>
           اطلاعات واریز
         </Typography>
@@ -196,24 +199,7 @@ const response = await goldDeposit(price);
         </Container>
         </>
       }
-     {
-      select === 'payment'?
-       <Button
-        variant="contained"
-        color="primary"
-        sx={{
-          borderRadius: 2,
-          fontSize: {
-            xs: 14,
-            sm: 16,
-          },
-          py: 1.5,
-        }}
-        onClick={handlePayment}
-      >
-        واریز
-      </Button>
-     :!depositData && <Button
+<Button
         variant="contained"
         color="primary"
         sx={{
@@ -227,9 +213,9 @@ const response = await goldDeposit(price);
         onClick={handleClick}
       >
         {
-          !depositData ? 'نمایش اطلاعات مقصد' : 'تایید'
+          select === 'receipt' ? !depositData ? 'نمایش اطلاعات مقصد' : 'تایید':'واریز'
         }
-      </Button>}
+      </Button>
     </Card>
     <DepositConfirm setDepositData={setDepositData} setOpen={setOpen} open={open} />
     </>
