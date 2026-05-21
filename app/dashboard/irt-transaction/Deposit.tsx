@@ -192,7 +192,8 @@ export default function Deposit() {
   style={{ display: 'none' }} 
     accept="image/*"
   onChange={(e) => {
-    const image =e?.target?.files[0]
+    if (e.target.files === null) return null
+    const image =e.target.files[0]
     setReceipt(image)
      }}
           />
