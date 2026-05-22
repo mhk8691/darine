@@ -24,6 +24,11 @@ export default function Wallet({ type }: Props) {
       setAssets(response);
     };
     getData();
+        const interval = setInterval(() => {
+      getData();
+    }, 45 * 1000);
+
+    return () => clearInterval(interval);
   }, []);
   return (
     <Container
