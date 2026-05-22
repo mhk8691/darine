@@ -209,7 +209,14 @@ export interface OrdersDataType{
   "id": 1,      "tracking_code": string,      "status": StatusType,      "payment_method": string,      "delivery_type": string,      "total_toman_amount": number,      "created_at": string
 }
 export interface CartDataType {
-  items	:ProductDateType[],
+  items	:{
+    id:number,
+    product:number,
+    porudct_details:ProductDateType
+    quantity	:number
+total_gold:number
+total_price	:number
+  }[],
 total_price:	number,
 total_gold:	number,
 count	:number,

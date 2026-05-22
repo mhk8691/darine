@@ -29,7 +29,7 @@ export default function MobileCart() {
             <CartIcon color="black" />
           </Stack>
         </Link>
-        <Counter count={count} setCount={setCount} />
+        {/* <Counter count={count} setCount={setCount} /> */}
       </Stack>
       <Stack direction={'column'} gap={1} alignItems={'flex-end'}>
         <Typography variant="body1" sx={{ color: 'text.subtitle', fontSize: 12 }}>

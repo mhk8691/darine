@@ -33,8 +33,7 @@ const items: ToggleItemsType[] = [
 export default function page() {
   const [deliveryData,setDeliveryData] = useState<RecentDeliveriesDataType[]>([])
   const [cartData,setCartData] = useState<CartDataType>({} as CartDataType)
-  useEffect(()=>{
-    const getData = async ()=>{
+   const getData = async ()=>{
       try{
         const response = await getCart()
         setCartData(response)
@@ -44,7 +43,9 @@ export default function page() {
         }
       }
     }
-getData()
+  useEffect(()=>{
+   
+  getData()
   },[])
   useEffect(()=>{
     const getData = async ()=>{
@@ -99,12 +100,12 @@ getData()
               md: 2,
             }}
           >
-           <Products/>
+           <Products cartData={cartData} getCartData={getData} />
           </Grid>
           <Cart data={cartData} />
         </Grid>
       </Container>
-      <Grid size={12}>
+      {/* <Grid size={12}>
         <OrderDetail
           type="chip"
           title="لیست تحویل‌های اخیر"
@@ -277,7 +278,7 @@ getData()
           tableHead={['test']}
           listLength={deliveryData.length}
         />
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 }

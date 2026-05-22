@@ -15,7 +15,8 @@ import {
 } from '@mui/material';
 import Image from 'next/image';
 import { useState } from 'react';
-import { CartDataType, ProductDateType } from '../core/Types';
+import { CartDataType } from '../core/Types';
+import priceFormater from '../core/PriceFormater';
 const dataStyle: SxProps = {
   py: 1.5,
   fontSize: {
@@ -149,8 +150,8 @@ const DesktopCart = ({cartData}:Props) => {
                     }}
                   >
                     <Image
-                      src={item.image}
-                      alt={item.name}
+                      src={item.porudct_details.image}
+                      alt={item.porudct_details.name}
                       width={112}
                       height={112}
                       style={{
@@ -166,17 +167,17 @@ const DesktopCart = ({cartData}:Props) => {
                       md: 16,
                     }}
                   >
-                    {item.name}
+                    {item.porudct_details.name}
                   </Typography>
                 </Stack>
               </TableCell>
 
               <TableCell align="center" sx={dataStyle}>
-                {item.weight}
+                {item.porudct_details.weight} گرم
               </TableCell>
 
               <TableCell align="center" sx={dataStyle}>
-                {item.total_weight_with_fees}
+                {priceFormater(item.porudct_details.total_price)} تومان
               </TableCell>
 
               <TableCell align="center" sx={dataStyle}>
@@ -204,7 +205,7 @@ const DesktopCart = ({cartData}:Props) => {
               </TableCell>
 
               <TableCell align="center" sx={dataStyle}>
-                {item.total_weight_with_fees}
+                {priceFormater(item.total_price)} تومان
               </TableCell>
             </TableRow>
           ))}

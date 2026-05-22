@@ -1,13 +1,13 @@
 'use client'
 import ProductCard from "@/app/Components/ProductCard/ProductCard"
 import { showSnackbar } from "@/app/Components/Snackbar/Snackbar";
-import { ProductDateType } from "@/app/core/Types";
+import { CartDataType, ProductDateType } from "@/app/core/Types";
 import { getProducts } from "@/lib/getProducts/getProducts";
 import { Grid } from "@mui/material"
 import { isAxiosError } from "axios";
 import { useEffect, useState } from "react";
 
-export default function Products() {
+export default function Products({cartData,getCartData}:{cartData: CartDataType,getCartData:() => Promise<void>}) {
   const [productData, setProductData] = useState<ProductDateType[]>([] as ProductDateType[]);
 
   useEffect(() => {
@@ -25,17 +25,27 @@ export default function Products() {
   }, []);
   return (
     <>
-      {productData?.map((item) => (
-              <Grid
-                size={{
-                  xs: 6,
-                  md: 4,
-                }}
-                key={item.id}
-              >
-                <ProductCard item={item}  />
-              </Grid>
-            ))}
+      {productData?.map((item) => {
+  const cartItem = cartData?.items?.find((cart) => cart.product === item.id);
+
+  return (
+    <Grid
+      size={{
+        xs: 6,
+        md: 4,
+      }}
+      key={item.id}
+    >
+      <ProductCard 
+        item={item} 
+        getCartData={getCartData}
+        cartProductId={cartItem?.id || 0} 
+        quantity={cartItem?.quantity || 0} 
+      />
+    </Grid>
+  );
+})}
+
     </>
   )
 }

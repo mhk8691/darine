@@ -40,7 +40,7 @@ export default function Cart({data}:{data:CartDataType}) {
                   موجودی طلای شما
                 </Typography>
                 <Typography variant="body1" fontSize={18}>
-                  {visible ? `${data?.total_gold} گرم` :'***'}
+                  {visible ? `${data?.total_gold || 0} گرم` :'***'}
                 </Typography>
               </Stack>
               <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
@@ -48,7 +48,7 @@ export default function Cart({data}:{data:CartDataType}) {
                   موجودی تومان شما
                 </Typography>
                 <Typography variant="body1" fontSize={18}>
-                  {visible ? `${priceFormater(data?.total_price)} تومان` :'***'}
+                  {visible ? `${priceFormater(data?.total_price) || 0} تومان` :'***'}
                 </Typography>
               </Stack>
               <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
@@ -56,7 +56,7 @@ export default function Cart({data}:{data:CartDataType}) {
                   تعداد محصول
                 </Typography>
                 <Typography variant="body1" fontSize={18}>
-                  {data?.count}
+                  {data?.count || 0}
                 </Typography>
               </Stack>
             </Stack>

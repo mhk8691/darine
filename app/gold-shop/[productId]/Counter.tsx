@@ -1,32 +1,56 @@
 'use client';
 
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+import { EditCart, removeProduct } from '@/lib/cart/cart';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { IconButton, Stack, Typography } from '@mui/material';
-import { Dispatch, SetStateAction } from 'react';
+import { isAxiosError } from 'axios';
+import {  useState } from 'react';
 
 interface Props {
-  count: number;
-  setCount: Dispatch<SetStateAction<number>>;
-  onDelete?: () => void;
-  handleChange?:(quantity: number) => Promise<void>
+  getCartData: () => Promise<void>
+  quantity:number
+  productId:number
 }
 
-export default function Counter({ count, setCount, onDelete,handleChange }: Props) {
+export default function Counter({ quantity,productId,getCartData}: Props) {
+  const [count,setCount] = useState(quantity)
+    const handleRemoveProduct = async () =>{
+    try{
+     const response = await removeProduct(productId)
+     getCartData()
+     showSnackbar(response.message,true)
+   }catch(error:unknown){
+    if (isAxiosError(error)){
+      showSnackbar(error.response?.data.message)
+    }
+  }}
+  const handleChangeCount = async (quantity:number)=>{
+    try{
+      const response = await EditCart(quantity,productId)
+      getCartData()
+      showSnackbar(response.message,true)
+      }catch(error:unknown){
+        if (isAxiosError(error)){
+          showSnackbar(error.response?.data.message)
+        }
+      }
+  }
 const handleAdd = () => {
   const nextCount = count + 1;
   setCount(nextCount);
-  handleChange?.(nextCount); 
+  handleChangeCount(nextCount); 
 };
 
 const handleRemove = () => {
   if (count === 1) {
-    onDelete?.();
+    handleRemoveProduct();
   } else {
     const nextCount = count - 1;
     setCount(nextCount);
-    handleChange?.(nextCount);
+    handleChangeCount(nextCount);
   }
 };
 

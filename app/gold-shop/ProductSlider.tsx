@@ -50,7 +50,7 @@ export default function ProductSlider() {
     >
       {[1, 2, 3, 4, 5].map((item) => (
         <SwiperSlide key={item}>
-          <GoldCard item={{} as ProductDateType} />
+          {/* <GoldCard item={{} as ProductDateType} /> */}
         </SwiperSlide>
       ))}
     </Swiper>

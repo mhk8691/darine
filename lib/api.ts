@@ -59,10 +59,7 @@ api.interceptors.response.use(
       originalRequest &&
       !originalRequest._retry
     ) {
-      /**
-       * اگر رفرش توکن در حال انجام بود
-       * درخواست‌ها داخل صف میرن
-       */
+     
       if (isRefreshing) {
         return new Promise((resolve, reject) => {
           failedQueue.push({
@@ -76,23 +73,17 @@ api.interceptors.response.use(
       isRefreshing = true;
 
       try {
-        /**
-         * Refresh Token
-         */
+      
         await api.post('/accounts/token/refresh/');
 
         processQueue();
 
-        /**
-         * اجرای مجدد درخواست قبلی
-         */
+       
         return api(originalRequest);
       } catch (refreshError) {
         processQueue(refreshError as AxiosError);
 
-        /**
-         * Logout User
-         */
+     
         if (typeof window !== 'undefined') {
           try {
             await api.post('/accounts/logout/');

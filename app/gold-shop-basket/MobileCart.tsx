@@ -22,21 +22,21 @@ export default function MobileCart({cartData}:Props) {
           gap={2}
         >
           <Stack direction={'row'} gap={1} alignItems={'center'}>
-            <Image src={item.image} alt={item.name} width={64} height={64} />
+            <Image src={item.porudct_details.image} alt={item.porudct_details.name} width={64} height={64} />
             <Stack direction={'column'} gap={1}>
               <Typography variant="body2" sx={{ color: 'text.title' }} fontWeight={'bold'}>
-                {item.name}
+                {item.porudct_details.name}
               </Typography>
               <Typography variant="body2" sx={{ color: 'text.title' }} fontSize={12}>
-                {item.weight}
+                {item.porudct_details.weight}
               </Typography>
               <Typography variant="body2" sx={{ color: 'text.title' }} fontSize={12}>
-                {item.total_weight_with_fees} تومان
+                {item.porudct_details.total_price} تومان
               </Typography>
             </Stack>
           </Stack>
-          <Counter count={count}
-setCount={setCount} />
+          {/* <Counter count={count}
+setCount={setCount} /> */}
         </Stack>
       ))}
     </Stack>

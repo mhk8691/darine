@@ -19,21 +19,18 @@ import { Close } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import CustomModal from '../CustomModal/CustomModal';
 import Counter from '@/app/gold-shop/[productId]/Counter';
-import { addToCart, EditCart, removeProduct } from '@/lib/cart/cart';
+import { addToCart} from '@/lib/cart/cart';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '../Snackbar/Snackbar';
 
 
-export default function ProductCard({ item }: { item: ProductDateType }) {
+export default function ProductCard({ item,cartProductId ,quantity,getCartData}: { item: ProductDateType,cartProductId:number,quantity:number,getCartData:() => Promise<void> }) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
-  const [count,setCount] =useState(1)
-
-  
-
   const handleAddToCart = async (id:number) => {
    try{
      const response = await addToCart(id)
+     getCartData()
      showSnackbar(response.message,true)
    }catch(error:unknown){
     if (isAxiosError(error)){
@@ -42,27 +39,6 @@ export default function ProductCard({ item }: { item: ProductDateType }) {
    }
     
   };
-
-  const handleRemoveProduct = async (id:number) =>{
-    try{
-     const response = await removeProduct(id)
-     showSnackbar(response.message,true)
-   }catch(error:unknown){
-    if (isAxiosError(error)){
-      showSnackbar(error.response?.data.message)
-    }
-  }}
-  const handleChangeCount = async (quantity:number)=>{
-    try{
-      const response = await EditCart(quantity,item.id)
-      showSnackbar(response.message,true)
-      }catch(error:unknown){
-        if (isAxiosError(error)){
-          showSnackbar(error.response?.data.message)
-        }
-      }
-  }
- 
   return (
     <>
       <Card
@@ -268,7 +244,7 @@ export default function ProductCard({ item }: { item: ProductDateType }) {
           </Stack>
         </CardContent>
        <Stack px={1.5}>
-         {1 ? (
+         {!cartProductId ? (
           <Button
             variant="outlined"
             color="inherit"
@@ -290,7 +266,7 @@ export default function ProductCard({ item }: { item: ProductDateType }) {
             افزودن به سبد خرید
           </Button>
         ) : (
-          <Counter count={count} setCount={setCount} onDelete={()=>handleRemoveProduct(item.id)} handleChange={handleChangeCount} />
+          <Counter quantity={quantity} productId={item.id} getCartData={getCartData} />
         )}
        </Stack>
       </Card>
