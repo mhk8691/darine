@@ -3,7 +3,7 @@ import api from '@/lib/api';
 import { isAxiosError } from 'axios';
 export const getReports = async (key: string) => {
   try {
-    const response = await api.get(`/gold/reports/?tab=${key}`);
+    const response = await api.get(`/gold/reports/?type=${key}`);
     return response.data;
   } catch (error: unknown) {
     if (isAxiosError(error)) {

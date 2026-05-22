@@ -88,10 +88,7 @@ export default function page() {
             'نوع تراکنش',
             'روش',
             'وضعیت',
-            'تصویر رسید',
-            'شماره کارت',
             'کد پیگیری',
-            'توضیحات',
             'تاریخ',
           ]}
           listLength={transactionData.length}

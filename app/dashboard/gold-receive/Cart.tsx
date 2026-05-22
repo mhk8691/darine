@@ -1,13 +1,10 @@
 'use client';
 import Container from '@/app/Components/Containers/Container/Container';
 import { CartIcon, WarrantyIcon } from '@/app/Components/CustomIcons/CustomIcons';
-import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import priceFormater from '@/app/core/PriceFormater';
-import { AssetsDataType, CartDataType, ProductDateType } from '@/app/core/Types';
-import { getAssets } from '@/lib/getAssets/getAssets';
+import {  CartDataType } from '@/app/core/Types';
 import { Button, Divider, Grid, Stack, useMediaQuery, useTheme } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import { isAxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -43,7 +40,7 @@ export default function Cart({data}:{data:CartDataType}) {
                   موجودی طلای شما
                 </Typography>
                 <Typography variant="body1" fontSize={18}>
-                  {visible ? `${data.total_gold} گرم` :'***'}
+                  {visible ? `${data?.total_gold} گرم` :'***'}
                 </Typography>
               </Stack>
               <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
@@ -51,7 +48,7 @@ export default function Cart({data}:{data:CartDataType}) {
                   موجودی تومان شما
                 </Typography>
                 <Typography variant="body1" fontSize={18}>
-                  {visible ? `${priceFormater(data.total_price)} تومان` :'***'}
+                  {visible ? `${priceFormater(data?.total_price)} تومان` :'***'}
                 </Typography>
               </Stack>
               <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
@@ -59,7 +56,7 @@ export default function Cart({data}:{data:CartDataType}) {
                   تعداد محصول
                 </Typography>
                 <Typography variant="body1" fontSize={18}>
-                  {data.count}
+                  {data?.count}
                 </Typography>
               </Stack>
             </Stack>

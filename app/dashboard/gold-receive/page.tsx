@@ -274,8 +274,8 @@ getData()
               </TableRow>
             ))}
           </TableBody>}
-          tableHead={[]}
-          listLength={0}
+          tableHead={['test']}
+          listLength={deliveryData.length}
         />
       </Grid>
     </Grid>
