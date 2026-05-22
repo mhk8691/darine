@@ -1,11 +1,17 @@
+'use client'
 import Container from '@/app/Components/Containers/Container/Container';
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import WalletHeader from '@/app/Components/Wallet/WalletHeader';
-import { ToggleItemsType } from '@/app/core/Types';
-import { Grid } from '@mui/material';
+import { RecentDeliveriesDataType, ToggleItemsType } from '@/app/core/Types';
+import { Grid, Stack, TableBody, TableCell, TableRow, Typography } from '@mui/material';
 import Cart from './Cart';
-import Sort from './Sort';
 import Products from './Products';
+import { useEffect, useState } from 'react';
+import { isAxiosError } from 'axios';
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+import priceFormater from '@/app/core/PriceFormater';
+import { formatDate } from '@/app/core/FormatDate';
+import { getRecentDelivery } from '@/lib/delivery/delivery';
 
 const items: ToggleItemsType[] = [
   {
@@ -23,7 +29,20 @@ const items: ToggleItemsType[] = [
 ];
 
 export default function page() {
-
+  const [deliveryData,setDeliveryData] = useState<RecentDeliveriesDataType[]>([])
+  useEffect(()=>{
+    const getData = async ()=>{
+      try{
+        const response = await getRecentDelivery()
+        setDeliveryData(response)
+      }catch(error:unknown){
+        if (isAxiosError(error)){
+          showSnackbar(error.response?.data.message)
+        }
+      }
+    }
+    getData()
+  },[])
   return (
     <Grid
       container
@@ -74,7 +93,171 @@ export default function page() {
           type="chip"
           title="لیست تحویل‌های اخیر"
           toggleItems={items}
-          tableBody={<></>}
+          tableBody={   <TableBody>
+            {deliveryData?.map((row) => (
+              <TableRow
+                key={row?.id}
+                sx={{
+                  '&:last-child td': {
+                    border: 0,
+                  },
+                  '&:last-child th': { border: 0 },
+                }}
+              >
+                 <TableCell
+                  align="center"
+                  sx={{
+                    py: 0.9,
+                    px: 2.5,
+                  }}
+                >
+                  <Stack
+                    direction={'row'}
+                    alignItems={'center'}
+                    gap={0.5}
+                    justifyContent={'center'}
+                  >
+                    <Typography variant="body1">{priceFormater(row.amount)}</Typography>
+                    <Typography variant="body2" fontSize={12}>
+                      تومان
+                    </Typography>
+                  </Stack>
+                </TableCell>
+                <TableCell
+                  align="center"
+                  sx={{
+                    py: 0.9,
+                    px: 2.5,
+                  }}
+                >
+                  <Stack
+                    direction={'row'}
+                    alignItems={'center'}
+                    gap={0.5}
+                    justifyContent={'center'}
+                  >
+                    <Typography variant="body1">{row.type_display}</Typography>
+                  </Stack>
+                </TableCell>
+               
+                <TableCell
+                  align="center"
+                  sx={{
+                    py: 0.9,
+                    px: 2.5,
+                  }}
+                >
+                  <Stack
+                    direction={'row'}
+                    alignItems={'center'}
+                    gap={0.5}
+                    justifyContent={'center'}
+                  >
+                    <Typography
+                      variant="body1"
+                    
+                    >
+                        {row.method_display}
+                    </Typography>
+                  </Stack>
+                </TableCell>
+                  <TableCell
+                  align="center"
+                  sx={{
+                    py: 0.9,
+                    px: 2.5,
+                  }}
+                >
+                  <Stack
+                    direction={'row'}
+                    alignItems={'center'}
+                    gap={0.5}
+                    justifyContent={'center'}
+                  >
+                    <Typography
+                      variant="body1"
+                    
+                    >
+                        {row.status_display}
+                    </Typography>
+                  </Stack>
+                </TableCell>
+                 <TableCell
+                  align="center"
+                  sx={{
+                    py: 0.9,
+                    px: 2.5,
+                  }}
+                >
+                  <Stack
+                    direction={'row'}
+                    alignItems={'center'}
+                    gap={0.5}
+                    justifyContent={'center'}
+                  >
+                    <Typography
+                      variant="body1"
+                    
+                    >
+                        {row.receipt_image}
+                    </Typography>
+                  </Stack>
+                </TableCell>
+                <TableCell
+                  align="center"
+                  sx={{
+                    py: 0.9,
+                    px: 2.5,
+                  }}
+                >
+                  <Stack
+                    direction={'row'}
+                    alignItems={'center'}
+                    gap={0.5}
+                    justifyContent={'center'}
+                  >
+                    <Typography
+                      variant="body1"
+                    
+                    >
+                        {row.user_card_number}
+                    </Typography>
+                  </Stack>
+                </TableCell>
+                  <TableCell
+                  align="center"
+                  sx={{
+                    fontSize: '16px',
+                    py: 0.9,
+                    px: 2.5,
+                  }}
+                >
+                  {row.tracking_code}
+                </TableCell>
+                  <TableCell
+                  align="center"
+                  sx={{
+                    fontSize: '16px',
+                    py: 0.9,
+                    px: 2.5,
+                  }}
+                >
+                  {row.description}
+                </TableCell>
+                <TableCell
+                  align="center"
+                  sx={{
+                    fontSize: '16px',
+                    py: 0.9,
+                    px: 2.5,
+                  }}
+                >
+                  {formatDate(row.created_at)}
+                </TableCell>
+                
+              </TableRow>
+            ))}
+          </TableBody>}
           tableHead={[]}
           listLength={0}
         />

@@ -14,10 +14,10 @@ import { getRecentTransaction } from '@/lib/transactions/recent-transactions/rec
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import TransactionTable from '../irt-transaction/TransactionTable';
-export const metadata: Metadata = {
-  title: 'کیف پول | دارینه',
-  description: '',
-};
+// export const metadata: Metadata = {
+//   title: 'کیف پول | دارینه',
+//   description: '',
+// };
 const items: ToggleItemsType[] = [
   {
     title: 'واریز',

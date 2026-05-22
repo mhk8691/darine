@@ -200,3 +200,22 @@ export interface RecentTransactionDataType{
       "created_at": string,
       "updated_at": string,
 }
+
+export interface RecentDeliveriesDataType{
+    "id": number,
+      "amount": number,
+      "type": string,
+      "type_display": string,
+      "method": string,
+      "method_display": string,
+      "status": string,
+      "status_display": string,
+      "receipt_image": string | null,
+      "user_card": string | null,
+      "user_card_number": string | null,
+      "admin_note": string,
+      "tracking_code": string,
+      "description": string,
+      "created_at": string,
+      "updated_at": string,
+}

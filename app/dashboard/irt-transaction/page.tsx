@@ -11,10 +11,10 @@ import { useEffect, useState } from 'react';
 import { getRecentTransaction } from '@/lib/transactions/recent-transactions/recentTransactions';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
-export const metadata: Metadata = {
-  title: 'تراکنش های تومان | دارینه',
-  description: '',
-};
+// export const metadata: Metadata = {
+//   title: 'تراکنش های تومان | دارینه',
+//   description: '',
+// };
 const items: ToggleItemsType[] = [
   {
     title: 'واریز',
