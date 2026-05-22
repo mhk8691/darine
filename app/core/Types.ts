@@ -175,12 +175,14 @@ export interface PriceAlertsDataType {
   created_at: string;
 }
 export interface ChartGoldDataType {
-  "labels": string[],
-    "prices": number[],
-    "highest_price": number,
-    "lowest_price": number,
-    "change_percent": 0,
-}
+  "chart": {
+      "labels": string[],
+      "prices": number[]  },
+    "stats": {
+      "current_price": number,
+      "highest_price": number,
+      "lowest_price": number,
+      "change_percent": number   }  }
 
 export interface RecentTransactionDataType{
     "id": number,

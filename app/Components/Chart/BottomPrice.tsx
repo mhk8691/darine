@@ -42,7 +42,7 @@ export default function BottomPrice({
               sm: 16,
             }}
           >
-            {priceFormater(chartData.highest_price)}
+            {priceFormater(chartData.stats.highest_price)}
             <Box
               component={'span'}
               fontSize={{
@@ -74,7 +74,7 @@ export default function BottomPrice({
               sm: 16,
             }}
           >
-            {priceFormater(chartData.lowest_price)}
+            {priceFormater(chartData.stats.lowest_price)}
             <Box
               component={'span'}
               fontSize={{
@@ -100,13 +100,13 @@ export default function BottomPrice({
           </Typography>
           <Typography
             variant="body1"
-            color={chartData.change_percent >= 0 ?'success':'error'}
+            color={chartData.stats.change_percent >= 0 ?'success':'error'}
             fontSize={{
               xs: 12,
               sm: 16,
             }}
           >
-            {new Intl.NumberFormat('fa-IR').format(chartData.change_percent)}
+            {new Intl.NumberFormat('fa-IR').format(chartData.stats.change_percent)}
             <Box
               component={'span'}
               fontSize={{

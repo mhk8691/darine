@@ -63,7 +63,7 @@ export default function ChartGold({
 
     return () => clearInterval(interval);
   },[select])
-  if (!chartData) return null
+  if (!chartData?.stats || !chartData.chart) return null
   return (
     <Container style={{ px: 2.5, ...cardStyle }}>
       <Typography

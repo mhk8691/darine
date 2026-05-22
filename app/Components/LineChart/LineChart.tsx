@@ -49,7 +49,7 @@ export default function LineChart({
         }}
         series={[
           {
-            data: chartData.prices,
+            data: chartData.chart.prices,
             showMark: false,
             curve: 'bumpX',
             area: true,
@@ -59,7 +59,7 @@ export default function LineChart({
         xAxis={[
           {
             scaleType: 'point',
-            data: chartData.labels,
+            data: chartData.chart.labels,
             height: 35,
             position: noLabel ? 'none' : 'bottom',
           },
