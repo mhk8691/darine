@@ -174,3 +174,10 @@ export interface PriceAlertsDataType {
   is_active: boolean;
   created_at: string;
 }
+export interface ChartGoldDataType {
+  "labels": string[],
+    "prices": string[],
+    "highest_price": number,
+    "lowest_price": number,
+    "change_percent": 0,
+}
