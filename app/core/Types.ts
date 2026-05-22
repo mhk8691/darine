@@ -185,20 +185,11 @@ export interface ChartGoldDataType {
 export interface RecentTransactionDataType{
     "id": number,
       "amount": number,
-      "type": string,
-      "type_display": string,
+      "type":'DEPOSIT'|'WITHDRAW',
       "method": string,
-      "method_display": string,
-      "status": string,
-      "status_display": string,
-      "receipt_image": string | null,
-      "user_card": string | null,
-      "user_card_number": string | null,
-      "admin_note": string,
+      "status":  StatusType,
       "tracking_code": string,
-      "description": string,
       "created_at": string,
-      "updated_at": string,
 }
 
 export interface RecentDeliveriesDataType{
@@ -218,4 +209,11 @@ export interface RecentDeliveriesDataType{
       "description": string,
       "created_at": string,
       "updated_at": string,
+}
+export type StatusType="COMPLETED" | 'FAILED' | 'PENDING'
+export interface TradeTableDataType {
+    "id": number,      "type": "BUY" | 'SELL',      "status": StatusType,      "amount_gr": number,      "price_per_gram": number,      "fee": number,      "total_amount": number,      "tracking_code": string,      "created_at": string
+}
+export interface OrdersDataType{
+  "id": 1,      "tracking_code": string,      "status": StatusType,      "payment_method": string,      "delivery_type": string,      "total_toman_amount": number,      "created_at": string
 }

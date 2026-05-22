@@ -1,6 +1,7 @@
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
-import { ToggleItemsType } from '@/app/core/Types';
+import { RecentTransactionDataType, ToggleItemsType } from '@/app/core/Types';
 import React from 'react';
+import TransactionTable from '../irt-transaction/TransactionTable';
 
 const withdrawItems: ToggleItemsType[] = [
   {
@@ -17,16 +18,23 @@ const withdrawItems: ToggleItemsType[] = [
   },
 ];
 
-export default function WithdrawTable() {
+export default function WithdrawTable({data}:{data:RecentTransactionDataType[]}) {
   return (
     <OrderDetail
       key={3}
       noCard
       toggleItems={withdrawItems}
       type="toggle"
-      tableBody={<></>}
-      tableHead={[]}
-      listLength={0}
+      tableBody={<TransactionTable data={data} />}
+      tableHead={[
+        'قیمت',
+        'نوع تراکنش',
+        'روش',
+        'وضعیت',
+        'کد پیگیری',
+        'تاریخ',
+      ]}
+      listLength={data.length}
     />
   );
 }

@@ -1,5 +1,9 @@
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
-import { ToggleItemsType } from '@/app/core/Types';
+import { formatDate } from '@/app/core/FormatDate';
+import { handleColorStatus, handleTitleStatus } from '@/app/core/handleStatus';
+import priceFormater from '@/app/core/PriceFormater';
+import { ToggleItemsType, TradeTableDataType } from '@/app/core/Types';
+import { Stack, TableBody, TableCell, TableRow, Typography } from '@mui/material';
 import React from 'react';
 
 const trades: ToggleItemsType[] = [
@@ -17,16 +21,191 @@ const trades: ToggleItemsType[] = [
   },
 ];
 
-export default function TradesTable() {
+export default function TradesTable({data}:{data:TradeTableDataType[]}) {
   return (
     <OrderDetail
       key={1}
       noCard
       toggleItems={trades}
       type="toggle"
-      tableBody={<></>}
-      tableHead={[]}
-      listLength={0}
+      tableBody={<TableBody>
+            {data?.map((row) => (
+              <TableRow
+                key={row?.id}
+                sx={{
+                  '&:last-child td': {
+                    border: 0,
+                  },
+                  '&:last-child th': { border: 0 },
+                }}
+              >
+                 <TableCell
+                  align="center"
+                  sx={{
+                    py: 0.9,
+                    px: 2.5,
+                  }}
+                >
+                  <Stack
+                    direction={'row'}
+                    alignItems={'center'}
+                    gap={0.5}
+                    justifyContent={'center'}
+                  >
+                    <Typography variant="body1">{row.type === 'BUY' ? 'خرید':'فروش'}</Typography>
+                  
+                  </Stack>
+                </TableCell>
+                <TableCell
+                  align="center"
+                  sx={{
+                    py: 0.9,
+                    px: 2.5,
+                  }}
+                >
+                  <Stack
+                    direction={'row'}
+                    alignItems={'center'}
+                    gap={0.5}
+                    justifyContent={'center'}
+                  >
+                    <Typography variant="body1" sx={{color:handleColorStatus(row.status)}}>{handleTitleStatus(row.status)}</Typography>
+                  </Stack>
+                </TableCell>
+               
+                <TableCell
+                  align="center"
+                  sx={{
+                    py: 0.9,
+                    px: 2.5,
+                  }}
+                >
+                  <Stack
+                    direction={'row'}
+                    alignItems={'center'}
+                    gap={0.5}
+                    justifyContent={'center'}
+                  >
+                    <Typography
+                      variant="body1"
+                    
+                    >
+                        {row.amount_gr.toLocaleString()} گرم
+                    </Typography>
+                  </Stack>
+                </TableCell>
+                  <TableCell
+                  align="center"
+                  sx={{
+                    py: 0.9,
+                    px: 2.5,
+                  }}
+                >
+                  <Stack
+                    direction={'row'}
+                    alignItems={'center'}
+                    gap={0.5}
+                    justifyContent={'center'}
+                  >
+                    <Typography
+                      variant="body1"
+                    
+                    >
+                        {priceFormater(row.price_per_gram)} تومان
+                    </Typography>
+                  </Stack>
+                </TableCell>
+
+                 <TableCell
+                  align="center"
+                  sx={{
+                    py: 0.9,
+                    px: 2.5,
+                  }}
+                >
+                  <Stack
+                    direction={'row'}
+                    alignItems={'center'}
+                    gap={0.5}
+                    justifyContent={'center'}
+                  >
+                    <Typography
+                      variant="body1"
+                    
+                    >
+                        {priceFormater(row.fee)} تومان
+                    </Typography>
+                  </Stack>
+                </TableCell>
+
+                 <TableCell
+                  align="center"
+                  sx={{
+                    py: 0.9,
+                    px: 2.5,
+                  }}
+                >
+                  <Stack
+                    direction={'row'}
+                    alignItems={'center'}
+                    gap={0.5}
+                    justifyContent={'center'}
+                  >
+                    <Typography
+                      variant="body1"
+                    
+                    >
+                        {priceFormater(row.total_amount)} تومان
+                    </Typography>
+                  </Stack>
+                </TableCell>
+                <TableCell
+                  align="center"
+                  sx={{
+                    py: 0.9,
+                    px: 2.5,
+                  }}
+                >
+                  <Stack
+                    direction={'row'}
+                    alignItems={'center'}
+                    gap={0.5}
+                    justifyContent={'center'}
+                  >
+                    <Typography
+                      variant="body1"
+                    
+                    >
+                        {row.tracking_code}
+                    </Typography>
+                  </Stack>
+                </TableCell>
+             
+                <TableCell
+                  align="center"
+                  sx={{
+                    fontSize: '16px',
+                    py: 0.9,
+                    px: 2.5,
+                  }}
+                >
+                  {formatDate(row.created_at)}
+                </TableCell>
+                
+              </TableRow>
+            ))}
+          </TableBody>}
+      tableHead={[
+        'نوع معامله',
+        'وضعیت',
+        'مقدار طلا',
+        'قیمت',
+        'کارمزد',
+        'قیمت نهایی',
+        'کد پیگیری',
+        'تاریخ',
+      ]}
+      listLength={data.length}
     />
   );
 }

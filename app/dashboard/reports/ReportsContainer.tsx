@@ -4,24 +4,18 @@ import { ReactNode, useEffect, useState } from "react";
 import TradesTable from "./TradesTable";
 import DepositTable from "./DepositTable";
 import WithdrawTable from "./WithdrawTable";
-import GiftTable from "./GiftTable";
-import ReceiveTable from "./ReceiveTable";
 import { getReports } from "@/lib/getReports/getReports";
+import OrdersTable from "./OrdersTable";
 const tabs = [
   { title: 'معاملات' },
   { title: 'واریز' },
   { title: 'برداشت' },
-  { title: 'کارت هدیه' },
-  { title: 'تحویل فیزیکی' },
+  {
+    title:'سفارش ها'
+  }
 ];
-const children: ReactNode[] = [
-  <TradesTable key={1} />,
-  <DepositTable key={2} />,
-  <WithdrawTable key={3} />,
-  <GiftTable key={4} />,
-  <ReceiveTable key={5} />,
-];
-const tabUrl = ['trades', 'deposits', 'withdrawals', 'giftcards', 'physical_orders'];
+
+const tabUrl = ['gold', 'deposit', 'withdraw',  'orders'];
 export default function ReportsContainer() {
       const [value, setValue] = useState(0);
   const [data, setData] = useState([]);
@@ -32,6 +26,12 @@ export default function ReportsContainer() {
     };
     getData();
   }, [value]);
+  const children: ReactNode[] = [
+  <TradesTable   data={data}  key={1} />,
+  <DepositTable  data={data}  key={2} />,
+  <WithdrawTable data={data}   key={3} />,
+  <OrdersTable  data={data} key={4} />,
+];
   return (
          <CustomTabs
             tabList={tabs}

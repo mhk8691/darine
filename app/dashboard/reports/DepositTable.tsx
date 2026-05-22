@@ -1,6 +1,7 @@
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
-import { ToggleItemsType } from '@/app/core/Types';
+import { RecentTransactionDataType, ToggleItemsType } from '@/app/core/Types';
 import React from 'react';
+import TransactionTable from '../irt-transaction/TransactionTable';
 
 const depositItems: ToggleItemsType[] = [
   {
@@ -23,16 +24,23 @@ const depositItems: ToggleItemsType[] = [
   },
 ];
 
-export default function DepositTable() {
+export default function DepositTable({data}:{data:RecentTransactionDataType[]}) {
   return (
     <OrderDetail
       key={2}
       noCard
       toggleItems={depositItems}
       type="toggle"
-      tableBody={<></>}
-      tableHead={[]}
-      listLength={0}
+       tableBody={<TransactionTable data={data} />}
+      tableHead={[
+        'قیمت',
+        'نوع تراکنش',
+        'روش',
+        'وضعیت',
+        'کد پیگیری',
+        'تاریخ',
+      ]}
+      listLength={data.length}
     />
   );
 }
