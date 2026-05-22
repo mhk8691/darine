@@ -8,9 +8,11 @@ interface Props{
   city:string
   address:string
 province:string
+plaque:string
+unit:string
 }
 
-export default function FinalApproval({weight,price,count,city,province,address}:Props) {
+export default function FinalApproval({weight,price,count,city,province,address,plaque,unit}:Props) {
   return (
     <Stack border={1} px={4} py={2} borderRadius={2} borderColor={'background.paper'}>
       <Typography
@@ -324,7 +326,7 @@ export default function FinalApproval({weight,price,count,city,province,address}
         }}
       /> */}
 
-      <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
+      {/* <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
         <Typography
           variant="body1"
           fontSize={{
@@ -342,9 +344,9 @@ export default function FinalApproval({weight,price,count,city,province,address}
             sm: 16,
           }}
         >
-          {`${province},${city},${address}`}
+          {`${province},${city},${address},${plaque},${unit}`}
         </Typography>
-      </Stack>
+      </Stack> */}
     </Stack>
   );
 }

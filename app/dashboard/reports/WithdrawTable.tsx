@@ -22,8 +22,8 @@ export default function WithdrawTable({data}:{data:RecentTransactionDataType[]})
   return (
     <OrderDetail
       key={3}
-      noCard
       toggleItems={withdrawItems}
+      noCard
       type="toggle"
       tableBody={<TransactionTable data={data} />}
       tableHead={[

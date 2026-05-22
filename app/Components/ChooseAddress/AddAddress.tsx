@@ -5,9 +5,6 @@ import { Button, IconButton, Stack, Typography } from '@mui/material';
 import { Dispatch, SetStateAction, useState } from 'react';
 import ChooseCity from './ChooseCity';
 import NewAddress from './NewAddress';
-import { giftCardOrder } from '@/lib/giftCard/giftCard';
-import { showSnackbar } from '../Snackbar/Snackbar';
-import { isAxiosError } from 'axios';
 
 
 interface Props {
@@ -20,8 +17,14 @@ setProvince:Dispatch<SetStateAction<string>>
 city:string
 setCity:Dispatch<SetStateAction<string>>
 setActiveStep:React.Dispatch<React.SetStateAction<number>>
+setPlaque:React.Dispatch<React.SetStateAction<string>>
+setUnit:React.Dispatch<React.SetStateAction<string>>
+setPostCode:React.Dispatch<React.SetStateAction<string>>
+plaque:string
+unit:string
+postCode:string
 }
-export default function AddAddress({ open, setOpen,setAddress,address,province,setCity,city,setProvince,setActiveStep }: Props) {
+export default function AddAddress({ open, setOpen,setAddress,address,province,setCity,city,setProvince,setActiveStep,setPlaque,setPostCode,postCode,plaque,setUnit,unit }: Props) {
   const [step, setStep] = useState(0);
 
   return (
@@ -42,7 +45,7 @@ export default function AddAddress({ open, setOpen,setAddress,address,province,s
           </IconButton>
         </Stack>
         {step === 0 && <ChooseCity city={city} setCity={setCity} province={province} setProvince={setProvince} />}
-        {step === 1 && <NewAddress setAddress={setAddress} address={address} />}
+        {step === 1 && <NewAddress setAddress={setAddress} address={address} setPlaque={setPlaque} plaque={plaque} postCode={postCode} setPostCode={setPostCode} setUnit={setUnit} unit={unit} />}
 
         <Stack direction={'row'} gap={3} mt={3}>
           <Button

@@ -27,7 +27,8 @@ export default function Withdraw() {
       select === 'silver' ? 'SILVER' : 'BANK',
       selectedCard?selectedCard:undefined,
     );
-    showSnackbar(response.message)
+    showSnackbar(response.message,true)
+    setPrice('')
  }catch(error:unknown){
   if (isAxiosError(error)){
     showSnackbar(error.response?.data.message)
@@ -58,7 +59,7 @@ export default function Withdraw() {
       <Stack gap={3.5}>
         <Stack direction={'column'} gap={3}>
           <InputField placeholder={'ملبغ'} title={'تومان'} value={price} setValue={setPrice} />
-          <Button
+          {/* <Button
             variant="contained"
             sx={{
               bgcolor: '#FEF2C0',
@@ -73,7 +74,7 @@ export default function Withdraw() {
             }}
           >
             انتخاب کل موجودی
-          </Button>
+          </Button> */}
         </Stack>
         {select !== 'silver' && (
           <BankCard

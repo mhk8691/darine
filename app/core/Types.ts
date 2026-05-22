@@ -150,9 +150,10 @@ export interface WalletHeaderDataType {
 export interface RefrraDataType {
   referral_code: string;
   total_invited: number;
-  total_earned_toman: number;
-  commission_rate: string;
-  message: string;
+  total_earned: number;
+  referral_link:string
+  // commission_rate: string;
+  // message: string;
 }
 
 export interface PriceAlertsDataType {
@@ -220,4 +221,14 @@ total_price	:number
 total_price:	number,
 total_gold:	number,
 count	:number,
+}
+export interface AddressesDataType {
+    "id": number,
+      "type": string,
+      "province": string,
+      "city":string,
+      "address":string
+      "postal_code": string,
+      "plaque": string,
+      "unit": string
 }

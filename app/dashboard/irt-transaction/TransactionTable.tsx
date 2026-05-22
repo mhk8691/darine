@@ -21,7 +21,7 @@ export default function TransactionTable({data}:{data:RecentTransactionDataType[
                          <TableCell
                       align="center"
                       sx={{
-                        py: 1.5,
+                        py: 2.5,
                         px: 2.5,
                       }}
                     >
@@ -42,7 +42,7 @@ export default function TransactionTable({data}:{data:RecentTransactionDataType[
                      <TableCell
                       align="center"
                       sx={{
-                        py: 1.5,
+                        py: 2.5,
                         px: 2.5,
                       }}
                     >
@@ -59,7 +59,7 @@ export default function TransactionTable({data}:{data:RecentTransactionDataType[
                     <TableCell
                       align="center"
                       sx={{
-                        py: 1.5,
+                        py: 2.5,
                         px: 2.5,
                       }}
                     >
@@ -80,7 +80,7 @@ export default function TransactionTable({data}:{data:RecentTransactionDataType[
                     <TableCell
                       align="center"
                       sx={{
-                        py: 1.5,
+                        py: 2.5,
                         px: 2.5,
                       }}
                     >
@@ -102,7 +102,7 @@ export default function TransactionTable({data}:{data:RecentTransactionDataType[
                     <TableCell
                       align="center"
                       sx={{
-                        py: 1.5,
+                        py: 2.5,
                         px: 2.5,
                       }}
                     >
@@ -125,7 +125,7 @@ export default function TransactionTable({data}:{data:RecentTransactionDataType[
                       align="center"
                       sx={{
                         fontSize: '16px',
-                        py: 1.5,
+                        py: 2.5,
                         px: 2.5,
                       }}
                     >

@@ -58,7 +58,7 @@ export default function Invite() {
               sm: 18,
             }}
           >
-            با دعوت از دوستان خود {referralData.commission_rate} از کارمزد هر خرید آن‌ها، برای شما
+            با دعوت از دوستان خود 20% از کارمزد هر خرید آن‌ها، برای شما
             واریز خواهد شد.
           </Typography>
           <Typography
@@ -138,7 +138,7 @@ export default function Invite() {
                 }}
                 sx={{ color: 'text.title' }}
               >
-                {priceFormater(referralData.total_earned_toman)} تومان
+                {priceFormater(referralData.total_earned)} تومان
               </Typography>
             </Stack>
           </Container>

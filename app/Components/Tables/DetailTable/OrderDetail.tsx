@@ -119,6 +119,11 @@ export default function OrderDetail({
           <CustomDatePicker />
         </Stack>
       </Stack>
+       {listLength > 0 ? (
+        <Stack mt={5}>
+          <CustomTable heads={tableHead}>{tableBody}</CustomTable>
+        </Stack>
+      ) : (
       <Stack
         mt={10}
         mb={8}
@@ -154,6 +159,7 @@ export default function OrderDetail({
           {emptyMessage || message}
         </Typography>
       </Stack>
+      )}
     </>
   ) : (
     <Card

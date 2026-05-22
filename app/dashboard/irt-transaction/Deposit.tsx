@@ -51,7 +51,8 @@ export default function Deposit() {
       }
     try{
       const response =await goldDeposit(formData)
-        showSnackbar(response?.message)
+        showSnackbar(response?.message,true)
+        setPrice('')
     }catch(error:unknown){
       if (isAxiosError(error)){
         showSnackbar(error.response?.data.message)
@@ -60,11 +61,15 @@ export default function Deposit() {
   };
 
   const handleClick = ()=>{
-    if (!depositData && select === 'gateway'){
+    if (select === 'gateway'){
       handleDeposit('GATEWAY')
     }else{
-      handleDeposit('RECEIPT')
-    }
+      if (!depositData){
+        setOpen(true)
+      }else{
+        handleDeposit('RECEIPT')
+      }
+        }
   }
   return (
     <>
@@ -103,12 +108,13 @@ export default function Deposit() {
                   sm: 14,
                 },
               }}
+              onClick={()=>setPrice('400000000')}
             >
               انتخاب حداکثر مقدار واریز
             </Button>
           </Stack>
         )}
-        {select === 'receipt' && (
+        {select === 'receipt' &&(
           <BankCard
             bankCardsData={bankCardsData}
             setBankCardsData={setBankCardsData}

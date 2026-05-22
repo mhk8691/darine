@@ -28,9 +28,9 @@ export default function DepositTable({data}:{data:RecentTransactionDataType[]}) 
   return (
     <OrderDetail
       key={2}
-      noCard
       toggleItems={depositItems}
       type="toggle"
+      noCard
        tableBody={<TransactionTable data={data} />}
       tableHead={[
         'قیمت',

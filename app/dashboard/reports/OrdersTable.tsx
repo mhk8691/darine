@@ -25,9 +25,9 @@ export default function OrdersTable({data}:{data:OrdersDataType[]}) {
   return (
     <OrderDetail
       key={1}
-      noCard
       toggleItems={receiveItems}
       type="toggle"
+      noCard
       tableBody={<TableBody>
             {data?.map((row) => (
               <TableRow
@@ -42,7 +42,7 @@ export default function OrdersTable({data}:{data:OrdersDataType[]}) {
                  <TableCell
                   align="center"
                   sx={{
-                    py: 0.9,
+                    py: 2.5,
                     px: 2.5,
                   }}
                 >
@@ -63,7 +63,7 @@ export default function OrdersTable({data}:{data:OrdersDataType[]}) {
                 <TableCell
                   align="center"
                   sx={{
-                    py: 0.9,
+                    py: 2.5,
                     px: 2.5,
                   }}
                 >
@@ -80,7 +80,7 @@ export default function OrdersTable({data}:{data:OrdersDataType[]}) {
                  <TableCell
                   align="center"
                   sx={{
-                    py: 0.9,
+                    py: 2.5,
                     px: 2.5,
                   }}
                 >
@@ -99,7 +99,7 @@ export default function OrdersTable({data}:{data:OrdersDataType[]}) {
                 <TableCell
                   align="center"
                   sx={{
-                    py: 0.9,
+                    py: 2.5,
                     px: 2.5,
                   }}
                 >
@@ -121,7 +121,7 @@ export default function OrdersTable({data}:{data:OrdersDataType[]}) {
                   <TableCell
                   align="center"
                   sx={{
-                    py: 0.9,
+                    py: 2.5,
                     px: 2.5,
                   }}
                 >
@@ -149,7 +149,7 @@ export default function OrdersTable({data}:{data:OrdersDataType[]}) {
                   align="center"
                   sx={{
                     fontSize: '16px',
-                    py: 0.9,
+                    py: 2.5,
                     px: 2.5,
                   }}
                 >

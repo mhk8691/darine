@@ -11,12 +11,15 @@ const inputStyle: SxProps = {
 interface Props{
       address:string
   setAddress:Dispatch<SetStateAction<string>>
+  setPlaque:React.Dispatch<React.SetStateAction<string>>
+setUnit:React.Dispatch<React.SetStateAction<string>>
+setPostCode:React.Dispatch<React.SetStateAction<string>>
+plaque:string
+unit:string
+postCode:string
 }
-export default function NewAddress({address,
-setAddress}:Props) {
-  // const [plaque, setPlaque] = useState('');
-  // const [unit, setUnit] = useState('');
-  // const [postCode, setPostCode] = useState('');
+export default function NewAddress({address,plaque,postCode,setPlaque,setPostCode,setUnit,unit,setAddress}:Props) {
+
   return (
     <Grid container spacing={2} width={'100%'}>
       <Grid size={12}>
@@ -27,7 +30,7 @@ setAddress}:Props) {
           style={inputStyle}
         />
       </Grid>
-      {/* <Grid size={6}>
+      <Grid size={6}>
         <InputField placeholder="پلاک" value={plaque} setValue={setPlaque} style={inputStyle} />
       </Grid>
       <Grid size={6}>
@@ -40,7 +43,7 @@ setAddress}:Props) {
           setValue={setPostCode}
           style={inputStyle}
         />
-      </Grid> */}
+      </Grid>
     </Grid>
   );
 }

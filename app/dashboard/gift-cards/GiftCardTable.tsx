@@ -19,7 +19,7 @@ export default function GiftCardTable({giftCardsList}:{giftCardsList:GiftCardLis
                 <TableCell
                   align="center"
                   sx={{
-                    py: 0.9,
+                    py: 2.5,
                     px: 2.5,
                   }}
                 >
@@ -35,7 +35,7 @@ export default function GiftCardTable({giftCardsList}:{giftCardsList:GiftCardLis
                 <TableCell
                   align="center"
                   sx={{
-                    py: 0.9,
+                    py: 2.5,
                     px: 2.5,
                   }}
                 >
@@ -54,7 +54,7 @@ export default function GiftCardTable({giftCardsList}:{giftCardsList:GiftCardLis
                 <TableCell
                   align="center"
                   sx={{
-                    py: 0.9,
+                    py: 2.5,
                     px: 2.5,
                   }}
                 >
@@ -78,7 +78,7 @@ export default function GiftCardTable({giftCardsList}:{giftCardsList:GiftCardLis
                   align="center"
                   sx={{
                     fontSize: '16px',
-                    py: 0.9,
+                    py: 2.5,
                     px: 2.5,
                   }}
                 >

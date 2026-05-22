@@ -25,8 +25,8 @@ export default function TradesTable({data}:{data:TradeTableDataType[]}) {
   return (
     <OrderDetail
       key={1}
-      noCard
       toggleItems={trades}
+      noCard
       type="toggle"
       tableBody={<TableBody>
             {data?.map((row) => (
@@ -42,7 +42,7 @@ export default function TradesTable({data}:{data:TradeTableDataType[]}) {
                  <TableCell
                   align="center"
                   sx={{
-                    py: 0.9,
+                    py: 2.5,
                     px: 2.5,
                   }}
                 >
@@ -59,7 +59,7 @@ export default function TradesTable({data}:{data:TradeTableDataType[]}) {
                 <TableCell
                   align="center"
                   sx={{
-                    py: 0.9,
+                    py: 2.5,
                     px: 2.5,
                   }}
                 >
@@ -76,7 +76,7 @@ export default function TradesTable({data}:{data:TradeTableDataType[]}) {
                 <TableCell
                   align="center"
                   sx={{
-                    py: 0.9,
+                    py: 2.5,
                     px: 2.5,
                   }}
                 >
@@ -90,14 +90,14 @@ export default function TradesTable({data}:{data:TradeTableDataType[]}) {
                       variant="body1"
                     
                     >
-                        {row.amount_gr.toLocaleString()} گرم
+                        {row.amount_gr} گرم
                     </Typography>
                   </Stack>
                 </TableCell>
                   <TableCell
                   align="center"
                   sx={{
-                    py: 0.9,
+                    py: 2.5,
                     px: 2.5,
                   }}
                 >
@@ -119,7 +119,7 @@ export default function TradesTable({data}:{data:TradeTableDataType[]}) {
                  <TableCell
                   align="center"
                   sx={{
-                    py: 0.9,
+                    py: 2.5,
                     px: 2.5,
                   }}
                 >
@@ -141,7 +141,7 @@ export default function TradesTable({data}:{data:TradeTableDataType[]}) {
                  <TableCell
                   align="center"
                   sx={{
-                    py: 0.9,
+                    py: 2.5,
                     px: 2.5,
                   }}
                 >
@@ -162,7 +162,7 @@ export default function TradesTable({data}:{data:TradeTableDataType[]}) {
                 <TableCell
                   align="center"
                   sx={{
-                    py: 0.9,
+                    py: 2.5,
                     px: 2.5,
                   }}
                 >
@@ -185,7 +185,7 @@ export default function TradesTable({data}:{data:TradeTableDataType[]}) {
                   align="center"
                   sx={{
                     fontSize: '16px',
-                    py: 0.9,
+                    py: 2.5,
                     px: 2.5,
                   }}
                 >

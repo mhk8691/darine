@@ -16,6 +16,8 @@ import WeightDetermination from './WeightDetermination';
 import { giftCardOrder } from '@/lib/giftCard/giftCard';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { isAxiosError } from 'axios';
+import { AddressesDataType } from '@/app/core/Types';
+import { useRouter } from 'next/navigation';
 
 const CustomConnector = styled(StepConnector)(() => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -73,6 +75,7 @@ function CustomStepIcon(props: StepIconProps) {
 const steps = ['تعیین وزن', 'تعیین آدرس', 'تایید نهایی'];
 
 export default function GiftStepper() {
+  const router = useRouter()
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set<number>());
   const [weight, setWeight] = React.useState('');
@@ -80,12 +83,18 @@ export default function GiftStepper() {
   const [count, setCount] = React.useState<number>(1);
   const [open, setOpen] = React.useState(false);
   const [address, setAddress] = React.useState('تست');
-    const [province, setProvince] = React.useState('');
+  const [province, setProvince] = React.useState('');
   const [city, setCity] = React.useState('');
+  const [plaque, setPlaque] = React.useState('');
+  const [unit, setUnit] = React.useState('');
+  const [postCode, setPostCode] = React.useState('');
+  const [addresses,setAddresses] = React.useState<AddressesDataType[]>([])
+  const [addressId, setAddressId] = React.useState(0);
   const giftCard = async ()=>{
     try{
-      const response = await giftCardOrder(weight,count,province,city,address)
+      const response = await giftCardOrder(weight,count,province,city,address,plaque,unit,postCode,addressId != 0 ?addressId :undefined)
       showSnackbar(response.message,true)
+      router.push('/dashboard/gift-cards')
     }catch(error:unknown){
       if (isAxiosError(error)){
         showSnackbar(error.response?.data.message)
@@ -108,7 +117,13 @@ export default function GiftStepper() {
         setSkipped(newSkipped);
       }
     } else if (activeStep === 1) {
-      setOpen(true);
+      if (addresses.length === 0){
+        setOpen(true);
+      } else{
+          setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        setSkipped(newSkipped);
+      }
+      
     } else {
       // newSkipped = new Set(newSkipped.values());
       // newSkipped.delete(activeStep);
@@ -232,9 +247,21 @@ province={province}
 setProvince={setProvince}
 city={city}
 setCity={setCity}
+setPlaque={setPlaque}
+setPostCode={setPostCode}
+setUnit={setUnit}
+plaque={plaque}
+postCode={postCode}
+unit={unit}
+setAddresses={setAddresses}
+addresses={addresses}
+addressId={addressId} 
+setAddressId={setAddressId
+}
               />
             )}
-            {activeStep === 2 && <FinalApproval city={city} price={price} province={province} address={address} count={count} weight={weight} />}
+            {activeStep === 2 && <FinalApproval plaque={plaque}
+unit={unit} city={city} price={price} province={province} address={address} count={count} weight={weight} />}
 
             <Stack direction={'row'} gap={3} mt={activeStep === 2 ? 2 : 7}>
               <Button
@@ -258,7 +285,7 @@ setCity={setCity}
                   },
                 }}
               >
-                {activeStep === 2 ? 'تایید سفارش' : activeStep === 1 ? 'افزودن آدرس' : 'ادامه'}
+                {activeStep === 2 ? 'تایید سفارش' : activeStep === 1 && addresses.length ===0 ? 'افزودن آدرس' : 'ادامه'}
               </Button>
 
               {activeStep !== 0 && (

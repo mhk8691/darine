@@ -90,10 +90,11 @@ export default function page() {
       >
         <Grid container spacing={1} size={12}>
           <Grid
-            size={{
-              xs: 12,
-              md: 8,
-            }}
+            // size={{
+            //   xs: 12,
+            //   md: 8,
+            // }}
+            size={12}
             container
             spacing={{
               xs: 1,
@@ -102,7 +103,7 @@ export default function page() {
           >
            <Products cartData={cartData} getCartData={getData} />
           </Grid>
-          <Cart data={cartData} />
+          {/* <Cart data={cartData} /> */}
         </Grid>
       </Container>
       {/* <Grid size={12}>
