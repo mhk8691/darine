@@ -1,7 +1,7 @@
 import Container from "@/app/Components/Containers/Container/Container";
 import CustomModal from "@/app/Components/CustomModal/CustomModal";
 import { DepositDataType } from "@/app/core/Types";
-import { getGoldDeposit } from "@/lib/deposit/deposit";
+import { getGoldDeposit } from "@/lib/transactions/deposit/deposit";
 import { Close } from "@mui/icons-material";
 import {
   Checkbox,

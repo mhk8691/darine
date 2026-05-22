@@ -9,10 +9,10 @@ import BankCard from './BankCard';
 import { getBankCard } from '@/lib/getbankCard/bankCard';
 import Container from '@/app/Components/Containers/Container/Container';
 import DepositConfirm from './DepositConfirm';
-import {  goldDeposit } from '@/lib/deposit/deposit';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { isAxiosError } from 'axios';
 import { Upload } from '@mui/icons-material';
+import { goldDeposit } from '@/lib/transactions/deposit/deposit';
 
 const items: ToggleItemsType[] = [
   { title: 'درگاه پرداخت', value: 'gateway', id: 1 },

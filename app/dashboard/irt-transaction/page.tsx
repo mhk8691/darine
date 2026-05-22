@@ -1,10 +1,16 @@
+'use client'
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import WalletHeader from '@/app/Components/Wallet/WalletHeader';
-import { ToggleItemsType } from '@/app/core/Types';
+import { RecentTransactionDataType, ToggleItemsType } from '@/app/core/Types';
 import { Grid } from '@mui/material';
 import { Metadata } from 'next';
 import TransactionContainer from './TransactionContainer';
 import BackLink from '../BackLink';
+import TransactionTable from './TransactionTable';
+import { useEffect, useState } from 'react';
+import { getRecentTransaction } from '@/lib/transactions/recent-transactions/recentTransactions';
+import { isAxiosError } from 'axios';
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 export const metadata: Metadata = {
   title: 'تراکنش های تومان | دارینه',
   description: '',
@@ -43,6 +49,20 @@ const items: ToggleItemsType[] = [
 ];
 
 export default function page() {
+  const [transactionData,setTransactionData] = useState<RecentTransactionDataType[]>([])
+  useEffect(()=>{
+    const getData = async ()=>{
+      try{
+        const response = await getRecentTransaction()
+        setTransactionData(response)
+      }catch(error:unknown){
+        if (isAxiosError(error)){
+          showSnackbar(error.response?.data.message)
+        }
+      }
+    }
+    getData()
+  },[])
   return (
     <Grid
       container
@@ -62,11 +82,21 @@ export default function page() {
           title="لیست تراکنش های اخیر"
           toggleItems={items}
           type="chip"
-          tableBody={<></>}
-          tableHead={[]}
-          listLength={0}
+          tableBody={<TransactionTable data={transactionData} />}
+          tableHead={[
+            'مبلغ',
+            'نوع تراکنش',
+            'روش',
+            'وضعیت',
+            'تصویر رسید',
+            'شماره کارت',
+            'کد پیگیری',
+            'توضیحات',
+            'تاریخ',
+          ]}
+          listLength={transactionData.length}
         />
       </Grid>
     </Grid>
-  );
+  );  
 }

@@ -1,13 +1,19 @@
+'use client'
 import {
   default as Card,
 } from '@/app/Components/Containers/Container/Container';
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import Wallet from '@/app/Components/Wallet/Wallet';
-import { ToggleItemsType } from '@/app/core/Types';
+import { RecentTransactionDataType, ToggleItemsType } from '@/app/core/Types';
 import { Grid, Stack, Typography } from '@mui/material';
 import { Metadata } from 'next';
 import BackLink from '../BackLink';
 import AllAssets from './AllAssets';
+import { useEffect, useState } from 'react';
+import { getRecentTransaction } from '@/lib/transactions/recent-transactions/recentTransactions';
+import { isAxiosError } from 'axios';
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+import TransactionTable from '../irt-transaction/TransactionTable';
 export const metadata: Metadata = {
   title: 'کیف پول | دارینه',
   description: '',
@@ -45,6 +51,20 @@ const items: ToggleItemsType[] = [
   },
 ];
 export default async function page() {
+  const [transactionData,setTransactionData] = useState<RecentTransactionDataType[]>([])
+    useEffect(()=>{
+      const getData = async ()=>{
+        try{
+          const response = await getRecentTransaction()
+          setTransactionData(response)
+        }catch(error:unknown){
+          if (isAxiosError(error)){
+            showSnackbar(error.response?.data.message)
+          }
+        }
+      }
+      getData()
+    },[])
   return (
     <Grid
       container
@@ -261,9 +281,19 @@ export default async function page() {
             type="chip"
             title="لیست تراکنش‌‌های اخیر"
             toggleItems={items}
-            tableBody={<></>}
-            listLength={0}
-            tableHead={[]}
+            tableBody={<TransactionTable data={transactionData} />}
+            listLength={transactionData.length}
+             tableHead={[
+            'مبلغ',
+            'نوع تراکنش',
+            'روش',
+            'وضعیت',
+            'تصویر رسید',
+            'شماره کارت',
+            'کد پیگیری',
+            'توضیحات',
+            'تاریخ',
+          ]}
           />
         </Stack>
       </Grid>

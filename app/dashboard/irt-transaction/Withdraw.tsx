@@ -6,10 +6,10 @@ import { BankCardDataType, ToggleItemsType } from '@/app/core/Types';
 import { Button, Stack } from '@mui/material';
 import { useEffect, useState } from 'react';
 import BankCard from './BankCard';
-import { goldWidthdraw } from '@/lib/withdraw/withdraw';
 import { getBankCard } from '@/lib/getbankCard/bankCard';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+import { goldWidthdraw } from '@/lib/transactions/withdraw/withdraw';
 
 const items: ToggleItemsType[] = [
   { title: 'به حساب بانکی', value: 'bank', id: 1 },

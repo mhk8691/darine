@@ -1,7 +1,7 @@
 import { isAxiosError } from "axios";
-import api from "../api";
 import { showSnackbar } from "@/app/Components/Snackbar/Snackbar";
 import { DepositDataType } from "@/app/core/Types";
+import api from "@/lib/api";
 
 export const goldDeposit = async (data:FormData) => {
     const response = await api.post<{ message: string }>("/gold/deposit/", {
