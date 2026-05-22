@@ -176,7 +176,7 @@ export interface PriceAlertsDataType {
 }
 export interface ChartGoldDataType {
   "labels": string[],
-    "prices": string[],
+    "prices": number[],
     "highest_price": number,
     "lowest_price": number,
     "change_percent": 0,

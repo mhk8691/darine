@@ -1,3 +1,4 @@
+import { ChartGoldDataType } from '@/app/core/Types';
 import { useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
 import { LineChart as LineChartGold } from '@mui/x-charts/LineChart';
@@ -5,8 +6,7 @@ import { LineChart as LineChartGold } from '@mui/x-charts/LineChart';
 const margin = { top: 0, bottom: 0, left: 10 };
 
 interface Props {
-  data: Array<number>;
-  label: string[];
+ chartData:ChartGoldDataType
   width: string;
   height: string;
   color: string;
@@ -14,8 +14,7 @@ interface Props {
   noLabel: boolean;
 }
 export default function LineChart({
-  data,
-  label,
+  chartData,
   width,
   height,
   color,
@@ -50,7 +49,7 @@ export default function LineChart({
         }}
         series={[
           {
-            data: data,
+            data: chartData.prices,
             showMark: false,
             curve: 'bumpX',
             area: true,
@@ -60,8 +59,8 @@ export default function LineChart({
         xAxis={[
           {
             scaleType: 'point',
-            data: label,
-            height: 30,
+            data: chartData.labels,
+            height: 35,
             position: noLabel ? 'none' : 'bottom',
           },
         ]}

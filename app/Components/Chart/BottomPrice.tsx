@@ -1,12 +1,15 @@
 import { Box, Divider, Stack, SxProps, Typography } from '@mui/material';
 import priceFormater from '../../core/PriceFormater';
+import { ChartGoldDataType } from '@/app/core/Types';
 
 export default function BottomPrice({
   priceStyle,
   dividerStyle,
+  chartData
 }: {
   priceStyle?: SxProps;
   dividerStyle?: SxProps;
+  chartData:ChartGoldDataType
 }) {
   return (
     <>
@@ -39,7 +42,7 @@ export default function BottomPrice({
               sm: 16,
             }}
           >
-            {priceFormater(18680000)}
+            {priceFormater(chartData.highest_price)}
             <Box
               component={'span'}
               fontSize={{
@@ -71,7 +74,7 @@ export default function BottomPrice({
               sm: 16,
             }}
           >
-            {priceFormater(16320000)}
+            {priceFormater(chartData.lowest_price)}
             <Box
               component={'span'}
               fontSize={{
@@ -97,13 +100,13 @@ export default function BottomPrice({
           </Typography>
           <Typography
             variant="body1"
-            color="error"
+            color={chartData.change_percent >= 0 ?'success':'error'}
             fontSize={{
               xs: 12,
               sm: 16,
             }}
           >
-            {new Intl.NumberFormat('fa-IR').format(1.11)}
+            {new Intl.NumberFormat('fa-IR').format(chartData.change_percent)}
             <Box
               component={'span'}
               fontSize={{

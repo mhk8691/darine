@@ -4,15 +4,13 @@ import LineChart from '../LineChart/LineChart';
 import BottomPrice from './BottomPrice';
 import TopPrice from './TopPrice';
 import FilterToggleButton from '../FilterToggleButton/FilterToggleButton';
-import { useState } from 'react';
-import { ToggleItemsType } from '@/app/core/Types';
+import { useEffect, useState } from 'react';
+import { ChartGoldDataType, ToggleItemsType } from '@/app/core/Types';
 import Container from '../Containers/Container/Container';
+import { getChartGold } from '@/lib/chart/getChartGold';
+import { isAxiosError } from 'axios';
+import { showSnackbar } from '../Snackbar/Snackbar';
 
-const pData = [
-  2350, 200, 300, 600, 802, 5000, 3290, 100, 200, 400, 300, 2435, 2450, 2465, 2455, 2470, 2480,
-  2475, 2490, 2500, 2495, 2510, 2520, 2515,
-];
-const xLabels = Array.from({ length: 24 }, (_, i) => `${i}:00`);
 
 interface Props {
   positionPrice: 'top' | 'bottom' | 'both';
@@ -25,17 +23,17 @@ const toggleItems: ToggleItemsType[] = [
   {
     id: 1,
     title: '۲۴ ساعت اخیر',
-    value: 'lastDay',
+    value: '24TH',
   },
   {
     id: 2,
     title: 'هفتگی',
-    value: 'lastWeek',
+    value: 'WEEK',
   },
   {
     id: 3,
     title: 'ماهانه',
-    value: 'lastMonth',
+    value: 'MONTH',
   },
 ];
 export default function ChartGold({
@@ -46,6 +44,26 @@ export default function ChartGold({
   priceStyle,
 }: Props) {
   const [select, setSelect] = useState(toggleItems[0]?.value);
+  const [chartData,setChartData] = useState<ChartGoldDataType | null>(null)
+  useEffect(()=>{
+    const getData = async ()=>{
+     try{
+       const response = await getChartGold(select)
+      setChartData(response)
+     }catch(error:unknown){
+      if (isAxiosError(error)){
+        showSnackbar(error.response?.data.message)
+      }
+     }
+    }
+       getData();
+        const interval = setInterval(() => {
+      getData();
+    }, 45 * 1000);
+
+    return () => clearInterval(interval);
+  },[select])
+  if (!chartData) return null
   return (
     <Container style={{ px: 2.5, ...cardStyle }}>
       <Typography
@@ -91,19 +109,18 @@ export default function ChartGold({
           />
         </Stack>
       </Stack>
-      {(positionPrice === 'top' || positionPrice === 'both') && <TopPrice />}
+      {(positionPrice === 'top' || positionPrice === 'both') && <TopPrice chartData={chartData} />}
 
       <LineChart
         width="100%"
         height={chartHeight || '180px'}
         noGradiant={false}
         color="#FFD700"
-        data={pData}
-        label={xLabels}
+       chartData={chartData}
         noLabel={false}
       />
       {(positionPrice === 'bottom' || positionPrice === 'both') && (
-        <BottomPrice priceStyle={priceStyle} dividerStyle={dividerStyle} />
+        <BottomPrice priceStyle={priceStyle} dividerStyle={dividerStyle} chartData={chartData} />
       )}
     </Container>
   );
