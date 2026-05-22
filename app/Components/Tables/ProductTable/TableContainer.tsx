@@ -139,7 +139,7 @@ export default function TableContainer({ data }: Props) {
                 </TableCell>
                 <TableCell align="center" sx={{ fontSize: '16px', py: 0.9, px: 2.5 }}>
                   <Stack direction={'row'} justifyContent={'center'}>
-                    <LineChart
+                    {/* <LineChart
                       color="#D12F2F"
                       width={row?.typeGold ? '90%' : '70%'}
                       height="40px"
@@ -147,7 +147,7 @@ export default function TableContainer({ data }: Props) {
                       data={[1, 2, 3]}
                       label={['فروردین', 'اردیبهشت', 'خرداد']}
                       noLabel={true}
-                    />
+                    /> */}
                   </Stack>
                 </TableCell>
                 {row?.typeGold && (

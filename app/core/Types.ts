@@ -122,20 +122,7 @@ export interface ProductDateType {
   image: string;
   is_active: boolean;
 }
-export interface CartItemDataType {
-  id: number;
-  product_name: string;
-  weight: number;
-  toman: number;
-  quantity: number;
-}
-export interface CartDataType {
-  items: CartItemDataType[];
-  total_gold: number;
-  total_toman: number;
-  user_gold_balance: number;
-  user_wallet_balance: number;
-}
+
 
 export interface OrderItemDataType {
   id: number;
@@ -220,4 +207,10 @@ export interface TradeTableDataType {
 }
 export interface OrdersDataType{
   "id": 1,      "tracking_code": string,      "status": StatusType,      "payment_method": string,      "delivery_type": string,      "total_toman_amount": number,      "created_at": string
+}
+export interface CartDataType {
+  items	:ProductDateType[],
+total_price:	number,
+total_gold:	number,
+count	:number,
 }

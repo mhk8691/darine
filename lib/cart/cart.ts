@@ -1,4 +1,4 @@
-import { ProductDateType } from "@/app/core/Types"
+import { CartDataType } from "@/app/core/Types"
 import api, { ApiResponse } from "../api"
 
 export const addToCart = async (productId:number)=>{
@@ -8,7 +8,7 @@ export const addToCart = async (productId:number)=>{
     return response.data
 }
 export const getCart = async ()=>{
-    const response = await api.get<ApiResponse<ProductDateType[]>>('/gold/cart/')
+    const response = await api.get<ApiResponse<CartDataType>>('/gold/cart/')
     return response.data.data
 }
 export const removeProduct = async (productId:number)=>{

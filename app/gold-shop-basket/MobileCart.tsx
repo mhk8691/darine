@@ -2,16 +2,16 @@ import { Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 import Counter from '../gold-shop/[productId]/Counter';
 import { useState } from 'react';
-import { ProductDateType } from '../core/Types';
+import { CartDataType } from '../core/Types';
 
 interface Props{
-  cartData:ProductDateType[]
+  cartData:CartDataType
 }
 export default function MobileCart({cartData}:Props) {
   const [count,setCount] = useState(1)
   return (
     <Stack direction={'column'} gap={2}>
-      {cartData.map((item) => (
+      {cartData?.items?.map((item) => (
         <Stack
           key={item.id}
           border={1}

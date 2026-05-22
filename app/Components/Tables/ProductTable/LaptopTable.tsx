@@ -185,7 +185,7 @@ export default function LaptopTable({ items, isDetail = true }: Props) {
                 >
                   نمودار هفتگی :
                 </Typography>
-                <LineChart
+                {/* <LineChart
                   color="#D12F2F"
                   width={'15%'}
                   height="5px"
@@ -193,7 +193,7 @@ export default function LaptopTable({ items, isDetail = true }: Props) {
                   data={[1, 2, 3]}
                   label={['فروردین', 'اردیبهشت', 'خرداد']}
                   noLabel={true}
-                />
+                /> */}
               </Stack>
             </>
           </Stack>

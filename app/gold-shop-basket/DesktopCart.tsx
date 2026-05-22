@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 import Image from 'next/image';
 import { useState } from 'react';
-import { ProductDateType } from '../core/Types';
+import { CartDataType, ProductDateType } from '../core/Types';
 const dataStyle: SxProps = {
   py: 1.5,
   fontSize: {
@@ -32,7 +32,7 @@ const headStyle: SxProps = {
 
 
 interface Props{
-  cartData:ProductDateType[]
+  cartData:CartDataType
 }
 const DesktopCart = ({cartData}:Props) => {
   const [count, setCount] = useState(1);
@@ -114,7 +114,7 @@ const DesktopCart = ({cartData}:Props) => {
         </TableHead>
 
         <TableBody>
-          {cartData.map((item) => (
+          {cartData?.items?.map((item) => (
             <TableRow
               key={item.id}
               sx={{

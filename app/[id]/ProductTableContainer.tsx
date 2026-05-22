@@ -131,7 +131,7 @@ export default function ProductTableContainer() {
                 </TableCell>
                 <TableCell align="center" sx={{ fontSize: '16px', py: 0.9, px: 2.5 }}>
                   <Stack direction={'row'} justifyContent={'center'}>
-                    <LineChart
+                    {/* <LineChart
                       color="#D12F2F"
                       width={'70%'}
                       height="40px"
@@ -139,7 +139,7 @@ export default function ProductTableContainer() {
                       data={[1, 2, 3]}
                       label={['فروردین', 'اردیبهشت', 'خرداد']}
                       noLabel={true}
-                    />
+                    /> */}
                   </Stack>
                 </TableCell>
               </TableRow>

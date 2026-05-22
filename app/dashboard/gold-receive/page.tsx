@@ -2,7 +2,7 @@
 import Container from '@/app/Components/Containers/Container/Container';
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import WalletHeader from '@/app/Components/Wallet/WalletHeader';
-import { AssetsDataType, ProductDateType, RecentDeliveriesDataType, ToggleItemsType } from '@/app/core/Types';
+import { AssetsDataType, CartDataType, ProductDateType, RecentDeliveriesDataType, ToggleItemsType } from '@/app/core/Types';
 import { Grid, Stack, TableBody, TableCell, TableRow, Typography } from '@mui/material';
 import Cart from './Cart';
 import Products from './Products';
@@ -32,7 +32,7 @@ const items: ToggleItemsType[] = [
 
 export default function page() {
   const [deliveryData,setDeliveryData] = useState<RecentDeliveriesDataType[]>([])
-  const [cartData,setCartData] = useState<ProductDateType[]>([])
+  const [cartData,setCartData] = useState<CartDataType>({} as CartDataType)
   useEffect(()=>{
     const getData = async ()=>{
       try{
@@ -44,7 +44,8 @@ export default function page() {
         }
       }
     }
-  })
+getData()
+  },[])
   useEffect(()=>{
     const getData = async ()=>{
       try{

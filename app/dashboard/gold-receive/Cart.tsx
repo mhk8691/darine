@@ -3,7 +3,7 @@ import Container from '@/app/Components/Containers/Container/Container';
 import { CartIcon, WarrantyIcon } from '@/app/Components/CustomIcons/CustomIcons';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import priceFormater from '@/app/core/PriceFormater';
-import { AssetsDataType, ProductDateType } from '@/app/core/Types';
+import { AssetsDataType, CartDataType, ProductDateType } from '@/app/core/Types';
 import { getAssets } from '@/lib/getAssets/getAssets';
 import { Button, Divider, Grid, Stack, useMediaQuery, useTheme } from '@mui/material';
 import Typography from '@mui/material/Typography';
@@ -11,30 +11,12 @@ import { isAxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-export default function Cart({data}:{data:ProductDateType[]}) {
+export default function Cart({data}:{data:CartDataType}) {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'));
   const [visible, setVisible] = useState(false);
   const router = useRouter();
-    const [assets, setAssets] = useState<AssetsDataType>({} as AssetsDataType);
-      useEffect(() => {
-        const getData = async () => {
-          try{
-    const response = await getAssets();
-            setAssets(response);
-          }catch(error:unknown){
-            if (isAxiosError(error)){
-              showSnackbar(error.response?.data.message)
-            }
-          }
-        };
-        getData();
-            const interval = setInterval(() => {
-          getData();
-        }, 45 * 1000);
-    
-        return () => clearInterval(interval);
-      }, []);
+
        useEffect(() => {
     const stored = localStorage.getItem('eyeState');
     if (stored !== null) {
@@ -61,7 +43,7 @@ export default function Cart({data}:{data:ProductDateType[]}) {
                   موجودی طلای شما
                 </Typography>
                 <Typography variant="body1" fontSize={18}>
-                  {visible ? `${assets.gold_balance_gr} گرم` :'***'}
+                  {visible ? `${data.total_gold} گرم` :'***'}
                 </Typography>
               </Stack>
               <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
@@ -69,7 +51,7 @@ export default function Cart({data}:{data:ProductDateType[]}) {
                   موجودی تومان شما
                 </Typography>
                 <Typography variant="body1" fontSize={18}>
-                  {visible ? `${priceFormater(assets.current_gold_price)} تومان` :'***'}
+                  {visible ? `${priceFormater(data.total_price)} تومان` :'***'}
                 </Typography>
               </Stack>
               <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
@@ -77,7 +59,7 @@ export default function Cart({data}:{data:ProductDateType[]}) {
                   تعداد محصول
                 </Typography>
                 <Typography variant="body1" fontSize={18}>
-                  ۱
+                  {data.count}
                 </Typography>
               </Stack>
             </Stack>

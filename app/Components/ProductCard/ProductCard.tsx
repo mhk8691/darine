@@ -268,7 +268,7 @@ export default function ProductCard({ item }: { item: ProductDateType }) {
           </Stack>
         </CardContent>
        <Stack px={1.5}>
-         {!1 ? (
+         {1 ? (
           <Button
             variant="outlined"
             color="inherit"

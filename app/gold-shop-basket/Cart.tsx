@@ -11,14 +11,14 @@ import OrderConfirmation from './OrderConfirmation';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '../Components/Snackbar/Snackbar';
 import { getCart } from '@/lib/cart/cart';
-import { ProductDateType } from '../core/Types';
+import { CartDataType } from '../core/Types';
 
 export default function Cart() {
   const [step, setStep] = useState(0);
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const theme = useTheme();
-  const [cartData,setCartData] = useState<ProductDateType[]>([] as ProductDateType[])
+  const [cartData,setCartData] = useState<CartDataType>({} as CartDataType)
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'), {
     noSsr: true,
   });
@@ -43,7 +43,7 @@ export default function Cart() {
     const getData = async ()=>{
       try{
         const response = await getCart()
-        setCartData(response.data)
+        setCartData(response)
       }catch(error:unknown){
         if (isAxiosError(error)){
           showSnackbar(error.response?.data.message)

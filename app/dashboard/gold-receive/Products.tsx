@@ -33,7 +33,7 @@ export default function Products() {
                 }}
                 key={item.id}
               >
-                <ProductCard item={item} />
+                <ProductCard item={item}  />
               </Grid>
             ))}
     </>
