@@ -117,6 +117,8 @@ export interface ProductDateType {
   category: string;
   weight: string;
   total_weight_with_fees: string;
+  total_price: number;
+
   image: string;
   is_active: boolean;
 }

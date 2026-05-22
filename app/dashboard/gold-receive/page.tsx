@@ -2,7 +2,7 @@
 import Container from '@/app/Components/Containers/Container/Container';
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import WalletHeader from '@/app/Components/Wallet/WalletHeader';
-import { RecentDeliveriesDataType, ToggleItemsType } from '@/app/core/Types';
+import { AssetsDataType, ProductDateType, RecentDeliveriesDataType, ToggleItemsType } from '@/app/core/Types';
 import { Grid, Stack, TableBody, TableCell, TableRow, Typography } from '@mui/material';
 import Cart from './Cart';
 import Products from './Products';
@@ -12,6 +12,8 @@ import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import priceFormater from '@/app/core/PriceFormater';
 import { formatDate } from '@/app/core/FormatDate';
 import { getRecentDelivery } from '@/lib/delivery/delivery';
+import { getAssets } from '@/lib/getAssets/getAssets';
+import { getCart } from '@/lib/cart/cart';
 
 const items: ToggleItemsType[] = [
   {
@@ -30,6 +32,19 @@ const items: ToggleItemsType[] = [
 
 export default function page() {
   const [deliveryData,setDeliveryData] = useState<RecentDeliveriesDataType[]>([])
+  const [cartData,setCartData] = useState<ProductDateType[]>([])
+  useEffect(()=>{
+    const getData = async ()=>{
+      try{
+        const response = await getCart()
+        setCartData(response)
+      }catch(error:unknown){
+        if (isAxiosError(error)){
+          showSnackbar(error.response?.data.message)
+        }
+      }
+    }
+  })
   useEffect(()=>{
     const getData = async ()=>{
       try{
@@ -85,7 +100,7 @@ export default function page() {
           >
            <Products/>
           </Grid>
-          <Cart />
+          <Cart data={cartData} />
         </Grid>
       </Container>
       <Grid size={12}>

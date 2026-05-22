@@ -9,5 +9,16 @@ export const addToCart = async (productId:number)=>{
 }
 export const getCart = async ()=>{
     const response = await api.get<ApiResponse<ProductDateType[]>>('/gold/cart/')
+    return response.data.data
+}
+export const removeProduct = async (productId:number)=>{
+    const response = await api.delete<{message:string}>(`/gold/cart/?id=${productId}`)
+    return response.data
+}
+
+export const EditCart = async (quantity:number,productId:number)=>{
+    const response = await api.put<{message:string}>(`/gold/cart/?id=${productId}`,{
+        quantity
+    })
     return response.data
 }

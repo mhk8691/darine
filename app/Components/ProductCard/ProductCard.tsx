@@ -19,7 +19,7 @@ import { Close } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import CustomModal from '../CustomModal/CustomModal';
 import Counter from '@/app/gold-shop/[productId]/Counter';
-import { addToCart } from '@/lib/cart/cart';
+import { addToCart, EditCart, removeProduct } from '@/lib/cart/cart';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '../Snackbar/Snackbar';
 
@@ -27,7 +27,7 @@ import { showSnackbar } from '../Snackbar/Snackbar';
 export default function ProductCard({ item }: { item: ProductDateType }) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
-  const [count,setCount] =useState(item.id)
+  const [count,setCount] =useState(1)
 
   
 
@@ -43,10 +43,26 @@ export default function ProductCard({ item }: { item: ProductDateType }) {
     
   };
 
-  // const removeItem = () => {
-   
-  // };
-
+  const handleRemoveProduct = async (id:number) =>{
+    try{
+     const response = await removeProduct(id)
+     showSnackbar(response.message,true)
+   }catch(error:unknown){
+    if (isAxiosError(error)){
+      showSnackbar(error.response?.data.message)
+    }
+  }}
+  const handleChangeCount = async (quantity:number)=>{
+    try{
+      const response = await EditCart(quantity,item.id)
+      showSnackbar(response.message,true)
+      }catch(error:unknown){
+        if (isAxiosError(error)){
+          showSnackbar(error.response?.data.message)
+        }
+      }
+  }
+ 
   return (
     <>
       <Card
@@ -130,15 +146,7 @@ export default function ProductCard({ item }: { item: ProductDateType }) {
                 sx={{ color: 'text.muted' }}
               >
                 وزن
-                <Box
-                  component={'span'}
-                  fontSize={{
-                    xs: 8,
-                    sm: 10,
-                  }}
-                >
-                  (معادل {item.category.split('_')[0]} عیار)
-                </Box>
+              
                 :
               </Typography>
               <Typography
@@ -151,7 +159,7 @@ export default function ProductCard({ item }: { item: ProductDateType }) {
                 }}
                 sx={{ alignSelf: 'flex-end' }}
               >
-                {item.weight}
+                {item.weight} {' '}
                 <Box
                   component={'span'}
                   fontSize={{
@@ -198,7 +206,7 @@ export default function ProductCard({ item }: { item: ProductDateType }) {
                 }}
                 sx={{ alignSelf: 'flex-end' }}
               >
-                {item.total_weight_with_fees}
+                {item.total_weight_with_fees} {' '}
                 <Box
                   component={'span'}
                   fontSize={{
@@ -245,7 +253,7 @@ export default function ProductCard({ item }: { item: ProductDateType }) {
                 }}
                 sx={{ alignSelf: 'flex-end' }}
               >
-                {priceFormater(19330693)}
+                {priceFormater(item.total_price)}{' '}
                 <Box
                   component={'span'}
                   fontSize={{
@@ -259,7 +267,8 @@ export default function ProductCard({ item }: { item: ProductDateType }) {
             </Stack>
           </Stack>
         </CardContent>
-        {!1 ? (
+       <Stack px={1.5}>
+         {!1 ? (
           <Button
             variant="outlined"
             color="inherit"
@@ -281,8 +290,9 @@ export default function ProductCard({ item }: { item: ProductDateType }) {
             افزودن به سبد خرید
           </Button>
         ) : (
-          <Counter count={count} setCount={setCount} />
+          <Counter count={count} setCount={setCount} onDelete={()=>handleRemoveProduct(item.id)} handleChange={handleChangeCount} />
         )}
+       </Stack>
       </Card>
       <CustomModal open={open} setOpen={setOpen} modalStyle={{ p: 2 }}>
         <Stack direction={'row'} justifyContent={'flex-end'}>
