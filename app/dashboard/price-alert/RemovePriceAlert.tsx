@@ -1,10 +1,13 @@
 'use client';
 import CustomModal from '@/app/Components/CustomModal/CustomModal';
-import { BankCardDataType, PriceAlertsDataType } from '@/app/core/Types';
+import Loading from '@/app/Components/Loading/Loading';
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+import {  PriceAlertsDataType } from '@/app/core/Types';
 import { getPriceAlerts, removePriceAlert } from '@/lib/priceAlert/priceAlert';
 import { Close } from '@mui/icons-material';
 import { Button, IconButton, Stack, Typography } from '@mui/material';
-import { Dispatch, SetStateAction } from 'react';
+import { isAxiosError } from 'axios';
+import { Dispatch, SetStateAction, useState } from 'react';
 interface Props {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -19,12 +22,24 @@ export default function RemovePriceAlertModal({
   setPriceAlert,
   setPriceAlertId,
 }: Props) {
+  const [isLoading,setIsLoading] = useState(false)
   const handleRemove = async () => {
-    await removePriceAlert(priceAlertId);
+   try{
+    setIsLoading(true)
+     const res = await removePriceAlert(priceAlertId);
+     showSnackbar(res.message,true)
     const response = await getPriceAlerts();
     setPriceAlert(response && response?.length > 0 ? response : []);
     setPriceAlertId(0);
     setOpen(false);
+   }
+     catch (error: unknown) {
+    if (isAxiosError(error)) {
+      showSnackbar(error.response?.data.message);
+    }
+  }finally{
+    setIsLoading(false)
+  }
   };
 
   return (
@@ -53,7 +68,7 @@ export default function RemovePriceAlertModal({
             variant="contained"
             color="primary"
             sx={{
-              py: 1.4,
+              height:60,
               fontSize: 16,
               borderRadius: 2,
               width: '50%',
@@ -62,9 +77,9 @@ export default function RemovePriceAlertModal({
               },
             }}
             onClick={handleRemove}
-             
+             disabled={isLoading}
           >
-            حذف
+            {isLoading ? <Loading size={30}/>:'حذف'}
           </Button>
           <Button
             variant="outlined"

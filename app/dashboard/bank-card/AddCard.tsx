@@ -2,12 +2,15 @@
 import CustomModal from '@/app/Components/CustomModal/CustomModal';
 import { Button, IconButton, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 
 import Field from '@/app/login/Field';
 import { Close } from '@mui/icons-material';
 import { addBankCard, getBankCard } from '@/lib/getbankCard/bankCard';
 import { BankCardDataType } from '@/app/core/Types';
+import { isAxiosError } from 'axios';
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+import Loading from '@/app/Components/Loading/Loading';
 interface Props {
   setOpen: Dispatch<SetStateAction<boolean>>;
   open: boolean;
@@ -16,12 +19,23 @@ interface Props {
   setBankCardData: Dispatch<SetStateAction<BankCardDataType[]>>;
 }
 export default function AddCard({ setOpen, setValue, open, value, setBankCardData }: Props) {
+  const [isLoading,setIsLoading] = useState(false)
   const handleAddBankCard = async () => {
-    await addBankCard(value);
+  try{
+    setIsLoading(true)
+      const res = await addBankCard(value);
+      showSnackbar(res.message,true)
     const response = await getBankCard();
     setBankCardData(response && response?.length > 0 ? response : []);
     setValue('');
     setOpen(false);
+  }catch(error:unknown){
+    if (isAxiosError(error)){
+      showSnackbar(error.response?.data.message)
+    }
+  }finally{
+    setIsLoading(false)
+  }
   };
   return (
     <CustomModal
@@ -48,7 +62,7 @@ export default function AddCard({ setOpen, setValue, open, value, setBankCardDat
         variant="contained"
         color="primary"
         sx={{
-          py: 1.4,
+          height:60,
           fontSize: 16,
           borderRadius: 2,
           width: '100%',
@@ -59,8 +73,9 @@ export default function AddCard({ setOpen, setValue, open, value, setBankCardDat
         }}
          
         onClick={handleAddBankCard}
+        disabled={isLoading}
       >
-        ثبت
+        {isLoading ? <Loading size={30} />:'ثبت'}
       </Button>
     </CustomModal>
   );

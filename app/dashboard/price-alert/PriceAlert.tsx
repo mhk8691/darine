@@ -1,6 +1,8 @@
 'use client';
 import Container from '@/app/Components/Containers/Container/Container';
 import InputField from '@/app/Components/InputField/InputField';
+import Loading from '@/app/Components/Loading/Loading';
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { PriceAlertsDataType } from '@/app/core/Types';
 import { addPriceAlert, getPriceAlerts } from '@/lib/priceAlert/priceAlert';
 import {
@@ -14,6 +16,7 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
+import { isAxiosError } from 'axios';
 import React, { Dispatch, SetStateAction, useState } from 'react';
 
 export default function PriceAlert({
@@ -23,10 +26,22 @@ export default function PriceAlert({
 }) {
   const [value, setValue] = useState('');
   const [active, setActive] = React.useState('ONCE');
+  const [isLoading,setIsLoading] = useState(false)
   const handlePriceAlert = async () => {
-    await addPriceAlert(value, active);
+  try{
+    setIsLoading(true)
+   const res =   await addPriceAlert(value, active);
+   showSnackbar(res?.message,true);
     const response = await getPriceAlerts();
     setPriceAlert(response && response?.length > 0 ? response : []);
+  }
+    catch (error: unknown) {
+    if (isAxiosError(error)) {
+      showSnackbar(error.response?.data.message);
+    }
+  }finally{
+    setIsLoading(false)
+  }
   };
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setActive((event.target as HTMLInputElement).value);
@@ -169,15 +184,16 @@ export default function PriceAlert({
               xs: 14,
               sm: 20,
             },
-            py: 1,
+            height:60,
             mt: {
               xs: 3,
               sm: 6,
               lg: 6,
             },
           }}
+          disabled={isLoading}
         >
-          فعال کردن آلارم
+         {isLoading ? <Loading size={30}/>:'فعال کردن آلارم'}
         </Button>
       </Container>
     </Container>

@@ -29,7 +29,7 @@ const handlePriceChange =  async (val: string) => {
     setPrice(val);
     const num = Number(val);
     if (!isNaN(num)) {
-      setWeight(String(num / assets.current_gold_price));
+      setWeight(String(num / assets?.current_gold_price));
     } else {
       setWeight('');
     }
@@ -39,7 +39,7 @@ const handlePriceChange =  async (val: string) => {
     setWeight(val);
     const num = Number(val);
     if (!isNaN(num)) {
-      setPrice(String(num * assets.current_gold_price));
+      setPrice(String(num * assets?.current_gold_price));
     } else {
       setPrice('');
     }

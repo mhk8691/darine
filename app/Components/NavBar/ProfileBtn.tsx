@@ -30,8 +30,8 @@ import { getMe, logout, User } from '@/lib/auth';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '../Snackbar/Snackbar';
 import { useRouter } from 'next/navigation';
-import { useAssets } from '@/app/dashboard/AssetsProvider';
 import priceFormater from '@/app/core/PriceFormater';
+import { useAssets } from '@/app/dashboard/AssetsProvider';
 const options = [
   {
     title: 'پروفایل',
@@ -192,7 +192,7 @@ React.useEffect(()=>{
                   موجودی تومان:
                 </Typography>
                 <Typography variant="body2" fontSize={12}>
-                  {priceFormater(assets.toman_balance)} تومان
+                  {priceFormater(assets?.toman_balance)} تومان
                 </Typography>
               </Stack>
               <Divider />
@@ -201,7 +201,7 @@ React.useEffect(()=>{
                   موجودی طلا:
                 </Typography>
                 <Typography variant="body2" fontSize={12}>
-                  {assets.gold_balance_gr} گرم
+                  {assets?.gold_balance_gr} گرم
                 </Typography>
               </Stack>
             </Stack>

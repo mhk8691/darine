@@ -11,6 +11,7 @@ import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { goldWidthdraw } from '@/lib/transactions/withdraw/withdraw';
 import { useAssets } from '../AssetsProvider';
+import Loading from '@/app/Components/Loading/Loading';
 
 const items: ToggleItemsType[] = [
   { title: 'به حساب بانکی', value: 'bank', id: 1 },
@@ -21,9 +22,11 @@ export default function Withdraw() {
   const [select, setSelect] = useState(items[0].value);
   const [bankCardsData, setBankCardsData] = useState<BankCardDataType[]>([]);
   const [selectedCard, setSelectedCard] = useState<number>(1);
-  const {refetch } = useAssets()
+  const {refetch,assets } = useAssets()
+  const [isLoading,setIsLoading] = useState(false)
   const handleWithdraw = async () => {
  try{
+  setIsLoading(true)
      const response = await goldWidthdraw(
       price,
       select === 'silver' ? 'SILVER' : 'BANK',
@@ -36,6 +39,8 @@ export default function Withdraw() {
   if (isAxiosError(error)){
     showSnackbar(error.response?.data.message)
   }
+ }finally{
+  setIsLoading(false)
  }
   };
 
@@ -62,7 +67,7 @@ export default function Withdraw() {
       <Stack gap={3.5}>
         <Stack direction={'column'} gap={3}>
           <InputField placeholder={'ملبغ'} title={'تومان'} value={price} setValue={setPrice} />
-          {/* <Button
+          <Button
             variant="contained"
             sx={{
               bgcolor: '#FEF2C0',
@@ -75,9 +80,10 @@ export default function Withdraw() {
                 sm: 14,
               },
             }}
+          onClick={()=>setPrice(assets?.toman_balance+'')}
           >
             انتخاب کل موجودی
-          </Button> */}
+          </Button>
         </Stack>
         {select !== 'silver' && (
           <BankCard
@@ -97,11 +103,12 @@ export default function Withdraw() {
             xs: 14,
             sm: 16,
           },
-          py: 1.5,
+          height:60
         }}
         onClick={handleWithdraw}
+        disabled={isLoading}
       >
-        برداشت
+        {isLoading ? <Loading size={30}/>:'برداشت'}
       </Button>
     </Card>
   );

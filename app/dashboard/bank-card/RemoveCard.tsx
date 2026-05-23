@@ -1,9 +1,12 @@
 import CustomModal from '@/app/Components/CustomModal/CustomModal';
+import Loading from '@/app/Components/Loading/Loading';
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { BankCardDataType } from '@/app/core/Types';
 import { getBankCard, removeBankCard } from '@/lib/getbankCard/bankCard';
 import { Close } from '@mui/icons-material';
 import { Button, IconButton, Stack, Typography } from '@mui/material';
-import { Dispatch, SetStateAction } from 'react';
+import { isAxiosError } from 'axios';
+import { Dispatch, SetStateAction, useState } from 'react';
 interface Props {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -20,12 +23,24 @@ export default function RemoveCard({
   setCardId,
   bankCardData,
 }: Props) {
+   const [isLoading,setIsLoading] = useState(false)
   const handleRemove = async () => {
-    await removeBankCard(cardId);
+    try{
+      setIsLoading(true)
+      const res = await removeBankCard(cardId);
+      showSnackbar(res.message,true)
     const response = await getBankCard();
     setBankCardData(response && response?.length > 0 ? response : []);
     setCardId(0);
     setOpen(false);
+    }
+     catch (error: unknown) {
+    if (isAxiosError(error)) {
+      showSnackbar(error.response?.data.message);
+    }
+  }finally{
+    setIsLoading(false)
+  }
   };
   const selectedCard = bankCardData?.find((item) => item.id === cardId);
   return (
@@ -54,7 +69,7 @@ export default function RemoveCard({
             variant="contained"
             color="primary"
             sx={{
-              py: 1.4,
+              height:60,
               fontSize: 16,
               borderRadius: 2,
               width: '50%',
@@ -63,9 +78,9 @@ export default function RemoveCard({
               },
             }}
             onClick={handleRemove}
-             
+             disabled={isLoading}
           >
-            حذف
+            {isLoading ? <Loading size={30}/> : 'حذف'}
           </Button>
           <Button
             variant="outlined"

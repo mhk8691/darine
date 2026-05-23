@@ -20,7 +20,7 @@ interface AssetsContextType {
   lastUpdate: Date | null;
 }
 
-const AssetsContext = createContext<AssetsContextType | undefined>(undefined);
+const AssetsContext = createContext<AssetsContextType>({} as AssetsContextType);
 
 export function AssetsProvider({ children }: { children: React.ReactNode }) {
   const [assets, setAssets] = useState<AssetsDataType>({} as AssetsDataType);
@@ -76,7 +76,6 @@ export function AssetsProvider({ children }: { children: React.ReactNode }) {
     };
   }, [fetchData]);
 
-  // تابع refetch برای استفاده دستی
   const refetch = useCallback(async () => {
     await fetchData(true);
   }, [fetchData]);

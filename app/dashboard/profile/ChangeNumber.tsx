@@ -1,4 +1,5 @@
 'use client';
+import Loading from '@/app/Components/Loading/Loading';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import Field from '@/app/login/Field';
 import { changeNumberConfirm, changeNumberRequest } from '@/lib/auth';
@@ -10,9 +11,11 @@ export default function ChangeNumber() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [otpCode, setOtpCode] = useState('');
   const [step, setStep] = useState(0);
+  const [isLoading,setIsLoading] = useState(false)
   const handleClick = async () => {
     if (step === 0) {
       try {
+        setIsLoading(true)
         const response = await changeNumberRequest(phoneNumber);
         showSnackbar(response.data.message, true);
         setStep(1);
@@ -20,9 +23,12 @@ export default function ChangeNumber() {
         if (isAxiosError(error)) {
           showSnackbar(error.response?.data.message);
         }
+      }finally{
+        setIsLoading(false)
       }
     } else if (step === 1) {
       try {
+        setIsLoading(true)
         const response = await changeNumberConfirm(phoneNumber, otpCode);
         showSnackbar(response.data.message, true);
         setStep(0);
@@ -32,6 +38,8 @@ export default function ChangeNumber() {
         if (isAxiosError(error)) {
           showSnackbar(error.response?.data.message);
         }
+      }finally{
+        setIsLoading(false)
       }
     }
   };
@@ -94,11 +102,12 @@ export default function ChangeNumber() {
             md: '25%',
           },
           fontWeight: '600',
-          py: 2,
+          height:60
         }}
         onClick={handleClick}
+        disabled={isLoading}
       >
-        ارسال کد
+       {isLoading ? <Loading size={30}/>:'ارسال کد'}
       </Button>
     </Stack>
   );

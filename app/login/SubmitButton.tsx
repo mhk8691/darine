@@ -12,7 +12,6 @@ export default function SubmitButton({ title, handleSubmit, isLoading }: Props) 
       variant="contained"
       color="primary"
       sx={{
-        // py: 1.4,
         height:60,
         fontSize: {
           xs: 16,

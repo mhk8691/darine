@@ -262,6 +262,7 @@ export default function page() {
               >
                 امن‌ترین جا برای پس انداز طلا
               </Typography>
+              <Link href={'/login/signup'}>
               <Button
                 variant="contained"
                 color="primary"
@@ -291,7 +292,7 @@ export default function page() {
                 }}
               >
                 ثبت نام در دارینه
-              </Button>
+              </Button></Link>
             </Stack>
           </Grid>
           <Grid

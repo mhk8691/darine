@@ -14,6 +14,7 @@ import { isAxiosError } from 'axios';
 import { Upload } from '@mui/icons-material';
 import { goldDeposit } from '@/lib/transactions/deposit/deposit';
 import { useAssets } from '../AssetsProvider';
+import Loading from '@/app/Components/Loading/Loading';
 
 const items: ToggleItemsType[] = [
   { title: 'درگاه پرداخت', value: 'gateway', id: 1 },
@@ -29,6 +30,7 @@ export default function Deposit() {
     const [depositData, setDepositData] = useState<DepositDataType | null>(
     null
   );
+  const [isLoading,setIsLoading] = useState(false)
   const [receipt,setReceipt] = useState<null| File>(null)
   useEffect(() => {
     const getData = async () => {
@@ -50,6 +52,7 @@ export default function Deposit() {
          formData.append('method','GATEWAY')
       }
     try{
+      setIsLoading(true)
       const response =await goldDeposit(formData)
         showSnackbar(response?.message,true)
       refetch()
@@ -58,6 +61,8 @@ export default function Deposit() {
       if (isAxiosError(error)){
         showSnackbar(error.response?.data.message)
       }
+    }finally{
+      setIsLoading(false)
     }
   };
 
@@ -216,12 +221,13 @@ export default function Deposit() {
             xs: 14,
             sm: 16,
           },
-          py: 1.5,
+          height:60
         }}
         onClick={handleClick}
+        disabled={isLoading}
       >
         {
-          select === 'receipt' ? !depositData ? 'نمایش اطلاعات مقصد' : 'تایید':'واریز'
+          isLoading ? <Loading size={30}/>:select === 'receipt' ? !depositData ? 'نمایش اطلاعات مقصد' : 'تایید':'واریز'
         }
       </Button>
     </Card>

@@ -10,6 +10,7 @@ import { Button, Stack, Typography, useMediaQuery, useTheme } from '@mui/materia
 import { isAxiosError } from 'axios';
 import {  useState } from 'react';
 import { useAssets } from '../../AssetsProvider';
+import Loading from '@/app/Components/Loading/Loading';
 // import TradeGoldConfirmation from './TradeGoldConfirmation';
 
 const items: ToggleItemsType[] = [
@@ -21,6 +22,7 @@ export default function Trading() {
   const [gold, setGold] = useState('');
   const [select, setSelect] = useState(items[0].value);
   const [open, setOpen] = useState(false);
+  const [isLoading,setIsLoading] = useState(false)
   // const [buyInfo, setBuyInfo] = useState<BuyGoldDataType>({} as BuyGoldDataType);
   const {assets,refetch} = useAssets()
   const theme = useTheme();
@@ -30,7 +32,7 @@ export default function Trading() {
     setPrice(val);
     const num = Number(val);
     if (!isNaN(num)) {
-      setGold(String(num / assets.current_gold_price));
+      setGold(String(num / assets?.current_gold_price));
     } else {
       setGold('');
     }
@@ -40,15 +42,16 @@ export default function Trading() {
     setGold(val);
     const num = Number(val);
     if (!isNaN(num)) {
-      setPrice(String(num * assets.current_gold_price));
+      setPrice(String(num * assets?.current_gold_price));
     } else {
       setPrice('');
     }
   };
 
   const handleBuyGold = async () => {
-    const methood = assets.toman_balance > 0 ? 'WALLET':'GATEWAY'
+    const methood = assets?.toman_balance > 0 ? 'WALLET':'GATEWAY'
     try {
+      setIsLoading(true)
       const response = await goldBuy(price,methood,gold);
       showSnackbar(response.data.message,true)
       setGold('')
@@ -59,10 +62,13 @@ export default function Trading() {
       if (isAxiosError(error)) {
         showSnackbar(error.response?.data.message);
       }
+    }finally{
+      setIsLoading(false)
     }
   };
   const handleSellGold = async () => {
     try {
+      setIsLoading(true)
       const response = await goldSell(gold);
       showSnackbar(response.data.message,true)
       setOpen(true);
@@ -73,6 +79,8 @@ export default function Trading() {
       if (isAxiosError(error)) {
         showSnackbar(error.response?.data.message);
       }
+    }finally{
+      setIsLoading(false)
     }
   };
   return (
@@ -127,9 +135,10 @@ export default function Trading() {
           variant="contained"
           color="primary"
           onClick={() => (select === 'buy' ? handleBuyGold() : handleSellGold())}
-          sx={{ borderRadius: 2, fontSize: 16, py: 1.4 }}
+          sx={{ borderRadius: 2, fontSize: 16, height:60 }}
+          disabled={isLoading}
         >
-          {select === 'buy' ? 'خرید' : 'فروش'}
+          {isLoading ? <Loading size={30}/>:select === 'buy' ? 'خرید' : 'فروش'}
         </Button>
       </Card>
       {/* <TradeGoldConfirmation title={select === 'buy' ? 'تایید خرید طلا':'تایید فروش طلا'} open={open} setOpen={setOpen} data={buyInfo} /> */}

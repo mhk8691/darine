@@ -1,16 +1,34 @@
 'use client';
 
 import InputField from '@/app/Components/InputField/InputField';
+import Loading from '@/app/Components/Loading/Loading';
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { giftCardSubmit } from '@/lib/giftCard/giftCard';
 import { Stack, Button, useTheme, useMediaQuery } from '@mui/material';
+import { isAxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 export default function Form() {
   const [value, setValue] = useState('');
+  const [isLoading,setIsLoading] = useState(false)
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   const router = useRouter()
+  const handleSubmit = async ()=>{
+    try{
+      setIsLoading(true)
+      const response = await giftCardSubmit(value)
+       showSnackbar(response.message, true);
+       setValue('')
+    }catch (error: unknown) {
+    if (isAxiosError(error)) {
+      showSnackbar(error.response?.data.message);
+    }
+  }finally{
+    setIsLoading(false)
+  }
+  }
   return (
     <Stack direction={'column'} gap={1} mt={3.5}>
       <InputField placeholder="شماره سریال روی کارت هدیه" setValue={setValue} value={value} />
@@ -27,15 +45,13 @@ export default function Form() {
               xs: '100%',
               sm: '70%',
             },
-            py: {
-              xs: 1.5,
-              sm: 1,
-            },
+            height:60,
             borderRadius: 2,
           }}
-          onClick={() => giftCardSubmit(value)}
+          onClick={handleSubmit}
+          disabled={isLoading}
         >
-          ثبت
+          {isLoading ? <Loading size={30}/>:'ثبت'}
         </Button>
         {isDesktop && (
           <Button

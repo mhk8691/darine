@@ -52,7 +52,7 @@ export default function WalletHeader() {
                   fontWeight={500}
                   sx={{ color: 'text.title' }}
                 >
-                  {visible ? assets.gold_balance_gr : '***'}
+                  {visible ? assets?.gold_balance_gr || 0 : '***'}
                 </Typography>
                 <Typography
                   variant="body1"
@@ -80,7 +80,7 @@ export default function WalletHeader() {
               </Typography>
               <Stack direction={'row'} gap={0.5} alignItems={'center'} fontWeight={500}>
                 <Typography variant="body1" fontSize={20} sx={{ color: 'text.title' }}>
-                  {visible ? priceFormater(assets.toman_balance) : '***'}
+                  {visible ? priceFormater(assets?.toman_balance) || 0 : '***'}
                 </Typography>
                 <Typography
                   variant="body1"
@@ -122,7 +122,7 @@ export default function WalletHeader() {
                     sx={{ color: 'text.title' }}
                     fontWeight={500}
                   >
-                    {priceFormater(assets.current_gold_price)}
+                    {priceFormater(assets?.current_gold_price)}
                   </Typography>
                   <Typography
                     variant="body1"

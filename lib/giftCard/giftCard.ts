@@ -1,19 +1,12 @@
-import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import api, { ApiResponse } from '@/lib/api';
-import { isAxiosError } from 'axios';
   import { AddressesDataType, GiftCardListType } from '@/app/core/Types';
 
 export const giftCardSubmit = async (serialNumber: string) => {
-  try {
     const response = await api.post<{
       message: string;
     }>('/gold/gift-card/redeem/', { serial_number: serialNumber });
-    showSnackbar(response.data.message, true);
-  } catch (error: unknown) {
-    if (isAxiosError(error)) {
-      showSnackbar(error.response?.data.message);
-    }
-  }
+   return response.data
+  
 };
 
 export const giftCardOrder = async (weight:string,quantity:number,province:string,city:string,address:string,plaque:string,unit:string,postCode:string,addressId?:number) => {

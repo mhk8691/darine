@@ -1,7 +1,7 @@
 import { isAxiosError } from "axios";
 import { showSnackbar } from "@/app/Components/Snackbar/Snackbar";
 import { DepositDataType } from "@/app/core/Types";
-import api from "@/lib/api";
+import api, { ApiResponse } from "@/lib/api";
 
 export const goldDeposit = async (data:FormData) => {
     const response = await api.post<{ message: string }>("/gold/deposit/", {
@@ -17,13 +17,7 @@ export const goldDeposit = async (data:FormData) => {
   }
 
 export const getGoldDeposit = async () => {
-  try {
-    const response = await api.get<DepositDataType>("/gold/deposit/");
-    //  showSnackbar(response.data.message,true)
-    return response;
-  } catch (error: unknown) {
-    if (isAxiosError(error)) {
-      showSnackbar(error.response?.data.detail);
-    }
-  }
-};
+    const response = await api.get<ApiResponse<DepositDataType>>("/gold/deposit/");
+   
+    return response.data;
+  } 
