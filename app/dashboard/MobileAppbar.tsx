@@ -44,9 +44,9 @@ export default function MobileAppbar() {
       {AppbarItems.map((item) => (
         <Grid
           size={4}
-          bgcolor={'#1C1C1B'}
+          bgcolor={'background.paper'}
           border={1}
-          borderColor={'background.paper'}
+          borderColor={'background.border'}
           borderRadius={2}
           key={item.name}
           p={1.5}

@@ -103,11 +103,6 @@ export const getTheme = (mode: 'light' | 'dark' = 'light') =>
           },
         },
       },
-  
-
-    
-
-
       MuiOutlinedInput: {
         styleOverrides: {
           root: () => ({
