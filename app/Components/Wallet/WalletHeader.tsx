@@ -2,37 +2,15 @@
 import priceFormater from '@/app/core/PriceFormater';
 import { Grid, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useEffect, useState } from 'react';
-import CircleAnimation from '../CircleAnimation/CircleAnimation';
 import Card from '../Containers/Container/Container';
 import MobileWalletStatus from './MobileWalletStatus';
-import { getAssets } from '@/lib/getAssets/getAssets';
-import { AssetsDataType } from '@/app/core/Types';
-import { isAxiosError } from 'axios';
-import { showSnackbar } from '../Snackbar/Snackbar';
+import { useAssets } from '@/app/dashboard/AssetsProvider';
 
 export default function WalletHeader() {
   const [visible, setVisible] = useState(false);
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
-  const [assets, setAssets] = useState<AssetsDataType>({} as AssetsDataType);
-  useEffect(() => {
-    const getData = async () => {
-      try{
-const response = await getAssets();
-        setAssets(response);
-      }catch(error:unknown){
-        if (isAxiosError(error)){
-          showSnackbar(error.response?.data.message)
-        }
-      }
-    };
-    getData();
-        const interval = setInterval(() => {
-      getData();
-    }, 45 * 1000);
-
-    return () => clearInterval(interval);
-  }, []);
+  const {assets} = useAssets()
   useEffect(() => {
     const stored = localStorage.getItem('eyeState');
     if (stored !== null) {

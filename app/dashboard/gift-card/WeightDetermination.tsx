@@ -2,11 +2,9 @@
 
 import { MinusSquareIcon, PlusSquareleIcon } from '@/app/Components/CustomIcons/CustomIcons';
 import InputField from '@/app/Components/InputField/InputField';
-import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
-import { getAssets } from '@/lib/getAssets/getAssets';
 import { IconButton, InputAdornment, Stack, TextField, Typography } from '@mui/material';
-import { isAxiosError } from 'axios';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction} from 'react';
+import { useAssets } from '../AssetsProvider';
 
 interface Props {
   price: string;
@@ -26,32 +24,12 @@ export default function WeightDetermination({
   count,
   setCount,
 }: Props) {
-    const [livePrice,setLivePrice] = useState(0)
-  useEffect(() => {
-  const handleLivePrice = async () => {
-    try {
-      const response = await getAssets();
-      setLivePrice(response.current_gold_price);
-    } catch (error: unknown) {
-      if (isAxiosError(error)) {
-        showSnackbar(error.response?.data.message);
-      }
-    }
-  };
-  
-  handleLivePrice();
-  
-  const interval = setInterval(() => {
-    handleLivePrice();
-  }, 45000); 
-
-  return () => clearInterval(interval);
-}, []);
+const {assets} = useAssets()
 const handlePriceChange =  async (val: string) => {
     setPrice(val);
     const num = Number(val);
     if (!isNaN(num)) {
-      setWeight(String(num / livePrice));
+      setWeight(String(num / assets.current_gold_price));
     } else {
       setWeight('');
     }
@@ -61,7 +39,7 @@ const handlePriceChange =  async (val: string) => {
     setWeight(val);
     const num = Number(val);
     if (!isNaN(num)) {
-      setPrice(String(num * livePrice));
+      setPrice(String(num * assets.current_gold_price));
     } else {
       setPrice('');
     }

@@ -3,13 +3,13 @@ import Card from '@/app/Components/Containers/Container/Container';
 import FilterToggleButton from '@/app/Components/FilterToggleButton/FilterToggleButton';
 import InputField from '@/app/Components/InputField/InputField';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
-import {  BuyGoldDataType, ToggleItemsType } from '@/app/core/Types';
-import { getAssets } from '@/lib/getAssets/getAssets';
+import {  ToggleItemsType } from '@/app/core/Types';
 import { goldBuy } from '@/lib/gold/goldBuy';
 import { goldSell } from '@/lib/gold/goldSell';
 import { Button, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { isAxiosError } from 'axios';
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
+import { useAssets } from '../../AssetsProvider';
 // import TradeGoldConfirmation from './TradeGoldConfirmation';
 
 const items: ToggleItemsType[] = [
@@ -20,41 +20,17 @@ export default function Trading() {
   const [price, setPrice] = useState('');
   const [gold, setGold] = useState('');
   const [select, setSelect] = useState(items[0].value);
-  const [livePrice,setLivePrice] = useState(0)
-  const [walletBalance,setWalletBalance] = useState(0)
   const [open, setOpen] = useState(false);
-  const [buyInfo, setBuyInfo] = useState<BuyGoldDataType>({} as BuyGoldDataType);
+  // const [buyInfo, setBuyInfo] = useState<BuyGoldDataType>({} as BuyGoldDataType);
+  const {assets,refetch} = useAssets()
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
-
-  useEffect(() => {
-  const handleLivePrice = async () => {
-    try {
-      const response = await getAssets();
-      setLivePrice(response.current_gold_price);
-      setWalletBalance(response.toman_balance)
-    } catch (error: unknown) {
-      if (isAxiosError(error)) {
-        showSnackbar(error.response?.data.message);
-      }
-    }
-  };
-  
-  handleLivePrice();
-  
-  const interval = setInterval(() => {
-    handleLivePrice();
-  }, 45000); 
-
-  return () => clearInterval(interval);
-}, []);
-
   
   const handlePriceChange =  async (val: string) => {
     setPrice(val);
     const num = Number(val);
     if (!isNaN(num)) {
-      setGold(String(num / livePrice));
+      setGold(String(num / assets.current_gold_price));
     } else {
       setGold('');
     }
@@ -64,19 +40,20 @@ export default function Trading() {
     setGold(val);
     const num = Number(val);
     if (!isNaN(num)) {
-      setPrice(String(num * livePrice));
+      setPrice(String(num * assets.current_gold_price));
     } else {
       setPrice('');
     }
   };
 
   const handleBuyGold = async () => {
-    const methood = walletBalance > 0 ? 'WALLET':'GATEWAY'
+    const methood = assets.toman_balance > 0 ? 'WALLET':'GATEWAY'
     try {
       const response = await goldBuy(price,methood,gold);
       showSnackbar(response.data.message,true)
       setGold('')
       setPrice('')
+      refetch()
       // setBuyInfo(response.data.details)
     } catch (error: unknown) {
       if (isAxiosError(error)) {
@@ -89,6 +66,9 @@ export default function Trading() {
       const response = await goldSell(gold);
       showSnackbar(response.data.message,true)
       setOpen(true);
+           setGold('')
+      setPrice('')
+      refetch()
     } catch (error: unknown) {
       if (isAxiosError(error)) {
         showSnackbar(error.response?.data.message);

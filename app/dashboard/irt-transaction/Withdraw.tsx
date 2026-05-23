@@ -10,6 +10,7 @@ import { getBankCard } from '@/lib/getbankCard/bankCard';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { goldWidthdraw } from '@/lib/transactions/withdraw/withdraw';
+import { useAssets } from '../AssetsProvider';
 
 const items: ToggleItemsType[] = [
   { title: 'به حساب بانکی', value: 'bank', id: 1 },
@@ -20,6 +21,7 @@ export default function Withdraw() {
   const [select, setSelect] = useState(items[0].value);
   const [bankCardsData, setBankCardsData] = useState<BankCardDataType[]>([]);
   const [selectedCard, setSelectedCard] = useState<number>(1);
+  const {refetch } = useAssets()
   const handleWithdraw = async () => {
  try{
      const response = await goldWidthdraw(
@@ -29,6 +31,7 @@ export default function Withdraw() {
     );
     showSnackbar(response.message,true)
     setPrice('')
+    refetch()
  }catch(error:unknown){
   if (isAxiosError(error)){
     showSnackbar(error.response?.data.message)

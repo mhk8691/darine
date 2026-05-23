@@ -13,6 +13,7 @@ import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { isAxiosError } from 'axios';
 import { Upload } from '@mui/icons-material';
 import { goldDeposit } from '@/lib/transactions/deposit/deposit';
+import { useAssets } from '../AssetsProvider';
 
 const items: ToggleItemsType[] = [
   { title: 'درگاه پرداخت', value: 'gateway', id: 1 },
@@ -24,6 +25,7 @@ export default function Deposit() {
   const [open,setOpen] = useState(false)
   const [bankCardsData, setBankCardsData] = useState<BankCardDataType[]>([]);
   const [selectedCard, setSelectedCard] = useState<number>(1);
+  const {refetch} = useAssets()
     const [depositData, setDepositData] = useState<DepositDataType | null>(
     null
   );
@@ -35,8 +37,6 @@ export default function Deposit() {
     };
     getData();
   }, []);
-
-  
 
     const handleDeposit =async  (method:'RECEIPT'|'GATEWAY') => {
     const formData = new FormData()
@@ -52,6 +52,7 @@ export default function Deposit() {
     try{
       const response =await goldDeposit(formData)
         showSnackbar(response?.message,true)
+      refetch()
         setPrice('')
     }catch(error:unknown){
       if (isAxiosError(error)){

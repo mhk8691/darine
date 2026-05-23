@@ -3,13 +3,12 @@ import { Stack, useMediaQuery, useTheme } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Container from '../Containers/Container/Container';
 import MobileWalletStatus from './MobileWalletStatus';
 import ToggleEyeButton from './ToggleEyeButton';
-import { AssetsDataType } from '@/app/core/Types';
-import { getAssets } from '@/lib/getAssets/getAssets';
 import priceFormater from '@/app/core/PriceFormater';
+import { useAssets } from '@/app/dashboard/AssetsProvider';
 interface Props {
   type: 'dashboard' | 'wallet';
 }
@@ -17,19 +16,7 @@ export default function Wallet({ type }: Props) {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   const [visible, setVisible] = useState(false);
-  const [assets, setAssets] = useState<AssetsDataType>({} as AssetsDataType);
-  useEffect(() => {
-    const getData = async () => {
-      const response = await getAssets();
-      setAssets(response);
-    };
-    getData();
-        const interval = setInterval(() => {
-      getData();
-    }, 45 * 1000);
-
-    return () => clearInterval(interval);
-  }, []);
+  const {assets} = useAssets()
   return (
     <Container
       style={{
