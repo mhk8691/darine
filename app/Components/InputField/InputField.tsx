@@ -34,7 +34,7 @@ export default function InputField({
     const num = Number(safeVal.replace(/,/g, ''));
     if (isNaN(num)) return safeVal;
 
-    return num.toLocaleString();
+    return Intl.NumberFormat('en-US').format(num);
   };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const raw = e.target.value.replace(/,/g, '');
