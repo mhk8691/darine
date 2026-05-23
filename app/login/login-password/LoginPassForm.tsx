@@ -17,8 +17,10 @@ export default function LoginPassForm({ children }: Props) {
   const router = useRouter();
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
+   const [isLoading,setIsLoading] = useState(false)
   const handleLogin = async () => {
     try {
+      setIsLoading(true)
      const response =  await loginPassword(phoneNumber, password);
       router.push('/dashboard');
       showSnackbar(response?.data.message,true);
@@ -26,6 +28,8 @@ export default function LoginPassForm({ children }: Props) {
       if (isAxiosError(error)) {
         showSnackbar(error.response?.data.message);
       }
+    }finally{
+      setIsLoading(false)
     }
   };
   return (
@@ -35,7 +39,7 @@ export default function LoginPassForm({ children }: Props) {
         <PasswordField password={password} setPassword={setPassword} />
       </Stack>
       {children}
-      <ActionButton title={'ورود'} isDisable={false} handleSubmit={handleLogin} />
+      <ActionButton title={'ورود'} isLoading={isLoading} handleSubmit={handleLogin} />
     </>
   );
 }

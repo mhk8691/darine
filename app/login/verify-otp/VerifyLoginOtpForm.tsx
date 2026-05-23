@@ -15,8 +15,10 @@ interface Props {
 export default function VerifyLoginOtpForm({ phoneNumber }: Props) {
   const [verifyCode, setVerifyCode] = useState('');
   const router = useRouter();
+   const [isLoading,setIsLoading] = useState(false)
   const handleLoginVerifyOtp = async () => {
     try {
+      setIsLoading(true)
       const res = await verifyLoginOtp(phoneNumber, verifyCode);
       showSnackbar(res.data.message,true)
         router.push('/dashboard');
@@ -24,13 +26,15 @@ export default function VerifyLoginOtpForm({ phoneNumber }: Props) {
       if (isAxiosError(error)) {
         showSnackbar(error.response?.data.message, false);
       }
+    }finally{
+      setIsLoading(false)
     }
   };
   return (
     <>
       <Field value={verifyCode} setValue={setVerifyCode} label="کد تایید" />
       <SendCode phoneNumber={phoneNumber} />
-      <SubmitButton title={'تایید'} isDisable={false} handleSubmit={handleLoginVerifyOtp} />
+      <SubmitButton title={'تایید'} isLoading={isLoading} handleSubmit={handleLoginVerifyOtp} />
     </>
   );
 }

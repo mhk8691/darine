@@ -1,16 +1,19 @@
 import { Button } from '@mui/material';
+import Loading from '../Components/Loading/Loading';
 interface Props {
   title: string;
-  isDisable?: boolean;
+  isLoading: boolean;
   handleSubmit?: () => Promise<void>;
 }
-export default function SubmitButton({ title, handleSubmit, isDisable }: Props) {
+
+export default function SubmitButton({ title, handleSubmit, isLoading }: Props) {
   return (
     <Button
       variant="contained"
       color="primary"
       sx={{
-        py: 1.4,
+        // py: 1.4,
+        height:60,
         fontSize: {
           xs: 16,
           md: 20,
@@ -23,9 +26,11 @@ export default function SubmitButton({ title, handleSubmit, isDisable }: Props) 
       }}
        
       onClick={handleSubmit}
-      disabled={isDisable}
+      disabled={isLoading}
     >
-      {title}
+      {
+        isLoading ? <Loading size={30} />:title
+      }
     </Button>
   );
 }

@@ -13,8 +13,10 @@ interface Props {
 export default function LoginOtpForm({ children }: Props) {
      const router = useRouter();
       const [mobile, setMobile] = useState('');
+       const [isLoading,setIsLoading] = useState(false)
       const handleLogin = async () => {
         try {
+          setIsLoading(true)
           const res = await loginOtp(mobile);
           if (res.status === 200) {
             showSnackbar(res.data.message, true);
@@ -24,6 +26,8 @@ export default function LoginOtpForm({ children }: Props) {
           if (isAxiosError(err)) {
             showSnackbar(err.response?.data.mobile, false);
           }
+        }finally{
+          setIsLoading(false)
         }
       };
   return (
@@ -31,7 +35,7 @@ export default function LoginOtpForm({ children }: Props) {
    <Field value={mobile} setValue={setMobile} label="شماره موبایل" />
    
          {children}
-         <SubmitButton title={'ادامه'} isDisable={false} handleSubmit={handleLogin} />
+         <SubmitButton title={'ادامه'} isLoading={isLoading} handleSubmit={handleLogin} />
    </>
   )
 }

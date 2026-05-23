@@ -23,7 +23,7 @@ export interface RegisterFormType {
 export default function RegisterForm({ phoneNumber }: { phoneNumber: string }) {
   const [birthDay, setBirthDay] = useState('');
   const [nationalCode, setNationalCode] = useState('');
-
+ const [isLoading,setIsLoading] = useState(false)
   const [birthMonth, setBirthMonth] = useState('');
   const [birthYear, setBirthYear] = useState('');
   const [password, setPassword] = useState('');
@@ -46,6 +46,7 @@ export default function RegisterForm({ phoneNumber }: { phoneNumber: string }) {
       referral_code:referralCode
     };
     try {
+      setIsLoading(true)
       const response = await register(newRegisterForm);
       if (response.status === 200 || response.status === 201) {
         showSnackbar(response?.data.message, true);
@@ -55,6 +56,8 @@ export default function RegisterForm({ phoneNumber }: { phoneNumber: string }) {
       if (isAxiosError(error)) {
         showSnackbar(error.response?.data.message);
       }
+    }finally{
+      setIsLoading(false)
     }
   };
   return (
@@ -92,7 +95,7 @@ export default function RegisterForm({ phoneNumber }: { phoneNumber: string }) {
         </Grid>
       </Grid>
 
-      <SubmitButton title={'ثبت نام'} handleSubmit={handleRegister} />
+      <SubmitButton title={'ثبت نام'} isLoading={isLoading} handleSubmit={handleRegister} />
     </>
   );
 }

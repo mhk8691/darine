@@ -15,8 +15,10 @@ export default function VerifyOtpCode({ phone }: { phone: string }) {
     const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [step ,setStep] = useState(0)
+    const [isLoading,setIsLoading] = useState(false)
   const handleLoginVerifyOtp = async () => {
     try {
+      setIsLoading(true)
       const res = await verifyForgetOtp(phone, verifyCode);
         showSnackbar(res.data.message, true);
         setStep(1)
@@ -24,6 +26,9 @@ export default function VerifyOtpCode({ phone }: { phone: string }) {
       if (isAxiosError(error)) {
         showSnackbar(error.response?.data.message, false);
       }
+      
+    }finally{
+      setIsLoading(false)
     }
   };
   const handleCompleteLogin = async ()=>{
@@ -60,7 +65,7 @@ repeatPassword={repeatPassword}
 setRepeatPassword={setRepeatPassword}
       />
      }
-     <SubmitButton title={'تایید'} handleSubmit={handleClick} />
+     <SubmitButton title={'تایید'} handleSubmit={handleClick} isLoading={isLoading} />
     </>
   );
 }
