@@ -14,7 +14,8 @@ export default async function page({ searchParams }: Props) {
   const { phone, type } = await searchParams;
   return (
     <Stack>
-      <BackLink fontSize="30" />
+      <Stack direction={'row'} gap={1} alignItems={'center'}>
+        <BackLink fontSize="30" />
       <Typography
         variant="h6"
         fontWeight={'500'}
@@ -26,6 +27,7 @@ export default async function page({ searchParams }: Props) {
       >
         کد تایید
       </Typography>
+      </Stack>
 
       <Typography
         variant="body2"

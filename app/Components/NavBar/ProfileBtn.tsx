@@ -30,6 +30,8 @@ import { getMe, logout, User } from '@/lib/auth';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '../Snackbar/Snackbar';
 import { useRouter } from 'next/navigation';
+import { useAssets } from '@/app/dashboard/AssetsProvider';
+import priceFormater from '@/app/core/PriceFormater';
 const options = [
   {
     title: 'پروفایل',
@@ -79,6 +81,7 @@ export default function ProfileBtn() {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const handleToggle = () => setOpen((prev) => !prev);
   const isDarkMode = theme.palette.mode == 'dark';
+  const {assets} = useAssets()
    const fetchUser = React.useCallback(async () => {
     try {
       const me = await getMe();
@@ -189,7 +192,7 @@ React.useEffect(()=>{
                   موجودی تومان:
                 </Typography>
                 <Typography variant="body2" fontSize={12}>
-                  0 تومان
+                  {priceFormater(assets.toman_balance)} تومان
                 </Typography>
               </Stack>
               <Divider />
@@ -198,7 +201,7 @@ React.useEffect(()=>{
                   موجودی طلا:
                 </Typography>
                 <Typography variant="body2" fontSize={12}>
-                  0 گرم
+                  {assets.gold_balance_gr} گرم
                 </Typography>
               </Stack>
             </Stack>
