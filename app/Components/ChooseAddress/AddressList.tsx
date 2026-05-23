@@ -216,7 +216,6 @@ interface Props {
 export default function AddressList({ setOpenAddAddress, addresses, setAddressId, addressId }: Props) {
   const [open, setOpen] = useState(false);
 
-  // تنظیم آدرس اول به عنوان پیش‌فرض هنگام لود اولیه
   useEffect(() => {
     if (addresses.length > 0 && !addressId) {
       setAddressId(addresses[0].id);

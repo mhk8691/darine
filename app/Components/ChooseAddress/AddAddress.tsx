@@ -23,8 +23,9 @@ setPostCode:React.Dispatch<React.SetStateAction<string>>
 plaque:string
 unit:string
 postCode:string
+setAddressId:React.Dispatch<React.SetStateAction<number>>
 }
-export default function AddAddress({ open, setOpen,setAddress,address,province,setCity,city,setProvince,setActiveStep,setPlaque,setPostCode,postCode,plaque,setUnit,unit }: Props) {
+export default function AddAddress({setAddressId, open, setOpen,setAddress,address,province,setCity,city,setProvince,setActiveStep,setPlaque,setPostCode,postCode,plaque,setUnit,unit }: Props) {
   const [step, setStep] = useState(0);
 
   return (
@@ -57,6 +58,7 @@ export default function AddAddress({ open, setOpen,setAddress,address,province,s
         setStep((prev) => prev + 1);
     } else {
         setStep(0);
+        setAddressId(0)
         setActiveStep(2)
         setOpen(false);
     }
