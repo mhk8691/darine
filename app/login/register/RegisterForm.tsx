@@ -28,7 +28,7 @@ export default function RegisterForm({ phoneNumber }: { phoneNumber: string }) {
   const [birthYear, setBirthYear] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
-
+ const [referralCode, setReferralCode] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const router = useRouter();
@@ -42,7 +42,8 @@ export default function RegisterForm({ phoneNumber }: { phoneNumber: string }) {
       first_name: firstName,
       last_name: lastName,
       password,
-      confirm_password:repeatPassword
+      confirm_password:repeatPassword,
+      referral_code:referralCode
     };
     try {
       const response = await register(newRegisterForm);
@@ -73,21 +74,20 @@ export default function RegisterForm({ phoneNumber }: { phoneNumber: string }) {
             <Field value={birthYear} setValue={setBirthYear} label="سال تولد" />
           </Grid>
         </Grid>
-        {/* <Grid size={12}>
-          <Field value={cardNumber} setValue={setCardNumber} label="شماره کارت" />
-        </Grid> */}
+ 
         <Grid size={6}>
           <Field value={firstName} setValue={setFirstName} label="نام" />
         </Grid>{' '}
         <Grid size={6}>
           <Field value={lastName} setValue={setLastName} label="نام خانوادگی" />
         </Grid>
+         <Grid size={12}>
+          <Field value={referralCode} setValue={setReferralCode} label="کد معرف (اختیاری)" />
+        </Grid>
         <Grid size={12}>
-          {/* <Field value={inviteCode} setValue={setInviteCode} label="کد معرف (اختیاری)" /> */}
           <PasswordField password={password} setPassword={setPassword} label="رمز عبور" />
         </Grid>
          <Grid size={12}>
-          {/* <Field value={inviteCode} setValue={setInviteCode} label="کد معرف (اختیاری)" /> */}
           <PasswordField password={repeatPassword} setPassword={setRepeatPassword} label="تکرار رمز عبور" />
         </Grid>
       </Grid>

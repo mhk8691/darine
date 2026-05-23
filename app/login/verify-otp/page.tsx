@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 import BackLink from '@/app/dashboard/BackLink';
 import VerifyLoginOtpForm from './VerifyLoginOtpForm';
 import VerifySignupOtpForm from './VerifySignupOtpForm';
@@ -37,9 +37,7 @@ export default async function page({ searchParams }: Props) {
         sx={{ color: 'text.secondary', mt: 3 }}
       >
         کد تایید ارسال شده به شماره موبایل {phone} را وارد کنید.
-        <Box component={'span'} display={'block'} mt={1}>
-          کد تایید علاوه بر پیامک در پیامرسان بله نیز ارسال میشود.
-        </Box>
+       
       </Typography>
       {type === 'login' ? (
         <VerifyLoginOtpForm phoneNumber={phone} />
