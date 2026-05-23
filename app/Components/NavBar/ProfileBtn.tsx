@@ -26,9 +26,10 @@ import {
   UserFillIcon,
   UserIcon,
 } from '../CustomIcons/CustomIcons';
-import { getMe, User } from '@/lib/auth';
+import { getMe, logout, User } from '@/lib/auth';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '../Snackbar/Snackbar';
+import { useRouter } from 'next/navigation';
 const options = [
   {
     title: 'پروفایل',
@@ -69,7 +70,8 @@ const options = [
 ];
 
 export default function ProfileBtn() {
-    const [user, setUser] = React.useState<User | null>(null);
+  const router = useRouter()
+  const [user, setUser] = React.useState<User | null>(null);
   const [open, setOpen] = React.useState(false);
   const wrapperRef = React.useRef<HTMLDivElement | null>(null);
   const theme = useTheme();
@@ -99,6 +101,17 @@ React.useEffect(()=>{
 
     setOpen(false);
   };
+  const handleLogout = async ()=>{
+    try{
+      const response = await logout()
+      showSnackbar(response.message,true)
+      router.push('/login/login-password')
+    }catch(error:unknown){
+      if (isAxiosError(error)){
+        showSnackbar(error.response?.data.message)
+      }
+    }
+  }
   return (
     <ClickAwayListener onClickAway={handleClose}>
       <div
@@ -224,7 +237,7 @@ React.useEffect(()=>{
             >
               افزایش اعتبار
             </Button>
-            <Button variant="outlined" color="error" onClick={() => setOpen(false)}>
+            <Button variant="outlined" color="error" onClick={handleLogout}>
               خروج
             </Button>
           </Stack>
