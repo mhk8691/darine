@@ -54,7 +54,7 @@ export default function SendCode({ phoneNumber }: { phoneNumber: string }) {
         <Button
           variant="text"
           color="success"
-          disableRipple
+           
           onClick={() => {
             signupOtp(phoneNumber);
             setTime(120);

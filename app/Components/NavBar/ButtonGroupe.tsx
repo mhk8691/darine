@@ -50,7 +50,7 @@ export default function ButtonGroupe() {
           <Button
             variant="outlined"
             color="secondary"
-            disableRipple
+             
             onClick={() => router.push('http://silver.darine.shop/dashboard')}
             sx={{
               px: 1,
@@ -79,7 +79,7 @@ export default function ButtonGroupe() {
       {url !== 'dashboard' && (
         <>
           <IconButton
-            disableRipple
+             
             onClick={() => router.push('/dashboard/gold-receive')}
             sx={{ color: 'text.secondary' }}
           >
@@ -110,7 +110,7 @@ export default function ButtonGroupe() {
               <Button
                 variant="outlined"
                 color="inherit"
-                disableRipple
+                 
                 sx={{
                   px: 3,
                   border: 1,

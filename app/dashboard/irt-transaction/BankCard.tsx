@@ -160,7 +160,7 @@ export default function BankCards({
           onClick={() => setOpenModal(true)}
           variant="outlined"
           color="inherit"
-          disableRipple
+           
           sx={{
             '&:hover': {
               bgcolor: 'background.default',

@@ -120,7 +120,7 @@ React.useEffect(()=>{
                 endIcon={open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                 variant="outlined"
                 color="inherit"
-                disableRipple
+                 
                 sx={{
                   fontSize: 16,
                   fontWeight: 400,
@@ -219,7 +219,7 @@ React.useEffect(()=>{
               color="primary"
               LinkComponent={Link}
               href="/dashboard/irt-transaction"
-              disableRipple
+               
               onClick={() => setOpen(false)}
             >
               افزایش اعتبار

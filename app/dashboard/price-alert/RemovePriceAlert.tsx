@@ -41,7 +41,7 @@ export default function RemovePriceAlertModal({
           <Typography variant="body1" fontSize={16} fontWeight={'500'}>
             حذف آلارم
           </Typography>
-          <IconButton onClick={() => setOpen(false)} disableRipple>
+          <IconButton onClick={() => setOpen(false)}  >
             <Close />
           </IconButton>
         </Stack>
@@ -62,7 +62,7 @@ export default function RemovePriceAlertModal({
               },
             }}
             onClick={handleRemove}
-            disableRipple
+             
           >
             حذف
           </Button>
@@ -79,7 +79,7 @@ export default function RemovePriceAlertModal({
               },
             }}
             onClick={() => setOpen(false)}
-            disableRipple
+             
           >
             انصراف
           </Button>

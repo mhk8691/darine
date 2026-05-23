@@ -97,7 +97,7 @@
 //             onClick={() => {
 //               setOpen(false);
 //             }}
-//             disableRipple
+//              
 //           >
 //             <Close />
 //           </IconButton>
@@ -129,7 +129,7 @@
 //               <Stack direction={'column'}>
 //                 <FormControlLabel
 //                   value={address.id}
-//                   control={<Radio disableRipple disableTouchRipple />}
+//                   control={<Radio   disableTouchRipple />}
 //                   label={`${address.province}،${address.city}،${address.address}،${address.plaque}،${address.unit}`}
 //                   sx={{
 //                     '& .MuiTypography-root': {
@@ -297,7 +297,7 @@ export default function AddressList({ setOpenAddAddress, addresses, setAddressId
             onClick={() => {
               setOpen(false);
             }}
-            disableRipple
+             
           >
             <Close />
           </IconButton>
@@ -328,7 +328,7 @@ export default function AddressList({ setOpenAddAddress, addresses, setAddressId
                 <Stack direction={'column'}>
                   <FormControlLabel
                     value={address.id}
-                    control={<Radio disableRipple disableTouchRipple />}
+                    control={<Radio   disableTouchRipple />}
                     label={`${address.province}،${address.city}،${address.address}،${address.plaque}،${address.unit}`}
                     sx={{
                       '& .MuiTypography-root': {

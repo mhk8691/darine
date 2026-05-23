@@ -281,7 +281,7 @@ export default function page() {
                         <Button
                           variant="contained"
                           color="primary"
-                          disableRipple
+                           
                           sx={{
                             borderRadius: 2,
                             py: {

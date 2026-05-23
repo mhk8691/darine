@@ -61,7 +61,7 @@ export default function page() {
         >
           <Link href={'/dashboard/bank-card'}>
             <Button
-              disableRipple
+               
               variant="contained"
               sx={{
                 py: 1,

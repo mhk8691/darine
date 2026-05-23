@@ -103,109 +103,34 @@ export const getTheme = (mode: 'light' | 'dark' = 'light') =>
           },
         },
       },
-      MuiButton: {
-        defaultProps: {
-          disableRipple: true,
-          disableElevation: true,
-        },
-        styleOverrides: {
-          root: {
-            boxShadow: 'none',
+  
 
-            '&:hover': {
-              boxShadow: 'none',
-              backgroundColor: 'none',
-            },
+    
 
-            '&:active': {
-              boxShadow: 'none',
-            },
-          },
-        },
-      },
-
-      MuiIconButton: {
-        defaultProps: {
-          disableRipple: true,
-        },
-      },
-
-      MuiButtonBase: {
-        defaultProps: {
-          disableRipple: true,
-        },
-      },
 
       MuiOutlinedInput: {
         styleOverrides: {
-          root: ({ theme }) => ({
+          root: () => ({
             borderRadius: '8px',
             '& .MuiOutlinedInput-notchedOutline': {
-              borderColor: theme.palette.background.border,
               borderRadius: '8px',
-              transition: 'none',
             },
-            '&:hover .MuiOutlinedInput-notchedOutline': {
-              borderColor: theme.palette.background.border,
-              borderWidth: '1px',
-            },
-            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-              borderColor: theme.palette.background.border,
-              borderWidth: '1px',
-            },
-            '&.Mui-active .MuiOutlinedInput-notchedOutline': {
-              borderColor: theme.palette.background.border,
-              borderWidth: '1px',
-            },
-            '&.Mui-disabled': {
-              '& .MuiOutlinedInput-input': {
-                color: theme.palette.text.primary,
-                WebkitTextFillColor: theme.palette.text.primary,
-              },
-              '& .MuiOutlinedInput-notchedOutline': {
-                borderColor: theme.palette.background.border,
-              },
-            },
+          
+       
           }),
         },
       },
 
-      MuiInputBase: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            '&.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
-              borderColor: theme.palette.background.border,
-            },
-            '&.Mui-disabled': {
-              '& .MuiInputBase-input': {
-                color: theme.palette.text.primary,
-                WebkitTextFillColor: theme.palette.text.primary,
-              },
-            },
-          }),
-        },
-      },
 
       MuiFilledInput: {
         styleOverrides: {
           root: ({ theme }) => ({
             borderRadius: '8px',
-            '&:before, &:after': {
-              borderBottomColor: theme.palette.background.border,
-            },
-            '&:hover:before': {
-              borderBottomColor: theme.palette.background.border,
-            },
-            '&.Mui-focused:after': {
-              borderBottomColor: theme.palette.background.border,
-              borderWidth: '1px',
-            },
+          
             '&.Mui-disabled': {
               backgroundColor:
                 mode === 'dark' ? 'rgba(41, 41, 38, 0.8)' : 'rgba(239, 238, 236, 0.8)',
-              '&:before': {
-                borderBottomColor: theme.palette.background.border,
-              },
+             
               '& .MuiFilledInput-input': {
                 color: theme.palette.text.primary,
                 WebkitTextFillColor: theme.palette.text.primary,
@@ -220,22 +145,10 @@ export const getTheme = (mode: 'light' | 'dark' = 'light') =>
           root: ({ theme }) => ({
             borderRadius: '8px',
             '& .MuiOutlinedInput-notchedOutline': {
-              borderColor: theme.palette.background.border,
               borderRadius: '8px',
-              transition: 'none',
             },
-            '&:hover .MuiOutlinedInput-notchedOutline': {
-              borderColor: theme.palette.background.border,
-              borderWidth: '1px',
-            },
-            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-              borderColor: theme.palette.background.border,
-              borderWidth: '1px',
-            },
-            '&.Mui-active .MuiOutlinedInput-notchedOutline': {
-              borderColor: theme.palette.background.border,
-              borderWidth: '1px',
-            },
+          
+          
             '& .MuiSelect-icon': {
               color: theme.palette.text.primary,
             },
@@ -246,9 +159,7 @@ export const getTheme = (mode: 'light' | 'dark' = 'light') =>
               '& .MuiSelect-icon': {
                 color: theme.palette.text.primary,
               },
-              '& .MuiOutlinedInput-notchedOutline': {
-                borderColor: theme.palette.background.border,
-              },
+        
             },
           }),
         },

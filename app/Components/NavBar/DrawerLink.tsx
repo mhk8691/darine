@@ -68,7 +68,7 @@ export default function DrawerLink({ open, setOpen }: Props) {
       }}
     >
       <Stack direction={'row'} justifyContent={'flex-end'}>
-        <IconButton onClick={() => setOpen(false)} disableRipple>
+        <IconButton onClick={() => setOpen(false)}  >
           <Close fontSize="large" sx={{ color: 'text.subtitle' }} />
         </IconButton>
       </Stack>

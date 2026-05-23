@@ -36,7 +36,7 @@ export default function AddCard({ setOpen, setValue, open, value, setBankCardDat
         <Typography variant="body1" fontSize={16}>
           افزودن کارت جدید
         </Typography>
-        <IconButton onClick={() => setOpen(false)} disableRipple>
+        <IconButton onClick={() => setOpen(false)}  >
           <Close />
         </IconButton>
       </Stack>
@@ -57,7 +57,7 @@ export default function AddCard({ setOpen, setValue, open, value, setBankCardDat
             bgcolor: 'background.border',
           },
         }}
-        disableRipple
+         
         onClick={handleAddBankCard}
       >
         ثبت

@@ -21,7 +21,7 @@ export default function SubmitButton({ title, handleSubmit, isDisable }: Props) 
           bgcolor: '#393936',
         },
       }}
-      disableRipple
+       
       onClick={handleSubmit}
       disabled={isDisable}
     >

@@ -39,7 +39,7 @@ export default function BankCard({
               </Stack>
               <Stack>
                 <IconButton
-                  disableRipple
+                   
                   onClick={() => {
                     setOpen(true);
                     setCardId(item.id);

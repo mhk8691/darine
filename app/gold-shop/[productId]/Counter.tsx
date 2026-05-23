@@ -66,13 +66,13 @@ const handleRemove = () => {
         width: '120px',
       }}
     >
-      <IconButton onClick={handleAdd} disableRipple>
+      <IconButton onClick={handleAdd}  >
         <AddIcon fontSize="small" sx={{ color: 'text.subtitle' }} />
       </IconButton>
 
       <Typography fontWeight={600}>{count}</Typography>
 
-      <IconButton onClick={handleRemove} disableRipple>
+      <IconButton onClick={handleRemove}  >
         {count <= 1 ? (
           <DeleteIcon fontSize="small" sx={{ color: 'text.subtitle' }} />
         ) : (

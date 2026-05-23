@@ -244,7 +244,7 @@ export default function Trading() {
           <Checkbox
             checked={checked}
             onChange={handleChange}
-            disableRipple
+             
             sx={{
               color: 'text.muted',
               '&.Mui-checked': {

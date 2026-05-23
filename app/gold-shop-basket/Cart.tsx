@@ -77,7 +77,7 @@ export default function Cart() {
         <Button
           variant="contained"
           color="primary"
-          disableRipple
+           
           sx={{
             fontSize: {
               xs: step === 0 ? 20 : 14,
@@ -100,7 +100,7 @@ export default function Cart() {
         <Button
           variant="outlined"
           color="inherit"
-          disableRipple
+           
           sx={{
             fontSize: 20,
             py: 1.3,
@@ -136,7 +136,7 @@ export default function Cart() {
               setStep(1);
               setOpen(false);
             }}
-            disableRipple
+             
           >
             <Close />
           </IconButton>

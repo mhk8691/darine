@@ -193,12 +193,12 @@ const DesktopCart = ({cartData}:Props) => {
                     maxWidth: '150px',
                   }}
                 >
-                  <IconButton onClick={() => setCount((prev) => prev + 1)} disableRipple>
+                  <IconButton onClick={() => setCount((prev) => prev + 1)}  >
                     <AddIcon fontSize="small" />
                   </IconButton>
                   <Typography fontWeight={600}>{count}</Typography>
 
-                  <IconButton onClick={() => setCount((prev) => prev - 1)} disableRipple>
+                  <IconButton onClick={() => setCount((prev) => prev - 1)}  >
                     <DeleteIcon fontSize="small" />
                   </IconButton>
                 </Stack>

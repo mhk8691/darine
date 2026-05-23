@@ -96,7 +96,7 @@ export default function OrderConfirmation({ setOpen }: Props) {
         >
           <FormControlLabel
             value="one-time"
-            control={<Radio disableRipple disableTouchRipple />}
+            control={<Radio  disableTouchRipple />}
             label="پرداخت نقدی"
             sx={{
               '& .MuiTypography-root': {
@@ -106,7 +106,7 @@ export default function OrderConfirmation({ setOpen }: Props) {
           />
           <FormControlLabel
             value="every-time"
-            control={<Radio disableRipple disableTouchRipple />}
+            control={<Radio  disableTouchRipple />}
             label="پرداخت اعتباری"
             sx={{
               '& .MuiTypography-root': {
@@ -123,7 +123,7 @@ export default function OrderConfirmation({ setOpen }: Props) {
           <Checkbox
             checked={checked}
             onChange={handleChangeBox}
-            disableRipple
+             
             sx={{
               '&.Mui-checked': {
                 color: 'primary.main',
@@ -139,7 +139,7 @@ export default function OrderConfirmation({ setOpen }: Props) {
         <Button
           variant="contained"
           color="primary"
-          disableRipple
+           
           sx={{
             fontSize: 20,
             py: 1.3,
@@ -156,7 +156,7 @@ export default function OrderConfirmation({ setOpen }: Props) {
         <Button
           variant="outlined"
           color="inherit"
-          disableRipple
+           
           sx={{
             fontSize: 16,
             py: 1.3,

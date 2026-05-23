@@ -137,7 +137,7 @@ const Content = ({ setOpen }: { setOpen: Dispatch<SetStateAction<boolean>> }) =>
           sm: 0,
         }}
       >
-        <IconButton onClick={() => setOpen(false)} disableRipple>
+        <IconButton onClick={() => setOpen(false)}  >
           <Close
             sx={{
               display: {

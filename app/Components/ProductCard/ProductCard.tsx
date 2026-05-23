@@ -261,7 +261,7 @@ export default function ProductCard({ item,cartProductId ,quantity,getCartData}:
               handleAddToCart(item.id);
               setOpen(true);
             }}
-            disableRipple
+             
           >
             افزودن به سبد خرید
           </Button>
@@ -272,7 +272,7 @@ export default function ProductCard({ item,cartProductId ,quantity,getCartData}:
       </Card>
       <CustomModal open={open} setOpen={setOpen} modalStyle={{ p: 2 }}>
         <Stack direction={'row'} justifyContent={'flex-end'}>
-          <IconButton onClick={() => setOpen(false)} disableRipple>
+          <IconButton onClick={() => setOpen(false)}  >
             <Close />
           </IconButton>
         </Stack>
@@ -301,7 +301,7 @@ export default function ProductCard({ item,cartProductId ,quantity,getCartData}:
                 bgcolor: 'primary.main',
               },
             }}
-            disableRipple
+             
           >
             سبد خرید
           </Button>
@@ -319,7 +319,7 @@ export default function ProductCard({ item,cartProductId ,quantity,getCartData}:
                 bgcolor: 'background.default',
               },
             }}
-            disableRipple
+             
           >
             ادامه خرید
           </Button>

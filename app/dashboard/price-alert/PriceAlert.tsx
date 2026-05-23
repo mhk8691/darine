@@ -132,7 +132,7 @@ export default function PriceAlert({
             >
               <FormControlLabel
                 value="ONCE"
-                control={<Radio disableRipple disableTouchRipple />}
+                control={<Radio   disableTouchRipple />}
                 label="فقط یکبار اطلاع بده"
                 sx={{
                   '& .MuiTypography-root': {
@@ -145,7 +145,7 @@ export default function PriceAlert({
               />
               <FormControlLabel
                 value="every-time"
-                control={<Radio disableRipple disableTouchRipple />}
+                control={<Radio   disableTouchRipple />}
                 label="هربار اطلاع بده"
                 sx={{
                   '& .MuiTypography-root': {

@@ -42,7 +42,7 @@ export default function RemoveCard({
           <Typography variant="body1" fontSize={16} fontWeight={'500'}>
             حذف کارت
           </Typography>
-          <IconButton onClick={() => setOpen(false)} disableRipple>
+          <IconButton onClick={() => setOpen(false)}  >
             <Close />
           </IconButton>
         </Stack>
@@ -63,7 +63,7 @@ export default function RemoveCard({
               },
             }}
             onClick={handleRemove}
-            disableRipple
+             
           >
             حذف
           </Button>
@@ -80,7 +80,7 @@ export default function RemoveCard({
               },
             }}
             onClick={() => setOpen(false)}
-            disableRipple
+             
           >
             انصراف
           </Button>

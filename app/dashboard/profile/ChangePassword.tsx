@@ -88,7 +88,7 @@ export default function ChangePassword() {
           <IconButton onClick={() => {
             setOpen(false)
             setStep(0)
-          }} disableRipple>
+          }}  >
             <Close />
           </IconButton>
         </Stack>
@@ -110,7 +110,7 @@ export default function ChangePassword() {
         <Button
           variant="contained"
           color="primary"
-          disableRipple
+           
           sx={{
             py: 1.3,
             fontSize: 22,

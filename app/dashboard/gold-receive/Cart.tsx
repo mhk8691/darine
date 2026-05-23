@@ -75,7 +75,7 @@ export default function Cart({data}:{data:CartDataType}) {
                   },
                 }}
                 onClick={() => router.push('/gold-shop-basket')}
-                disableRipple
+                 
                 startIcon={<CartIcon />}
               >
                 مشاهده سبد خرید

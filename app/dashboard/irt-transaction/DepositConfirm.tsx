@@ -55,7 +55,7 @@ export default function DepositConfirm({
           onClick={() => {
             setOpen(false);
           }}
-          disableRipple
+           
         >
           <Close />
         </IconButton>
@@ -95,7 +95,7 @@ export default function DepositConfirm({
             <Checkbox
               checked={checked}
               onChange={handleChangeBox}
-              disableRipple
+               
               sx={{
                 "&.Mui-checked": {
                   color: "primary.main",

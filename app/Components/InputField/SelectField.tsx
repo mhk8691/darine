@@ -153,7 +153,7 @@ export default function SelectField({
                     size="small"
                     onClick={handleClear}
                     onMouseDown={(e) => e.stopPropagation()}
-                    disableRipple
+                     
                     sx={{
                       color: '#FFFFFF',
                     }}

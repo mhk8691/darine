@@ -18,7 +18,7 @@
 //         <Typography variant="body1" fontSize={18}>
 //          {title}
 //         </Typography>
-//         <IconButton onClick={() => setOpen(false)} disableRipple>
+//         <IconButton onClick={() => setOpen(false)}  >
 //           <Close />
 //         </IconButton>
 //       </Stack>

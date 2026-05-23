@@ -87,13 +87,13 @@ const handlePriceChange =  async (val: string) => {
             endAdornment: (
               <InputAdornment position="end">
                 <Stack direction="row" alignItems="center">
-                  <IconButton disableRipple onClick={() => setCount((c) => c + 1)}>
+                  <IconButton   onClick={() => setCount((c) => c + 1)}>
                     <PlusSquareleIcon />
                   </IconButton>
 
                   <Typography>{count}</Typography>
 
-                  <IconButton onClick={() => setCount((c) => Math.max(1, c - 1))} disableRipple>
+                  <IconButton onClick={() => setCount((c) => Math.max(1, c - 1))}  >
                     <MinusSquareIcon />
                   </IconButton>
                 </Stack>

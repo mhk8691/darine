@@ -102,7 +102,7 @@ export default function CustomTabs({
         >
           {tabList?.map((item, index) => (
             <Tab
-              disableRipple
+               
               sx={{
                 '&.Mui-selected': {
                   color: 'text.title',

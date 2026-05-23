@@ -59,7 +59,7 @@ export default function MessageCard({ items, isNotif }: Props) {
       {isDesktop && (
         <Stack direction={'row'} gap={1}>
           <Button
-            disableRipple
+             
             variant={isNotif ? 'contained' : 'outlined'}
             color={isNotif ? 'primary' : 'inherit'}
             sx={{
@@ -75,7 +75,7 @@ export default function MessageCard({ items, isNotif }: Props) {
           </Button>
           {isNotif && (
             <Button
-              disableRipple
+               
               variant="outlined"
               color="inherit"
               sx={{

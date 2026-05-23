@@ -39,7 +39,7 @@ export default function AddAddress({ open, setOpen,setAddress,address,province,s
             onClick={() => {
               setOpen(false);
             }}
-            disableRipple
+             
           >
             <Close />
           </IconButton>
@@ -51,7 +51,7 @@ export default function AddAddress({ open, setOpen,setAddress,address,province,s
           <Button
             variant="contained"
             color="primary"
-            disableRipple
+             
           onClick={() => {
     if (step < 1) {
         setStep((prev) => prev + 1);
@@ -74,7 +74,7 @@ export default function AddAddress({ open, setOpen,setAddress,address,province,s
             <Button
               variant="outlined"
               color="inherit"
-              disableRipple
+               
               onClick={() => setStep((prev) => prev - 1)}
               sx={{
                 borderRadius: 2,

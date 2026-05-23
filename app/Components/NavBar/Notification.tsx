@@ -54,7 +54,7 @@ const NotificationContent = ({ onClose }: { onClose: () => void }) => {
         }}
       >
         <Stack direction={'row'} alignItems={'center'}>
-          <IconButton onClick={onClose} disableRipple>
+          <IconButton onClick={onClose}  >
             <ArrowForward sx={{ color: 'text.subtitle' }} />
           </IconButton>
           <Typography variant="body1" fontSize={16} fontWeight={500}>
@@ -81,7 +81,7 @@ const NotificationContent = ({ onClose }: { onClose: () => void }) => {
           }}
         >
           <Button
-            disableRipple
+             
             variant="outlined"
             color="inherit"
             size="small"
@@ -136,7 +136,7 @@ export default function Notification() {
   if (isMobile) {
     return (
       <>
-        <IconButton onClick={handleToggle} disableRipple>
+        <IconButton onClick={handleToggle}  >
           <NotificationIcon />
         </IconButton>
 
@@ -169,7 +169,7 @@ export default function Notification() {
             display: 'inline-block',
           }}
         >
-          <IconButton onClick={handleToggle} disableRipple>
+          <IconButton onClick={handleToggle}  >
             <NotificationIcon />
           </IconButton>
           <Paper

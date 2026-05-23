@@ -15,7 +15,7 @@ export default function FilterButton({ active, setActive, item, setMessage }: Pr
     <Button
       variant="outlined"
       color="inherit"
-      disableRipple
+       
       onClick={() => {
         setActive(item.id);
         if (setMessage) {

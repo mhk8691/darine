@@ -177,7 +177,7 @@ export default function SelectInput({
             <Typography variant="h6" fontSize={16}>
               {titleModal}
             </Typography>
-            <IconButton onClick={() => setIsModalOpen(false)} disableRipple>
+            <IconButton onClick={() => setIsModalOpen(false)}  >
               <Close />
             </IconButton>
           </Stack>
