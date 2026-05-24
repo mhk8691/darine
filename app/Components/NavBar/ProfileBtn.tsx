@@ -31,7 +31,8 @@ import { isAxiosError } from 'axios';
 import { showSnackbar } from '../Snackbar/Snackbar';
 import { useRouter } from 'next/navigation';
 import priceFormater from '@/app/core/PriceFormater';
-import { useAssets } from '@/app/dashboard/AssetsProvider';
+import { AssetsDataType } from '@/app/core/Types';
+import { getAssets } from '@/lib/getAssets/getAssets';
 const options = [
   {
     title: 'پروفایل',
@@ -81,7 +82,21 @@ export default function ProfileBtn() {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const handleToggle = () => setOpen((prev) => !prev);
   const isDarkMode = theme.palette.mode == 'dark';
-  const {assets} = useAssets()
+  const [assets,setAssets] = React.useState<AssetsDataType>({} as AssetsDataType)
+    React.useEffect(()=>{
+      const getData = async ()=>{
+       try{
+         const response = await getAssets()
+        setAssets(response)
+       }catch(error:unknown){
+        if (isAxiosError(error)){
+          showSnackbar(error.response?.data.message)
+        }
+       }
+      }
+         getData();
+    
+    },[open])
    const fetchUser = React.useCallback(async () => {
     try {
       const me = await getMe();
@@ -192,7 +207,7 @@ React.useEffect(()=>{
                   موجودی تومان:
                 </Typography>
                 <Typography variant="body2" fontSize={12}>
-                  {priceFormater(assets?.toman_balance)} تومان
+                  {priceFormater(assets?.toman_balance)||0} تومان
                 </Typography>
               </Stack>
               <Divider />
