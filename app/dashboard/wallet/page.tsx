@@ -6,7 +6,6 @@ import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import Wallet from '@/app/Components/Wallet/Wallet';
 import { RecentTransactionDataType, ToggleItemsType } from '@/app/core/Types';
 import { Grid, Stack, Typography } from '@mui/material';
-import { Metadata } from 'next';
 import BackLink from '../BackLink';
 import AllAssets from './AllAssets';
 import { useEffect, useState } from 'react';
@@ -52,8 +51,8 @@ const items: ToggleItemsType[] = [
 ];
 export default async function page() {
   const [transactionData,setTransactionData] = useState<RecentTransactionDataType[]>([])
-    useEffect(()=>{
-      const getData = async ()=>{
+  useEffect(()=>{
+     const getData = async ()=>{
         try{
           const response = await getRecentTransaction()
           setTransactionData(response)
@@ -64,7 +63,7 @@ export default async function page() {
         }
       }
       getData()
-    },[])
+  },[])
   return (
     <Grid
       container
@@ -85,7 +84,7 @@ export default async function page() {
             sm: 'block',
           }}
         >
-          <AllAssets
+          {/* <AllAssets
             style={{
               mt: 3,
               minHeight: {
@@ -93,7 +92,7 @@ export default async function page() {
                 sm: '60px',
               },
             }}
-          />
+          /> */}
         </Grid>
       </Grid>
 
