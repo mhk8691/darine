@@ -18,25 +18,25 @@ export function middleware(req: NextRequest) {
     '/about',
   ];
 
-  // const isPublic = publicPaths.some((path) =>
-  //   pathname.startsWith(path)
-  // );
+  const isPublic = publicPaths.some((path) =>
+    pathname.startsWith(path)
+  );
 
-  // if (pathname === '/login') {
-  //   return NextResponse.redirect(
-  //     new URL('/login/login-password', req.url)
-  //   );
-  // }
-  // if (pathname === '/') {
-  //   return NextResponse.redirect(
-  //     new URL('/dashboard', req.url)
-  //   );
-  // }
-  // if (!refreshToken && !isPublic) {
-  //   return NextResponse.redirect(
-  //     new URL('/login/login-password', req.url)
-  //   );
-  // }
+  if (pathname === '/login') {
+    return NextResponse.redirect(
+      new URL('/login/login-password', req.url)
+    );
+  }
+  if (pathname === '/') {
+    return NextResponse.redirect(
+      new URL('/dashboard', req.url)
+    );
+  }
+  if (!refreshToken && !isPublic) {
+    return NextResponse.redirect(
+      new URL('/login/login-password', req.url)
+    );
+  }
 
   return NextResponse.next();
 }

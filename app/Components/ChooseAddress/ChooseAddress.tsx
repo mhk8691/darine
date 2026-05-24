@@ -47,9 +47,9 @@ export default function ChooseAddress({addressId,setAddressId, addresses,setAddr
   },[])
   return (
     <Stack direction={'column'} alignItems={'center'} gap={2} sx={cardStyle}>
-      {
-         typeof addresses == 'object'&& (
-          <Stack
+   
+     {addresses?.length  > 0  ?  <AddressList setOpenAddAddress={setOpen} addresses={addresses} setAddressId={setAddressId}
+addressId={addressId} /> :  <Stack
         component={'div'}
         onClick={() => setOpen(true)}
         sx={{ cursor: 'pointer' }}
@@ -68,13 +68,7 @@ export default function ChooseAddress({addressId,setAddressId, addresses,setAddr
         >
           {description}
         </Typography>
-      </Stack>
-        )
-      }
-    {
-      typeof addresses !== 'object'&&   <AddressList setOpenAddAddress={setOpen} addresses={addresses} setAddressId={setAddressId}
-addressId={addressId} />
-    }
+      </Stack>}
       <AddAddress open={open} setOpen={setOpen}   setActiveStep={setActiveStep}              address={address}
 setAddress={setAddress}
 province={province}
