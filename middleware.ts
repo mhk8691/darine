@@ -3,25 +3,35 @@ import type { NextRequest } from 'next/server';
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
-  
-  // استفاده از نام صحیح کوکی‌ها
+
   const refreshToken = req.cookies.get('refreshToken');
-  const accessToken = req.cookies.get('accessToken');
 
-  const isProtected = pathname.startsWith('/dashboard');
+  const publicPaths = [
+    '/login',
+    '/login/login-password',
+    '/about',
+  ];
 
-  // if (isProtected && !refreshToken) {
-  //   const loginUrl = new URL('/login/login-password', req.url);
-  //   return NextResponse.redirect(loginUrl);
-  // }
+  const isPublic = publicPaths.some((path) =>
+    pathname.startsWith(path)
+  );
 
-  // if (pathname === '/') {
-  //   return NextResponse.redirect(new URL('/dashboard', req.url));
-  // }
+  if (pathname === '/login') {
+    return NextResponse.redirect(
+      new URL('/login/login-password', req.url)
+    );
+  }
+
+  if (!refreshToken && !isPublic) {
+    return NextResponse.redirect(
+      new URL('/login/login-password', req.url)
+    );
+  }
 
   return NextResponse.next();
 }
-
 export const config = {
-  matcher: ['/', '/dashboard/:path*'],
+  matcher: [
+    '/((?!_next/static|_next/image|favicon.ico|images|assets).*)',
+  ],
 };

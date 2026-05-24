@@ -3,6 +3,7 @@ import axios, {
   AxiosError,
   AxiosInstance,
   InternalAxiosRequestConfig,
+  isAxiosError,
 } from 'axios';
 
 
@@ -87,7 +88,11 @@ api.interceptors.response.use(
         if (typeof window !== 'undefined') {
           try {
             await api.post('/accounts/logout/');
-          } catch (_) {}
+          } catch (error:unknown) {
+            if(isAxiosError(error)){
+              console.log(error.response?.data.message)
+            }
+          }
 
           window.location.href = '/login/login-password';
         }
