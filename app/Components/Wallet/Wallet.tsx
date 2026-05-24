@@ -68,13 +68,13 @@ export default function Wallet({ type }: Props) {
         >
           <Stack direction={'row'} justifyContent={'space-between'} p={2}>
             {type === 'dashboard' && <Stack></Stack>}
-            <Stack direction={'column'} gap={1} alignItems={type === 'wallet' ? 'start' : 'center'}>
+            <Stack direction={'column'} gap={1} ml={type === 'wallet'?0:5} alignItems={type === 'wallet' ? 'start' : 'center'}>
               <Typography variant="body2" fontSize={12} sx={{ color: 'text.muted' }}>
                 ارزش کل دارایی
               </Typography>
               <Stack direction={'row'} gap={0.5} alignItems={'center'} fontWeight={500}>
                 <Typography variant="body1" fontSize={20} sx={{ color: 'text.title' }}>
-                  {visible ? priceFormater(assets?.total_assets) : '***'}
+                  {visible ? priceFormater(assets?.total_assets) || 0 : '***'}
                 </Typography>
                 <Typography
                   variant="body1"

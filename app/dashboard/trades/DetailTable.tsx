@@ -1,7 +1,11 @@
 'use client';
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
-import { ToggleItemsType } from '@/app/core/Types';
-import React from 'react';
+import { ToggleItemsType, TradeTableDataType } from '@/app/core/Types';
+import { getReports } from '@/lib/getReports/getReports';
+import React, { useEffect, useState } from 'react';
+import TradesTable from '../reports/TradesTable';
+import { isAxiosError } from 'axios';
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 const items: ToggleItemsType[] = [
   {
     title: 'خرید',
@@ -17,14 +21,23 @@ const items: ToggleItemsType[] = [
   },
 ];
 export default function DetailTable() {
+  const [data,setData] = useState<TradeTableDataType[]>([] as TradeTableDataType[])
+    useEffect(() => {
+    const getData = async () => {
+      try{
+  const response = await getReports('gold');
+      setData(response || []);
+      }
+    
+      catch (error: unknown) {
+    if (isAxiosError(error)) {
+      showSnackbar(error.response?.data.message);
+    }
+  }
+    };
+      getData();
+    }, []);
   return (
-    <OrderDetail
-      title="لیست معاملات اخیر"
-      toggleItems={items}
-      type="chip"
-      tableBody={[]}
-      tableHead={[]}
-      listLength={0}
-    />
+   <TradesTable data={data} type='chip' noCard={false} />
   );
 }

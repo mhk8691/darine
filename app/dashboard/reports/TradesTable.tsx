@@ -21,13 +21,13 @@ const trades: ToggleItemsType[] = [
   },
 ];
 
-export default function TradesTable({data}:{data:TradeTableDataType[]}) {
+export default function TradesTable({data,type='toggle',noCard=true}:{data:TradeTableDataType[],type?:'chip'|'toggle',noCard?:boolean}) {
   return (
     <OrderDetail
       key={1}
       toggleItems={trades}
-      noCard
-      type="toggle"
+      noCard={noCard}
+      type={type}
       tableBody={<TableBody>
             {data?.map((row) => (
               <TableRow

@@ -18,6 +18,7 @@ import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { isAxiosError } from 'axios';
 import { AddressesDataType } from '@/app/core/Types';
 import { useRouter } from 'next/navigation';
+import Loading from '@/app/Components/Loading/Loading';
 
 const CustomConnector = styled(StepConnector)(() => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -90,10 +91,11 @@ export default function GiftStepper() {
   const [postCode, setPostCode] = React.useState('');
   const [addresses,setAddresses] = React.useState<AddressesDataType[]>([])
   const [addressId, setAddressId] = React.useState(0);
-
+const [isLoading,setIsLoading]= React.useState(false)
   
   const giftCard = async ()=>{
     try{
+      setIsLoading(true)
       const response = await giftCardOrder(weight,count,province,city,address,plaque,unit,postCode,addressId != 0 ?addressId :undefined)
       showSnackbar(response.message,true)
       router.push('/dashboard/gift-cards')
@@ -101,6 +103,8 @@ export default function GiftStepper() {
       if (isAxiosError(error)){
         showSnackbar(error.response?.data.message)
       }
+    }finally{
+      setIsLoading(false)
     }
   }
   const isStepSkipped = (step: number) => {
@@ -286,8 +290,9 @@ unit={unit} city={city} price={price} province={province} address={address} coun
                     backgroundColor: '#eab308',
                   },
                 }}
+                disabled={isLoading}
               >
-                {activeStep === 2 ? 'تایید سفارش' : activeStep === 1 && addresses.length ===0 ? 'افزودن آدرس' : 'ادامه'}
+                {isLoading ? <Loading size={30}/>:activeStep === 2 ? 'تایید سفارش' : activeStep === 1 && addresses.length ===0 ? 'افزودن آدرس' : 'ادامه'}
               </Button>
 
               {activeStep !== 0 && (

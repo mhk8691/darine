@@ -6,6 +6,8 @@ import DepositTable from "./DepositTable";
 import WithdrawTable from "./WithdrawTable";
 import { getReports } from "@/lib/getReports/getReports";
 import OrdersTable from "./OrdersTable";
+import { isAxiosError } from "axios";
+import { showSnackbar } from "@/app/Components/Snackbar/Snackbar";
 const tabs = [
   { title: 'معاملات' },
   { title: 'واریز' },
@@ -21,9 +23,16 @@ export default function ReportsContainer() {
   const [data, setData] = useState([]);
   useEffect(() => {
     const getData = async () => {
-      const response = await getReports(tabUrl[value]);
-      console.log('test',response)
+      try{
+  const response = await getReports(tabUrl[value]);
       setData(response || []);
+      }
+    
+      catch (error: unknown) {
+    if (isAxiosError(error)) {
+      showSnackbar(error.response?.data.message);
+    }
+  }
     };
     getData();
   }, [value]);
