@@ -16,7 +16,7 @@ interface Props {
   setValue: (value: string) => void;
   style?: SxProps;
   multiline?: boolean;
-  type: 'text' | 'number';
+  type?: 'text' | 'number';
 }
 
 export default function InputField({
@@ -29,69 +29,55 @@ export default function InputField({
   multiline = false,
   type = 'text',
 }: Props) {
+
+  // تبدیل امن به عدد
   const toNumber = (val: string) => {
-    const num = Number(val.replace(/,/g, ''));
+    const num = Number(val);
     return isNaN(num) ? 0 : num;
   };
 
-  const round3 = (num: number) => {
-    return Math.round(num * 100) / 100;
-  };
-
+  // فرمت نمایش (رند 3 رقم اعشار + جلوگیری از خراب شدن تایپ)
   const formatNumber = (val: string) => {
     if (!val) return '';
 
-    const num = toNumber(val);
+    // اجازه تایپ اعشاری نیمه‌کاره
+    if (val === '.' || val.endsWith('.')) return val;
+
+    const num = Number(val);
+
+    if (isNaN(num)) return '';
 
     if (num > 0 && num < 0.001) return '0';
 
-    const rounded = round3(num);
+    const rounded = Math.round(num * 1000) / 1000;
 
     const [intPart, decPart] = rounded.toString().split('.');
 
     const formattedInt = Number(intPart).toLocaleString('en-US');
 
-    return decPart ? `${formattedInt}.${decPart}` : formattedInt;
-  };
-
-  const limitDecimals = (val: string, maxDecimals: number) => {
-    const [integer, decimal] = val.split('.');
-
-    if (decimal && decimal.length > maxDecimals) {
-      return `${integer}.${decimal.slice(0, maxDecimals)}`;
-    }
-
-    return val;
+    return decPart
+      ? `${formattedInt}.${decPart}`
+      : formattedInt;
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let raw = e.target.value;
+    let val = e.target.value;
 
     if (type === 'number') {
-      raw = raw.replace(/,/g, '');
-      raw = raw.replace(/[^0-9.]/g, '');
+      val = val.replace(/[^0-9.]/g, '');
 
-      const parts = raw.split('.');
+      const parts = val.split('.');
       if (parts.length > 2) {
-        raw = `${parts[0]}.${parts.slice(1).join('')}`;
+        val = parts[0] + '.' + parts.slice(1).join('');
       }
 
-      raw = limitDecimals(raw, 3);
-
-      const num = toNumber(raw);
-
-      if (num > 0 && num < 0.001) {
-        setValue('0');
-        return;
+      const [int, dec] = val.split('.');
+      if (dec && dec.length > 3) {
+        val = `${int}.${dec.slice(0, 3)}`;
       }
-
-      const rounded = round3(num);
-
-      setValue(rounded.toString());
-      return;
     }
 
-    setValue(raw);
+    setValue(val);
   };
 
   return (
