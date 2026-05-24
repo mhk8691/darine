@@ -204,6 +204,7 @@ export default function Trading() {
         {select === 'self' && (
           <Stack>
             <InputField
+            type='number'
               placeholder={'قیمت هدف'}
               title={'تومان'}
               value={targetPrice}
@@ -213,6 +214,7 @@ export default function Trading() {
         )}
         <Stack>
           <InputField
+          type='number'
             placeholder={'وزن طلا'}
             title={'گرم'}
             value={gold}
@@ -222,6 +224,7 @@ export default function Trading() {
 
         <Stack>
           <InputField
+          type='number'
             placeholder={'ملبغ کل'}
             title={'تومان'}
             value={price}
@@ -261,6 +264,7 @@ export default function Trading() {
         <Stack gap={3.5} mt={2}>
           <Stack>
             <InputField
+            type='number'
               placeholder={'حد سود سفارش'}
               title={'تومان'}
               value={profitLimit}
@@ -269,6 +273,7 @@ export default function Trading() {
           </Stack>
           <Stack>
             <InputField
+            type='number'
               placeholder={'حد ضرر سفارش'}
               title={'تومان'}
               value={lossLimit}

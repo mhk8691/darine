@@ -116,6 +116,7 @@ export default function Trading() {
         <Stack gap={3.5} flexDirection={select === 'buy' ? 'column' : 'column-reverse'}>
           <Stack>
             <InputField
+            type='number'
               placeholder={'ملبغ به تومان'}
               title={'تومان'}
               value={price}
@@ -124,6 +125,7 @@ export default function Trading() {
           </Stack>
           <Stack>
             <InputField
+            type='number'
               placeholder={'وزن طلا'}
               title={'گرم'}
               value={gold}

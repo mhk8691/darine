@@ -31,7 +31,7 @@ export default function Form() {
   }
   return (
     <Stack direction={'column'} gap={1} mt={3.5}>
-      <InputField placeholder="شماره سریال روی کارت هدیه" setValue={setValue} value={value} />
+      <InputField type='text' placeholder="شماره سریال روی کارت هدیه" setValue={setValue} value={value} />
       <Stack direction={'row'} gap={2} mt={1}>
         <Button
           variant="contained"

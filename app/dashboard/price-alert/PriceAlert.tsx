@@ -118,7 +118,7 @@ export default function PriceAlert({
             },
           }}
         >
-          <InputField placeholder="مبلغ به تومان" title="تومان" value={value} setValue={setValue} />
+          <InputField type='number' placeholder="مبلغ به تومان" title="تومان" value={value} setValue={setValue} />
         </Stack>
         <Stack
           direction={'column'}

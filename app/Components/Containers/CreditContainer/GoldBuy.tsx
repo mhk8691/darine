@@ -45,7 +45,7 @@ export default function GoldBuy() {
       >
         مبلغ مورد نظر خود برای خرید طلا را وارد کنید
       </Typography>
-      <InputField placeholder="مبلغ مورد نظر" title="تومان" value={value} setValue={setValue} />
+      <InputField type='number' placeholder="مبلغ مورد نظر" title="تومان" value={value} setValue={setValue} />
       <Button
         variant="contained"
         color="primary"

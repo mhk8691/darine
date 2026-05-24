@@ -46,9 +46,9 @@ const handlePriceChange =  async (val: string) => {
   };
   return (
     <Stack direction="column" gap={4}>
-      <InputField placeholder="وزن" title="گرم" value={weight} setValue={handleWeightChange} />
+      <InputField type='number' placeholder="وزن" title="گرم" value={weight} setValue={handleWeightChange} />
 
-      <InputField placeholder="معادل تومان" title="تومان" value={price} setValue={handlePriceChange} />
+      <InputField type='number' placeholder="معادل تومان" title="تومان" value={price} setValue={handlePriceChange} />
 
       <TextField
         label="تعداد"

@@ -100,7 +100,7 @@ export default function Deposit() {
       <Stack gap={3.5}>
         {select === 'gateway' && (
           <Stack direction={'column'} gap={3}>
-            <InputField placeholder={'ملبغ'} title={'تومان'} value={price} setValue={setPrice} />
+            <InputField type='number' placeholder={'ملبغ'} title={'تومان'} value={price} setValue={setPrice} />
             <Button
               variant="contained"
               sx={{

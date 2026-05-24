@@ -5,7 +5,7 @@ import { TransferIcon } from '@/app/Components/CustomIcons/CustomIcons';
 import FilterToggleButton from '@/app/Components/FilterToggleButton/FilterToggleButton';
 import InputField from '@/app/Components/InputField/InputField';
 import { ToggleItemsType } from '@/app/core/Types';
-import { Button, Stack, SvgIcon } from '@mui/material';
+import { Button, Stack } from '@mui/material';
 import { useState } from 'react';
 
 interface Props {
@@ -38,7 +38,7 @@ export default function Trade({ type }: Props) {
       <FilterToggleButton items={items} select={select} setSelect={setSelect} />
 
       <Stack gap={3.5}>
-        <InputField
+        <InputField type='number'
           placeholder={type === 'buy' ? 'قیمت مد نظر خرید' : 'قیمت مد نظر فروش'}
           title="تومان"
           value={targetPrice}
@@ -46,7 +46,7 @@ export default function Trade({ type }: Props) {
         />
 
         <Stack gap={1.5}>
-          <InputField placeholder="مبلغ به تومان" title="تومان" value={price} setValue={setPrice} />
+          <InputField type='number' placeholder="مبلغ به تومان" title="تومان" value={price} setValue={setPrice} />
           <Stack direction="row" justifyContent="center">
             <Stack
               sx={{
@@ -64,7 +64,7 @@ export default function Trade({ type }: Props) {
             </Stack>
           </Stack>
 
-          <InputField placeholder="وزن طلا" title="گرم" value={gold} setValue={() => {}} />
+          <InputField type='number' placeholder="وزن طلا" title="گرم" value={gold} setValue={() => {}} />
         </Stack>
       </Stack>
 

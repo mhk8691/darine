@@ -73,6 +73,7 @@ export default function Form() {
             {inputList.map((item) => (
               <Grid size={item.placeholder === 'توضیحات تکمیلی' ? 12 : 6} key={item.placeholder}>
                 <InputField
+                type='text'
                   placeholder={item.placeholder}
                   value={item.value}
                   setValue={item.setValue}

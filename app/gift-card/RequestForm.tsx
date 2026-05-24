@@ -133,6 +133,7 @@ export default function RequestForm() {
                 key={item.placeholder}
               >
                 <InputField
+                type='number'
                   placeholder={item.placeholder}
                   value={item.value}
                   setValue={item.setValue}
