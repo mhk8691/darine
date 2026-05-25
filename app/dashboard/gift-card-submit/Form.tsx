@@ -3,13 +3,14 @@
 import InputField from '@/app/Components/InputField/InputField';
 import Loading from '@/app/Components/Loading/Loading';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
-import { giftCardSubmit } from '@/lib/giftCard/giftCard';
+import { GiftCardListType } from '@/app/core/Types';
+import { getGiftCardList, giftCardSubmit } from '@/lib/giftCard/giftCard';
 import { Stack, Button, useTheme, useMediaQuery } from '@mui/material';
 import { isAxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 
-export default function Form() {
+export default function Form({setGiftCardData}:{setGiftCardData:Dispatch<SetStateAction<GiftCardListType[]>>}) {
   const [value, setValue] = useState('');
   const [isLoading,setIsLoading] = useState(false)
   const theme = useTheme();
@@ -19,6 +20,8 @@ export default function Form() {
     try{
       setIsLoading(true)
       const response = await giftCardSubmit(value)
+      const res = await getGiftCardList()
+      setGiftCardData(res)
        showSnackbar(response.message, true);
        setValue('')
     }catch (error: unknown) {

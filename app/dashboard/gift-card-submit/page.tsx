@@ -1,3 +1,4 @@
+'use client'
 import { Grid, Typography } from '@mui/material';
 import { Metadata } from 'next';
 import BackLink from '../BackLink';
@@ -5,12 +6,30 @@ import DesktopImage from './DesktopImage';
 import Form from './Form';
 import LaptopImage from './LaptopImage';
 import GiftCardOrder from '../gift-cards/GiftCardOrder';
-export const metadata: Metadata = {
-  title: 'دریافت کارت هدیه | دارینه',
-  description: '',
-};
+import { useEffect, useState } from 'react';
+import { GiftCardListType } from '@/app/core/Types';
+import { getGiftCardList } from '@/lib/giftCard/giftCard';
+import { isAxiosError } from 'axios';
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+// export const metadata: Metadata = {
+//   title: 'دریافت کارت هدیه | دارینه',
+//   description: '',
+// };
 export default function page() {
-
+  const [giftCardData,setGiftCardData] = useState<GiftCardListType[]>([])
+   useEffect(() => {
+      const getData = async () => {
+        try{
+          const response = await getGiftCardList();
+          setGiftCardData(response || []);
+        }catch(error:unknown){
+          if (isAxiosError(error)){
+            showSnackbar(error.response?.data.message)
+          }
+        }
+      };
+      getData();
+    }, []);
   return (
     <Grid
       container
@@ -107,12 +126,12 @@ export default function page() {
           >
             لطفا شماره سریال کارت هدیه را وارد کنید.
           </Typography>
-          <Form />
+          <Form setGiftCardData={setGiftCardData} />
         </Grid>
         <DesktopImage />
       </Grid>
       <Grid size={12}>
-        <GiftCardOrder />
+        <GiftCardOrder giftCardData={giftCardData} />
       </Grid>
     </Grid>
   );

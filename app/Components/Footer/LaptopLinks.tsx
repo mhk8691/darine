@@ -59,8 +59,6 @@ const items = [
 
 export default function LaptopLinks() {
   const [expanded, setExpanded] = useState<string | false>(false);
-  const theme = useTheme();
-  const isDarkMode = theme.palette.mode === 'dark';
   const handleChange = (id: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
     setExpanded(isExpanded ? id : false);
   };
@@ -77,7 +75,7 @@ export default function LaptopLinks() {
                 expanded={isOpen}
                 onChange={handleChange(item.id)}
                 sx={{
-                  background: isDarkMode ? 'rgb(16, 16, 15,1)' : 'background.default',
+                  background:'transparent',
                   py: 1,
                   borderRadius: '10px !important',
                   boxShadow: 'none',
@@ -133,7 +131,6 @@ export default function LaptopLinks() {
                   ))}
                 </AccordionDetails>
               </Accordion>
-              <Divider />
             </React.Fragment>
           );
         })}

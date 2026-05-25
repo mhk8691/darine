@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react';
 import GiftCardTable from './GiftCardTable';
 import { getGiftCardList } from '@/lib/giftCard/giftCard';
 
-export default function GiftCardOrder() {
+export default function GiftCardOrder({giftCardData}:{giftCardData?:GiftCardListType[]}) {
   const [giftCardList, setGetGiftCardList] = useState<GiftCardListType[]>([] as GiftCardListType[]);
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
@@ -32,14 +32,14 @@ export default function GiftCardOrder() {
   return (
     <Grid size={12}>
       <OrderDetail
-        listLength={giftCardList.length}
+        listLength={giftCardData ? giftCardData.length :giftCardList.length}
         title={isDesktop ? 'لیست کارت‌های هدیه شما' : ''}
         toggleItems={[]}
         type="chip"
         emptyMessage="کارت هدیه‌ای توسط شما خریداری نشده است."
         tableHead={['شماره سریال', 'وزن', 'وضعیت', 'تاریخ']}
         tableBody={
-         <GiftCardTable giftCardsList={giftCardList}/>
+         <GiftCardTable giftCardsList={giftCardData ? giftCardData :giftCardList}/>
         }
       />
     </Grid>
