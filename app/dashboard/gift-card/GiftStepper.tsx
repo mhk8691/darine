@@ -19,6 +19,7 @@ import { isAxiosError } from 'axios';
 import { AddressesDataType } from '@/app/core/Types';
 import { useRouter } from 'next/navigation';
 import Loading from '@/app/Components/Loading/Loading';
+import { useAssets } from '../AssetsProvider';
 
 const CustomConnector = styled(StepConnector)(() => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -92,8 +93,11 @@ export default function GiftStepper() {
   const [addresses,setAddresses] = React.useState<AddressesDataType[]>([])
   const [addressId, setAddressId] = React.useState(0);
 const [isLoading,setIsLoading]= React.useState(false)
-  
+  const {assets} = useAssets()
   const giftCard = async ()=>{
+    if (assets.toman_balance === 0) {
+      router.push('/dashboard/irt-transaction')
+    }
     try{
       setIsLoading(true)
       const response = await giftCardOrder(weight,count,province,city,address,plaque,unit,postCode,addressId != 0 ?addressId :undefined)

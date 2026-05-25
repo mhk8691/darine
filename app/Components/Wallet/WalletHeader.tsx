@@ -52,7 +52,7 @@ export default function WalletHeader() {
                   fontWeight={500}
                   sx={{ color: 'text.title' }}
                 >
-                  {visible ? assets?.gold_balance_gr || 0 : '***'}
+                  {visible ? priceFormater(assets?.gold_balance_gr) || 0 : '***'}
                 </Typography>
                 <Typography
                   variant="body1"

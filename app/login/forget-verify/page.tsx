@@ -1,5 +1,6 @@
 import { Stack, Typography } from '@mui/material';
 import VerifyOtpCode from './VerifyOtpCode';
+import BackLink from '@/app/dashboard/BackLink';
 interface Props {
   searchParams: {
     phone: string;
@@ -10,17 +11,22 @@ export default async function page({ searchParams }: Props) {
 
   return (
     <Stack>
-      <Typography
-        variant="h6"
-        fontWeight={'500'}
-        fontSize={{
-          xs: 16,
-          md: 22,
-        }}
-        sx={{ color: 'text.title' }}
-      >
-        تایید شماره موبایل
-      </Typography>
+      <Stack direction={'row'} gap={1} alignItems={'center'}>
+              <BackLink fontSize="30" />
+            <Typography
+              variant="h6"
+              fontWeight={'500'}
+              fontSize={{
+                xs: 16,
+                md: 22,
+              }}
+              sx={{ color: 'text.title' }}
+            >
+              تایید شماره موبایل
+            </Typography>
+            </Stack>
+    
+
       <Typography
         variant="body2"
         fontSize={{

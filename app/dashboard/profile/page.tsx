@@ -1,3 +1,4 @@
+'use client'
 import Container from '@/app/Components/Containers/Container/Container';
 import WalletHeader from '@/app/Components/Wallet/WalletHeader';
 import { Grid, Typography } from '@mui/material';
@@ -5,11 +6,31 @@ import { Metadata } from 'next';
 import Buttons from './Buttons';
 import ChangeNumber from './ChangeNumber';
 import Profile from './Profile';
-export const metadata: Metadata = {
-  title: 'پروفایل | دارینه',
-  description: '',
-};
+import { useCallback, useEffect, useState } from 'react';
+import { isAxiosError } from 'axios';
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+import { getMe, User } from '@/lib/auth';
+// export const metadata: Metadata = {
+//   title: 'پروفایل | دارینه',
+//   description: '',
+// };
 export default function page() {
+  const [user, setUser] = useState<User | null>(null);
+     const fetchUser = useCallback(async () => {
+      try {
+        const me = await getMe();
+        setUser(me);
+      } catch (error:unknown) {
+        if (isAxiosError(error)){
+          showSnackbar(error.response?.data.message)
+  
+        }
+        setUser(null);
+      }
+    }, []);
+      useEffect(()=>{
+        fetchUser()
+      },[fetchUser])
   return (
     <Grid
       container
@@ -28,7 +49,7 @@ export default function page() {
           md: 6,
         }}
       >
-        <Profile />
+        <Profile user={user} />
       </Grid>
       <Grid
         size={{
@@ -117,7 +138,7 @@ export default function page() {
           >
             تغییر شماره تلفن
           </Typography>
-          <ChangeNumber />
+          <ChangeNumber setUser={setUser} />
         </Container>
       </Grid>
     </Grid>

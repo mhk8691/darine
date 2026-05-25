@@ -138,7 +138,7 @@ export default function Invite() {
                 }}
                 sx={{ color: 'text.title' }}
               >
-                {priceFormater(referralData.total_earned)} تومان
+                {priceFormater(referralData.total_earned) || 0} تومان
               </Typography>
             </Stack>
           </Container>

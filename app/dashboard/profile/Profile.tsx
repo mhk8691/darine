@@ -4,29 +4,11 @@ import WalletHeader from '@/app/Components/Wallet/WalletHeader';
 import { Divider, Grid, Stack, Typography } from '@mui/material';
 import ChangePassword from './ChangePassword';
 import TitleProfile from './TitleProfile';
-import { useCallback, useEffect, useState } from 'react';
-import { getMe, User } from '@/lib/auth';
-import { isAxiosError } from 'axios';
-import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+import {  User } from '@/lib/auth';
 import { formatDate } from '@/app/core/FormatDate';
 
-export default function Profile() {
-  const [user, setUser] = useState<User | null>(null);
-   const fetchUser = useCallback(async () => {
-    try {
-      const me = await getMe();
-      setUser(me);
-    } catch (error:unknown) {
-      if (isAxiosError(error)){
-        showSnackbar(error.response?.data.message)
-
-      }
-      setUser(null);
-    }
-  }, []);
-    useEffect(()=>{
-      fetchUser()
-    },[fetchUser])
+export default function Profile({user}:{user:User | null}) {
+  
   return (
     <Container
       style={{
