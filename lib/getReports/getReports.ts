@@ -1,8 +1,6 @@
-import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import api, { ApiResponse } from '@/lib/api';
-import { isAxiosError } from 'axios';
-export const getReports = async (key: string) => {
-    const response = await api.get<ApiResponse<[]>>(`/gold/reports/?type=${key}`);
+export const getReports = async (key: string,params:string) => {
+    const response = await api.get<ApiResponse<[]>>(`/gold/reports/?type=${key}&filter_type=${params}`);
     return response.data.data;
   
 };

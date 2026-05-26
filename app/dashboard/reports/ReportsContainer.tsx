@@ -5,7 +5,6 @@ import TradesTable from "./TradesTable";
 import DepositTable from "./DepositTable";
 import WithdrawTable from "./WithdrawTable";
 import { getReports } from "@/lib/getReports/getReports";
-import OrdersTable from "./OrdersTable";
 import { isAxiosError } from "axios";
 import { showSnackbar } from "@/app/Components/Snackbar/Snackbar";
 const tabs = [
@@ -19,12 +18,15 @@ const tabs = [
 
 const tabUrl = ['gold', 'deposit', 'withdraw'];
 export default function ReportsContainer() {
+  const [tradeParams,setTradeParams] = useState('buy')
+    const [depositParams,setDepositParams] = useState('paymentGateway')
+    const [withdrawParams,setWithdrawParams] = useState('bankAccount')
       const [value, setValue] = useState(0);
   const [data, setData] = useState([]);
   useEffect(() => {
     const getData = async () => {
       try{
-  const response = await getReports(tabUrl[value]);
+  const response = await getReports(tabUrl[value],tabUrl[value] === 'gold' ? tradeParams:tabUrl[value] === 'deposit' ? depositParams:withdrawParams);
       setData(response || []);
       }
     
@@ -35,11 +37,11 @@ export default function ReportsContainer() {
   }
     };
     getData();
-  }, [value]);
+  }, [value,tradeParams,depositParams,withdrawParams]);
   const children: ReactNode[] = [
-  <TradesTable   data={data}  key={1} />,
-  <DepositTable  data={data}  key={2} />,
-  <WithdrawTable data={data}   key={3} />,
+  <TradesTable  setTradeParams={setTradeParams} data={data}  key={1} />,
+  <DepositTable  data={data} setDepositParams={setDepositParams}  key={2} />,
+  <WithdrawTable data={data} setWithdrawParams={setWithdrawParams}   key={3} />,
   // <OrdersTable  data={data} key={4} />,
 ];
   return (

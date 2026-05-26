@@ -19,6 +19,7 @@ interface Props {
   tableBody: ReactNode;
   tableHead: string[];
   listLength: number;
+  setParams:React.Dispatch<React.SetStateAction<string>>
 }
 const names = ['تکمیل شده', 'در انتظار تایید', 'لغو شده'];
 export default function OrderDetail({
@@ -30,8 +31,9 @@ export default function OrderDetail({
   tableBody,
   tableHead,
   listLength,
+  setParams
 }: Props) {
-  const [active, setActive] = useState<number | null>(toggleItems[0]?.id);
+  const [active, setActive] = useState(toggleItems[0].value);
   const [select, setSelect] = useState(toggleItems[0]?.value);
   const [message, setMessage] = useState(toggleItems[0]?.emptyMessage || '');
   const theme = useTheme();
@@ -66,12 +68,14 @@ export default function OrderDetail({
                   active={active}
                   setActive={setActive}
                   setMessage={setMessage}
+                  setParams={setParams}
                 />
               ))}
             </Stack>
           ) : (
             <Stack mb={3} width={'fit-content'}>
               <FilterToggleButton
+              setParams={setParams}
                 items={toggleItems}
                 select={select}
                 setMessage={setMessage}
@@ -210,6 +214,7 @@ export default function OrderDetail({
                   active={active}
                   setActive={setActive}
                   setMessage={setMessage}
+                  setParams={setParams}
                 />
               ))}
             </Stack>
@@ -219,6 +224,7 @@ export default function OrderDetail({
                 items={toggleItems}
                 select={select}
                 setSelect={setSelect}
+                setParams={setParams}
                 setMessage={setMessage}
                 style={{
                   fontSize: {

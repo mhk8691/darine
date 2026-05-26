@@ -1,6 +1,6 @@
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import { RecentTransactionDataType, ToggleItemsType } from '@/app/core/Types';
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import TransactionTable from '../irt-transaction/TransactionTable';
 
 const withdrawItems: ToggleItemsType[] = [
@@ -18,10 +18,11 @@ const withdrawItems: ToggleItemsType[] = [
   },
 ];
 
-export default function WithdrawTable({data}:{data:RecentTransactionDataType[]}) {
+export default function WithdrawTable({data,setWithdrawParams}:{data:RecentTransactionDataType[],setWithdrawParams:Dispatch<SetStateAction<string>>}) {
   return (
     <OrderDetail
       key={3}
+      setParams={setWithdrawParams}
       toggleItems={withdrawItems}
       noCard
       type="toggle"

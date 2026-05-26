@@ -1,6 +1,6 @@
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import { RecentTransactionDataType, ToggleItemsType } from '@/app/core/Types';
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import TransactionTable from '../irt-transaction/TransactionTable';
 
 const depositItems: ToggleItemsType[] = [
@@ -24,9 +24,10 @@ const depositItems: ToggleItemsType[] = [
   },
 ];
 
-export default function DepositTable({data}:{data:RecentTransactionDataType[]}) {
+export default function DepositTable({data,setDepositParams}:{data:RecentTransactionDataType[],setDepositParams:Dispatch<SetStateAction<string>>}) {
   return (
     <OrderDetail
+    setParams={setDepositParams}
       key={2}
       toggleItems={depositItems}
       type="toggle"

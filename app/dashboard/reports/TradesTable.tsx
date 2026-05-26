@@ -4,7 +4,7 @@ import { handleColorStatus, handleTitleStatus } from '@/app/core/handleStatus';
 import priceFormater from '@/app/core/PriceFormater';
 import { ToggleItemsType, TradeTableDataType } from '@/app/core/Types';
 import { Stack, TableBody, TableCell, TableRow, Typography } from '@mui/material';
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 const trades: ToggleItemsType[] = [
   {
@@ -21,13 +21,14 @@ const trades: ToggleItemsType[] = [
   },
 ];
 
-export default function TradesTable({data,type='toggle',noCard=true}:{data:TradeTableDataType[],type?:'chip'|'toggle',noCard?:boolean}) {
+export default function TradesTable({setTradeParams,data,type='toggle',noCard=true}:{setTradeParams:Dispatch<SetStateAction<string>>,data:TradeTableDataType[],type?:'chip'|'toggle',noCard?:boolean}) {
   return (
     <OrderDetail
       key={1}
       toggleItems={trades}
       noCard={noCard}
       type={type}
+      setParams={setTradeParams}
       tableBody={<TableBody>
             {data?.map((row) => (
               <TableRow
@@ -116,27 +117,7 @@ export default function TradesTable({data,type='toggle',noCard=true}:{data:Trade
                   </Stack>
                 </TableCell>
 
-                 <TableCell
-                  align="center"
-                  sx={{
-                    py: 2.5,
-                    px: 2.5,
-                  }}
-                >
-                  <Stack
-                    direction={'row'}
-                    alignItems={'center'}
-                    gap={0.5}
-                    justifyContent={'center'}
-                  >
-                    <Typography
-                      variant="body1"
-                    
-                    >
-                        {priceFormater(row.fee)} تومان
-                    </Typography>
-                  </Stack>
-                </TableCell>
+               
 
                  <TableCell
                   align="center"
@@ -200,7 +181,6 @@ export default function TradesTable({data,type='toggle',noCard=true}:{data:Trade
         'وضعیت',
         'مقدار طلا',
         'قیمت',
-        'کارمزد',
         'قیمت نهایی',
         'کد پیگیری',
         'تاریخ',

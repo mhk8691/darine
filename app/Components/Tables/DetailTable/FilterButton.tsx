@@ -4,12 +4,14 @@ import { Button, useTheme } from '@mui/material';
 import { Dispatch, SetStateAction } from 'react';
 interface Props {
   item: ToggleItemsType;
-  active: number | null;
-  setActive: Dispatch<SetStateAction<number | null>>;
+  active: string;
+  setActive: Dispatch<SetStateAction<string>>;
   setMessage?: Dispatch<SetStateAction<string>>;
+  setParams:React.Dispatch<React.SetStateAction<string>>
 }
-export default function FilterButton({ active, setActive, item, setMessage }: Props) {
+export default function FilterButton({ setParams,active, setActive, item, setMessage }: Props) {
   const theme = useTheme();
+  
   const isDarkMode = theme.palette.mode === 'dark';
   return (
     <Button
@@ -17,7 +19,8 @@ export default function FilterButton({ active, setActive, item, setMessage }: Pr
       color="inherit"
        
       onClick={() => {
-        setActive(item.id);
+        setActive(item.value);
+        setParams(item.value)
         if (setMessage) {
           setMessage(item.emptyMessage || '');
         }
@@ -31,10 +34,10 @@ export default function FilterButton({ active, setActive, item, setMessage }: Pr
         width: 'fit-content',
         borderRadius: '999px',
         px: 2,
-        borderColor: active === item.id ? 'primary.main' : 'background.paper',
-        bgcolor: active === item.id ? (isDarkMode ? '#3F3817' : '#FEF2C0') : 'background.default',
+        borderColor: active === item.value ? 'primary.main' : 'background.paper',
+        bgcolor: active === item.value ? (isDarkMode ? '#3F3817' : '#FEF2C0') : 'background.default',
         color:
-          active === item.id ? (isDarkMode ? 'primary.main' : 'text.secondary') : 'text.secondary',
+          active === item.value ? (isDarkMode ? 'primary.main' : 'text.secondary') : 'text.secondary',
       }}
     >
       {item.title}
