@@ -19,26 +19,11 @@ import { Close } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import CustomModal from '../CustomModal/CustomModal';
 import Counter from '@/app/gold-shop/[productId]/Counter';
-import { addToCart} from '@/lib/cart/cart';
-import { isAxiosError } from 'axios';
-import { showSnackbar } from '../Snackbar/Snackbar';
 
 
-export default function ProductCard({ item,cartProductId ,quantity,getCartData}: { item: ProductDateType,cartProductId:number,quantity:number,getCartData:() => Promise<void> }) {
+export default function ProductCard({ item}: { item: ProductDateType}) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
-  const handleAddToCart = async (id:number) => {
-   try{
-     const response = await addToCart(id)
-     getCartData()
-     showSnackbar(response.message,true)
-   }catch(error:unknown){
-    if (isAxiosError(error)){
-      showSnackbar(error.response?.data.message)
-    }
-   }
-    
-  };
   return (
     <>
       <Card
@@ -122,7 +107,6 @@ export default function ProductCard({ item,cartProductId ,quantity,getCartData}:
                 sx={{ color: 'text.muted' }}
               >
                 وزن
-              
                 :
               </Typography>
               <Typography
@@ -135,7 +119,7 @@ export default function ProductCard({ item,cartProductId ,quantity,getCartData}:
                 }}
                 sx={{ alignSelf: 'flex-end' }}
               >
-                {item.weight} {' '}
+                {priceFormater(+item.weight)} {' '}
                 <Box
                   component={'span'}
                   fontSize={{
@@ -182,7 +166,7 @@ export default function ProductCard({ item,cartProductId ,quantity,getCartData}:
                 }}
                 sx={{ alignSelf: 'flex-end' }}
               >
-                {item.total_weight_with_fees} {' '}
+                {priceFormater(+item.total_weight_with_fees)} {' '}
                 <Box
                   component={'span'}
                   fontSize={{
@@ -259,7 +243,6 @@ export default function ProductCard({ item,cartProductId ,quantity,getCartData}:
             }}
             disabled
             onClick={() => {
-              handleAddToCart(item.id);
               setOpen(true);
             }}
              
@@ -267,7 +250,7 @@ export default function ProductCard({ item,cartProductId ,quantity,getCartData}:
             افزودن به سبد خرید
           </Button>
         ) : (
-          <Counter quantity={quantity} productId={item.id} getCartData={getCartData} />
+          <Counter />
         )}
        </Stack>
       </Card>

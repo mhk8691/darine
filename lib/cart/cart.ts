@@ -1,4 +1,3 @@
-import { CartDataType } from "@/app/core/Types"
 import api, { ApiResponse } from "../api"
 
 export const addToCart = async (productId:number)=>{

@@ -1,65 +1,25 @@
-'use client'
 import Container from '@/app/Components/Containers/Container/Container';
-import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import WalletHeader from '@/app/Components/Wallet/WalletHeader';
-import { AssetsDataType, CartDataType, ProductDateType, RecentDeliveriesDataType, ToggleItemsType } from '@/app/core/Types';
-import { Grid, Stack, TableBody, TableCell, TableRow, Typography } from '@mui/material';
 import Cart from './Cart';
 import Products from './Products';
-import { useEffect, useState } from 'react';
-import { isAxiosError } from 'axios';
-import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
-import priceFormater from '@/app/core/PriceFormater';
-import { formatDate } from '@/app/core/FormatDate';
-import { getRecentDelivery } from '@/lib/delivery/delivery';
-import { getAssets } from '@/lib/getAssets/getAssets';
-import { getCart } from '@/lib/cart/cart';
+import { Grid } from '@mui/material';
 
-const items: ToggleItemsType[] = [
-  {
-    title: 'تحویل درب منزل',
-    value: 'doorstepdelivery',
-    id: 1,
-    emptyMessage: 'سفارشی برای شما به ثبت نرسیده است',
-  },
-  {
-    title: 'تحویل حضوری',
-    value: 'personDelivery',
-    id: 2,
-    emptyMessage: 'سفارشی برای شما به ثبت نرسیده است',
-  },
-];
+// const items: ToggleItemsType[] = [
+//   {
+//     title: 'تحویل درب منزل',
+//     value: 'doorstepdelivery',
+//     id: 1,
+//     emptyMessage: 'سفارشی برای شما به ثبت نرسیده است',
+//   },
+//   {
+//     title: 'تحویل حضوری',
+//     value: 'personDelivery',
+//     id: 2,
+//     emptyMessage: 'سفارشی برای شما به ثبت نرسیده است',
+//   },
+// ];
 
 export default function page() {
-  const [deliveryData,setDeliveryData] = useState<RecentDeliveriesDataType[]>([])
-  const [cartData,setCartData] = useState<CartDataType>({} as CartDataType)
-   const getData = async ()=>{
-      try{
-        const response = await getCart()
-        setCartData(response)
-      }catch(error:unknown){
-        if (isAxiosError(error)){
-          showSnackbar(error.response?.data.message)
-        }
-      }
-    }
-  useEffect(()=>{
-   
-  getData()
-  },[])
-  useEffect(()=>{
-    const getData = async ()=>{
-      try{
-        const response = await getRecentDelivery()
-        setDeliveryData(response)
-      }catch(error:unknown){
-        if (isAxiosError(error)){
-          showSnackbar(error.response?.data.message)
-        }
-      }
-    }
-    getData()
-  },[])
   return (
     <Grid
       container
@@ -71,7 +31,7 @@ export default function page() {
       <Grid size={12}>
         <WalletHeader />
       </Grid>
-           <Container
+      <Container
         style={{
           pb: 11,
           width: "100%",
@@ -100,7 +60,7 @@ export default function page() {
               md: 2,
             }}
           >
-           <Products cartData={cartData} getCartData={getData} />
+           <Products  />
           </Grid>
           <Cart  />
         </Grid>
