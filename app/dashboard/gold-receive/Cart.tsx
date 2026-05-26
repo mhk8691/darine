@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useAssets } from '../AssetsProvider';
+import { getCart } from '@/lib/cart/cart';
 
 export default function Cart() {
   const theme = useTheme();
@@ -15,6 +16,7 @@ export default function Cart() {
   const [visible, setVisible] = useState(false);
   const router = useRouter();
   const {assets} = useAssets()
+  const [cart,setCart] = useState(getCart())
        useEffect(() => {
     const stored = localStorage.getItem('eyeState');
     if (stored !== null) {
@@ -57,7 +59,7 @@ export default function Cart() {
                   تعداد محصول
                 </Typography>
                 <Typography variant="body1" fontSize={18}>
-                  {0}
+                  {cart.length}
                 </Typography>
               </Stack>
             </Stack>

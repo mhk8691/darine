@@ -19,10 +19,12 @@ import { Close } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import CustomModal from '../CustomModal/CustomModal';
 import Counter from '@/app/gold-shop/[productId]/Counter';
+import { addToCart, getCart } from '@/lib/cart/cart';
 
 
 export default function ProductCard({ item}: { item: ProductDateType}) {
   const [open, setOpen] = useState(false);
+  const [cart,setCart] = useState(getCart())
   const router = useRouter();
   return (
     <>
@@ -227,22 +229,25 @@ export default function ProductCard({ item}: { item: ProductDateType}) {
             </Stack>
           </Stack>
         </CardContent>
-       <Stack px={1.5}>
-         {1 ? (
+       <Stack px={1.5} mt={3}> 
+         {!cart.find((productId) => productId.id == item.id)? (
           <Button
             variant="outlined"
             color="inherit"
             sx={{
               borderRadius: 2,
               width: '100%',
-              mt: 3,
               py: 1.5,
               '&:hover': {
                 bgcolor: '#1C1C1B',
               },
             }}
-            disabled
             onClick={() => {
+              setCart(addToCart({
+                id:item.id,
+                title:item.name,
+                price:item.total_price
+              }))
               setOpen(true);
             }}
              
@@ -250,7 +255,7 @@ export default function ProductCard({ item}: { item: ProductDateType}) {
             افزودن به سبد خرید
           </Button>
         ) : (
-          <Counter />
+          <Counter cart={cart} productId={item.id} setCart={setCart} />
         )}
        </Stack>
       </Card>

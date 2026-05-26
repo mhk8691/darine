@@ -1,28 +1,16 @@
 'use client';
 
+import { CartItem, decreaseQuantity, increaseQuantity, removeFromCart } from '@/lib/cart/cart';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { IconButton, Stack, Typography } from '@mui/material';
-import {  useState } from 'react';
+import {  Dispatch, SetStateAction } from 'react';
 
 
-export default function Counter() {
-  const [count,setCount] = useState(0)
+export default function Counter({setCart,cart,productId}:{productId:number,setCart:Dispatch<SetStateAction<CartItem[]>>,cart:CartItem[]}) {
   
-const handleAdd = () => {
-  const nextCount = count + 1;
-  setCount(nextCount);
-};
-
-const handleRemove = () => {
-  if (count === 1) {
-  } else {
-    const nextCount = count - 1;
-    setCount(nextCount);
-  }
-};
-
+const getQuantity = cart.find((item) => item.id == productId)?.quantity
 
   return (
     <Stack
@@ -32,17 +20,25 @@ const handleRemove = () => {
       sx={{
         border: '1px solid #333333',
         borderRadius: 2,
-        width: '120px',
+        width: '100%',
+        py:1
       }}
     >
-      <IconButton onClick={handleAdd}  >
+      <IconButton onClick={()=>setCart(increaseQuantity(productId))}  >
         <AddIcon fontSize="small" sx={{ color: 'text.subtitle' }} />
       </IconButton>
 
-      <Typography fontWeight={600}>{count}</Typography>
+      <Typography fontWeight={600}>{getQuantity}</Typography>
 
-      <IconButton onClick={handleRemove}  >
-        {count <= 1 ? (
+      <IconButton onClick={()=>{
+        if (getQuantity === 1){
+          setCart(removeFromCart(productId))
+        }
+        else{
+          setCart(decreaseQuantity(productId))
+        }
+      }}  >
+        {getQuantity && getQuantity <= 1 ? (
           <DeleteIcon fontSize="small" sx={{ color: 'text.subtitle' }} />
         ) : (
           <RemoveIcon fontSize="small" sx={{ color: 'text.subtitle' }} />
