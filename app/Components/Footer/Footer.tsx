@@ -1,15 +1,11 @@
 'use client';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TelegramIcon from '@mui/icons-material/Telegram';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import { Divider, Grid, Stack, Typography, useTheme } from '@mui/material';
+import {  Grid, Stack, Typography, useTheme } from '@mui/material';
 import Image from 'next/image';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 import { CallIcon, ChatIcon, EmailIcon } from '../CustomIcons/CustomIcons';
-import DesktopCertificate from './DesktopCertificate';
 import LaptopCertificate from './LaptopCertificate';
 import LinkContainer from './LinkContainer';
 
@@ -29,20 +25,7 @@ export const certificate = [
   '/images/simple/nikecert.webp',
   '/images/simple/tuwWorld.webp',
 ];
-const links = [
-  { title: 'طلای ۱۸ عیار', link: '/' },
-  { title: 'طلای ۲۱ عیار', link: '/' },
-  { title: 'طلای ۲۴ عیار', link: '/' },
-  { title: 'طلای دست دوم', link: '/' },
-  { title: 'مثقال طلا', link: '/' },
-  { title: 'قیمت طلا آب شده', link: '/' },
-  { title: 'سکه امامی', link: '/' },
-  { title: 'سکه بهار آزادی', link: '/' },
-  { title: 'نیم سکه', link: '/' },
-  { title: 'ربع سکه', link: '/' },
-  { title: 'سکه گرمی', link: '/' },
-  { title: 'محاسبه قیمت طلا دست دوم', link: '/' },
-];
+
 
 export default function Footer() {
   const pathname = usePathname();
@@ -91,7 +74,7 @@ export default function Footer() {
             size={{
               xs: 12,
               md: 6,
-              xl: 3,
+              xl: 6,
             }}
             display={'flex'}
             flexDirection={'column'}
@@ -120,7 +103,7 @@ export default function Footer() {
             </Typography>
           </Grid>
           <LinkContainer />
-          <DesktopCertificate />
+          {/* <DesktopCertificate /> */}
         </Grid>
       
       </Grid>

@@ -20,11 +20,7 @@ export const contentLink = [
 export default function DesktopLinks() {
   return (
     <Grid
-      size={{
-        xs: 12,
-        md: 6,
-        xl: 4.5,
-      }}
+      size={6}
       display={'flex'}
       justifyContent={{
         xs: 'center',
