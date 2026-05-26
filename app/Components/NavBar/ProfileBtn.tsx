@@ -53,7 +53,7 @@ const options = [
     ),
   },
   {
-    title: 'دعوت از دوستان',
+    title: 'طلا فروش شو',
     link: '/dashboard/invite',
     icon: (
       <SvgIcon>

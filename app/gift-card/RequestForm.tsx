@@ -84,7 +84,7 @@ export default function RequestForm() {
           fontWeight={700}
           sx={{ color: 'text.title', textAlign: 'center' }}
         >
-          فرم درخواست کارت هدیه سازمانی طلاسی
+          فرم درخواست کارت هدیه سازمانی دارینه
         </Typography>
       </Grid>
 
@@ -114,7 +114,7 @@ export default function RequestForm() {
           >
             <InfoOutlinedIcon sx={{ color: '#F69622' }} />
             <Typography variant="h6" fontSize={16} sx={{ color: '#F69622' }}>
-              در صورت درخواست کارت هدیه سازمانی طلاسی، فقط درخواست‌های سازمانی را ثبت کنید. اگر
+              در صورت درخواست کارت هدیه سازمانی دارینه، فقط درخواست‌های سازمانی را ثبت کنید. اگر
               کاربر حقیقی هستید، لطفاً از صفحه{' '}
               <Link href="/dashboard/gift-card-menu" style={{ color: '#275CFF' }}>
                 خرید کارت هدیه

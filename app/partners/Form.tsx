@@ -52,7 +52,7 @@ export default function Form() {
           fontWeight={'700'}
           sx={{ color: 'text.title', textAlign: 'center' }}
         >
-          فرم درخواست همکاری با طلاسی
+          فرم درخواست همکاری با دارینه
         </Typography>
       </Grid>
       <Grid size={12}>
@@ -123,7 +123,7 @@ export default function Form() {
               <Box component={'span'} color={'#007AFF'} sx={{ textDecoration: 'underline' }}>
                 ۰۲۱۹۱۳۴۵۹۱۰
               </Box>{' '}
-              تماس حاصل فرمایید. کارشناسان مجموعه طلاسی در ۲۴ ساعت شبانه‌روز و ۷ روز هفته آماده
+              تماس حاصل فرمایید. کارشناسان مجموعه دارینه در ۲۴ ساعت شبانه‌روز و ۷ روز هفته آماده
               پاسخ‌گویی به سوالات شما هستند.
             </Typography>
           </Grid>

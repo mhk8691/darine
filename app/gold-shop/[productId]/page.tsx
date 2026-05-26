@@ -55,7 +55,7 @@ export default function Page({ params }: { params: { productId: string } }) {
                 }}
                 fontWeight={700}
               >
-                شمش طلاسی 1 گرمی 18 عیار
+                شمش دارینه 1 گرمی 18 عیار
               </Typography>
 
               <Divider

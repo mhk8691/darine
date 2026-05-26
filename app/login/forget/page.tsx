@@ -52,7 +52,7 @@ export default function page() {
           >
             قوانین و مقررات‌
           </Link>{' '}
-          طلاسی می‌باشد.
+          دارینه می‌باشد.
         </Typography>
       </ForgetPasswordForm>
     </Stack>

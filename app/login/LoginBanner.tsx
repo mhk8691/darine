@@ -75,10 +75,10 @@ export default function LoginBanner() {
           }}
         >
           <Typography variant="h6" fontSize={20} sx={{ color: 'text.title' }} fontWeight={600}>
-            طلاسی پلتفرم خرید و فروش طلا بدون اجرت
+            دارینه پلتفرم خرید و فروش طلا بدون اجرت
           </Typography>
           <Typography variant="h6" fontSize={16} sx={{ color: 'text.primary' }}>
-            طلاسی بستر آنلاین خرید و فروش طلا
+            دارینه بستر آنلاین خرید و فروش طلا
           </Typography>
         </Stack>
       </Stack>

@@ -42,7 +42,7 @@ export default function Invite() {
               sm: 22,
             }}
           >
-            دعوت از دوستان
+           طلا فروش شو
           </Typography>
           <Typography
             variant="h6"
@@ -58,7 +58,7 @@ export default function Invite() {
               sm: 18,
             }}
           >
-            با دعوت از دوستان خود 20% از کارمزد هر خرید آن‌ها، برای شما
+            با طلا فروش شو خود 20% از کارمزد هر خرید آن‌ها، برای شما
             واریز خواهد شد.
           </Typography>
           <Typography
@@ -70,7 +70,7 @@ export default function Invite() {
             }}
             fontWeight={500}
           >
-            کد دعوت شما
+            کد نمایندگی شما
           </Typography>
           <RefralButton referralData={referralData} />
           <Container
@@ -128,7 +128,7 @@ export default function Invite() {
                 }}
                 sx={{ color: 'text.muted' }}
               >
-               مجموع دریافتی شما از دعوت دوستان:
+               مجموع دریافتی شما از طلا فروش شو:
               </Typography>
               <Typography
                 variant="h6"

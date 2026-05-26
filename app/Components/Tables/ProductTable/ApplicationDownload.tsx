@@ -25,7 +25,7 @@ export default function ApplicationDownload() {
         gutterBottom
         sx={{ mt: 2 }}
       >
-        سرمایه‌گذاری امن و راحت با طلاسی
+        سرمایه‌گذاری امن و راحت با دارینه
       </Typography>
       <Image alt="" src={'/images/application.webp'} width={'350'} height={350} />
       <Button

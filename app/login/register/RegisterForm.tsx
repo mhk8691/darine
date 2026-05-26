@@ -85,7 +85,7 @@ export default function RegisterForm({ phoneNumber }: { phoneNumber: string }) {
           <Field value={lastName} setValue={setLastName} label="نام خانوادگی" />
         </Grid>
          <Grid size={12}>
-          <Field value={referralCode} setValue={setReferralCode} label="کد معرف (اختیاری)" />
+          <Field value={referralCode} setValue={setReferralCode} label="کد نمایندگی (اختیاری)" />
         </Grid>
         <Grid size={12}>
           <PasswordField password={password} setPassword={setPassword} label="رمز عبور" />

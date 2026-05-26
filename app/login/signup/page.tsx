@@ -52,7 +52,7 @@ export default function page() {
           >
             قوانین و مقررات‌
           </Link>{' '}
-          طلاسی می‌باشد.
+          دارینه می‌باشد.
         </Typography>
       </SignupOtpForm>
       <Stack direction={'row'} gap={2} alignItems={'center'} sx={{ width: '100%' }} mt={3}>

@@ -21,7 +21,7 @@ const items = [
     items: [
       { title: 'درباره‌ ما', link: '/about-us' },
       { title: 'سوالات متداول', link: '/faq' },
-      { title: 'اپلیکیشن طلاسی', link: '/application' },
+      { title: 'اپلیکیشن دارینه', link: '/application' },
       { title: 'قوانین و مقررات', link: '/rules' },
     ],
   },

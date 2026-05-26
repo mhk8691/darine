@@ -5,7 +5,7 @@ import React from 'react';
 export const aboutLink = [
   { title: 'درباره‌ ما', link: 'about-us' },
   { title: 'سوالات متداول', link: 'faq' },
-  { title: 'اپلیکیشن طلاسی', link: 'application' },
+  { title: 'اپلیکیشن دارینه', link: 'application' },
   { title: 'قوانین و مقررات', link: 'rules' },
 ];
 export const contentLink = [
@@ -39,7 +39,7 @@ export default function DesktopLinks() {
             fontWeight={500}
             sx={{ color: 'text.secondary' }}
           >
-            درباره طلاسی
+            درباره دارینه
           </Typography>
           <Stack direction={'column'} gap={1.5}>
             {aboutLink.map((item) => (

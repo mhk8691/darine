@@ -60,7 +60,7 @@ export default function HowBuyGold() {
         <iframe
           src="https://www.aparat.com/video/video/embed/videohash/vrxuftp/vt/frame"
           allowFullScreen
-          title="آموزش خرید طلا از طلاسی"
+          title="آموزش خرید طلا از دارینه"
         />
       </Box>
       <Stack width={'100%'} mt={2}>

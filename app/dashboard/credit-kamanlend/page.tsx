@@ -12,7 +12,7 @@ export default function page() {
     <Grid container>
       <Grid size={12}>
         <CreditContainer
-          description="با استفاده از سرویس خرید اقساطی طلاسی، می‌توانید بدون نیاز به پرداخت نقدی، طلا بخرید."
+          description="با استفاده از سرویس خرید اقساطی دارینه، می‌توانید بدون نیاز به پرداخت نقدی، طلا بخرید."
           title={
             <Typography
               variant="h6"
