@@ -33,13 +33,9 @@ export interface NotifItemsType {
   date: string;
 }
 
-export interface Product {
-  id: string;
-  title: string;
-  price: number;
-}
 
-export interface CartItem extends Product {
+
+export interface CartItem extends ProductDateType {
   quantity: number;
 }
 
@@ -114,13 +110,11 @@ export interface AllAssetsDataType {
 export interface ProductDateType {
   id: number;
   name: string;
-  category: string;
-  weight: string;
-  total_weight_with_fees: string;
+  category?: string;
+  weight: number;
+  total_weight_with_fees?:number;
   total_price: number;
-
-  image: string;
-  is_active: boolean;
+  image?: string;
 }
 
 

@@ -1,6 +1,4 @@
-import Container from '@/app/Components/Containers/Container/Container';
 import WalletHeader from '@/app/Components/Wallet/WalletHeader';
-import Cart from './Cart';
 import Products from './Products';
 import { Grid } from '@mui/material';
 
@@ -31,40 +29,7 @@ export default function page() {
       <Grid size={12}>
         <WalletHeader />
       </Grid>
-      <Container
-        style={{
-          pb: 11,
-          width: "100%",
-          px: {
-            xs: 0,
-            sm: 4,
-          },
-          border: {
-            xs: 0,
-            sm: 1,
-          },
-          borderColor: {
-            sm: "background.paper",
-          },
-        }}
-      >
-        <Grid container spacing={1} size={12}>
-          <Grid
-            size={{
-              xs: 12,
-              md: 8,
-            }}
-            container
-            spacing={{
-              xs: 1,
-              md: 2,
-            }}
-          >
-           <Products  />
-          </Grid>
-          <Cart  />
-        </Grid>
-      </Container>
+    <Products/>
       {/* <Grid size={12}>
         <OrderDetail
           type="chip"

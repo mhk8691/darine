@@ -12,19 +12,19 @@ import {
   Typography,
 } from '@mui/material';
 import Link from 'next/link';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 
-import {  ProductDateType } from '@/app/core/Types';
+import {  CartItem, ProductDateType } from '@/app/core/Types';
 import { Close } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import CustomModal from '../CustomModal/CustomModal';
 import Counter from '@/app/gold-shop/[productId]/Counter';
-import { addToCart, getCart } from '@/lib/cart/cart';
+import { addToCart } from '@/lib/cart/cart';
 
 
-export default function ProductCard({ item}: { item: ProductDateType}) {
+export default function ProductCard({ item,cart,setCart}: { item: ProductDateType,cart:CartItem[],setCart:Dispatch<SetStateAction<CartItem[]>>}) {
   const [open, setOpen] = useState(false);
-  const [cart,setCart] = useState(getCart())
+
   const router = useRouter();
   return (
     <>
@@ -168,7 +168,7 @@ export default function ProductCard({ item}: { item: ProductDateType}) {
                 }}
                 sx={{ alignSelf: 'flex-end' }}
               >
-                {priceFormater(+item.total_weight_with_fees)} {' '}
+                {priceFormater(item?.total_weight_with_fees || 0)} {' '}
                 <Box
                   component={'span'}
                   fontSize={{
@@ -245,8 +245,9 @@ export default function ProductCard({ item}: { item: ProductDateType}) {
             onClick={() => {
               setCart(addToCart({
                 id:item.id,
-                title:item.name,
-                price:item.total_price
+                name:item.name,
+                total_price:item.total_price,
+                weight:item.weight
               }))
               setOpen(true);
             }}

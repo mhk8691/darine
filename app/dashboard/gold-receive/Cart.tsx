@@ -2,27 +2,28 @@
 import Container from '@/app/Components/Containers/Container/Container';
 import { CartIcon, WarrantyIcon } from '@/app/Components/CustomIcons/CustomIcons';
 import priceFormater from '@/app/core/PriceFormater';
-import {  CartDataType } from '@/app/core/Types';
+import {   CartItem } from '@/app/core/Types';
 import { Button, Divider, Grid, Stack, useMediaQuery, useTheme } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useAssets } from '../AssetsProvider';
-import { getCart } from '@/lib/cart/cart';
 
-export default function Cart() {
+export default function Cart({cart}:{cart:CartItem[]}) {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'));
   const [visible, setVisible] = useState(false);
   const router = useRouter();
   const {assets} = useAssets()
-  const [cart,setCart] = useState(getCart())
        useEffect(() => {
     const stored = localStorage.getItem('eyeState');
     if (stored !== null) {
       setVisible(stored === 'true');
     }
   }, []);
+  const totalQuantity = cart.reduce((total, item) => {
+    return total + item.quantity;
+  }, 0);
   return (
     <>
       {isMd && (
@@ -59,7 +60,7 @@ export default function Cart() {
                   تعداد محصول
                 </Typography>
                 <Typography variant="body1" fontSize={18}>
-                  {cart.length}
+                  {priceFormater(totalQuantity)}
                 </Typography>
               </Stack>
             </Stack>
