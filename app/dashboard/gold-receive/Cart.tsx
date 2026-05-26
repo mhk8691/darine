@@ -60,7 +60,7 @@ export default function Cart({cart}:{cart:CartItem[]}) {
                   تعداد محصول
                 </Typography>
                 <Typography variant="body1" fontSize={18}>
-                  {priceFormater(totalQuantity)}
+                  {priceFormater(totalQuantity) || 0}
                 </Typography>
               </Stack>
             </Stack>
@@ -79,7 +79,6 @@ export default function Cart({cart}:{cart:CartItem[]}) {
                   },
                 }}
                 onClick={() => router.push('/gold-shop-basket')}
-                 disabled
                 startIcon={<CartIcon />}
               >
                 مشاهده سبد خرید

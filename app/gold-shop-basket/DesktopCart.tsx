@@ -1,9 +1,6 @@
 'use client';
-import AddIcon from '@mui/icons-material/Add';
-import DeleteIcon from '@mui/icons-material/Delete';
 import {
   Box,
-  IconButton,
   Stack,
   SxProps,
   Table,
@@ -14,9 +11,10 @@ import {
   Typography,
 } from '@mui/material';
 import Image from 'next/image';
-import { useState } from 'react';
-import { CartDataType } from '../core/Types';
+import { Dispatch, SetStateAction } from 'react';
+import {  CartItem } from '../core/Types';
 import priceFormater from '../core/PriceFormater';
+import Counter from '../gold-shop/[productId]/Counter';
 const dataStyle: SxProps = {
   py: 1.5,
   fontSize: {
@@ -33,10 +31,10 @@ const headStyle: SxProps = {
 
 
 interface Props{
-  cartData:CartDataType
+  cartData:CartItem[]
+  setCartData:Dispatch<SetStateAction<CartItem[]>>
 }
-const DesktopCart = ({cartData}:Props) => {
-  const [count, setCount] = useState(1);
+const DesktopCart = ({cartData,setCartData}:Props) => {
   return (
     <Box dir="rtl">
       <Table
@@ -52,7 +50,7 @@ const DesktopCart = ({cartData}:Props) => {
               align="center"
               sx={{
                 width: {
-                  xs: '50%',
+                  xs: '30%',
                   md: '35%',
                 },
                 ...headStyle,
@@ -115,7 +113,7 @@ const DesktopCart = ({cartData}:Props) => {
         </TableHead>
 
         <TableBody>
-          {cartData?.items?.map((item) => (
+          {cartData?.map((item) => (
             <TableRow
               key={item.id}
               sx={{
@@ -150,8 +148,8 @@ const DesktopCart = ({cartData}:Props) => {
                     }}
                   >
                     <Image
-                      src={item.porudct_details.image}
-                      alt={item.porudct_details.name}
+                      src={'/images/product.webp'}
+                      alt={item.name}
                       width={112}
                       height={112}
                       style={{
@@ -167,45 +165,28 @@ const DesktopCart = ({cartData}:Props) => {
                       md: 16,
                     }}
                   >
-                    {item.porudct_details.name}
+                    {item.name}
                   </Typography>
                 </Stack>
               </TableCell>
 
               <TableCell align="center" sx={dataStyle}>
-                {item.porudct_details.weight} گرم
-              </TableCell>
-
-              <TableCell align="center" sx={dataStyle}>
-                {priceFormater(item.porudct_details.total_price)} تومان
-              </TableCell>
-
-              <TableCell align="center" sx={dataStyle}>
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  justifyContent="space-between"
-                  sx={{
-                    border: '1px solid #333333',
-                    borderRadius: 2,
-                    py: 1,
-                    minWidth: '75px',
-                    maxWidth: '150px',
-                  }}
-                >
-                  <IconButton onClick={() => setCount((prev) => prev + 1)}  >
-                    <AddIcon fontSize="small" />
-                  </IconButton>
-                  <Typography fontWeight={600}>{count}</Typography>
-
-                  <IconButton onClick={() => setCount((prev) => prev - 1)}  >
-                    <DeleteIcon fontSize="small" />
-                  </IconButton>
-                </Stack>
+                {priceFormater(item.weight)} گرم
               </TableCell>
 
               <TableCell align="center" sx={dataStyle}>
                 {priceFormater(item.total_price)} تومان
+              </TableCell>
+
+              <TableCell align="center" sx={dataStyle}>
+               <Counter cart={cartData} productId={item.id} setCart={setCartData} style={{
+                minWidth:'100px',
+                maxWidth:'120px'
+               }} />
+              </TableCell>
+
+              <TableCell align="center" sx={dataStyle}>
+                {priceFormater(item.total_price * item.quantity)} تومان
               </TableCell>
             </TableRow>
           ))}

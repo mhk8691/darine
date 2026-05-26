@@ -1,14 +1,15 @@
 'use client';
 
-import { CartItem, decreaseQuantity, increaseQuantity, removeFromCart } from '@/lib/cart/cart';
+import { CartItem } from '@/app/core/Types';
+import {  decreaseQuantity, increaseQuantity, removeFromCart } from '@/lib/cart/cart';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import RemoveIcon from '@mui/icons-material/Remove';
-import { IconButton, Stack, Typography } from '@mui/material';
+import { IconButton, Stack, SxProps, Typography } from '@mui/material';
 import {  Dispatch, SetStateAction } from 'react';
 
 
-export default function Counter({setCart,cart,productId}:{productId:number,setCart:Dispatch<SetStateAction<CartItem[]>>,cart:CartItem[]}) {
+export default function Counter({style,setCart,cart,productId}:{style:SxProps, productId:number,setCart:Dispatch<SetStateAction<CartItem[]>>,cart:CartItem[]}) {
   
 const getQuantity = cart.find((item) => item.id == productId)?.quantity
 
@@ -20,8 +21,8 @@ const getQuantity = cart.find((item) => item.id == productId)?.quantity
       sx={{
         border: '1px solid #333333',
         borderRadius: 2,
-        width: '100%',
-        py:1
+        py:.5,
+        ...style
       }}
     >
       <IconButton onClick={()=>setCart(increaseQuantity(productId))}  >

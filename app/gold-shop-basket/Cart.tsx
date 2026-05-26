@@ -11,14 +11,14 @@ import OrderConfirmation from './OrderConfirmation';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '../Components/Snackbar/Snackbar';
 import { getCart } from '@/lib/cart/cart';
-import { CartDataType } from '../core/Types';
+import { CartItem } from '../core/Types';
 
 export default function Cart() {
   const [step, setStep] = useState(0);
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const theme = useTheme();
-  const [cartData,setCartData] = useState<CartDataType>({} as CartDataType)
+  const [cartData,setCartData] = useState<CartItem[]>(getCart())
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'), {
     noSsr: true,
   });
@@ -34,24 +34,12 @@ export default function Cart() {
   };
   const handleDecrease = () => {
     if (step === 0) {
-      router.push('/gold-shop');
+      router.back();
     } else {
       setStep((prev) => prev - 1);
     }
   };
-  useEffect(()=>{
-    const getData = async ()=>{
-      try{
-        const response = await getCart()
-        setCartData(response)
-      }catch(error:unknown){
-        if (isAxiosError(error)){
-          showSnackbar(error.response?.data.message)
-        }
-      }
-    }
-    getData()
-  },[])
+  console.log(cartData)
   return (
     <>
       {step === 0 && (
@@ -61,7 +49,7 @@ export default function Cart() {
               سبد خرید شما
             </Typography>
           )}
-          {isMobile ? <MobileCart cartData={cartData} /> : <DesktopCart cartData={cartData} />}
+          {isMobile ? <MobileCart setCartData={setCartData}  cartData={cartData} /> : <DesktopCart  setCartData={setCartData} cartData={cartData} />}
         </>
       )}
       {step === 1 && <Delivery />}
