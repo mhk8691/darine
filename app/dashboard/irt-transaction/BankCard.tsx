@@ -60,8 +60,9 @@ export default function BankCards({
 
   return (
     <>
-    {
-      bankCardsData.length > 0&&   <Stack>
+      <Stack>
+        {
+      bankCardsData.length > 0 && 
         <ClickAwayListener onClickAway={() => setOpen(false)}>
           <FormControl
             sx={{
@@ -157,6 +158,7 @@ export default function BankCards({
             </Paper>
           </FormControl>
         </ClickAwayListener>
+         }
         <Button
           onClick={() => setOpenModal(true)}
           variant="outlined"
@@ -246,7 +248,7 @@ export default function BankCards({
           افزودن کارت
         </Button>
       </Stack>
-    }
+   
     
       <AddCard
         open={openModal}

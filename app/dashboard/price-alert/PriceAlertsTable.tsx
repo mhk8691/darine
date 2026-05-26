@@ -55,7 +55,7 @@ export default function PriceAlertsTable({priceAlertsData,setOpen,setPriceAlertI
                         gap={0.5}
                         justifyContent={'center'}
                       >
-                        <Typography variant="body1">{row.alert_type_display}</Typography>
+                        <Typography variant="body1">{row.alert_type === 'BELOW' ? 'در قیمت پایین تر':'در قیمت  بالاتر'}</Typography>
                       </Stack>
                     </TableCell>
                     <TableCell

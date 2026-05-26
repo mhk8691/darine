@@ -243,8 +243,8 @@ export default function ProductCard({ item,cartProductId ,quantity,getCartData}:
             </Stack>
           </Stack>
         </CardContent>
-       {/* <Stack px={1.5}>
-         {!cartProductId ? (
+       <Stack px={1.5}>
+         {1 ? (
           <Button
             variant="outlined"
             color="inherit"
@@ -257,6 +257,7 @@ export default function ProductCard({ item,cartProductId ,quantity,getCartData}:
                 bgcolor: '#1C1C1B',
               },
             }}
+            disabled
             onClick={() => {
               handleAddToCart(item.id);
               setOpen(true);
@@ -268,7 +269,7 @@ export default function ProductCard({ item,cartProductId ,quantity,getCartData}:
         ) : (
           <Counter quantity={quantity} productId={item.id} getCartData={getCartData} />
         )}
-       </Stack> */}
+       </Stack>
       </Card>
       <CustomModal open={open} setOpen={setOpen} modalStyle={{ p: 2 }}>
         <Stack direction={'row'} justifyContent={'flex-end'}>

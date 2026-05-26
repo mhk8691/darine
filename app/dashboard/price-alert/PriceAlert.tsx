@@ -25,7 +25,7 @@ export default function PriceAlert({
   setPriceAlert: Dispatch<SetStateAction<PriceAlertsDataType[]>>;
 }) {
   const [value, setValue] = useState('');
-  const [active, setActive] = React.useState('ONCE');
+  const [active, setActive] = React.useState('ABOVE');
   const [isLoading,setIsLoading] = useState(false)
   const handlePriceAlert = async () => {
   try{
@@ -33,6 +33,8 @@ export default function PriceAlert({
    const res =   await addPriceAlert(value, active);
    showSnackbar(res?.message,true);
     const response = await getPriceAlerts();
+    setValue('')
+    setPriceAlert([])
     setPriceAlert(response && response?.length > 0 ? response : []);
   }
     catch (error: unknown) {
@@ -136,7 +138,7 @@ export default function PriceAlert({
             }}
             sx={{ color: 'text.secondary' }}
           >
-            زمانبندی اعلان:
+           اعلان:
           </Typography>
           <FormControl>
             <RadioGroup
@@ -146,9 +148,9 @@ export default function PriceAlert({
               sx={{ flexDirection: 'row', justifyContent: 'space-between' }}
             >
               <FormControlLabel
-                value="ONCE"
+                value="ABOVE"
                 control={<Radio   disableTouchRipple />}
-                label="فقط یکبار اطلاع بده"
+                label='در قیمت بالاتر'
                 sx={{
                   '& .MuiTypography-root': {
                     fontSize: {
@@ -159,9 +161,9 @@ export default function PriceAlert({
                 }}
               />
               <FormControlLabel
-                value="every-time"
+                value="BELOW"
                 control={<Radio   disableTouchRipple />}
-                label="هربار اطلاع بده"
+                label='در قیمت پایین تر'
                 sx={{
                   '& .MuiTypography-root': {
                     fontSize: {

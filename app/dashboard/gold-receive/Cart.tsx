@@ -7,13 +7,14 @@ import { Button, Divider, Grid, Stack, useMediaQuery, useTheme } from '@mui/mate
 import Typography from '@mui/material/Typography';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { useAssets } from '../AssetsProvider';
 
-export default function Cart({data}:{data:CartDataType}) {
+export default function Cart() {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'));
   const [visible, setVisible] = useState(false);
   const router = useRouter();
-
+  const {assets} = useAssets()
        useEffect(() => {
     const stored = localStorage.getItem('eyeState');
     if (stored !== null) {
@@ -40,7 +41,7 @@ export default function Cart({data}:{data:CartDataType}) {
                   موجودی طلای شما
                 </Typography>
                 <Typography variant="body1" fontSize={18}>
-                  {visible ? `${data?.total_gold || 0} گرم` :'***'}
+                  {visible ? `${priceFormater(assets?.gold_balance_gr )|| 0} گرم` :'***'}
                 </Typography>
               </Stack>
               <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
@@ -48,7 +49,7 @@ export default function Cart({data}:{data:CartDataType}) {
                   موجودی تومان شما
                 </Typography>
                 <Typography variant="body1" fontSize={18}>
-                  {visible ? `${priceFormater(data?.total_price) || 0} تومان` :'***'}
+                  {visible ? `${priceFormater(assets.toman_balance) || 0} تومان` :'***'}
                 </Typography>
               </Stack>
               <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
@@ -56,7 +57,7 @@ export default function Cart({data}:{data:CartDataType}) {
                   تعداد محصول
                 </Typography>
                 <Typography variant="body1" fontSize={18}>
-                  {data?.count || 0}
+                  {0}
                 </Typography>
               </Stack>
             </Stack>
@@ -75,7 +76,7 @@ export default function Cart({data}:{data:CartDataType}) {
                   },
                 }}
                 onClick={() => router.push('/gold-shop-basket')}
-                 
+                 disabled
                 startIcon={<CartIcon />}
               >
                 مشاهده سبد خرید
