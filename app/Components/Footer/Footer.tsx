@@ -122,45 +122,7 @@ export default function Footer() {
           <LinkContainer />
           <DesktopCertificate />
         </Grid>
-        <Grid
-          size={12}
-          mt={7}
-          display={{
-            xs: 'none',
-            md: 'flex',
-          }}
-        >
-          <Stack direction={'column'} gap={4}>
-            <Typography
-              variant="body1"
-              fontWeight={500}
-              fontSize={14}
-              sx={{ color: 'text.secondary' }}
-            >
-              لینک های مفید
-            </Typography>
-            <Stack direction="row" alignItems="center">
-              {links.map((item, index) => (
-                <React.Fragment key={item.title}>
-                  <Link href={item.link}>
-                    <Typography
-                      variant="body1"
-                      fontSize={14}
-                      fontWeight={400}
-                      sx={{ color: 'text.secondary' }}
-                    >
-                      {item.title}
-                    </Typography>
-                  </Link>
-
-                  {index !== links.length - 1 && (
-                    <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />
-                  )}
-                </React.Fragment>
-              ))}
-            </Stack>
-          </Stack>
-        </Grid>
+      
       </Grid>
       <Grid
         container
@@ -310,21 +272,7 @@ export default function Footer() {
                   }}
                 />
               </Stack>
-              <Stack
-                sx={{
-                  bgcolor: 'primary.main',
-                  borderRadius: '50%',
-                  p: 0.75,
-                }}
-              >
-                <TwitterIcon
-                  sx={{
-                    color: 'background.default',
-                    width: '23px',
-                    height: '23px',
-                  }}
-                />
-              </Stack>
+          
               <Stack
                 sx={{
                   bgcolor: 'primary.main',
@@ -340,21 +288,7 @@ export default function Footer() {
                   }}
                 />
               </Stack>
-              <Stack
-                sx={{
-                  bgcolor: 'primary.main',
-                  borderRadius: '50%',
-                  p: 0.75,
-                }}
-              >
-                <LinkedInIcon
-                  sx={{
-                    color: 'background.default',
-                    width: '23px',
-                    height: '23px',
-                  }}
-                />
-              </Stack>
+          
             </Stack>
           </Stack>
         </Grid>

@@ -32,7 +32,7 @@ export default function Buttons() {
         }}
       >
         <TelegramIcon />
-        <Box component={'span'}>شروع ربات</Box>
+        <Box component={'span'}>عضویت</Box>
       </Button>
       <Button
         variant="outlined"
@@ -55,7 +55,7 @@ export default function Buttons() {
       >
         <CopyIcon />
 
-        <Box component={'span'}>کپی لینک ربات</Box>
+        <Box component={'span'}>کپی لینک</Box>
       </Button>
     </Stack>
   );

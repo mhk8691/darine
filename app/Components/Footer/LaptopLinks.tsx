@@ -37,24 +37,7 @@ const items = [
       { title: 'نمودار قیمت طلا در 10 سال گذشته', link: '/' },
     ],
   },
-  {
-    id: '3',
-    title: 'لینک های مفید',
-    items: [
-      { title: 'طلای ۱۸ عیار', link: '/' },
-      { title: 'طلای ۲۱ عیار', link: '/' },
-      { title: 'طلای ۲۴ عیار', link: '/' },
-      { title: 'طلای دست دوم', link: '/' },
-      { title: 'مثقال طلا', link: '/' },
-      { title: 'قیمت طلا آب شده', link: '/' },
-      { title: 'سکه امامی', link: '/' },
-      { title: 'سکه بهار آزادی', link: '/' },
-      { title: 'نیم سکه', link: '/' },
-      { title: 'ربع سکه', link: '/' },
-      { title: 'سکه گرمی', link: '/' },
-      { title: 'محاسبه قیمت طلا دست دوم', link: '/' },
-    ],
-  },
+
 ];
 
 export default function LaptopLinks() {

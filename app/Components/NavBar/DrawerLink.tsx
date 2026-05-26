@@ -48,9 +48,9 @@ const menuItems = [
     link: '/parsian',
   },
 
-  { id: 3, title: 'شعب دارینه', link: '/branches' },
+  { id: 3, title: 'آموزش های دارینه', link: '/branches' },
   { id: 4, title: 'مجوز های دارینه', link: '/license' },
-  { id: 5, title: 'همکاران دارینه', link: '/partners' },
+  { id: 5, title: 'همکاری با دارینه', link: '/partners' },
 ];
 export default function DrawerLink({ open, setOpen }: Props) {
   return (

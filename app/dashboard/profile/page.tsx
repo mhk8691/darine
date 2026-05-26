@@ -81,7 +81,7 @@ export default function page() {
             }}
             sx={{ color: 'text.title' }}
           >
-            فعالسازی ربات تلگرام
+           عضویت در خانواده دارینه
           </Typography>
           <Typography
             variant="h6"

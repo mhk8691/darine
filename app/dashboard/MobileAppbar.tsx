@@ -21,15 +21,15 @@ const AppbarItems: AppbarItemsType[] = [
     link: '/limit-order',
   },
 
+  // {
+  //   name: 'ثبت کارت هدیه',
+  //   image: '/images/appbar/giftCard-active-dark.svg',
+  //   link: '/gift-card-submit',
+  // },
   {
-    name: 'ثبت کارت هدیه',
-    image: '/images/appbar/giftCard-active-dark.svg',
-    link: '/gift-card-submit',
-  },
-  {
-    name: 'خرید اقساطی',
-    image: '/images/appbar/credit-active-dark.svg',
-    link: '/credit-menu',
+    name: 'طلا فروش شو',
+    image: '/images/appbar/invite-active-dark.svg',
+    link: '/invite',
   },
   {
     name: 'تحویل فیزیکی',
