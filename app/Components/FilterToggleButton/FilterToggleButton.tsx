@@ -10,14 +10,14 @@ interface Props {
   setSelect: React.Dispatch<React.SetStateAction<string>>;
   style?: SxProps;
   setMessage?: React.Dispatch<React.SetStateAction<string>>;
-  setParams:React.Dispatch<React.SetStateAction<string>>
+  setParams?:React.Dispatch<React.SetStateAction<string>>
 }
 
 export default function FilterToggleButton({setParams, items, select, setSelect, style, setMessage }: Props) {
   const handleChange = (event: React.MouseEvent<HTMLElement>, newAlignment: string) => {
     if (newAlignment !== null) {
       setSelect(newAlignment);
-      setParams(newAlignment)
+      setParams&&setParams(newAlignment)
     }
   };
 

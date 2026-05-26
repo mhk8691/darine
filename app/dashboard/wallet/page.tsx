@@ -4,7 +4,7 @@ import {
 } from '@/app/Components/Containers/Container/Container';
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import Wallet from '@/app/Components/Wallet/Wallet';
-import { RecentTransactionDataType, ToggleItemsType } from '@/app/core/Types';
+import { RecentTransactionDataType } from '@/app/core/Types';
 import { Grid, Stack, Typography } from '@mui/material';
 import BackLink from '../BackLink';
 import AllAssets from './AllAssets';
@@ -13,48 +13,19 @@ import { getRecentTransaction } from '@/lib/transactions/recent-transactions/rec
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import TransactionTable from '../irt-transaction/TransactionTable';
+import { TransactionItems } from '../irt-transaction/page';
 // export const metadata: Metadata = {
 //   title: 'کیف پول | دارینه',
 //   description: '',
 // };
-const items: ToggleItemsType[] = [
-  {
-    title: 'واریز',
-    value: 'deposit',
-    id: 1,
-    emptyMessage: 'واریزی برای شما به ثبت نرسیده است',
-  },
-  {
-    title: 'واریز مستقیم',
-    value: 'directDeposit',
-    id: 2,
-    emptyMessage: 'واریز باشناسه ای برای شما به ثبت نرسیده است',
-  },
-  {
-    title: 'واریز از نقره سی',
-    value: 'silverDeposit',
-    id: 3,
-    emptyMessage: 'واریزی برای شما به ثبت نرسیده است',
-  },
-  {
-    title: 'برداشت',
-    value: 'withdraw',
-    id: 4,
-    emptyMessage: 'برداشتی برای شما به ثبت نرسیده است',
-  },
-  {
-    title: 'برداشت به نقره سی',
-    value: 'silverWithdraw',
-    id: 5,
-    emptyMessage: 'برداشتی برای شما به ثبت نرسیده است',
-  },
-];
+
 export default async function page() {
   const [transactionData,setTransactionData] = useState<RecentTransactionDataType[]>([])
+  const [transactionParams,setTransactionParams] = useState('deposit')
   useEffect(()=>{
      const getData = async ()=>{
         try{
-          const response = await getRecentTransaction()
+          const response = await getRecentTransaction(transactionParams)
           setTransactionData(response)
         }catch(error:unknown){
           if (isAxiosError(error)){
@@ -279,9 +250,10 @@ export default async function page() {
           <OrderDetail
             type="chip"
             title="لیست تراکنش‌‌های اخیر"
-            toggleItems={items}
+            toggleItems={TransactionItems}
             tableBody={<TransactionTable data={transactionData} />}
             listLength={transactionData.length}
+            setParams={setTransactionParams}
              tableHead={[
             'مبلغ',
             'نوع تراکنش',

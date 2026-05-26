@@ -30,7 +30,7 @@ export default function OrdersTable({data}:{data:OrdersDataType[]}) {
       noCard
       tableBody={<TableBody>
             {data?.map((row) => (
-              <TableRow
+             <TableRow
                 key={row?.id}
                 sx={{
                   '&:last-child td': {
@@ -42,7 +42,85 @@ export default function OrdersTable({data}:{data:OrdersDataType[]}) {
                  <TableCell
                   align="center"
                   sx={{
-                    py: 2.5,
+                    py: 0.9,
+                    px: 2.5,
+                  }}
+                >
+                  <Stack
+                    direction={'row'}
+                    alignItems={'center'}
+                    gap={0.5}
+                    justifyContent={'center'}
+                  >
+                    <Typography variant="body1">{priceFormater(row.total_toman_amount)}</Typography>
+                    <Typography variant="body2" fontSize={12}>
+                      تومان
+                    </Typography>
+                  </Stack>
+                </TableCell>
+                <TableCell
+                  align="center"
+                  sx={{
+                    py: 0.9,
+                    px: 2.5,
+                  }}
+                >
+                  <Stack
+                    direction={'row'}
+                    alignItems={'center'}
+                    gap={0.5}
+                    justifyContent={'center'}
+                  >
+                    <Typography variant="body1">{row.delivery_type}</Typography>
+                  </Stack>
+                </TableCell>
+               
+                <TableCell
+                  align="center"
+                  sx={{
+                    py: 0.9,
+                    px: 2.5,
+                  }}
+                >
+                  <Stack
+                    direction={'row'}
+                    alignItems={'center'}
+                    gap={0.5}
+                    justifyContent={'center'}
+                  >
+                    <Typography
+                      variant="body1"
+                    
+                    >
+                        {row.payment_method}
+                    </Typography>
+                  </Stack>
+                </TableCell>
+                  <TableCell
+                  align="center"
+                  sx={{
+                    py: 0.9,
+                    px: 2.5,
+                  }}
+                >
+                  <Stack
+                    direction={'row'}
+                    alignItems={'center'}
+                    gap={0.5}
+                    justifyContent={'center'}
+                  >
+                    <Typography
+                      variant="body1"
+                    
+                    >
+                        {row.status}
+                    </Typography>
+                  </Stack>
+                </TableCell>
+                 <TableCell
+                  align="center"
+                  sx={{
+                    py: 0.9,
                     px: 2.5,
                   }}
                 >
@@ -60,96 +138,23 @@ export default function OrdersTable({data}:{data:OrdersDataType[]}) {
                     </Typography>
                   </Stack>
                 </TableCell>
-                <TableCell
-                  align="center"
-                  sx={{
-                    py: 2.5,
-                    px: 2.5,
-                  }}
-                >
-                  <Stack
-                    direction={'row'}
-                    alignItems={'center'}
-                    gap={0.5}
-                    justifyContent={'center'}
-                  >
-                    <Typography variant="body1" sx={{color:handleColorStatus(row.status)}}>{handleTitleStatus(row.status)}</Typography>
-                  </Stack>
-                </TableCell>
-
-                 <TableCell
-                  align="center"
-                  sx={{
-                    py: 2.5,
-                    px: 2.5,
-                  }}
-                >
-                  <Stack
-                    direction={'row'}
-                    alignItems={'center'}
-                    gap={0.5}
-                    justifyContent={'center'}
-                  >
-                    <Typography variant="body1">{row.payment_method}</Typography>
-                  
-                  </Stack>
-                </TableCell>
-                
-               
-                <TableCell
-                  align="center"
-                  sx={{
-                    py: 2.5,
-                    px: 2.5,
-                  }}
-                >
-                  <Stack
-                    direction={'row'}
-                    alignItems={'center'}
-                    gap={0.5}
-                    justifyContent={'center'}
-                  >
-                    <Typography
-                      variant="body1"
-                    
-                    >
-                        {row.delivery_type} 
-                    </Typography>
-                  </Stack>
-                </TableCell>
-
+             
                   <TableCell
                   align="center"
                   sx={{
-                    py: 2.5,
+                    fontSize: '16px',
+                    py: 0.9,
                     px: 2.5,
                   }}
                 >
-                  <Stack
-                    direction={'row'}
-                    alignItems={'center'}
-                    gap={0.5}
-                    justifyContent={'center'}
-                  >
-                    <Typography
-                      variant="body1"
-                    
-                    >
-                        {priceFormater(row.total_toman_amount)} تومان
-                    </Typography>
-                  </Stack>
+                  {row.tracking_code}
                 </TableCell>
-
-               
-
-                 
-               
-             
+                
                 <TableCell
                   align="center"
                   sx={{
                     fontSize: '16px',
-                    py: 2.5,
+                    py: 0.9,
                     px: 2.5,
                   }}
                 >

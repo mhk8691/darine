@@ -7,7 +7,7 @@ interface Props {
   active: string;
   setActive: Dispatch<SetStateAction<string>>;
   setMessage?: Dispatch<SetStateAction<string>>;
-  setParams:React.Dispatch<React.SetStateAction<string>>
+  setParams?:React.Dispatch<React.SetStateAction<string>>
 }
 export default function FilterButton({ setParams,active, setActive, item, setMessage }: Props) {
   const theme = useTheme();
@@ -20,7 +20,7 @@ export default function FilterButton({ setParams,active, setActive, item, setMes
        
       onClick={() => {
         setActive(item.value);
-        setParams(item.value)
+      setParams&&  setParams(item.value)
         if (setMessage) {
           setMessage(item.emptyMessage || '');
         }

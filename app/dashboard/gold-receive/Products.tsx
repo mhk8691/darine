@@ -2,15 +2,32 @@
 import Container from "@/app/Components/Containers/Container/Container";
 import ProductCard from "@/app/Components/ProductCard/ProductCard"
 import { showSnackbar } from "@/app/Components/Snackbar/Snackbar";
-import {  ProductDateType } from "@/app/core/Types";
+import {  ProductDateType, ToggleItemsType } from "@/app/core/Types";
 import { getProducts } from "@/lib/getProducts/getProducts";
 import { Grid } from "@mui/material"
 import { isAxiosError } from "axios";
 import { useEffect, useState } from "react";
 import Cart from "./Cart";
 import { getCart } from "@/lib/cart/cart";
+import OrderDetail from "@/app/Components/Tables/DetailTable/OrderDetail";
+
+const items: ToggleItemsType[] = [
+  {
+    title: 'تحویل درب منزل',
+    value: 'doorstepdelivery',
+    id: 1,
+    emptyMessage: 'سفارشی برای شما به ثبت نرسیده است',
+  },
+  {
+    title: 'تحویل حضوری',
+    value: 'personDelivery',
+    id: 2,
+    emptyMessage: 'سفارشی برای شما به ثبت نرسیده است',
+  },
+];
 
 export default function Products() {
+  const [orderParams,setOrderParams] = useState('doorstepdelivery')
   const [productData, setProductData] = useState<ProductDateType[]>([] as ProductDateType[]);
     const [cart,setCart] = useState(getCart())
   useEffect(() => {
@@ -27,6 +44,7 @@ export default function Products() {
     getData();
   }, []);
   return (
+     <>
       <Container
         style={{
           pb: 11,
@@ -75,7 +93,18 @@ setCart={setCart}
           <Cart cart={cart} />
         </Grid>
       </Container>
- 
+ {/* <Grid size={12}>
+        <OrderDetail
+          setParams={setOrderParams}
+          type="chip"
+          title="لیست تحویل‌های اخیر"
+          toggleItems={items}
+          tableBody={ <OrdersTable data={} />}
+          tableHead={['test']}
+          listLength={deliveryData.length}
+        />
+      </Grid> */}
+     </>
 
   )
 }

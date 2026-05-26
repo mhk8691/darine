@@ -15,7 +15,7 @@ import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 //   title: 'تراکنش های تومان | دارینه',
 //   description: '',
 // };
-const items: ToggleItemsType[] = [
+export const TransactionItems: ToggleItemsType[] = [
   {
     title: 'واریز',
     value: 'deposit',
@@ -28,32 +28,28 @@ const items: ToggleItemsType[] = [
     id: 2,
     emptyMessage: 'واریز باشناسه ای برای شما به ثبت نرسیده است',
   },
-  {
-    title: 'واریز ارزی',
-    value: 'currencyDeposit',
-    id: 3,
-    emptyMessage: 'واریزی برای شما به ثبت نرسیده است',
-  },
+ 
   {
     title: 'برداشت',
     value: 'withdraw',
-    id: 4,
+    id: 3,
     emptyMessage: 'برداشتی برای شما به ثبت نرسیده است',
   },
   {
     title: 'برداشت به نقره سی',
     value: 'silverWithdraw',
-    id: 5,
+    id: 4,
     emptyMessage: 'برداشتی برای شما به ثبت نرسیده است',
   },
 ];
 
 export default function page() {
+  const [transactionParams,setTransactionParams] = useState('deposit')
   const [transactionData,setTransactionData] = useState<RecentTransactionDataType[]>([])
   useEffect(()=>{
     const getData = async ()=>{
       try{
-        const response = await getRecentTransaction()
+        const response = await getRecentTransaction(transactionParams)
         setTransactionData(response)
       }catch(error:unknown){
         if (isAxiosError(error)){
@@ -62,7 +58,7 @@ export default function page() {
       }
     }
     getData()
-  },[])
+  },[transactionParams])
   return (
     <Grid
       container
@@ -80,7 +76,7 @@ export default function page() {
       <Grid size={12} order={3}>
         <OrderDetail
           title="لیست تراکنش های اخیر"
-          toggleItems={items}
+          toggleItems={TransactionItems}
           type="chip"
           tableBody={<TransactionTable data={transactionData} />}
           tableHead={[
@@ -91,6 +87,7 @@ export default function page() {
             'کد پیگیری',
             'تاریخ',
           ]}
+          setParams={setTransactionParams}
           listLength={transactionData.length}
         />
       </Grid>

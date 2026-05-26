@@ -19,7 +19,7 @@ interface Props {
   tableBody: ReactNode;
   tableHead: string[];
   listLength: number;
-  setParams:React.Dispatch<React.SetStateAction<string>>
+  setParams?:React.Dispatch<React.SetStateAction<string>>
 }
 const names = ['تکمیل شده', 'در انتظار تایید', 'لغو شده'];
 export default function OrderDetail({
@@ -33,7 +33,7 @@ export default function OrderDetail({
   listLength,
   setParams
 }: Props) {
-  const [active, setActive] = useState(toggleItems[0].value);
+  const [active, setActive] = useState(toggleItems[0]?.value);
   const [select, setSelect] = useState(toggleItems[0]?.value);
   const [message, setMessage] = useState(toggleItems[0]?.emptyMessage || '');
   const theme = useTheme();
