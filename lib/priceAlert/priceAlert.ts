@@ -2,10 +2,11 @@ import {  PriceAlertsDataType } from '@/app/core/Types';
 import api, { ApiResponse } from '../api';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 
-export const getPriceAlerts = async () => {
+export const getPriceAlerts = async (filter:string,date:DatePickerValue) => {
   try {
-    const res = await api.get<ApiResponse<PriceAlertsDataType[]>>('/gold/price-alerts/');
+    const res = await api.get<ApiResponse<PriceAlertsDataType[]>>(`/gold/price-alerts/?from=${date?.from}&to=${date?.to}filter=${filter}`);
     return res.data.data;
   } catch (error: unknown) {
     if (isAxiosError(error)) {

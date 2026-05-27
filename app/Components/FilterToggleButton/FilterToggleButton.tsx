@@ -6,22 +6,22 @@ import * as React from 'react';
 
 interface Props {
   items: ToggleItemsType[];
-  select: string;
-  setSelect: React.Dispatch<React.SetStateAction<string>>;
+  active: string;
+  setActive: React.Dispatch<React.SetStateAction<string>>;
   style?: SxProps;
   setMessage?: React.Dispatch<React.SetStateAction<string>>;
   setParams?:React.Dispatch<React.SetStateAction<string>>
 }
 
-export default function FilterToggleButton({setParams, items, select, setSelect, style, setMessage }: Props) {
+export default function FilterToggleButton({setParams, items, active, setActive, style, setMessage }: Props) {
   const handleChange = (event: React.MouseEvent<HTMLElement>, newAlignment: string) => {
     if (newAlignment !== null) {
-      setSelect(newAlignment);
+      setActive(newAlignment);
       setParams&&setParams(newAlignment)
     }
   };
 
-  const activeIndex = items.findIndex((i) => i.value === select);
+  const activeIndex = items.findIndex((i) => i.value === active);
 
   return (
     <Box
@@ -49,7 +49,7 @@ export default function FilterToggleButton({setParams, items, select, setSelect,
       />
 
       <ToggleButtonGroup
-        value={select}
+        value={active}
         exclusive
         onChange={handleChange}
         sx={{

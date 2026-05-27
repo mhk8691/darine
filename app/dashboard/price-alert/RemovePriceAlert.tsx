@@ -1,5 +1,6 @@
 'use client';
 import CustomModal from '@/app/Components/CustomModal/CustomModal';
+import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 import Loading from '@/app/Components/Loading/Loading';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import {  PriceAlertsDataType } from '@/app/core/Types';
@@ -14,6 +15,7 @@ interface Props {
   priceAlertId: number;
   setPriceAlert: Dispatch<SetStateAction<PriceAlertsDataType[]>>;
   setPriceAlertId: Dispatch<SetStateAction<number>>;
+  filter:string,date:DatePickerValue
 }
 export default function RemovePriceAlertModal({
   open,
@@ -21,6 +23,7 @@ export default function RemovePriceAlertModal({
   priceAlertId,
   setPriceAlert,
   setPriceAlertId,
+  filter,date
 }: Props) {
   const [isLoading,setIsLoading] = useState(false)
   const handleRemove = async () => {
@@ -28,7 +31,7 @@ export default function RemovePriceAlertModal({
     setIsLoading(true)
      const res = await removePriceAlert(priceAlertId);
      showSnackbar(res.message,true)
-    const response = await getPriceAlerts();
+    const response = await getPriceAlerts(filter,date);
     setPriceAlert([])
     setPriceAlert(response && response?.length > 0 ? response : []);
     setPriceAlertId(0);

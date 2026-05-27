@@ -2,6 +2,7 @@ import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import { RecentTransactionDataType, ToggleItemsType } from '@/app/core/Types';
 import React, { Dispatch, SetStateAction } from 'react';
 import TransactionTable from '../irt-transaction/TransactionTable';
+import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 
 const depositItems: ToggleItemsType[] = [
   {
@@ -23,10 +24,21 @@ const depositItems: ToggleItemsType[] = [
     emptyMessage: 'واریزی برای شما به ثبت نرسیده است',
   },
 ];
-
-export default function DepositTable({data,setDepositParams}:{data:RecentTransactionDataType[],setDepositParams:Dispatch<SetStateAction<string>>}) {
+interface Props{
+  data:RecentTransactionDataType[],
+  setDepositParams:Dispatch<SetStateAction<string>>
+   setFilter: Dispatch<SetStateAction<string>>
+      setDateRange:Dispatch<SetStateAction<DatePickerValue|null>>
+      filter:string
+      dateRange:DatePickerValue|null
+}
+export default function DepositTable({data,setDepositParams,setDateRange,setFilter,filter,dateRange}:Props) {
   return (
     <OrderDetail
+     filter={filter}
+    setDateRange={setDateRange}
+    setFilter={setFilter}
+    dateRange={dateRange}
     setParams={setDepositParams}
       key={2}
       toggleItems={depositItems}

@@ -10,6 +10,7 @@ import { getRecentTransaction } from '@/lib/transactions/recent-transactions/rec
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { RecentTransactionDataType, ToggleItemsType } from '@/app/core/Types';
+import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 
 export const TransactionItems: ToggleItemsType[] = [
   {
@@ -40,13 +41,15 @@ export const TransactionItems: ToggleItemsType[] = [
 ];
 
 export default function TransactionContainer() {
+    const [filter,setFilter] = useState('')
+    const [dateRange,setDateRange] =useState<DatePickerValue| null>(null)
   const [value, setValue] = useState(0);
     const [transactionParams,setTransactionParams] = useState('deposit')
     const [transactionData,setTransactionData] = useState<RecentTransactionDataType[]>([])
     useEffect(()=>{
       const getData = async ()=>{
         try{
-          const response = await getRecentTransaction(transactionParams)
+          const response = await getRecentTransaction(transactionParams,filter,dateRange)
           setTransactionData(response)
         }catch(error:unknown){
           if (isAxiosError(error)){
@@ -55,7 +58,7 @@ export default function TransactionContainer() {
         }
       }
       getData()
-    },[transactionParams])
+    },[transactionParams,filter,dateRange])
   return (
     <>
       <Grid
@@ -164,6 +167,10 @@ export default function TransactionContainer() {
           ]}
           setParams={setTransactionParams}
           listLength={transactionData.length}
+          setDateRange={setDateRange}
+          setFilter={setFilter}
+          dateRange={dateRange}
+          filter={filter}
         />
       </Grid>
     </>

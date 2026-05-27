@@ -128,7 +128,7 @@ export default function page() {
           </Typography>
         </Card>
       </Grid>
-      <Grid size={12} order={3}>
+      {/* <Grid size={12} order={3}>
         <OrderDetail
           type="chip"
           title="لیست تراکنش‌‌های اخیر"
@@ -137,7 +137,7 @@ export default function page() {
           tableHead={[]}
           listLength={0}
         />
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 }

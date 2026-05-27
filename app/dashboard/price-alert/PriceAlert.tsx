@@ -1,5 +1,6 @@
 'use client';
 import Container from '@/app/Components/Containers/Container/Container';
+import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 import InputField from '@/app/Components/InputField/InputField';
 import Loading from '@/app/Components/Loading/Loading';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
@@ -21,8 +22,10 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 
 export default function PriceAlert({
   setPriceAlert,
+  filter,date
 }: {
   setPriceAlert: Dispatch<SetStateAction<PriceAlertsDataType[]>>;
+  filter:string,date:DatePickerValue
 }) {
   const [value, setValue] = useState('');
   const [active, setActive] = React.useState('ABOVE');
@@ -32,7 +35,7 @@ export default function PriceAlert({
     setIsLoading(true)
    const res =   await addPriceAlert(value, active);
    showSnackbar(res?.message,true);
-    const response = await getPriceAlerts();
+    const response = await getPriceAlerts(filter,date);
     setValue('')
     setPriceAlert([])
     setPriceAlert(response && response?.length > 0 ? response : []);

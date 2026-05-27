@@ -1,5 +1,6 @@
 import api, { ApiResponse } from '@/lib/api';
   import { AddressesDataType, GiftCardListType } from '@/app/core/Types';
+import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 
 export const giftCardSubmit = async (serialNumber: string) => {
     const response = await api.post<{
@@ -19,8 +20,8 @@ export const giftCardOrder = async (weight:string,quantity:number,province:strin
     return response.data
   }
 
-export const getGiftCardList = async () => {
-    const response = await api.get<ApiResponse<GiftCardListType[]>>('/gold/gift-card/list/');
+export const getGiftCardList = async (filter:string,date:DatePickerValue) => {
+    const response = await api.get<ApiResponse<GiftCardListType[]>>(`/gold/gift-card/list//gold/addresses/?from=${date?.from}&to=${date?.to}filter=${filter}`);
     return response.data.data;
 };
 export const getAddresses = async () => {

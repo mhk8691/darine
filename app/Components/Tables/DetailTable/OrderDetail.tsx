@@ -3,7 +3,7 @@ import { ToggleItemsType } from '@/app/core/Types';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { Stack, Typography, useTheme } from '@mui/material';
 import Image from 'next/image';
-import { ReactNode, useState } from 'react';
+import { Dispatch, ReactNode, SetStateAction, useState } from 'react';
 import Card from '../../Containers/Container/Container';
 import CustomDatePicker, { DatePickerValue } from '../../DatePicker/CustomDatePicker';
 import FilterToggleButton from '../../FilterToggleButton/FilterToggleButton';
@@ -20,6 +20,10 @@ interface Props {
   tableHead: string[];
   listLength: number;
   setParams?:React.Dispatch<React.SetStateAction<string>>
+  setFilter: Dispatch<SetStateAction<string>>
+  setDateRange:Dispatch<SetStateAction<DatePickerValue|null>>
+  filter:string
+  dateRange:DatePickerValue|null
 }
 const names = ['تکمیل شده', 'در انتظار تایید', 'لغو شده'];
 export default function OrderDetail({
@@ -31,15 +35,16 @@ export default function OrderDetail({
   tableBody,
   tableHead,
   listLength,
-  setParams
+  setParams,
+  filter,dateRange,setDateRange,setFilter
 }: Props) {
   const [active, setActive] = useState(toggleItems[0]?.value);
-  const [select, setSelect] = useState(toggleItems[0]?.value);
   const [message, setMessage] = useState(toggleItems[0]?.emptyMessage || '');
   const theme = useTheme();
   const isDarkMode = theme.palette.mode === 'dark';
-  const [value, setValue] = useState('');
-  const [dateRange, setDateRange] = useState<DatePickerValue>(null);
+  const handleDateChange = (val:DatePickerValue)=>{
+   setDateRange(val) 
+  }
   return noCard ? (
     <>
       {title && (
@@ -78,9 +83,9 @@ export default function OrderDetail({
               <FilterToggleButton
               setParams={setParams}
                 items={toggleItems}
-                select={select}
+                active={active}
                 setMessage={setMessage}
-                setSelect={setSelect}
+                setActive={setActive}
                 style={{
                   fontSize: {
                     xs: '12px',
@@ -120,10 +125,11 @@ export default function OrderDetail({
             },
           }}
         >
-          <SelectField label="وضعیت" itemsList={names} isOrederDetail maxWidth="260px" />
+          <SelectField label="وضعیت" itemsList={names}  isOrederDetail maxWidth="260px"  value={filter}
+            setValue={setFilter} />
           <CustomDatePicker style={{
             maxWidth:'270px'
-          }} value={dateRange} onChange={(val) => setDateRange(val)} isRange />
+          }} value={dateRange} onChange={handleDateChange} isRange />
         </Stack>
       </Stack>
        {listLength > 0 ? (
@@ -225,8 +231,8 @@ export default function OrderDetail({
             <Stack mb={3} width={'fit-content'}>
               <FilterToggleButton
                 items={toggleItems}
-                select={select}
-                setSelect={setSelect}
+               active={active}
+                setActive={setActive}
                 setParams={setParams}
                 setMessage={setMessage}
                 style={{
@@ -269,12 +275,12 @@ export default function OrderDetail({
             label="وضعیت"
             isOrederDetail={true}
             maxWidth="260px"
-            value={value}
-            setValue={setValue}
+            value={filter}
+            setValue={setFilter}
           />
           <CustomDatePicker style={{
             maxWidth:'270px'
-          }} value={dateRange} onChange={(val) => setDateRange(val)} isRange />
+          }} value={dateRange} onChange={handleDateChange} isRange />
         </Stack>
       </Stack>
       {listLength > 0 ? (

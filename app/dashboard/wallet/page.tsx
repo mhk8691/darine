@@ -14,6 +14,7 @@ import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import TransactionTable from '../irt-transaction/TransactionTable';
 import { TransactionItems } from '../irt-transaction/page';
+import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 // export const metadata: Metadata = {
 //   title: 'کیف پول | دارینه',
 //   description: '',
@@ -22,10 +23,12 @@ import { TransactionItems } from '../irt-transaction/page';
 export default async function page() {
   const [transactionData,setTransactionData] = useState<RecentTransactionDataType[]>([])
   const [transactionParams,setTransactionParams] = useState('deposit')
+    const [filter,setFilter] = useState('')
+    const [dateRange,setDateRange] =useState<DatePickerValue| null>(null)
   useEffect(()=>{
      const getData = async ()=>{
         try{
-          const response = await getRecentTransaction(transactionParams)
+          const response = await getRecentTransaction(transactionParams,filter,dateRange)
           setTransactionData(response)
         }catch(error:unknown){
           if (isAxiosError(error)){
@@ -34,7 +37,7 @@ export default async function page() {
         }
       }
       getData()
-  },[])
+  },[transactionParams,filter,dateRange])
   return (
     <Grid
       container
@@ -262,6 +265,10 @@ export default async function page() {
             'کد پیگیری',
             'تاریخ',
           ]}
+          setDateRange={setDateRange}
+          setFilter={setFilter}
+          dateRange={dateRange}
+          filter={filter}
           />
         </Stack>
       </Grid>

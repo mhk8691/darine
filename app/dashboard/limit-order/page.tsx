@@ -65,7 +65,7 @@ export default function page() {
         />
       </Grid>
       <Grid size={12}>
-        <OrderDetail
+        {/* <OrderDetail
           title="لیست معاملات اخیر"
           toggleItems={[]}
           type="chip"
@@ -73,7 +73,7 @@ export default function page() {
           tableBody={<></>}
           tableHead={[]}
           listLength={0}
-        />
+        /> */}
       </Grid>
     </Grid>
   );

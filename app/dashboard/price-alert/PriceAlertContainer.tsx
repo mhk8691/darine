@@ -8,20 +8,23 @@ import PriceAlertsTable from './PriceAlertsTable';
 import { getPriceAlerts } from '@/lib/priceAlert/priceAlert';
 import { PriceAlertsDataType } from '@/app/core/Types';
 import ChartGold from '@/app/Components/Chart/ChartGold';
+import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 
 export default function PriceAlertContainer() {
   const [priceAlertsData, setPriceAlerts] = useState<PriceAlertsDataType[]>([]);
+    const [filter,setFilter] = useState('')
+    const [dateRange,setDateRange] =useState<DatePickerValue| null>(null)
   const [open, setOpen] = useState(false);
   const [priceAlertId, setPriceAlertId] = useState(0);
     const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   useEffect(() => {
     const getData = async () => {
-      const response = await getPriceAlerts();
+      const response = await getPriceAlerts(filter,dateRange);
       setPriceAlerts(response || []);
     };
     getData();
-  }, [setPriceAlerts]);
+  }, [setPriceAlerts,dateRange,filter]);
   return (
     <>
      <Grid
@@ -32,7 +35,8 @@ export default function PriceAlertContainer() {
           height={'100%'}
         >
           <Box sx={{ height: '100%' }}>
-            <PriceAlert setPriceAlert={setPriceAlerts} />
+            <PriceAlert setPriceAlert={setPriceAlerts} date={dateRange}
+            filter={filter} />
           </Box>
         </Grid>
           {isDesktop && (
@@ -80,6 +84,10 @@ export default function PriceAlertContainer() {
             toggleItems={[]}
             tableHead={['قیمت هدف', 'نوع آلارم', 'وضعیت', 'تاریخ', 'حذف']}
             listLength={priceAlertsData.length}
+            setDateRange={setDateRange}
+            setFilter={setFilter}
+            dateRange={dateRange}
+            filter={filter}
             tableBody={<PriceAlertsTable priceAlertsData={priceAlertsData} setOpen={setOpen} setPriceAlertId={setPriceAlertId} />}
           />
         </Grid>
@@ -89,6 +97,8 @@ export default function PriceAlertContainer() {
         setOpen={setOpen}
         setPriceAlertId={setPriceAlertId}
         setPriceAlert={setPriceAlerts}
+        date={dateRange}
+            filter={filter}
       />
     </>
   )

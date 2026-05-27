@@ -2,6 +2,7 @@ import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import { RecentTransactionDataType, ToggleItemsType } from '@/app/core/Types';
 import React, { Dispatch, SetStateAction } from 'react';
 import TransactionTable from '../irt-transaction/TransactionTable';
+import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 
 const withdrawItems: ToggleItemsType[] = [
   {
@@ -17,10 +18,21 @@ const withdrawItems: ToggleItemsType[] = [
     emptyMessage: 'برداشتی برای شما به ثبت نرسیده است',
   },
 ];
-
-export default function WithdrawTable({data,setWithdrawParams}:{data:RecentTransactionDataType[],setWithdrawParams:Dispatch<SetStateAction<string>>}) {
+interface Props{
+  data:RecentTransactionDataType[],
+  setWithdrawParams:Dispatch<SetStateAction<string>>,
+     setFilter: Dispatch<SetStateAction<string>>
+        setDateRange:Dispatch<SetStateAction<DatePickerValue|null>>
+        filter:string
+        dateRange:DatePickerValue|null
+}
+export default function WithdrawTable({data,setWithdrawParams,setDateRange,setFilter,filter,dateRange}:Props) {
   return (
     <OrderDetail
+         filter={filter}
+    setDateRange={setDateRange}
+    setFilter={setFilter}
+    dateRange={dateRange}
       key={3}
       setParams={setWithdrawParams}
       toggleItems={withdrawItems}

@@ -1,3 +1,4 @@
+import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import { formatDate } from '@/app/core/FormatDate';
 import { handleColorStatus, handleTitleStatus } from '@/app/core/handleStatus';
@@ -20,10 +21,22 @@ const trades: ToggleItemsType[] = [
     emptyMessage: 'معامله ای برای شما به ثبت نرسیده است',
   },
 ];
-
-export default function TradesTable({setTradeParams,data,type='toggle',noCard=true}:{setTradeParams:Dispatch<SetStateAction<string>>,data:TradeTableDataType[],type?:'chip'|'toggle',noCard?:boolean}) {
+interface Props{
+  setTradeParams:Dispatch<SetStateAction<string>>,
+  data:TradeTableDataType[],type?:'chip'|'toggle',
+  noCard?:boolean
+    setFilter: Dispatch<SetStateAction<string>>
+    setDateRange:Dispatch<SetStateAction<DatePickerValue|null>>
+    filter:string
+    dateRange:DatePickerValue|null
+}
+export default function TradesTable({setTradeParams,data,type='toggle',noCard=true,dateRange,setDateRange,setFilter,filter}:Props) {
   return (
     <OrderDetail
+    filter={filter}
+    setDateRange={setDateRange}
+    setFilter={setFilter}
+    dateRange={dateRange}
       key={1}
       toggleItems={trades}
       noCard={noCard}
