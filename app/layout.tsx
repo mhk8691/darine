@@ -45,7 +45,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   if (typeof window !== 'undefined') {
-    // safe
     console.log('=>>', window.location.href);
   }
   return (
