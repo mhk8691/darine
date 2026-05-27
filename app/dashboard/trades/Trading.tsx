@@ -9,7 +9,7 @@ import { goldSell } from '@/lib/gold/goldSell';
 import { Button, Grid, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { isAxiosError } from 'axios';
 import {  useState } from 'react';
-import { useAssets } from '../AssetsProvider';
+import { useAssets } from '../../AssetsProvider';
 import Loading from '@/app/Components/Loading/Loading';
 import ChartGold from '@/app/Components/Chart/ChartGold';
 import TradesTableContainer from './TradesTableContainer';

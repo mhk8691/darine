@@ -11,6 +11,7 @@ import './globals.css';
 import SpaceBox from './SpaceBox';
 import { rtl } from './theme';
 import CustomThemeProvider from './theme-provider';
+import { AssetsProvider } from './AssetsProvider';
 
 const IranYekanFont = localFont({
   src: [
@@ -64,6 +65,7 @@ export default function RootLayout({
         }}
       >
         <AppRouterCacheProvider options={rtl}>
+          <AssetsProvider>
           <CustomThemeProvider>
               <CssBaseline />
               <Navbar />
@@ -76,6 +78,7 @@ export default function RootLayout({
               <GlobalSnackbar />
               <Footer />
           </CustomThemeProvider>
+          </AssetsProvider>
         </AppRouterCacheProvider>
       </body>
     </html>

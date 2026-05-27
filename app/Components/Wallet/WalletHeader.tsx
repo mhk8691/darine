@@ -1,22 +1,15 @@
 'use client';
 import priceFormater from '@/app/core/PriceFormater';
 import { Grid, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
-import { useEffect, useState } from 'react';
 import Card from '../Containers/Container/Container';
 import MobileWalletStatus from './MobileWalletStatus';
-import { useAssets } from '@/app/dashboard/AssetsProvider';
+import { useAssets } from '@/app/AssetsProvider';
 
 export default function WalletHeader() {
-  const [visible, setVisible] = useState(false);
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
-  const {assets} = useAssets()
-  useEffect(() => {
-    const stored = localStorage.getItem('eyeState');
-    if (stored !== null) {
-      setVisible(stored === 'true');
-    }
-  }, []);
+  const {assets,isVisible} = useAssets()
+ 
   return (
     <>
       {isDesktop ? (
@@ -52,7 +45,7 @@ export default function WalletHeader() {
                   fontWeight={500}
                   sx={{ color: 'text.title' }}
                 >
-                  {visible ? priceFormater(assets?.gold_balance_gr) || 0 : '***'}
+                  {isVisible ? priceFormater(assets?.gold_balance_gr) || 0 : '***'}
                 </Typography>
                 <Typography
                   variant="body1"
@@ -80,7 +73,7 @@ export default function WalletHeader() {
               </Typography>
               <Stack direction={'row'} gap={0.5} alignItems={'center'} fontWeight={500}>
                 <Typography variant="body1" fontSize={20} sx={{ color: 'text.title' }}>
-                  {visible ? priceFormater(assets?.toman_balance) || 0 : '***'}
+                  {isVisible ? priceFormater(assets?.toman_balance) || 0 : '***'}
                 </Typography>
                 <Typography
                   variant="body1"
@@ -138,7 +131,7 @@ export default function WalletHeader() {
           </Grid>
         </Grid>
       ) : (
-        <MobileWalletStatus isDesktop={isDesktop} visible={visible} assets={assets} />
+        <MobileWalletStatus isDesktop={isDesktop} visible={isVisible} assets={assets} />
       )}
     </>
   );

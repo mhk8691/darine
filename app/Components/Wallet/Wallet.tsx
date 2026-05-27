@@ -3,20 +3,17 @@ import { Stack, useMediaQuery, useTheme } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
 import Container from '../Containers/Container/Container';
 import MobileWalletStatus from './MobileWalletStatus';
-import ToggleEyeButton from './ToggleEyeButton';
 import priceFormater from '@/app/core/PriceFormater';
-import { useAssets } from '@/app/dashboard/AssetsProvider';
+import { useAssets } from '@/app/AssetsProvider';
 interface Props {
   type: 'dashboard' | 'wallet';
 }
 export default function Wallet({ type }: Props) {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
-  const [visible, setVisible] = useState(false);
-  const {assets} = useAssets()
+  const {assets,isVisible} = useAssets()
   return (
     <Container
       style={{
@@ -66,7 +63,7 @@ export default function Wallet({ type }: Props) {
             borderRadius: 2.5,
           }}
         >
-          <Stack direction={'row'} justifyContent={'space-between'} p={2}>
+          <Stack direction={'row'} justifyContent={type === 'dashboard' ?'center':'flex-start'} p={2}>
             {type === 'dashboard' && <Stack></Stack>}
             <Stack direction={'column'} gap={1} ml={type === 'wallet'?0:5} alignItems={type === 'wallet' ? 'start' : 'center'}>
               <Typography variant="body2" fontSize={12} sx={{ color: 'text.muted' }}>
@@ -74,7 +71,7 @@ export default function Wallet({ type }: Props) {
               </Typography>
               <Stack direction={'row'} gap={0.5} alignItems={'center'} fontWeight={500}>
                 <Typography variant="body1" fontSize={20} sx={{ color: 'text.title' }}>
-                  {visible ? priceFormater(assets?.total_assets) || 0 : '***'}
+                  {isVisible ? priceFormater(assets?.total_assets) || 0 : '***'}
                 </Typography>
                 <Typography
                   variant="body1"
@@ -91,11 +88,9 @@ export default function Wallet({ type }: Props) {
                 </Typography>
               )}
             </Stack>
-            <Stack>
-              <ToggleEyeButton visible={visible} setVisible={setVisible} />
-            </Stack>
+            
           </Stack>
-          <MobileWalletStatus visible={visible} isDesktop={isDesktop} assets={assets} />
+          <MobileWalletStatus visible={isVisible} isDesktop={isDesktop} assets={assets} />
         </Stack>
         {type === 'wallet' && (
           <Stack

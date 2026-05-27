@@ -4,7 +4,7 @@ import { MinusSquareIcon, PlusSquareleIcon } from '@/app/Components/CustomIcons/
 import InputField from '@/app/Components/InputField/InputField';
 import { IconButton, InputAdornment, Stack, TextField, Typography } from '@mui/material';
 import { Dispatch, SetStateAction} from 'react';
-import { useAssets } from '../AssetsProvider';
+import { useAssets } from '../../AssetsProvider';
 
 interface Props {
   price: string;

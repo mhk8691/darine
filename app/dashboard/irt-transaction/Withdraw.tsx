@@ -10,7 +10,7 @@ import { getBankCard } from '@/lib/getbankCard/bankCard';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { goldWidthdraw } from '@/lib/transactions/withdraw/withdraw';
-import { useAssets } from '../AssetsProvider';
+import { useAssets } from '../../AssetsProvider';
 import Loading from '@/app/Components/Loading/Loading';
 import { getRecentTransaction } from '@/lib/transactions/recent-transactions/recentTransactions';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';

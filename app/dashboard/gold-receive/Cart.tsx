@@ -7,7 +7,7 @@ import { Button, Divider, Grid, Stack, useMediaQuery, useTheme } from '@mui/mate
 import Typography from '@mui/material/Typography';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { useAssets } from '../AssetsProvider';
+import { useAssets } from '../../AssetsProvider';
 
 export default function Cart({cart}:{cart:CartItem[]}) {
   const theme = useTheme();

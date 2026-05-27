@@ -6,9 +6,9 @@ import {
   useState, 
   useEffect, 
   useCallback, 
-  useRef 
+  useRef
 } from 'react';
-import { AssetsDataType } from '../core/Types';
+import { AssetsDataType } from './core/Types';
 import { getAssets } from '@/lib/getAssets/getAssets';
 
 interface AssetsContextType {
@@ -18,12 +18,27 @@ interface AssetsContextType {
   error: string | null;
   refetch: () => Promise<void>;
   lastUpdate: Date | null;
+  isVisible: boolean;
+  setIsVisible: (visible: boolean) => void;
 }
 
-const AssetsContext = createContext<AssetsContextType>({} as AssetsContextType);
+// مقداردهی اولیه با مقدار null به جای {} برای تشخیص بهتر خطا
+const AssetsContext = createContext<AssetsContextType | null>(null);
 
 export function AssetsProvider({ children }: { children: React.ReactNode }) {
   const [assets, setAssets] = useState<AssetsDataType>({} as AssetsDataType);
+  
+  // لود ایمن مقدار اولیه از لوکال استوریج در محیط کلاینت
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+
+  // برای جلوگیری از باگ‌های هیدریشن در Next.js، لود لوکال استوریج را به useEffect منتقل می‌کنیم
+  useEffect(() => {
+    const stored = localStorage.getItem('eyeState');
+    if (stored !== null) {
+      setIsVisible(stored === 'true');
+    }
+  }, []);
+
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [lastUpdate, setLastUpdate] = useState<Date | null>(null);
@@ -61,7 +76,6 @@ export function AssetsProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     isMountedRef.current = true;
-    
     fetchData();
 
     intervalRef.current = setInterval(() => {
@@ -82,6 +96,8 @@ export function AssetsProvider({ children }: { children: React.ReactNode }) {
 
   const value = {
     assets,
+    isVisible,
+    setIsVisible,
     setAssets,
     isLoading,
     error,
@@ -98,8 +114,8 @@ export function AssetsProvider({ children }: { children: React.ReactNode }) {
 
 export function useAssets() {
   const context = useContext(AssetsContext);
-  if (context === undefined) {
-    throw new Error('useAssets must be used within an AssetsProvider');
+  if (!context) {
+    throw new Error('useAssets context پیدا نشد! مطمئن شوید ToggleEyeButton داخل تگ <AssetsProvider> قرار دارد.');
   }
   return context;
 }

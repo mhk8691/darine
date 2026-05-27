@@ -19,7 +19,7 @@ import { isAxiosError } from 'axios';
 import { AddressesDataType } from '@/app/core/Types';
 import { useRouter } from 'next/navigation';
 import Loading from '@/app/Components/Loading/Loading';
-import { useAssets } from '../AssetsProvider';
+import { useAssets } from '../../AssetsProvider';
 
 const CustomConnector = styled(StepConnector)(() => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {

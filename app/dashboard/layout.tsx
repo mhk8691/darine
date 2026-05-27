@@ -1,15 +1,12 @@
 import { Container, Divider, Stack } from '@mui/material';
 import { ReactNode } from 'react';
 import AppbarContainer from '../Components/AppBar/AppbarContainer';
-import { AssertionError } from 'assert';
-import { AssetsProvider } from './AssetsProvider';
 interface Props {
   children: ReactNode;
 }
 export default function layout({ children }: Props) {
   return (
     <>
-     <AssetsProvider>
        <Container
         maxWidth={'xl'}
         sx={{
@@ -42,7 +39,6 @@ export default function layout({ children }: Props) {
           {children}
         </Stack>
       </Container>
-     </AssetsProvider>
       <Divider
         sx={{
           display: {

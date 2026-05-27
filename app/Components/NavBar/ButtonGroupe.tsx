@@ -16,6 +16,7 @@ import Notification from './Notification';
 import ProfileBtn from './ProfileBtn';
 import ToggleButton from './ToggleButton';
 import { CartIcon, UserCircleIcon, UserIcon } from '../CustomIcons/CustomIcons';
+import ToggleEyeButton from './ToggleEyeButton';
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -73,9 +74,13 @@ export default function ButtonGroupe() {
         </>
       )}
 
-      {url === 'dashboard' && <Notification />}
+      {url === 'dashboard' && <>
+      <Notification />
+       <ToggleEyeButton 
+ />
+      </>}
       <ToggleButton />
-
+      
       {url !== 'dashboard' && (
         <>
           <IconButton
