@@ -6,11 +6,12 @@ import { Dispatch, ReactNode, SetStateAction } from 'react';
 import Deposit from './Deposit';
 import Withdraw from './Withdraw';
 import { useMediaQuery, useTheme } from '@mui/material';
+import { RecentTransactionDataType } from '@/app/core/Types';
 const tabs = [{ title: 'واریز' }, { title: 'برداشت' }];
-const children: ReactNode[] = [<Deposit key={1} />, <Withdraw key={2} />];
-export default function Transaction({ setValue }: { setValue: Dispatch<SetStateAction<number>> }) {
-  const theme = useTheme();
 
+export default function Transaction({ setValue,setTransactionData }: { setValue: Dispatch<SetStateAction<number>>,setTransactionData:Dispatch<SetStateAction<RecentTransactionDataType[]>> }) {
+  const theme = useTheme();
+const children: ReactNode[] = [<Deposit key={1} setTransactionData={setTransactionData} />, <Withdraw key={2} setTransactionData={setTransactionData} />];
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   return (
     <Card

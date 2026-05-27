@@ -2,9 +2,9 @@
 import Card from '@/app/Components/Containers/Container/Container';
 import FilterToggleButton from '@/app/Components/FilterToggleButton/FilterToggleButton';
 import InputField from '@/app/Components/InputField/InputField';
-import { BankCardDataType, DepositDataType, ToggleItemsType } from '@/app/core/Types';
+import { BankCardDataType, DepositDataType, RecentTransactionDataType, ToggleItemsType } from '@/app/core/Types';
 import { Box, Button, Stack, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import BankCard from './BankCard';
 import { getBankCard } from '@/lib/getbankCard/bankCard';
 import Container from '@/app/Components/Containers/Container/Container';
@@ -15,12 +15,13 @@ import { Upload } from '@mui/icons-material';
 import { goldDeposit } from '@/lib/transactions/deposit/deposit';
 import { useAssets } from '../AssetsProvider';
 import Loading from '@/app/Components/Loading/Loading';
+import { getRecentTransaction } from '@/lib/transactions/recent-transactions/recentTransactions';
 
 const items: ToggleItemsType[] = [
   { title: 'درگاه پرداخت', value: 'gateway', id: 1 },
   { title: 'واریز مستقیم', value: 'receipt', id: 2 },
 ];
-export default function Deposit() {
+export default function Deposit({setTransactionData}:{setTransactionData:Dispatch<SetStateAction<RecentTransactionDataType[]>>}) {
   const [price, setPrice] = useState('');
   const [select, setSelect] = useState(items[0].value);
   const [open,setOpen] = useState(false)
@@ -54,6 +55,8 @@ export default function Deposit() {
     try{
       setIsLoading(true)
       const response =await goldDeposit(formData)
+      const transactionData = await getRecentTransaction('deposit')
+      setTransactionData(transactionData)
         showSnackbar(response?.message,true)
       refetch()
         setPrice('')

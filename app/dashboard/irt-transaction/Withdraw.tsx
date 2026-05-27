@@ -2,9 +2,9 @@
 import Card from '@/app/Components/Containers/Container/Container';
 import FilterToggleButton from '@/app/Components/FilterToggleButton/FilterToggleButton';
 import InputField from '@/app/Components/InputField/InputField';
-import { BankCardDataType, ToggleItemsType } from '@/app/core/Types';
+import { BankCardDataType, RecentTransactionDataType, ToggleItemsType } from '@/app/core/Types';
 import { Button, Stack } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import BankCard from './BankCard';
 import { getBankCard } from '@/lib/getbankCard/bankCard';
 import { isAxiosError } from 'axios';
@@ -12,12 +12,13 @@ import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { goldWidthdraw } from '@/lib/transactions/withdraw/withdraw';
 import { useAssets } from '../AssetsProvider';
 import Loading from '@/app/Components/Loading/Loading';
+import { getRecentTransaction } from '@/lib/transactions/recent-transactions/recentTransactions';
 
 const items: ToggleItemsType[] = [
   { title: 'به حساب بانکی', value: 'bank', id: 1 },
   { title: 'به نقره سی', value: 'silver', id: 2 },
 ];
-export default function Withdraw() {
+export default function Withdraw({setTransactionData}:{setTransactionData:Dispatch<SetStateAction<RecentTransactionDataType[]>>}) {
   const [price, setPrice] = useState('');
   const [select, setSelect] = useState(items[0].value);
   const [bankCardsData, setBankCardsData] = useState<BankCardDataType[]>([]);
@@ -32,6 +33,8 @@ export default function Withdraw() {
       select === 'silver' ? 'SILVER' : 'BANK',
       selectedCard?selectedCard:undefined,
     );
+      const transactionData = await getRecentTransaction('deposit')
+          setTransactionData(transactionData)
     showSnackbar(response.message,true)
     setPrice('')
     refetch()
