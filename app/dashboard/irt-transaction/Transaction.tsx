@@ -8,10 +8,14 @@ import Withdraw from './Withdraw';
 import { useMediaQuery, useTheme } from '@mui/material';
 import { RecentTransactionDataType } from '@/app/core/Types';
 const tabs = [{ title: 'واریز' }, { title: 'برداشت' }];
-
-export default function Transaction({ setValue,setTransactionData }: { setValue: Dispatch<SetStateAction<number>>,setTransactionData:Dispatch<SetStateAction<RecentTransactionDataType[]>> }) {
+interface Props { 
+  setValue: Dispatch<SetStateAction<number>>,
+  setTransactionData:Dispatch<SetStateAction<RecentTransactionDataType[]>> 
+  transactionParams:string
+}
+export default function Transaction({ setValue,setTransactionData,transactionParams }:Props) {
   const theme = useTheme();
-const children: ReactNode[] = [<Deposit key={1} setTransactionData={setTransactionData} />, <Withdraw key={2} setTransactionData={setTransactionData} />];
+const children: ReactNode[] = [<Deposit key={1} setTransactionData={setTransactionData} transactionParams={transactionParams} />, <Withdraw key={2} setTransactionData={setTransactionData} transactionParams={transactionParams} />];
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   return (
     <Card

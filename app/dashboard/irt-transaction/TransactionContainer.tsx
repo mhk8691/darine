@@ -69,7 +69,7 @@ export default function TransactionContainer() {
           md: 1,
         }}
       >
-        <Transaction setValue={setValue} setTransactionData={setTransactionData} />
+        <Transaction setValue={setValue} setTransactionData={setTransactionData} transactionParams={transactionParams} />
       </Grid>
       <Grid
         size={{

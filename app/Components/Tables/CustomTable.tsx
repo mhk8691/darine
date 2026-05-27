@@ -36,7 +36,7 @@ export default function CustomTable({ heads, children }: Props) {
     <TableContainer
       component={Paper}
       sx={{
-        bgcolor: 'background.default',
+        background: 'transparent',
         border: 1,
         borderColor: 'background.border',
         borderRadius: 3,
@@ -44,7 +44,7 @@ export default function CustomTable({ heads, children }: Props) {
       }}
     >
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead sx={{ bgcolor: 'background.paper' }}>
+        <TableHead sx={{ background: 'transparent' }}>
           <TableRow>
             {heads?.map((head, index) => (
               <TableCell

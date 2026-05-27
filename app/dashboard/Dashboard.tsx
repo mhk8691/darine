@@ -2,7 +2,7 @@
 import { Grid, useMediaQuery, useTheme } from '@mui/material';
 import MobileAppbar from './MobileAppbar';
 import Banners from './Banners';
-import Trading from './trades/Trading/Trading';
+import Trading from './trades/Trading';
 import AllAssets from './wallet/AllAssets';
 
 export default function Dashboard() {

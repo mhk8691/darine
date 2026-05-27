@@ -18,7 +18,12 @@ const items: ToggleItemsType[] = [
   { title: 'به حساب بانکی', value: 'bank', id: 1 },
   { title: 'به نقره سی', value: 'silver', id: 2 },
 ];
-export default function Withdraw({setTransactionData}:{setTransactionData:Dispatch<SetStateAction<RecentTransactionDataType[]>>}) {
+interface Props {
+  setTransactionData:Dispatch<SetStateAction<RecentTransactionDataType[]>>,
+    transactionParams:string
+  
+}
+export default function Withdraw({setTransactionData,transactionParams}:Props) {
   const [price, setPrice] = useState('');
   const [select, setSelect] = useState(items[0].value);
   const [bankCardsData, setBankCardsData] = useState<BankCardDataType[]>([]);
@@ -33,7 +38,7 @@ export default function Withdraw({setTransactionData}:{setTransactionData:Dispat
       select === 'silver' ? 'SILVER' : 'BANK',
       selectedCard?selectedCard:undefined,
     );
-      const transactionData = await getRecentTransaction('deposit')
+      const transactionData = await getRecentTransaction(transactionParams)
           setTransactionData(transactionData)
     showSnackbar(response.message,true)
     setPrice('')

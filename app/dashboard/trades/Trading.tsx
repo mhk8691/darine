@@ -3,14 +3,17 @@ import Card from '@/app/Components/Containers/Container/Container';
 import FilterToggleButton from '@/app/Components/FilterToggleButton/FilterToggleButton';
 import InputField from '@/app/Components/InputField/InputField';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
-import {  ToggleItemsType } from '@/app/core/Types';
+import {  ToggleItemsType, TradeTableDataType } from '@/app/core/Types';
 import { goldBuy } from '@/lib/gold/goldBuy';
 import { goldSell } from '@/lib/gold/goldSell';
-import { Button, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Button, Grid, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { isAxiosError } from 'axios';
 import {  useState } from 'react';
-import { useAssets } from '../../AssetsProvider';
+import { useAssets } from '../AssetsProvider';
 import Loading from '@/app/Components/Loading/Loading';
+import ChartGold from '@/app/Components/Chart/ChartGold';
+import TradesTableContainer from './TradesTableContainer';
+import { getReports } from '@/lib/getReports/getReports';
 // import TradeGoldConfirmation from './TradeGoldConfirmation';
 
 const items: ToggleItemsType[] = [
@@ -23,6 +26,8 @@ export default function Trading() {
   const [select, setSelect] = useState(items[0].value);
   const [open, setOpen] = useState(false);
   const [isLoading,setIsLoading] = useState(false)
+   const [data,setData] = useState<TradeTableDataType[]>([] as TradeTableDataType[])
+   const [reportsParams,setReportsParams] = useState('')
   // const [buyInfo, setBuyInfo] = useState<BuyGoldDataType>({} as BuyGoldDataType);
   const {assets,refetch} = useAssets()
   const theme = useTheme();
@@ -53,6 +58,8 @@ export default function Trading() {
     try {
       setIsLoading(true)
       const response = await goldBuy(price,methood,gold);
+      const newData = await getReports('gold',reportsParams)
+      setData(newData)
       showSnackbar(response.data.message,true)
       setGold('')
       setPrice('')
@@ -70,6 +77,8 @@ export default function Trading() {
     try {
       setIsLoading(true)
       const response = await goldSell(gold);
+      const newData = await getReports('gold',reportsParams)
+      setData(newData)
       showSnackbar(response.data.message,true)
       setOpen(true);
            setGold('')
@@ -85,6 +94,13 @@ export default function Trading() {
   };
   return (
     <>
+       <Grid size={12} container  spacing={{
+        xs: 2,
+        lg: 3,
+      }} direction={'row'}>
+        
+      
+     <Grid size={{ xs: 12, md: 4.8 }}>
       <Card
         style={{
           gap: 3.15,
@@ -144,6 +160,28 @@ export default function Trading() {
         </Button>
       </Card>
       {/* <TradeGoldConfirmation title={select === 'buy' ? 'تایید خرید طلا':'تایید فروش طلا'} open={open} setOpen={setOpen} data={buyInfo} /> */}
+   </Grid>
+   <Grid size={{ xs: 12, md: 7.2 }} height={'100%'}>
+          <ChartGold
+            positionPrice="bottom"
+            priceStyle={{
+              mt: {
+                xs: 2,
+                sm: 2.5,
+              },
+            }}
+            cardStyle={{
+              py: {
+                xs: 2,
+                sm: 2.7,
+              },
+            }}
+          />
+        </Grid>
+        </Grid>
+          <Grid size={12}>
+        <TradesTableContainer data={data} reportsParams={reportsParams} setData={setData} setReportsParams={setReportsParams} />
+      </Grid>
     </>
   );
 }

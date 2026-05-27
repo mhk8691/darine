@@ -21,7 +21,11 @@ const items: ToggleItemsType[] = [
   { title: 'درگاه پرداخت', value: 'gateway', id: 1 },
   { title: 'واریز مستقیم', value: 'receipt', id: 2 },
 ];
-export default function Deposit({setTransactionData}:{setTransactionData:Dispatch<SetStateAction<RecentTransactionDataType[]>>}) {
+interface Props {
+  setTransactionData:Dispatch<SetStateAction<RecentTransactionDataType[]>>
+  transactionParams:string
+}
+export default function Deposit({setTransactionData,transactionParams}:Props) {
   const [price, setPrice] = useState('');
   const [select, setSelect] = useState(items[0].value);
   const [open,setOpen] = useState(false)
@@ -55,7 +59,7 @@ export default function Deposit({setTransactionData}:{setTransactionData:Dispatc
     try{
       setIsLoading(true)
       const response =await goldDeposit(formData)
-      const transactionData = await getRecentTransaction('deposit')
+      const transactionData = await getRecentTransaction(transactionParams)
       setTransactionData(transactionData)
         showSnackbar(response?.message,true)
       refetch()

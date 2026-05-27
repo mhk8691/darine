@@ -6,7 +6,7 @@ import ApplicationDownload from '../Components/Tables/ProductTable/ApplicationDo
 import HowBuyGold from '../Components/Tables/ProductTable/HowBuyGold';
 import TradeCard from '../Components/Tables/ProductTable/TradeCard';
 import { FaqItem } from '../core/Types';
-import Trading from '../dashboard/trades/Trading/Trading';
+import Trading from '../dashboard/trades/Trading';
 import { data as goldData } from '../gold-price/page';
 import ProductTableContainer from './ProductTableContainer';
 import SimilarContainer from './SimilarContainer';
