@@ -16,6 +16,7 @@ import { goldDeposit } from '@/lib/transactions/deposit/deposit';
 import { useAssets } from '../AssetsProvider';
 import Loading from '@/app/Components/Loading/Loading';
 import { getRecentTransaction } from '@/lib/transactions/recent-transactions/recentTransactions';
+import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 
 const items: ToggleItemsType[] = [
   { title: 'درگاه پرداخت', value: 'gateway', id: 1 },
@@ -24,8 +25,10 @@ const items: ToggleItemsType[] = [
 interface Props {
   setTransactionData:Dispatch<SetStateAction<RecentTransactionDataType[]>>
   transactionParams:string
+    filter:string
+    dateRange:DatePickerValue
 }
-export default function Deposit({setTransactionData,transactionParams}:Props) {
+export default function Deposit({setTransactionData,transactionParams,filter,dateRange}:Props) {
   const [price, setPrice] = useState('');
   const [select, setSelect] = useState(items[0].value);
   const [open,setOpen] = useState(false)
@@ -59,7 +62,7 @@ export default function Deposit({setTransactionData,transactionParams}:Props) {
     try{
       setIsLoading(true)
       const response =await goldDeposit(formData)
-      const transactionData = await getRecentTransaction(transactionParams)
+      const transactionData = await getRecentTransaction(transactionParams,filter,dateRange)
       setTransactionData(transactionData)
         showSnackbar(response?.message,true)
       refetch()
@@ -95,8 +98,8 @@ export default function Deposit({setTransactionData,transactionParams}:Props) {
     >
       <FilterToggleButton
         items={items}
-        select={select}
-        setSelect={setSelect}
+        active={select}
+        setActive={setSelect}
         style={{
           fontSize: {
             xs: 12,

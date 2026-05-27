@@ -96,8 +96,8 @@ export default function ChartGold({
           }}
         >
           <FilterToggleButton
-            select={select}
-            setSelect={setSelect}
+            active={select}
+            setActive={setSelect}
             items={toggleItems}
             style={{
               fontSize: {

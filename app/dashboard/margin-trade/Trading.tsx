@@ -184,8 +184,8 @@ export default function Trading() {
       <Stack px={3} mb={3.5}>
         <FilterToggleButton
           items={items}
-          select={select}
-          setSelect={setSelect}
+          active={select}
+          setActive={setSelect}
           style={{
             fontSize: {
               xs: 12,

@@ -72,7 +72,8 @@ export default function TransactionContainer() {
           md: 1,
         }}
       >
-        <Transaction setValue={setValue} setTransactionData={setTransactionData} transactionParams={transactionParams} />
+        <Transaction filter={filter}
+dateRange={dateRange} setValue={setValue} setTransactionData={setTransactionData} transactionParams={transactionParams} />
       </Grid>
       <Grid
         size={{

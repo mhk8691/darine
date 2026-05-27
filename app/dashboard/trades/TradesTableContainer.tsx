@@ -5,19 +5,24 @@ import React, { Dispatch, SetStateAction, useEffect } from 'react';
 import TradesTable from '../reports/TradesTable';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 
 interface Props{
   setData:Dispatch<SetStateAction<TradeTableDataType[]>>
   data:TradeTableDataType[]
     setReportsParams:Dispatch<SetStateAction<string>>
   reportsParams:string
+     setFilter: Dispatch<SetStateAction<string>>
+      setDateRange:Dispatch<SetStateAction<DatePickerValue|null>>
+      filter:string
+      dateRange:DatePickerValue|null
 }
-export default function TradesTableContainer({data,setData,setReportsParams,reportsParams}:Props) {
+export default function TradesTableContainer({data,setData,setReportsParams,reportsParams,filter,setDateRange,setFilter,dateRange}:Props) {
   
     useEffect(() => {
     const getData = async () => {
       try{
-  const response = await getReports('gold',reportsParams);
+  const response = await getReports('gold',reportsParams,dateRange,filter);
       setData(response || []);
       }
     
@@ -28,8 +33,8 @@ export default function TradesTableContainer({data,setData,setReportsParams,repo
   }
     };
       getData();
-    }, [reportsParams,setData]);
+    }, [reportsParams,setData,dateRange,filter]);
   return (
-   <TradesTable data={data} type='chip' noCard={false} setTradeParams={setReportsParams} />
+   <TradesTable data={data} type='chip' noCard={false} setTradeParams={setReportsParams} dateRange={dateRange} filter={filter} setDateRange={setDateRange} setFilter={setFilter} />
   );
 }

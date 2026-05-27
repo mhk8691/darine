@@ -26,8 +26,8 @@ export default function Delivery() {
           نحوه تحویل
         </Typography> */}
         <FilterToggleButton
-          select={select}
-          setSelect={setSelect}
+          active={select}
+          setActive={setSelect}
           items={toggleItems}
           style={{ py: 1.5 }}
         />

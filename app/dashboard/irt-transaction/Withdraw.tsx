@@ -13,6 +13,7 @@ import { goldWidthdraw } from '@/lib/transactions/withdraw/withdraw';
 import { useAssets } from '../AssetsProvider';
 import Loading from '@/app/Components/Loading/Loading';
 import { getRecentTransaction } from '@/lib/transactions/recent-transactions/recentTransactions';
+import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 
 const items: ToggleItemsType[] = [
   { title: 'به حساب بانکی', value: 'bank', id: 1 },
@@ -21,9 +22,10 @@ const items: ToggleItemsType[] = [
 interface Props {
   setTransactionData:Dispatch<SetStateAction<RecentTransactionDataType[]>>,
     transactionParams:string
-  
+    filter:string
+    dateRange:DatePickerValue
 }
-export default function Withdraw({setTransactionData,transactionParams}:Props) {
+export default function Withdraw({setTransactionData,transactionParams,filter,dateRange}:Props) {
   const [price, setPrice] = useState('');
   const [select, setSelect] = useState(items[0].value);
   const [bankCardsData, setBankCardsData] = useState<BankCardDataType[]>([]);
@@ -38,7 +40,7 @@ export default function Withdraw({setTransactionData,transactionParams}:Props) {
       select === 'silver' ? 'SILVER' : 'BANK',
       selectedCard?selectedCard:undefined,
     );
-      const transactionData = await getRecentTransaction(transactionParams)
+      const transactionData = await getRecentTransaction(transactionParams,filter,dateRange)
           setTransactionData(transactionData)
     showSnackbar(response.message,true)
     setPrice('')
@@ -63,8 +65,8 @@ export default function Withdraw({setTransactionData,transactionParams}:Props) {
     <Card style={{ gap: 3.5, p: 0, border: 'none' }}>
       <FilterToggleButton
         items={items}
-        select={select}
-        setSelect={setSelect}
+        active={select}
+        setActive={setSelect}
         style={{
           fontSize: {
             xs: 12,

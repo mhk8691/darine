@@ -14,6 +14,7 @@ import Loading from '@/app/Components/Loading/Loading';
 import ChartGold from '@/app/Components/Chart/ChartGold';
 import TradesTableContainer from './TradesTableContainer';
 import { getReports } from '@/lib/getReports/getReports';
+import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 // import TradeGoldConfirmation from './TradeGoldConfirmation';
 
 const items: ToggleItemsType[] = [
@@ -32,7 +33,8 @@ export default function Trading() {
   const {assets,refetch} = useAssets()
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
-  
+      const [filter,setFilter] = useState('')
+      const [dateRange,setDateRange] =useState<DatePickerValue| null>(null)
   const handlePriceChange =  async (val: string) => {
     setPrice(val);
     const num = Number(val);
@@ -58,7 +60,8 @@ export default function Trading() {
     try {
       setIsLoading(true)
       const response = await goldBuy(price,methood,gold);
-      const newData = await getReports('gold',reportsParams)
+      const newData = await getReports('gold',reportsParams,dateRange,filter)
+      
       setData(newData)
       showSnackbar(response.data.message,true)
       setGold('')
@@ -77,7 +80,7 @@ export default function Trading() {
     try {
       setIsLoading(true)
       const response = await goldSell(gold);
-      const newData = await getReports('gold',reportsParams)
+      const newData = await getReports('gold',reportsParams,dateRange,filter)
       setData(newData)
       showSnackbar(response.data.message,true)
       setOpen(true);
@@ -120,8 +123,8 @@ export default function Trading() {
         )}
         <FilterToggleButton
           items={items}
-          select={select}
-          setSelect={setSelect}
+          active={select}
+          setActive={setSelect}
           style={{
             fontSize: {
               xs: 16,
@@ -180,7 +183,7 @@ export default function Trading() {
         </Grid>
         </Grid>
           <Grid size={12}>
-        <TradesTableContainer data={data} reportsParams={reportsParams} setData={setData} setReportsParams={setReportsParams} />
+        <TradesTableContainer filter={filter} setDateRange={setDateRange} dateRange={dateRange} setFilter={setFilter} data={data} reportsParams={reportsParams} setData={setData} setReportsParams={setReportsParams} />
       </Grid>
     </>
   );
