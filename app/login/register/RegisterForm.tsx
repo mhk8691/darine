@@ -1,5 +1,5 @@
 'use client';
-import { Grid } from '@mui/material';
+import { Grid, Stack } from '@mui/material';
 import React, { useState } from 'react';
 import Field from '../Field';
 import SubmitButton from '../SubmitButton';
@@ -8,24 +8,21 @@ import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { useRouter } from 'next/navigation';
 import PasswordField from '../PasswordField';
+import CustomDatePicker, { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 
 export interface RegisterFormType {
   mobile: string;
   national_code: string;
-  birth_day: string;
-  birth_month: string;
-  birth_year: string;
-  // cardNumber:string,
+  birth_date: DatePickerValue;
   first_name: string;
   last_name: string;
   password: string;
 }
 export default function RegisterForm({ phoneNumber }: { phoneNumber: string }) {
-  const [birthDay, setBirthDay] = useState('');
+  const [birthDay, setBirthDay] = React.useState<DatePickerValue>(null);
   const [nationalCode, setNationalCode] = useState('');
  const [isLoading,setIsLoading] = useState(false)
-  const [birthMonth, setBirthMonth] = useState('');
-  const [birthYear, setBirthYear] = useState('');
+
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
  const [referralCode, setReferralCode] = useState('');
@@ -36,9 +33,7 @@ export default function RegisterForm({ phoneNumber }: { phoneNumber: string }) {
     const newRegisterForm = {
       mobile: phoneNumber,
       national_code: nationalCode,
-      birth_day: birthDay,
-      birth_month: birthMonth,
-      birth_year: birthYear,
+      birth_date: birthDay,
       first_name: firstName,
       last_name: lastName,
       password,
@@ -66,17 +61,32 @@ export default function RegisterForm({ phoneNumber }: { phoneNumber: string }) {
         <Grid size={12}>
           <Field value={nationalCode} setValue={setNationalCode} label="کد ملی" />
         </Grid>
-        <Grid container spacing={2}>
-          <Grid size={4}>
-            <Field value={birthDay} setValue={setBirthDay} label="روز تولد" />
+         <Grid size={12}>
+           <Stack >
+             <CustomDatePicker value={birthDay}  onChange={(val) => setBirthDay(val)} label='تاریخ تولد' isRange={false} style={{
+              mt:2,
+               '& .MuiInputBase-input': {
+          py: 2.5,
+          fontSize: '14px',
+        },
+           '& .MuiOutlinedInput-root': {
+          fontSize: {
+            xs: 14,
+            sm: 16,
+          },
+          borderRadius:2.5,
+        },
+        '& .MuiInputLabel-root': {
+          color: 'text.muted',
+          fontSize: {
+            xs: '14px',
+            sm: '16px',
+          },
+        },
+        
+            }} />
+           </Stack>
           </Grid>
-          <Grid size={4}>
-            <Field value={birthMonth} setValue={setBirthMonth} label="ماه تولد" />
-          </Grid>
-          <Grid size={4}>
-            <Field value={birthYear} setValue={setBirthYear} label="سال تولد" />
-          </Grid>
-        </Grid>
  
         <Grid size={6}>
           <Field value={firstName} setValue={setFirstName} label="نام" />

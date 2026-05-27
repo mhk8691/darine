@@ -5,7 +5,7 @@ import { Stack, Typography, useTheme } from '@mui/material';
 import Image from 'next/image';
 import { ReactNode, useState } from 'react';
 import Card from '../../Containers/Container/Container';
-import CustomDatePicker from '../../DatePicker/CustomDatePicker';
+import CustomDatePicker, { DatePickerValue } from '../../DatePicker/CustomDatePicker';
 import FilterToggleButton from '../../FilterToggleButton/FilterToggleButton';
 import SelectField from '../../InputField/SelectField';
 import FilterButton from './FilterButton';
@@ -39,6 +39,7 @@ export default function OrderDetail({
   const theme = useTheme();
   const isDarkMode = theme.palette.mode === 'dark';
   const [value, setValue] = useState('');
+  const [dateRange, setDateRange] = useState<DatePickerValue>(null);
   return noCard ? (
     <>
       {title && (
@@ -120,7 +121,9 @@ export default function OrderDetail({
           }}
         >
           <SelectField label="وضعیت" itemsList={names} isOrederDetail maxWidth="260px" />
-          <CustomDatePicker />
+          <CustomDatePicker style={{
+            maxWidth:'270px'
+          }} value={dateRange} onChange={(val) => setDateRange(val)} isRange />
         </Stack>
       </Stack>
        {listLength > 0 ? (
@@ -269,7 +272,9 @@ export default function OrderDetail({
             value={value}
             setValue={setValue}
           />
-          <CustomDatePicker />
+          <CustomDatePicker style={{
+            maxWidth:'270px'
+          }} value={dateRange} onChange={(val) => setDateRange(val)} isRange />
         </Stack>
       </Stack>
       {listLength > 0 ? (
