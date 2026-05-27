@@ -4,7 +4,7 @@ export function handleColorStatus (status:"COMPLETED" | 'FAILED' | 'PENDING'){
     else return 'warning.main'
 }
 export function handleTitleStatus (status:"COMPLETED" | 'FAILED' | 'PENDING'){
-    if (status === 'COMPLETED') return 'انجام شده'
+    if (status === 'COMPLETED') return 'تکمیل شده'
     else if (status === 'FAILED') return 'لغو شده'
     else return 'در انتظار'
 }
