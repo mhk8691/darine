@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Field from '../Field';
 import SendCode from '../SendCode';
 import SubmitButton from '../SubmitButton';
@@ -8,6 +8,7 @@ import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { useRouter } from 'next/navigation';
 import CompletePassword from '@/app/dashboard/profile/CompletePassword';
+import { autoCompleteCode } from '../autoCompleteCode';
 
 export default function VerifyOtpCode({ phone }: { phone: string }) {
   const router = useRouter()
@@ -50,6 +51,9 @@ export default function VerifyOtpCode({ phone }: { phone: string }) {
      await handleCompleteLogin()
     }
   }
+   useEffect(()=>{
+      autoCompleteCode(setVerifyCode)
+    },[])
   return (
     
     <>
