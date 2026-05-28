@@ -1,6 +1,6 @@
 'use client';
 import { FaqItem } from '@/app/core/Types';
-import { Divider, Stack, SvgIcon, SxProps } from '@mui/material';
+import { Divider, Stack, SvgIcon, SxProps, useTheme } from '@mui/material';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -14,8 +14,9 @@ interface Props {
 }
 
 export default function Faq({ faqData, titleStyle }: Props): JSX.Element {
-  const [expanded, setExpanded] = useState<string | false>('1');
-
+  const [expanded, setExpanded] = useState<string | false>(false);
+  const theme = useTheme()
+  const isDarkMode = theme.palette.mode === 'dark'
   const handleChange = (id: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
     setExpanded(isExpanded ? id : false);
   };
@@ -42,7 +43,7 @@ export default function Faq({ faqData, titleStyle }: Props): JSX.Element {
             expanded={isOpen}
             onChange={handleChange(item.id)}
             sx={{
-              bgcolor: 'background.default',
+              bgcolor: isDarkMode ?'background.default' :'#f9f9f9',
               boxShadow: 'none',
               mb: 1.5,
               py: {

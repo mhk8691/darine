@@ -17,6 +17,7 @@ const breadcrumbNameMap: Record<string, string> = {
   faq: 'سوالات متداول',
   rules: 'قوانین دارینه',
   branches: 'آموزش های دارینه',
+  application:'اپلیکیشن دارینه'
 };
 
 const exactHiddenRoutes = [
@@ -81,7 +82,7 @@ export default function CustomBreadcrumbs() {
           },
         }}
       >
-        <Link color="inherit" href="/">
+        <Link color="inherit" href="/dashboard">
           <Typography
             variant="body2"
             fontSize={12}
