@@ -17,7 +17,10 @@ import ProfileBtn from './ProfileBtn';
 import ToggleButton from './ToggleButton';
 import { CartIcon, UserCircleIcon, UserIcon } from '../CustomIcons/CustomIcons';
 import ToggleEyeButton from './ToggleEyeButton';
-
+import { getCart } from '@/lib/cart/cart';
+ const totalQuantity = getCart().reduce((total, item) => {
+    return total + item.quantity;
+  }, 0);
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   '& .MuiBadge-badge': {
     right: 5,
@@ -83,13 +86,15 @@ export default function ButtonGroupe() {
       
       {url !== 'dashboard' && (
         <>
-          <IconButton
+          {
+            
+            pathname !== '/gold-shop-basket' && <IconButton
              
-            onClick={() => router.push('/dashboard/gold-receive')}
+            onClick={() => router.push('/gold-shop-basket')}
             sx={{ color: 'text.secondary' }}
           >
             <StyledBadge
-              badgeContent={4}
+              badgeContent={totalQuantity}
               color="error"
               anchorOrigin={{
                 vertical: 'top',
@@ -99,6 +104,7 @@ export default function ButtonGroupe() {
               <CartIcon />
             </StyledBadge>
           </IconButton>
+          }
           <Stack direction={'row'} alignItems={'center'}>
             <Divider
               orientation="vertical"
@@ -122,9 +128,7 @@ export default function ButtonGroupe() {
                   borderRadius: 2,
                   fontSize: 16,
                   py: 1.2,
-                  '&:hover': {
-                    background: 'rgb(16, 16, 15)',
-                  },
+                 
                   fontWeight: 'bold',
                 }}
                 startIcon={<UserIcon />}

@@ -9,6 +9,7 @@ import {
   TableHead,
   TableRow,
   Typography,
+  useTheme,
 } from '@mui/material';
 import Image from 'next/image';
 import { Dispatch, SetStateAction } from 'react';
@@ -35,6 +36,8 @@ interface Props{
   setCartData:Dispatch<SetStateAction<CartItem[]>>
 }
 const DesktopCart = ({cartData,setCartData}:Props) => {
+  const theme =useTheme()
+  const isDarkMode = theme.palette.mode === 'dark'
   return (
     <Box dir="rtl">
       <Table
@@ -117,13 +120,13 @@ const DesktopCart = ({cartData,setCartData}:Props) => {
             <TableRow
               key={item.id}
               sx={{
-                background: 'rgb(16, 16, 15)',
-                boxShadow: '0 0 0 1px #333',
+                background: 'transparent',
+                boxShadow: `0 0 0 1px ${isDarkMode ? '#494949':'#D4D4D2'}`,
                 borderRadius: '10px',
                 overflow: 'hidden',
                 '& td': {
                   borderBottom: 'none',
-                  color: '#fff',
+                  color: 'text.title',
                 },
                 '& td:first-of-type': {
                   borderTopLeftRadius: '10px',

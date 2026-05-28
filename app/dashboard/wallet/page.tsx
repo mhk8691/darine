@@ -13,8 +13,8 @@ import { getRecentTransaction } from '@/lib/transactions/recent-transactions/rec
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import TransactionTable from '../irt-transaction/TransactionTable';
-import { TransactionItems } from '../irt-transaction/page';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
+import { TransactionItems } from '../irt-transaction/TransactionContainer';
 // export const metadata: Metadata = {
 //   title: 'کیف پول | دارینه',
 //   description: '',

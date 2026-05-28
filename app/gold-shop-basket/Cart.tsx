@@ -12,6 +12,7 @@ import { isAxiosError } from 'axios';
 import { showSnackbar } from '../Components/Snackbar/Snackbar';
 import { getCart } from '@/lib/cart/cart';
 import { CartItem } from '../core/Types';
+import Image from 'next/image';
 
 export default function Cart() {
   const [step, setStep] = useState(0);
@@ -39,7 +40,7 @@ export default function Cart() {
       setStep((prev) => prev - 1);
     }
   };
-  console.log(cartData)
+  const isDarkMode = theme.palette.mode === 'dark'
   return (
     <>
       {step === 0 && (
@@ -49,11 +50,30 @@ export default function Cart() {
               سبد خرید شما
             </Typography>
           )}
-          {isMobile ? <MobileCart setCartData={setCartData}  cartData={cartData} /> : <DesktopCart  setCartData={setCartData} cartData={cartData} />}
+          {cartData.length > 0 ?isMobile ? <MobileCart setCartData={setCartData}  cartData={cartData} /> : <DesktopCart  setCartData={setCartData} cartData={cartData} />:<Stack
+                    mt={10}
+                    mb={8}
+                    direction={'column'}
+                    alignItems={'center'}
+                    justifyContent={'center'}
+                    width={'100%'}
+                    gap={4}
+                  >
+                    <Image
+                      src={`/images/${isDarkMode ? 'emptyTableDark.png' : 'emptyTable.webp'}`}
+                      width={300}
+                      height={270}
+                      alt=""
+                    />
+                    <Typography variant="body2" fontSize={12} sx={{ color: 'text.muted' }}>
+                     سبد خرید خالی است
+                    </Typography>
+                  </Stack>}
         </>
       )}
       {step === 1 && <Delivery />}
-      <Stack
+     {
+      cartData.length > 0 &&  <Stack
         width={{
           xs: '100%',
           md: step === 0 ? '50%' : '62%',
@@ -107,6 +127,7 @@ export default function Cart() {
           بازگشت
         </Button>
       </Stack>
+     }
       <CustomModal
         setOpen={setOpen}
         open={open}

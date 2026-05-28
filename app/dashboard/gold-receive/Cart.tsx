@@ -6,21 +6,14 @@ import {   CartItem } from '@/app/core/Types';
 import { Button, Divider, Grid, Stack, useMediaQuery, useTheme } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
 import { useAssets } from '../../AssetsProvider';
 
 export default function Cart({cart}:{cart:CartItem[]}) {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'));
-  const [visible, setVisible] = useState(false);
   const router = useRouter();
-  const {assets} = useAssets()
-       useEffect(() => {
-    const stored = localStorage.getItem('eyeState');
-    if (stored !== null) {
-      setVisible(stored === 'true');
-    }
-  }, []);
+  const {assets,isVisible} = useAssets()
+
   const totalQuantity = cart.reduce((total, item) => {
     return total + item.quantity;
   }, 0);
@@ -44,7 +37,7 @@ export default function Cart({cart}:{cart:CartItem[]}) {
                   موجودی طلای شما
                 </Typography>
                 <Typography variant="body1" fontSize={18}>
-                  {visible ? `${priceFormater(assets?.gold_balance_gr )|| 0} گرم` :'***'}
+                  {isVisible ? `${priceFormater(assets?.gold_balance_gr )|| 0} گرم` :'***'}
                 </Typography>
               </Stack>
               <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
@@ -52,7 +45,7 @@ export default function Cart({cart}:{cart:CartItem[]}) {
                   موجودی تومان شما
                 </Typography>
                 <Typography variant="body1" fontSize={18}>
-                  {visible ? `${priceFormater(assets.toman_balance) || 0} تومان` :'***'}
+                  {isVisible ? `${priceFormater(assets.toman_balance) || 0} تومان` :'***'}
                 </Typography>
               </Stack>
               <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>

@@ -9,7 +9,7 @@ import { IconButton, Stack, SxProps, Typography } from '@mui/material';
 import {  Dispatch, SetStateAction } from 'react';
 
 
-export default function Counter({style,setCart,cart,productId}:{style:SxProps, productId:number,setCart:Dispatch<SetStateAction<CartItem[]>>,cart:CartItem[]}) {
+export default function Counter({style,setCart,cart,productId}:{style?:SxProps, productId:number,setCart:Dispatch<SetStateAction<CartItem[]>>,cart:CartItem[]}) {
   
 const getQuantity = cart.find((item) => item.id == productId)?.quantity
 
