@@ -2,40 +2,40 @@
 import Container from "@/app/Components/Containers/Container/Container";
 import ProductCard from "@/app/Components/ProductCard/ProductCard"
 import { showSnackbar } from "@/app/Components/Snackbar/Snackbar";
-import {  ProductDateType, RecentDeliveriesDataType, ToggleItemsType } from "@/app/core/Types";
+import {  ProductDateType } from "@/app/core/Types";
 import { getProducts } from "@/lib/getProducts/getProducts";
 import { Grid } from "@mui/material"
 import { isAxiosError } from "axios";
 import { useEffect, useState } from "react";
 import Cart from "./Cart";
 import { getCart } from "@/lib/cart/cart";
-import OrderDetail from "@/app/Components/Tables/DetailTable/OrderDetail";
-import OrdersTable from "../reports/OrdersTable";
+import Filter from "./Filter";
 
-const items: ToggleItemsType[] = [
-  {
-    title: 'تحویل درب منزل',
-    value: 'doorstepdelivery',
-    id: 1,
-    emptyMessage: 'سفارشی برای شما به ثبت نرسیده است',
-  },
-  {
-    title: 'تحویل حضوری',
-    value: 'personDelivery',
-    id: 2,
-    emptyMessage: 'سفارشی برای شما به ثبت نرسیده است',
-  },
-];
+// const items: ToggleItemsType[] = [
+//   {
+//     title: 'تحویل درب منزل',
+//     value: 'doorstepdelivery',
+//     id: 1,
+//     emptyMessage: 'سفارشی برای شما به ثبت نرسیده است',
+//   },
+//   {
+//     title: 'تحویل حضوری',
+//     value: 'personDelivery',
+//     id: 2,
+//     emptyMessage: 'سفارشی برای شما به ثبت نرسیده است',
+//   },
+// ];
 
 export default function Products() {
   const [orderParams,setOrderParams] = useState('doorstepdelivery')
+  const [productParams,setProductParams] = useState('18')
   const [productData, setProductData] = useState<ProductDateType[]>([] as ProductDateType[]);
   // const [deliveryData,setDeliveryData] = useState<RecentDeliveriesDataType[]>([])
     const [cart,setCart] = useState(getCart())
   useEffect(() => {
     const getData = async () => {
       try{
-        const response = await getProducts();
+        const response = await getProducts(productParams);
       setProductData(response);
       }catch(error:unknown){
         if (isAxiosError(error)){
@@ -44,7 +44,7 @@ export default function Products() {
       }
     };
     getData();
-  }, []);
+  }, [productParams]);
   return (
      <>
       <Container
@@ -64,6 +64,10 @@ export default function Products() {
           },
         }}
       >
+        <Grid size={12}>
+          <Filter cart={cart}
+setProductParams={setProductParams} />
+        </Grid>
         <Grid container spacing={1} size={12}>
           <Grid
             size={{
