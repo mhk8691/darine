@@ -13,7 +13,6 @@ const breadcrumbNameMap: Record<string, string> = {
   geram18: 'قیمت طلای ۱۸ عیار',
   calculator: 'محاسبه قیمت طلا',
   'coin-price': 'قیمت سکه',
-  parsian: 'قیمت سکه پارسیان',
   faq: 'سوالات متداول',
   rules: 'قوانین دارینه',
   branches: 'آموزش های دارینه',

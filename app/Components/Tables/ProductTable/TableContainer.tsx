@@ -53,7 +53,7 @@ export default function TableContainer({ data }: Props) {
                     component="th"
                     scope="row"
                     align="center"
-                    sx={{ fontSize: '16px', py: 0.9, px: 2.5 }}
+                    sx={{ fontSize: '16px', py: 2.5, px: 2.5 }}
                   >
                     {row?.typeGold}
                   </TableCell>
@@ -61,7 +61,7 @@ export default function TableContainer({ data }: Props) {
                 <TableCell
                   align="center"
                   sx={{
-                    py: 0.9,
+                    py: 2.5,
                     px: 2.5,
                   }}
                 >
@@ -80,7 +80,7 @@ export default function TableContainer({ data }: Props) {
                 <TableCell
                   align="center"
                   sx={{
-                    py: 0.9,
+                    py: 2.5,
                     px: 2.5,
                   }}
                 >
@@ -99,7 +99,7 @@ export default function TableContainer({ data }: Props) {
                 <TableCell
                   align="center"
                   sx={{
-                    py: 0.9,
+                    py: 2.5,
                     px: 2.5,
                   }}
                 >
@@ -119,7 +119,7 @@ export default function TableContainer({ data }: Props) {
                   align="center"
                   sx={{
                     fontSize: '16px',
-                    py: 0.9,
+                    py: 2.5,
                     px: 2.5,
                     color: row?.dayChange >= 0 ? 'success.main' : 'error.main',
                   }}
@@ -130,14 +130,14 @@ export default function TableContainer({ data }: Props) {
                   align="center"
                   sx={{
                     fontSize: '16px',
-                    py: 0.9,
+                    py: 2.5,
                     px: 2.5,
                     color: row?.monthChange >= 0 ? 'success.main' : 'error.main',
                   }}
                 >
                   {row?.monthChange}%
                 </TableCell>
-                <TableCell align="center" sx={{ fontSize: '16px', py: 0.9, px: 2.5 }}>
+                <TableCell align="center" sx={{ fontSize: '16px', py: 2.5, px: 2.5 }}>
                   <Stack direction={'row'} justifyContent={'center'}>
                     {/* <LineChart
                       color="#D12F2F"
@@ -151,7 +151,7 @@ export default function TableContainer({ data }: Props) {
                   </Stack>
                 </TableCell>
                 {row?.typeGold && (
-                  <TableCell align="center" sx={{ fontSize: '16px', py: 0.9, px: 2.5 }}>
+                  <TableCell align="center" sx={{ fontSize: '16px', py: 2.5, px: 2.5 }}>
                     <Link href={'/test/'}>
                       <Button variant="outlined" color="inherit" sx={{ borderRadius: 2, p: 0.8 }}>
                         مشاهده جزئیات

@@ -79,66 +79,7 @@ export const data: {
       },
     ],
   },
-  {
-    title: 'سکه',
-    order: 2,
-    data: [
-      {
-        typeGold: 'سکه امامی',
-        currentRate: 186510000,
-        minPriceDay: 186480000,
-        maxPriceDay: 186510000,
-        dayChange: 0.847,
-        monthChange: 7.9,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: 'سکه تمام بهار آزادی',
-        currentRate: 179020000,
-        minPriceDay: 178980000,
-        maxPriceDay: 179020000,
-        dayChange: 0.016,
-        monthChange: 9.315,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: 'نیم سکه',
-        currentRate: 103900000,
-        minPriceDay: 98900000,
-        maxPriceDay: 103900000,
-        dayChange: 5.055,
-        monthChange: 0.45,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: 'ربع سکه',
-        currentRate: 59800000,
-        minPriceDay: 56300000,
-        maxPriceDay: 59800000,
-        dayChange: 6.216,
-        monthChange: 3.981,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: 'سکه گرمی',
-        currentRate: 29200000,
-        minPriceDay: 27200000,
-        maxPriceDay: 29200000,
-        dayChange: 7.352,
-        monthChange: 0,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: 'سکه پارسیان ۱ گرمی',
-        currentRate: 21295200,
-        minPriceDay: 21224400,
-        maxPriceDay: 21525600,
-        dayChange: 0.987,
-        monthChange: 3.783,
-        weeklyChart: 2,
-      },
-    ],
-  },
+ 
 ];
 const faqData: FaqItem[] = [
   {

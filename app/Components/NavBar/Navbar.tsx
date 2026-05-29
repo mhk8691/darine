@@ -54,10 +54,7 @@ const menu: MenuType[] = [
         title: 'قیمت سکه امروز',
         link: '/coin-price',
       },
-      {
-        title: 'قیمت سکه پارسیان',
-        link: '/parsian',
-      },
+   
     ],
   },
   { id: 3, title: 'آموزش های دارینه', link: '/branches' },
