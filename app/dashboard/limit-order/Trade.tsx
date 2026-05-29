@@ -12,17 +12,18 @@ interface Props {
   type: 'buy' | 'sell';
 }
 
-const items: ToggleItemsType[] = [
-  { title: 'در قیمت بالاتر', value: 'max', id: 1 },
-  { title: 'در قیمت پایین تر', value: 'min', id: 2 },
+const buyItems: ToggleItemsType[] = [
+  { title: 'در قیمت پایین تر', value: 'min', id: 1 },
 ];
-
+const sellItems: ToggleItemsType[] = [
+  { title: 'در قیمت بالاتر', value: 'max', id: 1 },
+];
 const RATE = 17999000;
 
 export default function Trade({ type }: Props) {
   const [price, setPrice] = useState('');
   const [targetPrice, setTargetPrice] = useState('');
-  const [select, setSelect] = useState(type === 'sell' ? items[0].value : items[1].value);
+  const [select, setSelect] = useState(type === 'sell' ? sellItems[0].value : buyItems[0].value);
 
   const gold = price ? String(Number(price) / RATE) : '';
 
@@ -35,7 +36,11 @@ export default function Trade({ type }: Props) {
         px: { xs: 0, sm: 1 },
       }}
     >
-      <FilterToggleButton items={items} active={select} setActive={setSelect} />
+      {
+        type === 'buy' ? <FilterToggleButton style={{py:1.5}} items={buyItems} active={select} setActive={setSelect} /> : <FilterToggleButton style={{py:1.5}} items={sellItems} active={select} setActive={setSelect} />
+      }
+      
+      
 
       <Stack gap={3.5}>
         <InputField type='number'
