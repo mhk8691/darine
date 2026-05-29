@@ -1,5 +1,5 @@
 'use client';
-import { Stack, SxProps, Typography } from '@mui/material';
+import { IconButton, Stack, SxProps, Typography } from '@mui/material';
 import LineChart from '../LineChart/LineChart';
 import BottomPrice from './BottomPrice';
 import TopPrice from './TopPrice';
@@ -10,7 +10,8 @@ import Container from '../Containers/Container/Container';
 import { getChartGold } from '@/lib/chart/getChartGold';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '../Snackbar/Snackbar';
-
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import GoldBubble from './GoldBubble';
 
 interface Props {
   positionPrice: 'top' | 'bottom' | 'both';
@@ -45,6 +46,7 @@ export default function ChartGold({
 }: Props) {
   const [select, setSelect] = useState(toggleItems[0]?.value);
   const [chartData,setChartData] = useState<ChartGoldDataType | null>(null)
+  const [open,setOpen] = useState(false)
   useEffect(()=>{
     const getData = async ()=>{
      try{
@@ -65,6 +67,7 @@ export default function ChartGold({
   },[select])
   if (!chartData?.stats || !chartData.chart) return null
   return (
+    <>
     <Container style={{ px: 2.5, ...cardStyle }}>
       <Typography
         variant="h2"
@@ -110,7 +113,14 @@ export default function ChartGold({
         </Stack>
       </Stack>
       {(positionPrice === 'top' || positionPrice === 'both') && <TopPrice chartData={chartData} />}
-
+            <Stack direction={'row'}  alignItems={'center'} gap={0}>
+              <Typography variant="body1" >
+              (حباب -۴.۴۸ ٪)  
+            </Typography>
+            <IconButton onClick={()=>setOpen(true)}>
+                <InfoOutlinedIcon  />
+              </IconButton>
+            </Stack>
       <LineChart
         width="100%"
         height={chartHeight || '180px'}
@@ -123,5 +133,7 @@ export default function ChartGold({
         <BottomPrice priceStyle={priceStyle} dividerStyle={dividerStyle} chartData={chartData} />
       )}
     </Container>
+    <GoldBubble open={open} setOpen={setOpen} /> 
+    </>
   );
 }
