@@ -2,8 +2,8 @@
 import { Grid, useMediaQuery, useTheme } from '@mui/material';
 import MobileAppbar from './MobileAppbar';
 import Banners from './Banners';
-import Trading from './trades/Trading';
 import AllAssets from './wallet/AllAssets';
+import Trading from './trades/Trading';
 
 export default function Dashboard() {
   const theme = useTheme();
