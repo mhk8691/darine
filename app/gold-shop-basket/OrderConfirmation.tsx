@@ -1,3 +1,4 @@
+import { getCart } from '@/lib/cart/cart';
 import { InfoOutlineRounded } from '@mui/icons-material';
 import {
   Button,
@@ -12,6 +13,8 @@ import {
   Typography,
 } from '@mui/material';
 import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
+import priceFormater from '../core/PriceFormater';
+import { useAssets } from '../AssetsProvider';
 const rowStyle: SxProps = {
   display: 'flex',
   flexDirection: 'row',
@@ -36,6 +39,10 @@ export default function OrderConfirmation({ setOpen }: Props) {
   const handleChangeBox = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
   };
+    const totalQuantity = getCart().reduce((total, item) => {
+    return total + item.quantity;
+  }, 0);
+  const {assets} = useAssets()
   return (
     <Stack direction={'column'}>
       <Stack sx={rowStyle}>
@@ -59,7 +66,7 @@ export default function OrderConfirmation({ setOpen }: Props) {
           مجموع سفارش
         </Typography>
         <Typography variant="body1" fontSize={18}>
-          73,778,453 تومان
+          {priceFormater(totalQuantity)} تومان
         </Typography>
       </Stack>
       <Divider />
@@ -68,7 +75,7 @@ export default function OrderConfirmation({ setOpen }: Props) {
           موجودی کیف پول
         </Typography>
         <Typography variant="body1" fontSize={18}>
-          0 تومان
+          {priceFormater(assets.toman_balance) ||'۰'} تومان
         </Typography>
       </Stack>
       <Divider />
@@ -77,7 +84,7 @@ export default function OrderConfirmation({ setOpen }: Props) {
           کمبود موجودی
         </Typography>
         <Typography variant="body1" fontSize={18}>
-          73,778,453 تومان
+         {priceFormater(assets.toman_balance - totalQuantity)} تومان
         </Typography>
       </Stack>
       <Stack bgcolor={'background.paper'} borderRadius={2} p={2} direction={'row'} gap={1} mt={2}>

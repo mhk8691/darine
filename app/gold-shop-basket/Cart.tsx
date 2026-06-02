@@ -150,7 +150,7 @@ export default function Cart() {
             <Close />
           </IconButton>
         </Stack>
-        <Stack height={'90%'} overflow={'auto'} mt={1} pr={1} pb={4}>
+        <Stack  mt={1} pr={1} pb={4}>
           <OrderConfirmation setOpen={setOpen} />
         </Stack>
       </CustomModal>
