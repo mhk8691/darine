@@ -42,7 +42,7 @@ export default function ReportsContainer() {
     getData();
   }, [value,tradeParams,depositParams,withdrawParams,filter,dateRange]);
   useEffect(()=>{
-    setFilter('')
+    // setFilter('')
     setDateRange(null)
   },[value,setValue])
   const children: ReactNode[] = [

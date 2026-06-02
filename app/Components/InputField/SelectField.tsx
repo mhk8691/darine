@@ -1,10 +1,9 @@
 'use client';
-import CloseIcon from '@mui/icons-material/Close';
+
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import {
   Box,
   FormControl,
-  IconButton,
   MenuItem,
   OutlinedInput,
   Select,
@@ -15,8 +14,13 @@ import {
 } from '@mui/material';
 import * as React from 'react';
 
+export interface SelectItem {
+  label: string;
+  value: string;
+}
+
 interface Props {
-  itemsList: string[];
+  itemsList: SelectItem[];
   label: string;
   isOrederDetail: boolean;
   style?: SxProps;
@@ -24,13 +28,14 @@ interface Props {
   value?: string;
   setValue?: React.Dispatch<React.SetStateAction<string>>;
 }
+
 export default function SelectField({
   label,
   itemsList,
   isOrederDetail,
   style,
   maxWidth,
-  value,
+  value = '',
   setValue,
 }: Props) {
   const [open, setOpen] = React.useState(false);
@@ -64,8 +69,8 @@ export default function SelectField({
     },
   };
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setValue && setValue(event.target.value);
+  const handleChange = (event: SelectChangeEvent<string>) => {
+    setValue?.(event.target.value);
     setOpen(false);
   };
 
@@ -77,10 +82,7 @@ export default function SelectField({
     setOpen(false);
   };
 
-  const handleClear = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setValue && setValue('');
-  };
+  const selectedItem = itemsList.find((item) => item.value === value);
 
   return (
     <FormControl sx={{ maxWidth: maxWidth || '100%', width: '100%' }}>
@@ -102,7 +104,6 @@ export default function SelectField({
             right: 8,
             left: 'auto',
             color: 'text.primary',
-            display: !isOrederDetail ? 'block' : isOrederDetail && value ? 'none' : 'block',
           },
           '& .MuiSelect-select': {
             display: 'flex',
@@ -114,14 +115,11 @@ export default function SelectField({
           ...style,
         }}
         renderValue={() => {
-          if (!value) {
+          if (!selectedItem) {
             return (
               <Typography
                 sx={{
                   color: '#7C7C7C',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  position: 'absolute ',
                 }}
               >
                 {label}
@@ -130,46 +128,33 @@ export default function SelectField({
           }
 
           return (
-            value && (
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  width: '100%',
-                }}
-              >
-                <Stack direction={'row'} alignItems={'center'} gap={0.5}>
-                  {isOrederDetail && <Typography>{label}</Typography>}
-                  <Typography
-                    variant="body1"
-                    sx={{ color: isOrederDetail ? '#B29727' : 'text.title' }}
-                  >
-                    {value}
-                  </Typography>
-                </Stack>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                width: '100%',
+              }}
+            >
+              <Stack direction="row" alignItems="center" gap={0.5}>
+                {isOrederDetail && <Typography>{label}</Typography>}
 
-                {isOrederDetail && (
-                  <IconButton
-                    size="small"
-                    onClick={handleClear}
-                    onMouseDown={(e) => e.stopPropagation()}
-                     
-                    sx={{
-                      color: '#FFFFFF',
-                    }}
-                  >
-                    <CloseIcon fontSize="small" />
-                  </IconButton>
-                )}
-              </Box>
-            )
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: isOrederDetail ? '#B29727' : 'text.title',
+                  }}
+                >
+                  {selectedItem.label}
+                </Typography>
+              </Stack>
+            </Box>
           );
         }}
       >
-        {itemsList.map((name) => (
+        {itemsList.map((item) => (
           <MenuItem
-            key={name}
-            value={name}
+            key={item.value}
+            value={item.value}
             sx={{
               color: 'text.primary',
               '&.Mui-selected': {
@@ -177,7 +162,7 @@ export default function SelectField({
               },
             }}
           >
-            {name}
+            {item.label}
           </MenuItem>
         ))}
       </Select>

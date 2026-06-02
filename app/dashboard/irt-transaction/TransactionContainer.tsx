@@ -41,7 +41,7 @@ export const TransactionItems: ToggleItemsType[] = [
 ];
 
 export default function TransactionContainer() {
-    const [filter,setFilter] = useState('')
+    const [status,setStatus] = useState('')
     const [dateRange,setDateRange] =useState<DatePickerValue| null>(null)
   const [value, setValue] = useState(0);
     const [transactionParams,setTransactionParams] = useState('deposit')
@@ -49,7 +49,7 @@ export default function TransactionContainer() {
     useEffect(()=>{
       const getData = async ()=>{
         try{
-          const response = await getRecentTransaction(transactionParams,filter,dateRange)
+          const response = await getRecentTransaction(transactionParams,status,dateRange)
           setTransactionData(response)
         }catch(error:unknown){
           if (isAxiosError(error)){
@@ -58,7 +58,7 @@ export default function TransactionContainer() {
         }
       }
       getData()
-    },[transactionParams,filter,dateRange])
+    },[transactionParams,status,dateRange])
   return (
     <>
       <Grid
@@ -72,7 +72,7 @@ export default function TransactionContainer() {
           md: 1,
         }}
       >
-        <Transaction filter={filter}
+        <Transaction filter={status}
 dateRange={dateRange} setValue={setValue} setTransactionData={setTransactionData} transactionParams={transactionParams} />
       </Grid>
       <Grid
@@ -169,9 +169,9 @@ dateRange={dateRange} setValue={setValue} setTransactionData={setTransactionData
           setParams={setTransactionParams}
           listLength={transactionData.length}
           setDateRange={setDateRange}
-          setFilter={setFilter}
+          setStatus={setStatus}
           dateRange={dateRange}
-          filter={filter}
+          status={status}
         />
       </Grid>
     </>

@@ -18,9 +18,7 @@ import ToggleButton from './ToggleButton';
 import { CartIcon, UserCircleIcon, UserIcon } from '../CustomIcons/CustomIcons';
 import ToggleEyeButton from './ToggleEyeButton';
 import { getCart } from '@/lib/cart/cart';
- const totalQuantity = getCart().reduce((total, item) => {
-    return total + item.quantity;
-  }, 0);
+
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   '& .MuiBadge-badge': {
     right: 5,
@@ -36,6 +34,9 @@ export default function ButtonGroupe() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const isDesktop = useMediaQuery(theme.breakpoints.down('md'));
+   const totalQuantity = getCart().reduce((total, item) => {
+    return total + item.quantity;
+  }, 0);
   return (
     <Stack
       direction={{
@@ -93,7 +94,7 @@ export default function ButtonGroupe() {
             onClick={() => router.push('/gold-shop-basket')}
             sx={{ color: 'text.secondary' }}
           >
-            <StyledBadge
+            {/* <StyledBadge
               badgeContent={totalQuantity}
               color="error"
               anchorOrigin={{
@@ -102,7 +103,7 @@ export default function ButtonGroupe() {
               }}
             >
               <CartIcon />
-            </StyledBadge>
+            </StyledBadge> */}
           </IconButton>
           }
           <Stack direction={'row'} alignItems={'center'}>

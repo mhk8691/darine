@@ -21,7 +21,7 @@ export const giftCardOrder = async (weight:string,quantity:number,province:strin
   }
 
 export const getGiftCardList = async (filter:string,date:DatePickerValue) => {
-    const response = await api.get<ApiResponse<GiftCardListType[]>>(`/gold/gift-card/list//gold/addresses/?from=${date?.from}&to=${date?.to}filter=${filter}`);
+    const response = await api.get<ApiResponse<GiftCardListType[]>>(`/gold/gift-card/list/?from=${date?.from}&to=${date?.to}filter=${filter}`);
     return response.data.data;
 };
 export const getAddresses = async () => {

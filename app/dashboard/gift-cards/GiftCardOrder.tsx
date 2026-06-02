@@ -15,14 +15,14 @@ import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 
 export default function GiftCardOrder({giftCardData}:{giftCardData?:GiftCardListType[]}) {
   const [giftCardList, setGetGiftCardList] = useState<GiftCardListType[]>([] as GiftCardListType[]);
-  const [filter,setFilter] = useState('')
+  const [status,setStatus] = useState('')
   const [dateRange,setDateRange] =useState<DatePickerValue| null>(null)
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   useEffect(() => {
     const getData = async () => {
       try{
-        const response = await getGiftCardList(filter,dateRange);
+        const response = await getGiftCardList(status,dateRange);
         setGetGiftCardList(response || []);
       }catch(error:unknown){
         if (isAxiosError(error)){
@@ -31,7 +31,7 @@ export default function GiftCardOrder({giftCardData}:{giftCardData?:GiftCardList
       }
     };
     getData();
-  }, [filter,dateRange]);
+  }, [status,dateRange]);
   return (
     <Grid size={12}>
       <OrderDetail
@@ -43,8 +43,8 @@ export default function GiftCardOrder({giftCardData}:{giftCardData?:GiftCardList
         tableHead={['شماره سریال', 'وزن', 'وضعیت', 'تاریخ']}
         dateRange={dateRange}
         setDateRange={setDateRange}
-        setFilter={setFilter}
-filter={filter}
+        setStatus={setStatus}
+status={status}
         tableBody={
          <GiftCardTable giftCardsList={giftCardData ? giftCardData :giftCardList}/>
         }

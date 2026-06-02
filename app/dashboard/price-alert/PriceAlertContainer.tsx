@@ -12,7 +12,7 @@ import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 
 export default function PriceAlertContainer() {
   const [priceAlertsData, setPriceAlerts] = useState<PriceAlertsDataType[]>([]);
-    const [filter,setFilter] = useState('')
+    const [status,setStatus] = useState('')
     const [dateRange,setDateRange] =useState<DatePickerValue| null>(null)
   const [open, setOpen] = useState(false);
   const [priceAlertId, setPriceAlertId] = useState(0);
@@ -20,11 +20,11 @@ export default function PriceAlertContainer() {
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   useEffect(() => {
     const getData = async () => {
-      const response = await getPriceAlerts(filter,dateRange);
+      const response = await getPriceAlerts(status,dateRange);
       setPriceAlerts(response || []);
     };
     getData();
-  }, [setPriceAlerts,dateRange,filter]);
+  }, [setPriceAlerts,dateRange,status]);
   return (
     <>
      <Grid
@@ -36,7 +36,7 @@ export default function PriceAlertContainer() {
         >
           <Box sx={{ height: '100%' }}>
             <PriceAlert setPriceAlert={setPriceAlerts} date={dateRange}
-            filter={filter} />
+            filter={status} />
           </Box>
         </Grid>
           {isDesktop && (
@@ -85,9 +85,9 @@ export default function PriceAlertContainer() {
             tableHead={['قیمت هدف', 'نوع آلارم', 'وضعیت', 'تاریخ', 'حذف']}
             listLength={priceAlertsData.length}
             setDateRange={setDateRange}
-            setFilter={setFilter}
+            setStatus={setStatus}
             dateRange={dateRange}
-            filter={filter}
+            status={status}
             tableBody={<PriceAlertsTable priceAlertsData={priceAlertsData} setOpen={setOpen} setPriceAlertId={setPriceAlertId} />}
           />
         </Grid>
@@ -98,7 +98,7 @@ export default function PriceAlertContainer() {
         setPriceAlertId={setPriceAlertId}
         setPriceAlert={setPriceAlerts}
         date={dateRange}
-            filter={filter}
+            filter={status}
       />
     </>
   )

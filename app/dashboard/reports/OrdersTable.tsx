@@ -1,6 +1,5 @@
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import { formatDate } from '@/app/core/FormatDate';
-import { handleColorStatus, handleTitleStatus } from '@/app/core/handleStatus';
 import priceFormater from '@/app/core/PriceFormater';
 import { OrdersDataType, ToggleItemsType } from '@/app/core/Types';
 import { Stack, TableBody, TableCell, TableRow, Typography } from '@mui/material';

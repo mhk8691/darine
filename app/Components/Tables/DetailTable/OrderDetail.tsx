@@ -20,12 +20,17 @@ interface Props {
   tableHead: string[];
   listLength: number;
   setParams?:React.Dispatch<React.SetStateAction<string>>
-  setFilter: Dispatch<SetStateAction<string>>
+  setStatus: Dispatch<SetStateAction<string>>
   setDateRange:Dispatch<SetStateAction<DatePickerValue|null>>
-  filter:string
+  status:string
   dateRange:DatePickerValue|null
 }
-const names = ['تکمیل شده', 'در انتظار تایید', 'لغو شده'];
+const statuses = [
+  { label: 'در انتظار تایید', value: 'PENDING' },
+  { label: 'تکمیل شده', value: 'COMPLETED' },
+  { label: 'لغو شده', value: 'CANCELLED' },
+  { label: 'ناموفق', value: 'FAILED' },
+];
 export default function OrderDetail({
   title,
   type,
@@ -36,7 +41,7 @@ export default function OrderDetail({
   tableHead,
   listLength,
   setParams,
-  filter,dateRange,setDateRange,setFilter
+  status,dateRange,setDateRange,setStatus
 }: Props) {
   const [active, setActive] = useState(toggleItems[0]?.value);
   const [message, setMessage] = useState(toggleItems[0]?.emptyMessage || '');
@@ -125,8 +130,8 @@ export default function OrderDetail({
             },
           }}
         >
-          <SelectField label="وضعیت" itemsList={names}  isOrederDetail maxWidth="260px"  value={filter}
-            setValue={setFilter} />
+          <SelectField label="وضعیت" itemsList={statuses}  isOrederDetail maxWidth="260px"  value={status}
+            setValue={setStatus} />
           <CustomDatePicker style={{
             maxWidth:'270px'
           }} value={dateRange} onChange={handleDateChange} isRange />
@@ -271,12 +276,12 @@ export default function OrderDetail({
           }}
         >
           <SelectField
-            itemsList={names}
+            itemsList={statuses}
             label="وضعیت"
             isOrederDetail={true}
             maxWidth="260px"
-            value={filter}
-            setValue={setFilter}
+            value={status}
+            setValue={setStatus}
           />
           <CustomDatePicker style={{
             maxWidth:'270px'

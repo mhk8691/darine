@@ -33,9 +33,9 @@ interface Props{
 export default function TradesTable({setTradeParams,data,type='toggle',noCard=true,dateRange,setDateRange,setFilter,filter}:Props) {
   return (
     <OrderDetail
-    filter={filter}
+    status={filter}
     setDateRange={setDateRange}
-    setFilter={setFilter}
+    setStatus={setFilter}
     dateRange={dateRange}
       key={1}
       toggleItems={trades}

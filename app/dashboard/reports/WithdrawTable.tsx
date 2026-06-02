@@ -29,9 +29,9 @@ interface Props{
 export default function WithdrawTable({data,setWithdrawParams,setDateRange,setFilter,filter,dateRange}:Props) {
   return (
     <OrderDetail
-         filter={filter}
+         status={filter}
     setDateRange={setDateRange}
-    setFilter={setFilter}
+    setStatus={setFilter}
     dateRange={dateRange}
       key={3}
       setParams={setWithdrawParams}

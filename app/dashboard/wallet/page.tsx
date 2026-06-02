@@ -23,12 +23,12 @@ import { TransactionItems } from '../irt-transaction/TransactionContainer';
 export default async function page() {
   const [transactionData,setTransactionData] = useState<RecentTransactionDataType[]>([])
   const [transactionParams,setTransactionParams] = useState('deposit')
-    const [filter,setFilter] = useState('')
+    const [status,setStatus] = useState('')
     const [dateRange,setDateRange] =useState<DatePickerValue| null>(null)
   useEffect(()=>{
      const getData = async ()=>{
         try{
-          const response = await getRecentTransaction(transactionParams,filter,dateRange)
+          const response = await getRecentTransaction(transactionParams,status,dateRange)
           setTransactionData(response)
         }catch(error:unknown){
           if (isAxiosError(error)){
@@ -37,7 +37,7 @@ export default async function page() {
         }
       }
       getData()
-  },[transactionParams,filter,dateRange])
+  },[transactionParams,status,dateRange])
   return (
     <Grid
       container
@@ -266,9 +266,9 @@ export default async function page() {
             'تاریخ',
           ]}
           setDateRange={setDateRange}
-          setFilter={setFilter}
+          setStatus={setStatus}
           dateRange={dateRange}
-          filter={filter}
+          status={status}
           />
         </Stack>
       </Grid>

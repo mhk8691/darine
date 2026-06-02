@@ -35,9 +35,9 @@ interface Props{
 export default function DepositTable({data,setDepositParams,setDateRange,setFilter,filter,dateRange}:Props) {
   return (
     <OrderDetail
-     filter={filter}
+     status={filter}
     setDateRange={setDateRange}
-    setFilter={setFilter}
+    setStatus={setFilter}
     dateRange={dateRange}
     setParams={setDepositParams}
       key={2}
