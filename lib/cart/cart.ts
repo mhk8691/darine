@@ -5,7 +5,7 @@ import { CartItem } from "@/app/core/Types";
 const STORAGE_KEY = "cart";
 
 export const getCart = (): CartItem[] => {
-  const cart = localStorage.getItem(STORAGE_KEY);
+  const cart = localStorage?.getItem(STORAGE_KEY);
 
   if (!cart) return [];
 

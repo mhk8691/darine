@@ -8,6 +8,7 @@ import React from 'react';
 import { CallIcon, ChatIcon, EmailIcon } from '../CustomIcons/CustomIcons';
 import LaptopCertificate from './LaptopCertificate';
 import LinkContainer from './LinkContainer';
+import Link from 'next/link';
 
 export const installment = [
   '/images/simple/snapppayLogo.webp',
@@ -193,7 +194,7 @@ export default function Footer() {
                   }}
                   sx={{ whiteSpace: 'nowrap' }}
                 >
-                  پشتیبانی چت آنلاین
+                  پشتیبانی تلگرام
                 </Typography>
               </Stack>
               <Stack
@@ -225,7 +226,7 @@ export default function Footer() {
                 }}
                 alignItems={'center'}
               >
-                <EmailIcon />
+                <TelegramIcon />
                 <Typography
                   variant="body2"
                   color="text.primary"
@@ -235,7 +236,7 @@ export default function Footer() {
                   }}
                   sx={{ whiteSpace: 'nowrap' }}
                 >
-                  support@talasea.ir
+                  darine_app
                 </Typography>
               </Stack>
             </Stack>
@@ -262,6 +263,9 @@ export default function Footer() {
                   borderRadius: '50%',
                   p: 0.75,
                 }}
+                component={Link}
+                target='_blank'
+                href={'https://t.me/darine_app'}
               >
                 <TelegramIcon
                   sx={{
