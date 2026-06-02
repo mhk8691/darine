@@ -13,7 +13,7 @@ import CustomDatePicker, { DatePickerValue } from '@/app/Components/DatePicker/C
 export interface RegisterFormType {
   mobile: string;
   national_code: string;
-  birth_date: DatePickerValue;
+  birth_date?: string;
   first_name: string;
   last_name: string;
   password: string;
@@ -33,7 +33,7 @@ export default function RegisterForm({ phoneNumber }: { phoneNumber: string }) {
     const newRegisterForm = {
       mobile: phoneNumber,
       national_code: nationalCode,
-      birth_date: birthDay,
+      birth_date: birthDay?.date,
       first_name: firstName,
       last_name: lastName,
       password,

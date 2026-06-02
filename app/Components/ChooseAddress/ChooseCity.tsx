@@ -1,8 +1,8 @@
-import SelectField from '@/app/Components/InputField/SelectField';
+import SelectField, { SelectItem } from '@/app/Components/InputField/SelectField';
 import { Stack } from '@mui/material';
 import { Dispatch, SetStateAction } from 'react';
-const provinceItems = ['قم', 'تهران', 'اصفهان'];
-const cityItems = ['کهک', 'قنوات', 'تست'];
+const provinceItems:SelectItem[] = [{label:'قم',value:'qom'}, {label:'تهران',value:'tehran'}, {label:'اصفهان',value:'esfahan'}];
+const cityItems = [{label:'تست',value:'test'}];
 
 interface Props{
   province:string

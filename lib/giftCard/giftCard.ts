@@ -10,10 +10,8 @@ export const giftCardSubmit = async (serialNumber: string) => {
   
 };
 
-export const giftCardOrder = async (weight:string,quantity:number,province:string,city:string,address:string,plaque:string,unit:string,postCode:string,addressId?:number) => {
-  const dataWithAddress = { weight_per_card: weight ,quantity,province,city,address,plaque,unit,postal_code:postCode}
-  const dataWithoutAddress = { weight_per_card: weight ,quantity,address_id:addressId}
-  const newData = addressId ?dataWithoutAddress :dataWithAddress
+export const giftCardOrder = async (weight:string,quantity:number,addressId:number) => {
+  const newData = { weight_per_card: weight ,quantity,address_id:addressId}
   const response = await api.post<{
       message: string;
     }>('/gold/gift-card/order/', newData);
@@ -27,4 +25,8 @@ export const getGiftCardList = async (filter:string,date:DatePickerValue) => {
 export const getAddresses = async () => {
     const response = await api.get<ApiResponse<AddressesDataType[]>>('/gold/addresses/');
     return response.data.data;
+};
+export const addAddresses = async (newAddress:AddressesDataType) => {
+    const response = await api.post<ApiResponse<AddressesDataType>>('/gold/Adress/',newAddress);
+    return response.data;
 };

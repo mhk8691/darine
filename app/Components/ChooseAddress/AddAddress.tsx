@@ -5,6 +5,10 @@ import { Button, IconButton, Stack, Typography } from '@mui/material';
 import { Dispatch, SetStateAction, useState } from 'react';
 import ChooseCity from './ChooseCity';
 import NewAddress from './NewAddress';
+import { isAxiosError } from 'axios';
+import { showSnackbar } from '../Snackbar/Snackbar';
+import { addAddresses } from '@/lib/giftCard/giftCard';
+import { AddressesDataType } from '@/app/core/Types';
 
 
 interface Props {
@@ -16,7 +20,7 @@ province:string
 setProvince:Dispatch<SetStateAction<string>>
 city:string
 setCity:Dispatch<SetStateAction<string>>
-setActiveStep:React.Dispatch<React.SetStateAction<number>>
+setActiveStep?:React.Dispatch<React.SetStateAction<number>>
 setPlaque:React.Dispatch<React.SetStateAction<string>>
 setUnit:React.Dispatch<React.SetStateAction<string>>
 setPostCode:React.Dispatch<React.SetStateAction<string>>
@@ -24,10 +28,33 @@ plaque:string
 unit:string
 postCode:string
 setAddressId:React.Dispatch<React.SetStateAction<number>>
+getData:() => Promise<void>
 }
-export default function AddAddress({setAddressId, open, setOpen,setAddress,address,province,setCity,city,setProvince,setActiveStep,setPlaque,setPostCode,postCode,plaque,setUnit,unit }: Props) {
+export default function AddAddress({getData,setAddressId, open, setOpen,setAddress,address,province,setCity,city,setProvince,setActiveStep,setPlaque,setPostCode,postCode,plaque,setUnit,unit }: Props) {
   const [step, setStep] = useState(0);
-
+  const handleAddress = async ()=>{
+    const newAddress :AddressesDataType = {
+      address,
+      city,
+      plaque,
+      postal_code:postCode,
+      province,
+      unit,
+    }
+    try{
+      const response = await addAddresses(newAddress)
+     await getData()
+      showSnackbar(response.message,true)
+      setAddressId(response.data.id||0)
+       setStep(0);
+      setActiveStep&& setActiveStep(2)
+        setOpen(false);
+    }catch(error:unknown){
+      if (isAxiosError(error)){
+        showSnackbar(error.response?.data.message)
+      }
+    }
+  }
   return (
     <>
       <CustomModal open={open} setOpen={setOpen} modalStyle={{ px: 1.5, pb: 2 }}>
@@ -57,10 +84,7 @@ export default function AddAddress({setAddressId, open, setOpen,setAddress,addre
     if (step < 1) {
         setStep((prev) => prev + 1);
     } else {
-        setStep(0);
-        setAddressId(0)
-        setActiveStep(2)
-        setOpen(false);
+       handleAddress()
     }
 }}
             sx={{

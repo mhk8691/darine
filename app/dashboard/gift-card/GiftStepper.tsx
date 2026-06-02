@@ -84,13 +84,8 @@ export default function GiftStepper() {
   const [price, setPrice] = React.useState('');
   const [count, setCount] = React.useState<number>(1);
   const [open, setOpen] = React.useState(false);
-  const [address, setAddress] = React.useState('تست');
-  const [province, setProvince] = React.useState('');
-  const [city, setCity] = React.useState('');
-  const [plaque, setPlaque] = React.useState('');
-  const [unit, setUnit] = React.useState('');
-  const [postCode, setPostCode] = React.useState('');
-  const [addresses,setAddresses] = React.useState<AddressesDataType[]>([])
+      const [addresses,setAddresses] = React.useState<AddressesDataType[]>([])
+  
   const [addressId, setAddressId] = React.useState(0);
 const [isLoading,setIsLoading]= React.useState(false)
   const {assets} = useAssets()
@@ -100,7 +95,7 @@ const [isLoading,setIsLoading]= React.useState(false)
     }
     try{
       setIsLoading(true)
-      const response = await giftCardOrder(weight,count,province,city,address,plaque,unit,postCode,addressId != 0 ?addressId :undefined)
+      const response = await giftCardOrder(weight,count,addressId)
       showSnackbar(response.message,true)
       router.push('/dashboard/gift-cards')
     }catch(error:unknown){
@@ -247,31 +242,20 @@ const [isLoading,setIsLoading]= React.useState(false)
             )}
             {activeStep === 1 && (
               <ChooseAddress
+               addresses={addresses}
+               setAddresses={setAddresses}
               setActiveStep={setActiveStep}
                 open={open}
                 setOpen={setOpen}
                 description=" آدرس مورد نظر خود را اضافه کنید."
-                address={address}
-setAddress={setAddress}
-province={province}
-setProvince={setProvince}
-city={city}
-setCity={setCity}
-setPlaque={setPlaque}
-setPostCode={setPostCode}
-setUnit={setUnit}
-plaque={plaque}
-postCode={postCode}
-unit={unit}
-setAddresses={setAddresses}
-addresses={addresses}
+
 addressId={addressId} 
 setAddressId={setAddressId
 }
               />
             )}
-            {activeStep === 2 && <FinalApproval plaque={plaque}
-unit={unit} city={city} price={price} province={province} address={address} count={count} weight={weight} />}
+            {activeStep === 2 && <FinalApproval 
+ price={price} count={count} weight={weight} />}
 
             <Stack direction={'row'} gap={3} mt={activeStep === 2 ? 2 : 7}>
               <Button

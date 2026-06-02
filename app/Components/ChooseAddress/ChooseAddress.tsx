@@ -1,7 +1,7 @@
 'use client';
 import { Stack, SxProps, Typography } from '@mui/material';
 import Image from 'next/image';
-import { Dispatch, SetStateAction, useEffect } from 'react';
+import React, { Dispatch, SetStateAction, useEffect } from 'react';
 import AddAddress from './AddAddress';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '../Snackbar/Snackbar';
@@ -13,27 +13,20 @@ interface Props {
   setOpen: Dispatch<SetStateAction<boolean>>;
   description: string;
   cardStyle?: SxProps;
-  address:string
-setAddress:Dispatch<SetStateAction<string>>
-province:string
-setProvince:Dispatch<SetStateAction<string>>
-city:string
-setCity:Dispatch<SetStateAction<string>>
-setActiveStep:React.Dispatch<React.SetStateAction<number>>
-setPlaque:React.Dispatch<React.SetStateAction<string>>
-setUnit:React.Dispatch<React.SetStateAction<string>>
-setPostCode:React.Dispatch<React.SetStateAction<string>>
-plaque:string
-unit:string
-postCode:string
-addresses:AddressesDataType[],
-setAddresses:Dispatch<SetStateAction<AddressesDataType[]>>
 setAddressId:Dispatch<SetStateAction<number>>
 addressId:number
+setActiveStep?:React.Dispatch<React.SetStateAction<number>>
+setAddresses:Dispatch<SetStateAction<AddressesDataType[]>>
+addresses:AddressesDataType[]
 }
-export default function ChooseAddress({addressId,setAddressId, addresses,setAddresses,open, setOpen, description, cardStyle,setAddress,address,province,setCity,city,setProvince ,setActiveStep,setPlaque,setPostCode,setUnit,plaque,unit,postCode}: Props) {
-  useEffect(()=>{
-    const getData = async ()=>{
+export default function ChooseAddress({addressId,setAddressId,open, setOpen, description, cardStyle,setActiveStep,addresses,setAddresses}: Props) {
+  const [address, setAddress] = React.useState('تست');
+    const [province, setProvince] = React.useState('');
+    const [city, setCity] = React.useState('');
+    const [plaque, setPlaque] = React.useState('');
+    const [unit, setUnit] = React.useState('');
+    const [postCode, setPostCode] = React.useState('');
+  const getData = async ()=>{
       try{
         const response = await getAddresses()
         setAddresses(response)
@@ -43,6 +36,8 @@ export default function ChooseAddress({addressId,setAddressId, addresses,setAddr
         }
       }
     }
+  useEffect(()=>{
+   
     getData()
   },[])
   return (
@@ -69,7 +64,7 @@ addressId={addressId} /> :  <Stack
           {description}
         </Typography>
       </Stack>}
-      <AddAddress open={open} setOpen={setOpen}   setActiveStep={setActiveStep}              address={address}
+      <AddAddress open={open} setOpen={setOpen}   setActiveStep={setActiveStep} getData={getData}             address={address}
 setAddress={setAddress}
 province={province}
 setProvince={setProvince}

@@ -5,14 +5,10 @@ interface Props{
   weight:string
   price:string
   count:number
-  city:string
-  address:string
-province:string
-plaque:string
-unit:string
+
 }
 
-export default function FinalApproval({weight,price,count,city,province,address,plaque,unit}:Props) {
+export default function FinalApproval({weight,price,count}:Props) {
   return (
     <Stack border={1} px={4} py={2} borderRadius={2} borderColor={'background.paper'}>
       <Typography

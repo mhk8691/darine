@@ -156,13 +156,13 @@ React.useEffect(()=>{
                   fontSize: 16,
                   fontWeight: 400,
                   borderRadius: 2,
-                  px: 0,
+                  px: 1.5,
                   py: 1.2,
                   '&:hover': {
                     bgcolor: 'background.default',
                   },
                   whiteSpace: 'nowrap',
-                  minWidth:'10rem'
+                  minWidth:'10rem',
                 }}
                 startIcon={<UserIcon />}
               >
@@ -185,6 +185,7 @@ React.useEffect(()=>{
               xs:'13rem',
               md:'10rem'
             },
+            width:'100%',
             overflow: 'hidden',
             background: isDarkMode ? '#111110' : '#FFFFFF',
             boxShadow: isDarkMode ? '0 0 5px #2E2C26' : 'none',
