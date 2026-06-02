@@ -1,7 +1,34 @@
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 import api, { ApiResponse } from '@/lib/api';
-export const getReports = async (key: string,params:string,date?:DatePickerValue,filter?:string) => {
-    const response = await api.get<ApiResponse<[]>>(`/gold/reports/?type=${key}&filter_type=${params}&from=${date?.from}&to=${date?.to}filter=${filter}`);
-    return response.data.data;
-  
+
+export const getReports = async (
+  key: string,
+  params?: string,
+  date?: DatePickerValue,
+  filter?: string
+) => {
+  const query = new URLSearchParams();
+
+  query.append('type', key);
+  // if (params){
+  //     query.append('type', params);
+  // }
+
+  if (date?.from) {
+    query.append('start_date', String(date.from));
+  }
+
+  if (date?.to) {
+    query.append('end_date', String(date.to));
+  }
+
+  if (filter) {
+    query.append('status', filter);
+  }
+
+  const response = await api.get<ApiResponse<[]>>(
+    `/gold/reports/?${query.toString()}`
+  );
+
+  return response.data.data;
 };

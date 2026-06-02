@@ -12,7 +12,12 @@ import { useEffect, useState } from 'react';
 import GiftCardTable from './GiftCardTable';
 import { getGiftCardList } from '@/lib/giftCard/giftCard';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
-
+export const statuses = [
+  { label: 'در انتظار تایید', value: 'PENDING' },
+  { label: 'تکمیل شده', value: 'COMPLETED' },
+  { label: 'لغو شده', value: 'CANCELLED' },
+  { label: 'ناموفق', value: 'FAILED' },
+];
 export default function GiftCardOrder({giftCardData}:{giftCardData?:GiftCardListType[]}) {
   const [giftCardList, setGetGiftCardList] = useState<GiftCardListType[]>([] as GiftCardListType[]);
   const [status,setStatus] = useState('')
@@ -35,6 +40,7 @@ export default function GiftCardOrder({giftCardData}:{giftCardData?:GiftCardList
   return (
     <Grid size={12}>
       <OrderDetail
+      statuses={statuses}
         listLength={giftCardData ? giftCardData.length :giftCardList.length}
         title={isDesktop ? 'لیست کارت‌های هدیه شما' : ''}
         toggleItems={[]}

@@ -6,11 +6,28 @@ import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import RemovePriceAlertModal from './RemovePriceAlert';
 import PriceAlertsTable from './PriceAlertsTable';
 import { getPriceAlerts } from '@/lib/priceAlert/priceAlert';
-import { PriceAlertsDataType } from '@/app/core/Types';
+import { PriceAlertsDataType, ToggleItemsType } from '@/app/core/Types';
 import ChartGold from '@/app/Components/Chart/ChartGold';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 
+
+const priceAlertItem: ToggleItemsType[] = [
+  {
+    title: 'در قیمت بالاتر',
+    value: 'ABOVE',
+    id: 1,
+    emptyMessage:'هشدار قیمتی برای شما ثبت نشده است',
+  },
+  {
+    title: 'در قیمت پایین تر',
+    value: 'BELOW',
+    id: 2,
+    emptyMessage:'هشدار قیمتی برای شما ثبت نشده است',
+  },
+];
+
 export default function PriceAlertContainer() {
+  const [select, setSelect] = useState(priceAlertItem[0]?.value);
   const [priceAlertsData, setPriceAlerts] = useState<PriceAlertsDataType[]>([]);
     const [status,setStatus] = useState('')
     const [dateRange,setDateRange] =useState<DatePickerValue| null>(null)
@@ -20,11 +37,11 @@ export default function PriceAlertContainer() {
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   useEffect(() => {
     const getData = async () => {
-      const response = await getPriceAlerts(status,dateRange);
+      const response = await getPriceAlerts(status,dateRange,select);
       setPriceAlerts(response || []);
     };
     getData();
-  }, [setPriceAlerts,dateRange,status]);
+  }, [setPriceAlerts,dateRange,status,select]);
   return (
     <>
      <Grid
@@ -78,16 +95,21 @@ export default function PriceAlertContainer() {
       )}
         <Grid size={12}>
           <OrderDetail
+          statuses={[
+            {label:'فعال',value:'true'},
+            {label:'غیرفعال',value:'false'}
+          ]}
             type="chip"
             emptyMessage="آلارمی برای شما به ثبت نرسیده است"
             title="لیست آلارم‌های اخیر"
-            toggleItems={[]}
+            toggleItems={priceAlertItem}
             tableHead={['قیمت هدف', 'نوع آلارم', 'وضعیت', 'تاریخ', 'حذف']}
             listLength={priceAlertsData.length}
             setDateRange={setDateRange}
             setStatus={setStatus}
             dateRange={dateRange}
             status={status}
+            setParams={setSelect}
             tableBody={<PriceAlertsTable priceAlertsData={priceAlertsData} setOpen={setOpen} setPriceAlertId={setPriceAlertId} />}
           />
         </Grid>

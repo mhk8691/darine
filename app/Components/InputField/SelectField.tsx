@@ -1,6 +1,7 @@
 'use client';
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import CloseIcon from '@mui/icons-material/Close';
 import {
   Box,
   FormControl,
@@ -11,6 +12,7 @@ import {
   Stack,
   SxProps,
   Typography,
+  InputAdornment,
 } from '@mui/material';
 import * as React from 'react';
 
@@ -43,59 +45,37 @@ export default function SelectField({
   React.useEffect(() => {
     if (!open) return;
 
-    const handleScroll = () => {
-      setOpen(false);
-    };
+    const handleScroll = () => setOpen(false);
 
     window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [open]);
-
-  const MenuProps = {
-    slotProps: {
-      paper: {
-        sx: {
-          border: 1,
-          borderColor: 'background.border',
-          bgcolor: 'background.default',
-          backdropFilter: 'blur(10px)',
-          borderRadius: '8px',
-          mt: 0.5,
-        },
-      },
-    },
-  };
 
   const handleChange = (event: SelectChangeEvent<string>) => {
     setValue?.(event.target.value);
     setOpen(false);
   };
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
+  const handleClear = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setValue?.('');
     setOpen(false);
   };
 
   const selectedItem = itemsList.find((item) => item.value === value);
+  const hasValue = Boolean(value);
 
   return (
     <FormControl sx={{ maxWidth: maxWidth || '100%', width: '100%' }}>
       <Select
         displayEmpty
         value={value}
-        onChange={handleChange}
-        onOpen={handleOpen}
-        onClose={handleClose}
         open={open}
+        onOpen={() => setOpen(true)}
+        onClose={() => setOpen(false)}
+        onChange={handleChange}
         IconComponent={KeyboardArrowDownIcon}
         input={<OutlinedInput />}
-        MenuProps={MenuProps}
         sx={{
           borderRadius: '8px',
           color: 'text.primary',
@@ -117,11 +97,7 @@ export default function SelectField({
         renderValue={() => {
           if (!selectedItem) {
             return (
-              <Typography
-                sx={{
-                  color: '#7C7C7C',
-                }}
-              >
+              <Typography sx={{ color: '#7C7C7C' }}>
                 {label}
               </Typography>
             );
@@ -132,6 +108,7 @@ export default function SelectField({
               sx={{
                 display: 'flex',
                 alignItems: 'center',
+                justifyContent: 'space-between',
                 width: '100%',
               }}
             >
@@ -139,7 +116,6 @@ export default function SelectField({
                 {isOrederDetail && <Typography>{label}</Typography>}
 
                 <Typography
-                  variant="body1"
                   sx={{
                     color: isOrederDetail ? '#B29727' : 'text.title',
                   }}
@@ -147,6 +123,23 @@ export default function SelectField({
                   {selectedItem.label}
                 </Typography>
               </Stack>
+
+              {hasValue && (
+                <InputAdornment
+                  position="end"
+                  onMouseDown={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                  }}
+                  onClick={handleClear}
+                  sx={{
+                    cursor: 'pointer',
+                    ml: 1,
+                  }}
+                >
+                  <CloseIcon fontSize="small" />
+                </InputAdornment>
+              )}
             </Box>
           );
         }}

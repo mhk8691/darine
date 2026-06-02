@@ -1,5 +1,7 @@
 'use client';
+
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import CloseIcon from '@mui/icons-material/Close';
 import { InputAdornment, SxProps, TextField, useTheme } from '@mui/material';
 import React from 'react';
 import persian from 'react-date-object/calendars/persian';
@@ -13,20 +15,26 @@ import 'react-multi-date-picker/styles/backgrounds/bg-dark.css';
 import 'react-multi-date-picker/styles/colors/yellow.css';
 
 export type DatePickerValue = {
-  date?: string; 
-  from?: string; 
-  to?: string;  
+  date?: string;
+  from?: string;
+  to?: string;
 } | null;
 
 interface Props {
   style?: SxProps;
   isRange?: boolean;
   label?: string;
-  value: DatePickerValue; 
-  onChange: (val: DatePickerValue) => void; 
-} 
+  value: DatePickerValue;
+  onChange: (val: DatePickerValue) => void;
+}
 
-export default function CustomDatePicker({ style, isRange = false, label, value, onChange }: Props) {
+export default function CustomDatePicker({
+  style,
+  isRange = false,
+  label,
+  value,
+  onChange
+}: Props) {
   const theme = useTheme();
   const isDarkMode = theme.palette.mode === 'dark';
 
@@ -36,21 +44,36 @@ export default function CustomDatePicker({ style, isRange = false, label, value,
     if (isRange) {
       const dates: DateObject[] = [];
       if (value.from) {
-        dates.push(new DateObject({ date: value.from, calendar: gregorian, locale: gregorian_en }).convert(persian, persian_fa));
+        dates.push(
+          new DateObject({
+            date: value.from,
+            calendar: gregorian,
+            locale: gregorian_en
+          }).convert(persian, persian_fa)
+        );
       }
       if (value.to) {
-        dates.push(new DateObject({ date: value.to, calendar: gregorian, locale: gregorian_en }).convert(persian, persian_fa));
+        dates.push(
+          new DateObject({
+            date: value.to,
+            calendar: gregorian,
+            locale: gregorian_en
+          }).convert(persian, persian_fa)
+        );
       }
       return dates;
     } else {
       if (value.date) {
-        return new DateObject({ date: value.date, calendar: gregorian, locale: gregorian_en }).convert(persian, persian_fa);
+        return new DateObject({
+          date: value.date,
+          calendar: gregorian,
+          locale: gregorian_en
+        }).convert(persian, persian_fa);
       }
     }
     return null;
   };
 
-  
   const handleDatePickerChange = (val: DateObject | DateObject[] | null) => {
     if (!val) {
       onChange(null);
@@ -59,17 +82,31 @@ export default function CustomDatePicker({ style, isRange = false, label, value,
 
     if (isRange) {
       const dates = val as DateObject[];
+
       if (dates.length === 2 && dates[0] && dates[1]) {
-        const from = new DateObject(dates[0]).convert(gregorian, gregorian_en).format("YYYY-MM-DD");
-        const to = new DateObject(dates[1]).convert(gregorian, gregorian_en).format("YYYY-MM-DD");
+        const from = new DateObject(dates[0])
+          .convert(gregorian, gregorian_en)
+          .format("YYYY-MM-DD");
+
+        const to = new DateObject(dates[1])
+          .convert(gregorian, gregorian_en)
+          .format("YYYY-MM-DD");
+
         onChange({ from, to });
       } else if (dates.length === 1 && dates[0]) {
-        const from = new DateObject(dates[0]).convert(gregorian, gregorian_en).format("YYYY-MM-DD");
+        const from = new DateObject(dates[0])
+          .convert(gregorian, gregorian_en)
+          .format("YYYY-MM-DD");
+
         onChange({ from, to: undefined });
       }
     } else {
       const singleDate = val as DateObject;
-      const date = new DateObject(singleDate).convert(gregorian, gregorian_en).format("YYYY-MM-DD");
+
+      const date = new DateObject(singleDate)
+        .convert(gregorian, gregorian_en)
+        .format("YYYY-MM-DD");
+
       onChange({ date });
     }
   };
@@ -81,10 +118,20 @@ export default function CustomDatePicker({ style, isRange = false, label, value,
       range={isRange}
       value={getInternalValue()}
       onChange={handleDatePickerChange}
-      render={<CustomRangeInput style={style} isRange={isRange} label={label} />}
+      render={
+        <CustomRangeInput
+          style={style}
+          isRange={isRange}
+          label={label}
+          onClear={() => onChange(null)}
+        />
+      }
       animations={[
         opacity(),
-        transition({ from: 40, transition: 'all 400ms cubic-bezier(0.335, 0.010, 0.030, 1.360)' }),
+        transition({
+          from: 40,
+          transition: 'all 400ms cubic-bezier(0.335, 0.010, 0.030, 1.360)'
+        }),
       ]}
       calendar={persian}
       locale={persian_fa}
@@ -98,17 +145,29 @@ export default function CustomDatePicker({ style, isRange = false, label, value,
 type CustomRangeInputProps = {
   value?: DateObject | DateObject[] | string;
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
+  onClear?: () => void;
   separator?: string;
   style?: SxProps;
   isRange?: boolean;
   label?: string;
 };
 
-function CustomRangeInput({ onFocus, value, separator = ',', style, isRange, label }: CustomRangeInputProps) {
+function CustomRangeInput({
+  onFocus,
+  value,
+  separator = ',',
+  style,
+  isRange,
+  label,
+  onClear
+}: CustomRangeInputProps) {
+
   let displayValue = '';
+
   if (isRange) {
     let from = '';
     let to = '';
+
     if (Array.isArray(value)) {
       from = value[0]?.format?.() || '';
       to = value[1]?.format?.() || '';
@@ -117,7 +176,12 @@ function CustomRangeInput({ onFocus, value, separator = ',', style, isRange, lab
       from = values[0] || '';
       to = values[1] || '';
     }
-    displayValue = from && to ? `از ${from} تا ${to}` : from ? `از ${from}` : '';
+
+    displayValue = from && to
+      ? `از ${from} تا ${to}`
+      : from
+        ? `از ${from}`
+        : '';
   } else {
     if (value instanceof DateObject) {
       displayValue = value.format() || '';
@@ -127,6 +191,8 @@ function CustomRangeInput({ onFocus, value, separator = ',', style, isRange, lab
       displayValue = value.split(separator)[0] || '';
     }
   }
+
+  const hasValue = Boolean(displayValue && displayValue.trim());
 
   return (
     <TextField
@@ -144,6 +210,16 @@ function CustomRangeInput({ onFocus, value, separator = ',', style, isRange, lab
         input: {
           endAdornment: (
             <InputAdornment position="end">
+              {hasValue && (
+                <CloseIcon
+                  fontSize="small"
+                  style={{ cursor: 'pointer', marginLeft: 6 }}
+                  onMouseDown={(e) => {
+                    e.preventDefault();
+                    onClear?.();
+                  }}
+                />
+              )}
               <KeyboardArrowDownIcon />
             </InputAdornment>
           ),

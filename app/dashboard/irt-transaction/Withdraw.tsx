@@ -116,7 +116,7 @@ export default function Withdraw({setTransactionData,transactionParams,filter,da
           height:60
         }}
         onClick={handleWithdraw}
-        disabled={isLoading}
+        disabled={isLoading || bankCardsData.length === 0}
       >
         {isLoading ? <Loading size={30}/>:'برداشت'}
       </Button>

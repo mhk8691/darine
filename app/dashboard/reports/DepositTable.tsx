@@ -3,6 +3,7 @@ import { RecentTransactionDataType, ToggleItemsType } from '@/app/core/Types';
 import React, { Dispatch, SetStateAction } from 'react';
 import TransactionTable from '../irt-transaction/TransactionTable';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
+import { statuses } from '../gift-cards/GiftCardOrder';
 
 const depositItems: ToggleItemsType[] = [
   {
@@ -32,9 +33,11 @@ interface Props{
       filter:string
       dateRange:DatePickerValue|null
 }
+
 export default function DepositTable({data,setDepositParams,setDateRange,setFilter,filter,dateRange}:Props) {
   return (
     <OrderDetail
+    statuses={statuses}
      status={filter}
     setDateRange={setDateRange}
     setStatus={setFilter}

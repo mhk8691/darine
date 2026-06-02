@@ -3,6 +3,7 @@ import { RecentTransactionDataType, ToggleItemsType } from '@/app/core/Types';
 import React, { Dispatch, SetStateAction } from 'react';
 import TransactionTable from '../irt-transaction/TransactionTable';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
+import { statuses } from '../gift-cards/GiftCardOrder';
 
 const withdrawItems: ToggleItemsType[] = [
   {
@@ -29,6 +30,7 @@ interface Props{
 export default function WithdrawTable({data,setWithdrawParams,setDateRange,setFilter,filter,dateRange}:Props) {
   return (
     <OrderDetail
+    statuses={statuses}
          status={filter}
     setDateRange={setDateRange}
     setStatus={setFilter}

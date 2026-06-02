@@ -4,6 +4,7 @@ import priceFormater from '@/app/core/PriceFormater';
 import { OrdersDataType, ToggleItemsType } from '@/app/core/Types';
 import { Stack, TableBody, TableCell, TableRow, Typography } from '@mui/material';
 import React from 'react';
+import { statuses } from '../gift-cards/GiftCardOrder';
 
 const receiveItems: ToggleItemsType[] = [
   {
@@ -23,6 +24,7 @@ const receiveItems: ToggleItemsType[] = [
 export default function OrdersTable({data}:{data:OrdersDataType[]}) {
   return (
     <OrderDetail
+    statuses={statuses}
       key={1}
       toggleItems={receiveItems}
       type="toggle"

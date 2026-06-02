@@ -15,6 +15,7 @@ import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import TransactionTable from '../irt-transaction/TransactionTable';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 import { TransactionItems } from '../irt-transaction/TransactionContainer';
+import { statuses } from '../gift-cards/GiftCardOrder';
 // export const metadata: Metadata = {
 //   title: 'کیف پول | دارینه',
 //   description: '',
@@ -251,6 +252,7 @@ export default async function page() {
         </Grid>
         <Stack mt={{ xs: 1, sm: 3 }}>
           <OrderDetail
+          statuses={statuses}
             type="chip"
             title="لیست تراکنش‌‌های اخیر"
             toggleItems={TransactionItems}

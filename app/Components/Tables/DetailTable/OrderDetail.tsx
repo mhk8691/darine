@@ -7,7 +7,7 @@ import { Dispatch, ReactNode, SetStateAction, useState } from 'react';
 import Card from '../../Containers/Container/Container';
 import CustomDatePicker, { DatePickerValue } from '../../DatePicker/CustomDatePicker';
 import FilterToggleButton from '../../FilterToggleButton/FilterToggleButton';
-import SelectField from '../../InputField/SelectField';
+import SelectField, { SelectItem } from '../../InputField/SelectField';
 import FilterButton from './FilterButton';
 import CustomTable from '../CustomTable';
 interface Props {
@@ -24,14 +24,11 @@ interface Props {
   setDateRange:Dispatch<SetStateAction<DatePickerValue|null>>
   status:string
   dateRange:DatePickerValue|null
+  statuses:SelectItem[]
 }
-const statuses = [
-  { label: 'در انتظار تایید', value: 'PENDING' },
-  { label: 'تکمیل شده', value: 'COMPLETED' },
-  { label: 'لغو شده', value: 'CANCELLED' },
-  { label: 'ناموفق', value: 'FAILED' },
-];
+
 export default function OrderDetail({
+  statuses,
   title,
   type,
   toggleItems,
