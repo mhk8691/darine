@@ -4,11 +4,13 @@ interface Props {
   title: string;
   isLoading: boolean;
   handleSubmit?: () => Promise<void>;
+  type?:'submit' | 'button'
 }
 
-export default function SubmitButton({ title, handleSubmit, isLoading }: Props) {
+export default function SubmitButton({ title, handleSubmit, isLoading,type='button' }: Props) {
   return (
     <Button
+    type={type}
       variant="contained"
       color="primary"
       sx={{
@@ -22,6 +24,7 @@ export default function SubmitButton({ title, handleSubmit, isLoading }: Props) 
         '&.Mui-disabled': {
           bgcolor: '#393936',
         },
+        width:'100%'
       }}
        
       onClick={handleSubmit}

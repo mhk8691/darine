@@ -1,8 +1,9 @@
 'use client';
+
 import React, { ReactNode, useState } from 'react';
 import Field from '../Field';
-import { Stack } from '@mui/material';
 import PasswordField from '../PasswordField';
+import { Stack } from '@mui/material';
 import ActionButton from '../SubmitButton';
 import { useRouter } from 'next/navigation';
 import { loginPassword } from '@/lib/auth';
@@ -15,31 +16,64 @@ interface Props {
 
 export default function LoginPassForm({ children }: Props) {
   const router = useRouter();
+
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
-   const [isLoading,setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleLogin = async () => {
     try {
-      setIsLoading(true)
-     const response =  await loginPassword(phoneNumber, password);
+      setIsLoading(true);
+
+      const response = await loginPassword(phoneNumber, password);
+
+      showSnackbar(response?.data.message, true);
       router.push('/dashboard');
-      showSnackbar(response?.data.message,true);
     } catch (error: unknown) {
       if (isAxiosError(error)) {
         showSnackbar(error.response?.data.message);
       }
-    }finally{
-      setIsLoading(false)
+    } finally {
+      setIsLoading(false);
     }
   };
+
   return (
-    <>
-      <Field value={phoneNumber} setValue={setPhoneNumber} label="شماره موبایل" />
+    <form
+      autoComplete="on"
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleLogin();
+      }}
+    >
+      <Field
+        value={phoneNumber}
+        setValue={setPhoneNumber}
+        label="شماره موبایل"
+        inputProps={{
+          name:"phone_number",
+          autoComplete:"phone_number"
+        }}
+      />
+
       <Stack mt={0.5}>
-        <PasswordField password={password} setPassword={setPassword} />
+       <PasswordField
+  password={password}
+  setPassword={setPassword}
+  inputProps={{
+    name: 'password',
+    autoComplete: 'current-password',
+  }}
+/>
       </Stack>
+
       {children}
-      <ActionButton title={'ورود'} isLoading={isLoading} handleSubmit={handleLogin} />
-    </>
+
+      <ActionButton
+        title="ورود"
+        isLoading={isLoading}
+        type="submit"
+      />
+    </form>
   );
 }

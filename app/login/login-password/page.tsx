@@ -19,7 +19,7 @@ export default function page() {
       </Typography>
       <LoginPassForm>
         <Link href={'/login/forget'} style={{ marginTop: 24 }}>
-          <Typography variant="body2" sx={{ color: '#0091F8' }} fontSize={12} fontWeight={600}>
+          <Typography variant="body2" sx={{ color: '#0091F8',mt:2 }} fontSize={12} fontWeight={600}>
             فراموشی رمز عبور
           </Typography>
         </Link>

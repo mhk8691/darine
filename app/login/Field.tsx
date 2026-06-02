@@ -1,5 +1,5 @@
 'use client';
-import { SxProps, TextField } from '@mui/material';
+import { SxProps, TextField, TextFieldProps } from '@mui/material';
 import { Dispatch, SetStateAction } from 'react';
 interface Props {
   value: string;
@@ -7,11 +7,13 @@ interface Props {
   label?: string;
   placeholder?: string;
   style?: SxProps;
+  inputProps?: Partial<TextFieldProps>;
 }
 
-export default function Field({ value, setValue, label, placeholder, style }: Props) {
+export default function Field({ value, setValue, label, placeholder, style ,inputProps}: Props) {
   return (
     <TextField
+    {...inputProps}
       label={label}
       value={value}
       onChange={(e) => setValue(e.target.value)}
