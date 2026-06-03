@@ -1,10 +1,8 @@
-import ChartGold from '@/app/Components/Chart/ChartGold';
-import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import WalletHeader from '@/app/Components/Wallet/WalletHeader';
 import { Grid } from '@mui/material';
-import Trading from './Trading';
 import { Metadata } from 'next';
 import BackLink from '../BackLink';
+import LimitOrder from './LimitOrder';
 export const metadata: Metadata = {
   title: 'سفارش با قیمت | دارینه',
   description: '',
@@ -24,57 +22,7 @@ export default function page() {
       <Grid size={12}>
         <WalletHeader />
       </Grid>
-      <Grid
-        size={{
-          xs: 12,
-          md: 4.8,
-        }}
-      >
-        <Trading />
-      </Grid>
-      <Grid
-        size={{
-          xs: 12,
-          md: 7.2,
-        }}
-      >
-        <ChartGold
-          positionPrice="bottom"
-          priceStyle={{
-            mt: {
-              xs: 2,
-              md: 5,
-            },
-            mb: {
-              xs: 0,
-              md: 2.5,
-            },
-          }}
-          cardStyle={{
-            pt: {
-              xs: 2,
-              md: 5.5,
-            },
-          }}
-          dividerStyle={{
-            mt: {
-              xs: 0,
-              md: 1,
-            },
-          }}
-        />
-      </Grid>
-      <Grid size={12}>
-        {/* <OrderDetail
-          title="لیست معاملات اخیر"
-          toggleItems={[]}
-          type="chip"
-          emptyMessage="سفارشی برای شما به ثبت نرسیده است"
-          tableBody={<></>}
-          tableHead={[]}
-          listLength={0}
-        /> */}
-      </Grid>
+      <LimitOrder/>
     </Grid>
   );
 }

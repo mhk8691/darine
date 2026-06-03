@@ -24,7 +24,7 @@ interface Props {
   setDateRange:Dispatch<SetStateAction<DatePickerValue|null>>
   status:string
   dateRange:DatePickerValue|null
-  statuses:SelectItem[]
+  statuses?:SelectItem[]
 }
 
 export default function OrderDetail({

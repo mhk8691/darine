@@ -171,7 +171,7 @@ export interface ChartGoldDataType {
 export interface RecentTransactionDataType{
     "id": number,
       "amount": number,
-      "type_display":stringw,
+      "type_display":string,
       "method_display": string,
       "status":  StatusType,
       "tracking_code": string,
@@ -225,4 +225,15 @@ export interface AddressesDataType {
       "postal_code": string,
       "plaque": string,
       "unit": string
+}
+
+export interface LimitOrderDataType {
+              "id": number,
+            "order_type": "SELL"|'BUY',
+            "target_price": number,
+            "amount_toman": number,
+            "gold_weight": number,
+            "estimated_weight": number,
+            "status": StatusType,
+            "created_at": string
 }

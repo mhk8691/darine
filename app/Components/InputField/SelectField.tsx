@@ -22,7 +22,7 @@ export interface SelectItem {
 }
 
 interface Props {
-  itemsList: SelectItem[];
+  itemsList?: SelectItem[];
   label: string;
   isOrederDetail: boolean;
   style?: SxProps;
@@ -62,7 +62,7 @@ export default function SelectField({
     setOpen(false);
   };
 
-  const selectedItem = itemsList.find((item) => item.value === value);
+  const selectedItem = itemsList?.find((item) => item.value === value);
   const hasValue = Boolean(value);
 
   return (
@@ -144,7 +144,7 @@ export default function SelectField({
           );
         }}
       >
-        {itemsList.map((item) => (
+        {itemsList?.map((item) => (
           <MenuItem
             key={item.value}
             value={item.value}
