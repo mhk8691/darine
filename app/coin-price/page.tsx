@@ -1,211 +1,23 @@
+'use client'
 import { Metadata } from 'next';
 import TableContainer from '../Components/Tables/ProductTable/GoldContainer';
-import { FaqItem, TableGoldDataType } from '../core/Types';
-export const metadata: Metadata = {
-  title: 'قیمت سکه امروز  | دارینه',
-  description: '',
-};
-const data: { title: string; order: number; data: TableGoldDataType[] }[] = [
+import { FaqItem, PricesDataType } from '../core/Types';
+import { useEffect } from 'react';
+import { getCoinsPrices } from '@/lib/prices/coinsPrices';
+// export const metadata: Metadata = {
+//   title: 'قیمت سکه امروز  | دارینه',
+//   description: '',
+// };
+const data: { title: string; order: number; data: PricesDataType[] }[] = [
     {
     title: 'سکه',
     order: 1,
-    data: [
-      {
-        typeGold: 'سکه امامی',
-        currentRate: 186510000,
-        minPriceDay: 186480000,
-        maxPriceDay: 186510000,
-        dayChange: 0.847,
-        monthChange: 7.9,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: 'سکه تمام بهار آزادی',
-        currentRate: 179020000,
-        minPriceDay: 178980000,
-        maxPriceDay: 179020000,
-        dayChange: 0.016,
-        monthChange: 9.315,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: 'نیم سکه',
-        currentRate: 103900000,
-        minPriceDay: 98900000,
-        maxPriceDay: 103900000,
-        dayChange: 5.055,
-        monthChange: 0.45,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: 'ربع سکه',
-        currentRate: 59800000,
-        minPriceDay: 56300000,
-        maxPriceDay: 59800000,
-        dayChange: 6.216,
-        monthChange: 3.981,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: 'سکه گرمی',
-        currentRate: 29200000,
-        minPriceDay: 27200000,
-        maxPriceDay: 29200000,
-        dayChange: 7.352,
-        monthChange: 0,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: 'سکه پارسیان ۱ گرمی',
-        currentRate: 21295200,
-        minPriceDay: 21224400,
-        maxPriceDay: 21525600,
-        dayChange: 0.987,
-        monthChange: 3.783,
-        weeklyChart: 2,
-      },
-    ],
+    data: [],
   },
   {
     title: 'سکه پارسیان',
     order: 2,
-    data: [
-      {
-        typeGold: 'سکه پارسیان 100 سوتی',
-        currentRate: 2134200,
-        minPriceDay: 2122440,
-        maxPriceDay: 2160000,
-        dayChange: 0.875,
-        monthChange: 3.587,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: 'سکه پارسیان 200 سوتی',
-        currentRate: 4268400,
-        minPriceDay: 4244880,
-        maxPriceDay: 4320000,
-        dayChange: 0.875,
-        monthChange: 3.587,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: 'سکه پارسیان 300 سوتی',
-        currentRate: 6402600,
-        minPriceDay: 6367320,
-        maxPriceDay: 6480000,
-        dayChange: 0.875,
-        monthChange: 3.587,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: 'سکه پارسیان 400 سوتی',
-        currentRate: 8536800,
-        minPriceDay: 8489760,
-        maxPriceDay: 8640000,
-        dayChange: 0.875,
-        monthChange: 3.587,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: 'سکه پارسیان 500 سوتی',
-        currentRate: 10671000,
-        minPriceDay: 10612200,
-        maxPriceDay: 10800000,
-        dayChange: 0.875,
-        monthChange: 3.587,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: 'سکه پارسیان 600 سوتی',
-        currentRate: 12805200,
-        minPriceDay: 12734640,
-        maxPriceDay: 12960000,
-        dayChange: 0.875,
-        monthChange: 3.587,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: 'سکه پارسیان 700 سوتی',
-        currentRate: 14939400,
-        minPriceDay: 14857080,
-        maxPriceDay: 15120000,
-        dayChange: 0.875,
-        monthChange: 3.587,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: 'سکه پارسیان 800 سوتی',
-        currentRate: 17073600,
-        minPriceDay: 16979520,
-        maxPriceDay: 17280000,
-        dayChange: 0.875,
-        monthChange: 3.587,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: 'سکه پارسیان 900 سوتی',
-        currentRate: 19207800,
-        minPriceDay: 19101960,
-        maxPriceDay: 19440000,
-        dayChange: 0.875,
-        monthChange: 3.587,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: 'سکه پارسیان 1 گرمی',
-        currentRate: 21342000,
-        minPriceDay: 21224400,
-        maxPriceDay: 21600000,
-        dayChange: 0.875,
-        monthChange: 3.587,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: 'سکه پارسیان 1.100 گرمی',
-        currentRate: 23476200,
-        minPriceDay: 23346840,
-        maxPriceDay: 23760000,
-        dayChange: 0.875,
-        monthChange: 3.587,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: 'سکه پارسیان 1.200 گرمی',
-        currentRate: 25610400,
-        minPriceDay: 25469280,
-        maxPriceDay: 25920000,
-        dayChange: 0.875,
-        monthChange: 3.587,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: 'سکه پارسیان 1.300 گرمی',
-        currentRate: 27744600,
-        minPriceDay: 27591720,
-        maxPriceDay: 28080000,
-        dayChange: 0.875,
-        monthChange: 3.587,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: 'سکه پارسیان 1.400 گرمی',
-        currentRate: 29878800,
-        minPriceDay: 29714160,
-        maxPriceDay: 30240000,
-        dayChange: 0.875,
-        monthChange: 3.587,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: 'سکه پارسیان 1.500 گرمی',
-        currentRate: 32013000,
-        minPriceDay: 31836600,
-        maxPriceDay: 32400000,
-        dayChange: 0.875,
-        monthChange: 3.587,
-        weeklyChart: 2,
-      },
-    ],
+    data: [],
   },
 
 ];
@@ -254,5 +66,12 @@ const faqData: FaqItem[] = [
   },
 ];
 export default function page() {
+    useEffect(()=>{
+      const getData = async ()=>{
+        const response = await getCoinsPrices()
+        data[0].data.push(...response)
+      }
+      getData()
+    },[])
   return <TableContainer title="سکه" data={data} faqData={faqData} />;
 }

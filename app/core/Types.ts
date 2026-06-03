@@ -17,15 +17,7 @@ export interface FaqItem {
   question: string;
   answer: string;
 }
-export interface TableGoldDataType {
-  typeGold?: string;
-  currentRate: number;
-  minPriceDay: number;
-  maxPriceDay: number;
-  dayChange: number;
-  monthChange: number;
-  weeklyChart: number;
-}
+
 
 export interface NotifItemsType {
   title: string;
@@ -236,4 +228,13 @@ export interface LimitOrderDataType {
             "estimated_weight": number,
             "status": StatusType,
             "created_at": string
+}
+
+export interface PricesDataType {
+  "typeGold": string,
+        "currentRate": number,
+        "minPriceDay": number,
+        "maxPriceDay": number,
+        "dayChange": number,
+        "monthChange": number,
 }

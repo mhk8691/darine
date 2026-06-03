@@ -1,83 +1,21 @@
-import { Metadata } from 'next';
+'use client'
 import TableContainer from '../Components/Tables/ProductTable/GoldContainer';
-import { FaqItem, TableGoldDataType } from '../core/Types';
-export const metadata: Metadata = {
-  title: 'قیمت طلا امروز آنلاین و لحظه ای | دارینه',
-  description: '',
-};
-export const data: {
+import { FaqItem, PricesDataType } from '../core/Types';
+import { useEffect } from 'react';
+import { getGoldsPrices } from '@/lib/prices/goldsPrice';
+// export const metadata: Metadata = {
+//   title: 'قیمت طلا امروز آنلاین و لحظه ای | دارینه',
+//   description: '',
+// };
+export const goldData: {
   title: string;
   order: number;
-  data: TableGoldDataType[];
+  data: PricesDataType[];
 }[] = [
   {
     title: 'طلا',
     order: 1,
-    data: [
-      {
-        typeGold: 'طلای ۱۸ عیار(گرم)',
-        currentRate: 17785000,
-        minPriceDay: 17687000,
-        maxPriceDay: 18000000,
-        dayChange: 0.875,
-        monthChange: 3.587,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: 'طلای ۲۱ عیار(گرم)',
-        currentRate: 20703666,
-        minPriceDay: 20634833,
-        maxPriceDay: 20927666,
-        dayChange: 0.987,
-        monthChange: 3.783,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: ' طلای ۲۴ عیار(گرم)',
-        currentRate: 23543026,
-        minPriceDay: 23464753,
-        maxPriceDay: 23797746,
-        dayChange: 0.987,
-        monthChange: 3.783,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: '۱ مثقال طلا ',
-        currentRate: 76872122,
-        minPriceDay: 76616546,
-        maxPriceDay: 77703828,
-        dayChange: 0.987,
-        monthChange: 3.783,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: 'انس جهانی طلا ',
-        currentRate: 4785,
-        minPriceDay: 4714,
-        maxPriceDay: 4787,
-        dayChange: 1.506,
-        monthChange: 9.342,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: 'آبشده نقدی',
-        currentRate: 76872122,
-        minPriceDay: 76616546,
-        maxPriceDay: 77703828,
-        dayChange: 0.987,
-        monthChange: 3.783,
-        weeklyChart: 2,
-      },
-      {
-        typeGold: ' طلای دست دوم',
-        currentRate: 17509445,
-        minPriceDay: 17451232,
-        maxPriceDay: 17698886,
-        dayChange: 0.987,
-        monthChange: 3.783,
-        weeklyChart: 2,
-      },
-    ],
+    data: [],
   },
  
 ];
@@ -126,5 +64,12 @@ const faqData: FaqItem[] = [
   },
 ];
 export default function page() {
-  return <TableContainer title="طلا" data={data} faqData={faqData} />;
+  useEffect(()=>{
+    const getData = async ()=>{
+      const response = await getGoldsPrices()
+      goldData[0].data.push(...response)
+    }
+    getData()
+  },[])
+  return <TableContainer title="طلا" data={goldData} faqData={faqData} />;
 }
