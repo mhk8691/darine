@@ -12,6 +12,7 @@ import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { RecentTransactionDataType, ToggleItemsType } from '@/app/core/Types';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 import { statuses } from '../reports/DepositTable';
+import { getReports } from '@/lib/getReports/getReports';
 
 export const TransactionItems: ToggleItemsType[] = [
   {
@@ -20,25 +21,15 @@ export const TransactionItems: ToggleItemsType[] = [
     id: 1,
     emptyMessage: 'واریزی برای شما به ثبت نرسیده است',
   },
-  {
-    title: 'واریز مستقیم',
-    value: 'directDeposit',
-    id: 2,
-    emptyMessage: 'واریز باشناسه ای برای شما به ثبت نرسیده است',
-  },
+  
  
   {
     title: 'برداشت',
     value: 'withdraw',
-    id: 3,
+    id: 2,
     emptyMessage: 'برداشتی برای شما به ثبت نرسیده است',
   },
-  {
-    title: 'برداشت به نقره سی',
-    value: 'silverWithdraw',
-    id: 4,
-    emptyMessage: 'برداشتی برای شما به ثبت نرسیده است',
-  },
+
 ];
 
 export default function TransactionContainer() {
@@ -47,19 +38,21 @@ export default function TransactionContainer() {
   const [value, setValue] = useState(0);
     const [transactionParams,setTransactionParams] = useState('deposit')
     const [transactionData,setTransactionData] = useState<RecentTransactionDataType[]>([])
-    useEffect(()=>{
-      const getData = async ()=>{
-        try{
-          const response = await getRecentTransaction(transactionParams,status,dateRange)
-          setTransactionData(response)
-        }catch(error:unknown){
-          if (isAxiosError(error)){
-            showSnackbar(error.response?.data.message)
-          }
-        }
+  useEffect(() => {
+    const getData = async () => {
+      try{
+  const response = await getReports(transactionParams,undefined,dateRange,status);
+      setTransactionData(response || []);
       }
-      getData()
-    },[transactionParams,status,dateRange])
+    
+      catch (error: unknown) {
+    if (isAxiosError(error)) {
+      showSnackbar(error.response?.data.message);
+    }
+  }
+    };
+    getData();
+  }, [transactionParams,status,dateRange]);
   return (
     <>
       <Grid
