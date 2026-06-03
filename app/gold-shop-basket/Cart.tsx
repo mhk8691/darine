@@ -2,24 +2,24 @@
 import { Close } from '@mui/icons-material';
 import { Button, IconButton, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import CustomModal from '../Components/CustomModal/CustomModal';
 import Delivery from './Delivery';
 import DesktopCart from './DesktopCart';
 import MobileCart from './MobileCart';
 import OrderConfirmation from './OrderConfirmation';
-import { isAxiosError } from 'axios';
-import { showSnackbar } from '../Components/Snackbar/Snackbar';
 import { getCart } from '@/lib/cart/cart';
 import { CartItem } from '../core/Types';
 import Image from 'next/image';
 
 export default function Cart() {
+    const [deliveryType, setDeliveryType] = useState('HOME');
   const [step, setStep] = useState(0);
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const theme = useTheme();
   const [cartData,setCartData] = useState<CartItem[]>(getCart())
+    const [addressId, setAddressId] = useState(0);
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'), {
     noSsr: true,
   });
@@ -71,7 +71,8 @@ export default function Cart() {
                   </Stack>}
         </>
       )}
-      {step === 1 && <Delivery />}
+      {step === 1 && <Delivery addressId={addressId} setAddressId={setAddressId} deliveryType={deliveryType}
+setDeliveryType={setDeliveryType} />}
      {
       cartData.length > 0 &&  <Stack
         width={{
@@ -151,7 +152,8 @@ export default function Cart() {
           </IconButton>
         </Stack>
         <Stack  mt={1} pr={1} pb={4}>
-          <OrderConfirmation setOpen={setOpen} />
+          <OrderConfirmation setOpen={setOpen} deliveryType={deliveryType} addressId={addressId}
+ />
         </Stack>
       </CustomModal>
     </>

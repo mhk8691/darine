@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import ChooseAddress from '../Components/ChooseAddress/ChooseAddress';
 import { Typography } from '@mui/material';
 import { AddressesDataType } from '../core/Types';
 
-export default function HouseDelivery() {
+
+interface Props{
+addressId:number
+setAddressId:Dispatch<SetStateAction<number>>
+}
+export default function HouseDelivery({addressId,setAddressId}:Props) {
   const [open, setOpen] = useState(false);
 
     const [addresses,setAddresses] = React.useState<AddressesDataType[]>([])
-    const [addressId, setAddressId] = React.useState(0);
+  
   return (
     <>
       <Typography

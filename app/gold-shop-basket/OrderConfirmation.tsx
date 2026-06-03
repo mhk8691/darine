@@ -15,6 +15,11 @@ import {
 import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
 import priceFormater from '../core/PriceFormater';
 import { useAssets } from '../AssetsProvider';
+import { isAxiosError } from 'axios';
+import { showSnackbar } from '../Components/Snackbar/Snackbar';
+import { checkout } from '@/lib/checkout/checkout';
+import { CheckoutDataType } from '../core/Types';
+import { useRouter } from 'next/navigation';
 
 const rowStyle: SxProps = {
   display: 'flex',
@@ -31,12 +36,14 @@ const titleStyle: SxProps = {
 
 interface Props {
   setOpen: Dispatch<SetStateAction<boolean>>;
+  deliveryType:string
+  addressId:number
 }
 
-export default function OrderConfirmation({ setOpen }: Props) {
+export default function OrderConfirmation({ setOpen,deliveryType,addressId }: Props) {
   const [checked, setChecked] = useState(false);
-  const [active, setActive] = useState('one-time');
-
+  const [active, setActive] = useState('TOMAN');
+  const router = useRouter()
   const { assets } = useAssets();
 
   const handleChangeRadio = (event: ChangeEvent<HTMLInputElement>) => {
@@ -62,7 +69,28 @@ export default function OrderConfirmation({ setOpen }: Props) {
   const diff = balance - totalPrice;
 
   const isEnough = diff >= 0;
-
+  const handleClick = async ()=>{
+    const newData:CheckoutDataType = {
+      products:getCart().map((item)=>{
+        return {
+          product_id:item.id,
+          quantity:item.quantity
+        }
+      }),
+      payment_method:active,
+      delivery_type:deliveryType,
+      address_id:addressId
+    }
+    try{
+      const response = await checkout(newData)
+      showSnackbar(response.data.message,true)
+      router.push('/dashboard/gold-recieve')
+    }catch (error:unknown){
+      if (isAxiosError(error)){
+        showSnackbar(error.response?.data.message)
+      }
+    }
+  }
   return (
     <Stack direction="column">
       <Stack sx={rowStyle}>
@@ -127,13 +155,13 @@ export default function OrderConfirmation({ setOpen }: Props) {
           sx={{ flexDirection: 'row', justifyContent: 'space-between' }}
         >
           <FormControlLabel
-            value="one-time"
+            value="TOMAN"
             control={<Radio disableTouchRipple />}
             label="پرداخت نقدی"
             sx={{ '& .MuiTypography-root': { fontSize: 18 } }}
           />
           <FormControlLabel
-            value="every-time"
+            value="GOLD"
             control={<Radio disableTouchRipple />}
             label="پرداخت اعتباری"
             sx={{ '& .MuiTypography-root': { fontSize: 18 } }}
@@ -169,6 +197,7 @@ export default function OrderConfirmation({ setOpen }: Props) {
             width: '70%',
             '&:hover': { bgcolor: 'primary.main' },
           }}
+          onClick={handleClick}
         >
           تایید سفارش
         </Button>

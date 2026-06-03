@@ -1,18 +1,23 @@
 import { InfoOutlineRounded } from '@mui/icons-material';
 import { Grid, Stack, Typography } from '@mui/material';
-import { useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import FilterToggleButton from '../Components/FilterToggleButton/FilterToggleButton';
 import { ToggleItemsType } from '../core/Types';
 import DirectDelivery from './DirectDelivery';
 import HouseDelivery from './HouseDelivery';
 
 const toggleItems: ToggleItemsType[] = [
-  { title: 'تحویل درب منزل', value: 'delivery', id: 1 },
+  { title: 'تحویل درب منزل', value: 'HOME', id: 1 },
   { title: 'تحویل حضوری', value: 'directDelivery', id: 2 },
 ];
+interface Props{
+  deliveryType:string
+setDeliveryType:Dispatch<SetStateAction<string>>
+addressId:number
+setAddressId:Dispatch<SetStateAction<number>>
+}
+export default function Delivery({deliveryType,setDeliveryType,addressId,setAddressId}:Props) {
 
-export default function Delivery() {
-  const [select, setSelect] = useState('delivery');
 
   return (
     <Grid container spacing={3}>
@@ -26,12 +31,12 @@ export default function Delivery() {
           نحوه تحویل
         </Typography> */}
         <FilterToggleButton
-          active={select}
-          setActive={setSelect}
+          active={deliveryType}
+          setActive={setDeliveryType}
           items={toggleItems}
           style={{ py: 1.5 }}
         />
-        {select === 'delivery' ? <HouseDelivery /> : <DirectDelivery />}
+        {deliveryType === 'HOME' ? <HouseDelivery  addressId={addressId} setAddressId={setAddressId} /> : <DirectDelivery />}
       </Grid>
       <Grid
         size={{
@@ -67,7 +72,7 @@ export default function Delivery() {
             }}
             sx={{ color: 'text.secondary', fontWeight: '600', mt: '10px' }}
           >
-            {select === 'delivery' ? 'تحویل امن طلا به سرتاسر ایران' : 'تحویل حضوری طلای شما'}
+            {deliveryType === 'HOME' ? 'تحویل امن طلا به سرتاسر ایران' : 'تحویل حضوری طلای شما'}
           </Typography>
           <Typography
             variant="body1"
@@ -77,11 +82,11 @@ export default function Delivery() {
             }}
             sx={{ color: 'text.secondary', mt: 1 }}
           >
-            {select === 'delivery'
+            {deliveryType === 'HOME'
               ? 'دارینه طلای شما را از ۳۰ سوت، به هر نقطه از کشور که بخواهید ارسال می‌کند. تمامی مرسولات ارسالی بیمه می‌شوند؛ در صورت بروز هرگونه خسارت، جبران آن با دارینه است.'
               : 'برای تحویل حضوری، لطفاً کارت شناسایی خود را همراه داشته باشید. مراجعه تنها در ساعت و آدرس تعیین‌شده امکان‌پذیر است.'}
           </Typography>
-          {/* {select === "delivery" && (
+          {/* {deliveryType === "delivery" && (
             <Typography
               variant="body1"
               fontSize={16}

@@ -242,3 +242,12 @@ export interface CategoriesDataType {
             "name": string,
             "slug": string
 }
+export interface CheckoutDataType {
+  products:{
+    product_id:number
+    quantity:number
+  }[],
+    "payment_method": string,
+  "delivery_type": string,
+  "address_id": number
+}
