@@ -27,6 +27,6 @@ export const getAddresses = async () => {
     return response.data.data;
 };
 export const addAddresses = async (newAddress:AddressesDataType) => {
-    const response = await api.post<ApiResponse<AddressesDataType>>('/gold/Adress/',newAddress);
+    const response = await api.post<ApiResponse<AddressesDataType>>('/gold/address/',newAddress);
     return response.data;
 };

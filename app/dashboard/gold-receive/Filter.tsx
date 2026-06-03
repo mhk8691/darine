@@ -14,8 +14,8 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   },
 }));
 const toggleItems:ToggleItemsType[] =[
-  {id:1,title:'18 عیار',value:'18'},
-  {id:2,title:'24 عیار',value:'24'},
+  {id:1,title:'طلا',value:'gold'},
+  {id:2,title:'سکه',value:'coin'},
   {id:3,title:'پارسیان',value:'parsian'},
 
 ] 
