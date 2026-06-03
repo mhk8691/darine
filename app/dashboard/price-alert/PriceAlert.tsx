@@ -37,6 +37,7 @@ export default function PriceAlert({
    showSnackbar(res?.message,true);
     const response = await getPriceAlerts(filter,date);
     setValue('')
+    setActive('ABOVE')
     setPriceAlert([])
     setPriceAlert(response && response?.length > 0 ? response : []);
   }

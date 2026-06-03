@@ -5,15 +5,12 @@ import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 
 export const getPriceAlerts = async (
-  filter?: string,
+  status?: string,
   date?: DatePickerValue,
-  alert_type?:string
 ) => {
   try {
     const query = new URLSearchParams();
-    if (alert_type) {
-      query.append('alert_type', String(alert_type));
-    }
+   
     if (date?.from) {
       query.append('start_date', String(date.from));
     }
@@ -22,12 +19,12 @@ export const getPriceAlerts = async (
       query.append('end_date', String(date.to));
     }
 
-    if (filter) {
-      query.append('is_active', filter);
+    if (status) {
+      query.append('status', status);
     }
 
     const res = await api.get<ApiResponse<PriceAlertsDataType[]>>(
-      `/gold/price-alerts/?${query.toString()}`
+      `/gold/price-alert/?${query.toString()}`
     );
 
     return res.data.data;
@@ -49,7 +46,7 @@ export const removePriceAlert = async (id: number) => {
 export const addPriceAlert = async (targetPrice: string, alertType: string) => {
     const res = await api.post<{
       message:string
-    }>('/gold/price-alerts/', {
+    }>('/gold/price-alert/', {
       target_price: targetPrice,
       alert_type: alertType,
     });
