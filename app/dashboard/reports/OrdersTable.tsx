@@ -4,7 +4,7 @@ import priceFormater from '@/app/core/PriceFormater';
 import { OrdersDataType, ToggleItemsType } from '@/app/core/Types';
 import { Stack, TableBody, TableCell, TableRow, Typography } from '@mui/material';
 import React from 'react';
-import { statuses } from '../gift-cards/GiftCardOrder';
+import { statuses } from './DepositTable';
 
 const receiveItems: ToggleItemsType[] = [
   {

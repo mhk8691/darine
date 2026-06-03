@@ -3,8 +3,12 @@ import { RecentTransactionDataType, ToggleItemsType } from '@/app/core/Types';
 import React, { Dispatch, SetStateAction } from 'react';
 import TransactionTable from '../irt-transaction/TransactionTable';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
-import { statuses } from '../gift-cards/GiftCardOrder';
-
+export const statuses = [
+  { label: 'در انتظار تایید', value: 'PENDING' },
+  { label: 'تکمیل شده', value: 'COMPLETED' },
+  { label: 'لغو شده', value: 'CANCELLED' },
+  { label: 'ناموفق', value: 'FAILED' },
+];
 const depositItems: ToggleItemsType[] = [
   {
     title: 'درگاه پرداخت',

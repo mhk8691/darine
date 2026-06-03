@@ -3,7 +3,7 @@ import { RecentTransactionDataType, ToggleItemsType } from '@/app/core/Types';
 import React, { Dispatch, SetStateAction } from 'react';
 import TransactionTable from '../irt-transaction/TransactionTable';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
-import { statuses } from '../gift-cards/GiftCardOrder';
+import { statuses } from './DepositTable';
 
 const withdrawItems: ToggleItemsType[] = [
   {

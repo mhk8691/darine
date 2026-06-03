@@ -1,5 +1,5 @@
 'use client'
-import { Grid, Typography } from '@mui/material';
+import { Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { Metadata } from 'next';
 import BackLink from '../BackLink';
 import DesktopImage from './DesktopImage';
@@ -11,21 +11,34 @@ import { GiftCardListType } from '@/app/core/Types';
 import { getGiftCardList } from '@/lib/giftCard/giftCard';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
-import { getGiftCardData } from '../gift-cards/page';
+import { getGiftCardData, giftCardStatus } from '../gift-cards/page';
+import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
+import GiftCardTable from '../gift-cards/GiftCardTable';
+import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 // export const metadata: Metadata = {
 //   title: 'دریافت کارت هدیه | دارینه',
 //   description: '',
 // };
 export default function page() {
-  const [giftCardData,setGiftCardData] = useState<GiftCardListType[]>([])
-
-      useEffect(() => {
-        const getData = async ()=>{
-          const response = await getGiftCardData()
-  setGiftCardData(response || []) 
+const [giftCardList, setGetGiftCardList] = useState<GiftCardListType[]>([] as GiftCardListType[]);
+    const [status,setStatus] = useState('')
+    const [dateRange,setDateRange] =useState<DatePickerValue| null>(null)
+   const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
+    useEffect(() => {
+      const getData = async () => {
+        try{
+          const response = await getGiftCardList(status,dateRange);
+          setGetGiftCardList(response)
+        }catch(error:unknown){
+          if (isAxiosError(error)){
+            showSnackbar(error.response?.data.message)
+          }
         }
-        getData()
-      }, []);
+      };
+      getData()
+    }, [status,dateRange]);
+
   return (
     <Grid
       container
@@ -122,13 +135,28 @@ export default function page() {
           >
             لطفا شماره سریال کارت هدیه را وارد کنید.
           </Typography>
-          <Form setGiftCardData={setGiftCardData} />
+          <Form setGiftCardData={setGetGiftCardList} />
         </Grid>
         <DesktopImage />
       </Grid>
-      <Grid size={12}>
-        <GiftCardOrder giftCardData={giftCardData}  getData={getGiftCardData}/>
-      </Grid>
+           <Grid size={12}>
+         <OrderDetail
+         statuses={giftCardStatus}
+           listLength={giftCardList?.length}
+           title={isDesktop ? 'لیست کارت‌های هدیه شما' : ''}
+           toggleItems={[]}
+           type="chip"
+           emptyMessage="کارت هدیه‌ای توسط شما خریداری نشده است."
+           tableHead={['شماره سریال', 'وزن', 'وضعیت', 'تاریخ']}
+           dateRange={dateRange}
+           setDateRange={setDateRange}
+           setStatus={setStatus}
+   status={status}
+           tableBody={
+            <GiftCardTable giftCardsList={giftCardList}/>
+           }
+         />
+       </Grid>
     </Grid>
   );
 }

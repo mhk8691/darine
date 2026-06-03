@@ -11,7 +11,7 @@ import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { RecentTransactionDataType, ToggleItemsType } from '@/app/core/Types';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
-import { statuses } from '../gift-cards/GiftCardOrder';
+import { statuses } from '../reports/DepositTable';
 
 export const TransactionItems: ToggleItemsType[] = [
   {

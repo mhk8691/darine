@@ -1,43 +1,66 @@
 'use client'
-import { Grid } from '@mui/material';
+import { Grid, useMediaQuery, useTheme } from '@mui/material';
 import { Metadata } from 'next';
 import BackLink from '../BackLink';
-import GiftCardOrder from './GiftCardOrder';
 import { useEffect, useState } from 'react';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { getGiftCardList } from '@/lib/giftCard/giftCard';
 import { GiftCardListType } from '@/app/core/Types';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
+import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
+import GiftCardTable from './GiftCardTable';
 // export const metadata: Metadata = {
 //   title: 'لیست کارت هدیه | دارینه',
 //   description: '',
 // };
-export const getGiftCardData = async (status?:string,date?:DatePickerValue) => {
+
+export const giftCardStatus = [
+  { label: 'فعال', value: 'ACTIVE' },
+  { label: 'غیرفعال', value: 'INACTIVE' },
+ 
+];
+
+export default function page() {
+    const [giftCardList, setGetGiftCardList] = useState<GiftCardListType[]>([] as GiftCardListType[]);
+    const [status,setStatus] = useState('')
+    const [dateRange,setDateRange] =useState<DatePickerValue| null>(null)
+   const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
+    useEffect(() => {
+      const getData = async () => {
         try{
-          const response = await getGiftCardList(status,date);
-          return response
+          const response = await getGiftCardList(status,dateRange);
+          setGetGiftCardList(response)
         }catch(error:unknown){
           if (isAxiosError(error)){
             showSnackbar(error.response?.data.message)
           }
         }
       };
-export default function page() {
-    const [giftCardList, setGetGiftCardList] = useState<GiftCardListType[]>([] as GiftCardListType[]);
-  
- 
-    useEffect(() => {
-      const getData = async ()=>{
-        const response = await getGiftCardData()
-setGetGiftCardList(response || []) 
-      }
       getData()
-    }, []);
+    }, [status,dateRange]);
   return (
     <Grid container>
       <BackLink title="لیست کارت های هدیه شما" />
-      <GiftCardOrder giftCardData={giftCardList} getData={getGiftCardData} />
+        <Grid size={12}>
+      <OrderDetail
+      statuses={giftCardStatus}
+        listLength={giftCardList?.length}
+        title={isDesktop ? 'لیست کارت‌های هدیه شما' : ''}
+        toggleItems={[]}
+        type="chip"
+        emptyMessage="کارت هدیه‌ای توسط شما خریداری نشده است."
+        tableHead={['شماره سریال', 'وزن', 'وضعیت', 'تاریخ']}
+        dateRange={dateRange}
+        setDateRange={setDateRange}
+        setStatus={setStatus}
+status={status}
+        tableBody={
+         <GiftCardTable giftCardsList={giftCardList}/>
+        }
+      />
+    </Grid>
     </Grid>
   );
 }

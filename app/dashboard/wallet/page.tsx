@@ -15,7 +15,7 @@ import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import TransactionTable from '../irt-transaction/TransactionTable';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 import { TransactionItems } from '../irt-transaction/TransactionContainer';
-import { statuses } from '../gift-cards/GiftCardOrder';
+import { statuses } from '../reports/DepositTable';
 // export const metadata: Metadata = {
 //   title: 'کیف پول | دارینه',
 //   description: '',
