@@ -8,13 +8,13 @@ import { statuses } from '../gift-cards/GiftCardOrder';
 const withdrawItems: ToggleItemsType[] = [
   {
     title: 'برداشت به حساب بانکی',
-    value: 'bankAccount',
+    value: 'BANK',
     id: 1,
     emptyMessage: 'برداشتی برای شما به ثبت نرسیده است',
   },
   {
     title: 'برداشت به نقره سی',
-    value: 'silver',
+    value: 'SILVER',
     id: 2,
     emptyMessage: 'برداشتی برای شما به ثبت نرسیده است',
   },

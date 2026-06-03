@@ -52,7 +52,7 @@ export default function TransactionTable({data}:{data:RecentTransactionDataType[
                         gap={0.5}
                         justifyContent={'center'}
                       >
-                        <Typography variant="body1">{row.type === 'DEPOSIT' ? 'واریز':'برداشت'}</Typography>
+                        <Typography variant="body1">{row.type_display}</Typography>
                       
                       </Stack>
                     </TableCell>
@@ -73,7 +73,7 @@ export default function TransactionTable({data}:{data:RecentTransactionDataType[
                           variant="body1"
                         
                         >
-                            {row.method}
+                            {row.method_display}
                         </Typography>
                       </Stack>
                     </TableCell>

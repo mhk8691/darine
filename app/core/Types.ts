@@ -171,8 +171,8 @@ export interface ChartGoldDataType {
 export interface RecentTransactionDataType{
     "id": number,
       "amount": number,
-      "type":'DEPOSIT'|'WITHDRAW',
-      "method": string,
+      "type_display":stringw,
+      "method_display": string,
       "status":  StatusType,
       "tracking_code": string,
       "created_at": string,
@@ -217,7 +217,7 @@ total_gold:	number,
 count	:number,
 }
 export interface AddressesDataType {
-    "id"?: number,
+    "address_id"?: number,
       "type"?: string,
       "province": string,
       "city":string,

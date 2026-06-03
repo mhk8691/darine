@@ -21,9 +21,9 @@ const tabUrl = ['gold', 'deposit', 'withdraw'];
 export default function ReportsContainer() {
     const [filter,setFilter] = useState('')
     const [dateRange,setDateRange] =useState<DatePickerValue| null>(null)
-  const [tradeParams,setTradeParams] = useState('buy')
-    const [depositParams,setDepositParams] = useState('paymentGateway')
-    const [withdrawParams,setWithdrawParams] = useState('bankAccount')
+  const [tradeParams,setTradeParams] = useState('BUY')
+    const [depositParams,setDepositParams] = useState('ONLINE')
+    const [withdrawParams,setWithdrawParams] = useState('BANK')
       const [value, setValue] = useState(0);
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -42,7 +42,19 @@ export default function ReportsContainer() {
     getData();
   }, [value,tradeParams,depositParams,withdrawParams,filter,dateRange]);
   useEffect(()=>{
-    // setFilter('')
+    if (tabUrl[value] === 'gold'){
+      setDepositParams('ONLINE')
+setWithdrawParams('BANK')
+    }
+    else if (tabUrl[value] === 'deposit'){
+      setTradeParams('BUY')
+      setWithdrawParams('BANK')
+    }
+    else{
+      setTradeParams('BUY')
+      setDepositParams('ONLINE')
+    }
+    setFilter('')
     setDateRange(null)
   },[value,setValue])
   const children: ReactNode[] = [

@@ -11,13 +11,13 @@ import { statuses } from '../gift-cards/GiftCardOrder';
 const trades: ToggleItemsType[] = [
   {
     title: 'خرید',
-    value: 'buy',
+    value: 'BUY',
     id: 1,
     emptyMessage: 'معامله ای برای شما به ثبت نرسیده است',
   },
   {
     title: 'فروش',
-    value: 'sell',
+    value: 'SELL',
     id: 2,
     emptyMessage: 'معامله ای برای شما به ثبت نرسیده است',
   },
