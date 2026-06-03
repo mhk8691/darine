@@ -1,11 +1,11 @@
 import priceFormater from '@/app/core/PriceFormater';
-import { TableGoldDataType } from '@/app/core/Types';
+import { PricesDataType } from '@/app/core/Types';
 import { Box, Divider, Grid, Stack, Typography } from '@mui/material';
 import Link from 'next/link';
 import LineChart from '../../LineChart/LineChart';
 
 interface Props {
-  items: TableGoldDataType[];
+  items: PricesDataType[];
   isDetail?: boolean;
 }
 export default function LaptopTable({ items, isDetail = true }: Props) {
@@ -14,7 +14,7 @@ export default function LaptopTable({ items, isDetail = true }: Props) {
       {items.map((item) => (
         <Grid
           size={12}
-          key={item.typeGold}
+          key={item.type}
           direction={'column'}
           border={1}
           borderRadius={2}
@@ -32,14 +32,15 @@ export default function LaptopTable({ items, isDetail = true }: Props) {
               sx={{ borderTopLeftRadius: 8, borderTopRightRadius: 8 }}
             >
               <Typography variant="body1" fontSize={12} fontWeight={'bold'}>
-                {item.typeGold}
+                {item.type}
               </Typography>
               {isDetail && (
-                <Link href={'/'}>
-                  <Typography variant="body2" fontSize={10} sx={{ color: '#0091F8' }}>
+                // <Link href={'/'}>
+                //  #0091F8
+                // </Link>
+                 <Typography variant="body2" fontSize={10} sx={{ color: 'gray' }}>
                     مشاهده جزئیات
                   </Typography>
-                </Link>
               )}
             </Stack>
           </>
@@ -129,7 +130,7 @@ export default function LaptopTable({ items, isDetail = true }: Props) {
                   fontWeight={'bold'}
                   sx={{ color: 'text.subtitle' }}
                 >
-                  تغییر ۱ روزه:
+تغییر روزانه:
                 </Typography>
                 <Typography
                   variant="body2"
@@ -138,7 +139,7 @@ export default function LaptopTable({ items, isDetail = true }: Props) {
                     color: item.dayChange >= 0 ? 'success.main' : 'error.main',
                   }}
                 >
-                  {item.dayChange}%
+                  {priceFormater(item.dayChange)}
                 </Typography>
               </Stack>
               <Divider />
@@ -156,16 +157,16 @@ export default function LaptopTable({ items, isDetail = true }: Props) {
                   fontWeight={'bold'}
                   sx={{ color: 'text.subtitle' }}
                 >
-                  تغییر ۱ ماهه:
+                  درصد تغییرات:
                 </Typography>
                 <Typography
                   variant="body2"
                   fontSize={12}
                   sx={{
-                    color: item.monthChange >= 0 ? 'success.main' : 'error.main',
+                    color: item.percentChange >= 0 ? 'success.main' : 'error.main',
                   }}
                 >
-                  {item.monthChange}%
+                  {item.percentChange}%
                 </Typography>
               </Stack>
               <Divider />

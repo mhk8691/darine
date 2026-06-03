@@ -1,77 +1,71 @@
-'use client'
-import { Metadata } from 'next';
+'use client';
+
+import { useEffect, useState } from 'react';
 import TableContainer from '../Components/Tables/ProductTable/GoldContainer';
 import { FaqItem, PricesDataType } from '../core/Types';
-import { useEffect } from 'react';
 import { getCoinsPrices } from '@/lib/prices/coinsPrices';
-// export const metadata: Metadata = {
-//   title: 'قیمت سکه امروز  | دارینه',
-//   description: '',
-// };
-const data: { title: string; order: number; data: PricesDataType[] }[] = [
-    {
-    title: 'سکه',
-    order: 1,
-    data: [],
-  },
-  {
-    title: 'سکه پارسیان',
-    order: 2,
-    data: [],
-  },
+import { isAxiosError } from 'axios';
+import { showSnackbar } from '../Components/Snackbar/Snackbar';
 
-];
 const faqData: FaqItem[] = [
   {
     id: '1',
     question: 'چرا اطلاع لحظه‌ای از قیمت سکه پارسیان اهمیت دارد؟',
     answer:
-      'چون بازار طلا و سکه دائماً در حال نوسان است. با داشتن اطلاعات لحظه‌ای، می‌توانید بهترین زمان برای خرید یا فروش را انتخاب کرده و از زیان‌های احتمالی جلوگیری کنید.',
+      'چون بازار طلا و سکه دائماً در حال نوسان است. با داشتن اطلاعات لحظه‌ای، می‌توانید بهترین زمان برای خرید یا فروش را انتخاب کنید.',
   },
   {
     id: '2',
     question: 'آیا سکه پارسیان برای سرمایه‌گذاری مناسب است؟',
     answer:
-      'خیر. به دلیل وجود مالیات و کمیسیون حدود ۷ درصد، سکه پارسیان گزینه مناسبی برای سرمایه‌گذاری نیست و بیشتر جنبه هدیه و خریدهای کوچک دارد.',
-  },
-  {
-    id: '3',
-    question: 'مالیات و کارمزد سکه پارسیان چقدر است؟',
-    answer:
-      'هنگام خرید سکه پارسیان حدود ۷ درصد کمیسیون و مالیات به قیمت اصلی اضافه می‌شود. همین موضوع باعث می‌شود هزینه نهایی خرید بیشتر از نرخ اعلامی باشد.',
-  },
-  {
-    id: '4',
-    question: 'انواع سکه پارسیان موجود در بازار کدامند؟',
-    answer:
-      'سکه‌های پارسیان در وزن‌های مختلف از ۵۰ سوت تا ۲ گرم عرضه می‌شوند. متداول‌ترین آن‌ها شامل ۵۰ سوتی، ۱۰۰ سوتی، ۲۵۰ سوتی، ۵۰۰ سوتی، ۱ گرمی و ۲ گرمی هستند.',
-  },
-  {
-    id: '5',
-    question: 'تفاوت سکه پارسیان با طلا یا سکه بانکی چیست؟',
-    answer:
-      'سکه‌های پارسیان بیشتر برای هدیه و خریدهای کوچک استفاده می‌شوند و ارزش سرمایه‌گذاری بالایی ندارند. اما سکه‌های بانکی و طلا آب‌شده هزینه‌های جانبی کمتری دارد و گزینه مناسب‌تری برای سرمایه‌گذاری هستند.',
-  },
-  {
-    id: '6',
-    question: 'آیا قیمت سکه پارسیان همیشه با قیمت طلا تغییر می‌کند؟',
-    answer:
-      'بله. قیمت سکه پارسیان بر اساس نرخ روز طلا تغییر می‌کند، اما به دلیل کمیسیون و مالیات، قیمت نهایی آن اغلب بالاتر از ارزش واقعی طلا‌ست.',
-  },
-  {
-    id: '7',
-    question: 'از کجا می‌توانم سکه پارسیان را با بهترین قیمت بخرم؟',
-    answer:
-      'با مراجعه به پلتفرم‌های معتبر مانند دارینه، می‌توانید قیمت لحظه‌ای سکه پارسیان را ببینید و خرید خود را به‌صورت آنلاین و مطمئن انجام دهید.',
+      'خیر. به دلیل وجود مالیات و کمیسیون حدود ۷ درصد، گزینه مناسبی برای سرمایه‌گذاری نیست.',
   },
 ];
-export default function page() {
-    useEffect(()=>{
-      const getData = async ()=>{
-        const response = await getCoinsPrices()
-        data[0].data.push(...response)
-      }
-      getData()
-    },[])
-  return <TableContainer title="سکه" data={data} faqData={faqData} />;
+
+export default function Page() {
+  const [data, setData] = useState<
+    { title: string; order: number; data: PricesDataType[] }[]
+  >([
+    {
+      title: 'سکه',
+      order: 1,
+      data: [],
+    },
+    // {
+    //   title: 'سکه پارسیان',
+    //   order: 2,
+    //   data: [],
+    // },
+  ]);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await getCoinsPrices();
+
+        setData([
+          {
+            title: 'سکه',
+            order: 1,
+            data: response, 
+          },
+         
+        ]);
+      } catch (error:unknown) {
+                if (isAxiosError(error)){
+                  showSnackbar(error.response?.data.message)
+                }
+            }
+    };
+
+    getData();
+  }, []);
+
+  return (
+    <TableContainer
+      title="سکه"
+      data={data}
+      faqData={faqData}
+    />
+  );
 }

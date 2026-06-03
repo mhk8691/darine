@@ -1,24 +1,12 @@
-'use client'
+'use client';
+
+import { useEffect, useState } from 'react';
 import TableContainer from '../Components/Tables/ProductTable/GoldContainer';
 import { FaqItem, PricesDataType } from '../core/Types';
-import { useEffect } from 'react';
 import { getGoldsPrices } from '@/lib/prices/goldsPrice';
-// export const metadata: Metadata = {
-//   title: 'قیمت طلا امروز آنلاین و لحظه ای | دارینه',
-//   description: '',
-// };
-export const goldData: {
-  title: string;
-  order: number;
-  data: PricesDataType[];
-}[] = [
-  {
-    title: 'طلا',
-    order: 1,
-    data: [],
-  },
- 
-];
+import { isAxiosError } from 'axios';
+import { showSnackbar } from '../Components/Snackbar/Snackbar';
+
 const faqData: FaqItem[] = [
   {
     id: '1',
@@ -63,13 +51,49 @@ const faqData: FaqItem[] = [
       'یکی از آسان‌ترین روش‌های خرید طلا در ایران خرید طلای آب شده آنلاین از دارینه است. این روش بدون اجرت و مالیات است و می‌توانید خرید خود را در ۲۴ ساعت شبانه‌روز و ۷ روز هفته انجام دهید.',
   },
 ];
-export default function page() {
-  useEffect(()=>{
-    const getData = async ()=>{
-      const response = await getGoldsPrices()
-      goldData[0].data.push(...response)
-    }
-    getData()
-  },[])
-  return <TableContainer title="طلا" data={goldData} faqData={faqData} />;
+
+export default function Page() {
+  const [goldData, setGoldData] = useState<
+    {
+      title: string;
+      order: number;
+      data: PricesDataType[];
+    }[]
+  >([
+    {
+      title: 'طلا',
+      order: 1,
+      data: [],
+    },
+  ]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getGoldsPrices();
+
+        setGoldData([
+          {
+            title: 'طلا',
+            order: 1,
+            data: response,
+          },
+        ]);
+      } catch (error:unknown) {
+          if (isAxiosError(error)){
+            showSnackbar(error.response?.data.message)
+          }
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  return (
+    <TableContainer
+      title="طلا"
+      data={goldData}
+      faqData={faqData}
+    />
+  );
 }

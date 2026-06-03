@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { TableGoldDataType } from '@/app/core/Types';
+import { PricesDataType } from '@/app/core/Types';
 import {
   Button,
   Stack,
@@ -15,9 +15,10 @@ import LaptopTable from './LaptopTable';
 import CustomTable from '../CustomTable';
 import LineChart from '../../LineChart/LineChart';
 import Link from 'next/link';
+import priceFormater from '@/app/core/PriceFormater';
 
 interface Props {
-  data: TableGoldDataType[];
+  data: PricesDataType[];
 }
 export default function TableContainer({ data }: Props) {
   const theme = useTheme();
@@ -31,8 +32,8 @@ export default function TableContainer({ data }: Props) {
             'نرخ فعلی',
             'پایین‌ترین قیمت روز',
             'بالاترین قیمت روز',
-            'تغییر ۱ روزه',
-            'تغییر ۱ ماهه',
+            'تغییر روزانه',
+            'درصد تغییر',
             'نمودار هفتگی',
             'عملیات',
           ]}
@@ -48,14 +49,14 @@ export default function TableContainer({ data }: Props) {
                   '&:last-child th': { border: 0 },
                 }}
               >
-                {row?.typeGold && (
+                {row?.type && (
                   <TableCell
                     component="th"
                     scope="row"
                     align="center"
                     sx={{ fontSize: '16px', py: 2.5, px: 2.5 }}
                   >
-                    {row?.typeGold}
+                    {row?.type}
                   </TableCell>
                 )}
                 <TableCell
@@ -124,7 +125,7 @@ export default function TableContainer({ data }: Props) {
                     color: row?.dayChange >= 0 ? 'success.main' : 'error.main',
                   }}
                 >
-                  {row?.dayChange}%
+                  {priceFormater(row?.dayChange)} تومان 
                 </TableCell>
                 <TableCell
                   align="center"
@@ -132,10 +133,10 @@ export default function TableContainer({ data }: Props) {
                     fontSize: '16px',
                     py: 2.5,
                     px: 2.5,
-                    color: row?.monthChange >= 0 ? 'success.main' : 'error.main',
+                    color: row?.percentChange >= 0 ? 'success.main' : 'error.main',
                   }}
                 >
-                  {row?.monthChange}%
+                  {priceFormater(row?.percentChange)}%
                 </TableCell>
                 <TableCell align="center" sx={{ fontSize: '16px', py: 2.5, px: 2.5 }}>
                   <Stack direction={'row'} justifyContent={'center'}>
@@ -150,10 +151,10 @@ export default function TableContainer({ data }: Props) {
                     /> */}
                   </Stack>
                 </TableCell>
-                {row?.typeGold && (
+                {row?.type && (
                   <TableCell align="center" sx={{ fontSize: '16px', py: 2.5, px: 2.5 }}>
                     <Link href={'/test/'}>
-                      <Button variant="outlined" color="inherit" sx={{ borderRadius: 2, p: 0.8 }}>
+                      <Button variant="outlined" disabled color="inherit" sx={{ borderRadius: 2, p: 0.8 }}>
                         مشاهده جزئیات
                       </Button>
                     </Link>

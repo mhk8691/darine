@@ -28,7 +28,7 @@ import Filter from "./Filter";
 
 export default function Products() {
   const [orderParams,setOrderParams] = useState('doorstepdelivery')
-  const [productParams,setProductParams] = useState('18')
+  const [productParams,setProductParams] = useState('')
   const [productData, setProductData] = useState<ProductDateType[]>([] as ProductDateType[]);
   // const [deliveryData,setDeliveryData] = useState<RecentDeliveriesDataType[]>([])
     const [cart,setCart] = useState(getCart())

@@ -78,9 +78,8 @@ export interface BankCardDataType {
 }
 export interface DepositDataType {
   card_number: string;
-  shaba: string;
-  owner: string;
-  account: string;
+  sheba: string;
+full_name:string
 }
 
 export interface WithdrawDataType {
@@ -231,10 +230,15 @@ export interface LimitOrderDataType {
 }
 
 export interface PricesDataType {
-  "typeGold": string,
+  "type": string,
         "currentRate": number,
         "minPriceDay": number,
         "maxPriceDay": number,
         "dayChange": number,
-        "monthChange": number,
+        "percentChange": number,
+}
+export interface CategoriesDataType {
+            "id": number,
+            "name": string,
+            "slug": string
 }

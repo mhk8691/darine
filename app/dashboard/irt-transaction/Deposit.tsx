@@ -177,7 +177,7 @@ export default function Deposit({setTransactionData,transactionParams,filter,dat
               شماره شبا
             </Typography>
             <Typography variant="body2" fontSize={12}>
-              {depositData.shaba}
+              {depositData.sheba}
             </Typography>
           </Stack>
           <Stack
@@ -189,7 +189,7 @@ export default function Deposit({setTransactionData,transactionParams,filter,dat
               به نام
             </Typography>
             <Typography variant="body2" fontSize={12}>
-              {depositData.owner}
+              {depositData.full_name}
             </Typography>
           </Stack>
         <Stack component={'label'} htmlFor="upload-file" width={'100%'} direction={'row'} justifyContent={'center'} mt={3}>

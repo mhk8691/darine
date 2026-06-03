@@ -1,11 +1,11 @@
 'use client';
 import priceFormater from '@/app/core/PriceFormater';
-import { TableGoldDataType } from '@/app/core/Types';
+import { PricesDataType } from '@/app/core/Types';
 import { KeyboardArrowLeft } from '@mui/icons-material';
 import { Box, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import Link from 'next/link';
 interface Props {
-  items: TableGoldDataType[];
+  items: PricesDataType[];
 }
 export default function MobileTable({ items }: Props) {
   const theme = useTheme();
@@ -15,7 +15,7 @@ export default function MobileTable({ items }: Props) {
     <Stack direction={'column'} borderRadius={2} my={2} border={1} borderColor={'background.paper'}>
       {items.map((item, index) => (
         <Stack
-          key={item.typeGold}
+          key={item.type}
           direction={'row'}
           justifyContent={'space-between'}
           p={1.5}
@@ -28,7 +28,7 @@ export default function MobileTable({ items }: Props) {
           }}
         >
           <Typography variant="body1" fontSize={12}>
-            {item.typeGold}
+            {item.type}
           </Typography>
           <Link href={`#`}>
             <Stack direction={'row'} alignItems={'center'}>

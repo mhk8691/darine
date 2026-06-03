@@ -1,4 +1,4 @@
-import { FaqItem, TableGoldDataType } from '@/app/core/Types';
+import { FaqItem, PricesDataType } from '@/app/core/Types';
 import { Container, Divider, Grid, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 import Faq from '../../Faq/Faq';
@@ -11,7 +11,7 @@ import TradeCard from './TradeCard';
 
 interface Props {
   title: string;
-  data?: { title: string; order: number; data: TableGoldDataType[] }[];
+  data?: { title: string; order: number; data: PricesDataType[] }[];
   faqData: FaqItem[];
 }
 
@@ -126,8 +126,8 @@ export default function GoldContainer({ title, data, faqData }: Props) {
               md: 'center',
             }}
           >
-            <PriceAlertCard />
-            <TradeCard isDetail={false} />
+            {/* <PriceAlertCard />
+            <TradeCard isDetail={false} /> */}
           </Stack>
           <Stack
             display={{
