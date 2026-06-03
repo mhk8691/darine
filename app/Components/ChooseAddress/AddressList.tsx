@@ -32,7 +32,7 @@ export default function AddressList({ setOpenAddAddress, addresses, setAddressId
 
   useEffect(() => {
     if (addresses.length > 0 && !addressId) {
-      setAddressId(addresses[0].id);
+      setAddressId(addresses[0].id || 0);
     }
   }, [addresses, addressId, setAddressId]);
 

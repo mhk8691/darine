@@ -1,11 +1,11 @@
 import { Box, Chip, Divider, Stack, Typography, useTheme } from '@mui/material';
 import React from 'react';
 import priceFormater from '../core/PriceFormater';
-import { TableGoldDataType } from '../core/Types';
 import { ErrorArrowIcon, SuccessArrowIcon } from '../Components/CustomIcons/CustomIcons';
+import { PricesDataType } from '../core/Types';
 interface Props {
   title: string;
-  data: TableGoldDataType[];
+  data: PricesDataType[];
 }
 export default function PriceTables({ title, data }: Props) {
   const theme = useTheme();
@@ -33,7 +33,7 @@ export default function PriceTables({ title, data }: Props) {
             justifyContent={'space-between'}
           >
             <Typography variant="body1" fontSize={16}>
-              {item.typeGold}
+              {item.type}
             </Typography>
             <Stack direction={'row'} gap={1} alignItems={'center'}>
               <Typography variant="body1" fontSize={16}>

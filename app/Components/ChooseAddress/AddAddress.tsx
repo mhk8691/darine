@@ -45,7 +45,7 @@ export default function AddAddress({getData,setAddressId, open, setOpen,setAddre
       const response = await addAddresses(newAddress)
      await getData()
       showSnackbar(response.message,true)
-      setAddressId(response.data.address_id||0)
+      setAddressId(response.data.id||0)
        setStep(0);
       setActiveStep&& setActiveStep(2)
         setOpen(false);

@@ -1,4 +1,4 @@
-import { TableGoldDataType } from '@/app/core/Types';
+import { PricesDataType } from '@/app/core/Types';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableCell from '@mui/material/TableCell';
@@ -8,22 +8,22 @@ import TableRow from '@mui/material/TableRow';
 import { ReactNode } from 'react';
 
 export function createData({
-  typeGold,
+  type,
   currentRate,
   minPriceDay,
   maxPriceDay,
   dayChange,
-  monthChange,
-  weeklyChart,
-}: TableGoldDataType) {
+  percentChange,
+  // weeklyChart,
+}: PricesDataType) {
   return {
-    typeGold,
+    type,
     currentRate,
     minPriceDay,
     maxPriceDay,
     dayChange,
-    monthChange,
-    weeklyChart,
+    percentChange,
+    // weeklyChart,
   };
 }
 

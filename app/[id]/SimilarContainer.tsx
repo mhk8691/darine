@@ -1,11 +1,11 @@
 'use client';
 import { Grid, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import LaptopTable from '../Components/Tables/ProductTable/LaptopTable';
-import { TableGoldDataType } from '../core/Types';
+import { PricesDataType } from '../core/Types';
 import PriceTables from './PriceTable';
 
 interface Props {
-  data: TableGoldDataType[][];
+  data: PricesDataType[][];
 }
 
 export default function SimilarContainer({ data }: Props) {

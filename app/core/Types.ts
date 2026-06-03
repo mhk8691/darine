@@ -202,7 +202,7 @@ total_gold:	number,
 count	:number,
 }
 export interface AddressesDataType {
-    "address_id"?: number,
+    "id"?: number,
       "type"?: string,
       "province": string,
       "city":string,

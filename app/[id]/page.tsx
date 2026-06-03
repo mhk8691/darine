@@ -7,7 +7,6 @@ import HowBuyGold from '../Components/Tables/ProductTable/HowBuyGold';
 import TradeCard from '../Components/Tables/ProductTable/TradeCard';
 import { FaqItem } from '../core/Types';
 import Trading from '../dashboard/trades/Trade';
-import { data as goldData } from '../gold-price/page';
 import ProductTableContainer from './ProductTableContainer';
 import SimilarContainer from './SimilarContainer';
 
@@ -72,8 +71,6 @@ interface Props {
 
 export default function page({ params }: Props) {
   console.log(params.productId);
-  const newData = [goldData[0].data];
-  newData.push(goldData[1].data);
   return (
     <Container
       maxWidth={'xl'}
@@ -200,7 +197,7 @@ export default function page({ params }: Props) {
           </Typography>
           <ProductTableContainer />
         </Grid>
-        <SimilarContainer data={newData} />
+        {/* <SimilarContainer data={newData} /> */}
         <Grid size={12} container spacing={3}>
           <Grid
             size={{

@@ -5,7 +5,6 @@ import { Metadata } from 'next';
 import GiftStepper from './GiftStepper';
 import Title from './Title';
 import BackLink from '../BackLink';
-import GiftCardOrder from '../gift-cards/GiftCardOrder';
 import { GiftCardListType } from '@/app/core/Types';
 import { useEffect, useState } from 'react';
 import { getGiftCardList } from '@/lib/giftCard/giftCard';
@@ -14,6 +13,7 @@ import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import GiftCardTable from '../gift-cards/GiftCardTable';
 import { giftCardStatus } from '../gift-cards/page';
+import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 // export const metadata: Metadata = {
 //   title: 'خرید کارت هدیه | دارینه',
 //   description: '',

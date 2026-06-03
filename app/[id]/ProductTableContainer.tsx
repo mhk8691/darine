@@ -151,13 +151,12 @@ export default function ProductTableContainer() {
           isDetail={false}
           items={[
             {
-              typeGold: 'طلای 18 عیار(گرم)',
+              type: 'طلای 18 عیار(گرم)',
               currentRate: 17596000,
               minPriceDay: 17580000,
               maxPriceDay: 17831000,
               dayChange: -0.694,
-              monthChange: 4.246,
-              weeklyChart: 1,
+              percentChange: 4.246,
             },
           ]}
         />
