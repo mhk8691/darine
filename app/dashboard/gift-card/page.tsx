@@ -1,3 +1,4 @@
+'use client'
 import Container from '@/app/Components/Containers/Container/Container';
 import { Grid } from '@mui/material';
 import { Metadata } from 'next';
@@ -5,24 +6,27 @@ import GiftStepper from './GiftStepper';
 import Title from './Title';
 import BackLink from '../BackLink';
 import GiftCardOrder from '../gift-cards/GiftCardOrder';
-export const metadata: Metadata = {
-  title: 'خرید کارت هدیه | دارینه',
-  description: '',
-};
+import { GiftCardListType } from '@/app/core/Types';
+import { useEffect, useState } from 'react';
+import { getGiftCardList } from '@/lib/giftCard/giftCard';
+import { isAxiosError } from 'axios';
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+import { getGiftCardData } from '../gift-cards/page';
+// export const metadata: Metadata = {
+//   title: 'خرید کارت هدیه | دارینه',
+//   description: '',
+// };
 export default  function page() {
-  // const getData = async ()=>{
-  //    try{
-  //           const response = await getGiftCardList();
-  //           console.log('=|',response)
-  //           return response
-  //         }catch(error:unknown){
-  //           if (isAxiosError(error)){
-  //             showSnackbar(error.response?.data.message)
-  //           }
-  //         }
-  // }
-  // const giftCardList =  getData()
-  console.log('=|')
+    const [giftCardList, setGetGiftCardList] = useState<GiftCardListType[]>([] as GiftCardListType[]);
+  
+
+       useEffect(() => {
+           const getData = async ()=>{
+             const response = await getGiftCardData()
+     setGetGiftCardList(response || []) 
+           }
+           getData()
+         }, []);
   return (
     <Grid container spacing={3}>
       <BackLink title="سفارش کارت هدیه" />
@@ -51,7 +55,7 @@ export default  function page() {
         </Container>
       </Grid>
       <Grid size={12}>
-       <GiftCardOrder/>
+       <GiftCardOrder getData={getGiftCardData} giftCardData={giftCardList} />
       </Grid>
     </Grid>
   );

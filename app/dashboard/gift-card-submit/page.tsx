@@ -11,25 +11,21 @@ import { GiftCardListType } from '@/app/core/Types';
 import { getGiftCardList } from '@/lib/giftCard/giftCard';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+import { getGiftCardData } from '../gift-cards/page';
 // export const metadata: Metadata = {
 //   title: 'دریافت کارت هدیه | دارینه',
 //   description: '',
 // };
 export default function page() {
   const [giftCardData,setGiftCardData] = useState<GiftCardListType[]>([])
-   useEffect(() => {
-      const getData = async () => {
-        try{
-          const response = await getGiftCardList();
-          setGiftCardData(response || []);
-        }catch(error:unknown){
-          if (isAxiosError(error)){
-            showSnackbar(error.response?.data.message)
-          }
+
+      useEffect(() => {
+        const getData = async ()=>{
+          const response = await getGiftCardData()
+  setGiftCardData(response || []) 
         }
-      };
-      getData();
-    }, []);
+        getData()
+      }, []);
   return (
     <Grid
       container
@@ -131,7 +127,7 @@ export default function page() {
         <DesktopImage />
       </Grid>
       <Grid size={12}>
-        <GiftCardOrder giftCardData={giftCardData} />
+        <GiftCardOrder giftCardData={giftCardData}  getData={getGiftCardData}/>
       </Grid>
     </Grid>
   );

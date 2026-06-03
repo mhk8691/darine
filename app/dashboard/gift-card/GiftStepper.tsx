@@ -133,7 +133,6 @@ const [isLoading,setIsLoading]= React.useState(false)
       // newSkipped = new Set(newSkipped.values());
       // newSkipped.delete(activeStep);
           await giftCard()
-      setActiveStep((prevActiveStep) => prevActiveStep + 1);
       setSkipped(newSkipped);
     }
   };

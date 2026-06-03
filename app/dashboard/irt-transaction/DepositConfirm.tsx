@@ -41,7 +41,7 @@ export default function DepositConfirm({
    }
     catch (error: unknown) {
     if (isAxiosError(error)) {
-      showSnackbar(error.response?.data.detail);
+      showSnackbar(error.response?.data.message);
     }
   }finally{
 setIsLoading(false)

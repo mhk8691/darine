@@ -1,5 +1,4 @@
 'use client';
-import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import { GiftCardListType } from '@/app/core/Types';
 import {
@@ -7,41 +6,28 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
-import { isAxiosError } from 'axios';
 import { useEffect, useState } from 'react';
 import GiftCardTable from './GiftCardTable';
-import { getGiftCardList } from '@/lib/giftCard/giftCard';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 export const statuses = [
-  { label: 'در انتظار تایید', value: 'PENDING' },
-  { label: 'تکمیل شده', value: 'COMPLETED' },
-  { label: 'لغو شده', value: 'CANCELLED' },
-  { label: 'ناموفق', value: 'FAILED' },
+  { label: 'فعال', value: 'ACTIVE' },
+  { label: 'غیرفعال', value: 'INACTIVE' },
+ 
 ];
-export default function GiftCardOrder({giftCardData}:{giftCardData?:GiftCardListType[]}) {
-  const [giftCardList, setGetGiftCardList] = useState<GiftCardListType[]>([] as GiftCardListType[]);
+export default function GiftCardOrder({giftCardData,getData}:{giftCardData:GiftCardListType[],getData: (status?: string | undefined, date?: DatePickerValue | undefined) => Promise<GiftCardListType[] | undefined>}) {
   const [status,setStatus] = useState('')
   const [dateRange,setDateRange] =useState<DatePickerValue| null>(null)
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
-  useEffect(() => {
-    const getData = async () => {
-      try{
-        const response = await getGiftCardList(status,dateRange);
-        setGetGiftCardList(response || []);
-      }catch(error:unknown){
-        if (isAxiosError(error)){
-          showSnackbar(error.response?.data.message)
-        }
-      }
-    };
-    getData();
-  }, [status,dateRange]);
+
+  useEffect(()=>{
+    getData(status,dateRange)
+  },[dateRange,status])
   return (
     <Grid size={12}>
       <OrderDetail
       statuses={statuses}
-        listLength={giftCardData ? giftCardData.length :giftCardList.length}
+        listLength={giftCardData?.length}
         title={isDesktop ? 'لیست کارت‌های هدیه شما' : ''}
         toggleItems={[]}
         type="chip"
@@ -52,7 +38,7 @@ export default function GiftCardOrder({giftCardData}:{giftCardData?:GiftCardList
         setStatus={setStatus}
 status={status}
         tableBody={
-         <GiftCardTable giftCardsList={giftCardData ? giftCardData :giftCardList}/>
+         <GiftCardTable giftCardsList={giftCardData}/>
         }
       />
     </Grid>
