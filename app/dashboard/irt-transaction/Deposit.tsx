@@ -17,6 +17,7 @@ import { useAssets } from '../../AssetsProvider';
 import Loading from '@/app/Components/Loading/Loading';
 import { getRecentTransaction } from '@/lib/transactions/recent-transactions/recentTransactions';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
+import { getReports } from '@/lib/getReports/getReports';
 
 const items: ToggleItemsType[] = [
   { title: 'درگاه پرداخت', value: 'gateway', id: 1 },
@@ -62,10 +63,11 @@ export default function Deposit({setTransactionData,transactionParams,filter,dat
     try{
       setIsLoading(true)
       const response =await goldDeposit(formData)
-      const transactionData = await getRecentTransaction(transactionParams,filter,dateRange)
+  const transactionData = await getReports(transactionParams,undefined,dateRange,filter);
       setTransactionData(transactionData)
         showSnackbar(response?.message,true)
       refetch()
+      setDepositData(null)
         setPrice('')
     }catch(error:unknown){
       if (isAxiosError(error)){
@@ -108,7 +110,6 @@ export default function Deposit({setTransactionData,transactionParams,filter,dat
         }}
       />
       <Stack gap={3.5}>
-        {select === 'gateway' && (
           <Stack direction={'column'} gap={3}>
             <InputField type='number' placeholder={'ملبغ'} title={'تومان'} value={price} setValue={setPrice} />
             <Button
@@ -129,7 +130,6 @@ export default function Deposit({setTransactionData,transactionParams,filter,dat
               انتخاب حداکثر مقدار واریز
             </Button>
           </Stack>
-        )}
         {select === 'receipt' &&(
           <BankCard
             bankCardsData={bankCardsData}
@@ -140,7 +140,7 @@ export default function Deposit({setTransactionData,transactionParams,filter,dat
         )}
       </Stack>
           {
-        depositData && select != 'receipt'&& <>
+        depositData && select === 'receipt'&& <>
           <Typography variant="body2" fontSize={12} fontWeight={"bold"}>
           اطلاعات واریز
         </Typography>

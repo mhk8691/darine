@@ -1,4 +1,4 @@
-import { getCart } from '@/lib/cart/cart';
+import { clearCart, getCart } from '@/lib/cart/cart';
 import { InfoOutlineRounded } from '@mui/icons-material';
 import {
   Button,
@@ -84,7 +84,8 @@ export default function OrderConfirmation({ setOpen,deliveryType,addressId }: Pr
     try{
       const response = await checkout(newData)
       showSnackbar(response.data.message,true)
-      router.push('/dashboard/gold-recieve')
+      router.push('/dashboard/gold-receive')
+      clearCart()
     }catch (error:unknown){
       if (isAxiosError(error)){
         showSnackbar(error.response?.data.message)

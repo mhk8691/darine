@@ -100,7 +100,7 @@ export default function Footer() {
               }}
               sx={{ color: 'text.secondary' }}
             >
-              آدرس: تهران, میدان هروی, بازار طلای هروی سنتر, پلاک B44
+             قم، میدان توحید، پاساژ شهر طلا
             </Typography>
           </Grid>
           <LinkContainer />
@@ -185,17 +185,16 @@ export default function Footer() {
               >
                 <ChatIcon />
 
+                <Link href={'https://t.me/darine_app'} target='_blank'>
                 <Typography
                   variant="body2"
                   color="text.primary"
-                  fontSize={{
-                    xs: 12,
-                    sm: 14,
-                  }}
+                  fontSize={14}
                   sx={{ whiteSpace: 'nowrap' }}
                 >
                   پشتیبانی تلگرام
                 </Typography>
+                </Link>
               </Stack>
               <Stack
                 direction={'row'}
@@ -209,36 +208,13 @@ export default function Footer() {
                 <Typography
                   variant="body2"
                   color="text.primary"
-                  fontSize={{
-                    xs: 12,
-                    sm: 14,
-                  }}
+                  fontSize={14}
                   sx={{ whiteSpace: 'nowrap' }}
                 >
-                  02191345910
+                  ۰۹۱۹۱۶۰۸۷۷۱
                 </Typography>
               </Stack>
-              <Stack
-                direction={'row'}
-                gap={{
-                  xs: 0.5,
-                  sm: 0.7,
-                }}
-                alignItems={'center'}
-              >
-                <TelegramIcon />
-                <Typography
-                  variant="body2"
-                  color="text.primary"
-                  fontSize={{
-                    xs: 12,
-                    sm: 14,
-                  }}
-                  sx={{ whiteSpace: 'nowrap' }}
-                >
-                  darine_app
-                </Typography>
-              </Stack>
+           
             </Stack>
             <Stack direction={'row'} gap={1.5}>
               <Stack
@@ -280,7 +256,7 @@ export default function Footer() {
           </Stack>
         </Grid>
       </Grid>
-      <LaptopCertificate />
+      {/* <LaptopCertificate /> */}
       <Stack
         p={2}
         direction={'row'}

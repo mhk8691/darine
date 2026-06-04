@@ -14,6 +14,7 @@ import { useAssets } from '../../AssetsProvider';
 import Loading from '@/app/Components/Loading/Loading';
 import { getRecentTransaction } from '@/lib/transactions/recent-transactions/recentTransactions';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
+import { getReports } from '@/lib/getReports/getReports';
 
 const items: ToggleItemsType[] = [
   { title: 'به حساب بانکی', value: 'bank', id: 1 },
@@ -40,7 +41,7 @@ export default function Withdraw({setTransactionData,transactionParams,filter,da
       select === 'silver' ? 'SILVER' : 'BANK',
       selectedCard?selectedCard:undefined,
     );
-      const transactionData = await getRecentTransaction(transactionParams,filter,dateRange)
+        const transactionData = await getReports(transactionParams,undefined,dateRange,filter);
           setTransactionData(transactionData)
     showSnackbar(response.message,true)
     setPrice('')
