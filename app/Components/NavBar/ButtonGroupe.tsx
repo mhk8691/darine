@@ -73,7 +73,7 @@ export default function ButtonGroupe() {
             }}
             size="small"
           >
-            {isMobile ? 'نقره ' : ' ورود به نقره '}
+            {isMobile ? 'نقرینه ' : ' ورود به نقرینه '}
           </Button>
         </>
       )}

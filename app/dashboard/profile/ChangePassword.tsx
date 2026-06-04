@@ -2,13 +2,14 @@
 import CustomModal from '@/app/Components/CustomModal/CustomModal';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import Field from '@/app/login/Field';
-import { fogetPasswordComplete, forgetPasswordRequest, verifyForgetOtp } from '@/lib/auth';
+import { fogetPasswordComplete, forgetPasswordRequest, logout, verifyForgetOtp } from '@/lib/auth';
 import { Close } from '@mui/icons-material';
 import { Button, IconButton, Stack, Typography } from '@mui/material';
 import { isAxiosError } from 'axios';
 import { useState } from 'react';
 import CompletePassword from './CompletePassword';
 import Loading from '@/app/Components/Loading/Loading';
+import { useRouter } from 'next/navigation';
 
 export default function ChangePassword() {
   const [open, setOpen] = useState(false);
@@ -18,6 +19,7 @@ export default function ChangePassword() {
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [isLoading,setIsLoading] = useState(false)
+  const router = useRouter()
   const handleClick = async () => {
     if (step === 0) {
       try {
@@ -75,8 +77,20 @@ export default function ChangePassword() {
     //   }
     // }
   };
+   const handleLogout = async ()=>{
+      try{
+        const response = await logout()
+        showSnackbar(response.message,true)
+        router.push('/login/login-password')
+      }catch(error:unknown){
+        if (isAxiosError(error)){
+          showSnackbar(error.response?.data.message)
+        }
+      }
+    }
   return (
     <>
+      <Stack direction={'row'} gap={1}>
       <Button
         variant="contained"
         color="primary"
@@ -86,14 +100,33 @@ export default function ChangePassword() {
           py: 0.5,
           px: 2,
           borderRadius: '7px',
-          color: 'black',
-          width: 'fit-content',
+         whiteSpace:'nowrap',
+         width:'50%',
           mt: 5,
         }}
         onClick={() => setOpen(true)}
       >
         تنظیم یا تغییر رمز ورود
       </Button>
+         <Button
+        variant="outlined"
+        sx={{
+          fontSize: 14,
+          fontWeight: 800,
+          py: 0.5,
+          px: 2,
+          borderRadius: '7px',
+         whiteSpace:'nowrap',
+         width:'50%',
+          mt: 5,
+          color:'red',
+          border:'1px solid red'
+        }}
+        onClick={handleLogout}
+      >
+       خروج
+      </Button>
+    </Stack>
       <CustomModal open={open} setOpen={setOpen} modalStyle={{ py: 3, px: 2 }}>
         <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
           <Typography variant="body1" fontSize={16}>
