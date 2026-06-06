@@ -123,7 +123,7 @@ export default function Profile({user}:{user:User | null}) {
             }}
           >
             {
-              formatDate(user?.birth_date)
+              user?.birth_date
             }
           </Typography>
         </Stack>

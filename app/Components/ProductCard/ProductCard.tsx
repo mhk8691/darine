@@ -49,7 +49,7 @@ export default function ProductCard({ item,cart,setCart}: { item: ProductDateTyp
                   },
                   width: '100%',
                 }}
-                image="/images/product.webp"
+                image={item.image}
                 title="green iguana"
               />
             </Link>

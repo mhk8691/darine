@@ -12,6 +12,8 @@ interface Props {
   color: string;
   noGradiant: boolean;
   noLabel: boolean;
+  data:number[]
+  labels:string[]
 }
 export default function LineChart({
   chartData,
@@ -20,6 +22,8 @@ export default function LineChart({
   color,
   noGradiant,
   noLabel,
+  data,
+  labels
 }: Props) {
   const theme = useTheme();
   const isDarkMode = theme.palette.mode === 'dark';
@@ -49,9 +53,9 @@ export default function LineChart({
         }}
         series={[
           {
-            data: chartData.chart.prices,
+            data: data,
             showMark: false,
-            curve: 'bumpX',
+            curve: 'stepAfter',
             area: true,
             color: color,
           },
@@ -59,7 +63,7 @@ export default function LineChart({
         xAxis={[
           {
             scaleType: 'point',
-            data: chartData.chart.labels,
+            data: labels,
             height: 35,
             position: noLabel ? 'none' : 'bottom',
           },

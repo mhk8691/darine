@@ -10,9 +10,9 @@ export default function SpaceBox() {
   return (
     <Box
       height={{
-        xs: '5rem',
-        sm: '3rem',
-        md: '5.5rem',
+        xs: '4.2rem',
+        sm: '4.2rem',
+        md: '5rem',
       }}
       bgcolor={{
         sm: 'transparent',

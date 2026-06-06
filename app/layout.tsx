@@ -12,6 +12,7 @@ import SpaceBox from './SpaceBox';
 import { rtl } from './theme';
 import CustomThemeProvider from './theme-provider';
 import { AssetsProvider } from './AssetsProvider';
+import StatusHeader from './Components/Wallet/StatusHeader';
 
 const IranYekanFont = localFont({
   src: [
@@ -70,6 +71,7 @@ export default function RootLayout({
               <Navbar />
               <main style={{ flexGrow: 1 }}>
                 <SpaceBox />
+                <StatusHeader/>
                 <CustomBreadcrumbs />
 
                 {children}

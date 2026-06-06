@@ -97,7 +97,7 @@ export default function ChangePassword() {
         sx={{
           fontSize: 14,
           fontWeight: 800,
-          py: 0.5,
+          py: 1,
           px: 2,
           borderRadius: '7px',
          whiteSpace:'nowrap',
@@ -113,7 +113,7 @@ export default function ChangePassword() {
         sx={{
           fontSize: 14,
           fontWeight: 800,
-          py: 0.5,
+          py: 1,
           px: 2,
           borderRadius: '7px',
          whiteSpace:'nowrap',
