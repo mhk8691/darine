@@ -15,6 +15,7 @@ export default function ForgetPasswordForm({ children }: Props) {
   const router = useRouter();
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isLoading,setIsLoading] = useState(false)
+
   const handleClick = async () => {
     try {
       setIsLoading(true)

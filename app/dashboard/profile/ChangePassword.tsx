@@ -10,7 +10,17 @@ import { useState } from 'react';
 import CompletePassword from './CompletePassword';
 import Loading from '@/app/Components/Loading/Loading';
 import { useRouter } from 'next/navigation';
-
+  export  const handleLogout = async ()=>{
+      try{
+        const response = await logout()
+        showSnackbar(response.data.message,true)
+        return response
+      }catch(error:unknown){
+        if (isAxiosError(error)){
+          showSnackbar(error.response?.data.message)
+        }
+      }
+    }
 export default function ChangePassword() {
   const [open, setOpen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -20,6 +30,7 @@ export default function ChangePassword() {
   const [repeatPassword, setRepeatPassword] = useState('');
   const [isLoading,setIsLoading] = useState(false)
   const router = useRouter()
+
   const handleClick = async () => {
     if (step === 0) {
       try {
@@ -77,17 +88,7 @@ export default function ChangePassword() {
     //   }
     // }
   };
-   const handleLogout = async ()=>{
-      try{
-        const response = await logout()
-        showSnackbar(response.message,true)
-        router.push('/login/login-password')
-      }catch(error:unknown){
-        if (isAxiosError(error)){
-          showSnackbar(error.response?.data.message)
-        }
-      }
-    }
+
   return (
     <>
       <Stack direction={'row'} gap={1}>
@@ -122,7 +123,12 @@ export default function ChangePassword() {
           color:'red',
           border:'1px solid red'
         }}
-        onClick={handleLogout}
+        onClick={async ()=>{
+          const res = await handleLogout()
+          if (res?.status === 200 || res?.status === 201){
+            router.push('/login/login-password')
+          }
+        }}
       >
        خروج
       </Button>

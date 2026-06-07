@@ -33,6 +33,7 @@ import { useRouter } from 'next/navigation';
 import priceFormater from '@/app/core/PriceFormater';
 import { AssetsDataType } from '@/app/core/Types';
 import { getAssets } from '@/lib/getAssets/getAssets';
+import { handleLogout } from '@/app/dashboard/profile/ChangePassword';
 const options = [
   {
     title: 'پروفایل',
@@ -119,17 +120,7 @@ React.useEffect(()=>{
 
     setOpen(false);
   };
-  const handleLogout = async ()=>{
-    try{
-      const response = await logout()
-      showSnackbar(response.message,true)
-      router.push('/login/login-password')
-    }catch(error:unknown){
-      if (isAxiosError(error)){
-        showSnackbar(error.response?.data.message)
-      }
-    }
-  }
+
   return (
     <ClickAwayListener onClickAway={handleClose}>
       <div
@@ -257,7 +248,12 @@ React.useEffect(()=>{
             >
               افزایش اعتبار
             </Button>
-            <Button variant="outlined" color="error" onClick={handleLogout}>
+            <Button variant="outlined" color="error"  onClick={async ()=>{
+          const res = await handleLogout()
+          if (res?.status === 200 || res?.status === 201){
+            router.push('/login/login-password')
+          }
+        }}>
               خروج
             </Button>
           </Stack>

@@ -1,6 +1,6 @@
 'use client';
 import { Grid, Stack } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Field from '../Field';
 import SubmitButton from '../SubmitButton';
 import { register } from '@/lib/auth';
@@ -9,6 +9,7 @@ import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { useRouter } from 'next/navigation';
 import PasswordField from '../PasswordField';
 import CustomDatePicker, { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
+import { handleLogout } from '@/app/dashboard/profile/ChangePassword';
 
 export interface RegisterFormType {
   mobile: string;
@@ -29,6 +30,7 @@ export default function RegisterForm({ phoneNumber }: { phoneNumber: string }) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const router = useRouter();
+
   const handleRegister = async () => {
     const newRegisterForm = {
       mobile: phoneNumber,
@@ -45,7 +47,7 @@ export default function RegisterForm({ phoneNumber }: { phoneNumber: string }) {
       const response = await register(newRegisterForm);
       if (response.status === 200 || response.status === 201) {
         showSnackbar(response?.data.message, true);
-        router.push('/login/login-password');
+        router.push('/dashboard');
       }
     } catch (error: unknown) {
       if (isAxiosError(error)) {

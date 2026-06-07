@@ -1,6 +1,45 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
+// export function middleware(req: NextRequest) {
+//   const { pathname } = req.nextUrl;
+
+//   const refreshToken = req.cookies.get('refreshToken');
+
+//   const publicPaths = [
+//     '/login',
+//     '/login/login-password',
+//     '/login/login-otp',
+//    ' /login/forget',
+//    ' /login/forget-verify',
+//    ' /login/register',
+//    ' /login/signup',
+//    ' /login/verify-otp',
+//     '/about',
+//   ];
+
+//   const isPublic = publicPaths.some((path) =>
+//     pathname.startsWith(path)
+//   );
+
+//   if (pathname === '/login') {
+//     return NextResponse.redirect(
+//       new URL('/login/login-password', req.url)
+//     );
+//   }
+//   if (pathname === '/') {
+//     return NextResponse.redirect(
+//       new URL('/dashboard', req.url)
+//     );
+//   }
+//   if (!refreshToken && !isPublic) {
+//     return NextResponse.redirect(
+//       new URL('/login/login-password', req.url)
+//     );
+//   }
+
+//   return NextResponse.next();
+// }
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
@@ -10,11 +49,11 @@ export function middleware(req: NextRequest) {
     '/login',
     '/login/login-password',
     '/login/login-otp',
-   ' /login/forget',
-   ' /login/forget-verify',
-   ' /login/register',
-   ' /login/signup',
-   ' /login/verify-otp',
+    '/login/forget',
+    '/login/forget-verify',
+    '/login/register',
+    '/login/signup',
+    '/login/verify-otp',
     '/about',
   ];
 
@@ -22,21 +61,26 @@ export function middleware(req: NextRequest) {
     pathname.startsWith(path)
   );
 
-  if (pathname === '/login') {
-    return NextResponse.redirect(
-      new URL('/login/login-password', req.url)
-    );
-  }
-  if (pathname === '/') {
+  if (
+    refreshToken &&
+    pathname.startsWith('/login')
+  ) {
     return NextResponse.redirect(
       new URL('/dashboard', req.url)
     );
   }
-  if (!refreshToken && !isPublic) {
-    return NextResponse.redirect(
-      new URL('/login/login-password', req.url)
-    );
-  }
+
+  // if (pathname === '/') {
+  //   return NextResponse.redirect(
+  //     new URL('/dashboard', req.url)
+  //   );
+  // }
+
+  // if (!refreshToken && !isPublic) {
+  //   return NextResponse.redirect(
+  //     new URL('/login/login-password', req.url)
+  //   );
+  // }
 
   return NextResponse.next();
 }

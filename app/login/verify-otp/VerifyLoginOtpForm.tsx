@@ -25,6 +25,9 @@ export default function VerifyLoginOtpForm({ phoneNumber }: Props) {
         router.push('/dashboard');
     } catch (error: unknown) {
       if (isAxiosError(error)) {
+        if (error.status === 404){
+          router.push('/login/signup')
+        }
         showSnackbar(error.response?.data.message, false);
       }
     }finally{

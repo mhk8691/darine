@@ -9,6 +9,7 @@ import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { useRouter } from 'next/navigation';
 import CompletePassword from '@/app/dashboard/profile/CompletePassword';
 import { autoCompleteCode } from '../autoCompleteCode';
+import { handleLogout } from '@/app/dashboard/profile/ChangePassword';
 
 export default function VerifyOtpCode({ phone }: { phone: string }) {
   const router = useRouter()
@@ -17,6 +18,7 @@ export default function VerifyOtpCode({ phone }: { phone: string }) {
   const [repeatPassword, setRepeatPassword] = useState('');
   const [step ,setStep] = useState(0)
     const [isLoading,setIsLoading] = useState(false)
+ 
   const handleLoginVerifyOtp = async () => {
     try {
       setIsLoading(true)

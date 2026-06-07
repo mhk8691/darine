@@ -158,7 +158,7 @@ export const verifyLoginOtp = async (
 
 export const logout = async () => {
   const response = await api.post<{message:string}>('/accounts/logout/');
-  return response.data
+  return response
 };
 
 

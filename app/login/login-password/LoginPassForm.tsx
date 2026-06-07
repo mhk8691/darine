@@ -1,6 +1,6 @@
 'use client';
 
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import Field from '../Field';
 import PasswordField from '../PasswordField';
 import { Stack } from '@mui/material';
@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import { loginPassword } from '@/lib/auth';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+import { handleLogout } from '@/app/dashboard/profile/ChangePassword';
 
 interface Props {
   children: ReactNode;
