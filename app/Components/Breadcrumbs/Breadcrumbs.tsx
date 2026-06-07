@@ -20,7 +20,7 @@ const breadcrumbNameMap: Record<string, string> = {
 };
 
 const exactHiddenRoutes = [
-  '/branches',
+  '/learning',
   '/license',
   '/partners',
   '/about-us',

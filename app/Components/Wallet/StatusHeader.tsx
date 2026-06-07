@@ -17,7 +17,7 @@ export default function StatusHeader() {
   const whiteList = [
     '/about-us',
     '/application',
-    '/branches',
+    '/learning',
     '/calculator',
     '/coin-price',
     '/faq',

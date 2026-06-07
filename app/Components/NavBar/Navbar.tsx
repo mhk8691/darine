@@ -57,7 +57,7 @@ const menu: MenuType[] = [
    
     ],
   },
-  { id: 3, title: 'آموزش های دارینه', link: '/branches' },
+  { id: 3, title: 'آموزش های دارینه', link: '/learning' },
   // { id: 4, title: 'مجوز های دارینه', link: '/license' },
   { id: 4 , title: 'همکاری با دارینه', link: '/partners' },
 ];
