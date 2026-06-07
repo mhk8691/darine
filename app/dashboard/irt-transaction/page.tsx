@@ -21,9 +21,6 @@ export default function page() {
     >
       <BackLink title="واریز و برداشت" />
 
-      <Grid size={12}>
-        <WalletHeader />
-      </Grid>
       <TransactionContainer />
       
     </Grid>

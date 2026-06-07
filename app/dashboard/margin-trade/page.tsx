@@ -80,9 +80,7 @@ export default function page() {
     >
       <BackLink title="سفارش تعهدی" />
 
-      <Grid size={12}>
-        <WalletHeader />
-      </Grid>
+     
       <Grid
         size={{
           xs: 12,

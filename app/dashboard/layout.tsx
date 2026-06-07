@@ -1,6 +1,7 @@
-import { Container, Divider, Stack } from '@mui/material';
+import { Container, Divider, Grid, Stack } from '@mui/material';
 import { ReactNode } from 'react';
 import AppbarContainer from '../Components/AppBar/AppbarContainer';
+import WalletHeader from '../Components/Wallet/WalletHeader';
 interface Props {
   children: ReactNode;
 }
@@ -36,6 +37,9 @@ export default function layout({ children }: Props) {
             sm: 8,
           }}
         >
+           <Grid size={12} >
+        <WalletHeader />
+      </Grid>
           {children}
         </Stack>
       </Container>

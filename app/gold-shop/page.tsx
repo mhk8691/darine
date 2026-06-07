@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Faq from '../Components/Faq/Faq';
 import { FaqItem } from '../core/Types';
 import ProductsContainer from './ProductsContainer';
-import Status from './Status';
 import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'خرید شمش طلا 18 و 24 عیار ',
@@ -42,7 +41,6 @@ const faqData: FaqItem[] = [
 export default function page() {
   return (
     <>
-      <Status />
 
       <Container
         maxWidth={'xl'}

@@ -22,15 +22,7 @@ export default function page() {
       >
         <BackLink title="آلارم قیمت" />
 
-        <Grid
-          size={12}
-          display={{
-            xs: 'none',
-            sm: 'block',
-          }}
-        >
-          <WalletHeader />
-        </Grid>
+   
           <PriceAlertContainer/>
       </Grid>
    

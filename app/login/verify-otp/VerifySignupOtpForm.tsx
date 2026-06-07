@@ -21,7 +21,7 @@ export default function VerifySignupOtpForm({ phoneNumber }: Props) {
     try {
       setIsLoading(true)
       const response = await verifySignupOtp(phoneNumber, verifyCode);
-      router.push(`/dashboard`);
+      // router.push(`/dashboard`);
       if (response.status === 200) {
         showSnackbar(response.data.message, true);
         router.push(`/login/register/?phone=${phoneNumber}`);

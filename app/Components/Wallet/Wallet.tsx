@@ -65,8 +65,8 @@ export default function Wallet({ type }: Props) {
         >
           <Stack direction={'row'} justifyContent={type === 'dashboard' ?'center':'flex-start'} p={2}>
             {type === 'dashboard' && <Stack></Stack>}
-            <Stack direction={'column'} gap={1} ml={type === 'wallet'?0:5} alignItems={type === 'wallet' ? 'start' : 'center'}>
-              <Typography variant="body2" fontSize={12} sx={{ color: 'text.muted' }}>
+            <Stack direction={'column'} gap={1} alignItems={type === 'wallet' ? 'start' : 'center'}>
+              <Typography variant="body2"  fontSize={12} sx={{ color: 'text.muted' }}>
                 ارزش کل دارایی
               </Typography>
               <Stack direction={'row'} gap={0.5} alignItems={'center'} fontWeight={500}>

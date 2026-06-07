@@ -14,9 +14,7 @@ export default function page() {
         sm: 3,
       }}
     >
-      <Grid size={12}>
-        <WalletHeader />
-      </Grid>
+
     <Products/>
       
     </Grid>

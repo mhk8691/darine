@@ -20,11 +20,7 @@ export default function WalletHeader() {
             xs: 1,
             md: 3,
           }}
-          mb={{
-            xs: 0,
-            sm: 2,
-            lg: 0,
-          }}
+          mb={4}
         >
           <Grid size={4}>
             <Card

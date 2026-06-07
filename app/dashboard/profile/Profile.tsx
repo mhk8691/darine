@@ -86,15 +86,7 @@ export default function Profile({user}:{user:User | null}) {
       </Stack>
 
       <ChangePassword />
-      <Grid
-        size={12}
-        display={{
-          sm: 'none',
-        }}
-        mt={2}
-      >
-        <WalletHeader />
-      </Grid>
+
       <Stack
         border={1}
         px={2}

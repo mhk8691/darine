@@ -37,9 +37,7 @@ export default function page() {
       }}
     >
       <BackLink title="پس انداز خودکار" />
-      <Grid size={12}>
-        <WalletHeader />
-      </Grid>
+ 
       <Grid
         size={{
           xs: 12,
