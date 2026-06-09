@@ -150,13 +150,11 @@ export default function WalletHeader() {
           </Grid>
         </Grid>
       ) : (
+        pathname !== '/dashboard' && 
         <Stack mb={2}>
-          {
-            pathname !== '/dashboard' && 
         <MobileWalletStatus isDesktop={isDesktop} visible={isVisible} assets={assets} />
-          }
+          </Stack>
         
-        </Stack>
       )}
     </>
   );
