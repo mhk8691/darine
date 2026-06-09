@@ -130,14 +130,7 @@ export default function Deposit({setTransactionData,transactionParams,filter,dat
               انتخاب حداکثر مقدار واریز
             </Button>
           </Stack>
-        {select === 'receipt' &&(
-          <BankCard
-            bankCardsData={bankCardsData}
-            setBankCardsData={setBankCardsData}
-            setSelectedCard={setSelectedCard}
-            selectedCard={selectedCard}
-          />
-        )}
+      
       </Stack>
           {
         depositData && select === 'receipt'&& <>
