@@ -1,16 +1,17 @@
 'use client';
 import priceFormater from '@/app/core/PriceFormater';
-import { Box, Grid, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Grid, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import Card from '../Containers/Container/Container';
 import MobileWalletStatus from './MobileWalletStatus';
 import { useAssets } from '@/app/AssetsProvider';
-import StatusHeader from './StatusHeader';
+import { usePathname } from 'next/navigation';
 
 export default function WalletHeader() {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   const {assets,isVisible} = useAssets()
-  console.log('=>>',assets)
+    const pathname = usePathname()
+
   return (
     <>
       {isDesktop ? (
@@ -149,10 +150,13 @@ export default function WalletHeader() {
           </Grid>
         </Grid>
       ) : (
-        <>
+        <Stack mb={2}>
+          {
+            pathname !== '/dashboard' && 
         <MobileWalletStatus isDesktop={isDesktop} visible={isVisible} assets={assets} />
+          }
         
-        </>
+        </Stack>
       )}
     </>
   );

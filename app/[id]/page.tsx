@@ -70,7 +70,6 @@ interface Props {
 }
 
 export default function page({ params }: Props) {
-  console.log(params.productId);
   return (
     <Container
       maxWidth={'xl'}

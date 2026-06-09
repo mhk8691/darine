@@ -24,7 +24,6 @@ export default function DirectDelivery() {
   const [selectedValue, setSelectedValue] = useState<string | number>('');
 
   const handleChange = (value: string | number): void => {
-    console.log('Selected:', value);
     setSelectedValue(value);
   };
   return (

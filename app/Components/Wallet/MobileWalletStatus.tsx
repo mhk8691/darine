@@ -12,6 +12,7 @@ export default function MobileWalletStatus({
   isDesktop: boolean;
   assets: AssetsDataType;
 }) {
+
   return (
     <Stack direction={'row'} justifyContent={'center'}>
       <Stack
