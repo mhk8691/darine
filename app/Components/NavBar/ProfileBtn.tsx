@@ -34,6 +34,7 @@ import priceFormater from '@/app/core/PriceFormater';
 import { AssetsDataType } from '@/app/core/Types';
 import { getAssets } from '@/lib/getAssets/getAssets';
 import { handleLogout } from '@/app/dashboard/profile/ChangePassword';
+import { useAssets } from '@/app/AssetsProvider';
 const options = [
   {
     title: 'پروفایل',
@@ -74,6 +75,7 @@ const options = [
 ];
 
 export default function ProfileBtn() {
+  const {assets} = useAssets()
   const router = useRouter()
   const [user, setUser] = React.useState<User | null>(null);
   const [open, setOpen] = React.useState(false);
@@ -83,21 +85,7 @@ export default function ProfileBtn() {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const handleToggle = () => setOpen((prev) => !prev);
   const isDarkMode = theme.palette.mode == 'dark';
-  const [assets,setAssets] = React.useState<AssetsDataType>({} as AssetsDataType)
-    React.useEffect(()=>{
-      const getData = async ()=>{
-       try{
-         const response = await getAssets()
-        setAssets(response)
-       }catch(error:unknown){
-        if (isAxiosError(error)){
-          showSnackbar(error.response?.data.message)
-        }
-       }
-      }
-         getData();
-    
-    },[open])
+
    const fetchUser = React.useCallback(async () => {
     try {
       const me = await getMe();

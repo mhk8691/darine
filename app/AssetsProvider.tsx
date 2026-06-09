@@ -1,13 +1,14 @@
 'use client';
 
-import { 
-  createContext, 
-  useContext, 
-  useState, 
-  useEffect, 
-  useCallback, 
-  useRef
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
 } from 'react';
+import { usePathname } from 'next/navigation';
 import { AssetsDataType } from './core/Types';
 import { getAssets } from '@/lib/getAssets/getAssets';
 
@@ -22,16 +23,23 @@ interface AssetsContextType {
   setIsVisible: (visible: boolean) => void;
 }
 
-// مقداردهی اولیه با مقدار null به جای {} برای تشخیص بهتر خطا
 const AssetsContext = createContext<AssetsContextType | null>(null);
 
 export function AssetsProvider({ children }: { children: React.ReactNode }) {
-  const [assets, setAssets] = useState<AssetsDataType>({} as AssetsDataType);
-  
-  // لود ایمن مقدار اولیه از لوکال استوریج در محیط کلاینت
-  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const pathname = usePathname();
 
-  // برای جلوگیری از باگ‌های هیدریشن در Next.js، لود لوکال استوریج را به useEffect منتقل می‌کنیم
+  const isAuthPage =
+    pathname.startsWith('/login')
+  const [assets, setAssets] = useState<AssetsDataType>({} as AssetsDataType);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [lastUpdate, setLastUpdate] = useState<Date | null>(null);
+
+  const isFetchingRef = useRef(false);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const isMountedRef = useRef(true);
+
   useEffect(() => {
     const stored = localStorage.getItem('eyeState');
     if (stored !== null) {
@@ -39,70 +47,74 @@ export function AssetsProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [lastUpdate, setLastUpdate] = useState<Date | null>(null);
-  
-  const isFetchingRef = useRef(false);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const isMountedRef = useRef(true);
+  const fetchData = useCallback(
+    async (showLoading = true) => {
+      if (isAuthPage) return;
+      if (isFetchingRef.current) return;
 
-  const fetchData = useCallback(async (showLoading = true) => {
-    if (isFetchingRef.current) return;
+      try {
+        isFetchingRef.current = true;
 
-    try {
-      isFetchingRef.current = true;
-      if (showLoading) setIsLoading(true);
-      setError(null);
+        if (showLoading) setIsLoading(true);
+        setError(null);
 
-      const response = await getAssets();
-      
-      if (isMountedRef.current) {
-        setAssets(response);
-        setLastUpdate(new Date());
+        const response = await getAssets();
+
+        if (isMountedRef.current) {
+          setAssets(response || ({} as AssetsDataType));
+          setLastUpdate(new Date());
+        }
+      } catch (err) {
+        if (isMountedRef.current) {
+          setError(
+            err instanceof Error ? err.message : 'خطا در دریافت اطلاعات'
+          );
+
+          setTimeout(() => fetchData(false), 2000);
+        }
+      } finally {
+        if (isMountedRef.current) {
+          setIsLoading(false);
+        }
+        isFetchingRef.current = false;
       }
-    } catch (err) {
-      if (isMountedRef.current) {
-        setError(err instanceof Error ? err.message : 'خطا در دریافت اطلاعات');
-        console.error('Error fetching assets:', err);
-      }
-    } finally {
-      if (isMountedRef.current) {
-        setIsLoading(false);
-      }
-      isFetchingRef.current = false;
-    }
-  }, []);
+    },
+    [isAuthPage]
+  );
 
   useEffect(() => {
     isMountedRef.current = true;
-    fetchData();
 
-    intervalRef.current = setInterval(() => {
-      fetchData(false); 
-    }, 45 * 1000);
+    if (!isAuthPage) {
+      fetchData();
+
+      intervalRef.current = setInterval(() => {
+        fetchData(false);
+      }, 45 * 1000);
+    }
 
     return () => {
       isMountedRef.current = false;
+
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
     };
-  }, [fetchData]);
+  }, [fetchData, isAuthPage]);
 
   const refetch = useCallback(async () => {
     await fetchData(true);
   }, [fetchData]);
 
-  const value = {
+  const value: AssetsContextType = {
     assets,
-    isVisible,
-    setIsVisible,
     setAssets,
     isLoading,
     error,
     refetch,
     lastUpdate,
+    isVisible,
+    setIsVisible,
   };
 
   return (
@@ -115,7 +127,9 @@ export function AssetsProvider({ children }: { children: React.ReactNode }) {
 export function useAssets() {
   const context = useContext(AssetsContext);
   if (!context) {
-    throw new Error('useAssets context پیدا نشد! مطمئن شوید ToggleEyeButton داخل تگ <AssetsProvider> قرار دارد.');
+    throw new Error(
+      'useAssets context پیدا نشد! مطمئن شوید داخل <AssetsProvider> هستید.'
+    );
   }
   return context;
 }

@@ -10,7 +10,7 @@ export default function WalletHeader() {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   const {assets,isVisible} = useAssets()
- 
+  console.log('=>>',assets)
   return (
     <>
       {isDesktop ? (
