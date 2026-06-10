@@ -3,13 +3,13 @@ import Container from '@/app/Components/Containers/Container/Container';
 import WalletHeader from '@/app/Components/Wallet/WalletHeader';
 import { Grid, Typography } from '@mui/material';
 import { Metadata } from 'next';
-import Buttons from './Buttons';
 import ChangeNumber from './ChangeNumber';
 import Profile from './Profile';
 import { useCallback, useEffect, useState } from 'react';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { getMe, User } from '@/lib/auth';
+import JoinTelButton from './JoinTelButton';
 // export const metadata: Metadata = {
 //   title: 'پروفایل | دارینه',
 //   description: '',
@@ -88,11 +88,9 @@ export default function page() {
             }}
             mt={2.5}
           >
-            شما می‌توانید در این بخش، ارسال کد ورود به پنل کاربری دارینه را در حساب تلگرام خود را
-            فعال کنید، تا در مواقع اختلال در زیرساخت‌های مخابراتی، بتوانید به راحتی وارد حساب دارینه
-            خود شوید.
+           برای اطلاع از جدیدترین امکانات، به‌روزرسانی‌ها، اخبار مجموعه، آموزش‌ها و رویدادهای ویژه دارینه، در کانال تلگرام ما عضو شوید.
           </Typography>
-          <Buttons />
+          <JoinTelButton />
         </Container>
       </Grid>
       <Grid
