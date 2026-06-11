@@ -60,12 +60,40 @@ export default function RegisterForm({ phoneNumber }: { phoneNumber: string }) {
   return (
     <>
       <Grid container spacing={1.5}>
-        <Grid size={12}>
-          <Field value={nationalCode} setValue={setNationalCode} label="کد ملی" />
-        </Grid>
-         <Grid size={12}>
-           <Stack >
-             <CustomDatePicker value={birthDay}  onChange={(val) => setBirthDay(val)} label='تاریخ تولد' isRange={false} style={{
+      <form
+  onSubmit={(e) => {
+    e.preventDefault();
+    handleRegister();
+  }}
+>
+  <Grid container spacing={1.5}>
+    {/* فیلد مخفی شماره موبایل برای تشخیص Password Manager */}
+    <input
+      type="tel"
+      name="username"
+      autoComplete="username"
+      value={phoneNumber}
+      readOnly
+      style={{
+        position: 'absolute',
+        opacity: 0,
+        pointerEvents: 'none',
+        height: 0,
+        width: 0,
+      }}
+    />
+
+    <Grid size={12}>
+      <Field
+        value={nationalCode}
+        setValue={setNationalCode}
+        label="کد ملی"
+      />
+    </Grid>
+
+    <Grid size={12}>
+      <Stack>
+        <CustomDatePicker value={birthDay}  onChange={(val) => setBirthDay(val)} label='تاریخ تولد' isRange={false} style={{
               mt:2,
                '& .MuiInputBase-input': {
           py: 2.5,
@@ -87,27 +115,62 @@ export default function RegisterForm({ phoneNumber }: { phoneNumber: string }) {
         },
         
             }} />
-           </Stack>
-          </Grid>
- 
-        <Grid size={6}>
-          <Field value={firstName} setValue={setFirstName} label="نام" />
-        </Grid>{' '}
-        <Grid size={6}>
-          <Field value={lastName} setValue={setLastName} label="نام خانوادگی" />
-        </Grid>
-         <Grid size={12}>
-          <Field value={referralCode} setValue={setReferralCode} label="کد نمایندگی (اختیاری)" />
-        </Grid>
-        <Grid size={12}>
-          <PasswordField password={password} setPassword={setPassword} label="رمز عبور" />
-        </Grid>
-         <Grid size={12}>
-          <PasswordField password={repeatPassword} setPassword={setRepeatPassword} label="تکرار رمز عبور" />
-        </Grid>
+      </Stack>
+    </Grid>
+
+    <Grid size={6}>
+      <Field
+        value={firstName}
+        setValue={setFirstName}
+        label="نام"
+      />
+    </Grid>
+
+    <Grid size={6}>
+      <Field
+        value={lastName}
+        setValue={setLastName}
+        label="نام خانوادگی"
+      />
+    </Grid>
+
+    <Grid size={12}>
+      <Field
+        value={referralCode}
+        setValue={setReferralCode}
+        label="کد نمایندگی (اختیاری)"
+      />
+    </Grid>
+
+    <Grid size={12}>
+             <PasswordField
+        password={password}
+        setPassword={setPassword}
+        inputProps={{
+          name: 'password',
+          autoComplete: 'current-password',
+        }}
+      />
+    </Grid>
+
+    <Grid size={12}>
+      <PasswordField
+        password={repeatPassword}
+        setPassword={setRepeatPassword}
+        label="تکرار رمز عبور"
+      />
+    </Grid>
+  </Grid>
+
+  <SubmitButton
+    title="ثبت نام"
+    isLoading={isLoading}
+    type="submit"
+  />
+</form>  
+      {/* <SubmitButton title={'ثبت نام'} isLoading={isLoading} handleSubmit={handleRegister} /> */}
       </Grid>
 
-      <SubmitButton title={'ثبت نام'} isLoading={isLoading} handleSubmit={handleRegister} />
     </>
   );
 }
