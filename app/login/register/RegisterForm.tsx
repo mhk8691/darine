@@ -85,6 +85,7 @@ export default function RegisterForm({ phoneNumber }: { phoneNumber: string }) {
 
     <Grid size={12}>
       <Field
+      type='number'
         value={nationalCode}
         setValue={setNationalCode}
         label="کد ملی"
@@ -120,6 +121,7 @@ export default function RegisterForm({ phoneNumber }: { phoneNumber: string }) {
 
     <Grid size={6}>
       <Field
+      type='text'
         value={firstName}
         setValue={setFirstName}
         label="نام"
@@ -128,6 +130,7 @@ export default function RegisterForm({ phoneNumber }: { phoneNumber: string }) {
 
     <Grid size={6}>
       <Field
+      type='text'
         value={lastName}
         setValue={setLastName}
         label="نام خانوادگی"
@@ -136,6 +139,7 @@ export default function RegisterForm({ phoneNumber }: { phoneNumber: string }) {
 
     <Grid size={12}>
       <Field
+      type='text'
         value={referralCode}
         setValue={setReferralCode}
         label="کد نمایندگی (اختیاری)"

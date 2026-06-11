@@ -116,7 +116,7 @@ export default function OrderConfirmation({ setOpen,deliveryType,addressId }: Pr
       <Stack sx={rowStyle}>
         <Typography sx={titleStyle}>موجودی کیف پول</Typography>
         <Typography fontSize={18}>
-          {priceFormater(balance)} تومان
+          {priceFormater(balance) || 0} تومان
         </Typography>
       </Stack>
 

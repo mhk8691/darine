@@ -32,10 +32,10 @@ export default function NewAddress({address,plaque,postCode,setPlaque,setPostCod
         />
       </Grid>
       <Grid size={6}>
-        <InputField type='text' placeholder="پلاک" value={plaque} setValue={setPlaque} style={inputStyle} />
+        <InputField type='number' placeholder="پلاک" value={plaque} setValue={setPlaque} style={inputStyle} />
       </Grid>
       <Grid size={6}>
-        <InputField type='text' placeholder="واحد" value={unit} setValue={setUnit} style={inputStyle} />
+        <InputField type='number' placeholder="واحد" value={unit} setValue={setUnit} style={inputStyle} />
       </Grid>
       <Grid size={12}>
         <InputField

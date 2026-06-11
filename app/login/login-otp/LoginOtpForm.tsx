@@ -34,7 +34,7 @@ export default function LoginOtpForm({ children }: Props) {
       };
   return (
    <>
-   <Field value={mobile} setValue={setMobile} label="شماره موبایل" />
+   <Field type='number' value={mobile} setValue={setMobile} label="شماره موبایل" />
    
          {children}
          <SubmitButton title={'ادامه'} isLoading={isLoading} handleSubmit={handleLogin} />

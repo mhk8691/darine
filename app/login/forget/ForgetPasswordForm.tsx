@@ -35,7 +35,7 @@ export default function ForgetPasswordForm({ children }: Props) {
   };
   return (
     <>
-      <Field value={phoneNumber} setValue={setPhoneNumber} label="شماره موبایل" />
+      <Field type='number' value={phoneNumber} setValue={setPhoneNumber} label="شماره موبایل" />
       {children}
       <SubmitButton title={'ادامه'} isLoading={isLoading} handleSubmit={handleClick} />
     </>

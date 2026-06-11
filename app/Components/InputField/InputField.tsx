@@ -85,6 +85,7 @@ export default function InputField({
       placeholder={placeholder}
       value={type === 'number' ? formatNumber(value) : value}
       onChange={handleChange}
+      inputMode={type === 'number' ? 'decimal' : 'text'}
       multiline={multiline}
       minRows={multiline ? 2 : undefined}
       fullWidth

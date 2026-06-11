@@ -59,6 +59,7 @@ export default function ChangeNumber({setUser}:{setUser:Dispatch<SetStateAction<
     >
       {step === 0 ? (
         <Field
+        type='number'
           placeholder="شماره تلفن جدید"
           setValue={setPhoneNumber}
           value={phoneNumber}
@@ -74,6 +75,7 @@ export default function ChangeNumber({setUser}:{setUser:Dispatch<SetStateAction<
         />
       ) : (
         <Field
+        type='number'
           placeholder="کد ارسال شده"
           setValue={setOtpCode}
           value={otpCode}

@@ -57,7 +57,7 @@ export default function AddCard({ setOpen, setValue, open, value, setBankCardDat
       <Typography variant="body1" fontSize={14} sx={{ mt: 3 }}>
         شماره‌ی کارت بانکی خود را وارد کنید
       </Typography>
-      <Field value={value} setValue={setValue} placeholder="شماره کارت جدید" />
+      <Field type='number' value={value} setValue={setValue} placeholder="شماره کارت جدید" />
       <Button
         variant="contained"
         color="primary"

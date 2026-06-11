@@ -153,9 +153,9 @@ export default function ChangePassword() {
               : 'رمز عبور جدید را با توجه به شرایط ذکر شده تعیین کنید.'}
         </Typography>
         {step === 0 ? (
-          <Field setValue={setPhoneNumber} value={phoneNumber} label="شماره موبایل شما" />
+          <Field type='number' setValue={setPhoneNumber} value={phoneNumber} label="شماره موبایل شما" />
         ) : step === 1 ? (
-          <Field setValue={setOtpCode} value={otpCode} label="کد تایید" />
+          <Field type='number' setValue={setOtpCode} value={otpCode} label="کد تایید" />
         ) : (
        <CompletePassword password={password} repeatPassword={repeatPassword} setPassword={setPassword} setRepeatPassword={setRepeatPassword} />
         )}

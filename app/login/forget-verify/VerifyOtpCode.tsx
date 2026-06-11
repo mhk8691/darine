@@ -61,7 +61,7 @@ export default function VerifyOtpCode({ phone }: { phone: string }) {
     <>
      {
       step === 0 ? <>
-      <Field value={verifyCode} setValue={setVerifyCode} label="کد تایید" />
+      <Field type='number' value={verifyCode} setValue={setVerifyCode} label="کد تایید" />
       <SendCode phoneNumber={phone} />
       
       </>:<CompletePassword 
