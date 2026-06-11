@@ -3,13 +3,15 @@ import { Box, Button, Grid, Typography, useMediaQuery, useTheme } from '@mui/mat
 import { useState } from 'react';
 import Container from '../Components/Containers/Container/Container';
 import InputField from '../Components/InputField/InputField';
+import api from '@/lib/api';
+import { showSnackbar } from '../Components/Snackbar/Snackbar';
+import { isAxiosError } from 'axios';
 
 export default function Form() {
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
-  const [description, setDescription] = useState('');
   const theme = useTheme();
   const isUpMd = useMediaQuery(theme.breakpoints.up('md'));
   const isDarkMode = theme.palette.mode === 'dark';
@@ -36,19 +38,39 @@ export default function Form() {
       setValue: setPhoneNumber,
     },
 
-    {
-      placeholder: 'توضیحات تکمیلی',
-      value: description,
-      setValue: setDescription,
-    },
+  
   ];
-  if (!isUpMd) return null;
+  const handleSubmit = async ()=>{
+    const newData = {
+      organization_name:name,
+      mobile:phoneNumber,
+      full_name:lastName,
+      email,
+    }
+    try{
+      const response = await api.post<{
+      message:string
+    }>('/accounts/cooperation-request/',newData)
+    showSnackbar(response.data.message,true)
+    setName('')
+    setEmail('')
+    setLastName('')
+    setPhoneNumber('')
+    }catch(error:unknown){
+      if (isAxiosError(error)){
+        showSnackbar(error.response?.data.message)
+      }
+    }
+  }
   return (
     <Grid container spacing={4.5} mt={15.5}>
       <Grid size={12}>
         <Typography
           variant="h1"
-          fontSize={30}
+          fontSize={{
+            xs:22,
+            sm:30
+          }}
           fontWeight={'700'}
           sx={{ color: 'text.title', textAlign: 'center' }}
         >
@@ -64,14 +86,25 @@ export default function Form() {
             p: 4.5,
           }}
         >
-          <Typography variant="h6" fontSize={22}>
+          <Typography variant="h6" fontSize={{
+            xs:16,
+            sm:18,
+            md:22
+          }}
+          textAlign={{
+            xs:'center',
+            md:'left'
+          }}
+          >
             با استفاده از فرم زیر درخواست خود را برای ما ارسال کنید. در کمترین زمان شما را راهنمایی
             خواهیم کرد!
           </Typography>
 
           <Grid size={12} container spacing={3} mt={5}>
             {inputList.map((item) => (
-              <Grid size={item.placeholder === 'توضیحات تکمیلی' ? 12 : 6} key={item.placeholder}>
+              <Grid size={item.placeholder === 'توضیحات تکمیلی' ? 12 : {
+                xs:12,sm:6
+              }} key={item.placeholder}>
                 <InputField
                 type='text'
                   placeholder={item.placeholder}
@@ -112,13 +145,19 @@ export default function Form() {
                 fontSize: 18,
                 borderRadius: 2,
                 py: 1.5,
-                width: '25%',
+                width: {
+                  xs:'100%',
+                  md:'25%'
+                },
                 mt: 2,
               }}
+              onClick={handleSubmit}
             >
               ثبت درخواست
             </Button>
-            <Typography variant="body1" fontSize={20} sx={{ mt: 3 }}>
+            <Typography variant="body1" fontSize={{xs:16,
+              sm:20
+            }} sx={{ mt: 3 }}>
               جهت کسب اطلاعات بیشتر لطفا با شماره تلفن{' '}
               <Box component={'span'} color={'#007AFF'} sx={{ textDecoration: 'underline' }}>
                 ۰۲۱۹۱۳۴۵۹۱۰

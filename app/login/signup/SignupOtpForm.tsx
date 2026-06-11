@@ -23,7 +23,7 @@ export default function SignupOtpForm({ children }: Props) {
       const res = await signupOtp(mobile);
       if (res.status === 200) {
         showSnackbar(res.data.message, true);
-        router.push(`/login/verify-otp/?phone=${mobile}&type=signup`);
+        router.push(`/login/verify-otp/?phone=${mobile}`);
       }
     } catch (err: unknown) {
       if (isAxiosError(err)) {

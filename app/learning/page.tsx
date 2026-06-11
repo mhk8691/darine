@@ -188,8 +188,7 @@ export default function page() {
               }}
               fontWeight={500}
             >
-              پاسداران، میدان عقیلی، خیابان نازک، مجتمع اداری هروی سنتر، پلاک ۲، طبقه منفی ۱، واحد
-              b44
+              قم، میدان توحید، پاساژ شهر طلا
             </Typography>
           </Stack>
           <Stack
@@ -259,7 +258,7 @@ export default function page() {
               }}
               fontWeight={500}
             >
-              02191345910
+              ۰۹۱۹۱۶۰۸۷۷۱
             </Typography>
           </Stack>
         </Stack>
