@@ -96,7 +96,7 @@ const [isLoading,setIsLoading]= React.useState(false)
     try{
       setIsLoading(true)
       const response = await giftCardOrder(weight,count,addressId)
-      showSnackbar(response.message,true)
+      showSnackbar(response.message,'success')
       router.push('/dashboard/gift-cards')
     }catch(error:unknown){
       if (isAxiosError(error)){

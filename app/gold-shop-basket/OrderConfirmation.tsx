@@ -83,7 +83,7 @@ export default function OrderConfirmation({ setOpen,deliveryType,addressId }: Pr
     }
     try{
       const response = await checkout(newData)
-      showSnackbar(response.data.message,true)
+      showSnackbar(response.data.message,'success')
       router.push('/dashboard/gold-receive')
       clearCart()
     }catch (error:unknown){

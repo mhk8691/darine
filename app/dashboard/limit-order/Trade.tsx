@@ -55,7 +55,7 @@ export default function Trade({ type,getData }: Props) {
     setIsLoading(true)
     try{
       const response = await limitOrder(type,targetPrice,type==='BUY' ? price:gold)
-      showSnackbar(response.data.message,true)
+      showSnackbar(response.data.message,'success')
       getData()
       setPrice('')
       setGold('')

@@ -8,12 +8,12 @@ export default function GlobalSnackbar() {
   const [open, setOpen] = React.useState(false);
   const [snackbar, setSnackbar] = React.useState<SnackbarPayload>({
     message: '',
-    type: false,
+    color: 'error',
   });
 
   React.useEffect(() => {
-    const unsubscribe = onSnackbar(({ message, type }) => {
-      setSnackbar({ message, type });
+    const unsubscribe = onSnackbar(({ message, color }) => {
+      setSnackbar({ message, color });
       setOpen(true);
     });
     return unsubscribe;
@@ -32,12 +32,16 @@ export default function GlobalSnackbar() {
       anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
     >
       <Alert
-        severity={snackbar.type ? 'success' : 'error'}
+        severity={snackbar.color}
         variant="filled"
         sx={{
           width: '400px',
-          bgcolor: snackbar.type ? '#EAFFE7' : 'error:light',
-          color: snackbar.type ? '#33900E' : '',
+         bgcolor: snackbar.color === 'success'
+  ? '#EAFFE7'
+  : snackbar.color === 'error'
+    ? '#FFEBEE'
+    : '#FFE0B2',
+          color: snackbar.color + '.dark',
         }}
       >
         {snackbar.message}

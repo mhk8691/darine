@@ -62,7 +62,7 @@ export default function Trading({setData,reportsParams,filter,dateRange}:Props) 
       const newData = await getReports('gold',reportsParams||'',dateRange,filter)
       
       setData&&setData(newData)
-      showSnackbar(response.data.message,true)
+      showSnackbar(response.data.message,'success')
       setGold('')
       setPrice('')
       refetch()
@@ -81,7 +81,7 @@ export default function Trading({setData,reportsParams,filter,dateRange}:Props) 
       const response = await goldSell(gold);
       const newData = await getReports('gold',reportsParams || '',dateRange,filter)
       setData&&setData(newData)
-      showSnackbar(response.data.message,true)
+      showSnackbar(response.data.message,'success')
       setOpen(true);
            setGold('')
       setPrice('')

@@ -23,11 +23,11 @@ export default function VerifyOtpCode({ phone }: { phone: string }) {
     try {
       setIsLoading(true)
       const res = await verifyForgetOtp(phone, verifyCode);
-        showSnackbar(res.data.message, true);
+        showSnackbar(res.data.message, 'success');
         setStep(1)
     } catch (error: unknown) {
       if (isAxiosError(error)) {
-        showSnackbar(error.response?.data.message, false);
+        showSnackbar(error.response?.data.message);
       }
       
     }finally{
@@ -37,11 +37,11 @@ export default function VerifyOtpCode({ phone }: { phone: string }) {
   const handleCompleteLogin = async ()=>{
      try {
       const res = await fogetPasswordComplete(phone, verifyCode,password,repeatPassword);
-        showSnackbar(res.data.message, true);
+        showSnackbar(res.data.message, 'success');
         router.push('/login/login-password')
     } catch (error: unknown) {
       if (isAxiosError(error)) {
-        showSnackbar(error.response?.data.message, false);
+        showSnackbar(error.response?.data.message);
       }
     }
   }

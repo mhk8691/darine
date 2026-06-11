@@ -13,7 +13,7 @@ interface Props {
   phoneNumber: string;
 }
 
-export default function VerifyLoginOtpForm({ phoneNumber }: Props) {
+export default function VerifyOtpForm({ phoneNumber }: Props) {
   const [verifyCode, setVerifyCode] = useState('');
   const router = useRouter();
    const [isLoading,setIsLoading] = useState(false)
@@ -21,16 +21,17 @@ export default function VerifyLoginOtpForm({ phoneNumber }: Props) {
     try {
       setIsLoading(true)
       const res = await verifyLoginOtp(phoneNumber, verifyCode);
-      showSnackbar(res.data.message,true)
+      showSnackbar(res.data.message,'success')
         router.push('/dashboard');
     } catch (error: unknown) {
       if (isAxiosError(error)) {
         if (error.status === 404 && error.response?.data.message.need_register){
           router.push(`/login/register/?phone=${phoneNumber}`);
+          showSnackbar(error.response?.data.message.message, 'warning');
         }
         else{
 
-          showSnackbar(error.response?.data.message.message, false);
+          showSnackbar(error.response?.data.message.message,);
         }
       }
     }finally{

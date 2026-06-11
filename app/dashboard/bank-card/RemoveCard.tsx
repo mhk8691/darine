@@ -28,7 +28,7 @@ export default function RemoveCard({
     try{
       setIsLoading(true)
       const res = await removeBankCard(cardId);
-      showSnackbar(res.message,true)
+      showSnackbar(res.message,'success')
     const response = await getBankCard();
     setBankCardData(response && response?.length > 0 ? response : []);
     setCardId(0);

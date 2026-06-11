@@ -1,16 +1,18 @@
+
+export type ColorType = 'error' | 'warning' | 'success'
 export type SnackbarPayload = {
   message: string;
-  type?: boolean;
+  color?:ColorType;
 };
 
 const EVENT_NAME = 'show-snackbar';
 
-export const showSnackbar = (message: string, type: boolean = false) => {
+export const showSnackbar = (message: string, color: ColorType = 'error') => {
   if (typeof window === 'undefined') return;
 
   window.dispatchEvent(
     new CustomEvent(EVENT_NAME, {
-      detail: { message, type },
+      detail: { message, color },
     }),
   );
 };

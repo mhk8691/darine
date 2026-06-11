@@ -51,7 +51,7 @@ export default function Form() {
       const response = await api.post<{
       message:string
     }>('/accounts/cooperation-request/',newData)
-    showSnackbar(response.data.message,true)
+    showSnackbar(response.data.message,'success')
     setName('')
     setEmail('')
     setLastName('')

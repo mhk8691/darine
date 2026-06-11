@@ -65,7 +65,7 @@ export default function Deposit({setTransactionData,transactionParams,filter,dat
       const response =await goldDeposit(formData)
   const transactionData = await getReports(transactionParams,undefined,dateRange,filter);
       setTransactionData(transactionData)
-        showSnackbar(response?.message,true)
+        showSnackbar(response?.message,'success')
       refetch()
       setDepositData(null)
         setPrice('')

@@ -30,7 +30,7 @@ export default function RemovePriceAlertModal({
    try{
     setIsLoading(true)
      const res = await removePriceAlert(priceAlertId);
-     showSnackbar(res.message,true)
+     showSnackbar(res.message,'success')
     const response = await getPriceAlerts(filter,date);
     setPriceAlert([])
     setPriceAlert(response && response?.length > 0 ? response : []);

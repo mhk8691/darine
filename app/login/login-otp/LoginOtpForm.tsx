@@ -21,12 +21,12 @@ export default function LoginOtpForm({ children }: Props) {
           setIsLoading(true)
           const res = await loginOtp(mobile);
           if (res.status === 200) {
-            showSnackbar(res.data.message, true);
+            showSnackbar(res.data.message, 'success');
             router.push(`/login/verify-otp/?phone=${mobile}`);
           }
         } catch (err: unknown) {
           if (isAxiosError(err)) {
-            showSnackbar(err.response?.data.mobile, false);
+            showSnackbar(err.response?.data.mobile);
           }
         }finally{
           setIsLoading(false)

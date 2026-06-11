@@ -36,7 +36,7 @@ export default function DepositConfirm({
     setIsLoading(true)
      const response = await getGoldDeposit();
       setDepositData(response.data || ({} as DepositDataType));
-      showSnackbar(response.message,true)
+      showSnackbar(response.message,'success')
     setOpen(false)
    }
     catch (error: unknown) {

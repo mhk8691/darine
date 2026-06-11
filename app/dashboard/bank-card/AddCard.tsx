@@ -24,7 +24,7 @@ export default function AddCard({ setOpen, setValue, open, value, setBankCardDat
   try{
     setIsLoading(true)
       const res = await addBankCard(value);
-      showSnackbar(res.message,true)
+      showSnackbar(res.message,'success')
     const response = await getBankCard();
     setBankCardData(response && response?.length > 0 ? response : []);
     setValue('');

@@ -17,7 +17,7 @@ export default function ChangeNumber({setUser}:{setUser:Dispatch<SetStateAction<
       try {
         setIsLoading(true)
         const response = await changeNumberRequest(phoneNumber);
-        showSnackbar(response.data.message, true);
+        showSnackbar(response.data.message, 'success');
         setStep(1);
       } catch (error: unknown) {
         if (isAxiosError(error)) {
@@ -32,7 +32,7 @@ export default function ChangeNumber({setUser}:{setUser:Dispatch<SetStateAction<
         const response = await changeNumberConfirm(phoneNumber, otpCode);
         const res = await getMe()
         setUser(res)
-        showSnackbar(response.data.message, true);
+        showSnackbar(response.data.message, 'success');
         setStep(0);
         setOtpCode('');
         setPhoneNumber('');

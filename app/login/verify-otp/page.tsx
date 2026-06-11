@@ -1,6 +1,6 @@
 import { Stack, Typography } from '@mui/material';
 import BackLink from '@/app/dashboard/BackLink';
-import VerifyLoginOtpForm from './VerifyLoginOtpForm';
+import VerifyOtpForm from './VerifyOtpForm';
 
 interface Props {
   searchParams: {
@@ -39,7 +39,7 @@ export default async function page({ searchParams }: Props) {
         کد تایید ارسال شده به شماره موبایل {phone} را وارد کنید.
        
       </Typography>
-      <VerifyLoginOtpForm phoneNumber={phone} />
+      <VerifyOtpForm phoneNumber={phone} />
     </Stack>
   );
 }

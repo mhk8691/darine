@@ -34,7 +34,7 @@ export default function PriceAlert({
   try{
     setIsLoading(true)
    const res =   await addPriceAlert(value, active);
-   showSnackbar(res?.message,true);
+   showSnackbar(res?.message,'success');
     const response = await getPriceAlerts(filter,date);
     setValue('')
     setActive('ABOVE')

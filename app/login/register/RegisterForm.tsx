@@ -46,7 +46,7 @@ export default function RegisterForm({ phoneNumber }: { phoneNumber: string }) {
       setIsLoading(true)
       const response = await register(newRegisterForm);
       if (response.status === 200 || response.status === 201) {
-        showSnackbar(response?.data.message, true);
+        showSnackbar(response?.data.message, 'success');
         router.push('/dashboard');
       }
     } catch (error: unknown) {

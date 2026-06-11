@@ -21,7 +21,7 @@ export default function ForgetPasswordForm({ children }: Props) {
       setIsLoading(true)
       const res = await forgetPasswordRequest(phoneNumber);
       if (res.status === 200) {
-        showSnackbar(res.data.message, true);
+        showSnackbar(res.data.message, 'success');
         router.push(`/login/forget-verify/?phone=${phoneNumber}`);
       }
     } catch (err) {

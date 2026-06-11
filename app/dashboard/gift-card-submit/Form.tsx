@@ -22,7 +22,7 @@ export default function Form({setGiftCardData}:{setGiftCardData:Dispatch<SetStat
       const response = await giftCardSubmit(value)
       const res = await getGiftCardList()
       setGiftCardData(res)
-       showSnackbar(response.message, true);
+       showSnackbar(response.message, 'success');
        setValue('')
     }catch (error: unknown) {
     if (isAxiosError(error)) {

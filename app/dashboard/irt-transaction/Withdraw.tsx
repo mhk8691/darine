@@ -43,7 +43,7 @@ export default function Withdraw({setTransactionData,transactionParams,filter,da
     );
         const transactionData = await getReports(transactionParams,undefined,dateRange,filter);
           setTransactionData(transactionData)
-    showSnackbar(response.message,true)
+    showSnackbar(response.message,'success')
     setPrice('')
     refetch()
  }catch(error:unknown){
