@@ -21,9 +21,7 @@ export default function SubmitButton({ title, handleSubmit, isLoading,type='butt
         },
         borderRadius: 2,
         mt: 3.5,
-        '&.Mui-disabled': {
-          bgcolor: '#393936',
-        },
+    
         width:'100%'
       }}
        

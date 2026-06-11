@@ -8,53 +8,47 @@ import { showSnackbar } from '../Components/Snackbar/Snackbar';
 import { isAxiosError } from 'axios';
 
 export default function Form() {
-  const [name, setName] = useState('');
+  const [description, setDiscription] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
+  const [fullName, setFullName] = useState('');
   const theme = useTheme();
   const isUpMd = useMediaQuery(theme.breakpoints.up('md'));
   const isDarkMode = theme.palette.mode === 'dark';
   const inputList = [
-    {
-      placeholder: 'نام سازمان سفارش دهنده',
-      value: name,
-      setValue: setName,
-    },
+   
 
     {
-      placeholder: 'نام و نام خانوادگی درخواست دهنده',
-      value: lastName,
-      setValue: setLastName,
+      placeholder: 'نام و نام خانوادگی',
+      value: fullName,
+      setValue: setFullName,
     },
-    {
-      placeholder: 'آدرس ایمیل',
-      value: email,
-      setValue: setEmail,
-    },
+ 
     {
       placeholder: 'شماره همراه',
       value: phoneNumber,
       setValue: setPhoneNumber,
+    },
+    {
+      placeholder: 'توضیحات کامل همکاری',
+      value: description,
+      setValue: setDiscription,
     },
 
   
   ];
   const handleSubmit = async ()=>{
     const newData = {
-      organization_name:name,
       mobile:phoneNumber,
-      full_name:lastName,
-      email,
+      full_name:fullName,
+      description
     }
     try{
       const response = await api.post<{
       message:string
     }>('/accounts/cooperation-request/',newData)
     showSnackbar(response.data.message,'success')
-    setName('')
-    setEmail('')
-    setLastName('')
+    setDiscription('')
+    setFullName('')
     setPhoneNumber('')
     }catch(error:unknown){
       if (isAxiosError(error)){
@@ -102,7 +96,7 @@ export default function Form() {
 
           <Grid size={12} container spacing={3} mt={5}>
             {inputList.map((item) => (
-              <Grid size={item.placeholder === 'توضیحات تکمیلی' ? 12 : {
+              <Grid size={item.placeholder === 'توضیحات کامل همکاری' ? 12 : {
                 xs:12,sm:6
               }} key={item.placeholder}>
                 <InputField
@@ -110,7 +104,7 @@ export default function Form() {
                   placeholder={item.placeholder}
                   value={item.value}
                   setValue={item.setValue}
-                  multiline={item.placeholder === 'توضیحات تکمیلی' ? true : false}
+                  multiline={item.placeholder === 'توضیحات کامل همکاری' ? true : false}
                   style={{
                     width: '100%',
                     borderRadius: 2,
@@ -160,7 +154,7 @@ export default function Form() {
             }} sx={{ mt: 3 }}>
               جهت کسب اطلاعات بیشتر لطفا با شماره تلفن{' '}
               <Box component={'span'} color={'#007AFF'} sx={{ textDecoration: 'underline' }}>
-                ۰۲۱۹۱۳۴۵۹۱۰
+                ۰۹۱۹۱۶۰۸۷۷۱
               </Box>{' '}
               تماس حاصل فرمایید. کارشناسان مجموعه دارینه در ۲۴ ساعت شبانه‌روز و ۷ روز هفته آماده
               پاسخ‌گویی به سوالات شما هستند.
