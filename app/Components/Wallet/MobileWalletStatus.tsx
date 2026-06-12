@@ -1,5 +1,5 @@
 import priceFormater from '@/app/core/PriceFormater';
-import { AssetsDataType } from '@/app/core/Types';
+import { AllAssetsDataType } from '@/app/core/Types';
 import { Divider, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 
@@ -10,11 +10,11 @@ export default function MobileWalletStatus({
 }: {
   visible: boolean;
   isDesktop: boolean;
-  assets: AssetsDataType;
+  assets: AllAssetsDataType;
 }) {
 
   return (
-    <Stack direction={'row'} justifyContent={'center'}>
+    <Stack direction={'row'} justifyContent={'center'} >
       <Stack
         direction={'row'}
         gap={2}
@@ -62,7 +62,7 @@ export default function MobileWalletStatus({
               }}
               sx={{ color: 'text.title' }}
             >
-              {visible ? priceFormater(assets?.gold_balance_gr) || 0 : '***'}
+              {visible ? priceFormater(assets?.gold_balance) || 0 : '***'}
             </Typography>
             <Typography
               variant="body1"
@@ -115,7 +115,7 @@ export default function MobileWalletStatus({
               }}
               sx={{ color: 'text.title' }}
             >
-              {visible ? priceFormater(assets?.toman_balance)||0 : '***'}
+              {visible ? priceFormater(assets?.wallet_balance)||0 : '***'}
             </Typography>
             <Typography
               variant="body1"

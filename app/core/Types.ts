@@ -42,12 +42,7 @@ export interface AppbarItemsType {
   link?: string;
 }
 
-export interface AssetsDataType {
-  gold_balance_gr: number;
-  current_gold_price: number;
-toman_balance	:number
-total_assets	:number
-}
+
 
 export interface LoginDtaType {
   refresh: string;
@@ -88,14 +83,14 @@ export interface WithdrawDataType {
 }
 
 export interface AllAssetsDataType {
-  total_assets_value: number;
-  gold_balance_gr: number;
-  silver_balance_gr: number;
-  wallet_balance_toman: number;
-  gold_value_toman: number;
-  silver_value_toman: number;
-  live_gold_price: number;
-  live_silver_price: number;
+"total_asset_value": number,
+  "gold_balance": number,
+  "silver_balance": number,
+  "wallet_balance": number,
+  "gold_asset_value": number,
+  "silver_asset_value": number,
+  "gold_price": number,
+  "silver_price": number
 }
 
 export interface ProductDateType {

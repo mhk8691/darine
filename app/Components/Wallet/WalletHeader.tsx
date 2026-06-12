@@ -11,7 +11,7 @@ export default function WalletHeader() {
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   const {assets,isVisible} = useAssets()
     const pathname = usePathname()
-
+  console.log('gold=>',assets)
   return (
     <>
       {isDesktop ? (
@@ -47,7 +47,7 @@ export default function WalletHeader() {
                   fontWeight={500}
                   sx={{ color: 'text.title' }}
                 >
-                  {isVisible ? priceFormater(assets?.gold_balance_gr) || 0 : '***'}
+                  {isVisible ? priceFormater(assets?.gold_balance) || 0 : '***'}
                 </Typography>
                 <Typography
                   variant="body1"
@@ -82,7 +82,7 @@ export default function WalletHeader() {
               </Typography>
               <Stack direction={'row'} gap={0.5} alignItems={'center'} fontWeight={500} justifyContent={'center'}>
                 <Typography variant="body1" fontSize={{xs:16,md:20}} sx={{ color: 'text.title' }}>
-                  {isVisible ? priceFormater(assets?.toman_balance) || 0 : '***'}
+                  {isVisible ? priceFormater(assets?.wallet_balance) || 0 : '***'}
                 </Typography>
                 <Typography
                   variant="body1"
@@ -131,7 +131,7 @@ export default function WalletHeader() {
                     sx={{ color: 'text.title' }}
                     fontWeight={500}
                   >
-                    {priceFormater(assets?.current_gold_price)}
+                    {priceFormater(assets?.gold_price)}
                   </Typography>
                   <Typography
                     variant="body1"

@@ -1,8 +1,11 @@
 'use client';
+import { useAssets } from '@/app/AssetsProvider';
 import Container from '@/app/Components/Containers/Container/Container';
+import priceFormater from '@/app/core/PriceFormater';
 import { Divider, Stack, SxProps, Typography } from '@mui/material';
 
 export default function AllAssets({ style }: { style: SxProps }) {
+  const {assets} = useAssets()
   return (
     <Container
       style={{
@@ -23,9 +26,7 @@ export default function AllAssets({ style }: { style: SxProps }) {
         ...style,
       }}
     >
-      {/* <Typography variant="h2" fontSize={12}>
-        نمودار دارایی پس از ۲ روز بعد از اولین خرید شما فعال میشود.
-      </Typography> */}
+
       <Stack direction={'column'} gap={2} width={'100%'}>
         <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
           <Typography
@@ -44,7 +45,7 @@ export default function AllAssets({ style }: { style: SxProps }) {
               sm: 16,
             }}
           >
-            20000 تومان
+            {priceFormater(assets.total_asset_value)} تومان
           </Typography>
         </Stack>
         <Divider />
@@ -65,7 +66,7 @@ export default function AllAssets({ style }: { style: SxProps }) {
               sm: 16,
             }}
           >
-            20000 گرم
+          {assets.gold_balance} گرم
           </Typography>
         </Stack>
         <Divider />
@@ -86,7 +87,7 @@ export default function AllAssets({ style }: { style: SxProps }) {
               sm: 16,
             }}
           >
-            20000 گرم
+           {assets.silver_balance} گرم
           </Typography>
         </Stack>
         <Divider />
@@ -107,7 +108,7 @@ export default function AllAssets({ style }: { style: SxProps }) {
               sm: 16,
             }}
           >
-            20000 تومان
+            {priceFormater(assets.wallet_balance)} تومان
           </Typography>
         </Stack>
         <Divider />
@@ -128,7 +129,7 @@ export default function AllAssets({ style }: { style: SxProps }) {
               sm: 16,
             }}
           >
-            20000 تومان
+            {priceFormater(assets.gold_asset_value)} تومان
           </Typography>
         </Stack>
         <Divider />
@@ -149,7 +150,7 @@ export default function AllAssets({ style }: { style: SxProps }) {
               sm: 16,
             }}
           >
-            20000 تومان
+            {priceFormater(assets.silver_asset_value)} تومان
           </Typography>
         </Stack>
         <Divider />
@@ -170,7 +171,7 @@ export default function AllAssets({ style }: { style: SxProps }) {
               sm: 16,
             }}
           >
-            20000 تومان
+            {priceFormater(assets.gold_price)} تومان
           </Typography>
         </Stack>
         <Divider />
@@ -191,7 +192,7 @@ export default function AllAssets({ style }: { style: SxProps }) {
               sm: 16,
             }}
           >
-            20000 تومان
+            {priceFormater(assets.silver_price)} تومان
           </Typography>
         </Stack>
       </Stack>

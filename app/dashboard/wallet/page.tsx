@@ -7,11 +7,7 @@ import Wallet from '@/app/Components/Wallet/Wallet';
 import { RecentTransactionDataType } from '@/app/core/Types';
 import { Grid, Stack, Typography } from '@mui/material';
 import BackLink from '../BackLink';
-import AllAssets from './AllAssets';
-import { useEffect, useState } from 'react';
-import { getRecentTransaction } from '@/lib/transactions/recent-transactions/recentTransactions';
-import { isAxiosError } from 'axios';
-import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+import { useState } from 'react';
 import TransactionTable from '../irt-transaction/TransactionTable';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 import { TransactionItems } from '../irt-transaction/TransactionContainer';
@@ -52,23 +48,7 @@ export default async function page() {
 
       <Grid size={{ xs: 12, md: 6 }}>
         <Wallet type="wallet" />
-        <Grid
-          size={12}
-          display={{
-            xs: 'none',
-            sm: 'block',
-          }}
-        >
-          {/* <AllAssets
-            style={{
-              mt: 3,
-              minHeight: {
-                xs: '200px',
-                sm: '60px',
-              },
-            }}
-          /> */}
-        </Grid>
+       
       </Grid>
 
       <Grid size={{ xs: 12, md: 6 }}>
@@ -84,8 +64,8 @@ export default async function page() {
               lg: 4,
             },
             py: {
-              xs: 2,
-              lg: 3,
+              xs:3.5,
+              lg:3
             },
           }}
         >
@@ -96,16 +76,13 @@ export default async function page() {
               sm: 20,
               lg: 22,
             }}
-            sx={{ color: 'text.primary' }}
+            sx={{ color: 'text.primary', }}
             fontWeight={'900'}
           >
             خلاصه فعالیت‌های شما
           </Typography>
           <Stack
-            mt={{
-              xs: 3,
-              lg: 4.5,
-            }}
+            mt={3}
             direction={'column'}
             gap={{
               xs: 2,
@@ -233,24 +210,10 @@ export default async function page() {
             </Stack>
           </Stack>
         </Card>
-        <Grid
-          display={{
-            xs: 'block',
-            sm: 'none',
-          }}
-          size={12}
-        >
-          <AllAssets
-            style={{
-              mt: 3,
-              minHeight: {
-                xs: '200px',
-                sm: '60px',
-              },
-            }}
-          />
-        </Grid>
-        <Stack mt={{ xs: 1, sm: 3 }}>
+       
+      
+      </Grid>
+        <Grid size={12}>
           <OrderDetail
           statuses={statuses}
             type="chip"
@@ -272,8 +235,7 @@ export default async function page() {
           dateRange={dateRange}
           status={status}
           />
-        </Stack>
-      </Grid>
+        </Grid>
     </Grid>
   );
 }

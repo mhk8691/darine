@@ -9,12 +9,12 @@ import {
   useRef,
 } from 'react';
 import { usePathname } from 'next/navigation';
-import { AssetsDataType } from './core/Types';
+import { AllAssetsDataType } from './core/Types';
 import { getAssets } from '@/lib/getAssets/getAssets';
 
 interface AssetsContextType {
-  assets: AssetsDataType;
-  setAssets: (assets: AssetsDataType) => void;
+  assets: AllAssetsDataType;
+  setAssets: (assets: AllAssetsDataType) => void;
   isLoading: boolean;
   error: string | null;
   refetch: () => Promise<void>;
@@ -30,7 +30,7 @@ export function AssetsProvider({ children }: { children: React.ReactNode }) {
 
   const isAuthPage =
     pathname.startsWith('/login')
-  const [assets, setAssets] = useState<AssetsDataType>({} as AssetsDataType);
+  const [assets, setAssets] = useState<AllAssetsDataType>({} as AllAssetsDataType);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -61,7 +61,7 @@ export function AssetsProvider({ children }: { children: React.ReactNode }) {
         const response = await getAssets();
 
         if (isMountedRef.current) {
-          setAssets(response || ({} as AssetsDataType));
+          setAssets(response || ({} as AllAssetsDataType));
           setLastUpdate(new Date());
         }
       } catch (err) {

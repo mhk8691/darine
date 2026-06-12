@@ -90,7 +90,7 @@ export default function GiftStepper() {
 const [isLoading,setIsLoading]= React.useState(false)
   const {assets} = useAssets()
   const giftCard = async ()=>{
-    if (assets.toman_balance === 0) {
+    if (assets.wallet_balance === 0) {
       router.push('/dashboard/irt-transaction')
     }
     try{

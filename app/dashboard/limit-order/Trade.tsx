@@ -36,7 +36,7 @@ export default function Trade({ type,getData }: Props) {
     setPrice(val);
     const num = Number(val);
     if (!isNaN(num)) {
-      setGold(String(num / assets?.current_gold_price));
+      setGold(String(num / assets?.gold_price));
     } else {
       setGold('');
     }
@@ -46,7 +46,7 @@ export default function Trade({ type,getData }: Props) {
     setGold(val);
     const num = Number(val);
     if (!isNaN(num)) {
-      setPrice(String(num * assets?.current_gold_price));
+      setPrice(String(num * assets?.gold_price));
     } else {
       setPrice('');
     }

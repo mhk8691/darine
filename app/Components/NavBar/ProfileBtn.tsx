@@ -26,13 +26,11 @@ import {
   UserFillIcon,
   UserIcon,
 } from '../CustomIcons/CustomIcons';
-import { getMe, logout, User } from '@/lib/auth';
+import { getMe, User } from '@/lib/auth';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '../Snackbar/Snackbar';
 import { useRouter } from 'next/navigation';
 import priceFormater from '@/app/core/PriceFormater';
-import { AssetsDataType } from '@/app/core/Types';
-import { getAssets } from '@/lib/getAssets/getAssets';
 import { handleLogout } from '@/app/dashboard/profile/ChangePassword';
 import { useAssets } from '@/app/AssetsProvider';
 const options = [
@@ -188,7 +186,7 @@ React.useEffect(()=>{
                   موجودی تومان:
                 </Typography>
                 <Typography variant="body2" fontSize={12}>
-                  {priceFormater(assets?.toman_balance)||0} تومان
+                  {priceFormater(assets?.wallet_balance)||0} تومان
                 </Typography>
               </Stack>
               <Divider />
@@ -197,7 +195,7 @@ React.useEffect(()=>{
                   موجودی طلا:
                 </Typography>
                 <Typography variant="body2" fontSize={12}>
-                  {assets?.gold_balance_gr} گرم
+                  {assets?.gold_balance} گرم
                 </Typography>
               </Stack>
             </Stack>
