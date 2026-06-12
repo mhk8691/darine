@@ -91,7 +91,7 @@ export default function Withdraw({setTransactionData,transactionParams,filter,da
                 sm: 14,
               },
             }}
-          onClick={()=>setPrice(assets?.toman_balance+'')}
+          onClick={()=>setPrice(assets?.wallet_balance+'')}
           >
             انتخاب کل موجودی
           </Button>

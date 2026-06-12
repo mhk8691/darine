@@ -64,7 +64,7 @@ export default function OrderConfirmation({ setOpen,deliveryType,addressId }: Pr
 
   const totalPrice = getTotalPrice();
 
-  const balance = assets?.toman_balance ?? 0;
+  const balance = assets?.wallet_balance ?? 0;
 
   const diff = balance - totalPrice;
 

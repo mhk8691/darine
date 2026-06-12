@@ -38,7 +38,7 @@ export default function Trading({setData,reportsParams,filter,dateRange}:Props) 
     setPrice(val);
     const num = Number(val);
     if (!isNaN(num)) {
-      setGold(String(num / assets?.current_gold_price));
+      setGold(String(num / assets?.gold_price));
     } else {
       setGold('');
     }
@@ -48,14 +48,14 @@ export default function Trading({setData,reportsParams,filter,dateRange}:Props) 
     setGold(val);
     const num = Number(val);
     if (!isNaN(num)) {
-      setPrice(String(num * assets?.current_gold_price));
+      setPrice(String(num * assets?.gold_price));
     } else {
       setPrice('');
     }
   };
 
   const handleBuyGold = async () => {
-    const methood = assets?.toman_balance > 0 ? 'WALLET':'GATEWAY'
+    const methood = assets?.wallet_balance > 0 ? 'WALLET':'GATEWAY'
     try {
       setIsLoading(true)
       const response = await goldBuy(price,methood,gold);

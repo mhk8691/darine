@@ -5,7 +5,7 @@ import priceFormater from '@/app/core/PriceFormater';
 import { Divider, Stack, SxProps, Typography } from '@mui/material';
 
 export default function AllAssets({ style }: { style: SxProps }) {
-  const {assets} = useAssets()
+  const {assets,isVisible} = useAssets()
   return (
     <Container
       style={{
@@ -45,7 +45,7 @@ export default function AllAssets({ style }: { style: SxProps }) {
               sm: 16,
             }}
           >
-            {priceFormater(assets.total_asset_value)} تومان
+            {isVisible ? `${priceFormater(assets.total_asset_value)} تومان`:'***'}
           </Typography>
         </Stack>
         <Divider />
@@ -66,7 +66,7 @@ export default function AllAssets({ style }: { style: SxProps }) {
               sm: 16,
             }}
           >
-          {assets.gold_balance} گرم
+          {isVisible ? `${assets.gold_balance} گرم` : '***'}
           </Typography>
         </Stack>
         <Divider />
@@ -87,7 +87,7 @@ export default function AllAssets({ style }: { style: SxProps }) {
               sm: 16,
             }}
           >
-           {assets.silver_balance} گرم
+           {isVisible ? `${assets.silver_balance } گرم` : '***'}
           </Typography>
         </Stack>
         <Divider />
@@ -108,7 +108,7 @@ export default function AllAssets({ style }: { style: SxProps }) {
               sm: 16,
             }}
           >
-            {priceFormater(assets.wallet_balance)} تومان
+            {isVisible ? `${priceFormater(assets.wallet_balance)} تومان`:'***'}
           </Typography>
         </Stack>
         <Divider />
@@ -129,7 +129,7 @@ export default function AllAssets({ style }: { style: SxProps }) {
               sm: 16,
             }}
           >
-            {priceFormater(assets.gold_asset_value)} تومان
+            {isVisible ? `${priceFormater(assets.gold_asset_value)} تومان`:'***'}
           </Typography>
         </Stack>
         <Divider />
@@ -150,7 +150,7 @@ export default function AllAssets({ style }: { style: SxProps }) {
               sm: 16,
             }}
           >
-            {priceFormater(assets.silver_asset_value)} تومان
+            {isVisible ? `${priceFormater(assets.silver_asset_value)} تومان`:'***'}
           </Typography>
         </Stack>
         <Divider />
@@ -171,7 +171,7 @@ export default function AllAssets({ style }: { style: SxProps }) {
               sm: 16,
             }}
           >
-            {priceFormater(assets.gold_price)} تومان
+            {isVisible ? `${priceFormater(assets.gold_price)} تومان`:'***'}
           </Typography>
         </Stack>
         <Divider />
@@ -192,7 +192,7 @@ export default function AllAssets({ style }: { style: SxProps }) {
               sm: 16,
             }}
           >
-            {priceFormater(assets.silver_price)} تومان
+            {isVisible ? `${priceFormater(assets.silver_price)} تومان`:'***'}
           </Typography>
         </Stack>
       </Stack>
