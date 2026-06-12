@@ -12,6 +12,7 @@ import TransactionTable from '../irt-transaction/TransactionTable';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 import { TransactionItems } from '../irt-transaction/TransactionContainer';
 import { statuses } from '../reports/DepositTable';
+import Statistics from './Statistics';
 // export const metadata: Metadata = {
 //   title: 'کیف پول | دارینه',
 //   description: '',
@@ -22,19 +23,19 @@ export default async function page() {
   const [transactionParams,setTransactionParams] = useState('deposit')
     const [status,setStatus] = useState('')
     const [dateRange,setDateRange] =useState<DatePickerValue| null>(null)
-  useEffect(()=>{
-     const getData = async ()=>{
-        try{
-          const response = await getRecentTransaction(transactionParams,status,dateRange)
-          setTransactionData(response)
-        }catch(error:unknown){
-          if (isAxiosError(error)){
-            showSnackbar(error.response?.data.message)
-          }
-        }
-      }
-      getData()
-  },[transactionParams,status,dateRange])
+  // useEffect(()=>{
+  //    const getData = async ()=>{
+  //       try{
+  //         const response = await getRecentTransaction(transactionParams,status,dateRange)
+  //         setTransactionData(response)
+  //       }catch(error:unknown){
+  //         if (isAxiosError(error)){
+  //           showSnackbar(error.response?.data.message)
+  //         }
+  //       }
+  //     }
+  //     getData()
+  // },[transactionParams,status,dateRange])
   return (
     <Grid
       container
@@ -53,164 +54,7 @@ export default async function page() {
 
       <Grid size={{ xs: 12, md: 6 }}>
        
-        <Card
-          style={{
-            mb: {
-              xs: 4,
-              sm: 3,
-            },
-            px: {
-              xs: 2,
-              lg: 4,
-            },
-            py: {
-              xs:3.5,
-              lg:3
-            },
-          }}
-        >
-          <Typography
-            variant="h2"
-            fontSize={{
-              xs: 12,
-              sm: 20,
-              lg: 22,
-            }}
-            sx={{ color: 'text.primary', }}
-            fontWeight={'900'}
-          >
-            خلاصه فعالیت‌های شما
-          </Typography>
-          <Stack
-            mt={3}
-            direction={'column'}
-            gap={{
-              xs: 2,
-              sm: 2.5,
-            }}
-          >
-            <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
-              <Typography
-                variant="body1"
-                sx={{ color: 'text.muted' }}
-                fontSize={{ xs: 10, sm: 14, lg: 16 }}
-              >
-                مجموع دارایی شما
-              </Typography>
-
-              <Typography
-                variant="h6"
-                fontSize={{ xs: 12, sm: 18, lg: 20 }}
-                sx={{ color: 'text.title' }}
-              >
-                *** تومان
-              </Typography>
-            </Stack>
-            <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
-              <Typography
-                variant="body1"
-                sx={{ color: 'text.muted' }}
-                fontSize={{ xs: 10, sm: 14, lg: 16 }}
-              >
-                سود شما
-              </Typography>
-
-              <Typography
-                variant="h6"
-                fontSize={{ xs: 12, sm: 18, lg: 20 }}
-                sx={{ color: 'success.main' }}
-              >
-                *** تومان
-              </Typography>
-            </Stack>
-            <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
-              <Typography
-                variant="body1"
-                sx={{ color: 'text.muted' }}
-                fontSize={{ xs: 10, sm: 14, lg: 16 }}
-              >
-                طلا برداشت شده
-              </Typography>
-
-              <Typography
-                variant="h6"
-                fontSize={{ xs: 12, sm: 18, lg: 20 }}
-                sx={{ color: 'text.title' }}
-              >
-                *** گرم
-              </Typography>
-            </Stack>
-            <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
-              <Typography
-                variant="body1"
-                sx={{ color: 'text.muted' }}
-                fontSize={{ xs: 10, sm: 14, lg: 16 }}
-              >
-                کارت هدیه های خریداری شده
-              </Typography>
-
-              <Typography
-                variant="h6"
-                fontSize={{ xs: 12, sm: 18, lg: 20 }}
-                sx={{ color: 'text.title' }}
-              >
-                *** تومان
-              </Typography>
-            </Stack>
-            <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
-              <Typography
-                variant="body1"
-                sx={{ color: 'text.muted' }}
-                fontSize={{ xs: 10, sm: 14, lg: 16 }}
-              >
-                کارت هدیه های دریافت شده
-              </Typography>
-
-              <Typography
-                variant="h6"
-                fontSize={{ xs: 12, sm: 18, lg: 20 }}
-                sx={{ color: 'text.title' }}
-              >
-                *** تومان
-              </Typography>
-            </Stack>
-            <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
-              <Typography
-                variant="body1"
-                sx={{ color: 'text.muted' }}
-                fontSize={{ xs: 10, sm: 14, lg: 16 }}
-              >
-                تومان درانتظار پردازش
-              </Typography>
-
-              <Typography
-                variant="h6"
-                fontSize={{ xs: 12, sm: 18, lg: 20 }}
-                sx={{ color: 'text.title' }}
-              >
-                *** تومان
-              </Typography>
-            </Stack>
-            <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
-              <Typography
-                variant="body1"
-                sx={{ color: 'text.muted' }}
-                fontSize={{ xs: 10, sm: 14, lg: 16 }}
-              >
-                طلا درانتظار پردازش
-              </Typography>
-
-              <Typography
-                variant="h6"
-                fontSize={{ xs: 12, sm: 18, lg: 20 }}
-                sx={{ color: 'text.title' }}
-              >
-                *** گرم
-              </Typography>
-            </Stack>
-          </Stack>
-        </Card>
-       
+     <Statistics/>
       
       </Grid>
         <Grid size={12}>

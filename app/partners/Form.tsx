@@ -104,30 +104,22 @@ export default function Form() {
                   placeholder={item.placeholder}
                   value={item.value}
                   setValue={item.setValue}
+                  
                   multiline={item.placeholder === 'توضیحات کامل همکاری' ? true : false}
+                  
                   style={{
+                    backgroundColor:'red',
                     width: '100%',
                     borderRadius: 2,
                     bgcolor: 'background.default',
                     '& .MuiOutlinedInput-root': {
                       borderRadius: 2,
-                      '& fieldset': {
-                        borderColor: '#393936',
-                        borderWidth: '1px',
-                      },
-                      '&:hover fieldset': {
-                        borderColor: '#393936',
-                        borderWidth: '1px',
-                      },
-                      '&.Mui-focused fieldset': {
-                        borderColor: '#393936',
-                        borderWidth: '1px',
-                      },
-                      '&.Mui-disabled fieldset': {
-                        borderColor: '#393936',
-                        borderWidth: '1px',
-                      },
                     },
+                  '& .MuiInputBase-input': {
+                  direction: 'ltr',
+                      },
+                    
+                    
                   }}
                 />
               </Grid>

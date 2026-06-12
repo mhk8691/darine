@@ -87,7 +87,7 @@ export default function InputField({
       onChange={handleChange}
       inputMode={type === 'number' ? 'decimal' : 'text'}
       multiline={multiline}
-      minRows={multiline ? 2 : undefined}
+      minRows={multiline ? 5 : undefined}
       fullWidth
       inputProps={{
         inputMode: type === 'number' ? 'decimal' : 'text',
