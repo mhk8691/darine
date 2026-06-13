@@ -191,6 +191,14 @@ plaque:string
   province: string;
   city: string;
   address: string;
+  items: {
+                    "id": number,
+                    "product": number,
+                    "product_name": string,
+                    "quantity": number,
+                    "price_at_time": number,
+                    "weight_at_time": number
+                }[]
 }
 export interface CartDataType {
   items	:{
