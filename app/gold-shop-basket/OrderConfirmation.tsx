@@ -20,6 +20,7 @@ import { showSnackbar } from '../Components/Snackbar/Snackbar';
 import { checkout } from '@/lib/checkout/checkout';
 import { CheckoutDataType } from '../core/Types';
 import { useRouter } from 'next/navigation';
+import { DirectAddressesType } from './Cart';
 
 const rowStyle: SxProps = {
   display: 'flex',
@@ -38,9 +39,10 @@ interface Props {
   setOpen: Dispatch<SetStateAction<boolean>>;
   deliveryType:string
   addressId:number
+  directAddresses:DirectAddressesType
 }
 
-export default function OrderConfirmation({ setOpen,deliveryType,addressId }: Props) {
+export default function OrderConfirmation({ setOpen,deliveryType,addressId,directAddresses }: Props) {
   const [checked, setChecked] = useState(false);
   const [active, setActive] = useState('TOMAN');
   const router = useRouter()
@@ -70,17 +72,21 @@ export default function OrderConfirmation({ setOpen,deliveryType,addressId }: Pr
 
   const isEnough = diff >= 0;
   const handleClick = async ()=>{
-    const newData:CheckoutDataType = {
-      products:getCart().map((item)=>{
-        return {
-          product_id:item.id,
-          quantity:item.quantity
-        }
+    const newData: CheckoutDataType = {
+  products: getCart().map((item) => ({
+    product_id: item.id,
+    quantity: item.quantity,
+  })),
+  payment_method: active,
+  delivery_type: deliveryType,
+  ...(deliveryType === 'HOME'
+    ? { address_id: addressId }
+    : {
+        address: directAddresses.address,
+        hourse: directAddresses.hourse,
+        date: directAddresses.date,
       }),
-      payment_method:active,
-      delivery_type:deliveryType,
-      address_id:addressId
-    }
+};
     try{
       const response = await checkout(newData)
       showSnackbar(response.data.message,'success')

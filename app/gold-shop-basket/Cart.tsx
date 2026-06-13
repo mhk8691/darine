@@ -12,7 +12,14 @@ import { getCart } from '@/lib/cart/cart';
 import { CartItem } from '../core/Types';
 import Image from 'next/image';
 
+export interface DirectAddressesType {
+  address:string,
+  hourse:string
+  date:string
+
+}
 export default function Cart() {
+  const [directAddresses,setDirectAddresses] = useState<DirectAddressesType>({} as DirectAddressesType)
     const [deliveryType, setDeliveryType] = useState('HOME');
   const [step, setStep] = useState(0);
   const [open, setOpen] = useState(false);
@@ -71,7 +78,7 @@ export default function Cart() {
                   </Stack>}
         </>
       )}
-      {step === 1 && <Delivery addressId={addressId} setAddressId={setAddressId} deliveryType={deliveryType}
+      {step === 1 && <Delivery addressId={addressId} setAddressId={setAddressId} deliveryType={deliveryType} setDirectAddresses={setDirectAddresses}
 setDeliveryType={setDeliveryType} />}
      {
       cartData.length > 0 &&  <Stack
@@ -152,7 +159,7 @@ setDeliveryType={setDeliveryType} />}
           </IconButton>
         </Stack>
         <Stack  mt={1} pr={1} pb={4}>
-          <OrderConfirmation setOpen={setOpen} deliveryType={deliveryType} addressId={addressId}
+          <OrderConfirmation setOpen={setOpen} deliveryType={deliveryType} addressId={addressId} directAddresses={directAddresses}
  />
         </Stack>
       </CustomModal>

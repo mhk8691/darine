@@ -255,5 +255,8 @@ export interface CheckoutDataType {
   }[],
     "payment_method": string,
   "delivery_type": string,
-  "address_id": number
+  "address_id"?: number
+  address?:string
+  hourse?:string
+  date?:string
 }
