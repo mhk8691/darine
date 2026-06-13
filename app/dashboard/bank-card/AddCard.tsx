@@ -1,8 +1,9 @@
 'use client';
 import CustomModal from '@/app/Components/CustomModal/CustomModal';
-import { Button, IconButton, Stack } from '@mui/material';
+import { Button, IconButton, InputAdornment, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { Dispatch, SetStateAction, useState } from 'react';
+import { getBankInfoWithSheba } from 'ir-banks-info'
 
 import Field from '@/app/login/Field';
 import { Close } from '@mui/icons-material';
@@ -11,6 +12,7 @@ import { BankCardDataType } from '@/app/core/Types';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import Loading from '@/app/Components/Loading/Loading';
+import Image from 'next/image';
 interface Props {
   setOpen: Dispatch<SetStateAction<boolean>>;
   open: boolean;
@@ -20,6 +22,8 @@ interface Props {
 }
 export default function AddCard({ setOpen, setValue, open, value, setBankCardData }: Props) {
   const [isLoading,setIsLoading] = useState(false)
+    const [name, setName] = useState('');
+
   const handleAddBankCard = async () => {
   try{
     setIsLoading(true)
@@ -55,9 +59,46 @@ export default function AddCard({ setOpen, setValue, open, value, setBankCardDat
         </IconButton>
       </Stack>
       <Typography variant="body1" fontSize={14} sx={{ mt: 3 }}>
-        شماره‌ی کارت بانکی خود را وارد کنید
+        شماره‌ی شبا خود را وارد کنید
       </Typography>
-      <Field type='number' value={value} setValue={setValue} placeholder="شماره کارت جدید" />
+
+     <Stack direction={'row'} border={1} borderRadius={2} alignItems={'center'} mt={2.5} borderColor={'text.muted'}>
+{getBankInfoWithSheba(`IR${value}`)?.logo && (
+  <Image
+    src={getBankInfoWithSheba(`IR${value}`)?.logo ?? ''}
+    alt=''
+    width={30}
+    height={30}
+    style={{ marginRight: 15 }}
+  />
+)}
+
+  <Field
+    type='number'
+    value={value}
+    setValue={setValue}
+    textFieldProps={{
+      InputProps: {
+        endAdornment: (
+          <InputAdornment position="end">
+            <Typography fontWeight={600} fontSize={15} sx={{}}>IR</Typography>
+          </InputAdornment>
+        ),
+      },
+    }}
+    style={{
+      '& .MuiInputBase-input': {
+        direction: 'rtl',
+      },
+      mt: 0,
+      '& .MuiOutlinedInput-root': {
+        '& fieldset': { border: 'none' },
+        '&:hover fieldset': { border: 'none' },
+        '&.Mui-focused fieldset': { border: 'none' },
+      },
+    }}
+  />
+</Stack>
       <Button
         variant="contained"
         color="primary"

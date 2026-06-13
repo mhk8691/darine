@@ -34,7 +34,7 @@ export default function BankCard({
               <Stack direction={'row'} gap={1} alignItems={'center'}>
                 <Image src={'/images/simple/mellat.svg'} alt={''} width={36} height={36} />
                 <Typography variant="body2" fontSize={16} sx={{ color: 'text.muted' }}>
-                  {'بانک تست'}
+                  {/* {getBankInfoWithSheba(item.)} */}
                 </Typography>
               </Stack>
               <Stack>
