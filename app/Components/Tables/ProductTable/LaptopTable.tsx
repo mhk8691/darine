@@ -139,7 +139,7 @@ export default function LaptopTable({ items, isDetail = true }: Props) {
                     color: item.dayChange >= 0 ? 'success.main' : 'error.main',
                   }}
                 >
-                  {priceFormater(item.dayChange)}
+                  {priceFormater(item.dayChange) ||0} تومان
                 </Typography>
               </Stack>
               <Divider />
@@ -149,7 +149,7 @@ export default function LaptopTable({ items, isDetail = true }: Props) {
                 direction={'row'}
                 justifyContent={'space-between'}
                 alignItems={'center'}
-                my={1}
+                mt={1}
               >
                 <Typography
                   variant="body1"
@@ -169,34 +169,8 @@ export default function LaptopTable({ items, isDetail = true }: Props) {
                   {item.percentChange}%
                 </Typography>
               </Stack>
-              <Divider />
             </>
-            <>
-              <Stack
-                direction={'row'}
-                justifyContent={'space-between'}
-                alignItems={'center'}
-                mt={1}
-              >
-                <Typography
-                  variant="body1"
-                  fontSize={10}
-                  fontWeight={'bold'}
-                  sx={{ color: 'text.subtitle' }}
-                >
-                  نمودار هفتگی :
-                </Typography>
-                {/* <LineChart
-                  color="#D12F2F"
-                  width={'15%'}
-                  height="5px"
-                  noGradiant
-                  data={[1, 2, 3]}
-                  label={['فروردین', 'اردیبهشت', 'خرداد']}
-                  noLabel={true}
-                /> */}
-              </Stack>
-            </>
+      
           </Stack>
         </Grid>
       ))}

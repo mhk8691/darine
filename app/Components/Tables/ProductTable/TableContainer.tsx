@@ -13,7 +13,6 @@ import {
 } from '@mui/material';
 import LaptopTable from './LaptopTable';
 import CustomTable from '../CustomTable';
-import LineChart from '../../LineChart/LineChart';
 import Link from 'next/link';
 import priceFormater from '@/app/core/PriceFormater';
 
@@ -34,7 +33,6 @@ export default function TableContainer({ data }: Props) {
             'بالاترین قیمت روز',
             'تغییر روزانه',
             'درصد تغییر',
-            'نمودار هفتگی',
             'عملیات',
           ]}
         >
@@ -125,7 +123,7 @@ export default function TableContainer({ data }: Props) {
                     color: row?.dayChange >= 0 ? 'success.main' : 'error.main',
                   }}
                 >
-                  {priceFormater(row?.dayChange)} تومان 
+                  {priceFormater(row?.dayChange )|| 0} تومان 
                 </TableCell>
                 <TableCell
                   align="center"
@@ -136,21 +134,9 @@ export default function TableContainer({ data }: Props) {
                     color: row?.percentChange >= 0 ? 'success.main' : 'error.main',
                   }}
                 >
-                  {priceFormater(row?.percentChange)}%
+                  {priceFormater(row?.percentChange) ||  0}%
                 </TableCell>
-                <TableCell align="center" sx={{ fontSize: '16px', py: 2.5, px: 2.5 }}>
-                  <Stack direction={'row'} justifyContent={'center'}>
-                    {/* <LineChart
-                      color="#D12F2F"
-                      width={row?.typeGold ? '90%' : '70%'}
-                      height="40px"
-                      noGradiant
-                      data={[1, 2, 3]}
-                      label={['فروردین', 'اردیبهشت', 'خرداد']}
-                      noLabel={true}
-                    /> */}
-                  </Stack>
-                </TableCell>
+           
                 {row?.type && (
                   <TableCell align="center" sx={{ fontSize: '16px', py: 2.5, px: 2.5 }}>
                     <Link href={'/test/'}>

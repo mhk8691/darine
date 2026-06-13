@@ -36,7 +36,6 @@ export default function ProductTableContainer() {
             'بالاترین قیمت روز',
             'تغییر ۱ روزه',
             'تغییر ۱ ماهه',
-            'نمودار هفتگی',
           ]}
         >
           <TableBody>
@@ -129,19 +128,7 @@ export default function ProductTableContainer() {
                 >
                   {row?.monthChange}%
                 </TableCell>
-                <TableCell align="center" sx={{ fontSize: '16px', py: 0.9, px: 2.5 }}>
-                  <Stack direction={'row'} justifyContent={'center'}>
-                    {/* <LineChart
-                      color="#D12F2F"
-                      width={'70%'}
-                      height="40px"
-                      noGradiant
-                      data={[1, 2, 3]}
-                      label={['فروردین', 'اردیبهشت', 'خرداد']}
-                      noLabel={true}
-                    /> */}
-                  </Stack>
-                </TableCell>
+      
               </TableRow>
             ))}
           </TableBody>

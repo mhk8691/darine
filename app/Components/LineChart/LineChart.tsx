@@ -1,85 +1,111 @@
-import { ChartGoldDataType } from '@/app/core/Types';
-import { useTheme } from '@mui/material';
-import Box from '@mui/material/Box';
-import { LineChart as LineChartGold } from '@mui/x-charts/LineChart';
+// LineChart.tsx
+'use client';
 
-const margin = { top: 0, bottom: 0, left: 10 };
+import dynamic from 'next/dynamic';
+import { useState, useEffect } from 'react';
+import Box from '@mui/material/Box';
+import { useTheme } from '@mui/material';
+import { ApexOptions } from 'apexcharts';
+
+const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 interface Props {
- chartData:ChartGoldDataType
-  width: string;
-  height: string;
-  color: string;
-  noGradiant: boolean;
-  noLabel: boolean;
-  data:number[]
-  labels:string[]
+  width?: string;
+  height?: string;
+  color?: string;
+  noGradient?: boolean;
+  noLabel?: boolean;
+  data: number[];
+  labels: string[];
 }
+
 export default function LineChart({
-  chartData,
-  width,
-  height,
-  color,
-  noGradiant,
-  noLabel,
+  width = '100%',
+  height = '350',
+  color = '#008FFB',
+  noGradient = false,
+  noLabel = false,
   data,
-  labels
+  labels,
 }: Props) {
   const theme = useTheme();
   const isDarkMode = theme.palette.mode === 'dark';
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const series = [{name:'قیمت', data }];
+
+  const options: ApexOptions = {
+    chart: {
+      type: 'area',
+      toolbar: { show: false },
+      background: 'transparent',
+      zoom: { enabled: false },
+    },
+    dataLabels: { enabled: false },
+    markers: { size: 0 },
+    stroke: {
+      curve: 'straight',
+      width: 2,
+    },
+ xaxis: {
+  type: 'category',
+  categories: labels,
+  tickAmount: 10,
+  labels: {
+    show: !noLabel,
+    rotate: 0,
+    style: {
+      fontSize: '10px',
+    },
+  },
+  axisBorder: { show: false },
+  axisTicks: { show: false },
+},
+    yaxis: {
+      labels: { show: !noLabel },
+    },
+   tooltip: {
+  x: { show: true },
+  y: {
+    formatter: (val) => `${val.toLocaleString('fa-IR')} تومان`,
+  },
+},
+    fill: noGradient
+      ? { type: 'solid', opacity: 0.3 }
+      : {
+          type: 'gradient',
+          gradient: {
+            shadeIntensity: 1,
+            opacityFrom: 0.7,
+            opacityTo: 0.05,
+            stops: [0, 100],
+          },
+        },
+    colors: [color],
+    grid: {
+      borderColor: isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
+      strokeDashArray: 4,
+    },
+    theme: {
+      mode: isDarkMode ? 'dark' : 'light',
+    },
+  };
+
+  if (!mounted) return null;
 
   return (
-    <Box
-      sx={{
-        width: { width },
-        height: { height },
-        '& .MuiAreaElement-root': {
-          fill: 'url(#goldGradient)',
-        },
-
-        '& .MuiChartsAxis-tick': {
-          display: 'none',
-        },
-        '& .MuiChartsAxis-line': {
-          display: 'none',
-        },
-      }}
-    >
-      <LineChartGold
-        slotProps={{
-          tooltip: {
-            trigger: 'axis',
-          },
-        }}
-        series={[
-          {
-            data: data,
-            showMark: false,
-            curve: 'stepAfter',
-            area: true,
-            color: color,
-          },
-        ]}
-        xAxis={[
-          {
-            scaleType: 'point',
-            data: labels,
-            height: 35,
-            position: noLabel ? 'none' : 'bottom',
-          },
-        ]}
-        yAxis={[{ width: 40, position: noLabel ? 'none' : 'left' }]}
-        margin={margin}
-      >
-        {!noGradiant && (
-          <defs>
-            <linearGradient id="goldGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor={isDarkMode ? '#403D33' : '#FFFBEC'} stopOpacity={0.4} />
-              <stop offset="100%" stopColor={isDarkMode ? '#1F1E1B' : '#FFFFFF'} stopOpacity={0} />
-            </linearGradient>
-          </defs>
-        )}
-      </LineChartGold>
+    <Box sx={{ width, height }}>
+      <ReactApexChart
+        options={options}
+        series={series}
+        type="area"
+        height={height}
+        width="100%"
+      />
     </Box>
   );
 }
