@@ -9,31 +9,32 @@ interface OTPCredentialRequestOptions extends CredentialRequestOptions {
   };
 }
 
-export const autoCompleteCode = (setVerifyCode:Dispatch<SetStateAction<string>>) => {
-       if ('OTPCredential' in window) {
-      const ac = new AbortController();
+export const autoCompleteCode = (
+  setVerifyCode: Dispatch<SetStateAction<string>>,
+  onComplete?: (code: string) => void  
+) => {
+  if ('OTPCredential' in window) {
+    const ac = new AbortController();
 
-      const options: OTPCredentialRequestOptions = {
-        otp: { transport: ['sms'] },
-        signal: ac.signal,
-      };
+    const options: OTPCredentialRequestOptions = {
+      otp: { transport: ['sms'] },
+      signal: ac.signal,
+    };
 
-      navigator.credentials
-        .get(options)
-        .then((credential) => {
-          if (credential) {
-            const otpCredential = credential as OTPCredential;
-            setVerifyCode(otpCredential.code); 
-          }
-          ac.abort();
-        })
-        .catch((err: Error) => {
-          console.warn('WebOTP API Error:', err.message);
-        });
-
-      
-      return () => {
+    navigator.credentials
+      .get(options)
+      .then((credential) => {
+        if (credential) {
+          const otpCredential = credential as OTPCredential;
+          setVerifyCode(otpCredential.code);
+          onComplete?.(otpCredential.code); // ← اضافه شد
+        }
         ac.abort();
-      };
-    }
-}
+      })
+      .catch((err: Error) => {
+        console.warn('WebOTP API Error:', err.message);
+      });
+
+    return () => ac.abort();
+  }
+};
