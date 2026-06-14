@@ -23,6 +23,9 @@ interface RetryAxiosRequestConfig extends InternalAxiosRequestConfig {
 const api: AxiosInstance = axios.create({
   baseURL: BASE_URL,
   withCredentials: true,
+    headers: {
+    'X-Client-Type': 'gold',
+  },
 });
 
 

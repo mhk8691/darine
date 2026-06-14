@@ -7,12 +7,15 @@ import Wallet from '@/app/Components/Wallet/Wallet';
 import { RecentTransactionDataType } from '@/app/core/Types';
 import { Grid, Stack, Typography } from '@mui/material';
 import BackLink from '../BackLink';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TransactionTable from '../irt-transaction/TransactionTable';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 import { TransactionItems } from '../irt-transaction/TransactionContainer';
 import { statuses } from '../reports/DepositTable';
 import Statistics from './Statistics';
+import { isAxiosError } from 'axios';
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+import { getRecentTransaction } from '@/lib/transactions/recent-transactions/recentTransactions';
 // export const metadata: Metadata = {
 //   title: 'کیف پول | دارینه',
 //   description: '',
@@ -23,19 +26,19 @@ export default async function page() {
   const [transactionParams,setTransactionParams] = useState('deposit')
     const [status,setStatus] = useState('')
     const [dateRange,setDateRange] =useState<DatePickerValue| null>(null)
-  // useEffect(()=>{
-  //    const getData = async ()=>{
-  //       try{
-  //         const response = await getRecentTransaction(transactionParams,status,dateRange)
-  //         setTransactionData(response)
-  //       }catch(error:unknown){
-  //         if (isAxiosError(error)){
-  //           showSnackbar(error.response?.data.message)
-  //         }
-  //       }
-  //     }
-  //     getData()
-  // },[transactionParams,status,dateRange])
+  useEffect(()=>{
+     const getData = async ()=>{
+        try{
+          const response = await getRecentTransaction(transactionParams,status,dateRange)
+          setTransactionData(response)
+        }catch(error:unknown){
+          if (isAxiosError(error)){
+            showSnackbar(error.response?.data.message)
+          }
+        }
+      }
+      getData()
+  },[transactionParams,status,dateRange])
   return (
     <Grid
       container
