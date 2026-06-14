@@ -50,7 +50,7 @@ export default function VerifyOtpForm({ phoneNumber }: Props) {
     <>
       <Field type='number' value={verifyCode} setValue={setVerifyCode} label="کد تایید" />
       <SendCode phoneNumber={phoneNumber} />
-      <SubmitButton title={'تایید'} isLoading={isLoading} handleSubmit={handleLoginVerifyOtp} />
+      <SubmitButton title={'تایید'} isLoading={isLoading} handleSubmit={()=>handleLoginVerifyOtp(undefined)} />
     </>
   );
 }
