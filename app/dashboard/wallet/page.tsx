@@ -16,6 +16,7 @@ import Statistics from './Statistics';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { getRecentTransaction } from '@/lib/transactions/recent-transactions/recentTransactions';
+import TransactionDetailModal from '../reports/TransactionDetailModal';
 // export const metadata: Metadata = {
 //   title: 'کیف پول | دارینه',
 //   description: '',
@@ -26,6 +27,14 @@ export default async function page() {
   const [transactionParams,setTransactionParams] = useState('deposit')
     const [status,setStatus] = useState('')
     const [dateRange,setDateRange] =useState<DatePickerValue| null>(null)
+       const [modalOpen, setModalOpen] = useState(false);
+        const [selectedTransaction, setSelectedTransaction] =
+          useState<RecentTransactionDataType | null>(null);
+    
+        function handleRowClick(row: RecentTransactionDataType) {
+          setSelectedTransaction(row);
+          setModalOpen(true);
+        }
   useEffect(()=>{
      const getData = async ()=>{
         try{
@@ -66,7 +75,7 @@ export default async function page() {
             type="chip"
             title="لیست تراکنش‌‌های اخیر"
             toggleItems={TransactionItems}
-            tableBody={<TransactionTable data={transactionData} />}
+            tableBody={<TransactionTable data={transactionData} onRowClick={handleRowClick} />}
             listLength={transactionData.length}
             setParams={setTransactionParams}
              tableHead={[
@@ -76,12 +85,18 @@ export default async function page() {
             'وضعیت',
             'کد پیگیری',
             'تاریخ',
+            ''
           ]}
           setDateRange={setDateRange}
           setStatus={setStatus}
           dateRange={dateRange}
           status={status}
           />
+           <TransactionDetailModal
+                    open={modalOpen}
+                    setOpen={setModalOpen}
+                    data={selectedTransaction}
+                  />
         </Grid>
     </Grid>
   );

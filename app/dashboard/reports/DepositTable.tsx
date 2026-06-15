@@ -1,8 +1,9 @@
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import { RecentTransactionDataType, ToggleItemsType } from '@/app/core/Types';
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import TransactionTable from '../irt-transaction/TransactionTable';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
+import TransactionDetailModal from './TransactionDetailModal';
 export const statuses = [
   { label: 'در انتظار تایید', value: 'PENDING' },
   { label: 'تکمیل شده', value: 'COMPLETED' },
@@ -39,7 +40,15 @@ interface Props{
 }
 
 export default function DepositTable({data,setDepositParams,setDateRange,setFilter,filter,dateRange}:Props) {
+  const [modalOpen, setModalOpen] = useState(false);
+      const [selectedTransaction, setSelectedTransaction] =
+        useState<RecentTransactionDataType | null>(null);
+  function handleRowClick(row: RecentTransactionDataType) {
+        setSelectedTransaction(row);
+        setModalOpen(true);
+      }
   return (
+    <>
     <OrderDetail
     statuses={statuses}
      status={filter}
@@ -51,7 +60,7 @@ export default function DepositTable({data,setDepositParams,setDateRange,setFilt
       toggleItems={depositItems}
       type="toggle"
       noCard
-       tableBody={<TransactionTable data={data} />}
+       tableBody={<TransactionTable data={data} onRowClick={handleRowClick}  />}
       tableHead={[
         'قیمت',
         'نوع تراکنش',
@@ -59,8 +68,15 @@ export default function DepositTable({data,setDepositParams,setDateRange,setFilt
         'وضعیت',
         'کد پیگیری',
         'تاریخ',
+        ''
       ]}
       listLength={data.length}
     />
+    <TransactionDetailModal
+              open={modalOpen}
+              setOpen={setModalOpen}
+              data={selectedTransaction}
+            />
+    </>
   );
 }

@@ -164,13 +164,22 @@ export interface ChartGoldDataType {
       "change_percent": number   }  }
 
 export interface RecentTransactionDataType{
-    "id": number,
-      "amount": number,
-      "type_display":string,
-      "method_display": string,
-      "status":  StatusType,
-      "tracking_code": string,
-      "created_at": string,
+      id: number;
+      amount: number;
+      type: string;
+      type_display: string;
+      method: string;
+      method_display: string;
+      status: StatusType;
+      status_display: string;
+      receipt_image: string | null;
+      user_card: string | null;
+      user_card_number: string | null;
+      admin_note: string | null;
+      tracking_code: string;
+      description: string;
+      created_at: string;
+      updated_at: string;
 }
 
 
