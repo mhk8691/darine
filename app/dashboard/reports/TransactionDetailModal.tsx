@@ -171,13 +171,13 @@ export default function TransactionDetailModal({ open, setOpen, data }: Props) {
             {formatDate(data.updated_at)}
           </Typography>
         } />
-         {data.receipt_image && (
+         {data.receipt_image_url && (
           <DetailRow label="رسید" value={
             <Typography
               variant="body2"
               color="primary"
               sx={{ cursor: 'pointer', textDecoration: 'underline' }}
-              onClick={() => window.open(data.receipt_image!, '_blank')}
+              onClick={() => window.open(data.receipt_image_url!, '_blank')}
             >
               مشاهده رسید
             </Typography>

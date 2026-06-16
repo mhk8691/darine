@@ -11,7 +11,6 @@ export default function WalletHeader() {
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   const {assets,isVisible} = useAssets()
     const pathname = usePathname()
-  console.log('gold=>',assets)
   return (
     <>
       {isDesktop ? (

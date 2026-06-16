@@ -172,7 +172,7 @@ export interface RecentTransactionDataType{
       method_display: string;
       status: StatusType;
       status_display: string;
-      receipt_image: string | null;
+      receipt_image_url: string | null;
       user_card: string | null;
       user_card_number: string | null;
       admin_note: string | null;
