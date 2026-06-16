@@ -6,6 +6,7 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import { RemoveIcon } from '@/app/Components/CustomIcons/CustomIcons';
 import { BankCardDataType } from '@/app/core/Types';
 import RemoveCard from './RemoveCard';
+import { getBankInfoWithSheba } from 'ir-banks-info';
 
 export default function BankCard({
   bankCardData,
@@ -32,9 +33,9 @@ export default function BankCard({
           <Card style={{ px: 2, py: 3, borderColor: 'background.border' }}>
             <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
               <Stack direction={'row'} gap={1} alignItems={'center'}>
-                <Image src={'/images/simple/mellat.svg'} alt={''} width={36} height={36} />
+                <Image src={getBankInfoWithSheba(item.shaba_number)?.logo + ''} alt={''} width={36} height={36} />
                 <Typography variant="body2" fontSize={16} sx={{ color: 'text.muted' }}>
-                  {/* {getBankInfoWithSheba(item.)} */}
+                  {getBankInfoWithSheba(item.shaba_number)?.persianName}
                 </Typography>
               </Stack>
               <Stack>
@@ -51,10 +52,10 @@ export default function BankCard({
             </Stack>
             <Stack mt={2}>
               <Typography variant="body2" fontSize={18} sx={{ color: 'text.title' }}>
-                {item.card_number}
+                  محمد محمدی
               </Typography>
-              <Typography variant="body2" fontSize={18} sx={{ color: 'text.title' }}>
-                IR۸***۰۳۰۹۰۶۹۷۶55
+              <Typography variant="body2" fontSize={18} sx={{ color: 'text.title',mt:1.5 }}>
+                 IR{item.shaba_number}
               </Typography>
             </Stack>
           </Card>

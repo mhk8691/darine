@@ -67,7 +67,7 @@ export interface SellGoldDataType {
 
 export interface BankCardDataType {
   id: number;
-  card_number: string;
+  shaba_number: string;
   bank_name: string;
   is_active: boolean;
 }

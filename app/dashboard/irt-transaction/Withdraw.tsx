@@ -45,6 +45,7 @@ export default function Withdraw({setTransactionData,transactionParams,filter,da
           setTransactionData(transactionData)
     showSnackbar(response.message,'success')
     setPrice('')
+    setSelectedCard(1)
     refetch()
  }catch(error:unknown){
   if (isAxiosError(error)){

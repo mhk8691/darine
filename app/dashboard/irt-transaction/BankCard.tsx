@@ -15,6 +15,8 @@ import {
 import * as React from 'react';
 import AddCard from '../bank-card/AddCard';
 import { BankCardDataType } from '@/app/core/Types';
+import Image from 'next/image';
+import { getBankInfoWithSheba } from 'ir-banks-info';
 
 const CardItem = ({ item }: { item: BankCardDataType }) => (
   <Box
@@ -32,9 +34,13 @@ const CardItem = ({ item }: { item: BankCardDataType }) => (
       </Typography>
     </Box>
 
-    <Typography fontSize={16} sx={{ color: 'text.title', direction: 'rtl' }}>
-      {item.card_number}
-    </Typography>
+         <Stack direction={'row'} gap={1} alignItems={'center'} justifyContent={'end' } width={'100%'}>
+          <Typography variant="body2" fontSize={16} sx={{ color: 'text.muted' }}>
+                      IR{item.shaba_number}
+                    </Typography>
+                    <Image src={getBankInfoWithSheba(item.shaba_number)?.logo + ''} alt={''} width={27} height={27} />
+                    
+                  </Stack>
   </Box>
 );
 

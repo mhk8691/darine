@@ -62,7 +62,7 @@ export default function RemoveCard({
           </IconButton>
         </Stack>
         <Typography variant="body1" fontSize={15} fontWeight={'500'} sx={{ mt: 3 }}>
-          آیا از حذف کارت بانکی با شماره {selectedCard?.card_number} اطمینان دارید؟
+          آیا از حذف کارت بانکی با شماره {selectedCard?.shaba_number} اطمینان دارید؟
         </Typography>
         <Stack direction={'row'} gap={2} mt={4}>
           <Button

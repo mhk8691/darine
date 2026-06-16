@@ -22,7 +22,7 @@ export const removeBankCard = async (id: number) => {
   
 };
 
-export const addBankCard = async (cardNumber: string) => {
-    const res = await api.post<ApiResponse<BankCardDataType[]>>('/accounts/cards/', { card_number: cardNumber });
+export const addBankCard = async (shaba_number: string) => {
+    const res = await api.post<ApiResponse<BankCardDataType[]>>('/accounts/cards/', { shaba_number: shaba_number });
     return res.data;
 };
