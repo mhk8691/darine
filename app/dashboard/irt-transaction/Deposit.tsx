@@ -3,7 +3,7 @@ import Card from '@/app/Components/Containers/Container/Container';
 import FilterToggleButton from '@/app/Components/FilterToggleButton/FilterToggleButton';
 import InputField from '@/app/Components/InputField/InputField';
 import { BankCardDataType, DepositDataType, RecentTransactionDataType, ToggleItemsType } from '@/app/core/Types';
-import { Box, Button, Stack, Typography } from '@mui/material';
+import { Box, Button, Dialog, DialogContent, IconButton, Stack, Typography } from '@mui/material';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import BankCard from './BankCard';
 import { getBankCard } from '@/lib/getbankCard/bankCard';
@@ -11,7 +11,7 @@ import Container from '@/app/Components/Containers/Container/Container';
 import DepositConfirm from './DepositConfirm';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { isAxiosError } from 'axios';
-import { Upload } from '@mui/icons-material';
+import { Close, Upload } from '@mui/icons-material';
 import { goldDeposit } from '@/lib/transactions/deposit/deposit';
 import { useAssets } from '../../AssetsProvider';
 import Loading from '@/app/Components/Loading/Loading';
@@ -43,6 +43,17 @@ export default function Deposit({setTransactionData,transactionParams,filter,dat
   );
   const [isLoading,setIsLoading] = useState(false)
   const [receipt,setReceipt] = useState<null| File>(null)
+const [receiptPreview, setReceiptPreview] = useState<string | null>(null);
+const [zoomOpen, setZoomOpen] = useState(false);
+const [description, setDescription] = useState('');
+
+const handleReceiptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  if (!e.target.files) return;
+  const image = e.target.files[0];
+  setReceipt(image);
+  const url = URL.createObjectURL(image);
+  setReceiptPreview(url);
+};
   useEffect(() => {
     const getData = async () => {
       const response = await getBankCard();
@@ -57,6 +68,8 @@ export default function Deposit({setTransactionData,transactionParams,filter,dat
       if (method === 'RECEIPT'){
         if (!receipt) return null
         formData.append('receipt',receipt)
+        formData.append('description',description)
+
         formData.append('method','RECEIPT')
       }
       else{
@@ -139,87 +152,118 @@ export default function Deposit({setTransactionData,transactionParams,filter,dat
           <Typography variant="body2" fontSize={12} fontWeight={"bold"}>
           اطلاعات واریز
         </Typography>
-        <Container
-          style={{
-            flexDirection: "column",
-            gap: 2,
-          }}
+    <Container style={{ flexDirection: "column", gap: 2 }}>
+  <Stack>
+    <Typography variant="body2" fontSize={12} sx={{ color: 'text.muted' }}>
+      کارت مقصد:
+    </Typography>
+  </Stack>
+
+  <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"}>
+    <Typography variant="body2" fontSize={10}>شماره شبا</Typography>
+    <Typography variant="body2" fontSize={12}>{depositData.sheba}</Typography>
+  </Stack>
+
+  <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"}>
+    <Typography variant="body2" fontSize={10}>بانک</Typography>
+    <Stack direction={'row'} gap={1} alignItems={'center'} justifyContent={'end'} width={'100%'}>
+      <Typography variant="body2" fontSize={14} sx={{ color: 'text.muted' }}>
+        {getBankInfoWithSheba(depositData.sheba.replace('IR', ''))?.persianName}
+      </Typography>
+      <Image src={getBankInfoWithSheba(depositData.sheba)?.logo + ''} alt={''} width={27} height={27} />
+    </Stack>
+  </Stack>
+
+  <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"}>
+    <Typography variant="body2" fontSize={10}>به نام</Typography>
+    <Typography variant="body2" fontSize={12}>{depositData.full_name}</Typography>
+  </Stack>
+
+  {receiptPreview && (
+    <>
+      <Box
+        onClick={() => setZoomOpen(true)}
+        sx={{
+          mt: 2,
+          width: '100%',
+          borderRadius: 2,
+          overflow: 'hidden',
+          border: '1px solid',
+          borderColor: 'divider',
+          cursor: 'zoom-in',
+          position: 'relative',
+         maxHeight:'100%',
+         minHeight:250
+        }}
+      >
+        <Image
+          src={receiptPreview}
+          alt="رسید آپلود شده"
+          fill
+          style={{ objectFit: 'cover' }}
+        />
+    
+      </Box>
+
+      <Dialog
+        open={zoomOpen}
+        onClose={() => setZoomOpen(false)}
+        maxWidth="md"
+        fullWidth
+        PaperProps={{ sx: { bgcolor: 'transparent', boxShadow: 'none' } }}
+      >
+        <DialogContent
+          sx={{ p: 0, position: 'relative', cursor: 'zoom-out' }}
+          onClick={() => setZoomOpen(false)}
         >
-         
-         <Stack>
-           <Typography variant="body2" fontSize={12} sx={{color:'text.muted'}}>
-            کارت مقصد:
-          </Typography>
-         </Stack>
-          <Stack
-            direction={"row"}
-                  justifyContent={"space-between"}
-            alignItems={"center"}
+          <Box sx={{ position: 'relative', width: '100%', minHeight: 400 }}>
+            <Image
+              src={receiptPreview}
+              alt="رسید"
+              fill
+              style={{ objectFit: 'contain' }}
+            />
+          </Box>
+          <IconButton
+            onClick={() => setZoomOpen(false)}
+            sx={{ position: 'absolute', top: 8, right: 8, color: '#fff', bgcolor: 'rgba(0,0,0,0.4)' }}
           >
-            <Typography variant="body2" fontSize={10}>
-              شماره شبا
-            </Typography>
-            <Typography variant="body2" fontSize={12}>
-              {depositData.sheba}
-            </Typography>
-          </Stack>
-           <Stack
-            direction={"row"}
-                  justifyContent={"space-between"}
-            alignItems={"center"}
-          >
-            <Typography variant="body2" fontSize={10}>
-              بانک
-            </Typography>
-            <Stack direction={'row'} gap={1} alignItems={'center'} justifyContent={'end' } width={'100%'}>
-                      <Typography variant="body2" fontSize={14} sx={{ color: 'text.muted' }}>
-                                {getBankInfoWithSheba(depositData.sheba.replace('IR', ''))?.persianName}
+            <Close fontSize="small" />
+          </IconButton>
+        </DialogContent>
+      </Dialog>
+    </>
+  )}
 
-                                </Typography>
-                                <Image src={getBankInfoWithSheba(depositData.sheba)?.logo + ''} alt={''} width={27} height={27} />
-                                
-                              </Stack>
-          </Stack>
-          <Stack
-            direction={"row"}
-                  justifyContent={"space-between"}
-            alignItems={"center"}
-          >
-            <Typography variant="body2" fontSize={10}>
-              به نام
-            </Typography>
-            <Typography variant="body2" fontSize={12}>
-              {depositData.full_name}
-            </Typography>
-          </Stack>
-        <Stack component={'label'} htmlFor="upload-file" width={'100%'} direction={'row'} justifyContent={'center'} mt={3}>
-  <Button 
-    variant="outlined" 
-    color="secondary" 
-    startIcon={<Upload />}
-    component="span" 
-    sx={{
-      width:'100%',
-      py:1.5,borderRadius:2
-    }}
-  >
-    بارگذاری رسید
-  </Button>
-</Stack>
+  <Stack component={'label'} htmlFor="upload-file" width={'100%'} direction={'row'} justifyContent={'center'} mt={2}>
+    <Button
+      variant="outlined"
+      color="secondary"
+      startIcon={<Upload />}
+      component="span"
+      sx={{ width: '100%', py: 1.5, borderRadius: 2 }}
+    >
+      {receiptPreview ? 'تغییر رسید' : 'بارگذاری رسید'}
+    </Button>
+  </Stack>
 
-          <Box 
-          component={'input'}
-            type="file" 
-  id="upload-file" 
-  style={{ display: 'none' }} 
+  <Box
+    component={'input'}
+    type="file"
+    id="upload-file"
+    style={{ display: 'none' }}
     accept="image/*"
-  onChange={(e) => {
-    if (e.target.files === null) return null
-    const image =e.target.files[0]
-    setReceipt(image)
-     }}
-          />
-        </Container>
+    onChange={handleReceiptChange}
+  />
+
+  <InputField
+    type="text"
+    placeholder={'توضیحات (اختیاری)'}
+    title={''}
+    value={description}
+    setValue={setDescription}
+  />
+</Container>  
         </>
       }
 <Button
