@@ -3,7 +3,7 @@ import Card from '@/app/Components/Containers/Container/Container';
 import FilterToggleButton from '@/app/Components/FilterToggleButton/FilterToggleButton';
 import InputField from '@/app/Components/InputField/InputField';
 import { BankCardDataType, RecentTransactionDataType, ToggleItemsType } from '@/app/core/Types';
-import { Button, Stack } from '@mui/material';
+import { Button, Stack, Typography } from '@mui/material';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import BankCard from './BankCard';
 import { getBankCard } from '@/lib/getbankCard/bankCard';
@@ -15,6 +15,7 @@ import Loading from '@/app/Components/Loading/Loading';
 import { getRecentTransaction } from '@/lib/transactions/recent-transactions/recentTransactions';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 import { getReports } from '@/lib/getReports/getReports';
+import priceFormater from '@/app/core/PriceFormater';
 
 const items: ToggleItemsType[] = [
   { title: 'به حساب بانکی', value: 'bank', id: 1 },
@@ -79,6 +80,9 @@ export default function Withdraw({setTransactionData,transactionParams,filter,da
       <Stack gap={3.5}>
         <Stack direction={'column'} gap={3}>
           <InputField type='number' placeholder={'ملبغ'} title={'تومان'} value={price} setValue={setPrice} />
+          <Typography variant="body2" color="primary">
+            موجودی شما: {priceFormater(assets.wallet_balance ) ||  0} تومان 
+          </Typography>
           <Button
             variant="contained"
             sx={{
