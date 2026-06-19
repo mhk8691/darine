@@ -33,9 +33,9 @@ export default function BankCard({
           <Card style={{ px: 2, py: 3, borderColor: 'background.border' }}>
             <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
               <Stack direction={'row'} gap={1} alignItems={'center'}>
-                <Image src={getBankInfoWithSheba(item.shaba_number)?.logo + ''} alt={''} width={36} height={36} />
+                <Image src={getBankInfoWithSheba(item?.shaba_number)?.logo + '' || ''} alt={''} width={36} height={36} />
                 <Typography variant="body2" fontSize={16} sx={{ color: 'text.muted' }}>
-                  {getBankInfoWithSheba(item.shaba_number)?.persianName}
+                  {getBankInfoWithSheba(item?.shaba_number)?.persianName}
                 </Typography>
               </Stack>
               <Stack>

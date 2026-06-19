@@ -173,9 +173,9 @@ const handleReceiptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     <Typography variant="body2" fontSize={10}>بانک</Typography>
     <Stack direction={'row'} gap={1} alignItems={'center'} justifyContent={'end'} width={'100%'}>
       <Typography variant="body2" fontSize={14} sx={{ color: 'text.muted' }}>
-        {getBankInfoWithSheba(depositData.sheba.replace('IR', ''))?.persianName}
+        {getBankInfoWithSheba(depositData?.sheba.replace('IR', ''))?.persianName}
       </Typography>
-      <Image src={getBankInfoWithSheba(depositData.sheba)?.logo + ''} alt={''} width={27} height={27} />
+      <Image src={getBankInfoWithSheba(depositData?.sheba)?.logo + ''} alt={''} width={27} height={27} />
     </Stack>
   </Stack>
 

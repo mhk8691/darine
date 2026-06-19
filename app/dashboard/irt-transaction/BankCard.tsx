@@ -34,13 +34,13 @@ const CardItem = ({ item }: { item: BankCardDataType }) => (
       </Typography>
     </Box>
 
-         <Stack direction={'row'} gap={1} alignItems={'center'} justifyContent={'end' } width={'100%'}>
+         {item.shaba_number && <Stack direction={'row'} gap={1} alignItems={'center'} justifyContent={'end' } width={'100%'}>
           <Typography variant="body2" fontSize={16} sx={{ color: 'text.muted' }}>
                       IR{item.shaba_number}
                     </Typography>
-                    <Image src={getBankInfoWithSheba(item.shaba_number)?.logo + ''} alt={''} width={27} height={27} />
+                    <Image src={getBankInfoWithSheba(item?.shaba_number)?.logo + '' || ''} alt={''} width={27} height={27} />
                     
-                  </Stack>
+                  </Stack>}
   </Box>
 );
 

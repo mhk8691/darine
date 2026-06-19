@@ -101,7 +101,7 @@ export default function Withdraw({setTransactionData,transactionParams,filter,da
             انتخاب کل موجودی
           </Button>
         </Stack>
-        {select !== 'silver' && (
+        {select !== 'silver' && bankCardsData && (
           <BankCard
             bankCardsData={bankCardsData}
             setBankCardsData={setBankCardsData}
