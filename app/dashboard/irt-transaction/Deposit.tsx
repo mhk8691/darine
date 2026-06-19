@@ -32,6 +32,7 @@ interface Props {
     dateRange:DatePickerValue
 }
 export default function Deposit({setTransactionData,transactionParams,filter,dateRange}:Props) {
+  const [checked, setChecked] = useState(false);
   const [price, setPrice] = useState('');
   const [select, setSelect] = useState(items[0].value);
   const [open,setOpen] = useState(false)
@@ -84,6 +85,10 @@ const handleReceiptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       refetch()
       setDepositData(null)
         setPrice('')
+        setDescription('')
+        setReceipt(null)
+        setReceiptPreview('')
+        setChecked(false)
     }catch(error:unknown){
       if (isAxiosError(error)){
         showSnackbar(error.response?.data.message)
@@ -285,7 +290,7 @@ const handleReceiptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         }
       </Button>
     </Card>
-    <DepositConfirm setDepositData={setDepositData} setOpen={setOpen} open={open} />
+    <DepositConfirm setDepositData={setDepositData} setOpen={setOpen} open={open} checked={checked} setChecked={setChecked} />
     </>
   );
 }

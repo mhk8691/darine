@@ -20,13 +20,18 @@ interface Props {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
   setDepositData: Dispatch<SetStateAction<DepositDataType | null>>;
+    checked:boolean
+  setChecked:Dispatch<SetStateAction<boolean>>
 }
 export default function DepositConfirm({
   open,
   setOpen,
   setDepositData,
+  checked,
+setChecked
+
 }: Props) {
-  const [checked, setChecked] = useState(false);
+  
   const [isLoading,setIsLoading] = useState(false)
   const handleChangeBox = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
