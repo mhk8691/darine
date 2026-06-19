@@ -269,3 +269,8 @@ export interface CheckoutDataType {
   hourse?:string
   date?:string
 }
+export interface BannersType {
+  link:string
+  image:string
+  
+}
