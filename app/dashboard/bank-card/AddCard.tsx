@@ -52,7 +52,7 @@ export default function AddCard({ setOpen, setValue, open, value, setBankCardDat
     >
       <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
         <Typography variant="body1" fontSize={16}>
-          افزودن کارت جدید
+         افزودن شماره شبا جدید
         </Typography>
         <IconButton onClick={() => setOpen(false)}  >
           <Close />

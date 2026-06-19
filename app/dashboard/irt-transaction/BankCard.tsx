@@ -100,7 +100,7 @@ export default function BankCards({
                 width: 'fit-content',
               }}
             >
-              انتخاب کارت بانکی
+             انتخاب شماره شبا
             </InputLabel>
 
             <Box
@@ -251,7 +251,7 @@ export default function BankCards({
             </SvgIcon>
           }
         >
-          افزودن کارت
+          افزودن شماره شبا
         </Button>
       </Stack>
    

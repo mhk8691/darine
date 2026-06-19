@@ -71,7 +71,7 @@ export default function page() {
                 },
               }}
             >
-              افزودن کارت بانکی
+             افزودن شماره شبا
             </Button>
           </Link>
           <Stack direction={'column'} alignItems={'center'} justifyContent={'center'} gap={4}>

@@ -68,7 +68,7 @@ export default function CardContainer() {
         startIcon={<AddIcon />}
         onClick={() => setOpen(true)}
       >
-        افزودن کارت جدید
+      افزودن شماره شبا جدید
       </Button>
       <AddCard
         open={open}
