@@ -53,27 +53,14 @@ export default function ChartGold({
     };
 
     getData();
-    const interval = setInterval(() => {
-      getData();
-    }, 45 * 1000);
+    // const interval = setInterval(() => {
+    //   getData();
+    // }, 45 * 1000);
 
-    return () => clearInterval(interval);
+    // return () => clearInterval(interval);
   }, [select]);
 
-// const chartValues: number[] = [
-//   18650000, 18680000, 18720000, 18690000, 18750000,
-//   18810000, 18770000, 18840000, 18890000, 18830000,
-//   18910000, 18960000, 18920000, 19000000, 18970000,
-//   19050000, 19010000, 19080000, 19130000, 19090000,
-//   19170000, 19210000, 19180000, 19250000, 19290000,
-//   19230000, 19310000, 19360000, 19320000, 20290000,
-// ];
 
-// const chartLabels: string[] = Array.from({ length: 30 }, (_, i) => {
-//   const date = new Date();
-//   date.setDate(date.getDate() - (29 - i));
-//   return date.toLocaleDateString('fa-IR', { month: 'short', day: 'numeric' });
-// });
 const base = 18650000;
 
 const chartValues: number[] = Array.from({ length: 24 }, (_, i) => {
@@ -134,8 +121,8 @@ const chartLabels: string[] = Array.from({ length: 24 }, (_, i) => {
         </Stack>
 
         <LineChart
-          data={chartValues}
-          labels={chartLabels}
+          data={chartData.chart.prices}
+          labels={chartData.chart.labels}
           width="100%"
           height={chartHeight || '180px'}
           color="#FFD700"
