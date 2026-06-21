@@ -40,6 +40,7 @@ export interface AppbarItemsType {
   name: string;
   image: string;
   link?: string;
+  comingSoon?:boolean
 }
 
 

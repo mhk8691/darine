@@ -8,6 +8,7 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
+  Chip,
 } from '@mui/material';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -25,6 +26,14 @@ interface ItemsType {
   navigation: AppbarItemsType[];
 }
 
+// توجه: باید در فایل Types، فیلد comingSoon به AppbarItemsType اضافه بشه
+// export interface AppbarItemsType {
+//   name: string;
+//   image: string;
+//   link: string;
+//   comingSoon?: boolean;
+// }
+
 const items: ItemsType[] = [
   {
     title: 'سفارش',
@@ -33,16 +42,19 @@ const items: ItemsType[] = [
         name: 'خرید و فروش',
         image: '/trade-active-dark.svg',
         link: '/trades',
+        comingSoon: false,
       },
       {
         name: 'سفارش با قیمت',
         image: '/limitOrder-active-dark.svg',
         link: '/limit-order',
+        comingSoon: false, 
       },
       {
         name: 'سفارش تعهدی',
         image: '/marginOrder-active-dark.svg',
         link: '/margin-trade',
+        comingSoon: false,
       },
     ],
   },
@@ -53,16 +65,19 @@ const items: ItemsType[] = [
         name: 'دارایی ها',
         image: '/wallet-active-dark.svg',
         link: '/wallet',
+        comingSoon: false,
       },
       {
         name: 'واریز و برداشت',
         image: '/irtTransaction-active-dark.svg',
         link: '/irt-transaction',
+        comingSoon: false,
       },
       {
         name: 'کارت های بانکی',
         image: '/irtTransaction-active-dark.svg',
         link: '/bank-card',
+        comingSoon: false, 
       },
     ],
   },
@@ -73,31 +88,37 @@ const items: ItemsType[] = [
         name: 'خرید اقساطی',
         image: '/credit-active-dark.svg',
         link: '/credit-menu',
+        comingSoon: true,
       },
       {
         name: 'اعتبار خرید کالا',
         image: '/loan-active-dark.svg',
         link: '/loan',
+        comingSoon: true, 
       },
       {
         name: 'تحویل فیزیکی',
         image: '/shop-active-dark.svg',
         link: '/gold-receive',
+        comingSoon: false,
       },
       {
         name: 'کارت هدیه',
         image: '/giftCard-active-dark.svg',
         link: '/gift-card-menu',
+        comingSoon: false, 
       },
       {
         name: 'پس انداز خودکار',
         image: '/automatic-active-dark.svg',
         link: '/automatic-investment',
+        comingSoon: false,
       },
       {
         name: 'آلارم قیمت',
         image: '/priceAlert-active-dark.svg',
         link: '/price-alert',
+        comingSoon: false,
       },
     ],
   },
@@ -108,16 +129,19 @@ const items: ItemsType[] = [
         name: 'گزارش ها',
         image: '/reports-active-dark.svg',
         link: '/reports',
+        comingSoon: false,
       },
       {
         name: 'طلا فروش شو',
         image: '/invite-active-dark.svg',
         link: '/invite',
+        comingSoon: false, 
       },
       {
         name: 'پروفایل',
         image: '/profile-active-dark.svg',
         link: '/profile',
+        comingSoon: false,
       },
     ],
   },
@@ -137,7 +161,7 @@ const Content = ({ setOpen }: { setOpen: Dispatch<SetStateAction<boolean>> }) =>
           sm: 0,
         }}
       >
-        <IconButton onClick={() => setOpen(false)}  >
+        <IconButton onClick={() => setOpen(false)}>
           <Close
             sx={{
               display: {
@@ -202,10 +226,22 @@ const Content = ({ setOpen }: { setOpen: Dispatch<SetStateAction<boolean>> }) =>
                     px={1.5}
                     component={'div'}
                     onClick={() => {
-                      router.push(`/dashboard${navigate.link}`);
-                      setOpen(false);
+                      // فقط اگر comingSoon نباشه، کلیک کنه
+                      if (!navigate.comingSoon) {
+                        router.push(`/dashboard${navigate.link}`);
+                        setOpen(false);
+                      }
                     }}
-                    sx={{ cursor: 'pointer' }}
+                    sx={{
+                      cursor: navigate.comingSoon ? 'default' : 'pointer',
+                      position: 'relative',
+                      opacity: navigate.comingSoon ? 0.6 : 1,
+                      transition: 'all 0.2s ease',
+                      '&:hover': {
+                        opacity: navigate.comingSoon ? 0.6 : 0.8,
+                        transform: navigate.comingSoon ? 'none' : 'scale(1.02)',
+                      },
+                    }}
                   >
                     <Stack direction={'column'} alignItems={'center'} gap={1.5}>
                       <Image
@@ -225,6 +261,27 @@ const Content = ({ setOpen }: { setOpen: Dispatch<SetStateAction<boolean>> }) =>
                       >
                         {navigate.name}
                       </Typography>
+
+                      {/* نشانگر "به زودی" */}
+                      {navigate.comingSoon && (
+                        <Chip
+                          label="به زودی"
+                          size="small"
+                          sx={{
+                            position: 'absolute',
+                            top: -8,
+                            right: -8,
+                            backgroundColor: '#FF6B6B',
+                            color: 'white',
+                            fontSize: '10px',
+                            height: '20px',
+                            fontWeight: 'bold',
+                            '& .MuiChip-label': {
+                              px: 1,
+                            },
+                          }}
+                        />
+                      )}
                     </Stack>
                   </Grid>
                 ))}
