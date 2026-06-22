@@ -27,7 +27,7 @@ const styles = {
   slide: {
     textAlign: 'center',
     fontSize: 18,
-    background: '#444',
+    background: 'transparent',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

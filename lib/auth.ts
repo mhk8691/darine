@@ -1,5 +1,6 @@
+import { ApiResponse } from '@/lib/api';
 import { RegisterFormType } from '@/app/login/register/RegisterForm';
-import api, { ApiResponse } from './api';
+import api from './api';
 
 export type User = {
   full_name: string;

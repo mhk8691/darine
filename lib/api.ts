@@ -5,7 +5,10 @@ import axios, {
   InternalAxiosRequestConfig,
   isAxiosError,
 } from 'axios';
-
+export interface ApiResponse<T> {
+  message: string;
+  data: T;
+}
 import {
   showNetworkError,
   resetNetworkError,
