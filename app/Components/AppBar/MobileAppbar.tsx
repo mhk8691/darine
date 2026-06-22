@@ -8,40 +8,29 @@ import {
   ProfileIcon,
   ReportsIcon,
 } from '../CustomIcons/CustomIcons';
+import { useEffect, useState } from 'react';
 
 const appbarItems = [
-  {
-    name: 'گزارش ها',
-    icon: <ReportsIcon />,
-    link: '/dashboard/reports',
-  },
-  {
-    name: 'سفارش',
-    icon: <OrderIcon />,
-    link: '/dashboard/trades',
-  },
-  {
-    name: 'خانه',
-    icon: <HomeIcon />,
-    link: '/dashboard',
-  },
-  {
-    name: 'فیزیکی',
-    icon: <GoldReceiveIcon />,
-    link: '/dashboard/gold-receive',
-  },
-  {
-    name: 'پروفایل',
-    icon: <ProfileIcon />,
-    link: '/dashboard/profile',
-  },
+  { name: 'گزارش ها', icon: <ReportsIcon />, link: '/dashboard/reports' },
+  { name: 'سفارش', icon: <OrderIcon />, link: '/dashboard/trades' },
+  { name: 'خانه', icon: <HomeIcon />, link: '/dashboard' },
+  { name: 'فیزیکی', icon: <GoldReceiveIcon />, link: '/dashboard/gold-receive' },
+  { name: 'پروفایل', icon: <ProfileIcon />, link: '/dashboard/profile' },
 ];
 
 export default function MobileAppbar() {
+  const [isActive,setIsActive] = useState('')
   const router = useRouter();
   const pathname = usePathname();
   const theme = useTheme();
   const isDarkMode = theme.palette.mode === 'dark';
+
+  useEffect(()=>{
+    setIsActive(pathname)
+  },[])
+  // useEffect(()=>{
+  //   alert(isActive)
+  // },[isActive])
   return (
     <Stack
       position="fixed"
@@ -56,7 +45,6 @@ export default function MobileAppbar() {
       py={1}
     >
       {appbarItems.map((item) => {
-        const isActive = pathname === item.link;
 
         return (
           <Stack
@@ -65,26 +53,28 @@ export default function MobileAppbar() {
             alignItems="center"
             component="div"
             gap={0.5}
-            onClick={() => router.push(item.link)}
+            onClick={() => {
+              router.push(item.link)
+              setIsActive(item.link)
+            }}
             sx={{ position: 'relative', cursor: 'pointer' }}
           >
             <IconButton
               sx={{
                 position: 'relative',
                 p: 0.75,
-                bgcolor: isActive ? 'primary.main' : 'transparent',
                 transition: 'all 0.3s ease',
-                boxShadow: isActive ? '0px 4px 12px rgba(0, 0, 0, 0.3)' : 'none',
-                zIndex: isActive ? 2 : 1,
+                boxShadow: isActive === item.link ? '0px 4px 12px rgba(0, 0, 0, 0.3)' : 'none',
+                zIndex: isActive === item.link ? 2 : 1,
+                color:isActive === item.link ? 'primary.main' : 'white'
               }}
             >
               {item.icon}
             </IconButton>
-
             <Typography
               variant="body2"
               sx={{
-                color: isActive ? 'primary.main' : 'text.subtitle',
+                color: isActive === item.link ? 'primary.main' : 'text.subtitle',
                 fontSize: 10,
               }}
             >
