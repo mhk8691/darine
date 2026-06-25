@@ -72,9 +72,20 @@ const DesktopCart = ({cartData,setCartData}:Props) => {
                 ...headStyle,
               }}
             >
-              مقدار طلا
+             وزن خالص
             </TableCell>
-
+<TableCell
+              align="center"
+              sx={{
+                width: {
+                  xs: '10%',
+                  md: '15%',
+                },
+                ...headStyle,
+              }}
+            >
+            مبلغ وزنی
+            </TableCell>
             <TableCell
               align="center"
               sx={{
@@ -176,7 +187,9 @@ const DesktopCart = ({cartData,setCartData}:Props) => {
               <TableCell align="center" sx={dataStyle}>
                 {priceFormater(item.weight)} گرم
               </TableCell>
-
+                    <TableCell align="center" sx={dataStyle}>
+                {priceFormater(item.product_weight_with_fee ?? 0) ??0} گرم
+              </TableCell>
               <TableCell align="center" sx={dataStyle}>
                 {priceFormater(item.total_price)} تومان
               </TableCell>

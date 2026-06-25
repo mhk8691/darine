@@ -108,7 +108,7 @@ export default function ProductCard({ item,cart,setCart}: { item: ProductDateTyp
                 }}
                 sx={{ color: 'text.muted' }}
               >
-                وزن
+                وزن خالص
                 :
               </Typography>
               <Typography
@@ -156,7 +156,7 @@ export default function ProductCard({ item,cart,setCart}: { item: ProductDateTyp
                 }}
                 sx={{ color: 'text.muted' }}
               >
-                گرم طلا:
+               مبلغ وزنی:
               </Typography>
               <Typography
                 variant="body1"
@@ -168,7 +168,7 @@ export default function ProductCard({ item,cart,setCart}: { item: ProductDateTyp
                 }}
                 sx={{ alignSelf: 'flex-end' }}
               >
-                {priceFormater(item?.total_weight_with_fees || 0)} {' '}
+                {priceFormater(item?.product_weight_with_fee || 0)} {' '}
                 <Box
                   component={'span'}
                   fontSize={{
@@ -203,7 +203,7 @@ export default function ProductCard({ item,cart,setCart}: { item: ProductDateTyp
                 }}
                 sx={{ color: 'text.muted' }}
               >
-                ارزش تومان:
+                ارزش کل محصول:
               </Typography>
               <Typography
                 variant="body1"
@@ -246,6 +246,7 @@ export default function ProductCard({ item,cart,setCart}: { item: ProductDateTyp
               setCart(addToCart({
                 id:item.id,
                 name:item.name,
+                product_weight_with_fee:item.product_weight_with_fee,
                 total_price:item.total_price,
                 weight:item.weight
               }))
