@@ -96,7 +96,7 @@ const DesktopCart = ({cartData,setCartData}:Props) => {
                 ...headStyle,
               }}
             >
-              ارزش تومان
+              ارزش کل محصول
             </TableCell>
 
             <TableCell
@@ -162,13 +162,14 @@ const DesktopCart = ({cartData,setCartData}:Props) => {
                     }}
                   >
                     <Image
-                      src={'/images/product.webp'}
+                      src={item.image}
                       alt={item.name}
                       width={112}
                       height={112}
                       style={{
                         width: '100%',
                         height: '100%',
+                        borderRadius:8
                       }}
                     />
                   </Stack>

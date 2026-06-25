@@ -110,7 +110,7 @@ export interface ProductDateType {
   weight: number;
   product_weight_with_fee?:number;
   total_price: number;
-  image?: string;
+  image: string;
 }
 
 

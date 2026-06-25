@@ -23,14 +23,20 @@ export default function MobileCart({cartData,setCartData}:Props) {
           direction={'column'}
           gap={2}
         >
-          <Stack direction={'row'} gap={1} alignItems={'center'}>
-            <Image src={'/images/product.webp'} alt={item.name} width={120} height={120} />
+          <Stack direction={'row'} gap={1.5} alignItems={'center'}>
+            <Image src={item.image} alt={item.name} width={120} height={120} style={{
+              marginTop:8,
+              borderRadius:8
+            }} />
             <Stack direction={'column'} gap={1}>
               <Typography variant="body2" sx={{ color: 'text.title' }} fontWeight={'bold'}>
                 {item.name}
               </Typography>
               <Typography variant="body2" sx={{ color: 'text.title' }} fontSize={12}>
                 {priceFormater(item.weight)} گرم
+              </Typography>
+                <Typography variant="body2" sx={{ color: 'text.title' }} fontSize={12}>
+                {priceFormater(item.product_weight_with_fee ?? 0)} گرم
               </Typography>
               <Typography variant="body2" sx={{ color: 'text.title' }} fontSize={12}>
                 {priceFormater(item.total_price)} تومان

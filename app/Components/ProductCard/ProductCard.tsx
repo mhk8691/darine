@@ -244,6 +244,7 @@ export default function ProductCard({ item,cart,setCart}: { item: ProductDateTyp
             }}
             onClick={() => {
               setCart(addToCart({
+                image:item.image,
                 id:item.id,
                 name:item.name,
                 product_weight_with_fee:item.product_weight_with_fee,
