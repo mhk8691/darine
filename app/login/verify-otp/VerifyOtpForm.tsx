@@ -31,7 +31,7 @@ export default function VerifyOtpForm({ phoneNumber }: Props) {
           router.push(`/login/register/?phone=${phoneNumber}`);
           showSnackbar(error.response?.data.message.message, 'warning');
         } else {
-          showSnackbar(error.response?.data.message.message);
+          showSnackbar(error.response?.data.message);
         }
       }
     } finally {
