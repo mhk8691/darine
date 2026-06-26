@@ -11,7 +11,6 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-import Link from 'next/link';
 import { Dispatch, SetStateAction, useState } from 'react';
 
 import {  CartItem, ProductDateType } from '@/app/core/Types';
@@ -40,7 +39,6 @@ export default function ProductCard({ item,cart,setCart}: { item: ProductDateTyp
       >
         <Stack px={1.5}>
           <Stack bgcolor={'background.default'} borderRadius={2}>
-            <Link href={'/gold-shop/test/'}>
               <CardMedia
                 sx={{
                   height: {
@@ -52,7 +50,6 @@ export default function ProductCard({ item,cart,setCart}: { item: ProductDateTyp
                 image={item.image}
                 title="green iguana"
               />
-            </Link>
           </Stack>
         </Stack>
         <CardContent
@@ -70,7 +67,6 @@ export default function ProductCard({ item,cart,setCart}: { item: ProductDateTyp
               sm: 'center',
             }}
           >
-            <Link href={'/gold-shop/test/'}>
               <Typography
                 gutterBottom
                 variant="h5"
@@ -82,7 +78,6 @@ export default function ProductCard({ item,cart,setCart}: { item: ProductDateTyp
               >
                 {item.name}
               </Typography>
-            </Link>
           </Stack>
           <Stack direction={'column'} gap={1} sx={{ mt: 3.5 }}>
             <Stack
