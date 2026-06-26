@@ -262,17 +262,14 @@ export default function Footer() {
         direction={'row'}
         alignItems={'center'}
         justifyContent={'center'}
-        mt={5}
-        display={{
-          md: 'none',
-        }}
+       
         bgcolor={{
           xs: 'transparent',
           sm: 'background.paper',
         }}
       >
-        <Typography variant="body2" fontSize={10} sx={{ color: 'text.muted' }}>
-          Copyright © 2026 Talasea | شرکت توسعه راهکار الوند ارسباران | version: 3.0.3
+        <Typography variant="body2" fontSize={12} sx={{ color: 'text.muted' }}>
+          ©️ ۱۴۰۵ دارینه | تمامی حقوق محفوظ است.
         </Typography>
       </Stack>
     </Stack>
