@@ -5,8 +5,8 @@ import { DirectAddressesType } from './Cart';
 
 const addressOptions: SelectOption[] = [
   {
-    value: 'تهران، هروی سنتر، واحد b44',
-    label: 'تهران، هروی سنتر، واحد b44',
+    value: 'قم، میدان توحید، پاساژ شهر طلا، طبقه اول، پلاک ۲۳',
+    label: 'قم، میدان توحید، پاساژ شهر طلا، طبقه اول، پلاک ۲۳',
   },
 ];
 const dateOptions: SelectOption[] = [
@@ -18,9 +18,7 @@ const dateOptions: SelectOption[] = [
   { value: '1405/02/20', label: '1405/02/20', description: 'يكشنبه' },
 ];
 const hourseOptions: SelectOption[] = [
-  { value: 'ساعت: 12 تا 14', label: 'ساعت: 12 تا 14' },
-  { value: 'ساعت: 16 تا 18', label: 'ساعت: 16 تا 18' },
-  { value: 'ساعت: 18 تا 20', label: 'ساعت: 18 تا 20' },
+  { value: 'ساعت: 12 تا 14', label: 'ساعت: 11 تا 20' },
 ];
 
 export default function DirectDelivery({
