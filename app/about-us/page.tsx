@@ -100,7 +100,7 @@ export default function page() {
     <>
       <Container maxWidth={'lg'} sx={{ mt: 5 }}>
         <Image
-          src="/images/main.webp"
+          src="/images/main.jpg"
           alt=""
           width={1200}
           height={800}
