@@ -31,7 +31,7 @@ export function AssetsProvider({ children }: { children: React.ReactNode }) {
   const isAuthPage =
     pathname.startsWith('/login')
   const [assets, setAssets] = useState<AllAssetsDataType>({} as AllAssetsDataType);
-  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [lastUpdate, setLastUpdate] = useState<Date | null>(null);
