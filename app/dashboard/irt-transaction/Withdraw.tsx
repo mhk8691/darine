@@ -19,7 +19,7 @@ import priceFormater from '@/app/core/PriceFormater';
 
 const items: ToggleItemsType[] = [
   { title: 'به حساب بانکی', value: 'bank', id: 1 },
-  { title: 'به نقره سی', value: 'silver', id: 2 },
+  { title: 'به نقرینه', value: 'silver', id: 2 },
 ];
 interface Props {
   setTransactionData:Dispatch<SetStateAction<RecentTransactionDataType[]>>,
