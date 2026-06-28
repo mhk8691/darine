@@ -9,6 +9,7 @@ import { CallIcon, ChatIcon, EmailIcon } from '../CustomIcons/CustomIcons';
 import LaptopCertificate from './LaptopCertificate';
 import LinkContainer from './LinkContainer';
 import Link from 'next/link';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
 export const installment = [
   '/images/simple/snapppayLogo.webp',
@@ -125,7 +126,7 @@ export default function Footer() {
           }}
           py={{
             xs: 0,
-            md: 4,
+            md: 2,
           }}
           px={{
             xs: 2,
@@ -142,7 +143,7 @@ export default function Footer() {
               lg: 0,
             }}
             alignItems={'center'}
-            justifyContent={'space-between'}
+            justifyContent={'space-evenly'}
           >
             <Stack
               direction={{
@@ -175,6 +176,7 @@ export default function Footer() {
                 md: 3,
               }}
             >
+              <Link href={'https://wa.me/989191608771'} target='_blank' rel="noopener noreferrer">
               <Stack
                 direction={'row'}
                 gap={{
@@ -183,19 +185,19 @@ export default function Footer() {
                 }}
                 alignItems={'center'}
               >
-                <ChatIcon />
+                <WhatsAppIcon />
 
-                <Link href={'https://t.me/darine_app'} target='_blank'>
                 <Typography
                   variant="body2"
                   color="text.primary"
                   fontSize={14}
                   sx={{ whiteSpace: 'nowrap' }}
                 >
-                  پشتیبانی تلگرام
+                  پشتیبانی واتساپ
                 </Typography>
-                </Link>
               </Stack>
+                </Link>
+                <Link href={'tel:09191608771'}>
               <Stack
                 direction={'row'}
                 gap={{
@@ -214,6 +216,7 @@ export default function Footer() {
                   ۰۹۱۹۱۶۰۸۷۷۱
                 </Typography>
               </Stack>
+                </Link>
            
             </Stack>
             <Stack direction={'row'} gap={1.5}>
