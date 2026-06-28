@@ -15,6 +15,8 @@ export const contentLink = [
   { title: 'استعلام انگ طلای آب شده', link: '/' },
   { title: 'هر گرم طلا چند سوت است؟', link: '/' },
   { title: 'نمودار قیمت طلا در 10 سال گذشته', link: '/' },
+  { title: 'آموزش پلتفرم', link: '/' },
+  
 ];
 
 export default function DesktopLinks() {
