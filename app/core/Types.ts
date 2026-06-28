@@ -103,15 +103,16 @@ export interface StatisticsDataType {
   "pending_toman": number,
   "pending_gold": number
 }
-export interface ProductDateType {
-  id: number;
-  name: string;
-  category?: string;
-  weight: number;
-  product_weight_with_fee?:number;
-  total_price: number;
-  image: string;
-}
+  export interface ProductDateType {
+    id: number;
+    name: string;
+    category?: string;
+    weight: number;
+    product_weight_with_fee?:number;
+    total_price: number;
+    image: string;
+    inventory_count?:number
+  }
 
 
 export interface OrderItemDataType {
