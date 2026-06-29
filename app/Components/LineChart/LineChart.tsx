@@ -1,4 +1,3 @@
-// LineChart.tsx
 'use client';
 
 import dynamic from 'next/dynamic';
@@ -6,6 +5,9 @@ import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material';
 import { ApexOptions } from 'apexcharts';
+import priceFormater from '@/app/core/PriceFormater';
+
+// فرض: این تابع از قبل داری
 
 const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
@@ -16,7 +18,7 @@ interface Props {
   noGradient?: boolean;
   noLabel?: boolean;
   data: number[];
-  labels: string[];
+  labels: string[]; // فرض: تاریخ/ساعت داخل اینه
 }
 
 export default function LineChart({
@@ -36,7 +38,7 @@ export default function LineChart({
     setMounted(true);
   }, []);
 
-  const series = [{name:'قیمت', data }];
+  const series = [{ data,name: 'قیمت',  }];
 
   const options: ApexOptions = {
     chart: {
@@ -45,35 +47,56 @@ export default function LineChart({
       background: 'transparent',
       zoom: { enabled: false },
     },
+
     dataLabels: { enabled: false },
     markers: { size: 0 },
+
     stroke: {
       curve: 'straight',
       width: 2,
     },
- xaxis: {
-  type: 'category',
-  categories: labels,
-  tickAmount: 10,
-  labels: {
-    show: !noLabel,
-    rotate: 0,
-    style: {
-      fontSize: '10px',
+
+    xaxis: {
+      type: 'category',
+      categories: labels,
+      tickAmount: 10,
+      labels: {
+        show: !noLabel,
+        rotate: 0,
+        style: {
+          fontSize: '10px',
+        },
+      },
+      axisBorder: { show: false },
+      axisTicks: { show: false },
     },
-  },
-  axisBorder: { show: false },
-  axisTicks: { show: false },
-},
+
     yaxis: {
-      labels: { show: !noLabel },
+      labels: {
+        show: !noLabel,
+        formatter: (val) => priceFormater(val),
+      },
     },
-   tooltip: {
-  x: { show: true },
-  y: {
-    formatter: (val) => `${val.toLocaleString('fa-IR')} تومان`,
-  },
-},
+
+    tooltip: {
+      x: {
+        show: true,
+        formatter: (_val, { dataPointIndex }) => {
+          const raw = labels?.[dataPointIndex];
+
+          const date = new Date(raw);
+          if (!isNaN(date.getTime())) {
+            return date.toLocaleString('fa-IR');
+          }
+
+          return raw;
+        },
+      },
+      y: {
+        formatter: (val) => priceFormater(val),
+      },
+    },
+
     fill: noGradient
       ? { type: 'solid', opacity: 0.3 }
       : {
@@ -85,14 +108,36 @@ export default function LineChart({
             stops: [0, 100],
           },
         },
+
     colors: [color],
+
     grid: {
-      borderColor: isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
+      borderColor: isDarkMode
+        ? 'rgba(255,255,255,0.1)'
+        : 'rgba(0,0,0,0.1)',
       strokeDashArray: 4,
     },
+
     theme: {
       mode: isDarkMode ? 'dark' : 'light',
     },
+
+    responsive: [
+      {
+        breakpoint: 768,
+        options: {
+          xaxis: {
+            labels: {
+              rotate: -45,
+              hideOverlappingLabels: true,
+              style: {
+                fontSize: '9px',
+              },
+            },
+          },
+        },
+      },
+    ],
   };
 
   if (!mounted) return null;
