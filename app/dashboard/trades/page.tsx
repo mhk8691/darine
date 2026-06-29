@@ -16,7 +16,6 @@ export default function page() {
         lg: 3,
       }}
     >
-      <BackLink title="خرید و فروش" />
 
   
      <Trading />
