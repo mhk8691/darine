@@ -12,7 +12,6 @@ export default function Trade() {
 
    const [data,setData] = useState<TradeTableDataType[]>([] as TradeTableDataType[])
    const [reportsParams,setReportsParams] = useState('BUY')
-  // const [buyInfo, setBuyInfo] = useState<BuyGoldDataType>({} as BuyGoldDataType);
 
       const [filter,setFilter] = useState('')
       const [dateRange,setDateRange] =useState<DatePickerValue| null>(null)

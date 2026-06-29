@@ -12,6 +12,7 @@ import { goldSell } from '@/lib/gold/goldSell'
 import { Button, Grid, Stack, Typography, useMediaQuery, useTheme } from '@mui/material'
 import { isAxiosError } from 'axios'
 import React, { Dispatch, SetStateAction, useState } from 'react'
+import TradeGoldConfirmation from './TradeGoldConfirmation'
 
 
 
@@ -66,7 +67,7 @@ export default function Trading({setData,reportsParams,filter,dateRange}:Props) 
       setGold('')
       setPrice('')
       refetch()
-      // setBuyInfo(response.data.details)
+      setOpen(false)
     } catch (error: unknown) {
       if (isAxiosError(error)) {
         showSnackbar(error.response?.data.message);
@@ -82,10 +83,10 @@ export default function Trading({setData,reportsParams,filter,dateRange}:Props) 
       const newData = await getReports('gold',reportsParams || '',dateRange,filter)
       setData&&setData(newData)
       showSnackbar(response.data.message,'success')
-      setOpen(true);
-           setGold('')
+      setGold('')
       setPrice('')
       refetch()
+      setOpen(false);
     } catch (error: unknown) {
       if (isAxiosError(error)) {
         showSnackbar(error.response?.data.message);
@@ -95,6 +96,7 @@ export default function Trading({setData,reportsParams,filter,dateRange}:Props) 
     }
   };
   return (
+      <>
       <Container
         style={{
           gap: 3.15,
@@ -146,13 +148,16 @@ export default function Trading({setData,reportsParams,filter,dateRange}:Props) 
         <Button
           variant="contained"
           color="primary"
-          onClick={() => (select === 'buy' ? handleBuyGold() : handleSellGold())}
+          onClick={() => setOpen(true)}
           sx={{ borderRadius: 2, fontSize: 16, height:60 }}
-          disabled={isLoading}
         >
-          {isLoading ? <Loading size={30}/>:select === 'buy' ? 'خرید' : 'فروش'}
+          {select === 'buy' ? 'خرید' : 'فروش'}
         </Button>
       </Container>
-      /* <TradeGoldConfirmation title={select === 'buy' ? 'تایید خرید طلا':'تایید فروش طلا'} open={open} setOpen={setOpen} data={buyInfo} /> */
+       <TradeGoldConfirmation title={select === 'buy' ? 'تایید خرید طلا':'تایید فروش طلا'} isLoading={isLoading} handleSubmit={select === 'buy' ? handleBuyGold : handleSellGold} open={open} setOpen={setOpen} data={{
+         weight:+gold,
+        price:+price,
+       }} /> 
+      </>
   )
 }
