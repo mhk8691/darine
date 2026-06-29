@@ -78,25 +78,35 @@ export default function LineChart({
       },
     },
 
-    tooltip: {
-      x: {
-        show: true,
-        formatter: (_val, { dataPointIndex }) => {
-          const raw = labels?.[dataPointIndex];
+   tooltip: {
+  x: {
+    show: true,
+    formatter: (_: string, opts: any) => {
+      if (!opts) return '';
 
-          const date = new Date(raw);
-          if (!isNaN(date.getTime())) {
-            return date.toLocaleString('fa-IR');
-          }
+      const value = labels[opts.dataPointIndex];
 
-          return raw;
-        },
-      },
-      y: {
-        formatter: (val) => priceFormater(val),
-      },
+      const date = new Date(value);
+
+      if (!isNaN(date.getTime())) {
+        return date.toLocaleString('fa-IR', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+        });
+      }
+
+      return value;
     },
+  },
 
+  y: {
+    formatter: (val: number) =>
+      `\u2066${priceFormater(val)}\u2069 تومان`,
+  },
+},
     fill: noGradient
       ? { type: 'solid', opacity: 0.3 }
       : {
