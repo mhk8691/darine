@@ -28,8 +28,7 @@ const AssetsContext = createContext<AssetsContextType | null>(null);
 export function AssetsProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
-  const isAuthPage =
-    pathname.startsWith('/login')
+  const isAuthPage = pathname.startsWith('/login');
   const [assets, setAssets] = useState<AllAssetsDataType>({} as AllAssetsDataType);
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState(true);
@@ -39,6 +38,7 @@ export function AssetsProvider({ children }: { children: React.ReactNode }) {
   const isFetchingRef = useRef(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const isMountedRef = useRef(true);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null); // ← اضافه شده
 
   useEffect(() => {
     const stored = localStorage.getItem('eyeState');
@@ -48,7 +48,9 @@ export function AssetsProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const fetchData = useCallback(
-    async (showLoading = true) => {
+    async (showLoading = true, retryCount = 0) => {
+      const MAX_RETRIES = 3; // حداکثر تعداد تلاش مجدد
+      
       if (isAuthPage) return;
       if (isFetchingRef.current) return;
 
@@ -63,6 +65,8 @@ export function AssetsProvider({ children }: { children: React.ReactNode }) {
         if (isMountedRef.current) {
           setAssets(response || ({} as AllAssetsDataType));
           setLastUpdate(new Date());
+          // در صورت موفقیت، شمارنده تلاش مجدد را ریست کنید
+          retryCount = 0;
         }
       } catch (err) {
         if (isMountedRef.current) {
@@ -70,7 +74,21 @@ export function AssetsProvider({ children }: { children: React.ReactNode }) {
             err instanceof Error ? err.message : 'خطا در دریافت اطلاعات'
           );
 
-          setTimeout(() => fetchData(false), 2000);
+          // فقط اگر تعداد تلاش‌ها از حداکثر کمتر است، دوباره تلاش کن
+          if (retryCount < MAX_RETRIES) {
+            // پاک کردن تایمر قبلی اگر وجود دارد
+            if (timeoutRef.current) {
+              clearTimeout(timeoutRef.current);
+            }
+            
+            timeoutRef.current = setTimeout(() => {
+              fetchData(false, retryCount + 1);
+            }, 2000);
+          } else {
+            // اگر تعداد تلاش‌ها به حداکثر رسید، خطا را نمایش بده
+            setError(`خطا در دریافت اطلاعات پس از ${MAX_RETRIES} بار تلاش`);
+            setIsLoading(false);
+          }
         }
       } finally {
         if (isMountedRef.current) {
@@ -89,7 +107,7 @@ export function AssetsProvider({ children }: { children: React.ReactNode }) {
       fetchData();
 
       intervalRef.current = setInterval(() => {
-        fetchData(false);
+        fetchData(false, 0); // ریست کردن شمارنده تلاش مجدد برای اینتروال
       }, 45 * 1000);
     }
 
@@ -99,11 +117,20 @@ export function AssetsProvider({ children }: { children: React.ReactNode }) {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
+      
+      // پاک کردن تایمر در زمان unmount
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
     };
   }, [fetchData, isAuthPage]);
 
   const refetch = useCallback(async () => {
-    await fetchData(true);
+    // ریست کردن تایمر و شمارنده هنگام رفرش دستی
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    await fetchData(true, 0);
   }, [fetchData]);
 
   const value: AssetsContextType = {
