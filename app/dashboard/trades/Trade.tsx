@@ -4,7 +4,7 @@ import {  useState } from 'react';
 import ChartGold from '@/app/Components/Chart/ChartGold';
 import TradesTableContainer from './TradesTableContainer';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
-import { Grid, Stack, Typography } from '@mui/material';
+import { Grid, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import Trading from './Trading';
 import BackLink from '../BackLink';
 import TradeGuide from './TradeGuide';
@@ -14,19 +14,20 @@ export default function Trade() {
 
    const [data,setData] = useState<TradeTableDataType[]>([] as TradeTableDataType[])
    const [reportsParams,setReportsParams] = useState('BUY')
-
+    const theme = useTheme()
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
       const [filter,setFilter] = useState('')
       const [dateRange,setDateRange] =useState<DatePickerValue| null>(null)
 const [openModal,setOpenModal] =useState(false)
   return (
     <>
       
-    <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} width={'100%'}>
+  {isMobile &&   <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} width={'100%'}>
             <BackLink title="خرید و فروش" />
-           <Typography component={'div'} onClick={()=>setOpenModal(true)} variant="h2" fontSize={18} sx={{textDecoration:'underline',color:'#0091F8'}}>
+           <Typography component={'div'} onClick={()=>setOpenModal(true)} variant="h2" fontSize={18} sx={{cursor:'pointer',textDecoration:'underline',color:'#0091F8'}}>
            راهنما
           </Typography>
-         </Stack>
+         </Stack>}
        <Grid size={12} container  spacing={{
         xs: 2,
         lg: 3,

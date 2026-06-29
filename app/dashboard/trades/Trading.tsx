@@ -116,7 +116,7 @@ export default function Trading({setData,reportsParams,filter,dateRange}:Props) 
            <Typography variant="h2" fontSize={22}>
             خرید و فروش طلا
           </Typography>
-           <Typography component={'div'} onClick={()=>setOpenModal(true)} variant="h2" fontSize={22} sx={{textDecoration:'underline',color:'#0091F8'}}>
+           <Typography component={'div'} onClick={()=>setOpenModal(true)} variant="h2" fontSize={22} sx={{cursor:'pointer',textDecoration:'underline',color:'#0091F8'}}>
            راهنما
           </Typography>
          </Stack>
