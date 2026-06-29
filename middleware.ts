@@ -70,17 +70,17 @@ export function middleware(req: NextRequest) {
     );
   }
 
-  // if (pathname === '/') {
-  //   return NextResponse.redirect(
-  //     new URL('/dashboard', req.url)
-  //   );
-  // }
+  if (pathname === '/') {
+    return NextResponse.redirect(
+      new URL('/dashboard', req.url)
+    );
+  }
 
-  // if (!refreshToken && !isPublic) {
-  //   return NextResponse.redirect(
-  //     new URL('/login/login-password', req.url)
-  //   );
-  // }
+  if (!refreshToken && !isPublic) {
+    return NextResponse.redirect(
+      new URL('/login/login-password', req.url)
+    );
+  }
 
   return NextResponse.next();
 }
