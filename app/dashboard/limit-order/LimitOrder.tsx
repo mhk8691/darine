@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import { ReactNode, useEffect, useState } from 'react';
 
 import Trade from './Trade';
-import { Grid, useMediaQuery, useTheme } from '@mui/material';
+import { Grid, Stack, useMediaQuery, useTheme } from '@mui/material';
 import ChartGold from '@/app/Components/Chart/ChartGold';
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import LimitOrderTable from './LimitOrderTable';
@@ -15,12 +15,15 @@ import { LimitOrderDataType } from '@/app/core/Types';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { statuses } from '../reports/DepositTable';
+import LimitOrderGuide from './LimitOrderGuide';
+import BackLink from '../BackLink';
 const tabs = [{ title: 'خرید ' }, { title: 'فروش' }];
 
 export default function LimitOrder() {
    const [status,setStatus] = useState('')
       const [dateRange,setDateRange] =useState<DatePickerValue| null>(null)
       const[data,setData] = useState<LimitOrderDataType[]>([])
+       const [openModal,setOpenModal] = useState(false)
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   const getData = async ()=>{
@@ -41,6 +44,13 @@ export default function LimitOrder() {
   return (
 
     <>
+    {!isDesktop &&   <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} width={'100%'}>
+                <BackLink title="سفارش با قیمت" />
+               <Typography component={'div'} onClick={()=>setOpenModal(true)} variant="h2" fontSize={18} sx={{cursor:'pointer',textDecoration:'underline',color:'#0091F8'}}>
+               راهنما
+              </Typography>
+             </Stack>}
+
     <Grid
         size={{
           xs: 12,
@@ -56,10 +66,17 @@ export default function LimitOrder() {
         },
       }}
     >
-      {isDesktop && (
-        <Typography variant="h6" fontSize={22} mb={1} px={4}>
-          خرید و فروش طلا
-        </Typography>
+        {isDesktop && (
+       
+          <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} px={3} mb={2}>
+           <Typography variant="h2" fontSize={22}>
+            خرید و فروش طلا
+          </Typography>
+           <Typography component={'div'} onClick={()=>setOpenModal(true)} variant="h2" fontSize={22} sx={{textDecoration:'underline',color:'#0091F8',cursor:'pointer'}}>
+           راهنما
+          </Typography>
+         </Stack>
+
       )}
       <CustomTabs
         tabList={tabs}
@@ -128,6 +145,7 @@ status={status}
           listLength={data.length}
         />
       </Grid>
+      <LimitOrderGuide open={openModal} setOpen={setOpenModal} />
     </>
   );
 }

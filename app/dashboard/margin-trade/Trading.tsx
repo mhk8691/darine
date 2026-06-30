@@ -12,6 +12,7 @@ import {
   Checkbox,
   createTheme,
   FormControlLabel,
+  IconButton,
   Slider,
   Stack,
   StyledEngineProvider,
@@ -22,6 +23,7 @@ import {
 } from '@mui/material';
 import Link from 'next/link';
 import React, { useState } from 'react';
+import MarginTradeGuide from './MarginTradeGuide';
 
 const ltrTheme = createTheme({
   direction: 'ltr',
@@ -78,6 +80,7 @@ export default function Trading() {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
   };
+  const [openModal,setOpenModal] = useState(false)
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   const isDarkMode = theme.palette.mode === 'dark';
@@ -105,6 +108,7 @@ export default function Trading() {
   };
 
   return (
+   <>
     <Card
       style={{
         py: 0,
@@ -137,7 +141,9 @@ export default function Trading() {
             >
               ضریب سفارش
             </Typography>
-            <InfoOutlinedIcon color="primary" />
+          <IconButton onClick={()=>setOpenModal(true)}>
+              <InfoOutlinedIcon color="primary" />
+          </IconButton>
           </Stack>
           <Typography
             variant="body2"
@@ -333,5 +339,7 @@ export default function Trading() {
         قوانین و مقررات سفارش تعهدی
       </Box>
     </Card>
+    <MarginTradeGuide open={openModal} setOpen={setOpenModal} />
+   </>
   );
 }

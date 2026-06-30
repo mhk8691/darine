@@ -17,7 +17,7 @@ export default function page() {
         lg: 3,
       }}
     >
-      <BackLink title="سفارش با قیمت" />
+      
 
       
       <LimitOrder/>

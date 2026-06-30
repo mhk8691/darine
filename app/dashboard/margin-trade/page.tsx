@@ -78,8 +78,7 @@ export default function page() {
         lg: 3,
       }}
     >
-      <BackLink title="سفارش تعهدی" />
-
+      
      
       <Grid
         size={{
