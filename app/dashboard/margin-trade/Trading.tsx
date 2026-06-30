@@ -1,7 +1,9 @@
 'use client';
+import { useAssets } from '@/app/AssetsProvider';
 import Card from '@/app/Components/Containers/Container/Container';
 import FilterToggleButton from '@/app/Components/FilterToggleButton/FilterToggleButton';
 import InputField from '@/app/Components/InputField/InputField';
+import priceFormater from '@/app/core/PriceFormater';
 import { ToggleItemsType } from '@/app/core/Types';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import {
@@ -79,6 +81,7 @@ export default function Trading() {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   const isDarkMode = theme.palette.mode === 'dark';
+  const {assets} = useAssets()
   const handlePriceChange = (val: string) => {
     setPrice(val);
 
@@ -220,6 +223,23 @@ export default function Trading() {
             value={gold}
             setValue={handleGoldChange}
           />
+          <Typography
+  variant="body2"
+  color="primary"
+  component="div"
+  sx={{
+    display: 'inline-flex',
+    width: 'fit-content',
+    mt: 1,
+    ml: 1,
+    cursor: 'pointer',
+  }}
+  onClick={() => {    setPrice(assets.gold_balance.toString())
+  handleGoldChange(assets.gold_balance.toString())
+  }}
+>
+  موجودی: {priceFormater(assets.gold_balance)} گرم
+</Typography>
         </Stack>
 
         <Stack>

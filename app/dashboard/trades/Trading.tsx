@@ -14,6 +14,7 @@ import { isAxiosError } from 'axios'
 import React, { Dispatch, SetStateAction, useState } from 'react'
 import TradeGoldConfirmation from './TradeGoldConfirmation'
 import TradeGuide from './TradeGuide'
+import priceFormater from '@/app/core/PriceFormater'
 
 
 
@@ -141,6 +142,25 @@ export default function Trading({setData,reportsParams,filter,dateRange}:Props) 
               value={price}
               setValue={handlePriceChange}
             />
+        {
+          select === 'buy' && <Typography
+  variant="body2"
+  color="primary"
+  component="div"
+  sx={{
+    display: 'inline-flex',
+    width: 'fit-content',
+    mt: 1,
+    ml: 1,
+    cursor: 'pointer',
+  }}
+  onClick={() => {    setPrice(assets.wallet_balance.toString())
+  handlePriceChange(assets.wallet_balance.toString())
+  }}
+>
+  موجودی: {priceFormater(assets.wallet_balance)} تومان
+</Typography>
+        }
           </Stack>
           <Stack>
             <InputField
@@ -150,6 +170,25 @@ export default function Trading({setData,reportsParams,filter,dateRange}:Props) 
               value={gold}
               setValue={handleGoldChange}
             />
+             {
+              select === 'sell' &&  <Typography
+  variant="body2"
+  color="primary"
+  component="div"
+  sx={{
+    display: 'inline-flex',
+    width: 'fit-content',
+    mt: 1,
+    ml: 1,
+    cursor: 'pointer',
+  }}
+  onClick={() => {    setPrice(assets.gold_balance.toString())
+  handleGoldChange(assets.gold_balance.toString())
+  }}
+>
+  موجودی: {priceFormater(assets.gold_balance)} گرم
+</Typography>
+             }
           </Stack>
         </Stack>
         <Button

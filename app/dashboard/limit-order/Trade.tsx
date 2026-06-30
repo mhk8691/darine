@@ -7,9 +7,10 @@ import FilterToggleButton from '@/app/Components/FilterToggleButton/FilterToggle
 import InputField from '@/app/Components/InputField/InputField';
 import Loading from '@/app/Components/Loading/Loading';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+import priceFormater from '@/app/core/PriceFormater';
 import { ToggleItemsType } from '@/app/core/Types';
 import { limitOrder } from '@/lib/limit-order/limitOrder';
-import { Button, Stack } from '@mui/material';
+import { Button, Stack, Typography } from '@mui/material';
 import { isAxiosError } from 'axios';
 import { useState } from 'react';
 
@@ -94,6 +95,39 @@ export default function Trade({ type,getData }: Props) {
 
         <Stack gap={1.5}>
           <InputField type='number' placeholder="مبلغ به تومان" title="تومان" value={price} setValue={handlePriceChange} />
+           {
+          type === 'BUY' ? <Typography
+  variant="body2"
+  color="primary"
+  component="div"
+  sx={{
+    display: 'inline-flex',
+    width: 'fit-content',
+    ml: 1,
+    cursor: 'pointer',
+  }}
+  onClick={() => {    setPrice(assets.wallet_balance.toString())
+  handlePriceChange(assets.wallet_balance.toString())
+  }}
+>
+  موجودی: {priceFormater(assets.wallet_balance)} تومان
+</Typography>:<Typography
+  variant="body2"
+  color="primary"
+  component="div"
+  sx={{
+    display: 'inline-flex',
+    width: 'fit-content',
+    ml: 1,
+    cursor: 'pointer',
+  }}
+  onClick={() => {    setPrice(assets.gold_balance.toString())
+  handleGoldChange(assets.gold_balance.toString())
+  }}
+>
+  موجودی: {priceFormater(assets.gold_balance)} گرم
+</Typography>
+        }
           <Stack direction="row" justifyContent="center">
             <Stack
               sx={{
