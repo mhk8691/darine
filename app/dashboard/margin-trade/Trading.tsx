@@ -320,7 +320,7 @@ export default function Trading() {
       </Button>
       <Box
         component={Link}
-        href={'/dashboard/margin-rules'}
+        href={'/margin-rules'}
         sx={{
           fontSize: {
             xs: 12,

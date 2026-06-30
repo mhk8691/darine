@@ -16,7 +16,8 @@ const breadcrumbNameMap: Record<string, string> = {
   faq: 'سوالات متداول',
   rules: 'قوانین دارینه',
   branches: 'آموزش های دارینه',
-  application:'اپلیکیشن دارینه'
+  application:'اپلیکیشن دارینه',
+  'margin-rules':'قوانین سفارش تعهدی'
 };
 
 const exactHiddenRoutes = [

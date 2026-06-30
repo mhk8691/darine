@@ -28,6 +28,8 @@ export default function StatusHeader() {
     '/license',
     '/partners',
     '/rules',
+    '/margin-rules',
+
   ];
 
 const isLoginPage = pathname.startsWith('/login');
