@@ -163,7 +163,15 @@ export interface ChartGoldDataType {
       "current_price": number,
       "highest_price": number,
       "lowest_price": number,
-      "change_percent": number   }  }
+      "change_percent": number   } 
+    
+     "bubble": {
+            "buy_price": number,
+            "sell_price": number,
+            "bubble_amount":number,
+            "bubble_percent":number,
+            "is_positive": boolean
+        }}
 
 export interface RecentTransactionDataType{
       id: number;

@@ -26,7 +26,7 @@ export default function GoldBubble({open,setOpen}:Props) {
             <Close />
           </IconButton>
         </Stack>
-        <Typography variant="body1" fontSize={15} fontWeight={'500'} sx={{ mt: 3 }}>
+        <Typography variant="body1" fontSize={15} fontWeight={'500'} textAlign={'justify'} lineHeight={'25.6px'} sx={{ mt: 3 }}>
             حباب طلا به تفاوت بین قیمتی که در بازار برای طلا پرداخت می‌شود و ارزش واقعی آن گفته می‌شود؛ ارزشی که بر اساس قیمت اونس جهانی و نرخ دلار به‌دست می‌آید. در صورتی که قیمت بازار بالاتر از این مقدار باشد، حباب مثبت شکل می‌گیرد و اگر پایین‌تر باشد، حباب منفی در نظر گرفته می‌شود.
         </Typography>
           <Button

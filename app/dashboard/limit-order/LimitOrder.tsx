@@ -14,6 +14,7 @@ import { getLimitOrder } from '@/lib/limit-order/limitOrder';
 import { LimitOrderDataType } from '@/app/core/Types';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+import { statuses } from '../reports/DepositTable';
 const tabs = [{ title: 'خرید ' }, { title: 'فروش' }];
 
 export default function LimitOrder() {
@@ -107,6 +108,7 @@ export default function LimitOrder() {
       </Grid>
       <Grid size={12}>
         <OrderDetail
+        statuses={statuses}
 dateRange={dateRange}
 setDateRange={setDateRange}
 setStatus={setStatus}

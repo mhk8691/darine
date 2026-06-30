@@ -114,7 +114,9 @@ const chartLabels: string[] = Array.from({ length: 24 }, (_, i) => {
         )}
 
         <Stack direction="row" alignItems="center" gap={0}>
-          <Typography variant="body1">(حباب -۴.۴۸ ٪)</Typography>
+          <Typography variant="body1">
+            (حباب {chartData.bubble.bubble_percent} ٪)
+          </Typography>
           <IconButton onClick={() => setOpen(true)}>
             <InfoOutlinedIcon />
           </IconButton>
