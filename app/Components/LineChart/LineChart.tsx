@@ -7,9 +7,9 @@ import { useTheme } from '@mui/material';
 import { ApexOptions } from 'apexcharts';
 import priceFormater from '@/app/core/PriceFormater';
 
-// فرض: این تابع از قبل داری
-
-const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
+const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+  ssr: false,
+});
 
 interface Props {
   width?: string;
@@ -18,8 +18,11 @@ interface Props {
   noGradient?: boolean;
   noLabel?: boolean;
   data: number[];
-  labels: string[]; // فرض: تاریخ/ساعت داخل اینه
+  labels: string[];
 }
+
+const toFaDigits = (value: string | number) =>
+  String(value).replace(/\d/g, (d) => '۰۱۲۳۴۵۶۷۸۹'[Number(d)]);
 
 export default function LineChart({
   width = '100%',
@@ -38,7 +41,12 @@ export default function LineChart({
     setMounted(true);
   }, []);
 
-  const series = [{ data,name: 'قیمت',  }];
+  const series = [
+    {
+      name: 'قیمت',
+      data,
+    },
+  ];
 
   const options: ApexOptions = {
     chart: {
@@ -48,8 +56,13 @@ export default function LineChart({
       zoom: { enabled: false },
     },
 
-    dataLabels: { enabled: false },
-    markers: { size: 0 },
+    dataLabels: {
+      enabled: false,
+    },
+
+    markers: {
+      size: 0,
+    },
 
     stroke: {
       curve: 'straight',
@@ -63,6 +76,21 @@ export default function LineChart({
       labels: {
         show: !noLabel,
         rotate: 0,
+        formatter: (value: string) => {
+          const date = new Date(value);
+
+          if (!isNaN(date.getTime())) {
+            return date
+              .toLocaleDateString('fa-IR', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+              })
+              .replace(/\//g, '/');
+          }
+
+          return toFaDigits(value);
+        },
         style: {
           fontSize: '10px',
         },
@@ -74,41 +102,44 @@ export default function LineChart({
     yaxis: {
       labels: {
         show: !noLabel,
-        formatter: (val) => priceFormater(val),
+        formatter: (val) => toFaDigits(priceFormater(val)),
       },
     },
 
-   tooltip: {
-  x: {
-    show: true,
-    formatter: (_: string, opts: any) => {
-      if (!opts) return '';
+    tooltip: {
+      x: {
+        show: true,
+        formatter: (_: string, opts: any) => {
+          if (!opts) return '';
 
-      const value = labels[opts.dataPointIndex];
+          const value = labels[opts.dataPointIndex];
+          const date = new Date(value);
 
-      const date = new Date(value);
+          if (!isNaN(date.getTime())) {
+            return date.toLocaleString('fa-IR', {
+              year: 'numeric',
+              month: '2-digit',
+              day: '2-digit',
+              hour: '2-digit',
+              minute: '2-digit',
+            });
+          }
 
-      if (!isNaN(date.getTime())) {
-        return date.toLocaleString('fa-IR', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit',
-        });
-      }
+          return toFaDigits(value);
+        },
+      },
 
-      return value;
+      y: {
+        formatter: (val: number) =>
+          `\u2066${toFaDigits(priceFormater(val))}\u2069 تومان`,
+      },
     },
-  },
 
-  y: {
-    formatter: (val: number) =>
-      `\u2066${priceFormater(val)}\u2069 تومان`,
-  },
-},
     fill: noGradient
-      ? { type: 'solid', opacity: 0.3 }
+      ? {
+          type: 'solid',
+          opacity: 0.3,
+        }
       : {
           type: 'gradient',
           gradient: {
@@ -140,6 +171,15 @@ export default function LineChart({
             labels: {
               rotate: -45,
               hideOverlappingLabels: true,
+              formatter: (value: string) => {
+                const date = new Date(value);
+
+                if (!isNaN(date.getTime())) {
+                  return date.toLocaleDateString('fa-IR');
+                }
+
+                return toFaDigits(value);
+              },
               style: {
                 fontSize: '9px',
               },
