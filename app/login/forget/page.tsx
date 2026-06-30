@@ -45,7 +45,7 @@ export default function page() {
         >
           ورود شما به منزله قبول‌{' '}
           <Link
-            href={'/roules'}
+            href={'/rules'}
             style={{
               color: '#0091F8',
             }}

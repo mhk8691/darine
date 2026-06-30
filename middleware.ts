@@ -55,6 +55,7 @@ export function middleware(req: NextRequest) {
     '/login/signup',
     '/login/verify-otp',
     '/about',
+    '/rules'
   ];
 
   const isPublic = publicPaths.some((path) =>
@@ -70,17 +71,17 @@ export function middleware(req: NextRequest) {
     );
   }
 
-  if (pathname === '/') {
-    return NextResponse.redirect(
-      new URL('/dashboard', req.url)
-    );
-  }
+  // if (pathname === '/') {
+  //   return NextResponse.redirect(
+  //     new URL('/dashboard', req.url)
+  //   );
+  // }
 
-  if (!refreshToken && !isPublic) {
-    return NextResponse.redirect(
-      new URL('/login/login-password', req.url)
-    );
-  }
+  // if (!refreshToken && !isPublic) {
+  //   return NextResponse.redirect(
+  //     new URL('/login/login-password', req.url)
+  //   );
+  // }
 
   return NextResponse.next();
 }
