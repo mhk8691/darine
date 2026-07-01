@@ -286,3 +286,10 @@ export interface BannersType {
   image:string
   
 }
+
+export interface AnnouncementsType {
+  link:string
+  title:string
+  description:string
+  created_at:string
+}
