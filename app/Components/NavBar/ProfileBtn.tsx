@@ -186,7 +186,7 @@ React.useEffect(()=>{
                   موجودی تومان:
                 </Typography>
                 <Typography variant="body2" fontSize={12}>
-                  {priceFormater(assets?.wallet_balance)||0} تومان
+                  {priceFormater(assets?.wallet_balance)} تومان
                 </Typography>
               </Stack>
               <Divider />

@@ -81,7 +81,7 @@ export default function Withdraw({setTransactionData,transactionParams,filter,da
         <Stack direction={'column'} gap={3}>
           <InputField type='number' placeholder={'ملبغ'} title={'تومان'} value={price} setValue={setPrice} />
           <Typography variant="body2" color="primary">
-            موجودی شما: {priceFormater(assets.wallet_balance ) ||  0} تومان 
+            موجودی شما: {priceFormater(assets.wallet_balance )} تومان 
           </Typography>
           <Button
             variant="contained"

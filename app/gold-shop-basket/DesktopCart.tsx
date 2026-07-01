@@ -189,7 +189,7 @@ const DesktopCart = ({cartData,setCartData}:Props) => {
                 {priceFormater(item.weight)} گرم
               </TableCell>
                     <TableCell align="center" sx={dataStyle}>
-                {priceFormater(item.product_weight_with_fee ?? 0) ??0} گرم
+                {priceFormater(item.product_weight_with_fee)} گرم
               </TableCell>
               <TableCell align="center" sx={dataStyle}>
                 {priceFormater(item.total_price)} تومان

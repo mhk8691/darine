@@ -123,7 +123,7 @@ export default function TableContainer({ data }: Props) {
                     color: row?.dayChange >= 0 ? 'success.main' : 'error.main',
                   }}
                 >
-                  {priceFormater(row?.dayChange )|| 0} تومان 
+                  {priceFormater(row?.dayChange )} تومان 
                 </TableCell>
                 <TableCell
                   align="center"
@@ -134,7 +134,7 @@ export default function TableContainer({ data }: Props) {
                     color: row?.percentChange >= 0 ? 'success.main' : 'error.main',
                   }}
                 >
-                  {priceFormater(row?.percentChange) ||  0}%
+                  {priceFormater(row?.percentChange)}%
                 </TableCell>
            
                 {row?.type && (

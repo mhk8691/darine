@@ -46,7 +46,7 @@ export default function WalletHeader() {
                   fontWeight={500}
                   sx={{ color: 'text.title' }}
                 >
-                  {isVisible ? priceFormater(assets?.gold_balance) || 0 : '***'}
+                  {isVisible ? priceFormater(assets?.gold_balance) : '***'}
                 </Typography>
                 <Typography
                   variant="body1"
@@ -81,7 +81,7 @@ export default function WalletHeader() {
               </Typography>
               <Stack direction={'row'} gap={0.5} alignItems={'center'} fontWeight={500} justifyContent={'center'}>
                 <Typography variant="body1" fontSize={{xs:16,md:20}} sx={{ color: 'text.title' }}>
-                  {isVisible ? priceFormater(assets?.wallet_balance) || 0 : '***'}
+                  {isVisible ? priceFormater(assets?.wallet_balance) : '***'}
                 </Typography>
                 <Typography
                   variant="body1"

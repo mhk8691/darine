@@ -139,7 +139,7 @@ export default function LaptopTable({ items, isDetail = true }: Props) {
                     color: item.dayChange >= 0 ? 'success.main' : 'error.main',
                   }}
                 >
-                  {priceFormater(item.dayChange) ||0} تومان
+                  {priceFormater(item.dayChange)} تومان
                 </Typography>
               </Stack>
               <Divider />

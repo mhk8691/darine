@@ -130,7 +130,7 @@ export default function ProductCard({
                 مبلغ وزنی:
               </Typography>
               <Typography variant="body1" fontSize={{ xs: 14, sm: 16, lg: 14, xl: 16 }} sx={{ alignSelf: 'flex-end' }}>
-                {priceFormater(item?.product_weight_with_fee || 0)}{' '}
+                {priceFormater(item?.product_weight_with_fee)}{' '}
                 <Box component={'span'} fontSize={{ xs: 12, sm: 14 }}>گرم</Box>
               </Typography>
             </Stack>

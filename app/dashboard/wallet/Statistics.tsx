@@ -76,7 +76,7 @@ export default function Statistics() {
                 fontSize={{ xs: 12, sm: 18, lg: 20 }}
                 sx={{ color: 'text.title' }}
               >
-                {isVisible ? `${priceFormater(statisticsData.total_assets) ?? 0} تومان` : '***'}
+                {isVisible ? `${priceFormater(statisticsData.total_assets) } تومان` : '***'}
               </Typography>
             </Stack>
             <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
@@ -93,7 +93,7 @@ export default function Statistics() {
                 fontSize={{ xs: 12, sm: 18, lg: 20 }}
                 sx={{ color: 'success.main' }}
               >
-                 {isVisible ? `${priceFormater(statisticsData.profit) || 0} تومان` : '***'}
+                 {isVisible ? `${priceFormater(statisticsData.profit)} تومان` : '***'}
               </Typography>
             </Stack>
             <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
@@ -110,7 +110,7 @@ export default function Statistics() {
                 fontSize={{ xs: 12, sm: 18, lg: 20 }}
                 sx={{ color: 'text.title' }}
               >
-                {isVisible ? `${priceFormater(statisticsData.withdrawn_gold) || 0} گرم` : '***'}
+                {isVisible ? `${priceFormater(statisticsData.withdrawn_gold)} گرم` : '***'}
               </Typography>
             </Stack>
             <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
@@ -127,7 +127,7 @@ export default function Statistics() {
                 fontSize={{ xs: 12, sm: 18, lg: 20 }}
                 sx={{ color: 'text.title' }}
               >
-               {isVisible ? `${priceFormater(statisticsData.purchased_giftcards) || 0}` : '***'}
+               {isVisible ? `${priceFormater(statisticsData.purchased_giftcards)}` : '***'}
               </Typography>
             </Stack>
             <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
@@ -144,7 +144,7 @@ export default function Statistics() {
                 fontSize={{ xs: 12, sm: 18, lg: 20 }}
                 sx={{ color: 'text.title' }}
               >
-               {isVisible ? `${priceFormater(statisticsData.received_giftcards) || 0}` : '***'}
+               {isVisible ? `${priceFormater(statisticsData.received_giftcards)}` : '***'}
               </Typography>
             </Stack>
             <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
@@ -161,7 +161,7 @@ export default function Statistics() {
                 fontSize={{ xs: 12, sm: 18, lg: 20 }}
                 sx={{ color: 'text.title' }}
               >
-               {isVisible ? `${priceFormater(statisticsData.pending_toman) || 0} تومان` : '***'}
+               {isVisible ? `${priceFormater(statisticsData.pending_toman) } تومان` : '***'}
               </Typography>
             </Stack>
             <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
@@ -178,7 +178,7 @@ export default function Statistics() {
                 fontSize={{ xs: 12, sm: 18, lg: 20 }}
                 sx={{ color: 'text.title' }}
               >
-               {isVisible ? `${priceFormater(statisticsData.pending_gold) || 0} گرم` : '***'}
+               {isVisible ? `${priceFormater(statisticsData.pending_gold)} گرم` : '***'}
               </Typography>
             </Stack>
           </Stack>

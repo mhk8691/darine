@@ -71,7 +71,7 @@ export default function Wallet({ type }: Props) {
               </Typography>
               <Stack direction={'row'} gap={0.5} alignItems={'center'} fontWeight={500}>
                 <Typography variant="body1" fontSize={20} sx={{ color: 'text.title' }}>
-                  {isVisible ? priceFormater(assets?.total_asset_value) || 0 : '***'}
+                  {isVisible ? priceFormater(assets?.total_asset_value) : '***'}
                 </Typography>
                 <Typography
                   variant="body1"
