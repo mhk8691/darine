@@ -17,14 +17,14 @@ const breadcrumbNameMap: Record<string, string> = {
   rules: 'قوانین دارینه',
   branches: 'آموزش های دارینه',
   application:'اپلیکیشن دارینه',
-  'margin-rules':'قوانین سفارش تعهدی'
+  'margin-rules':'قوانین سفارش تعهدی',
+  'about-us':'درباره ما'
 };
 
 const exactHiddenRoutes = [
   '/learning',
   '/license',
   '/partners',
-  '/about-us',
   '/login/login-password',
   '/login/login-otp',
   '/login/forget',
