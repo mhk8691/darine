@@ -11,7 +11,7 @@ interface Props{
 }
 export default function TradeGuide({open,setOpen}:Props) {
   return (
-    <CustomModal open={open} setOpen={setOpen} modalStyle={{p:2.5, height: '87%',
+    <CustomModal open={open} setOpen={setOpen} modalStyle={{p:2.5, height: '80%',
         overflow: 'auto',}}>
              <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
           <Typography variant="body1" fontSize={16} fontWeight={'500'}>
@@ -24,7 +24,7 @@ export default function TradeGuide({open,setOpen}:Props) {
 
         <Stack direction={'column'} gap={1} mt={2}>
             <Typography variant="body1" lineHeight={1.5} textAlign={'justify'}>
-                حداقل میزان خرید و فروش طلا در طلاسی ۱۰۰ هزار تومان است و سقفی ندارد. برای این کار از صفحه‌ی اصلی طلاسی گزینه «خرید و فروش» یا از منوی پایین صفحه، گزینه «سفارش» رو انتخاب کنید.
+                حداقل میزان خرید و فروش طلا در دارینه ۱۰۰ هزار تومان است و سقفی ندارد. برای این کار از صفحه‌ی اصلی دارینه گزینه «خرید و فروش» یا از منوی پایین صفحه، گزینه «سفارش» رو انتخاب کنید.
 برای خرید طلا، مطمئن شوید که برگه «خرید» فعال است و مراحل زیر را دنبال کنید:
             </Typography>
             <Stack component={'ul'} direction={'column'} gap={1} px={2}>
@@ -38,8 +38,7 @@ export default function TradeGuide({open,setOpen}:Props) {
                  <Typography component={'li'} variant="body1" lineHeight={1.5} textAlign={'justify'} fontWeight={'bold'}>
 روی گزینه «خرید» بزنید و در صفحه جدید، جزئیات سفارش خود را ببینید و آن را تایید کنید.
                 </Typography>
-                 <Typography component={'li'} variant="body1" lineHeight={1.5} textAlign={'justify'} fontWeight={'bold'}>
-برای سفارش‌های بالای ۵ گرم به‌صورت پیش‌فرض بیمه طلا فعال می‌شود. در صورتی که آن را نمی‌خواهید، گزینه «بیمه نمی‌خوام» را انتخاب کنید.                </Typography>
+                 
                  <Typography component={'li'} variant="body1" lineHeight={1.5} textAlign={'justify'} fontWeight={'bold'}>
 در نهایت با زدن «پرداخت» یا «تأیید» خرید شما نهایی می‌شود.
                 </Typography>
