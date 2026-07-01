@@ -17,7 +17,9 @@ export function middleware(req: NextRequest) {
     '/login/signup',
     '/login/verify-otp',
     '/about',
-    '/rules'
+    '/rules',
+    '/margin-rules'
+
   ];
 
   const isPublic = publicPaths.some((path) =>

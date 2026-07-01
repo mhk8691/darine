@@ -189,6 +189,7 @@ export default function page() {
                 sm: 16,
               }}
               lineHeight={'25.6px'}
+              textAlign={'justify'}
             >
               <strong>{rule.title}</strong> {rule.text}
             </Typography>
