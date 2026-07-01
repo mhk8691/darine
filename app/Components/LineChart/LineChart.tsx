@@ -80,11 +80,11 @@ export default function LineChart({
           const date = new Date(value);
 
           if (!isNaN(date.getTime())) {
+            // فقط زمان را نمایش بده (ساعت و دقیقه)
             return date
-              .toLocaleDateString('fa-IR', {
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
+              .toLocaleTimeString('fa-IR', {
+                hour: '2-digit',
+                minute: '2-digit',
               })
               .replace(/\//g, '/');
           }
@@ -116,12 +116,14 @@ export default function LineChart({
           const date = new Date(value);
 
           if (!isNaN(date.getTime())) {
+            // تاریخ کامل را در هاور نمایش بده
             return date.toLocaleString('fa-IR', {
               year: 'numeric',
               month: '2-digit',
               day: '2-digit',
               hour: '2-digit',
               minute: '2-digit',
+              second: '2-digit',
             });
           }
 
@@ -175,7 +177,11 @@ export default function LineChart({
                 const date = new Date(value);
 
                 if (!isNaN(date.getTime())) {
-                  return date.toLocaleDateString('fa-IR');
+                  // در موبایل هم فقط زمان
+                  return date.toLocaleTimeString('fa-IR', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                  });
                 }
 
                 return toFaDigits(value);

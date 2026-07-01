@@ -171,11 +171,14 @@ const handleReceiptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
   <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"}>
     <Typography variant="body2" fontSize={10}>بانک</Typography>
-    <Stack direction={'row'} gap={1} alignItems={'center'} justifyContent={'end'} width={'100%'}>
+    <Stack direction={'row'} gap={ getBankInfoWithSheba(depositData?.sheba)?.logo ? 1 :0} alignItems={'center'} justifyContent={'end'} width={'100%'}>
       <Typography variant="body2" fontSize={14} sx={{ color: 'text.muted' }}>
         {getBankInfoWithSheba(depositData?.sheba.replace('IR', ''))?.persianName}
       </Typography>
+      {
+        getBankInfoWithSheba(depositData?.sheba)?.logo &&
       <Image src={getBankInfoWithSheba(depositData?.sheba)?.logo + ''} alt={''} width={27} height={27} />
+      }
     </Stack>
   </Stack>
 
