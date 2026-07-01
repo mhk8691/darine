@@ -61,24 +61,8 @@ export default function ChartGold({
   }, [select]);
 
 
-const base = 18650000;
 
-const chartValues: number[] = Array.from({ length: 24 }, (_, i) => {
-  const noise = Math.sin(i / 2) * 300000; // موج طبیعی
-  const random = Math.random() * 150000;
 
-  return Math.floor(base + noise + random);
-});
-
-const chartLabels: string[] = Array.from({ length: 24 }, (_, i) => {
-  const date = new Date();
-  date.setHours(date.getHours() - (23 - i));
-
-  return date.toLocaleTimeString('fa-IR', {
-    hour: '2-digit',
-    minute: '2-digit',
-  });
-});
   if (!chartData?.stats || !chartData.chart) return null;
 
   return (
@@ -133,6 +117,7 @@ const chartLabels: string[] = Array.from({ length: 24 }, (_, i) => {
 
         {(positionPrice === 'bottom' || positionPrice === 'both') && (
           <BottomPrice
+            select={select}
             priceStyle={priceStyle}
             dividerStyle={dividerStyle}
             chartData={chartData}

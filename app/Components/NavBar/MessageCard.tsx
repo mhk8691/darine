@@ -34,7 +34,7 @@ export default function MessageCard({  isNotif,announcements }: Props) {
           },
         }}
       >
-        {/* {announcements?.map((item) => (
+        {announcements?.map((item) => (
           <Stack
           component={Link}
           href={item.link}
@@ -64,7 +64,7 @@ export default function MessageCard({  isNotif,announcements }: Props) {
               {formatDate(item.created_at)}
             </Typography>
           </Stack>
-        ))} */}
+        ))}
       </Stack>
 
       {isDesktop && (
