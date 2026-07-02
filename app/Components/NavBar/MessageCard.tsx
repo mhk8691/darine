@@ -36,7 +36,7 @@ export default function MessageCard({  isNotif,announcements }: Props) {
       >
         {announcements?.map((item) => (
           <Stack
-          component={Link}
+          component={item.link ? Link:'div'}
           href={item.link}
             key={item.title}
             direction={"column"}

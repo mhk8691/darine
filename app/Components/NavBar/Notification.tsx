@@ -119,12 +119,13 @@ export default function Notification() {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-
+  const isDarkMode = theme.palette.mode === 'dark'
   const [announcements, setAnnouncements] = useState<AnnouncementsType[]>([]);
 
   useEffect(() => {
     const getData = async () => {
       const response = await getAnnouncements();
+      console.log(response)
       setAnnouncements(response || []);
     };
 
@@ -210,15 +211,16 @@ export default function Notification() {
             top: "calc(100% + 8px)",
             right: "-50%",
             width: 320,
-            overflow: "hidden",
-            bgcolor: "background.default",
-            boxShadow: "none",
+            overflow: "auto",
+            background: isDarkMode ? "#10100F":'#FFFFFF',
+            boxShadow:  `0 0 10px ${isDarkMode ? '#292926' : '#EFEEEC'}`,
             opacity: open ? 1 : 0,
             pointerEvents: open ? "auto" : "none",
             transition: "all .1s cubic-bezier(0.4, 0, 0.2, 1)",
             transformOrigin: "top right",
             pt: 1,
             px: 1.5,
+            
           }}
         >
           <Typography variant="body1" fontSize={16} fontWeight={500}>
