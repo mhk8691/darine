@@ -50,7 +50,7 @@ export default function PriceAlertContainer() {
           }}
         >
           <ChartGold
-            positionPrice="bottom"
+            positionPrice="both"
             priceStyle={{
               mt: {
                 xs: 2,

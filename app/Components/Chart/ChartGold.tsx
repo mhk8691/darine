@@ -98,7 +98,7 @@ export default function ChartGold({
         )}
 
         <Stack direction="row" alignItems="center" gap={0}>
-          <Typography variant="body1">
+          <Typography variant="body1" color={chartData.bubble.is_positive ? 'success' :'error'}>
             (حباب {chartData.bubble.bubble_percent} ٪)
           </Typography>
           <IconButton onClick={() => setOpen(true)}>
