@@ -151,7 +151,7 @@ export default function TradeDetailModal({ open, setOpen, data }: Props) {
           label="قیمت هر گرم" 
           value={
             <Typography variant="body2" fontWeight={600}>
-              {priceFormater(pricePerGram)} تومان
+              {priceFormater(data.price_per_gram)} تومان
             </Typography>
           } 
         />
