@@ -43,7 +43,7 @@ export const removePriceAlert = async (id: number) => {
   
 };
 
-export const addPriceAlert = async (targetPrice: string, alertType: string,maxNotifications:number) => {
+export const addPriceAlert = async (targetPrice: string, alertType: string,maxNotifications:string) => {
     const res = await api.post<{
       message:string
     }>('/gold/price-alert/', {
