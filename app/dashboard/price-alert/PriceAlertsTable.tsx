@@ -89,6 +89,16 @@ export default function PriceAlertsTable({priceAlertsData,setOpen,setPriceAlertI
                         px: 2.5,
                       }}
                     >
+                      {row.max_notifications}
+                    </TableCell>
+                    <TableCell
+                      align="center"
+                      sx={{
+                        fontSize: '16px',
+                        py: 2,
+                        px: 2.5,
+                      }}
+                    >
                       {formatDate(row.created_at)}
                     </TableCell>
                     <TableCell

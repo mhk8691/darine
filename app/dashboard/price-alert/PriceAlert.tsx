@@ -30,15 +30,17 @@ export default function PriceAlert({
   const [value, setValue] = useState('');
   const [active, setActive] = React.useState('ABOVE');
   const [isLoading,setIsLoading] = useState(false)
+  const [maxNotifications,setMaxNotifications] = useState(1)
   const handlePriceAlert = async () => {
   try{
     setIsLoading(true)
-   const res =   await addPriceAlert(value, active);
+   const res =   await addPriceAlert(value, active,maxNotifications);
    showSnackbar(res?.message,'success');
     const response = await getPriceAlerts(filter,date);
     setValue('')
     setActive('ABOVE')
     setPriceAlert([])
+    setMaxNotifications(1)
     setPriceAlert(response && response?.length > 0 ? response : []);
   }
     catch (error: unknown) {
@@ -125,6 +127,42 @@ export default function PriceAlert({
           }}
         >
           <InputField type='number' placeholder="مبلغ به تومان" title="تومان" value={value} setValue={setValue} />
+          <Typography variant="body1" sx={{mt:4}}>
+            تعداد آلارم:
+          </Typography>
+      <Stack
+  direction="row"
+  spacing={1}
+  flexWrap="wrap"
+  mt={2}
+>
+  <Button
+    variant={maxNotifications === 1 ? 'contained':"outlined"}
+    color="primary"
+    sx={{ flex: 1, minWidth: 120,py:.7,borderRadius:2 }}
+onClick={()=>setMaxNotifications(1)}
+  >
+    1
+  </Button>
+
+  <Button
+    variant={maxNotifications === 2 ? 'contained':"outlined"}
+    color="primary"
+    sx={{ flex: 1, minWidth: 120,py:.7,borderRadius:2 }}
+onClick={()=>setMaxNotifications(2)}
+  >
+    2
+  </Button>
+
+  <Button
+    variant={maxNotifications === 3 ? 'contained':"outlined"}
+    color="primary"
+    sx={{ flex: 1, minWidth: 120 ,py:.7,borderRadius:2}}
+    onClick={()=>setMaxNotifications(3)}
+  >
+    3
+  </Button>
+      </Stack>
         </Stack>
         <Stack
           direction={'column'}

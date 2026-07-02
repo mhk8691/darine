@@ -89,7 +89,7 @@ export default function PriceAlertContainer() {
             type="chip"
             emptyMessage="آلارمی برای شما به ثبت نرسیده است"
             title="لیست آلارم‌های اخیر"
-            tableHead={['قیمت هدف', 'نوع آلارم', 'وضعیت', 'تاریخ', 'حذف']}
+            tableHead={['قیمت هدف', 'نوع آلارم', 'وضعیت','تعداد آلارم', 'تاریخ', 'حذف']}
             listLength={priceAlertsData.length}
             setDateRange={setDateRange}
             setStatus={setStatus}

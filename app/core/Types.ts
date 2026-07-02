@@ -154,6 +154,7 @@ export interface PriceAlertsDataType {
   alert_type_display: string;
   is_active: boolean;
   created_at: string;
+  max_notifications:number
 }
 export interface ChartGoldDataType {
   "chart": {
