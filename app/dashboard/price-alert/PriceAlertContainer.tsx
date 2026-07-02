@@ -5,10 +5,12 @@ import PriceAlert from './PriceAlert';
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import RemovePriceAlertModal from './RemovePriceAlert';
 import PriceAlertsTable from './PriceAlertsTable';
-import { getPriceAlerts } from '@/lib/priceAlert/priceAlert';
+import { getPriceAlerts, toggleStatusPriceAlert } from '@/lib/priceAlert/priceAlert';
 import { PriceAlertsDataType } from '@/app/core/Types';
 import ChartGold from '@/app/Components/Chart/ChartGold';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
+import { isAxiosError } from 'axios';
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 
 
 
@@ -28,6 +30,8 @@ export default function PriceAlertContainer() {
     };
     getData();
   }, [setPriceAlerts,dateRange,status]);
+
+  
   return (
     <>
      <Grid
@@ -89,13 +93,13 @@ export default function PriceAlertContainer() {
             type="chip"
             emptyMessage="آلارمی برای شما به ثبت نرسیده است"
             title="لیست آلارم‌های اخیر"
-            tableHead={['قیمت هدف', 'نوع آلارم', 'وضعیت','تعداد آلارم', 'تاریخ', 'حذف']}
+            tableHead={['قیمت هدف', 'نوع آلارم', 'وضعیت','تعداد آلارم', 'تاریخ','عملیات', 'حذف']}
             listLength={priceAlertsData.length}
             setDateRange={setDateRange}
             setStatus={setStatus}
             dateRange={dateRange}
             status={status}
-            tableBody={<PriceAlertsTable priceAlertsData={priceAlertsData} setOpen={setOpen} setPriceAlertId={setPriceAlertId} />}
+            tableBody={<PriceAlertsTable date={dateRange} filter={status} setPriceAlerts={setPriceAlerts} priceAlertsData={priceAlertsData} setOpen={setOpen} setPriceAlertId={setPriceAlertId} />}
           />
         </Grid>
       <RemovePriceAlertModal

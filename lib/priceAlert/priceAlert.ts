@@ -54,3 +54,11 @@ export const addPriceAlert = async (targetPrice: string, alertType: string,maxNo
     return res.data;
   
 };
+
+export const toggleStatusPriceAlert = async (id:number) => {
+    const res = await api.post<{
+      message:string
+    }>(`/gold/price-alert/${id}/toggle/`);
+    return res.data;
+  
+};
