@@ -34,11 +34,16 @@ const CardItem = ({ item }: { item: BankCardDataType }) => (
       </Typography>
     </Box>
 
-         {item.shaba_number && <Stack direction={'row'} gap={1} alignItems={'center'} justifyContent={'end' } width={'100%'}>
+         {item.shaba_number && <Stack direction={'row'} gap={getBankInfoWithSheba(item?.shaba_number)?.logo ? 1 :0} alignItems={'center'} justifyContent={'end' } width={'100%'}>
           <Typography variant="body2" fontSize={16} sx={{ color: 'text.muted' }}>
                       IR{item.shaba_number}
                     </Typography>
-                    <Image src={getBankInfoWithSheba(item?.shaba_number)?.logo + '' || ''} alt={''} width={27} height={27} />
+                    {
+                      getBankInfoWithSheba(item?.shaba_number)?.logo && (
+                        <Image src={getBankInfoWithSheba(item?.shaba_number)?.logo + '' || ''} alt={''} width={27} height={27} />
+
+                      )
+                    }
                     
                   </Stack>}
   </Box>
