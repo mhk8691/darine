@@ -132,23 +132,7 @@ const handleReceiptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       <Stack gap={3.5}>
           <Stack direction={'column'} gap={3}>
             <InputField type='number' placeholder={'ملبغ'} title={'تومان'} value={price} setValue={setPrice} />
-            <Button
-              variant="contained"
-              sx={{
-                bgcolor: '#FEF2C0',
-                color: 'black',
-                borderRadius: 1.5,
-                px: 1,
-                width: 'fit-content',
-                fontSize: {
-                  xs: 12,
-                  sm: 14,
-                },
-              }}
-              onClick={()=>setPrice('400000000')}
-            >
-              انتخاب حداکثر مقدار واریز
-            </Button>
+            
           </Stack>
       
       </Stack>
