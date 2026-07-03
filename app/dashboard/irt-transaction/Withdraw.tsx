@@ -27,8 +27,9 @@ interface Props {
     transactionParams:string
     filter:string
     dateRange:DatePickerValue
+      setHintIndex:Dispatch<SetStateAction<number>>
 }
-export default function Withdraw({setTransactionData,transactionParams,filter,dateRange}:Props) {
+export default function Withdraw({setTransactionData,transactionParams,filter,dateRange,setHintIndex}:Props) {
   const [price, setPrice] = useState('');
   const [select, setSelect] = useState(items[0].value);
   const [bankCardsData, setBankCardsData] = useState<BankCardDataType[]>([]);
@@ -67,6 +68,10 @@ export default function Withdraw({setTransactionData,transactionParams,filter,da
     };
     getData();
   }, []);
+
+  useEffect(()=>{
+    setHintIndex(select === 'bank'?2:3)
+  },[select,setHintIndex])
   return (
     <>
     <Card style={{ gap: 3.5, p: 0, border: 'none' }}>

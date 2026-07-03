@@ -11,18 +11,20 @@ import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 import TransactionsGuide from './TransactionsGuide';
 const tabs = [{ title: 'واریز' }, { title: 'برداشت' }];
 interface Props { 
-  setValue: Dispatch<SetStateAction<number>>,
   setTransactionData:Dispatch<SetStateAction<RecentTransactionDataType[]>> 
   transactionParams:string
   filter:string
   dateRange:DatePickerValue
+  setHintIndex:Dispatch<SetStateAction<number>>
 }
-export default function Transaction({ setValue,setTransactionData,transactionParams,dateRange,filter }:Props) {
+export default function Transaction({ setTransactionData,transactionParams,dateRange,filter,setHintIndex }:Props) {
   const theme = useTheme();
   const [openModal,setOpenModal] = useState(false)
-const children: ReactNode[] = [<Deposit dateRange={dateRange}
+      const [value, setValue] = useState(0);
 
-filter={filter} key={1} setTransactionData={setTransactionData} transactionParams={transactionParams} />, <Withdraw dateRange={dateRange}
+const children: ReactNode[] = [<Deposit dateRange={dateRange} setHintIndex={setHintIndex}
+
+filter={filter} key={1} setTransactionData={setTransactionData} transactionParams={transactionParams} />, <Withdraw dateRange={dateRange} setHintIndex={setHintIndex}
 filter={filter} key={2} setTransactionData={setTransactionData} transactionParams={transactionParams} />];
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   return (

@@ -1,12 +1,9 @@
 'use client';
-import Container from '@/app/Components/Containers/Container/Container';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { Box, Grid, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
+import {  Grid, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import Transaction from './Transaction';
 import { useEffect, useState } from 'react';
 import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import TransactionTable from './TransactionTable';
-import { getRecentTransaction } from '@/lib/transactions/recent-transactions/recentTransactions';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { RecentTransactionDataType, ToggleItemsType } from '@/app/core/Types';
@@ -16,6 +13,7 @@ import { getReports } from '@/lib/getReports/getReports';
 import TransactionDetailModal from '../reports/TransactionDetailModal';
 import BackLink from '../BackLink';
 import TransactionsGuide from './TransactionsGuide';
+import TransactionHint from './TransactionHint';
 
 export const TransactionItems: ToggleItemsType[] = [
   {
@@ -41,7 +39,7 @@ export default function TransactionContainer() {
     const theme = useTheme()
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
     const [openModal,setOpenModal] = useState(false)
-  const [value, setValue] = useState(0);
+    const [hintIndex,setHintIndex] = useState(0)
     const [transactionParams,setTransactionParams] = useState('deposit')
     const [transactionData,setTransactionData] = useState<RecentTransactionDataType[]>([])
        const [modalOpen, setModalOpen] = useState(false);
@@ -67,6 +65,7 @@ export default function TransactionContainer() {
     };
     getData();
   }, [transactionParams,status,dateRange]);
+
   return (
     <>
       {isMobile &&   <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} width={'100%'}>
@@ -86,86 +85,10 @@ export default function TransactionContainer() {
           md: 1,
         }}
       >
-        <Transaction filter={status}
-dateRange={dateRange} setValue={setValue} setTransactionData={setTransactionData} transactionParams={transactionParams} />
+        <Transaction filter={status} setHintIndex={setHintIndex}
+dateRange={dateRange}  setTransactionData={setTransactionData} transactionParams={transactionParams} />
       </Grid>
-      <Grid
-        size={{
-          xs: 12,
-          md: 6,
-          lg: 7.2,
-        }}
-        order={{
-          xs: 1,
-          md: 2,
-        }}
-      >
-        <Container
-          style={{
-            color: '#EF8011',
-            px: {
-              xs: 2,
-              sm: 4,
-            },
-            py: {
-              xs: 2,
-              sm: 3,
-            },
-          }}
-        >
-          <Stack direction={'row'} alignItems={'center'} gap={1}>
-            <InfoOutlinedIcon />
-            <Typography
-              variant="h6"
-              fontSize={{
-                xs: 14,
-                md: 22,
-              }}
-            >
-              توجه
-            </Typography>
-          </Stack>
-          {value === 0 ? (
-            <Typography
-              variant="body1"
-              fontSize={{
-                xs: 12,
-                md: 16,
-              }}
-              sx={{ color: 'text.secondary', mt: '10px' }}
-            >
-              واریز ریالی فقط از حساب بانکی به نام خودتان امکان‌پذیر است. در غیر این صورت، مبلغ در
-              حالت انتظار قرار می‌گیرد و پس از پیگیری شما، طی ۳ روز کاری به حساب شما باز می‌گردد.
-            </Typography>
-          ) : (
-            <Box component={'ul'} px={3}>
-              <Typography
-                variant="body1"
-                fontSize={{
-                  xs: 12,
-                  md: 16,
-                }}
-                component={'li'}
-                sx={{ color: 'text.secondary', mt: '10px' }}
-              >
-                برداشت ریالی فقط به کارت‌های ثبت شده امکان‌پذیر است.
-              </Typography>
-              <Typography
-                variant="body1"
-                fontSize={{
-                  xs: 12,
-                  md: 16,
-                }}
-                component={'li'}
-                sx={{ color: 'text.secondary', mt: '10px' }}
-              >
-                کاربر گرامی به دلیل شرایط پیش آمده و محدودیت اعلامی از سمت بانک مرکزی، سامانه پایا
-                به یک سیکل در روز (ساعت 15) کاهش یافته و تسویه برداشت ها ممکن است زمانبر شود .
-              </Typography>
-            </Box>
-          )}
-        </Container>
-      </Grid>
+      <TransactionHint hintIndex={hintIndex} />
       <Grid size={12} order={3}>
         <OrderDetail
         statuses={statuses}
