@@ -44,7 +44,7 @@ isSilverWithdraw
         alignItems={"center"}
       >
         <Typography variant="body1" fontSize={14} fontWeight={600}>
-        {!isSilverWithdraw ? 'تایید برداشت به نقرینه' : 'تایید برداشت'}
+        {isSilverWithdraw ? 'تایید برداشت به نقرینه' : 'تایید برداشت'}
         </Typography>
         <IconButton
           onClick={() => {
