@@ -16,6 +16,7 @@ import { getRecentTransaction } from '@/lib/transactions/recent-transactions/rec
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 import { getReports } from '@/lib/getReports/getReports';
 import priceFormater from '@/app/core/PriceFormater';
+import WithdrawConfirm from './WithdrawConfirm';
 
 const items: ToggleItemsType[] = [
   { title: 'به حساب بانکی', value: 'bank', id: 1 },
@@ -47,6 +48,7 @@ export default function Withdraw({setTransactionData,transactionParams,filter,da
     showSnackbar(response.message,'success')
     setPrice('')
     setSelectedCard(1)
+    setOpen(false)
     refetch()
  }catch(error:unknown){
   if (isAxiosError(error)){
@@ -56,6 +58,7 @@ export default function Withdraw({setTransactionData,transactionParams,filter,da
   setIsLoading(false)
  }
   };
+  const [open,setOpen] = useState(false)
 
   useEffect(() => {
     const getData = async () => {
@@ -65,6 +68,7 @@ export default function Withdraw({setTransactionData,transactionParams,filter,da
     getData();
   }, []);
   return (
+    <>
     <Card style={{ gap: 3.5, p: 0, border: 'none' }}>
       <FilterToggleButton
         items={items}
@@ -83,23 +87,7 @@ export default function Withdraw({setTransactionData,transactionParams,filter,da
           <Typography variant="body2" color="primary" component={'div'} sx={{cursor:'pointer'}} onClick={()=>setPrice(assets.wallet_balance.toString())}>
             موجودی شما: {priceFormater(assets.wallet_balance )} تومان 
           </Typography>
-          <Button
-            variant="contained"
-            sx={{
-              bgcolor: '#FEF2C0',
-              color: 'black',
-              borderRadius: 1.5,
-              px: 1,
-              width: 'fit-content',
-              fontSize: {
-                xs: 12,
-                sm: 14,
-              },
-            }}
-          onClick={()=>setPrice(assets?.wallet_balance+'')}
-          >
-            انتخاب کل موجودی
-          </Button>
+         
         </Stack>
         {select !== 'silver' && bankCardsData && (
           <BankCard
@@ -121,11 +109,13 @@ export default function Withdraw({setTransactionData,transactionParams,filter,da
           },
           height:60
         }}
-        onClick={handleWithdraw}
-        disabled={isLoading || bankCardsData.length === 0}
+        disabled={bankCardsData.length === 0}
+        onClick={()=>setOpen(true)}
       >
-        {isLoading ? <Loading size={30}/>:'برداشت'}
+        برداشت
       </Button>
     </Card>
+    <WithdrawConfirm open={open} setOpen={setOpen} isSilverWithdraw={select === 'silver' ? true:false} handleWithdraw={handleWithdraw} isLoading={isLoading} finalPrice={price}  />
+    </>
   );
 }

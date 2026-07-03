@@ -20,7 +20,7 @@ import CustomTabs from "../Tabs/CustomTabs";
 import MessageCard from "./MessageCard";
 import { getAnnouncements } from "@/lib/announcements/announcements";
 
-const tabs = [{ title: "اطلاعیه های نقرینه" }];
+const tabs = [{ title: "اطلاعیه های دارینه" }];
 
 type NotificationContentProps = {
   onClose: () => void;
