@@ -25,6 +25,13 @@ export function middleware(req: NextRequest) {
   const isPublic = publicPaths.some((path) =>
     pathname.startsWith(path)
   );
+   if (
+    pathname === '/sw.js' ||
+    pathname === '/manifest.webmanifest' ||
+    /\.(png|svg|webp|ico)$/.test(pathname)
+  ) {
+    return NextResponse.next();
+  }
 
   if (
     refreshToken &&
