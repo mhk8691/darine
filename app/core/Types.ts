@@ -208,7 +208,7 @@ admin_note:string
 
   id: number;
   tracking_code: string;
-  status: StatusType;
+  status: 'REQUESTED' | 'PREPARING' | 'DELIVERING' | 'DELIVERED' | 'CANCELLED';
   payment_method_display: string;
   delivery_type_display: string;
   total_toman_amount: number;
@@ -218,6 +218,7 @@ plaque:string
   province: string;
   city: string;
   address: string;
+  postal_code:string
   items: {
                     "id": number,
                     "product": number,

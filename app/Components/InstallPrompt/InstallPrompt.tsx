@@ -1,4 +1,5 @@
 'use client'
+import { Box, SxProps } from '@mui/material'
 import { useEffect, useState } from 'react'
 
 interface BeforeInstallPromptEvent extends Event {
@@ -66,30 +67,28 @@ export default function InstallPrompt() {
     else setShowAndroidBanner(false)
   }
 
-  const bannerStyle: React.CSSProperties = {
+  const bannerStyle: SxProps = {
     position: 'fixed',
     bottom: 16,
     left: 16,
     right: 16,
-    background: '#fff',
-    border: '1px solid #D4D4D2',
+    bgcolor: 'background.paper',
     borderRadius: 12,
     padding: '14px 16px',
     boxShadow: '0 4px 16px rgba(0,0,0,0.15)',
     zIndex: 9999,
-    direction: 'rtl',
     fontFamily: 'inherit',
   }
 
   if (showAndroidBanner) {
     return (
-      <div style={bannerStyle}>
+      <Box sx={bannerStyle}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
           <span style={{ fontSize: 14 }}>دارینه رو نصب کن و راحت‌تر استفاده کن</span>
           <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
             <button
               onClick={handleInstall}
-              style={{ background: '#6DA9E1', color: '#fff', border: 'none', borderRadius: 8, padding: '8px 16px', fontSize: 14 }}
+              style={{ background: '#FCD535', color: 'black', border: 'none', borderRadius: 8,cursor:'pointer', padding: '8px 16px', fontSize: 14 }}
             >
               نصب
             </button>
@@ -101,13 +100,13 @@ export default function InstallPrompt() {
             </button>
           </div>
         </div>
-      </div>
+      </Box>
     )
   }
 
   if (showIosBanner) {
     return (
-      <div style={bannerStyle}>
+      <Box sx={bannerStyle}>
         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12 }}>
           <div style={{ fontSize: 14, lineHeight: 1.8 }}>
             برای نصب دارینه روی گوشی: دکمه‌ی{' '}
@@ -122,7 +121,7 @@ export default function InstallPrompt() {
             ×
           </button>
         </div>
-      </div>
+      </Box>
     )
   }
 
