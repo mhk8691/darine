@@ -19,7 +19,6 @@ export default function page() {
         lg: 3,
       }}
     >
-      <BackLink title="واریز و برداشت" />
 
       <TransactionContainer />
       

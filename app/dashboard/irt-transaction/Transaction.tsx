@@ -2,12 +2,13 @@
 import Card from '@/app/Components/Containers/Container/Container';
 import CustomTabs from '@/app/Components/Tabs/CustomTabs';
 import Typography from '@mui/material/Typography';
-import { Dispatch, ReactNode, SetStateAction } from 'react';
+import { Dispatch, ReactNode, SetStateAction, useState } from 'react';
 import Deposit from './Deposit';
 import Withdraw from './Withdraw';
-import { useMediaQuery, useTheme } from '@mui/material';
+import { Stack, useMediaQuery, useTheme } from '@mui/material';
 import { RecentTransactionDataType } from '@/app/core/Types';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
+import TransactionsGuide from './TransactionsGuide';
 const tabs = [{ title: 'واریز' }, { title: 'برداشت' }];
 interface Props { 
   setValue: Dispatch<SetStateAction<number>>,
@@ -18,11 +19,14 @@ interface Props {
 }
 export default function Transaction({ setValue,setTransactionData,transactionParams,dateRange,filter }:Props) {
   const theme = useTheme();
+  const [openModal,setOpenModal] = useState(false)
 const children: ReactNode[] = [<Deposit dateRange={dateRange}
+
 filter={filter} key={1} setTransactionData={setTransactionData} transactionParams={transactionParams} />, <Withdraw dateRange={dateRange}
 filter={filter} key={2} setTransactionData={setTransactionData} transactionParams={transactionParams} />];
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   return (
+    <>
     <Card
       style={{
         px: 0,
@@ -32,11 +36,17 @@ filter={filter} key={2} setTransactionData={setTransactionData} transactionParam
         },
       }}
     >
-      {isDesktop && (
-        <Typography variant="h6" fontSize={22} mb={1} px={4}>
+    
+        {isDesktop && (
+         <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} px={4}> 
+         <Typography variant="h6" fontSize={22}  >
           واریز و برداشت
         </Typography>
-      )}
+           <Typography component={'div'} onClick={()=>setOpenModal(true)} variant="h2" fontSize={22} sx={{cursor:'pointer',textDecoration:'underline',color:'#0091F8'}}>
+           راهنما
+          </Typography>
+         </Stack>
+        )}
       <CustomTabs
         tabList={tabs}
         setCustomValue={setValue}
@@ -45,5 +55,7 @@ filter={filter} key={2} setTransactionData={setTransactionData} transactionParam
         {children}
       </CustomTabs>
     </Card>
+    <TransactionsGuide open={openModal} setOpen={setOpenModal}  />
+    </>
   );
 }
