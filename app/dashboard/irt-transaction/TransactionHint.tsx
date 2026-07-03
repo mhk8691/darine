@@ -30,6 +30,9 @@ export default function TransactionHint({hintIndex}:Props) {
               xs: 2,
               sm: 3,
             },
+             '& .MuiTypography-root': {
+      textAlign: 'justify',
+    },
           }}
         >
           <Stack direction={'row'} alignItems={'center'} gap={1}>

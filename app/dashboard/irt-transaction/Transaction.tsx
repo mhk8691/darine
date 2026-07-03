@@ -20,7 +20,6 @@ interface Props {
 export default function Transaction({ setTransactionData,transactionParams,dateRange,filter,setHintIndex }:Props) {
   const theme = useTheme();
   const [openModal,setOpenModal] = useState(false)
-      const [value, setValue] = useState(0);
 
 const children: ReactNode[] = [<Deposit dateRange={dateRange} setHintIndex={setHintIndex}
 
@@ -51,7 +50,6 @@ filter={filter} key={2} setTransactionData={setTransactionData} transactionParam
         )}
       <CustomTabs
         tabList={tabs}
-        setCustomValue={setValue}
         tabsStyle={{ alignItems: 'center', justifyContent: 'center' }}
       >
         {children}
