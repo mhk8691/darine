@@ -14,6 +14,7 @@ import CustomThemeProvider from './theme-provider';
 import { AssetsProvider } from './AssetsProvider';
 import StatusHeader from './Components/Wallet/StatusHeader';
 import RegisterSW from './Components/RegisterSW/RegisterSW';
+import InstallPrompt from './Components/InstallPrompt/InstallPrompt';
 
 
 
@@ -56,6 +57,7 @@ export default function RootLayout({
                 <StatusHeader/>
                 <CustomBreadcrumbs />
                  <RegisterSW />
+                 <InstallPrompt/>
                 {children}
               </main>
               <GlobalSnackbar />
