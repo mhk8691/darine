@@ -1,6 +1,7 @@
 'use client';
 import CustomModal from '@/app/Components/CustomModal/CustomModal';
 import { AddressesDataType } from '@/app/core/Types';
+import { removeAddress } from '@/lib/giftCard/giftCard';
 import { Close } from '@mui/icons-material';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import EmailIcon from '@mui/icons-material/Email';
@@ -19,6 +20,8 @@ import {
   Typography,
 } from '@mui/material';
 import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { showSnackbar } from '../Snackbar/Snackbar';
+import { isAxiosError } from 'axios';
 
 interface Props {
   setOpenAddAddress: Dispatch<SetStateAction<boolean>>;
@@ -48,7 +51,17 @@ export default function AddressList({ setOpenAddAddress, addresses, setAddressId
   const selectedAddress = currentAddress || addresses[0];
 
   const displayText = `${selectedAddress.province}،${selectedAddress.city}،${selectedAddress.address}،${selectedAddress.plaque}،${selectedAddress.unit}`;
+  const handleRemoveAddress = async (id:number)=>{
+    try{
+      const response = await removeAddress(id)
+      showSnackbar(response.message,'success')
+    }catch(error:unknown){
+      if (isAxiosError(error)){
+        showSnackbar(error.response?.data.message)
 
+      }
+    }
+  }
   return (
     <>
       <TextField
@@ -171,7 +184,10 @@ export default function AddressList({ setOpenAddAddress, addresses, setAddressId
                     <Typography variant="body2">{address.postal_code}</Typography>
                   </Stack>
                 </Stack>
+                <IconButton onClick={()=>handleRemoveAddress(address?.id ?? 0)}>
                 <DeleteOutlineOutlinedIcon sx={{ mt: 1 }} />
+                </IconButton>
+
               </Stack>
             ))}
           </RadioGroup>

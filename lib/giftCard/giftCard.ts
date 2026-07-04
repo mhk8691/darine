@@ -41,3 +41,10 @@ export const addAddresses = async (newAddress:AddressesDataType) => {
     const response = await api.post<ApiResponse<AddressesDataType>>('/gold/address/',newAddress);
     return response.data;
 };
+
+export const removeAddress = async (id:number) => {
+    const response = await api.delete<{
+      message:string
+    }>(`/gold/address/${id}`);
+    return response.data;
+};

@@ -22,7 +22,7 @@ import TransactionDetailModal from '../reports/TransactionDetailModal';
 //   description: '',
 // };
 
-export default async function page() {
+export default  function page() {
   const [transactionData,setTransactionData] = useState<RecentTransactionDataType[]>([])
   const [transactionParams,setTransactionParams] = useState('deposit')
     const [status,setStatus] = useState('')

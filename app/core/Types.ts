@@ -95,13 +95,19 @@ export interface AllAssetsDataType {
 }
 
 export interface StatisticsDataType {
- "total_assets": number,
-  "profit": number,
-  "withdrawn_gold": number,
-  "purchased_giftcards": number,
-  "received_giftcards": number,
-  "pending_toman": number,
-  "pending_gold": number
+  total_assets: number
+  profit: number
+  wallet_balance: number
+  blocked_wallet_balance: number
+  gold_balance: number
+  blocked_gold_balance: number
+  gold_price: number
+  gold_asset_value: number
+  withdrawn_gold: number
+  purchased_giftcards: number
+  received_giftcards: number
+  pending_toman: number
+  pending_gold: number
 }
   export interface ProductDateType {
     id: number;
