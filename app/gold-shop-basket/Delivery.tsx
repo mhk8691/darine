@@ -4,12 +4,11 @@ import { Dispatch, SetStateAction } from 'react';
 import FilterToggleButton from '../Components/FilterToggleButton/FilterToggleButton';
 import { ToggleItemsType } from '../core/Types';
 import DirectDelivery from './DirectDelivery';
-import HouseDelivery from './HouseDelivery';
 import { DirectAddressesType } from './Cart';
 
 const toggleItems: ToggleItemsType[] = [
-  { title: 'تحویل درب منزل', value: 'HOME', id: 1 },
-  // { title: 'تحویل حضوری', value: 'directDelivery', id: 2 },
+  // { title: 'تحویل درب منزل', value: 'HOME', id: 1 },
+  { title: 'تحویل حضوری', value: 'directDelivery', id: 1 },
 ];
 interface Props{
   deliveryType:string
@@ -39,7 +38,9 @@ export default function Delivery({deliveryType,setDeliveryType,addressId,setAddr
           style={{ py: 1.5 }}
         />
         {/* {deliveryType === 'HOME' ? <HouseDelivery  addressId={addressId} setAddressId={setAddressId} /> : <DirectDelivery setDirectAddresses={setDirectAddresses}  />} */}
-       <HouseDelivery  addressId={addressId} setAddressId={setAddressId} />
+       {/* <HouseDelivery  addressId={addressId} setAddressId={setAddressId} />
+        */}
+         <DirectDelivery   />
       </Grid>
       <Grid
         size={{

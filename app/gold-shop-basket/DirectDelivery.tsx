@@ -1,85 +1,24 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
-import SelectInput, { SelectOption } from './SelectInput/SelectInput';
-import { Stack } from '@mui/material';
-import { DirectAddressesType } from './Cart';
+import { Stack, Typography } from '@mui/material';
 
-const addressOptions: SelectOption[] = [
-  {
-    value: 'قم، میدان توحید، پاساژ شهر طلا، طبقه اول، پلاک ۲۳',
-    label: 'قم، میدان توحید، پاساژ شهر طلا، طبقه اول، پلاک ۲۳',
-  },
-];
-const dateOptions: SelectOption[] = [
-  { value: '1405/02/13', label: '1405/02/13', description: 'يكشنبه' },
-  { value: '1405/02/14', label: '1405/02/14', description: 'دوشنبه' },
-  { value: '1405/02/15', label: '1405/02/15', description: 'سه شنبه' },
-  { value: '1405/02/16', label: '1405/02/16', description: 'چهارشنبه' },
-  { value: '1405/02/19', label: '1405/02/19', description: 'شنبه' },
-  { value: '1405/02/20', label: '1405/02/20', description: 'يكشنبه' },
-];
-const hourseOptions: SelectOption[] = [
-  { value: 'ساعت: 12 تا 14', label: 'ساعت: 11 تا 20' },
-];
 
-export default function DirectDelivery({
-  setDirectAddresses,
-}: {
-  setDirectAddresses: Dispatch<SetStateAction<DirectAddressesType>>;
-}) {
-  const [address, setAddress] = useState<string | number>('');
-  const [date, setDate] = useState<string | number>('');
-  const [hourse, setHourse] = useState<string | number>('');
 
-  const handleChange =
-    (field: keyof DirectAddressesType) =>
-    (value: string | number): void => {
-      switch (field) {
-        case 'address':
-          setAddress(value);
-          break;
-        case 'date':
-          setDate(value);
-          break;
-        case 'hourse':
-          setHourse(value);
-          break;
-      }
-
-      setDirectAddresses((prev) => ({
-        ...prev,
-        [field]: value,
-      }));
-    };
-
+export default function DirectDelivery(
+) {
   return (
-    <Stack direction={'column'} gap={3} mt={3}>
-      <SelectInput
-        label="آدرس تحویل"
-        value={address}
-        onChange={handleChange('address')}
-        options={addressOptions}
-        placeholder="یک گزینه را انتخاب کنید"
-        fullWidth
-        modalMode={false}
-      />
-      <SelectInput
-        label="تاریخ تحویل"
-        value={date}
-        onChange={handleChange('date')}
-        options={dateOptions}
-        placeholder="یک گزینه را انتخاب کنید"
-        fullWidth
-        titleModal="انتخاب تاریخ"
-      />
-      <SelectInput
-        label="ساعت تحویل"
-        value={hourse}
-        onChange={handleChange('hourse')}
-        options={hourseOptions}
-        placeholder="یک گزینه را انتخاب کنید"
-        fullWidth
-        titleModal="انتخاب تاریخ"
-      />
-    </Stack>
+   <Stack direction="column" gap={2} mt={3}>
+  <Stack direction="row" spacing={1}>
+    <Typography fontWeight={700}>آدرس تحویل:</Typography>
+    <Typography>
+     قم، میدان توحید، پاساژ شهر طلا، طبقه اول، پلاک ۲۳
+    </Typography>
+  </Stack>
+
+  <Stack direction="row" spacing={1}>
+    <Typography fontWeight={700}>تاریخ و ساعت تحویل:</Typography>
+    <Typography>
+      از شنبه تا پنجشنبه ساعت ۱۱ تا ۲۰
+    </Typography>
+  </Stack>
+</Stack>
   );
 }

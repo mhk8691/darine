@@ -66,11 +66,16 @@ export default function OrderConfirmation({ setOpen,deliveryType,addressId,direc
 
   const totalPrice = getTotalPrice();
 
-  const balance = assets?.wallet_balance ?? 0;
+  const walletBalance = assets?.wallet_balance ?? 0;
+  const goldAssetValue = assets?.gold_asset_value ?? 0;
 
-  const diff = balance - totalPrice;
+  const selectedBalanceValue =
+    active === 'TOMAN' ? walletBalance : goldAssetValue;
+
+  const diff = selectedBalanceValue - totalPrice;
 
   const isEnough = diff >= 0;
+
   const handleClick = async ()=>{
     const newData: CheckoutDataType = {
   products: getCart().map((item) => ({
@@ -100,15 +105,6 @@ export default function OrderConfirmation({ setOpen,deliveryType,addressId,direc
   }
   return (
     <Stack direction="column">
-      <Stack sx={rowStyle}>
-        <Typography sx={titleStyle}>هزینه ارسال</Typography>
-        <Typography fontSize={18}>100,000 تومان</Typography>
-      </Stack>
-
-      <Stack sx={rowStyle}>
-        <Typography sx={titleStyle}>هزینه بیمه کالا</Typography>
-        <Typography fontSize={18}>366,559 تومان</Typography>
-      </Stack>
 
       <Stack sx={rowStyle}>
         <Typography sx={titleStyle}>مجموع سفارش</Typography>
@@ -122,7 +118,14 @@ export default function OrderConfirmation({ setOpen,deliveryType,addressId,direc
       <Stack sx={rowStyle}>
         <Typography sx={titleStyle}>موجودی کیف پول</Typography>
         <Typography fontSize={18}>
-          {priceFormater(balance)} تومان
+          {priceFormater(walletBalance)} تومان
+        </Typography>
+      </Stack>
+
+      <Stack sx={rowStyle}>
+        <Typography sx={titleStyle}>موجودی طلا</Typography>
+        <Typography fontSize={18}>
+          {priceFormater(goldAssetValue)} تومان
         </Typography>
       </Stack>
 
@@ -164,14 +167,13 @@ export default function OrderConfirmation({ setOpen,deliveryType,addressId,direc
           <FormControlLabel
             value="TOMAN"
             control={<Radio disableTouchRipple />}
-            label="پرداخت نقدی"
+            label="پرداخت از کیف پول"
             sx={{ '& .MuiTypography-root': { fontSize: 18 } }}
           />
           <FormControlLabel
             value="GOLD"
             control={<Radio disableTouchRipple />}
-            label="پرداخت اعتباری"
-            disabled
+            label="پرداخت طلا"
             sx={{ '& .MuiTypography-root': { fontSize: 18 } }}
           />
         </RadioGroup>

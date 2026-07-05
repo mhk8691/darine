@@ -140,7 +140,7 @@ setDeliveryType={setDeliveryType} />}
         setOpen={setOpen}
         open={open}
         modalStyle={{
-          height: '70%',
+          height: '60%',
           px: 2,
         }}
       >
