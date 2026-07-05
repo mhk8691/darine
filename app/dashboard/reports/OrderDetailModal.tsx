@@ -106,9 +106,6 @@ export default function OrderDetailModal({
 }: Props) {
   if (!data) return null;
 
-  const fullAddress = `${data.province} - ${data.city} - ${data.address} - پلاک ${data.plaque} - واحد ${data.unit}${
-    data.postal_code ? ` - ${data.postal_code}` : ''
-  }`;
 
   return (
     <CustomModal open={open} setOpen={setOpen} modalStyle={{ pb: 2 }}>
@@ -167,12 +164,7 @@ export default function OrderDetailModal({
           value={data.payment_method_display}
         />
 
-        <DetailRow
-          label="نوع ارسال"
-          value={data.delivery_type_display}
-        />
-
-        <DetailRow label="آدرس" value={fullAddress} />
+ 
 
         <DetailRow label="یادداشت" value={data.admin_note || '--'} />
       </Stack>
