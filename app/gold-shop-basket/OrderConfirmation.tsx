@@ -144,19 +144,7 @@ export default function OrderConfirmation({ setOpen,deliveryType,addressId,direc
         </Typography>
       </Stack>
 
-      <Stack
-        bgcolor="background.paper"
-        borderRadius={2}
-        p={2}
-        direction="row"
-        gap={1}
-        mt={2}
-      >
-        <InfoOutlineRounded sx={{ color: '#D89654' }} />
-        <Typography variant="body2" fontWeight={500} sx={{ color: 'text.secondary' }}>
-          لطفاً پیش از تأیید، اطلاعات وارد شده و آدرس انتخابی را به دقت بررسی کنید.
-        </Typography>
-      </Stack>
+     
 
       <FormControl sx={{ mt: 2 }}>
         <RadioGroup

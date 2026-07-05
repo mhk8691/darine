@@ -20,7 +20,7 @@ export interface DirectAddressesType {
 }
 export default function Cart() {
   const [directAddresses,setDirectAddresses] = useState<DirectAddressesType>({} as DirectAddressesType)
-    const [deliveryType, setDeliveryType] = useState('HOME');
+    const [deliveryType, setDeliveryType] = useState('directDelivery');
   const [step, setStep] = useState(0);
   const [open, setOpen] = useState(false);
   const router = useRouter();
@@ -140,7 +140,7 @@ setDeliveryType={setDeliveryType} />}
         setOpen={setOpen}
         open={open}
         modalStyle={{
-          height: '60%',
+          height: '52%',
           px: 2,
         }}
       >
