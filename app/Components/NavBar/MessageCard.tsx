@@ -1,6 +1,7 @@
 'use client'
 import { formatDate } from "@/app/core/FormatDate";
-import { AnnouncementsType, NotifItemsType } from "@/app/core/Types";
+import { AnnouncementsType } from "@/app/core/Types";
+import { getAnnouncements, markAllRead } from "@/lib/announcements/announcements";
 import {
   Button,
   Stack,
@@ -10,16 +11,42 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
+import { showSnackbar } from "../Snackbar/Snackbar";
+import { Dispatch, SetStateAction, useState } from "react";
+import { isAxiosError } from "axios";
+import Loading from "../Loading/Loading";
 
 interface Props {
   isNotif?: boolean;
-  announcements:AnnouncementsType[]
+  announcements:AnnouncementsType
+  setAnnouncements:Dispatch<SetStateAction<AnnouncementsType>>
+  setOpen:Dispatch<SetStateAction<boolean>>
 }
 
-export default function MessageCard({  isNotif,announcements }: Props) {
+export default function MessageCard({  isNotif,announcements,setOpen,setAnnouncements}: Props) {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
   const isDarkMode = theme.palette.mode === 'dark'
+  const [isLoading,setIsLoading] = useState(false)
+  const handleMarkReadAll = async ()=>{
+    try{
+      setIsLoading(true)
+      const response = await markAllRead()
+      const res = await getAnnouncements()
+      setAnnouncements(res || {} as AnnouncementsType)
+      showSnackbar(response?.message || '' ,'success')
+      setOpen(false)
+    }
+    catch(error:unknown){
+        if (isAxiosError(error)){
+
+            showSnackbar(error.response?.data.message)
+        }
+    }
+    finally{
+      setIsLoading(false)
+    }
+  }
   return (
     <>
       <Stack
@@ -37,8 +64,8 @@ export default function MessageCard({  isNotif,announcements }: Props) {
         }}
       >
         {
-        announcements.length > 0 ?
-        announcements?.map((item) => (
+        announcements.notifList?.length > 0 ?
+        announcements?.notifList.map((item) => (
           <Stack
           component={item.link ? Link:'div'}
           href={item.link}
@@ -105,9 +132,9 @@ export default function MessageCard({  isNotif,announcements }: Props) {
       {isDesktop && (
         <Stack direction={"row"} gap={1}>
           <Button
-            disableRipple
             variant={isNotif ? "contained" : "outlined"}
             color={isNotif ? "primary" : "inherit"}
+            onClick={handleMarkReadAll}
             sx={{
               width: isNotif ? "50%" : "100%",
               py: 1,
@@ -116,8 +143,9 @@ export default function MessageCard({  isNotif,announcements }: Props) {
                 bgcolor: "background.default",
               },
             }}
+            disabled={isLoading}
           >
-            همه ی پیام ها
+          {isLoading ? <Loading size={30} />:' خواندن همه'}
           </Button>
           {isNotif && (
             <Button

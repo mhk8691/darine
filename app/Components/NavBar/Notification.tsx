@@ -4,6 +4,8 @@ import { AnnouncementsType } from "@/app/core/Types";
 import { ArrowForward } from "@mui/icons-material";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import {
+  Badge,
+  BadgeProps,
   Button,
   ClickAwayListener,
   Dialog,
@@ -11,6 +13,7 @@ import {
   IconButton,
   Paper,
   Stack,
+  styled,
   Typography,
   useMediaQuery,
   useTheme,
@@ -112,7 +115,14 @@ const NotificationContent = ({
     </>
   );
 };
-
+const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    right: 5,
+    top: 7,
+    border: `2px solid ${(theme.vars ?? theme).palette.background.paper}`,
+    padding: '0 4px',
+  },
+}));
 export default function Notification() {
   const [open, setOpen] = useState(false);
   const wrapperRef = React.useRef<HTMLDivElement | null>(null);
@@ -120,19 +130,19 @@ export default function Notification() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isDarkMode = theme.palette.mode === 'dark'
-  const [announcements, setAnnouncements] = useState<AnnouncementsType[]>([]);
+  const [announcements, setAnnouncements] = useState<AnnouncementsType>({} as AnnouncementsType);
 
   useEffect(() => {
     const getData = async () => {
       const response = await getAnnouncements();
       console.log(response)
-      setAnnouncements(response || []);
+      setAnnouncements(response || {} as AnnouncementsType);
     };
 
     getData();
   }, []);
 
-  const tabContent = <MessageCard announcements={announcements} />;
+  const tabContent = <MessageCard announcements={announcements} setOpen={setOpen} setAnnouncements={setAnnouncements} />;
 
   const handleToggle = () => {
     setOpen((prev) => !prev);
@@ -151,7 +161,17 @@ export default function Notification() {
     return (
       <>
         <IconButton onClick={handleToggle} disableRipple>
-          <NotificationsIcon
+          {
+            announcements.unread_count === 0 ?    <NotificationsIcon
+            color="primary"
+            sx={{
+              fontSize: {
+                xs: 25,
+                sm: 30,
+              },
+            }}
+          /> :<StyledBadge badgeContent={announcements.unread_count?.toString()} color="error">
+            <NotificationsIcon
             color="primary"
             sx={{
               fontSize: {
@@ -160,6 +180,8 @@ export default function Notification() {
               },
             }}
           />
+          </StyledBadge>
+          }
         </IconButton>
 
         <Dialog
@@ -193,6 +215,16 @@ export default function Notification() {
         }}
       >
         <IconButton onClick={handleToggle} disableRipple>
+          {
+            announcements.unread_count === 0 ? <NotificationsIcon
+            color="primary"
+            sx={{
+              fontSize: {
+                xs: 25,
+                sm: 30,
+              },
+            }}
+          /> :<StyledBadge badgeContent={announcements.unread_count?.toString()} color="error">
           <NotificationsIcon
             color="primary"
             sx={{
@@ -202,6 +234,9 @@ export default function Notification() {
               },
             }}
           />
+          </StyledBadge>
+          }
+             
         </IconButton>
 
         <Paper
