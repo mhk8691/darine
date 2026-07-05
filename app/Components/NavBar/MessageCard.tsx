@@ -19,34 +19,15 @@ import Loading from "../Loading/Loading";
 interface Props {
   isNotif?: boolean;
   announcements:AnnouncementsType
-  setAnnouncements:Dispatch<SetStateAction<AnnouncementsType>>
-  setOpen:Dispatch<SetStateAction<boolean>>
+  handleMarkReadAll:() => Promise<void>
+  isLoading:boolean
 }
 
-export default function MessageCard({  isNotif,announcements,setOpen,setAnnouncements}: Props) {
+export default function MessageCard({  isNotif,announcements,isLoading,handleMarkReadAll}: Props) {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
   const isDarkMode = theme.palette.mode === 'dark'
-  const [isLoading,setIsLoading] = useState(false)
-  const handleMarkReadAll = async ()=>{
-    try{
-      setIsLoading(true)
-      const response = await markAllRead()
-      const res = await getAnnouncements()
-      setAnnouncements(res || {} as AnnouncementsType)
-      showSnackbar(response?.message || '' ,'success')
-      setOpen(false)
-    }
-    catch(error:unknown){
-        if (isAxiosError(error)){
 
-            showSnackbar(error.response?.data.message)
-        }
-    }
-    finally{
-      setIsLoading(false)
-    }
-  }
   return (
     <>
       <Stack

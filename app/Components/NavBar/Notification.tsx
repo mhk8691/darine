@@ -21,18 +21,25 @@ import {
 import React, { ReactNode, useEffect, useState } from "react";
 import CustomTabs from "../Tabs/CustomTabs";
 import MessageCard from "./MessageCard";
-import { getAnnouncements } from "@/lib/announcements/announcements";
+import { getAnnouncements, markAllRead } from "@/lib/announcements/announcements";
+import { showSnackbar } from "../Snackbar/Snackbar";
+import { isAxiosError } from "axios";
+import Loading from "../Loading/Loading";
 
 const tabs = [{ title: "اطلاعیه های دارینه" }];
 
 type NotificationContentProps = {
   onClose: () => void;
   children: ReactNode;
+    handleMarkReadAll:() => Promise<void>
+  isLoading:boolean
 };
 
 const NotificationContent = ({
   onClose,
   children,
+  isLoading,
+  handleMarkReadAll
 }: NotificationContentProps) => {
   return (
     <>
@@ -81,6 +88,7 @@ const NotificationContent = ({
             variant="outlined"
             color="inherit"
             size="small"
+            onClick={handleMarkReadAll}
             sx={{
               py: 0.75,
               borderRadius: 2,
@@ -92,7 +100,7 @@ const NotificationContent = ({
               },
             }}
           >
-            خواندن همه
+           {isLoading ? <Loading size={30}/>:'خواندن همه'}
           </Button>
         </Stack>
       </Stack>
@@ -129,9 +137,28 @@ export default function Notification() {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const [isLoading,setIsLoading] = useState(false)
   const isDarkMode = theme.palette.mode === 'dark'
   const [announcements, setAnnouncements] = useState<AnnouncementsType>({} as AnnouncementsType);
+    const handleMarkReadAll = async ()=>{
+    try{
+      setIsLoading(true)
+      const response = await markAllRead()
+      const res = await getAnnouncements()
+      setAnnouncements(res || {} as AnnouncementsType)
+      showSnackbar(response?.message || '' ,'success')
+      setOpen(false)
+    }
+    catch(error:unknown){
+        if (isAxiosError(error)){
 
+            showSnackbar(error.response?.data.message)
+        }
+    }
+    finally{
+      setIsLoading(false)
+    }
+  }
   useEffect(() => {
     const getData = async () => {
       const response = await getAnnouncements();
@@ -142,7 +169,7 @@ export default function Notification() {
     getData();
   }, []);
 
-  const tabContent = <MessageCard announcements={announcements} setOpen={setOpen} setAnnouncements={setAnnouncements} />;
+  const tabContent = <MessageCard isLoading={isLoading} handleMarkReadAll={handleMarkReadAll} announcements={announcements}  />;
 
   const handleToggle = () => {
     setOpen((prev) => !prev);
@@ -197,7 +224,7 @@ export default function Notification() {
             },
           }}
         >
-          <NotificationContent onClose={() => setOpen(false)}>
+          <NotificationContent onClose={() => setOpen(false)} handleMarkReadAll={handleMarkReadAll} isLoading={isLoading}>
             {tabContent}
           </NotificationContent>
         </Dialog>
