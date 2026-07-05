@@ -20,7 +20,6 @@ import { showSnackbar } from '../Components/Snackbar/Snackbar';
 import { checkout } from '@/lib/checkout/checkout';
 import { CheckoutDataType } from '../core/Types';
 import { useRouter } from 'next/navigation';
-import { DirectAddressesType } from './Cart';
 
 const rowStyle: SxProps = {
   display: 'flex',
@@ -39,10 +38,9 @@ interface Props {
   setOpen: Dispatch<SetStateAction<boolean>>;
   deliveryType:string
   addressId:number
-  directAddresses:DirectAddressesType
 }
 
-export default function OrderConfirmation({ setOpen,deliveryType,addressId,directAddresses }: Props) {
+export default function OrderConfirmation({ setOpen,deliveryType,addressId}: Props) {
   const [checked, setChecked] = useState(false);
   const [active, setActive] = useState('TOMAN');
   const router = useRouter()
@@ -83,14 +81,7 @@ export default function OrderConfirmation({ setOpen,deliveryType,addressId,direc
     quantity: item.quantity,
   })),
   payment_method: active,
-  delivery_type: deliveryType,
-  ...(deliveryType === 'HOME'
-    ? { address_id: addressId }
-    : {
-        address: directAddresses.address,
-        hourse: directAddresses.hourse,
-        date: directAddresses.date,
-      }),
+
 };
     try{
       const response = await checkout(newData)

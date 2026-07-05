@@ -159,7 +159,7 @@ setDeliveryType={setDeliveryType} />}
           </IconButton>
         </Stack>
         <Stack  mt={1} pr={1} pb={4}>
-          <OrderConfirmation setOpen={setOpen} deliveryType={deliveryType} addressId={addressId} directAddresses={directAddresses}
+          <OrderConfirmation setOpen={setOpen} deliveryType={deliveryType} addressId={addressId} 
  />
         </Stack>
       </CustomModal>

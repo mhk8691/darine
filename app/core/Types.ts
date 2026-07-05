@@ -288,11 +288,7 @@ export interface CheckoutDataType {
     quantity:number
   }[],
     "payment_method": string,
-  "delivery_type": string,
-  "address_id"?: number
-  address?:string
-  hourse?:string
-  date?:string
+
 }
 export interface BannersType {
   link:string
