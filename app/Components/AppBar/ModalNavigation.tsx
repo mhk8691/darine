@@ -106,13 +106,13 @@ const items: ItemsType[] = [
         name: 'کارت هدیه',
         image: '/giftCard-active-dark.svg',
         link: '/gift-card-menu',
-        comingSoon: false, 
+        comingSoon: true, 
       },
       {
         name: 'پس انداز خودکار',
         image: '/automatic-active-dark.svg',
         link: '/automatic-investment',
-        comingSoon: false,
+        comingSoon: true,
       },
       {
         name: 'آلارم قیمت',
@@ -226,7 +226,6 @@ const Content = ({ setOpen }: { setOpen: Dispatch<SetStateAction<boolean>> }) =>
                     px={1.5}
                     component={'div'}
                     onClick={() => {
-                      // فقط اگر comingSoon نباشه، کلیک کنه
                       if (!navigate.comingSoon) {
                         router.push(`/dashboard${navigate.link}`);
                         setOpen(false);

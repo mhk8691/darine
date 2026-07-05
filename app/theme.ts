@@ -90,23 +90,36 @@ export const getTheme = (mode: 'light' | 'dark' = 'light') =>
       },
     },
     components: {
-      MuiCssBaseline: {
-        styleOverrides: {
-          body: {
-            '&::-webkit-scrollbar': {
-              width: '7px',
-            },
-            '&::-webkit-scrollbar-track': {
-              background: mode === 'dark' ? '#212120' : '#F1F1F1',
-              borderRadius: '10px',
-            },
-            '&::-webkit-scrollbar-thumb': {
-              background: mode === 'dark' ? '#4D4D4C' : '#CCCCCC',
-              borderRadius: '10px',
-            },
-          },
-        },
+   MuiCssBaseline: {
+  styleOverrides: {
+    '*': {
+      scrollbarWidth: 'thin',
+      scrollbarColor:
+        mode === 'dark'
+          ? '#4D4D4C #212120'
+          : '#CCCCCC #F1F1F1',
+
+      '&::-webkit-scrollbar': {
+        width: '7px',
+        height: '7px',
       },
+
+      '&::-webkit-scrollbar-track': {
+        background: mode === 'dark' ? '#212120' : '#F1F1F1',
+        borderRadius: '10px',
+      },
+
+      '&::-webkit-scrollbar-thumb': {
+        background: mode === 'dark' ? '#4D4D4C' : '#CCCCCC',
+        borderRadius: '10px',
+      },
+
+      '&::-webkit-scrollbar-thumb:hover': {
+        background: mode === 'dark' ? '#666' : '#aaa',
+      },
+    },
+  },
+},
       MuiOutlinedInput: {
         styleOverrides: {
           root: () => ({
