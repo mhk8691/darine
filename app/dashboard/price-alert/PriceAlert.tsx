@@ -141,51 +141,7 @@ export default function PriceAlert({
             sm: 5,
           }}
         >
-          <Typography
-            variant="h6"
-            fontSize={{
-              xs: 16,
-              sm: 18,
-            }}
-            sx={{ color: 'text.secondary' }}
-          >
-           اعلان:
-          </Typography>
-          <FormControl>
-            <RadioGroup
-              name="controlled-radio-buttons-group"
-              value={active}
-              onChange={handleChange}
-              sx={{ flexDirection: 'row', justifyContent: 'space-between' }}
-            >
-              <FormControlLabel
-                value="ABOVE"
-                control={<Radio   disableTouchRipple />}
-                label='در قیمت بالاتر'
-                sx={{
-                  '& .MuiTypography-root': {
-                    fontSize: {
-                      xs: 14,
-                      sm: 18,
-                    },
-                  },
-                }}
-              />
-              <FormControlLabel
-                value="BELOW"
-                control={<Radio   disableTouchRipple />}
-                label='در قیمت پایین تر'
-                sx={{
-                  '& .MuiTypography-root': {
-                    fontSize: {
-                      xs: 14,
-                      sm: 18,
-                    },
-                  },
-                }}
-              />
-            </RadioGroup>
-          </FormControl>
+        
         </Stack>
         <Button
           variant="contained"
@@ -200,8 +156,7 @@ export default function PriceAlert({
             height:60,
             mt: {
               xs: 3,
-              sm: 6,
-              lg: 6,
+              sm: 8,
             },
           }}
           disabled={isLoading}
