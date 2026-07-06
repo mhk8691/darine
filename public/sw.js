@@ -1,66 +1,79 @@
 const CACHE_NAME = "app-cache-v2";
 
-self.addEventListener("install", (event) => {
-    self.skipWaiting();
+self.addEventListener("install", () => {
+  self.skipWaiting();
 });
 
 self.addEventListener("activate", (event) => {
-    event.waitUntil(
-        (async () => {
-            const keys = await caches.keys();
+  event.waitUntil(
+    (async () => {
+      const keys = await caches.keys();
 
-            await Promise.all(
-                keys
-                    .filter((key) => key !== CACHE_NAME)
-                    .map((key) => caches.delete(key))
-            );
+      await Promise.all(
+        keys
+          .filter((key) => key !== CACHE_NAME)
+          .map((key) => caches.delete(key))
+      );
 
-            await self.clients.claim();
-        })()
-    );
+      await self.clients.claim();
+    })()
+  );
 });
 
 self.addEventListener("fetch", (event) => {
+  const request = event.request;
 
-    const request = event.request;
+  if (request.method !== "GET") {
+    event.respondWith(fetch(request));
+    return;
+  }
 
-    // فقط GET ها Cache شوند
-    if (request.method !== "GET") {
-        event.respondWith(fetch(request));
-        return;
-    }
+  if (request.mode === "navigate") {
+    event.respondWith(fetch(request));
+    return;
+  }
 
-    const url = new URL(request.url);
+  const url = new URL(request.url);
 
-    // هیچ API ای Cache نشود
-    if (
-        url.hostname === "api.darine.shop" ||
-        url.pathname.startsWith("/accounts") ||
-        url.pathname.startsWith("/gold") ||
-        url.pathname.startsWith("/silver")
-    ) {
-        event.respondWith(fetch(request));
-        return;
-    }
+  if (
+    url.hostname === "api.darine.shop" ||
+    url.pathname.startsWith("/accounts") ||
+    url.pathname.startsWith("/gold") ||
+    url.pathname.startsWith("/silver")
+  ) {
+    event.respondWith(fetch(request));
+    return;
+  }
 
-    event.respondWith(
-        caches.match(request).then(async (cached) => {
+  const cacheableDestinations = [
+    "script",
+    "style",
+    "image",
+    "font",
+    "manifest",
+  ];
 
-            if (cached) {
-                return cached;
-            }
+  if (!cacheableDestinations.includes(request.destination)) {
+    event.respondWith(fetch(request));
+    return;
+  }
 
-            const response = await fetch(request);
+  event.respondWith(
+    (async () => {
+      const cached = await caches.match(request);
 
-            if (
-                response.ok &&
-                request.method === "GET"
-            ) {
-                const cache = await caches.open(CACHE_NAME);
-                cache.put(request, response.clone());
-            }
+      if (cached) {
+        return cached;
+      }
 
-            return response;
-        })
-    );
+      const response = await fetch(request);
+
+      if (response.ok) {
+        const cache = await caches.open(CACHE_NAME);
+        await cache.put(request, response.clone());
+      }
+
+      return response;
+    })()
+  );
 });
