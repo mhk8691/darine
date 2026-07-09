@@ -4,7 +4,6 @@ import * as React from "react";
 import {
   Box,
   Container,
-  IconButton,
   Typography,
   ToggleButton,
   ToggleButtonGroup,
@@ -17,12 +16,12 @@ import {
   useTheme,
   Divider
 } from "@mui/material";
-import HelpOutlineRoundedIcon from "@mui/icons-material/HelpOutlineRounded";
 import ShieldMoonRoundedIcon from "@mui/icons-material/ShieldMoonRounded";
 import AccountBalanceWalletRoundedIcon from "@mui/icons-material/AccountBalanceWalletRounded";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
-import { ArrowBackRounded } from "@mui/icons-material";
+import { useAssets } from "@/app/AssetsProvider";
+import priceFormatter from "@/app/core/PriceFormater";
 
 type Duration = 1 | 3 | 6 | 12;
 
@@ -42,7 +41,7 @@ const fa = (n: number) => n.toLocaleString("fa-IR");
 export default function InsurancePage() {
   const theme = useTheme();
   const isDark = theme.palette.mode === 'dark';
-  
+  const {assets} = useAssets()
   const [duration, setDuration] = React.useState<Duration>(3);
   const [data, setData] = React.useState<PlansResponse | null>(null);
   const [selectedPlanId, setSelectedPlanId] = React.useState<string | null>(null);
@@ -73,7 +72,7 @@ export default function InsurancePage() {
         return defaultPlan?.id ?? null;
       });
     } catch {
-      // داده‌های تستی لوکس جهت پیش‌نمایش دقیق آرت‌بورد
+
       setData({
         userGoldBalanceGrams: 18.450,
         plans: [
@@ -135,7 +134,8 @@ export default function InsurancePage() {
         display: "flex",
         alignItems: { xs: "flex-start", sm: "center" },
         justifyContent: "center",
-        p: { xs: 0, sm: 3, md: 6, lg: 8 }
+        p: { xs: 0, sm: 3, md: 6, lg: 8 },
+        borderRadius:3
       }}
     >
       <Container
@@ -143,39 +143,23 @@ export default function InsurancePage() {
         disableGutters
         sx={{
           width: "100%",
-          maxWidth: { xs: "100%", sm: 540, md: 860, lg: 980 },
+          maxWidth: { xs: "100%", sm: 540, md: 860, lg: 1100 },
           boxShadow: isDark ? "0 20px 50px rgba(0,0,0,0.3)" : "0 16px 48px rgba(28,28,26,0.06)",
-          borderRadius: { xs: 0, sm: 6 },
+          borderRadius: { xs: 3, sm: 6 },
           border: `1px solid ${theme.palette.background.border}`,
           display: "flex",
           flexDirection: "column",
-          overflow: "hidden"
+          overflow: "hidden",
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            px: 3,
-            pt: 3,
-            pb: 1
-          }}
-        >
-          <IconButton size="medium" sx={{ color: theme.palette.text.subtitle, bgcolor: isDark ? '#1C1C1A' : '#FFFFFF', border: `1px solid ${theme.palette.background.border}` }}>
-            <HelpOutlineRoundedIcon fontSize="small" />
-          </IconButton>
-          <IconButton size="medium" sx={{ color: theme.palette.text.subtitle, bgcolor: isDark ? '#1C1C1A' : '#FFFFFF', border: `1px solid ${theme.palette.background.border}` }}>
-            <ArrowBackRounded   />
-          </IconButton>
-        </Box>
+  
 
-        {/* محتوای اصلی: در موبایل تک‌ستونه، در دسکتاپ/لپ‌تاپ دو ستونه (رِیل اطلاعاتی + فرم) */}
         <Box
           sx={{
             display: "flex",
             flexDirection: { xs: "column", md: "row" },
             alignItems: "stretch",
+            pt:3
           }}
         >
           {/* رِیل اطلاعاتی: هیرو + توضیحات + مزایا (فقط در دسکتاپ به صورت رِیل ثابت کنار فرم می‌نشیند) */}
@@ -193,7 +177,7 @@ export default function InsurancePage() {
           >
             <Stack
               alignItems={{ xs: "center", md: "flex-start" }}
-              textAlign={{ xs: "center", md: "right" }}
+              textAlign={{ xs: "center", md: "left" }}
               sx={{ mb: 4 }}
             >
               <Box
@@ -219,10 +203,10 @@ export default function InsurancePage() {
                 fontWeight={800}
                 sx={{ color: theme.palette.text.title, letterSpacing: '-0.5px', mb: 1, fontSize: { xs: '1.5rem', md: '1.6rem' } }}
               >
-                تضمین قیمت والاگلد
+                تضمین قیمت دارینه
               </Typography>
               <Typography variant="body2" sx={{ color: theme.palette.text.subtitle, lineHeight: 1.8, maxWidth: { xs: 380, md: "100%" } }}>
-                با فعال‌سازی این طرح، نوسانات منفی بازار طلا در روز سررسید کاملاً جبران شده و والاگلد خسارت شما را پرداخت می‌کند.
+                با فعال‌سازی این طرح، نوسانات منفی بازار طلا در روز سررسید کاملاً جبران شده و دارینه خسارت شما را پرداخت می‌کند.
               </Typography>
 
               {/* مزایای کلیدی: فقط در دسکتاپ نمایش داده می‌شود تا از فضای خالی رِیل کناری استفاده شود */}
@@ -280,14 +264,11 @@ export default function InsurancePage() {
                 },
               }}
             >
-              <ToggleButton value={1}>۱ ماهه</ToggleButton>
               <ToggleButton value={3}>۳ ماهه</ToggleButton>
               <ToggleButton value={6}>۶ ماهه</ToggleButton>
-              <ToggleButton value={12}>۱۲ ماهه</ToggleButton>
             </ToggleButtonGroup>
           </Box>
 
-          {/* سکشن انتخاب وزن طلا */}
           <Box sx={{ mb: 4 }}>
             <Typography variant="body2" fontWeight={700} sx={{ color: theme.palette.text.primary, mb: 1.5, px: 0.5 }}>
               ۲. مقدار طلا جهت تضمین
@@ -310,14 +291,15 @@ export default function InsurancePage() {
                     return (
                       <Grid size={{
                         xs:6,
-                        md:3
+                        md:4,
+                        lg:3  
                       }} key={plan.id}>
                         <Box
                           component="button"
                           onClick={() => setSelectedPlanId(plan.id)}
                           sx={{
                             width: "100%",
-                            textAlign: "right",
+                            textAlign: "left",
                             cursor: "pointer",
                             font: "inherit",
                             bgcolor: selected 
@@ -326,7 +308,7 @@ export default function InsurancePage() {
                             border: "2px solid",
                             borderColor: selected ? theme.palette.primary.main : theme.palette.background.border,
                             borderRadius: 3,
-                            p: 2,
+                            p: 2.5,
                             transition: "all 0.2s ease",
                             display: 'flex',
                             flexDirection: 'column',
@@ -339,7 +321,7 @@ export default function InsurancePage() {
                             "&::before": selected ? {
                               content: '""',
                               position: 'absolute',
-                              top: 0, right: 0, width: 4, height: '100%',
+                              top: 0, left: 0, width: 4, height: '100%',
                               bgcolor: theme.palette.primary.main
                             } : {}
                           }}
@@ -351,7 +333,7 @@ export default function InsurancePage() {
                             </Typography>
                           </Typography>
                           <Typography variant="caption" sx={{ color: theme.palette.text.muted, fontWeight: 500 }}>
-                            طرح اختصاصی {duration} ماهه
+                           تضمین طلا کوتاه مدت
                           </Typography>
                         </Box>
                       </Grid>
@@ -380,6 +362,43 @@ export default function InsurancePage() {
                 {loading || !data ? <Skeleton width={60} /> : `${fa(data.userGoldBalanceGrams)} گرم`}
               </Typography>
             </Box>
+             <Box sx={{ p: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between', bgcolor: isDark ? 'rgba(255,255,255,0.01)' : 'rgba(0,0,0,0.01)' }}>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <AccountBalanceWalletRoundedIcon sx={{ fontSize: 18, color: theme.palette.secondary.main }} />
+                <Typography variant="caption" sx={{ color: theme.palette.text.secondary, fontWeight: 600 }}>قیمت تضمین طلا</Typography>
+              </Stack>
+              <Typography variant="body2" fontWeight={700} sx={{ color: theme.palette.text.title }}>
+                {loading || !data ? <Skeleton width={60} /> : `${priceFormatter(assets.gold_price)} تومان`}
+              </Typography>
+            </Box>
+             <Box sx={{ p: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between', bgcolor: isDark ? 'rgba(255,255,255,0.01)' : 'rgba(0,0,0,0.01)' }}>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <AccountBalanceWalletRoundedIcon sx={{ fontSize: 18, color: theme.palette.secondary.main }} />
+                <Typography variant="caption" sx={{ color: theme.palette.text.secondary, fontWeight: 600 }}>هزینه طرح تضمین طلا</Typography>
+              </Stack>
+              <Typography variant="body2" fontWeight={700} sx={{ color: theme.palette.text.title }}>
+                {loading || !data ? <Skeleton width={60} /> : `${priceFormatter(1800000)} تومان`}
+              </Typography>
+            </Box>
+              <Box sx={{ p: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between', bgcolor: isDark ? 'rgba(255,255,255,0.01)' : 'rgba(0,0,0,0.01)' }}>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <AccountBalanceWalletRoundedIcon sx={{ fontSize: 18, color: theme.palette.secondary.main }} />
+                <Typography variant="caption" sx={{ color: theme.palette.text.secondary, fontWeight: 600 }}>قیمت لحظه‌ای طلا</Typography>
+              </Stack>
+              <Typography variant="body2" fontWeight={700} sx={{ color: theme.palette.text.title }}>
+                {loading || !data ? <Skeleton width={60} /> : `${priceFormatter(assets.gold_price)} تومان`}
+              </Typography>
+            </Box>
+                       <Box sx={{ p: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between', bgcolor: isDark ? 'rgba(255,255,255,0.01)' : 'rgba(0,0,0,0.01)' }}>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <AccountBalanceWalletRoundedIcon sx={{ fontSize: 18, color: theme.palette.secondary.main }} />
+                <Typography variant="caption" sx={{ color: theme.palette.text.secondary, fontWeight: 600 }}>تاریخ سر رسید</Typography>
+              </Stack>
+              <Typography variant="body2" fontWeight={700} sx={{ color: theme.palette.text.title }}>
+                {loading || !data ? <Skeleton width={60} /> : '۱۵ مهر ۱۴۰۵'}
+              </Typography>
+            </Box>
+            
             
             <Divider sx={{ borderColor: theme.palette.background.border }} />
 
@@ -407,10 +426,8 @@ export default function InsurancePage() {
             <InfoOutlinedIcon sx={{ fontSize: 18, color: theme.palette.secondary.main, mt: 0.2 }} />
             <Box>
               <Typography variant="caption" sx={{ color: theme.palette.text.secondary, display: 'block', lineHeight: 1.6, fontWeight: 500 }}>
-                محاسبه قیمت مبنای تضمین، بر اساس قیمت طلای ۲۴ عیار لحظه‌ای در زمان تایید تراکنش انجام می‌شود.
-                <Typography component="span" variant="caption" sx={{ color: theme.palette.secondary.main, fontWeight: 700, mr: 1, cursor: 'pointer', textDecoration: 'underline' }}>
-                  بیشتر بدانید
-                </Typography>
+                محاسبه قیمت مبنای تضمین، بر اساس قیمت طلای ۱۸ عیار لحظه‌ای در زمان تایید تراکنش انجام می‌شود.
+        
               </Typography>
             </Box>
           </Stack>
