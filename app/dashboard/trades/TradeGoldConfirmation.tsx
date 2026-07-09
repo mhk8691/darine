@@ -31,7 +31,6 @@ export default function TradeGoldConfirmation({select,open,setOpen,title,handleS
         try{
           const response = await buyCalculate(tradeData.weight)
           setData(response.data)
-        showSnackbar(response.message,'success')
         }
         catch(error:unknown){
           if (isAxiosError(error)){
@@ -43,7 +42,6 @@ export default function TradeGoldConfirmation({select,open,setOpen,title,handleS
         try{
           const response = await sellCalculate(tradeData.weight)
           setData(response.data)
-        showSnackbar(response.message,'success')
         }
         catch(error:unknown){
           if (isAxiosError(error)){
