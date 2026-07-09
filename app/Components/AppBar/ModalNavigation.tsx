@@ -15,6 +15,7 @@ import { useRouter } from 'next/navigation';
 import { Dispatch, SetStateAction } from 'react';
 import CustomModal from '../CustomModal/CustomModal';
 import { AppbarItemsType } from '@/app/core/Types';
+import ShieldMoonRoundedIcon from "@mui/icons-material/ShieldMoonRounded";
 
 interface Props {
   open: boolean;
@@ -118,6 +119,18 @@ const items: ItemsType[] = [
         name: 'آلارم قیمت',
         image: '/priceAlert-active-dark.svg',
         link: '/price-alert',
+        comingSoon: false,
+      },
+       {
+        name: 'سرمایه گذاری',
+        image: '/staking-active.svg',
+        link: '/staking',
+        comingSoon: false,
+      },
+         {
+        name: 'تضمین قیمت',
+        image: '/shield.png',
+        link: '/insurance',
         comingSoon: false,
       },
     ],
