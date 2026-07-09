@@ -200,8 +200,8 @@ export default function Trading({setData,reportsParams,filter,dateRange}:Props) 
           {select === 'buy' ? 'خرید' : 'فروش'}
         </Button>
       </Container>
-       <TradeGoldConfirmation title={select === 'buy' ? 'تایید خرید طلا':'تایید فروش طلا'} isLoading={isLoading} handleSubmit={select === 'buy' ? handleBuyGold : handleSellGold} open={open} setOpen={setOpen} data={{
-         weight:+gold,
+       <TradeGoldConfirmation select={select} title={select === 'buy' ? 'تایید خرید طلا':'تایید فروش طلا'} isLoading={isLoading} handleSubmit={select === 'buy' ? handleBuyGold : handleSellGold} open={open} setOpen={setOpen} tradeData={{
+         weight:gold,
         price:+price,
        }} /> 
        <TradeGuide open={openModal} setOpen={setOpenModal} />
