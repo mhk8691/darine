@@ -211,7 +211,7 @@ export default function LimitOrder() {
               onEditScroll={scrollToTrade}
             />
           }
-          tableHead={['نوع', 'قیمت هدف', 'قیمت', 'وزن', 'وضعیت', 'کد پیگیری', 'تاریخ', 'ویرایش', 'حذف']}
+          tableHead={['نوع', 'قیمت هدف', 'قیمت', 'وزن', 'وضعیت', 'کد پیگیری', 'تاریخ', 'ویرایش', 'لغو']}
           listLength={data.length}
         />
       </Grid>

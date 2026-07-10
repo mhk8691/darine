@@ -9,10 +9,10 @@ import {
   Typography,
 } from '@mui/material'
 import BlockIcon from '@mui/icons-material/Block'
-import { cancelLimitOrder } from '@/lib/limit-order/limitOrder'
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar'
 import { isAxiosError } from 'axios'
 import { cancelMarginOrder } from '@/lib/margin-order/marginOrder'
+import priceFormatter from '@/app/core/PriceFormater'
 
 interface Props {
   data: MarginOrderDataType[]
@@ -47,19 +47,14 @@ export default function MarginOrderTable({
         >
           {/* نوع معامله */}
           <TableCell align="center" sx={{ py: 2.5, px: 2.5 }}>
-            <Typography>{row.order_type_display}</Typography>
+            <Typography variant='body2'>{row.order_type_display}</Typography>
           </TableCell>
 
           {/* وضعیت */}
           <TableCell align="center" sx={{ py: 2.5, px: 2.5 }}>
             <Typography
               sx={{
-                color:
-                  row.status_display === 'لغو شده'
-                    ? 'error.main'
-                    : row.status_display === 'تکمیل شده'
-                    ? 'success.main'
-                    : 'warning.main',
+                color:row.status === 'ACTIVE' ? 'success.main':'error.main'
               }}
             >
               {row.status_display}
@@ -68,42 +63,42 @@ export default function MarginOrderTable({
 
           {/* سود / زیان */}
           <TableCell align="center" sx={{ py: 2.5, px: 2.5 }}>
-            <Typography>{row.profit_loss_display}</Typography>
+            <Typography variant='body2' color={+row.profit_loss_display >= 0 ? 'success':'error'}>{priceFormatter(+row.profit_loss_display)} تومان</Typography>
           </TableCell>
 
           {/* ضریب */}
           <TableCell align="center" sx={{ py: 2.5, px: 2.5 }}>
-            <Typography>{row.leverage_display}</Typography>
+            <Typography variant='body2'>{row.leverage_display}</Typography>
           </TableCell>
 
           {/* وزن */}
           <TableCell align="center" sx={{ py: 2.5, px: 2.5 }}>
-            <Typography>{row.weight}</Typography>
+            <Typography variant='body2'>{priceFormatter(+row.weight)} گرم</Typography>
           </TableCell>
 
           {/* قیمت ورود */}
           <TableCell align="center" sx={{ py: 2.5, px: 2.5 }}>
-            <Typography>{row.entry_price}</Typography>
+            <Typography variant='body2'>{priceFormatter(+row.entry_price)} تومان</Typography>
           </TableCell>
 
           {/* قیمت هدف */}
           <TableCell align="center" sx={{ py: 2.5, px: 2.5 }}>
-            <Typography>{row.target_price || '-'}</Typography>
+            <Typography variant='body2'>{priceFormatter(+row.target_price) || '-'} تومان</Typography>
           </TableCell>
 
           {/* حد سود */}
           <TableCell align="center" sx={{ py: 2.5, px: 2.5 }}>
-            <Typography>{row.take_profit || '-'}</Typography>
+            <Typography variant='body2'>{priceFormatter(+row.take_profit )|| '-'} تومان</Typography>
           </TableCell>
 
           {/* حد ضرر */}
           <TableCell align="center" sx={{ py: 2.5, px: 2.5 }}>
-            <Typography>{row.stop_loss || '-'}</Typography>
+            <Typography variant='body2'>{priceFormatter(+row.stop_loss) || '-'} تومان</Typography>
           </TableCell>
 
           {/* قیمت بسته شدن */}
           <TableCell align="center" sx={{ py: 2.5, px: 2.5 }}>
-            <Typography>{row.close_price || '-'}</Typography>
+            <Typography variant='body2'>{priceFormatter(+row.close_price) || '-'} تومان</Typography>
           </TableCell>
 
           {/* تاریخ */}
@@ -115,7 +110,7 @@ export default function MarginOrderTable({
           <TableCell align="center" sx={{ py: 2.5, px: 2.5 }}>
             <IconButton
               onClick={() => handleRemove(row.id)}
-              disabled={row.status_display === 'لغو شده'}
+              disabled={row.status === 'CLOSED'}
             >
               <BlockIcon />
             </IconButton>

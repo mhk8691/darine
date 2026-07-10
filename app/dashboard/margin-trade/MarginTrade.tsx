@@ -135,7 +135,7 @@ export default function MarginTrade() {
   'حد ضرر',
   'قیمت بسته شدن',
   'تاریخ ثبت',
-  'حذف',
+  'لغو',
 ]}
                 listLength={data.length}
               />

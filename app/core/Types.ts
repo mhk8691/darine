@@ -278,6 +278,7 @@ export interface MarginOrderDataType    {
         "stop_loss": string,
         "close_price": string,
         "created_at": string,
+        status:'ACTIVE' | 'CLOSED'
       }
 
 export interface PricesDataType {
