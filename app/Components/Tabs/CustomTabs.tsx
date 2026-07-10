@@ -52,7 +52,7 @@ interface Props {
   noPadding?: boolean;
   setCustomValue?: React.Dispatch<React.SetStateAction<number>>;
   tabStyle?: SxProps;
-  customValue?:number
+  customValue?: number;
 }
 
 export default function CustomTabs({
@@ -63,10 +63,18 @@ export default function CustomTabs({
   tabsStyle,
   noPadding = false,
   setCustomValue,
-  customValue
-
+  customValue,
 }: Props) {
   const [value, setValue] = React.useState(0);
+
+  // هر وقت مقدار از بیرون (customValue) تغییر کرد، state داخلی هم باید سینک بشه
+  // تا CustomTabPanel هم بر اساس همون مقدار درست رندر بشه
+  React.useEffect(() => {
+    if (customValue !== undefined && customValue !== value) {
+      setValue(customValue);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [customValue]);
 
   const handleChange = (
     event: React.SyntheticEvent,
@@ -78,6 +86,9 @@ export default function CustomTabs({
       setCustomValue(newValue);
     }
   };
+
+  // مقدار واقعی و فعلی تب - چه از بیرون کنترل بشه چه از داخل
+  const activeValue = customValue !== undefined ? customValue : value;
 
   const panels = React.Children.toArray(children);
 
@@ -99,7 +110,7 @@ export default function CustomTabs({
         }}
       >
         <Tabs
-          value={customValue ? customValue :value}
+          value={activeValue}
           onChange={handleChange}
           variant="scrollable"
           scrollButtons="auto"
@@ -142,7 +153,7 @@ export default function CustomTabs({
       {panels.map((item, index) => (
         <CustomTabPanel
           key={index}
-          value={value}
+          value={activeValue}
           index={index}
           noPadding={noPadding}
         >
