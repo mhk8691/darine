@@ -4,7 +4,8 @@ import api from './api';
 
 export type User = {
   full_name: string;
-
+    "gold_buy_fee":number,
+        "gold_sell_fee":number,
   "id":number,"mobile":string,"first_name":string,"last_name":string,"national_code":string,"birth_date":string,
 };
 

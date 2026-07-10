@@ -160,7 +160,7 @@ export default function Profile({user}:{user:User | null}) {
               sm: 18,
             }}
           >
-            ۱
+            {user?.gold_buy_fee}
           </Typography>
         </Stack>
         <Divider />
@@ -182,7 +182,7 @@ export default function Profile({user}:{user:User | null}) {
               sm: 18,
             }}
           >
-            ۱
+            {user?.gold_sell_fee}
           </Typography>
         </Stack>
       </Stack>
