@@ -65,10 +65,9 @@ export default function OrderConfirmation({ setOpen,deliveryType,addressId}: Pro
   const totalPrice = getTotalPrice();
 
   const walletBalance = assets?.wallet_balance ?? 0;
-  const goldAssetValue = assets?.gold_asset_value ?? 0;
 
-  const selectedBalanceValue =
-    active === 'TOMAN' ? walletBalance : goldAssetValue;
+  const selectedBalanceValue =walletBalance
+  const goldDiff = assets.gold_balance - (totalPrice / assets.gold_price)
 
   const diff = selectedBalanceValue - totalPrice;
 
@@ -96,33 +95,56 @@ export default function OrderConfirmation({ setOpen,deliveryType,addressId}: Pro
   }
   return (
     <Stack direction="column">
-
-      <Stack sx={rowStyle}>
-        <Typography sx={titleStyle}>مجموع سفارش</Typography>
+ {
+    active !== 'TOMAN' &&     <Stack sx={rowStyle}>
+        <Typography sx={titleStyle}>موجودی طلا</Typography>
         <Typography fontSize={18}>
-          {priceFormater(totalPrice)} تومان
+          {priceFormater(assets.gold_balance)} گرم
         </Typography>
       </Stack>
+  }
 
-      <Divider />
-
-      <Stack sx={rowStyle}>
+      {
+        active === 'TOMAN' && <Stack sx={rowStyle}>
         <Typography sx={titleStyle}>موجودی کیف پول</Typography>
         <Typography fontSize={18}>
           {priceFormater(walletBalance)} تومان
         </Typography>
       </Stack>
-
-      <Stack sx={rowStyle}>
-        <Typography sx={titleStyle}>موجودی طلا</Typography>
+      }
+     {
+      active === 'TOMAN' &&  <Stack sx={rowStyle}>
+        <Typography sx={titleStyle}>مجموع سفارش</Typography>
         <Typography fontSize={18}>
-          {priceFormater(goldAssetValue)} تومان
+          {priceFormater(totalPrice)} تومان
         </Typography>
       </Stack>
+     }
+     {
+      active !== 'TOMAN' &&  <Stack sx={rowStyle}>
+        <Typography sx={titleStyle}>مجموع گرم وزنی سفارش</Typography>
+        <Typography fontSize={18}>
+          {priceFormater(totalPrice / assets.gold_price)} گرم
+        </Typography>
+      </Stack>
+     }
 
       <Divider />
 
-      <Stack sx={rowStyle}>
+
+  {
+    active !== 'TOMAN' &&     <Stack sx={rowStyle}>
+        <Typography sx={titleStyle}>موجودی طلای باقی مانده</Typography>
+        <Typography fontSize={18} color={goldDiff>=0 ? 'success.main' : 'error.main'}>
+          {priceFormater(goldDiff)} گرم
+        </Typography>
+      </Stack>
+  }
+
+      <Divider />
+
+    {
+      active === 'TOMAN' &&   <Stack sx={rowStyle}>
         <Typography sx={titleStyle}>
           {isEnough ? 'موجودی باقی‌مانده' : 'کمبود موجودی'}
         </Typography>
@@ -134,6 +156,7 @@ export default function OrderConfirmation({ setOpen,deliveryType,addressId}: Pro
           {priceFormater(Math.abs(diff))} تومان
         </Typography>
       </Stack>
+    }
 
      
 
