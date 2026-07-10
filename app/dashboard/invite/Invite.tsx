@@ -58,7 +58,7 @@ export default function Invite() {
               sm: 18,
             }}
           >
-            با دعوت از دوستان خود 20% از کارمزد هر خرید آن‌ها، برای شما
+            با دعوت از دوستان خود {referralData.referral_percent}% از کارمزد هر خرید آن‌ها، برای شما
             واریز خواهد شد.
           </Typography>
           <Typography
@@ -115,7 +115,7 @@ export default function Invite() {
                 }}
                 sx={{ color: 'text.title' }}
               >
-                {referralData.total_invited} نفر
+                {priceFormater(referralData.referrals_count)} نفر
               </Typography>
             </Stack>
             <Divider sx={{ my: 1.5 }} />
@@ -138,7 +138,30 @@ export default function Invite() {
                 }}
                 sx={{ color: 'text.title' }}
               >
-                {priceFormater(referralData.total_earned)} تومان
+                {priceFormater(referralData.total_earnings)} تومان
+              </Typography>
+            </Stack>
+               <Divider sx={{ my: 1.5 }} />
+            <Stack direction={'row'} justifyContent={'space-between'}>
+              <Typography
+                variant="h6"
+                fontSize={{
+                  xs: 10,
+                  sm: 12,
+                }}
+                sx={{ color: 'text.muted' }}
+              >
+              مجموع فروش طلا:
+              </Typography>
+              <Typography
+                variant="h6"
+                fontSize={{
+                  xs: 12,
+                  sm: 14,
+                }}
+                sx={{ color: 'text.title' }}
+              >
+                {priceFormater(referralData.total_gold_sales)} تومان
               </Typography>
             </Stack>
           </Container>
