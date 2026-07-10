@@ -29,7 +29,7 @@ export default function TradeGoldConfirmation({select,open,setOpen,title,handleS
       if (!open) return
       const getDataBuy = async ()=>{
         try{
-          const response = await buyCalculate(tradeData.weight)
+          const response = await buyCalculate(tradeData.price.toString())
           setData(response.data)
         }
         catch(error:unknown){
@@ -40,7 +40,7 @@ export default function TradeGoldConfirmation({select,open,setOpen,title,handleS
       }
        const getDataSell = async ()=>{
         try{
-          const response = await sellCalculate(tradeData.weight)
+          const response = await sellCalculate(tradeData.price.toString())
           setData(response.data)
         }
         catch(error:unknown){
@@ -69,7 +69,7 @@ export default function TradeGoldConfirmation({select,open,setOpen,title,handleS
         </IconButton>
       </Stack>
       <Typography variant="body2" sx={{mt:2}}>
-        شما درحال {title.split(' ')[1]} {priceFormater(data.gold_weight)} گرم طلا با حساب {data.fee_rate} درصد کارمزد معادل {priceFormater(data.pure_gold_price)} تومان هستید
+        شما درحال {title.split(' ')[1]} {priceFormater(data.gold_weight)} گرم طلا با حساب {data.fee_rate} درصد کارمزد معادل {priceFormater(data.total_toman)} تومان هستید
       </Typography>
       <Stack direction={'row'} gap={1} alignItems={'center'} mt={2}>
    <Typography variant="body2" >
@@ -99,7 +99,7 @@ export default function TradeGoldConfirmation({select,open,setOpen,title,handleS
 قیمت لحظه ای هر گرم طلا:
                 </Typography>
                   <Typography variant="body2" >
-                     {priceFormater(data.pure_gold_price)} تومان
+                     {priceFormater(data.gold_price)} تومان
                 </Typography>
             </Stack>
             <Divider/> <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} py={.75}>
