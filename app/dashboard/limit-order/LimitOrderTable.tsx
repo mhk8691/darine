@@ -50,7 +50,7 @@ export default function LimitOrderTable({
     try {
       const response = await cancelLimitOrder(id)
       getData()
-      showSnackbar(response?.data?.message ?? response?.message, 'success')
+      showSnackbar(response?.message, 'success')
     } catch (error: unknown) {
       if (isAxiosError(error)) {
         showSnackbar(error.response?.data.message, 'error')

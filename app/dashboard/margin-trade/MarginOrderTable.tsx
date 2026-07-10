@@ -27,7 +27,7 @@ export default function MarginOrderTable({
     try {
       const response = await cancelMarginOrder(id)
       await getData()
-      showSnackbar(response?.data?.message ?? response?.message, 'success')
+      showSnackbar(response?.message, 'success')
     } catch (error: unknown) {
       if (isAxiosError(error)) {
         showSnackbar(error.response?.data.message, 'error')

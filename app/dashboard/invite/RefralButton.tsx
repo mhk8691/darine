@@ -7,7 +7,7 @@ import { Stack, SvgIcon, Typography, useTheme } from '@mui/material';
 export default function RefralButton({ referralData }: { referralData: RefrraDataType }) {
   const handleClick = async () => {
     try {
-      await navigator.clipboard.writeText(referralData.referral_link);
+      await navigator.clipboard.writeText(referralData.referral_code);
       showSnackbar('کپی شد', 'success');
     } catch (err) {
       console.error('failed to copy', err);

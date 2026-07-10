@@ -78,12 +78,12 @@ export default function Trade({
     try {
       if (editMode) {
         const response = await editLimitOrder(id, targetPrice, gold, price);
-        showSnackbar(response?.data?.message ?? response?.message, 'success');
+        showSnackbar( response?.message, 'success');
         setEditMode(false);
         setId(0);
       } else {
         const response = await limitOrder(type, targetPrice, type === 'BUY' ? price : gold);
-        showSnackbar(response?.data?.message ?? response?.message, 'success');
+        showSnackbar(response.data.message, 'success');
       }
 
       getData();
