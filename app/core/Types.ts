@@ -265,6 +265,21 @@ export interface LimitOrderDataType {
             "created_at": string,
 }
 
+export interface MarginOrderDataType    {
+        "id": number,
+        "order_type_display": string,
+        "status_display": string,
+        "profit_loss_display": string,
+        "leverage_display": "1x",
+        "weight": string,
+        "entry_price": string,
+        "target_price": string,
+        "take_profit": string,
+        "stop_loss": string,
+        "close_price": string,
+        "created_at": string,
+      }
+
 export interface PricesDataType {
   "type": string,
         "currentRate": number,

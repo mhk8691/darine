@@ -42,11 +42,9 @@ export default function LimitOrder() {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
 
-  // ref به بخش تب‌های خرید/فروش - این جایگزین id="trade" شد
   const tradeSectionRef = useRef<HTMLDivElement>(null);
 
   const scrollToTrade = () => {
-    // دو فریم صبر می‌کنیم تا مطمئن بشیم تغییر تب/مقادیر فرم قبل از اسکرول روی صفحه اعمال شده
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         tradeSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });

@@ -80,43 +80,7 @@ export default function page() {
     >
       
      
-      <Grid
-        size={{
-          xs: 12,
-          md: 4.8,
-        }}
-      >
-        <MarginTrade />
-      </Grid>
-      <Grid
-        size={{
-          xs: 12,
-          md: 7.2,
-        }}
-      >
-        <ChartGold
-          positionPrice="bottom"
-          priceStyle={{
-            mt: {
-              xs: 2,
-              md: 5,
-            },
-            mb: {
-              xs: 0,
-              md: 2.5,
-            },
-          }}
-          cardStyle={{
-            pt: {
-              xs: 2,
-              md: 5.5,
-            },
-          }}
-          dividerStyle={{
-            mt: 1,
-          }}
-        />
-      </Grid>
+      <MarginTrade/>
       <Grid size={12}>
         <Card
           style={{

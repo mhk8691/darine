@@ -22,8 +22,12 @@ import {
   useTheme,
 } from '@mui/material';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import MarginTradeGuide from './MarginTradeGuide';
+import { marginOrder } from '@/lib/margin-order/marginOrder';
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+import { isAxiosError } from 'axios';
+import Loading from '@/app/Components/Loading/Loading';
 
 const ltrTheme = createTheme({
   direction: 'ltr',
@@ -36,8 +40,8 @@ const ltrTheme = createTheme({
   },
 });
 const items: ToggleItemsType[] = [
-  { title: 'با قیمت بازار', value: 'store', id: 1 },
-  { title: 'با تعیین قیمت', value: 'self', id: 2 },
+  { title: 'با قیمت بازار', value: 'MARKET', id: 1 },
+  { title: 'با تعیین قیمت', value: 'LIMIT', id: 2 },
 ];
 const marks = [
   {
@@ -69,14 +73,15 @@ function valuetext(value: number) {
   return `${value}X`;
 }
 export default function Trading() {
+  const [isLoading,setIsLoading] = useState(false)
   const [price, setPrice] = useState('');
   const [targetPrice, setTargetPrice] = useState('');
   const [profitLimit, setProfitLimit] = useState('');
   const [lossLimit, setLossLimit] = useState('');
   const [gold, setGold] = useState('');
-  const [select, setSelect] = useState(items[0].value);
+  const [select, setSelect] = useState<'MARKET'|'LIMIT'>(items[0].value as 'LIMIT'| 'MARKET');
   const [checked, setChecked] = useState(false);
-  const [multiplier, setMultiplier] = useState<number>(1);
+  const [leverage, setLeverage] = useState<number>(1);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
   };
@@ -85,28 +90,46 @@ export default function Trading() {
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
   const isDarkMode = theme.palette.mode === 'dark';
   const {assets} = useAssets()
-  const handlePriceChange = (val: string) => {
+     const handlePriceChange =  async (val: string) => {
     setPrice(val);
-
     const num = Number(val);
     if (!isNaN(num)) {
-      setGold(String(num / 17999000));
+      setGold(String(num / assets?.gold_price));
     } else {
       setGold('');
     }
   };
 
-  const handleGoldChange = (val: string) => {
+  const handleGoldChange =async (val: string) => {
     setGold(val);
-
     const num = Number(val);
     if (!isNaN(num)) {
-      setPrice(String(num * 17999000));
+      setPrice(String(num * assets?.gold_price));
     } else {
       setPrice('');
     }
   };
 
+  const handleSubmit = async()=>{
+    setIsLoading(true)
+    try{
+        const response = await marginOrder(select,gold,leverage,checked ? profitLimit :undefined,checked ? lossLimit:undefined,targetPrice)
+        showSnackbar(response.data.message,'success')
+        setLeverage(1)
+        setPrice('')
+        setGold('')
+        setSelect('MARKET')
+        setProfitLimit('')
+        setLossLimit('')
+        setChecked(false)
+    }catch(error:unknown){
+      if(isAxiosError(error)){
+        showSnackbar(error.response?.data.message,'error')
+      }
+    }finally{
+      setIsLoading(false)
+    }
+  }
   return (
    <>
     <Card
@@ -152,16 +175,16 @@ export default function Trading() {
               sm: 30,
             }}
           >
-            {multiplier}X
+            {leverage}X
           </Typography>
         </Stack>
         <StyledEngineProvider injectFirst>
           <ThemeProvider theme={ltrTheme}>
             <Slider
-              value={multiplier}
-              onChange={(_, value) => setMultiplier(value as number)}
+              value={leverage}
+              onChange={(_, value) => setLeverage(value as number)}
               getAriaValueText={valuetext}
-              step={0.5}
+              step={1}
               marks={marks}
               max={5}
               min={1}
@@ -194,7 +217,7 @@ export default function Trading() {
         <FilterToggleButton
           items={items}
           active={select}
-          setActive={setSelect}
+          setActive={setSelect as Dispatch<SetStateAction<string>>}
           style={{
             fontSize: {
               xs: 12,
@@ -210,7 +233,7 @@ export default function Trading() {
         />
       </Stack>
       <Stack gap={3.5}>
-        {select === 'self' && (
+        {select === 'LIMIT' && (
           <Stack>
             <InputField
             type='number'
@@ -321,8 +344,10 @@ export default function Trading() {
           mt: checked ? 3.5 : 2,
           mb: 2,
         }}
+        disabled={isLoading}
+        onClick={handleSubmit}
       >
-        ثبت سفارش
+       {isLoading ? <Loading size={30}/>:' ثبت سفارش'}
       </Button>
       <Box
         component={Link}
