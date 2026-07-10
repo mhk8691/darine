@@ -52,6 +52,7 @@ interface Props {
   noPadding?: boolean;
   setCustomValue?: React.Dispatch<React.SetStateAction<number>>;
   tabStyle?: SxProps;
+  customValue?:number
 }
 
 export default function CustomTabs({
@@ -62,6 +63,8 @@ export default function CustomTabs({
   tabsStyle,
   noPadding = false,
   setCustomValue,
+  customValue
+
 }: Props) {
   const [value, setValue] = React.useState(0);
 
@@ -96,7 +99,7 @@ export default function CustomTabs({
         }}
       >
         <Tabs
-          value={value}
+          value={customValue ? customValue :value}
           onChange={handleChange}
           variant="scrollable"
           scrollButtons="auto"

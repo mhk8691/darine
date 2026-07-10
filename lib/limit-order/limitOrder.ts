@@ -44,7 +44,7 @@ export  const getLimitOrder = async (  status?: string,
     }
 
     const res = await api.get<ApiResponse<LimitOrderDataType[]>>(
-      `/gold/gold-limit-orders/?${query.toString()}`
+      `/gold/limit-orders/?${query.toString()}`
     );
 
     return res.data.data;
@@ -54,3 +54,17 @@ export  const getLimitOrder = async (  status?: string,
     }
   }
 } 
+
+export const editLimitOrder = async (id:number,price_per_gram:string,amount_gr:string,total_amount:string)=>{
+  const response = await api.patch<ApiResponse<LimitOrderDataType>>(`/gold/limit-orders/${id}/partial-update/`,{
+    amount_gr,
+    total_amount,
+    price_per_gram
+  })
+  return response.data
+}
+
+export const cancelLimitOrder = async (id:number)=>{
+  const response = await api.post<ApiResponse<LimitOrderDataType>>(`gold/limit-orders/${id}/cancel/`,)
+  return response.data
+}

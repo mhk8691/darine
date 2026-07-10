@@ -11,7 +11,7 @@ import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import LimitOrderTable from './LimitOrderTable';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 import { getLimitOrder } from '@/lib/limit-order/limitOrder';
-import { LimitOrderDataType } from '@/app/core/Types';
+import { LimitOrderDataType, ToggleItemsType } from '@/app/core/Types';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { statuses } from '../reports/DepositTable';
@@ -19,7 +19,23 @@ import LimitOrderGuide from './LimitOrderGuide';
 import BackLink from '../BackLink';
 const tabs = [{ title: 'خرید ' }, { title: 'فروش' }];
 
+export const buyItems: ToggleItemsType[] = [
+  { title: 'در قیمت پایین تر', value: 'min', id: 1 },
+];
+export const sellItems: ToggleItemsType[] = [
+  { title: 'در قیمت بالاتر', value: 'max', id: 1 },
+];
+
+
 export default function LimitOrder() {
+    const [price, setPrice] = useState('');
+    const [targetPrice, setTargetPrice] = useState('');
+    const [editMode, setEditMode] = useState(false);
+    const [id,setId] = useState(0)
+    // const [select, setSelect] = useState(type === 'SELL' ? sellItems[0].value : buyItems[0].value);
+    const [select, setSelect] = useState('min');
+  const [tab,setTab] = useState(0)
+    const [gold,setGold] = useState('')
    const [status,setStatus] = useState('')
       const [dateRange,setDateRange] =useState<DatePickerValue| null>(null)
       const[data,setData] = useState<LimitOrderDataType[]>([])
@@ -36,7 +52,34 @@ export default function LimitOrder() {
       }
     }
   }
-  const children: ReactNode[] = [<Trade key={1} type="BUY" getData={getData}  />, <Trade key={2} type="SELL"  getData={getData} />];
+  const children: ReactNode[] = [<Trade key={1} 
+    setId={setId}
+    id={id}
+    price={price}
+    setPrice={setPrice}
+    targetPrice ={targetPrice}
+    setTargetPrice={setTargetPrice}
+    gold={gold}
+    setGold={setGold}
+    select={select}
+    editMode={editMode}
+    setEditMode={setEditMode}
+    getData={getData}
+setSelect={setSelect}
+    type="BUY"  />, <Trade key={2} type="SELL"  getData={getData}   
+    setId={setId}
+    id={id}  
+    price={price}
+    setPrice={setPrice}
+    targetPrice ={targetPrice}
+    setTargetPrice={setTargetPrice}
+    gold={gold}
+    setGold={setGold}
+    select={select}
+    editMode={editMode}
+    setEditMode={setEditMode}
+setSelect={setSelect}
+ />];
 
   useEffect(()=>{
     getData()
@@ -80,6 +123,8 @@ export default function LimitOrder() {
       )}
       <CustomTabs
         tabList={tabs}
+        customValue={tab}
+        setCustomValue={setTab}
         style={{
           fontSize: {
             xs: 12,
@@ -134,13 +179,29 @@ status={status}
           toggleItems={[]}
           type="chip"
           emptyMessage="سفارشی برای شما به ثبت نرسیده است"
-          tableBody={<LimitOrderTable data={data} />}
+          tableBody={<LimitOrderTable
+          setTab={setTab}
+          getData={getData}
+             data={data}
+    setPrice={setPrice}
+    setTargetPrice={setTargetPrice}
+    setGold={setGold}
+setSelect={setSelect}
+setEditMode={setEditMode}
+setId={setId}
+             />}
           tableHead={[
             'نوع',
             'قیمت هدف',
-            'مقدار',
+            'قیمت',
+            'وزن',
+
             'وضعیت',
+            'کد پیگیری',
+
             'تاریخ',
+            'ویرایش',
+            'حذف'
           ]}
           listLength={data.length}
         />

@@ -8,30 +8,33 @@ import InputField from '@/app/Components/InputField/InputField';
 import Loading from '@/app/Components/Loading/Loading';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import priceFormater from '@/app/core/PriceFormater';
-import { ToggleItemsType } from '@/app/core/Types';
-import { limitOrder } from '@/lib/limit-order/limitOrder';
+import { editLimitOrder, limitOrder } from '@/lib/limit-order/limitOrder';
 import { Button, Stack, Typography } from '@mui/material';
 import { isAxiosError } from 'axios';
-import { useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { buyItems, sellItems } from './LimitOrder';
 
 interface Props {
   type: 'BUY' | 'SELL';
   getData:() => Promise<void>
+  price:string
+setPrice:Dispatch<SetStateAction<string>>
+id:number
+setId:Dispatch<SetStateAction<number>>
+targetPrice:string
+setTargetPrice:Dispatch<SetStateAction<string>>
+editMode:boolean
+setEditMode:Dispatch<SetStateAction<boolean>>
+gold:string
+setGold:Dispatch<SetStateAction<string>>
+select:string
+setSelect:Dispatch<SetStateAction<string>>
 }
 
-const buyItems: ToggleItemsType[] = [
-  { title: 'در قیمت پایین تر', value: 'min', id: 1 },
-];
-const sellItems: ToggleItemsType[] = [
-  { title: 'در قیمت بالاتر', value: 'max', id: 1 },
-];
 
-export default function Trade({ type,getData }: Props) {
+export default function Trade({id,setId,editMode,setEditMode, type,getData,gold,price,select,setGold,setPrice,setSelect,setTargetPrice,targetPrice }: Props) {
   const [isLoading,setIsLoading] = useState(false)
-  const [price, setPrice] = useState('');
-  const [targetPrice, setTargetPrice] = useState('');
-  const [select, setSelect] = useState(type === 'SELL' ? sellItems[0].value : buyItems[0].value);
-  const [gold,setGold] = useState('')
+
   const{assets} = useAssets()
       const handlePriceChange =  async (val: string) => {
     setPrice(val);
@@ -55,8 +58,16 @@ export default function Trade({ type,getData }: Props) {
   const handleClick = async ()=>{
     setIsLoading(true)
     try{
-      const response = await limitOrder(type,targetPrice,type==='BUY' ? price:gold)
-      showSnackbar(response.data.message,'success')
+      if (editMode){
+      const response = await editLimitOrder(id,targetPrice,gold,price)
+      showSnackbar(response.message,'success')
+      setEditMode(false)
+      setId(0)
+      }else{
+        const response = await limitOrder(type,targetPrice,type==='BUY' ? price:gold)
+        showSnackbar(response.data.message,'success')
+      }
+
       getData()
       setPrice('')
       setGold('')
@@ -69,8 +80,12 @@ export default function Trade({ type,getData }: Props) {
       setIsLoading(false)
     }
   }
+  useEffect(()=>{
+    setSelect(type === 'BUY' ? 'min':'max')
+  },[type,setSelect])
 
   return (
+   <Stack component={'div'} id='#trade'>
     <Card
       style={{
         gap: 3.5,
@@ -85,7 +100,7 @@ export default function Trade({ type,getData }: Props) {
       
       
 
-      <Stack gap={3.5}>
+      <Stack gap={3.5} component={'div'} >
         <InputField type='number'
           placeholder={type === 'BUY' ? 'قیمت مد نظر خرید' : 'قیمت مد نظر فروش'}
           title="تومان"
@@ -153,5 +168,6 @@ export default function Trade({ type,getData }: Props) {
        {isLoading ? <Loading size={30} />:' ثبت سفارش'}
       </Button>
     </Card>
+   </Stack>
   );
 }

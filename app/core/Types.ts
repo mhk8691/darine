@@ -253,14 +253,16 @@ export interface AddressesDataType {
 }
 
 export interface LimitOrderDataType {
-              "id": number,
-            "order_type": "SELL"|'BUY',
-            "target_price": number,
-            "amount_toman": number,
-            "gold_weight": number,
-            "estimated_weight": number,
+  "id": number,
+            "type": "BUY" | 'SELL',
+            "type_display": string,
             "status": StatusType,
-            "created_at": string
+            "status_display": string,
+            "amount_gr":string,
+            "price_per_gram": string,
+            "total_amount": string,
+            "tracking_code": string,
+            "created_at": string,
 }
 
 export interface PricesDataType {

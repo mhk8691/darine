@@ -2,10 +2,48 @@ import { formatDate } from '@/app/core/FormatDate'
 import { handleColorStatus, handleTitleStatus } from '@/app/core/handleStatus'
 import priceFormater from '@/app/core/PriceFormater'
 import { LimitOrderDataType } from '@/app/core/Types'
-import { Stack, TableBody, TableCell, TableRow, Typography } from '@mui/material'
-import React from 'react'
+import { IconButton, Stack, TableBody, TableCell, TableRow, Typography } from '@mui/material'
+import { Dispatch, SetStateAction } from 'react'
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import BlockIcon from '@mui/icons-material/Block';
+import { useRouter } from 'next/navigation'
+import { cancelLimitOrder } from '@/lib/limit-order/limitOrder'
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar'
+import { isAxiosError } from 'axios'
+import Link from 'next/link'
+interface Props{
+  setPrice:Dispatch<SetStateAction<string>>
+  setId:Dispatch<SetStateAction<number>>
+  setTargetPrice:Dispatch<SetStateAction<string>>
+  setEditMode:Dispatch<SetStateAction<boolean>>
+  setGold:Dispatch<SetStateAction<string>>
+  setSelect:Dispatch<SetStateAction<string>>
+  data:LimitOrderDataType[]
+  getData:() => Promise<void>
+  setTab:Dispatch<SetStateAction<number>>
+}
 
-export default function LimitOrderTable({data}:{data:LimitOrderDataType[]}) {
+export default function LimitOrderTable({setTab,getData,setId,data,setGold,setPrice,setSelect,setTargetPrice,setEditMode}:Props) {
+  const handleEdit = async (row:LimitOrderDataType)=>{
+    setPrice(row.total_amount)
+    setTargetPrice(row.price_per_gram)
+    setGold(row.amount_gr)
+    setSelect(row.type === 'BUY' ? 'min':'max')
+    setEditMode(true)
+    setId(row.id)
+    setTab(row.type ==='BUY' ? 0 :1)
+  }
+  const handleRemove = async(id:number)=>{
+    try{
+      const response = await cancelLimitOrder(id)
+      getData()
+      showSnackbar(response.message,'success')
+    }catch(error:unknown){
+      if (isAxiosError(error)){
+        showSnackbar(error.response?.data.message,'error')
+      }
+    }
+  }
   return (
     <TableBody>
             {data?.map((row) => (
@@ -31,7 +69,7 @@ export default function LimitOrderTable({data}:{data:LimitOrderDataType[]}) {
                     gap={0.5}
                     justifyContent={'center'}
                   >
-                    <Typography variant="body1">{row.order_type === 'BUY' ? 'خرید':'فروش'}</Typography>
+                    <Typography variant="body1">{row.type_display}</Typography>
                   
                   </Stack>
                 </TableCell>
@@ -54,7 +92,7 @@ export default function LimitOrderTable({data}:{data:LimitOrderDataType[]}) {
                       variant="body1"
                     
                     >
-                        {priceFormater(row.target_price)} تومان
+                        {priceFormater(+row.price_per_gram)} تومان
                     </Typography>
                   </Stack>
                 </TableCell>
@@ -76,7 +114,29 @@ export default function LimitOrderTable({data}:{data:LimitOrderDataType[]}) {
                       variant="body1"
                     
                     >
-                        {row.order_type === 'BUY'?  `${priceFormater(row.amount_toman)} تومان` :`${priceFormater(row.gold_weight)} گرم`} 
+                        {priceFormater(+row.total_amount)} تومان
+                    </Typography>
+                  </Stack>
+                </TableCell>
+
+                <TableCell
+                  align="center"
+                  sx={{
+                    py: 2.5,
+                    px: 2.5,
+                  }}
+                >
+                  <Stack
+                    direction={'row'}
+                    alignItems={'center'}
+                    gap={0.5}
+                    justifyContent={'center'}
+                  >
+                    <Typography
+                      variant="body1"
+                    
+                    >
+                        {priceFormater(+row.amount_gr)} گرم
                     </Typography>
                   </Stack>
                 </TableCell>
@@ -95,10 +155,19 @@ export default function LimitOrderTable({data}:{data:LimitOrderDataType[]}) {
                     gap={0.5}
                     justifyContent={'center'}
                   >
-                    <Typography variant="body1" sx={{color:handleColorStatus(row.status)}}>{handleTitleStatus(row.status)}</Typography>
+                    <Typography variant="body1" sx={{color:handleColorStatus(row.status)}}>{row.status_display}</Typography>
                   </Stack>
                 </TableCell>
-      
+                <TableCell
+                  align="center"
+                  sx={{
+                    fontSize: '16px',
+                    py: 2.5,
+                    px: 2.5,
+                  }}
+                >
+                  {row.tracking_code}
+                </TableCell>
              
                 <TableCell
                   align="center"
@@ -109,6 +178,31 @@ export default function LimitOrderTable({data}:{data:LimitOrderDataType[]}) {
                   }}
                 >
                   {formatDate(row.created_at)}
+                </TableCell>
+                <TableCell
+                  align="center"
+                  sx={{
+                    fontSize: '16px',
+                    py: 2.5,
+                    px: 2.5,
+                  }}
+                >
+                  <IconButton onClick={()=>handleEdit(row)} LinkComponent={Link} href='#trade'>
+                    <ModeEditIcon/>
+                  </IconButton>
+                </TableCell>
+                   <TableCell
+                  align="center"
+                  sx={{
+                    fontSize: '16px',
+                    py: 2.5,
+                    px: 2.5,
+                  }}
+                >
+                  <IconButton onClick={()=>handleRemove(row.id)}>
+                  <BlockIcon/>
+                  </IconButton>
+
                 </TableCell>
                 
               </TableRow>
