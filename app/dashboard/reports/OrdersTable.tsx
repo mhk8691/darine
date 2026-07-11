@@ -73,6 +73,9 @@ function OrderRow({ row, onOpenDetail }: OrderRowProps) {
         <TableCell align="center">
           {priceFormater(row.total_toman_amount)} تومان
         </TableCell>
+         <TableCell align="center">
+          {priceFormater(row.total_gold_amount)} گرم
+        </TableCell>
 
         {/* date */}
         <TableCell align="center">{formatDate(row.created_at)}</TableCell>
@@ -186,6 +189,7 @@ export default function OrdersTable({
           'کد رهگیری',
           'وضعیت',
           'مبلغ',
+          'وزن',
           'تاریخ',
           'نوع پرداخت',
           '',

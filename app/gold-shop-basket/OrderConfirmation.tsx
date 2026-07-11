@@ -61,13 +61,21 @@ export default function OrderConfirmation({ setOpen,deliveryType,addressId}: Pro
       return total + item.total_price * item.quantity;
     }, 0);
   };
+  const getTotalWeight = (): number => {
+  const cart = getCart();
+
+  return cart.reduce((total, item) => {
+    return total +( item.product_weight_with_fee || 0) * item.quantity;
+  }, 0);
+};
 
   const totalPrice = getTotalPrice();
+  const totalWeight = getTotalWeight();
 
   const walletBalance = assets?.wallet_balance ?? 0;
 
   const selectedBalanceValue =walletBalance
-  const goldDiff = assets.gold_balance - (totalPrice / assets.gold_price)
+  const goldDiff = (assets.gold_balance - totalWeight)
 
   const diff = selectedBalanceValue - totalPrice;
 
@@ -124,7 +132,7 @@ export default function OrderConfirmation({ setOpen,deliveryType,addressId}: Pro
       active !== 'TOMAN' &&  <Stack sx={rowStyle}>
         <Typography sx={titleStyle}>مجموع گرم وزنی سفارش</Typography>
         <Typography fontSize={18}>
-          {priceFormater(totalPrice / assets.gold_price)} گرم
+          {priceFormater(totalWeight)} گرم
         </Typography>
       </Stack>
      }

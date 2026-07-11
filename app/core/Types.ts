@@ -217,7 +217,9 @@ admin_note:string
   payment_method_display: string;
   delivery_type_display: string;
   total_toman_amount: number;
+  payment_method:'GOLD' | 'TOMAN'
   created_at: string;
+  total_gold_amount:number
 
   items: {
                     "id": number,

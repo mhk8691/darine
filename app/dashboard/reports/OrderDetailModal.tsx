@@ -154,6 +154,7 @@ export default function OrderDetailModal({
             />
           }
         />
+        <DetailRow label="وزن" value={`${priceFormater(data.total_gold_amount)} گرم`} /> 
 
         <DetailRow label="کد رهگیری" value={data.tracking_code} />
 
