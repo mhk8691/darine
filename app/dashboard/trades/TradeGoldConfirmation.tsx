@@ -24,6 +24,7 @@ interface Props{
 }
 
 export default function TradeGoldConfirmation({select,open,setOpen,title,handleSubmit,isLoading,tradeData}:Props) {
+  const {assets} = useAssets()
     const [data,setData] = useState<BuyCalculateType>({} as BuyCalculateType)
     useEffect(()=>{
       if (!open) return
@@ -73,7 +74,7 @@ export default function TradeGoldConfirmation({select,open,setOpen,title,handleS
       </Typography>
       <Stack direction={'row'} gap={1} alignItems={'center'} mt={2}>
    <Typography variant="body2" >
-      موجودی کیف پول:
+     {select === 'buy' ? ' موجودی کیف پول:':'موجودی طلا:'}
     </Typography>
     <Typography 
       variant="body2" 
@@ -81,7 +82,7 @@ export default function TradeGoldConfirmation({select,open,setOpen,title,handleS
         fontWeight: 'bold'
       }}
     >
-      {priceFormater(data.wallet?.accessible_toman)} تومان
+      {priceFormater(select === 'buy'?data.wallet?.accessible_toman:assets.gold_balance)} {select === 'buy' ? 'تومان':'گرم'} 
     </Typography>
       </Stack>
         <Stack direction={'column'} gap={1}  mt={3}>
