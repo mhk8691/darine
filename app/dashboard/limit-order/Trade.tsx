@@ -57,7 +57,7 @@ export default function Trade({
     setPrice(val);
     const num = Number(val);
     if (!isNaN(num) && assets?.gold_price) {
-      setGold(String(num / assets.gold_price));
+      setGold(String(num / assets?.gold_price_with_fees.buy));
     } else {
       setGold('');
     }
@@ -67,7 +67,7 @@ export default function Trade({
     setGold(val);
     const num = Number(val);
     if (!isNaN(num) && assets?.gold_price) {
-      setPrice(String(num * assets.gold_price));
+     setPrice(String(num * assets?.gold_price_with_fees.buy));
     } else {
       setPrice('');
     }

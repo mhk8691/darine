@@ -11,7 +11,7 @@ import { goldBuy } from '@/lib/gold/goldBuy'
 import { goldSell } from '@/lib/gold/goldSell'
 import { Button, Grid, Stack, Typography, useMediaQuery, useTheme } from '@mui/material'
 import { isAxiosError } from 'axios'
-import React, { Dispatch, SetStateAction, useState } from 'react'
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import TradeGoldConfirmation from './TradeGoldConfirmation'
 import TradeGuide from './TradeGuide'
 import priceFormater from '@/app/core/PriceFormater'
@@ -42,7 +42,13 @@ export default function Trading({setData,reportsParams,filter,dateRange}:Props) 
     setPrice(val);
     const num = Number(val);
     if (!isNaN(num)) {
-      setGold(String(num / assets?.gold_price));
+      if (select === 'buy'){
+      setGold(String(num / assets?.gold_price_with_fees.buy));
+
+      }else{
+      setGold(String(num / assets?.gold_price_with_fees.sell));
+
+      }
     } else {
       setGold('');
     }
@@ -52,7 +58,13 @@ export default function Trading({setData,reportsParams,filter,dateRange}:Props) 
     setGold(val);
     const num = Number(val);
     if (!isNaN(num)) {
-      setPrice(String(num * assets?.gold_price));
+      if (select === 'buy'){
+        setPrice(String(num * assets?.gold_price_with_fees.buy));
+
+      }else{
+      setPrice(String(num * assets?.gold_price_with_fees.sell));
+
+      }
     } else {
       setPrice('');
     }
@@ -62,7 +74,7 @@ export default function Trading({setData,reportsParams,filter,dateRange}:Props) 
     const methood = assets?.wallet_balance > 0 ? 'WALLET':'GATEWAY'
     try {
       setIsLoading(true)
-      const response = await goldBuy(price,methood);
+      const response = await goldBuy(methood,gold);
       const newData = await getReports('gold',reportsParams||'',dateRange,filter)
       
       setData&&setData(newData)
@@ -82,7 +94,7 @@ export default function Trading({setData,reportsParams,filter,dateRange}:Props) 
   const handleSellGold = async () => {
     try {
       setIsLoading(true)
-      const response = await goldSell(price);
+      const response = await goldSell(gold);
       const newData = await getReports('gold',reportsParams || '',dateRange,filter)
       setData&&setData(newData)
       showSnackbar(response.data.message,'success')
@@ -98,6 +110,14 @@ export default function Trading({setData,reportsParams,filter,dateRange}:Props) 
       setIsLoading(false)
     }
   };
+  // useEffect(()=>{
+  //   if (select === 'buy'){
+  //     handlePriceChange(assets.wallet_balance.toString())
+  //   }
+  //   else{
+  //     handleGoldChange(assets.gold_balance.toString())
+  //   }
+  // },[select])
   return (
       <>
       <Container
