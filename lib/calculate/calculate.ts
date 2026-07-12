@@ -10,11 +10,11 @@ export const buyCalculate = async (toman:string)=>{
     return response.data
 }
 
-export const sellCalculate = async (toman:string)=>{
-     const roundGold = Math.round(+toman * 1000) / 1000
+export const sellCalculate = async (weight:string)=>{
+     const roundGold = Math.round(+weight * 1000) / 1000
     const response = await api.post<ApiResponse<BuyCalculateType>>('/gold/sell/calculate/',{
             "payment_method": "WALLET",
-    "toman": roundGold
+    "weight": roundGold
     })
     return response.data
 }

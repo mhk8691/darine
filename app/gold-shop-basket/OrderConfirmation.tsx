@@ -107,7 +107,7 @@ export default function OrderConfirmation({ setOpen,deliveryType,addressId}: Pro
     active !== 'TOMAN' &&     <Stack sx={rowStyle}>
         <Typography sx={titleStyle}>موجودی طلا</Typography>
         <Typography fontSize={18}>
-          {priceFormater(assets.gold_balance)} گرم
+          {priceFormater(assets.gold_accessible)} گرم
         </Typography>
       </Stack>
   }

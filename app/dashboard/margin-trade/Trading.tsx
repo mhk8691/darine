@@ -270,7 +270,7 @@ export default function Trading() {
   handleGoldChange(assets.gold_balance.toString())
   }}
 >
-  موجودی: {priceFormater(assets.gold_balance)} گرم
+  موجودی تومان دردسترس: {priceFormater(assets.gold_balance)} گرم
 </Typography>
         </Stack>
 

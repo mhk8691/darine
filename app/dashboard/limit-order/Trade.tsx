@@ -151,7 +151,7 @@ export default function Trade({
                   handlePriceChange(assets.wallet_balance.toString());
                 }}
               >
-                موجودی: {priceFormater(assets.wallet_balance)} تومان
+                موجودی تومان دردسترس: {priceFormater(assets.wallet_balance)} تومان
               </Typography>
             ) : (
               <Typography
@@ -168,7 +168,7 @@ export default function Trade({
                   handleGoldChange(assets.gold_balance.toString());
                 }}
               >
-                موجودی: {priceFormater(assets.gold_balance)} گرم
+                موجودی طلای در دسترس: {priceFormater(assets.gold_accessible)} گرم
               </Typography>
             )}
             <Stack direction="row" justifyContent="center">

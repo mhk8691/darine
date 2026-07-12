@@ -51,7 +51,7 @@ export default function MobileWalletStatus({
             }}
             sx={{ color: 'text.muted' }}
           >
-            موجودی طلا
+موجودی طلای در دسترس
           </Typography>
           <Stack direction={'row'} gap={0.5} alignItems={'center'} fontWeight={500}>
             <Typography
@@ -62,7 +62,7 @@ export default function MobileWalletStatus({
               }}
               sx={{ color: 'text.title' }}
             >
-              {visible ? priceFormater(assets?.gold_balance) : '***'}
+              {visible ? priceFormater(assets?.gold_accessible) : '***'}
             </Typography>
             <Typography
               variant="body1"

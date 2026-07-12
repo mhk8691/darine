@@ -37,7 +37,7 @@ export default function WalletHeader() {
               }}
             >
               <Typography variant="body1" fontSize={14} sx={{ color: 'text.muted' }}>
-                موجودی طلا
+               موجودی طلای در دسترس
               </Typography>
               <Stack direction={'row'} gap={0.5} alignItems={'center'} justifyContent={'center'}>
                 <Typography
@@ -46,7 +46,7 @@ export default function WalletHeader() {
                   fontWeight={500}
                   sx={{ color: 'text.title' }}
                 >
-                  {isVisible ? priceFormater(assets?.gold_balance) : '***'}
+                  {isVisible ? priceFormater(assets?.gold_accessible) : '***'}
                 </Typography>
                 <Typography
                   variant="body1"
@@ -77,7 +77,7 @@ export default function WalletHeader() {
               }}
             >
               <Typography variant="body1" fontSize={14} sx={{ color: 'text.muted' }}>
-                موجودی تومان
+               موجودی تومان دردسترس
               </Typography>
               <Stack direction={'row'} gap={0.5} alignItems={'center'} fontWeight={500} justifyContent={'center'}>
                 <Typography variant="body1" fontSize={{xs:16,md:20}} sx={{ color: 'text.title' }}>

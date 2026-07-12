@@ -41,7 +41,7 @@ export default function TradeGoldConfirmation({select,open,setOpen,title,handleS
       }
        const getDataSell = async ()=>{
         try{
-          const response = await sellCalculate(tradeData.price.toString())
+          const response = await sellCalculate(tradeData.weight.toString())
           setData(response.data)
         }
         catch(error:unknown){
