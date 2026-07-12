@@ -266,11 +266,11 @@ export default function Trading() {
     ml: 1,
     cursor: 'pointer',
   }}
-  onClick={() => {    setPrice(assets.gold_balance.toString())
-  handleGoldChange(assets.gold_balance.toString())
+  onClick={() => {    setPrice(assets.wallet_balance.toString())
+  handlePriceChange(assets.wallet_balance.toString())
   }}
 >
-  موجودی تومان دردسترس: {priceFormater(assets.gold_balance)} گرم
+  موجودی تومان دردسترس: {priceFormater(assets.wallet_balance)} تومان
 </Typography>
         </Stack>
 

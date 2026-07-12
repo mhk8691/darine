@@ -79,10 +79,12 @@ export default function TradeGoldConfirmation({select,open,setOpen,title,handleS
     <Typography 
       variant="body2" 
       sx={{ 
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+                color:select === 'buy' ?data?.wallet?.accessible_toman >=0?'success.main':'error.main':  assets.gold_accessible >= 0 ? 'success.main':'error.main'
+
       }}
     >
-      {priceFormater(select === 'buy'?data.wallet?.accessible_toman:assets.gold_balance)} {select === 'buy' ? 'تومان':'گرم'} 
+      {priceFormater(select === 'buy'?data.wallet?.accessible_toman:assets.gold_accessible)} {select === 'buy' ? 'تومان':'گرم'} 
     </Typography>
       </Stack>
         <Stack direction={'column'} gap={1}  mt={3}>

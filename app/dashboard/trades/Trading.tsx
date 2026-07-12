@@ -203,7 +203,7 @@ export default function Trading({setData,reportsParams,filter,dateRange}:Props) 
     cursor: 'pointer',
   }}
   onClick={() => {    setPrice(assets.gold_accessible.toString())
-  handleGoldChange(assets.gold_balance.toString())
+  handleGoldChange(assets.gold_accessible.toString())
   }}
 >
   موجودی طلای در دسترس: {priceFormater(assets.gold_accessible)} گرم
