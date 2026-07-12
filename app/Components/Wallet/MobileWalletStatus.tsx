@@ -104,7 +104,7 @@ export default function MobileWalletStatus({
             }}
             sx={{ color: 'text.muted' }}
           >
-            موجودی تومان
+            موجودی تومان در دسترس
           </Typography>
           <Stack direction={'row'} gap={0.5} alignItems={'center'} fontWeight={500}>
             <Typography

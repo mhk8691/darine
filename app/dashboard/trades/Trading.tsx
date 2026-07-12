@@ -202,7 +202,7 @@ export default function Trading({setData,reportsParams,filter,dateRange}:Props) 
     ml: 1,
     cursor: 'pointer',
   }}
-  onClick={() => {    setPrice(assets.gold_balance.toString())
+  onClick={() => {    setPrice(assets.gold_accessible.toString())
   handleGoldChange(assets.gold_balance.toString())
   }}
 >

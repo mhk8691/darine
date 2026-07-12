@@ -165,7 +165,7 @@ export default function Trade({
                   cursor: 'pointer',
                 }}
                 onClick={() => {
-                  handleGoldChange(assets.gold_balance.toString());
+                  handleGoldChange(assets.gold_accessible.toString());
                 }}
               >
                 موجودی طلای در دسترس: {priceFormater(assets.gold_accessible)} گرم
