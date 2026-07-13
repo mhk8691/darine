@@ -75,7 +75,7 @@ export default function OrderConfirmation({ setOpen,deliveryType,addressId}: Pro
   const walletBalance = assets?.wallet_balance ?? 0;
 
   const selectedBalanceValue =walletBalance
-  const goldDiff = (assets.gold_balance - totalWeight)
+  const goldDiff = (assets.gold_accessible - totalWeight)
 
   const diff = selectedBalanceValue - totalPrice;
 
