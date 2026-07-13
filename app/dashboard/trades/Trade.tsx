@@ -40,7 +40,7 @@ const [openModal,setOpenModal] =useState(false)
 
    <Grid size={{ xs: 12, md: 7.2 }} height={'100%'}>
           <ChartGold
-            positionPrice="bottom"
+            positionPrice="both"
             priceStyle={{
               mt: {
                 xs: 2,

@@ -177,7 +177,7 @@ export default function LimitOrder() {
         }}
       >
         <ChartGold
-          positionPrice="bottom"
+          positionPrice="both"
           priceStyle={{
             mt: { xs: 2, md: 5 },
             mb: { xs: 0, md: 2.5 },

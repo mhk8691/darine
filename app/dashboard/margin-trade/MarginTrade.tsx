@@ -89,7 +89,7 @@ export default function MarginTrade() {
         }}
       >
         <ChartGold
-          positionPrice="bottom"
+         positionPrice="both"
           priceStyle={{
             mt: {
               xs: 2,
