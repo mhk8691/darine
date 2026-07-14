@@ -62,20 +62,32 @@ api.interceptors.response.use(
       originalRequest?.url?.includes('/accounts/token/refresh/');
 
     // ------------------------
-    // NETWORK ERROR
-    // ------------------------
-    if (!error.response && !isRefreshCall) {
-      showNetworkError();
-      return Promise.reject(error);
-    }
+// NETWORK ERROR
+// ------------------------
+if (!error.response && !isRefreshCall) {
+  if (typeof window !== 'undefined') {
+    sessionStorage.setItem(
+      'redirectAfterReconnect',
+      window.location.pathname + window.location.search,
+    );
+    window.location.href = '/connection-error?type=network';
+  }
+  return Promise.reject(error);
+}
 
-    // ------------------------
-    // SERVER ERROR (500+)
-    // ------------------------
-    if (error.response && error.response.status >= 500) {
-      showServerError();
-      return Promise.reject(error);
-    }
+// ------------------------
+// SERVER ERROR (500+)
+// ------------------------
+if (error.response && error.response.status >= 500) {
+  if (typeof window !== 'undefined') {
+    sessionStorage.setItem(
+      'redirectAfterReconnect',
+      window.location.pathname + window.location.search,
+    );
+    window.location.href = '/connection-error?type=server';
+  }
+  return Promise.reject(error);
+}
 
     // ------------------------
     // 401 REFRESH TOKEN
