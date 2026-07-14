@@ -94,7 +94,7 @@ export default function LimitOrderTable({
 
           <TableCell align="center" sx={{ py: 2.5, px: 2.5 }}>
             <Stack direction={'row'} alignItems={'center'} gap={0.5} justifyContent={'center'}>
-              <Typography variant="body1" sx={{ color: row.status === 'CANCELLED' ? 'error.main' : row.status === 'COMPLETED'?'success.main':'warning.main' }}>
+              <Typography variant="body1" sx={{ color: row.status === 'CANCELLED' ? 'error.main' : row.status === 'EXECUTED'?'success.main':'warning.main' }}>
                 {row.status_display}
               </Typography>
             </Stack>

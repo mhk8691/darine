@@ -263,7 +263,7 @@ export interface LimitOrderDataType {
   "id": number,
             "type": "BUY" | 'SELL',
             "type_display": string,
-            "status": "COMPLETED" | 'CANCELLED' | 'PENDING',
+            "status": "EXECUTED" | 'CANCELLED' | 'PENDING',
             "status_display": string,
             "amount_gr":string,
             "price_per_gram": string,
