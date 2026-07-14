@@ -30,6 +30,7 @@ const exactHiddenRoutes = [
   '/login/forget',
   '/login/signup',
   '/gold-shop-basket',
+  '/connection-error'
 ];
 
 const prefixHiddenRoutes = ['/login', '/dashboard'];
