@@ -116,92 +116,8 @@ export default function Navbar() {
                 }}
               />
             </IconButton> 
-         <Stack
-  component={Link}
-  href="/dashboard"
-  sx={{
-    width: 60,
-    height: 60,
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'relative',
-    perspective: '800px',
-
-    '&::before': {
-      content: '""',
-      position: 'absolute',
-      width: 55,
-      height: 55,
-      borderRadius: '50%',
-      background:
-        'radial-gradient(circle, rgba(255,215,0,.55), transparent 70%)',
-      opacity: 0,
-      animation: 'goldGlow 6s ease-in-out infinite',
-    },
-
-    '&::after': {
-      content: '""',
-      position: 'absolute',
-      inset: 5,
-      borderRadius: '50%',
-      background:
-        'linear-gradient(120deg, transparent 30%, rgba(255,255,255,.9), transparent 70%)',
-      transform: 'translateX(-150%) rotate(20deg)',
-      animation: 'shine 6s ease-in-out infinite',
-      pointerEvents: 'none',
-    },
-
-    '& img': {
-      position: 'relative',
-      zIndex: 2,
-      animation: 'logoFlip 6s ease-in-out infinite',
-      transformStyle: 'preserve-3d',
-    },
-
-    '@keyframes logoFlip': {
-      '0%, 70%': {
-        transform: 'rotateY(0deg)',
-      },
-      '80%': {
-        transform: 'rotateY(180deg)',
-      },
-      '90%,100%': {
-        transform: 'rotateY(360deg)',
-      },
-    },
-
-    '@keyframes goldGlow': {
-      '0%,70%,100%': {
-        opacity: 0,
-        transform: 'scale(.8)',
-      },
-      '80%,90%': {
-        opacity: 1,
-        transform: 'scale(1.25)',
-      },
-    },
-
-    '@keyframes shine': {
-      '0%,70%': {
-        transform: 'translateX(-150%) rotate(20deg)',
-      },
-      '85%': {
-        transform: 'translateX(150%) rotate(20deg)',
-      },
-      '100%': {
-        transform: 'translateX(150%) rotate(20deg)',
-      },
-    },
-  }}
->
-  <Image
-    src="/images/darineh.png"
-    width={50}
-    height={50}
-    alt="Darineh"
-  />
-        </Stack>
-        {/* <Stack
+   
+        <Stack
   component={Link}
   href="/dashboard"
   sx={{
@@ -335,7 +251,7 @@ export default function Navbar() {
   <Box component="span" className="sparkle" />
   <Box component="span" className="sparkle" />
   <Box component="span" className="sparkle" />
-</Stack> */}
+</Stack>
           </Stack>
           {isUpLg && (
             <Stack direction={'row'} gap={2.5} alignItems={'center'}>
