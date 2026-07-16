@@ -1,6 +1,6 @@
 'use client';
 import { MenuType } from '@/app/core/Types';
-import { IconButton, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, IconButton, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 import ButtonGroupe from './ButtonGroupe';
@@ -115,10 +115,227 @@ export default function Navbar() {
                   },
                 }}
               />
-            </IconButton>
-            <Stack component={Link} href={'/dashboard'}>
-              <Image src={'/images/darineh.png'} width={50} height={50} alt="" />{' '}
-            </Stack>
+            </IconButton> 
+         <Stack
+  component={Link}
+  href="/dashboard"
+  sx={{
+    width: 60,
+    height: 60,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+    perspective: '800px',
+
+    '&::before': {
+      content: '""',
+      position: 'absolute',
+      width: 55,
+      height: 55,
+      borderRadius: '50%',
+      background:
+        'radial-gradient(circle, rgba(255,215,0,.55), transparent 70%)',
+      opacity: 0,
+      animation: 'goldGlow 6s ease-in-out infinite',
+    },
+
+    '&::after': {
+      content: '""',
+      position: 'absolute',
+      inset: 5,
+      borderRadius: '50%',
+      background:
+        'linear-gradient(120deg, transparent 30%, rgba(255,255,255,.9), transparent 70%)',
+      transform: 'translateX(-150%) rotate(20deg)',
+      animation: 'shine 6s ease-in-out infinite',
+      pointerEvents: 'none',
+    },
+
+    '& img': {
+      position: 'relative',
+      zIndex: 2,
+      animation: 'logoFlip 6s ease-in-out infinite',
+      transformStyle: 'preserve-3d',
+    },
+
+    '@keyframes logoFlip': {
+      '0%, 70%': {
+        transform: 'rotateY(0deg)',
+      },
+      '80%': {
+        transform: 'rotateY(180deg)',
+      },
+      '90%,100%': {
+        transform: 'rotateY(360deg)',
+      },
+    },
+
+    '@keyframes goldGlow': {
+      '0%,70%,100%': {
+        opacity: 0,
+        transform: 'scale(.8)',
+      },
+      '80%,90%': {
+        opacity: 1,
+        transform: 'scale(1.25)',
+      },
+    },
+
+    '@keyframes shine': {
+      '0%,70%': {
+        transform: 'translateX(-150%) rotate(20deg)',
+      },
+      '85%': {
+        transform: 'translateX(150%) rotate(20deg)',
+      },
+      '100%': {
+        transform: 'translateX(150%) rotate(20deg)',
+      },
+    },
+  }}
+>
+  <Image
+    src="/images/darineh.png"
+    width={50}
+    height={50}
+    alt="Darineh"
+  />
+        </Stack>
+        {/* <Stack
+  component={Link}
+  href="/dashboard"
+  sx={{
+    width: 60,
+    height: 60,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+    perspective: '800px',
+
+    // حلقه گرادیانت چرخان دور لوگو
+    '&::before': {
+      content: '""',
+      position: 'absolute',
+      inset: -4,
+      borderRadius: '50%',
+      background:
+        'conic-gradient(from 0deg, transparent, rgba(255,215,0,.9), transparent 30%, transparent 70%, rgba(255,180,0,.7), transparent)',
+      opacity: 0,
+      animation: 'ringSpin 6s linear infinite, ringFade 6s ease-in-out infinite',
+      filter: 'blur(1px)',
+    },
+
+    // درخشش پالسی پشت لوگو
+    '&::after': {
+      content: '""',
+      position: 'absolute',
+      width: 55,
+      height: 55,
+      borderRadius: '50%',
+      background:
+        'radial-gradient(circle, rgba(255,215,0,.6), rgba(255,180,0,.2) 50%, transparent 75%)',
+      opacity: 0,
+      animation: 'goldGlow 6s ease-in-out infinite',
+      filter: 'blur(2px)',
+    },
+
+    '& .logo-wrap': {
+      position: 'relative',
+      width: 50,
+      height: 50,
+      zIndex: 2,
+      borderRadius: '50%',
+      overflow: 'hidden',
+      animation: 'logoFlip 6s ease-in-out infinite, logoBreathe 3s ease-in-out infinite',
+      transformStyle: 'preserve-3d',
+    },
+
+    '& .logo-wrap img': {
+      position: 'relative',
+      zIndex: 2,
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+    },
+
+    // شاین که روی خود لوگو می‌لغزه
+    '& .shine': {
+      content: '""',
+      position: 'absolute',
+      inset: 0,
+      zIndex: 3,
+      background:
+        'linear-gradient(120deg, transparent 30%, rgba(255,255,255,.85), transparent 70%)',
+      transform: 'translateX(-150%) rotate(20deg)',
+      animation: 'shine 6s ease-in-out infinite',
+      pointerEvents: 'none',
+    },
+
+    // ذرات اسپارکل
+    '& .sparkle': {
+      position: 'absolute',
+      width: 4,
+      height: 4,
+      borderRadius: '50%',
+      background: '#fff5c2',
+      boxShadow: '0 0 6px 2px rgba(255,215,0,.8)',
+      opacity: 0,
+    },
+    '& .sparkle:nth-of-type(1)': { top: 2, left: 8, animation: 'sparkle1 6s ease-in-out infinite' },
+    '& .sparkle:nth-of-type(2)': { top: 10, right: 0, animation: 'sparkle2 6s ease-in-out infinite' },
+    '& .sparkle:nth-of-type(3)': { bottom: 4, left: 4, animation: 'sparkle3 6s ease-in-out infinite' },
+
+    '@keyframes ringSpin': {
+      '0%': { transform: 'rotate(0deg)' },
+      '100%': { transform: 'rotate(360deg)' },
+    },
+    '@keyframes ringFade': {
+      '0%,70%,100%': { opacity: 0 },
+      '80%,90%': { opacity: 1 },
+    },
+    '@keyframes goldGlow': {
+      '0%,70%,100%': { opacity: 0, transform: 'scale(.8)' },
+      '80%,90%': { opacity: 1, transform: 'scale(1.3)' },
+    },
+    '@keyframes logoFlip': {
+      '0%,70%': { transform: 'rotateY(0deg)' },
+      '80%': { transform: 'rotateY(180deg)' },
+      '90%,100%': { transform: 'rotateY(360deg)' },
+    },
+    '@keyframes logoBreathe': {
+      '0%,100%': { transform: 'scale(1)' },
+      '50%': { transform: 'scale(1.05)' },
+    },
+    '@keyframes shine': {
+      '0%,70%': { transform: 'translateX(-150%) rotate(20deg)' },
+      '85%': { transform: 'translateX(150%) rotate(20deg)' },
+      '100%': { transform: 'translateX(150%) rotate(20deg)' },
+    },
+    '@keyframes sparkle1': {
+      '0%,75%,100%': { opacity: 0, transform: 'scale(.5)' },
+      '82%': { opacity: 1, transform: 'scale(1.2)' },
+      '88%': { opacity: 0, transform: 'scale(.5)' },
+    },
+    '@keyframes sparkle2': {
+      '0%,78%,100%': { opacity: 0, transform: 'scale(.5)' },
+      '85%': { opacity: 1, transform: 'scale(1.2)' },
+      '91%': { opacity: 0, transform: 'scale(.5)' },
+    },
+    '@keyframes sparkle3': {
+      '0%,80%,100%': { opacity: 0, transform: 'scale(.5)' },
+      '87%': { opacity: 1, transform: 'scale(1.2)' },
+      '93%': { opacity: 0, transform: 'scale(.5)' },
+    },
+  }}
+>
+  <Box className="logo-wrap">
+    <Image src="/images/darineh.png" width={50} height={50} alt="Darineh" />
+    <Box component="span" className="shine" />
+  </Box>
+  <Box component="span" className="sparkle" />
+  <Box component="span" className="sparkle" />
+  <Box component="span" className="sparkle" />
+</Stack> */}
           </Stack>
           {isUpLg && (
             <Stack direction={'row'} gap={2.5} alignItems={'center'}>

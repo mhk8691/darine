@@ -97,6 +97,10 @@ export interface AllAssetsDataType {
         "buy": number,
         "sell": number
     },
+      "fees": {
+        "gold_buy_fee": number,
+        "gold_sell_fee": number,
+    },
 }
 
 export interface StatisticsDataType {

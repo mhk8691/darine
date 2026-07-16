@@ -52,26 +52,33 @@ export default function Trade({
   const [isLoading, setIsLoading] = useState(false);
 
   const { assets } = useAssets();
+const handlePriceChange = (val: string) => {
+  setPrice(val);
 
-  const handlePriceChange = async (val: string) => {
-    setPrice(val);
-    const num = Number(val);
-    if (!isNaN(num) && assets?.gold_price) {
-      setGold(String(num / assets?.gold_price_with_fees.buy));
-    } else {
-      setGold('');
-    }
-  };
+  const total = Number(val);
+  const price = Number(targetPrice);
+  const fee = 1 + Number(assets.fees.gold_buy_fee);
 
-  const handleGoldChange = async (val: string) => {
-    setGold(val);
-    const num = Number(val);
-    if (!isNaN(num) && assets?.gold_price) {
-     setPrice(String(num * assets?.gold_price_with_fees.buy));
-    } else {
-      setPrice('');
-    }
-  };
+  if (!isNaN(total) && !isNaN(price) && price > 0) {
+    setGold((total / (fee * price)).toString());
+  } else {
+    setGold('');
+  }
+};
+
+const handleGoldChange = (val: string) => {
+  setGold(val);
+
+  const weight = Number(val);
+  const price = Number(targetPrice);
+  const fee = 1 + Number(assets.fees.gold_buy_fee);
+
+  if (!isNaN(weight) && !isNaN(price) && price > 0) {
+    setPrice((weight * price * fee).toString());
+  } else {
+    setPrice('');
+  }
+};
 
   const handleClick = async () => {
     setIsLoading(true);
