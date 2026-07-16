@@ -110,14 +110,10 @@ export default function Trading({setData,reportsParams,filter,dateRange}:Props) 
       setIsLoading(false)
     }
   };
-  // useEffect(()=>{
-  //   if (select === 'buy'){
-  //     handlePriceChange(assets.wallet_balance.toString())
-  //   }
-  //   else{
-  //     handleGoldChange(assets.gold_balance.toString())
-  //   }
-  // },[select])
+    const handleClearInput = ()=>{
+    setPrice('')
+    setGold('')
+  }
   return (
       <>
       <Container
@@ -143,6 +139,7 @@ export default function Trading({setData,reportsParams,filter,dateRange}:Props) 
          </Stack>
         )}
         <FilterToggleButton
+        handleClick={handleClearInput}
           items={items}
           active={select}
           setActive={setSelect}

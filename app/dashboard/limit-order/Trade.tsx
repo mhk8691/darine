@@ -99,15 +99,20 @@ export default function Trade({
     }
   };
 
-  // این تب فقط وقتی که واقعاً فعال (قابل مشاهده) هست، select پیش‌فرض خودش رو ست کنه
-  // و اگر در حال ادیت هستیم دست به select نزنه (چون handleEdit خودش select درست رو ست کرده)
+
   useEffect(() => {
+    handleClearInput()
     const isActive = (type === 'BUY' && tab === 0) || (type === 'SELL' && tab === 1);
     if (isActive && !editMode) {
       setSelect(type === 'BUY' ? 'min' : 'max');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tab]);
+
+    const handleClearInput = ()=>{
+    setPrice('')
+    setGold('')
+  }
 
   return (
     <Stack component={'div'} id="trade">
