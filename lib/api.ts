@@ -5,16 +5,16 @@ import axios, {
   InternalAxiosRequestConfig,
   isAxiosError,
 } from 'axios';
+
+import {
+  resetNetworkError,
+  resetServerError,
+} from '@/app/Components/Snackbar/Snackbar';
+
 export interface ApiResponse<T> {
   message: string;
   data: T;
 }
-import {
-  showNetworkError,
-  resetNetworkError,
-  showServerError,
-  resetServerError,
-} from '@/app/Components/Snackbar/Snackbar';
 
 interface RetryAxiosRequestConfig extends InternalAxiosRequestConfig {
   _retry?: boolean;
@@ -28,6 +28,32 @@ const api: AxiosInstance = axios.create({
   },
 });
 
+// ==============================
+// REQUEST INTERCEPTOR
+// ==============================
+api.interceptors.request.use(
+  (config) => {
+    if (typeof window !== 'undefined' && !navigator.onLine) {
+      const currentPath =
+        window.location.pathname + window.location.search;
+
+      if (!window.location.pathname.startsWith('/connection-error')) {
+        sessionStorage.setItem(
+          'redirectAfterReconnect',
+          currentPath,
+        );
+
+        window.location.replace('/connection-error?type=network');
+      }
+
+      return Promise.reject(new axios.Cancel('No internet connection'));
+    }
+
+    return config;
+  },
+  (error) => Promise.reject(error),
+);
+
 let isRefreshing = false;
 
 type FailedQueueItem = {
@@ -39,8 +65,11 @@ let failedQueue: FailedQueueItem[] = [];
 
 const processQueue = (error?: AxiosError) => {
   failedQueue.forEach((p) => {
-    if (error) p.reject(error);
-    else p.resolve();
+    if (error) {
+      p.reject(error);
+    } else {
+      p.resolve();
+    }
   });
 
   failedQueue = [];
@@ -48,7 +77,6 @@ const processQueue = (error?: AxiosError) => {
 
 api.interceptors.response.use(
   (response) => {
-    // reset همه خطاهای global وقتی موفق شد
     resetNetworkError();
     resetServerError();
 
@@ -61,37 +89,51 @@ api.interceptors.response.use(
     const isRefreshCall =
       originalRequest?.url?.includes('/accounts/token/refresh/');
 
-    // ------------------------
-// NETWORK ERROR
-// ------------------------
-if (!error.response && !isRefreshCall) {
-  if (typeof window !== 'undefined') {
-    sessionStorage.setItem(
-      'redirectAfterReconnect',
-      window.location.pathname + window.location.search,
-    );
-    window.location.href = '/connection-error?type=network';
-  }
-  return Promise.reject(error);
-}
+    // ==============================
+    // NETWORK ERROR
+    // ==============================
+    if (!error.response && !isRefreshCall) {
+      if (typeof window !== 'undefined') {
+        const currentPath =
+          window.location.pathname + window.location.search;
 
-// ------------------------
-// SERVER ERROR (500+)
-// ------------------------
-if (error.response && error.response.status >= 500) {
-  if (typeof window !== 'undefined') {
-    sessionStorage.setItem(
-      'redirectAfterReconnect',
-      window.location.pathname + window.location.search,
-    );
-    window.location.href = '/connection-error?type=server';
-  }
-  return Promise.reject(error);
-}
+        if (!window.location.pathname.startsWith('/connection-error')) {
+          sessionStorage.setItem(
+            'redirectAfterReconnect',
+            currentPath,
+          );
 
-    // ------------------------
+          window.location.replace('/connection-error?type=network');
+        }
+      }
+
+      return Promise.reject(error);
+    }
+
+    // ==============================
+    // SERVER ERROR
+    // ==============================
+    if (error.response && error.response.status >= 500) {
+      if (typeof window !== 'undefined') {
+        const currentPath =
+          window.location.pathname + window.location.search;
+
+        if (!window.location.pathname.startsWith('/connection-error')) {
+          sessionStorage.setItem(
+            'redirectAfterReconnect',
+            currentPath,
+          );
+
+          window.location.replace('/connection-error?type=server');
+        }
+      }
+
+      return Promise.reject(error);
+    }
+
+    // ==============================
     // 401 REFRESH TOKEN
-    // ------------------------
+    // ==============================
     if (
       error.response?.status === 401 &&
       !originalRequest._retry &&
@@ -114,6 +156,7 @@ if (error.response && error.response.status >= 500) {
         await api.post('/accounts/token/refresh/');
 
         processQueue();
+
         return api(originalRequest);
       } catch (refreshError) {
         processQueue(refreshError as AxiosError);
@@ -127,7 +170,7 @@ if (error.response && error.response.status >= 500) {
             }
           }
 
-          window.location.href = '/login/login-password';
+          window.location.replace('/login/login-password');
         }
 
         return Promise.reject(refreshError);
