@@ -13,6 +13,7 @@ import { Button, Stack, Typography } from '@mui/material';
 import { isAxiosError } from 'axios';
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { buyItems, sellItems } from './LimitOrder';
+import LimitOrderConfirmation from './LimitOrderConfirmation';
 
 interface Props {
   type: 'BUY' | 'SELL';
@@ -50,7 +51,7 @@ export default function Trade({
   tab,
 }: Props) {
   const [isLoading, setIsLoading] = useState(false);
-
+  const [open,setOpen] = useState(false)
   const { assets } = useAssets();
 const handlePriceChange = (val: string) => {
   setPrice(val);
@@ -97,6 +98,7 @@ const handleGoldChange = (val: string) => {
       setPrice('');
       setGold('');
       setTargetPrice('');
+      setOpen(false)
     } catch (error: unknown) {
       if (isAxiosError(error)) {
         showSnackbar(error.response?.data.message);
@@ -113,7 +115,6 @@ const handleGoldChange = (val: string) => {
     if (isActive && !editMode) {
       setSelect(type === 'BUY' ? 'min' : 'max');
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tab]);
 
     const handleClearInput = ()=>{
@@ -122,6 +123,7 @@ const handleGoldChange = (val: string) => {
   }
 
   return (
+    <>
     <Stack component={'div'} id="trade">
       <Card
         style={{
@@ -204,10 +206,15 @@ const handleGoldChange = (val: string) => {
           </Stack>
         </Stack>
 
-        <Button variant="contained" disabled={isLoading} onClick={handleClick} color="primary" sx={{ borderRadius: 2, fontSize: 16, py: 1.4 }}>
-          {isLoading ? <Loading size={30} /> : ' ثبت سفارش'}
+        <Button variant="contained" onClick={()=>setOpen(true)} color="primary" sx={{ borderRadius: 2, fontSize: 16, py: 1.4 }}>
+          ثبت سفارش
         </Button>
       </Card>
     </Stack>
+      <LimitOrderConfirmation select={select} title={select === 'min' ? 'تایید خرید طلا':'تایید فروش طلا'} isLoading={isLoading} handleSubmit={handleClick} open={open} setOpen={setOpen} tradeData={{
+             weight:gold,
+            price:+price,
+           }} targetPrice={targetPrice} /> 
+    </>
   );
 }

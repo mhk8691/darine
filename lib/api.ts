@@ -103,7 +103,7 @@ api.interceptors.response.use(
             currentPath,
           );
 
-          window.location.replace('/connection-error?type=network');
+          // window.location.replace('/connection-error?type=network');
         }
       }
 
@@ -124,7 +124,7 @@ api.interceptors.response.use(
             currentPath,
           );
 
-          window.location.replace('/connection-error?type=server');
+          // window.location.replace('/connection-error?type=server');
         }
       }
 

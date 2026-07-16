@@ -1,4 +1,4 @@
-import { BuyCalculateType } from "@/app/core/Types"
+import { BuyCalculateType, LimitOrderCalculateType } from "@/app/core/Types"
 import api, { ApiResponse } from "../api"
 
 export const buyCalculate = async (toman:string)=>{
@@ -15,6 +15,24 @@ export const sellCalculate = async (weight:string)=>{
     const response = await api.post<ApiResponse<BuyCalculateType>>('/gold/sell/calculate/',{
             "payment_method": "WALLET",
     "weight": roundGold
+    })
+    return response.data
+}
+
+export const limitOrderBuyCalculate = async (toman:string,target_price:string)=>{
+     const roundGold = Math.round(+toman * 1000) / 1000
+    const response = await api.post<ApiResponse<LimitOrderCalculateType>>('/gold/limit-order/buy/confirm/',{
+            target_price,
+    "amount_toman": roundGold
+    })
+    return response.data
+}
+
+export const limitOrderSellCalculate = async (weight:string,target_price:string)=>{
+     const roundGold = Math.round(+weight * 1000) / 1000
+    const response = await api.post<ApiResponse<LimitOrderCalculateType>>('/gold/limit-order/sell/confirm/',{
+            target_price,
+    "gold_weight": roundGold
     })
     return response.data
 }

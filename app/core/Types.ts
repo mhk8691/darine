@@ -343,3 +343,25 @@ export interface BuyCalculateType{
         "remaining_toman":number
     }
 } 
+
+export interface LimitOrderCalculateType {
+  order_type: 'BUY' | 'SELL'
+  current_price: number
+  target_price: number
+  gold_weight: number
+  fee_rate: number
+  fee: number
+  pure_price: number
+  total_price: number
+  enough_balance: boolean
+  inventory?: {
+    accessible_balance: number
+    blocked_balance: number
+    remaining_balance: number
+  }
+  wallet?: {
+    accessible_toman: number
+    blocked_toman: number
+    remaining_toman: number
+  }
+}
