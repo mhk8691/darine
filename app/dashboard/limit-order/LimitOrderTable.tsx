@@ -36,7 +36,7 @@ export default function LimitOrderTable({
   onEditScroll,
 }: Props) {
   const handleEdit = async (row: LimitOrderDataType) => {
-    setPrice(row.total_amount)
+    setPrice(row?.total_amount.toString())
     setTargetPrice(row.price_per_gram)
     setGold(row.amount_gr)
     setSelect(row.type === 'BUY' ? 'min' : 'max')

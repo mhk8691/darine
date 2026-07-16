@@ -36,11 +36,9 @@ export default function InputField({
     return isNaN(num) ? 0 : num;
   };
 
-  // فرمت نمایش (رند 3 رقم اعشار + جلوگیری از خراب شدن تایپ)
   const formatNumber = (val: string) => {
     if (!val) return '';
 
-    // اجازه تایپ اعشاری نیمه‌کاره
     if (val === '.' || val.endsWith('.')) return val;
 
     const num = Number(val);
