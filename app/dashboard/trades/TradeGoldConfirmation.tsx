@@ -1,64 +1,26 @@
 import { useAssets } from '@/app/AssetsProvider'
 import CustomModal from '@/app/Components/CustomModal/CustomModal'
 import Loading from '@/app/Components/Loading/Loading'
-import { showSnackbar } from '@/app/Components/Snackbar/Snackbar'
 import priceFormater from '@/app/core/PriceFormater'
 import { BuyCalculateType } from '@/app/core/Types'
-import { buyCalculate, sellCalculate } from '@/lib/calculate/calculate'
 import { Close } from '@mui/icons-material'
 import { Divider, IconButton, Stack, Typography, Button } from '@mui/material'
-import { isAxiosError } from 'axios'
-import  { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import  { Dispatch, SetStateAction} from 'react'
 
 interface Props{
     title:string,
     open:boolean,
     setOpen:Dispatch<SetStateAction<boolean>>
-    tradeData:{
-        weight:string
-        price:number
-    }
+    data:BuyCalculateType
     handleSubmit:() => Promise<void>
     isLoading:boolean
     select:string
+
 }
 
-export default function TradeGoldConfirmation({select,open,setOpen,title,handleSubmit,isLoading,tradeData}:Props) {
+export default function TradeGoldConfirmation({data,select,open,setOpen,title,handleSubmit,isLoading}:Props) {
   const {assets} = useAssets()
-    const [data,setData] = useState<BuyCalculateType>({} as BuyCalculateType)
-    useEffect(()=>{
-      if (!open) return
-      const getDataBuy = async ()=>{
-        try{
-          const response = await buyCalculate(tradeData.price.toString())
-          setData(response.data)
-        }
-        catch(error:unknown){
-          if (isAxiosError(error)){
-            showSnackbar(error.response?.data.message,'error')
-          }
-        }
-      }
-       const getDataSell = async ()=>{
-        try{
-          const response = await sellCalculate(tradeData.weight.toString())
-          setData(response.data)
-        }
-        catch(error:unknown){
-          if (isAxiosError(error)){
-            showSnackbar(error.response?.data.message,'error')
-          }
-        }
-      }
-      if (select === 'buy') {
-        getDataBuy()
 
-      }
-      else{
-        getDataSell()
-
-      }
-    },[open,select])
   return (
     <CustomModal open={open} setOpen={setOpen} modalStyle={{p:2}}>
 <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>

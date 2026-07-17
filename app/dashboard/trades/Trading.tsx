@@ -3,18 +3,18 @@ import Container from '@/app/Components/Containers/Container/Container'
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker'
 import FilterToggleButton from '@/app/Components/FilterToggleButton/FilterToggleButton'
 import InputField from '@/app/Components/InputField/InputField'
-import Loading from '@/app/Components/Loading/Loading'
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar'
-import { ToggleItemsType, TradeTableDataType } from '@/app/core/Types'
+import { BuyCalculateType, ToggleItemsType, TradeTableDataType } from '@/app/core/Types'
 import { getReports } from '@/lib/getReports/getReports'
 import { goldBuy } from '@/lib/gold/goldBuy'
 import { goldSell } from '@/lib/gold/goldSell'
-import { Button, Grid, Stack, Typography, useMediaQuery, useTheme } from '@mui/material'
+import { Button, Stack, Typography, useMediaQuery, useTheme } from '@mui/material'
 import { isAxiosError } from 'axios'
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import React, { Dispatch, SetStateAction,  useState } from 'react'
 import TradeGoldConfirmation from './TradeGoldConfirmation'
 import TradeGuide from './TradeGuide'
 import priceFormater from '@/app/core/PriceFormater'
+import { buyCalculate, sellCalculate } from '@/lib/calculate/calculate'
 
 
 
@@ -31,6 +31,7 @@ filter?:string
 export default function Trading({setData,reportsParams,filter,dateRange}:Props) {
       const [price, setPrice] = useState('');
       const [gold, setGold] = useState('');
+          const [calculateData,setCalculateData] = useState<BuyCalculateType>({} as BuyCalculateType)
       const [select, setSelect] = useState(items[0].value);
       const [open, setOpen] = useState(false);
       const [isLoading,setIsLoading] = useState(false)
@@ -53,6 +54,31 @@ export default function Trading({setData,reportsParams,filter,dateRange}:Props) 
       setGold('');
     }
   };
+
+    const getDataBuy = async ()=>{
+        try{
+          const response = await buyCalculate(price)
+          setCalculateData(response.data)
+          setOpen(true)
+        }
+        catch(error:unknown){
+          if (isAxiosError(error)){
+            showSnackbar(error.response?.data.message,'error')
+          }
+        }
+      }
+       const getDataSell = async ()=>{
+        try{
+          const response = await sellCalculate(gold)
+          setCalculateData(response.data)
+          setOpen(true)
+        }
+        catch(error:unknown){
+          if (isAxiosError(error)){
+            showSnackbar(error.response?.data.message,'error')
+          }
+        }
+      }
 
   const handleGoldChange =async (val: string) => {
     setGold(val);
@@ -211,16 +237,13 @@ export default function Trading({setData,reportsParams,filter,dateRange}:Props) 
         <Button
           variant="contained"
           color="primary"
-          onClick={() => setOpen(true)}
+          onClick={() => select === 'buy' ? getDataBuy():getDataSell()}
           sx={{ borderRadius: 2, fontSize: 16, height:60 }}
         >
           {select === 'buy' ? 'خرید' : 'فروش'}
         </Button>
       </Container>
-       <TradeGoldConfirmation select={select} title={select === 'buy' ? 'تایید خرید طلا':'تایید فروش طلا'} isLoading={isLoading} handleSubmit={select === 'buy' ? handleBuyGold : handleSellGold} open={open} setOpen={setOpen} tradeData={{
-         weight:gold,
-        price:+price,
-       }} /> 
+       <TradeGoldConfirmation select={select} title={select === 'buy' ? 'تایید خرید طلا':'تایید فروش طلا'} isLoading={isLoading} handleSubmit={select === 'buy' ? handleBuyGold : handleSellGold} open={open} setOpen={setOpen} data={calculateData} /> 
        <TradeGuide open={openModal} setOpen={setOpenModal} />
       </>
   )

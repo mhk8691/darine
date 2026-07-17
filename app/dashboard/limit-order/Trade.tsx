@@ -5,7 +5,6 @@ import Card from '@/app/Components/Containers/Container/Container';
 import { TransferIcon } from '@/app/Components/CustomIcons/CustomIcons';
 import FilterToggleButton from '@/app/Components/FilterToggleButton/FilterToggleButton';
 import InputField from '@/app/Components/InputField/InputField';
-import Loading from '@/app/Components/Loading/Loading';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import priceFormater from '@/app/core/PriceFormater';
 import { editLimitOrder, limitOrder } from '@/lib/limit-order/limitOrder';
@@ -14,6 +13,8 @@ import { isAxiosError } from 'axios';
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { buyItems, sellItems } from './LimitOrder';
 import LimitOrderConfirmation from './LimitOrderConfirmation';
+import { limitOrderBuyCalculate, limitOrderSellCalculate } from '@/lib/calculate/calculate';
+import { LimitOrderCalculateType } from '@/app/core/Types';
 
 interface Props {
   type: 'BUY' | 'SELL';
@@ -30,7 +31,7 @@ interface Props {
   setGold: Dispatch<SetStateAction<string>>;
   select: string;
   setSelect: Dispatch<SetStateAction<string>>;
-  tab: number; // تب فعال والد - برای تشخیص اینکه این Trade خودش الان دیده می‌شه یا نه
+  tab: number; 
 }
 
 export default function Trade({
@@ -52,80 +53,111 @@ export default function Trade({
 }: Props) {
   const [isLoading, setIsLoading] = useState(false);
   const [open,setOpen] = useState(false)
+    const [data, setData] = useState<LimitOrderCalculateType>({} as LimitOrderCalculateType)
+
   const { assets } = useAssets();
+
 const handlePriceChange = (val: string) => {
   setPrice(val);
 
   const total = Number(val);
-  const price = Number(targetPrice);
-  const fee = 1 + Number(assets.fees.gold_buy_fee);
+  const target = Number(targetPrice);
 
-  if (!isNaN(total) && !isNaN(price) && price > 0) {
-    setGold((total / (fee * price)).toString());
-  } else {
+  if (isNaN(total) || isNaN(target) || total <= 0 || target <= 0) {
     setGold('');
+    return;
+  }
+
+  if (type === 'BUY') {
+    const fee = Number(assets.fees.gold_buy_fee) / 100;
+
+    const purePrice = total / (1 + fee);
+    const weight = purePrice / target;
+
+    setGold(weight.toString());
+  } else {
+    const fee = Number(assets.fees.gold_sell_fee) / 100;
+
+    const weight = total / (target * (1 - fee));
+
+    setGold(weight.toString());
   }
 };
-
 const handleGoldChange = (val: string) => {
   setGold(val);
 
   const weight = Number(val);
-  const price = Number(targetPrice);
-  const fee = 1 + Number(assets.fees.gold_buy_fee);
+  const target = Number(targetPrice);
 
-  if (!isNaN(weight) && !isNaN(price) && price > 0) {
-    setPrice((weight * price * fee).toString());
-  } else {
+  if (isNaN(weight) || isNaN(target) || weight <= 0 || target <= 0) {
     setPrice('');
+    return;
+  }
+
+  if (type === 'BUY') {
+    const fee = Number(assets.fees.gold_buy_fee) / 100;
+
+    const purePrice = weight * target;
+    const total = purePrice * (1 + fee);
+
+    setPrice(total.toString());
+  } else {
+    const fee = Number(assets.fees.gold_sell_fee) / 100;
+
+    const purePrice = weight * target;
+    const total = purePrice * (1 - fee);
+
+    setPrice(total.toString());
   }
 };
 useEffect(() => {
   const target = Number(targetPrice);
 
-  if (!target || target <= 0) {
-    return;
-  }
+  if (!target || target <= 0) return;
 
   if (type === 'BUY') {
     const total = Number(price);
 
     if (total > 0) {
-      const fee = 1 + Number(assets.fees.gold_buy_fee);
-      setGold((total / (fee * target)).toString());
+      const fee = Number(assets.fees.gold_buy_fee) / 100;
+
+      const purePrice = total / (1 + fee);
+      const weight = purePrice / target;
+
+      setGold(weight.toString());
     }
   } else {
-    const weight = Number(gold);
+    if (gold) {
+      const weight = Number(gold);
 
-    if (weight > 0) {
-      const fee = 1 + Number(assets.fees.gold_buy_fee);
-      setPrice((weight * target * fee).toString());
+      if (weight > 0) {
+        const fee = Number(assets.fees.gold_sell_fee) / 100;
+
+        const purePrice = weight * target;
+        const total = purePrice * (1 - fee);
+
+        setPrice(total.toString());
+      }
+    } else if (price) {
+      const total = Number(price);
+
+      if (total > 0) {
+        const fee = Number(assets.fees.gold_sell_fee) / 100;
+
+        const weight = total / (target * (1 - fee));
+
+        setGold(weight.toString());
+      }
     }
   }
-}, [targetPrice]);useEffect(() => {
-  const target = Number(targetPrice);
-
-  if (!target || target <= 0) {
-    return;
-  }
-
-  if (type === 'BUY') {
-    const total = Number(price);
-
-    if (total > 0) {
-      const fee = 1 + Number(assets.fees.gold_buy_fee);
-      setGold((total / (fee * target)).toString());
-    }
-  } else {
-    const weight = Number(gold);
-
-    if (weight > 0) {
-      const fee = 1 + Number(assets.fees.gold_buy_fee);
-      setPrice((weight * target * fee).toString());
-    }
-  }
-}, [targetPrice]);
-
+}, [
+  targetPrice,
+  type,
+  price,
+  gold,
+  assets.fees.gold_buy_fee,
+  assets.fees.gold_sell_fee,
+]);
   const handleClick = async () => {
     setIsLoading(true);
     try {
@@ -152,6 +184,30 @@ useEffect(() => {
       setIsLoading(false);
     }
   };
+
+   const getDataBuy = async () => {
+        try {
+          const response = await limitOrderBuyCalculate(price, targetPrice)
+          setData(response.data)
+          setOpen(true)
+        } catch (error: unknown) {
+          if (isAxiosError(error)) {
+            showSnackbar(error.response?.data.message, 'error')
+          }
+        }
+      }
+  
+      const getDataSell = async () => {
+        try {
+          const response = await limitOrderSellCalculate(gold, targetPrice)
+          setData(response.data)
+          setOpen(true)
+        } catch (error: unknown) {
+          if (isAxiosError(error)) {
+            showSnackbar(error.response?.data.message, 'error')
+          }
+        }
+      }
 
 
   useEffect(() => {
@@ -251,15 +307,12 @@ useEffect(() => {
           </Stack>
         </Stack>
 
-        <Button variant="contained" onClick={()=>setOpen(true)} color="primary" sx={{ borderRadius: 2, fontSize: 16, py: 1.4 }}>
+        <Button variant="contained" onClick={()=>select === 'min' ?getDataBuy() :getDataSell() } color="primary" sx={{ borderRadius: 2, fontSize: 16, py: 1.4 }}>
           ثبت سفارش
         </Button>
       </Card>
     </Stack>
-      <LimitOrderConfirmation select={select} title={select === 'min' ? 'تایید خرید طلا':'تایید فروش طلا'} isLoading={isLoading} handleSubmit={handleClick} open={open} setOpen={setOpen} tradeData={{
-             weight:gold,
-            price:+price,
-           }} targetPrice={targetPrice} /> 
+      <LimitOrderConfirmation select={select} title={select === 'min' ? 'تایید خرید طلا':'تایید فروش طلا'} isLoading={isLoading} handleSubmit={handleClick} open={open} setOpen={setOpen} data={data}   /> 
     </>
   );
 }

@@ -1,66 +1,29 @@
 import { useAssets } from '@/app/AssetsProvider'
 import CustomModal from '@/app/Components/CustomModal/CustomModal'
 import Loading from '@/app/Components/Loading/Loading'
-import { showSnackbar } from '@/app/Components/Snackbar/Snackbar'
 import priceFormater from '@/app/core/PriceFormater'
 import { LimitOrderCalculateType } from '@/app/core/Types'
-import { limitOrderBuyCalculate, limitOrderSellCalculate } from '@/lib/calculate/calculate'
 import { Close } from '@mui/icons-material'
 import { Divider, IconButton, Stack, Typography, Button } from '@mui/material'
-import { isAxiosError } from 'axios'
-import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { Dispatch, SetStateAction} from 'react'
 
 interface Props {
   title: string
   open: boolean
   setOpen: Dispatch<SetStateAction<boolean>>
-  tradeData: {
-    weight: string
-    price: number
-  }
+
   handleSubmit: () => Promise<void>
   isLoading: boolean
   select: string
-  targetPrice: string
+  data:LimitOrderCalculateType
 }
 
 
 
-export default function LimitOrderConfirmation({ select, open, setOpen, title, handleSubmit, isLoading, tradeData, targetPrice }: Props) {
+export default function LimitOrderConfirmation({ data,select, open, setOpen, title, handleSubmit, isLoading}: Props) {
   const { assets } = useAssets()
-  const [data, setData] = useState<LimitOrderCalculateType>({} as LimitOrderCalculateType)
 
-  useEffect(() => {
-    if (!open) return
 
-    const getDataBuy = async () => {
-      try {
-        const response = await limitOrderBuyCalculate(tradeData.price.toString(), targetPrice)
-        setData(response.data)
-      } catch (error: unknown) {
-        if (isAxiosError(error)) {
-          showSnackbar(error.response?.data.message, 'error')
-        }
-      }
-    }
-
-    const getDataSell = async () => {
-      try {
-        const response = await limitOrderSellCalculate(tradeData.weight.toString(), targetPrice)
-        setData(response.data)
-      } catch (error: unknown) {
-        if (isAxiosError(error)) {
-          showSnackbar(error.response?.data.message, 'error')
-        }
-      }
-    }
-
-    if (select === 'min') {
-      getDataBuy()
-    } else {
-      getDataSell()
-    }
-  }, [open, select])
 
   const accessibleAmount = select === 'min'
     ? data.wallet?.accessible_toman
