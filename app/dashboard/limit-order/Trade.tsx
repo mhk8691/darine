@@ -80,6 +80,51 @@ const handleGoldChange = (val: string) => {
     setPrice('');
   }
 };
+useEffect(() => {
+  const target = Number(targetPrice);
+
+  if (!target || target <= 0) {
+    return;
+  }
+
+  if (type === 'BUY') {
+    const total = Number(price);
+
+    if (total > 0) {
+      const fee = 1 + Number(assets.fees.gold_buy_fee);
+      setGold((total / (fee * target)).toString());
+    }
+  } else {
+    const weight = Number(gold);
+
+    if (weight > 0) {
+      const fee = 1 + Number(assets.fees.gold_buy_fee);
+      setPrice((weight * target * fee).toString());
+    }
+  }
+}, [targetPrice]);useEffect(() => {
+  const target = Number(targetPrice);
+
+  if (!target || target <= 0) {
+    return;
+  }
+
+  if (type === 'BUY') {
+    const total = Number(price);
+
+    if (total > 0) {
+      const fee = 1 + Number(assets.fees.gold_buy_fee);
+      setGold((total / (fee * target)).toString());
+    }
+  } else {
+    const weight = Number(gold);
+
+    if (weight > 0) {
+      const fee = 1 + Number(assets.fees.gold_buy_fee);
+      setPrice((weight * target * fee).toString());
+    }
+  }
+}, [targetPrice]);
 
   const handleClick = async () => {
     setIsLoading(true);
