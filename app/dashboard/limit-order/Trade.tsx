@@ -69,14 +69,14 @@ const handlePriceChange = (val: string) => {
   }
 
   if (type === 'BUY') {
-    const fee = Number(assets.fees.gold_buy_fee) / 100;
+    const fee = Number(assets?.fees?.gold_buy_fee ?? 0) / 100;
 
     const purePrice = total / (1 + fee);
     const weight = purePrice / target;
 
     setGold(weight.toString());
   } else {
-    const fee = Number(assets.fees.gold_sell_fee) / 100;
+    const fee = Number(assets?.fees?.gold_sell_fee ?? 0) / 100;
 
     const weight = total / (target * (1 - fee));
 
@@ -95,14 +95,14 @@ const handleGoldChange = (val: string) => {
   }
 
   if (type === 'BUY') {
-    const fee = Number(assets.fees.gold_buy_fee) / 100;
+    const fee = Number(assets?.fees?.gold_buy_fee ?? 0) / 100;
 
     const purePrice = weight * target;
     const total = purePrice * (1 + fee);
 
     setPrice(total.toString());
   } else {
-    const fee = Number(assets.fees.gold_sell_fee) / 100;
+    const fee = Number(assets?.fees?.gold_sell_fee ?? 0) / 100;
 
     const purePrice = weight * target;
     const total = purePrice * (1 - fee);
@@ -111,6 +111,8 @@ const handleGoldChange = (val: string) => {
   }
 };
 useEffect(() => {
+  if (!assets?.fees) return;
+
   const target = Number(targetPrice);
 
   if (!target || target <= 0) return;
@@ -119,7 +121,7 @@ useEffect(() => {
     const total = Number(price);
 
     if (total > 0) {
-      const fee = Number(assets.fees.gold_buy_fee) / 100;
+      const fee = Number(assets?.fees?.gold_buy_fee ?? 0) / 100;
 
       const purePrice = total / (1 + fee);
       const weight = purePrice / target;
@@ -131,7 +133,7 @@ useEffect(() => {
       const weight = Number(gold);
 
       if (weight > 0) {
-        const fee = Number(assets.fees.gold_sell_fee) / 100;
+        const fee = Number(assets?.fees?.gold_sell_fee ?? 0) / 100;
 
         const purePrice = weight * target;
         const total = purePrice * (1 - fee);
@@ -142,7 +144,7 @@ useEffect(() => {
       const total = Number(price);
 
       if (total > 0) {
-        const fee = Number(assets.fees.gold_sell_fee) / 100;
+        const fee = Number(assets?.fees?.gold_sell_fee ?? 0) / 100;
 
         const weight = total / (target * (1 - fee));
 
@@ -155,8 +157,8 @@ useEffect(() => {
   type,
   price,
   gold,
-  assets.fees.gold_buy_fee,
-  assets.fees.gold_sell_fee,
+  assets?.fees?.gold_buy_fee,
+  assets?.fees?.gold_sell_fee,
 ]);
   const handleClick = async () => {
     setIsLoading(true);
