@@ -17,6 +17,7 @@
     "@mui/material-nextjs": "^9.0.0",
     "@mui/stylis-plugin-rtl": "^7.3.8",
     "@mui/x-charts": "^8.28.2",
+    "@react-pdf/renderer": "^4.5.1",
     "@vis.gl/react-google-maps": "^1.8.3",
     "apexcharts": "^5.15.0",
     "axios": "^1.14.0",

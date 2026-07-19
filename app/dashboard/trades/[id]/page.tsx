@@ -1,13 +1,14 @@
 'use client';
 
-import SalesInvoiceCard, { SalesInvoiceData } from './SalesInvoiceCard';
+import { useState } from 'react';
 import { Stack } from '@mui/material';
-import InvoiceActionButtons from './InvoiceActionButtons';
 import Container from '@/app/Components/Containers/Container/Container';
-
+import SalesInvoiceCard, { SalesInvoiceData } from './SalesInvoiceCard';
+import InvoiceActionButtons from './InvoiceActionButtons';
+import { downloadInvoicePdf } from './downloadInvoicePdf';
 
 const sellInvoice: SalesInvoiceData = {
-  type: 'sell', 
+  type: 'sell',
   invoiceDate: '۱۴۰۵/۰۳/۱۲  ۱۹:۰۶',
   buyer: {
     name: 'فروشگاه دارینه',
@@ -30,34 +31,49 @@ const sellInvoice: SalesInvoiceData = {
 
 const buyInvoice: SalesInvoiceData = {
   ...sellInvoice,
-  type: 'buy', 
+  type: 'buy',
 };
 
-export default function InvoicePageExample() {
+export default function InvoicePage() {
+  const [downloading, setDownloading] = useState(false);
+
+  const handleDownload = async () => {
+    setDownloading(true);
+    try {
+      await downloadInvoicePdf(sellInvoice);
+    } catch (error) {
+      console.error('PDF generation failed:', error);
+    } finally {
+      setDownloading(false);
+    }
+  };
+
+  const handleBack = () => {
+    window.history.back();
+  };
 
   return (
-         <Container
-               style={{
-                 gap: 3.15,
-                 py: 3,
-                 px: {
-                   xs: 2,
-                   sm: 4,
-                   md: 2,
-                   lg: 4,
-                 },
-               }}
-             >
-        
+    <Container
+      style={{
+        gap: 3.15,
+        py: 3,
+        px: {
+          xs: 2,
+          sm: 4,
+          md: 2,
+          lg: 4,
+        },
+      }}
+    >
+      <SalesInvoiceCard data={sellInvoice} />
 
-          <SalesInvoiceCard data={buyInvoice} />
-
-          <Stack sx={{ mt: { xs: 2, sm: 3 } }}>
-            <InvoiceActionButtons
-              onBack={() => console.log('back')}
-              onDownload={() => console.log('download')}
-            />
-          </Stack>
-        </Container>
+      <Stack sx={{ mt: { xs: 2, sm: 3 } }}>
+        <InvoiceActionButtons
+          onBack={handleBack}
+          onDownload={handleDownload}
+          downloading={downloading}
+        />
+      </Stack>
+    </Container>
   );
 }
