@@ -366,3 +366,47 @@ export interface LimitOrderCalculateType {
     remaining_toman: number
   }
 }
+
+export interface TicketCategoryType {
+  id: number;
+  name: string;
+}
+
+export type TicketPriority = 'low' | 'medium' | 'high' | 'urgent';
+
+export type TicketStatus = 'open' | 'pending' | 'answered' | 'closed';
+
+export interface TicketType {
+  id: number;
+  title: string;
+  description: string;
+  category: number | TicketCategoryType;
+  priority: TicketPriority;
+  status: TicketStatus;
+  created_at: string;
+  updated_at?: string;
+  unread_count?: number;
+}
+
+export interface TicketMessageType {
+  id: number;
+  message: string;
+  is_admin?: boolean;
+  sender_name?: string;
+  created_at: string;
+}
+
+export interface CreateTicketPayload {
+  title: string;
+  description: string;
+  category: number;
+  priority: TicketPriority;
+}
+
+export interface SendMessagePayload {
+  message: string;
+}
+
+export interface UnreadCountType {
+  unread_count: number;
+}
