@@ -58,7 +58,7 @@ export default function BankCard({
             </Stack>
             <Stack mt={2}>
               <Typography variant="body2" fontSize={18} sx={{ color: 'text.title' }}>
-                  محمد محمدی
+                 {item.owner_full_name}
               </Typography>
               <Typography variant="body2" fontSize={18} sx={{ color: 'text.title',mt:1.5 }}>
                  IR{item.shaba_number}

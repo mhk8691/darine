@@ -71,6 +71,7 @@ export interface BankCardDataType {
   shaba_number: string;
   bank_name: string;
   is_active: boolean;
+  owner_full_name:string
 }
 export interface DepositDataType {
   card_number: string;
