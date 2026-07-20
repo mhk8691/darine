@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Box,
+  Container,
   Typography,
   Stack,
   Paper,
@@ -16,16 +17,16 @@ import {
   DialogContent,
   DialogActions,
   Chip,
-  Container as MuiContainer
 } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 import { PriorityChip, StatusChip } from './TicketChips';
+import AttachmentPicker from './AttachmentPicker';
+import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutlined';
 import { TicketMessageType, TicketType } from '@/app/core/Types';
 import { closeTicket, getTicket, getTicketMessages, sendTicketMessage } from '@/lib/tickets/tickets';
-import Container from '../Containers/Container/Container';
 
 function formatTime(iso: string) {
   try {
@@ -51,6 +52,7 @@ export default function TicketDetailPage({ ticketId }: TicketDetailPageProps) {
   const [loading, setLoading] = useState(true);
 
   const [reply, setReply] = useState('');
+  const [replyAttachment, setReplyAttachment] = useState<File | null>(null);
   const [sending, setSending] = useState(false);
 
   const [closeDialogOpen, setCloseDialogOpen] = useState(false);
@@ -80,15 +82,19 @@ export default function TicketDetailPage({ ticketId }: TicketDetailPageProps) {
   const isClosed = ticket?.status === 'closed';
 
   const handleSend = async () => {
-    if (!reply.trim() || isClosed) return;
+    if ((!reply.trim() && !replyAttachment) || isClosed) return;
     setSending(true);
-    const newMessage = await sendTicketMessage(ticketId, { message: reply.trim() });
+    const newMessage = await sendTicketMessage(ticketId, {
+      message: reply.trim(),
+      attachment: replyAttachment,
+    });
     setSending(false);
 
     // در صورت خطا، خود sendTicketMessage با showSnackbar پیام را نمایش می‌دهد
     if (newMessage) {
       setMessages((prev) => [...prev, newMessage]);
       setReply('');
+      setReplyAttachment(null);
     }
   };
 
@@ -105,42 +111,30 @@ export default function TicketDetailPage({ ticketId }: TicketDetailPageProps) {
 
   if (loading) {
     return (
-      <MuiContainer maxWidth="md" sx={{ py: { xs: 3, md: 5 } }}>
+      <Container maxWidth="md" sx={{ py: { xs: 3, md: 5 } }}>
         <Skeleton variant="text" width={200} height={40} />
         <Skeleton variant="rounded" height={100} sx={{ my: 2, borderRadius: '12px' }} />
         <Skeleton variant="rounded" height={300} sx={{ borderRadius: '12px' }} />
-      </MuiContainer>
+      </Container>
     );
   }
 
   if (!ticket) {
     return (
-      <MuiContainer maxWidth="md" sx={{ py: { xs: 3, md: 5 } }}>
+      <Container maxWidth="md" sx={{ py: { xs: 3, md: 5 } }}>
         <Typography color="text.secondary">تیکت یافت نشد</Typography>
-        <Button sx={{ mt: 2 }} onClick={() => router.push('/dashboard/tickets')}>
+        <Button sx={{ mt: 2 }} onClick={() => router.push('/tickets')}>
           بازگشت به لیست تیکت‌ها
         </Button>
-      </MuiContainer>
+      </Container>
     );
   }
 
   return (
-    <Container style={{
-            px: {
-              xs: 0,
-              sm: 4,
-            },
-            border: {
-              xs: 0,
-              sm: 1,
-            },
-            borderColor: {
-              sm: 'background.paper',
-            },
-          }}>
+    <Container maxWidth="md" sx={{ py: { xs: 3, md: 5 } }}>
       {/* هدر */}
       <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 2 }}>
-        <IconButton onClick={() => router.push('/dashboard/tickets')} size="small">
+        <IconButton onClick={() => router.push('/tickets')} size="small">
           <ArrowForwardIcon fontSize="small" />
         </IconButton>
         <Typography variant="body2" color="text.subtitle">
@@ -242,7 +236,28 @@ export default function TicketDetailPage({ ticketId }: TicketDetailPageProps) {
                     borderColor: 'background.border',
                   }}
                 >
-                  <Typography variant="body2">{msg.message}</Typography>
+                  {msg.message && <Typography variant="body2">{msg.message}</Typography>}
+                  {msg.attachment && (
+                    <Box
+                      component="a"
+                      href={msg.attachment}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 0.5,
+                        mt: msg.message ? 1 : 0,
+                        color: 'inherit',
+                        textDecoration: 'none',
+                        opacity: 0.85,
+                        '&:hover': { opacity: 1, textDecoration: 'underline' },
+                      }}
+                    >
+                      <InsertDriveFileOutlinedIcon fontSize="small" />
+                      <Typography variant="caption">مشاهده فایل پیوست</Typography>
+                    </Box>
+                  )}
                 </Paper>
                 <Typography
                   variant="caption"
@@ -280,36 +295,52 @@ export default function TicketDetailPage({ ticketId }: TicketDetailPageProps) {
           </Typography>
         </Stack>
       ) : (
-        <Stack direction="row" spacing={1} alignItems="flex-end">
-          <TextField
-            fullWidth
-            multiline
-            maxRows={4}
-            placeholder="پیام خود را بنویسید..."
-            value={reply}
-            onChange={(e) => setReply(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                handleSend();
-              }
-            }}
-            disabled={sending}
-          />
-          <IconButton
-            color="primary"
-            onClick={handleSend}
-            disabled={!reply.trim() || sending}
-            sx={{
-              bgcolor: 'primary.main',
-              color: '#10100F',
-              borderRadius: '8px',
-              '&:hover': { bgcolor: 'primary.light' },
-              '&.Mui-disabled': { bgcolor: 'background.paper' },
-            }}
-          >
-            <SendIcon sx={{ transform: 'scaleX(-1)' }} fontSize="small" />
-          </IconButton>
+        <Stack spacing={1}>
+          {replyAttachment && (
+            <AttachmentPicker
+              file={replyAttachment}
+              onChange={setReplyAttachment}
+              disabled={sending}
+            />
+          )}
+          <Stack direction="row" spacing={1} alignItems="flex-end">
+            {!replyAttachment && (
+              <AttachmentPicker
+                file={replyAttachment}
+                onChange={setReplyAttachment}
+                disabled={sending}
+              />
+            )}
+            <TextField
+              fullWidth
+              multiline
+              maxRows={4}
+              placeholder="پیام خود را بنویسید..."
+              value={reply}
+              onChange={(e) => setReply(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                  e.preventDefault();
+                  handleSend();
+                }
+              }}
+              disabled={sending}
+            />
+            <IconButton
+              color="primary"
+              onClick={handleSend}
+              disabled={(!reply.trim() && !replyAttachment) || sending}
+              sx={{
+                bgcolor: 'primary.main',
+                color: '#10100F',
+                borderRadius: '8px',
+                '&:hover': { bgcolor: 'primary.light' },
+                '&.Mui-disabled': { bgcolor: 'background.paper' },
+              }}
+            >
+              <SendIcon sx={{ transform: 'scaleX(-1)' }} fontSize="small" />
+            </IconButton>
+          </Stack>
         </Stack>
       )}
 

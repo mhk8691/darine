@@ -367,6 +367,9 @@ export interface LimitOrderCalculateType {
   }
 }
 
+// app/core/Types/ticket.ts
+// در صورت نیاز، این تایپ‌ها را داخل ماژول اصلی '@/app/core/Types' خودتان merge/export کنید
+
 export interface TicketCategoryType {
   id: number;
   name: string;
@@ -386,6 +389,7 @@ export interface TicketType {
   created_at: string;
   updated_at?: string;
   unread_count?: number;
+  attachment?: string | null; // URL فایل پیوست تیکت (در صورت وجود)
 }
 
 export interface TicketMessageType {
@@ -394,6 +398,7 @@ export interface TicketMessageType {
   is_admin?: boolean;
   sender_name?: string;
   created_at: string;
+  attachment?: string | null; // URL فایل پیوست پیام (در صورت وجود)
 }
 
 export interface CreateTicketPayload {
@@ -401,10 +406,12 @@ export interface CreateTicketPayload {
   description: string;
   category: number;
   priority: TicketPriority;
+  attachment?: File | null;
 }
 
 export interface SendMessagePayload {
   message: string;
+  attachment?: File | null;
 }
 
 export interface UnreadCountType {

@@ -15,8 +15,9 @@ import {
   Typography,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { TicketCategoryType, TicketPriority } from '@/app/core/Types';
+import AttachmentPicker from './AttachmentPicker';
 import { createTicket, getTicketCategories } from '@/lib/tickets/tickets';
+import { TicketCategoryType, TicketPriority } from '@/app/core/Types';
 
 const priorityOptions: { value: TicketPriority; label: string }[] = [
   { value: 'low', label: 'کم' },
@@ -42,6 +43,7 @@ export default function CreateTicketDialog({ open, onClose, onCreated }: CreateT
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState<number | ''>('');
   const [priority, setPriority] = useState<TicketPriority>('medium');
+  const [attachment, setAttachment] = useState<File | null>(null);
 
   const [submitting, setSubmitting] = useState(false);
 
@@ -58,6 +60,7 @@ export default function CreateTicketDialog({ open, onClose, onCreated }: CreateT
     setDescription('');
     setCategory('');
     setPriority('medium');
+    setAttachment(null);
   };
 
   const handleClose = () => {
@@ -76,6 +79,7 @@ export default function CreateTicketDialog({ open, onClose, onCreated }: CreateT
       description: description.trim(),
       category: category as number,
       priority,
+      attachment,
     });
     setSubmitting(false);
 
@@ -157,6 +161,13 @@ export default function CreateTicketDialog({ open, onClose, onCreated }: CreateT
               </MenuItem>
             ))}
           </TextField>
+
+          <Stack direction="row" alignItems="center" spacing={1}>
+            <Typography variant="body2" color="text.subtitle">
+              پیوست فایل (اختیاری)
+            </Typography>
+            <AttachmentPicker file={attachment} onChange={setAttachment} disabled={submitting} />
+          </Stack>
         </Stack>
       </DialogContent>
 

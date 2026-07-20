@@ -42,13 +42,25 @@ export const getTicket = async (id: number | string) => {
   }
 };
 
-// ایجاد تیکت جدید
+// ایجاد تیکت جدید (در صورت وجود فایل پیوست، به‌صورت multipart/form-data ارسال می‌شود)
 export const createTicket = async (payload: CreateTicketPayload) => {
   try {
-    const res = await api.post<ApiResponse<TicketType>>(
-      '/accounts/tickets/',
-      payload,
-    );
+    let body: FormData | Omit<CreateTicketPayload, 'attachment'> = payload;
+
+    if (payload.attachment) {
+      const formData = new FormData();
+      formData.append('title', payload.title);
+      formData.append('description', payload.description);
+      formData.append('category', String(payload.category));
+      formData.append('priority', payload.priority);
+      formData.append('attachment', payload.attachment);
+      body = formData;
+    } else {
+      const { attachment: _attachment, ...rest } = payload;
+      body = rest;
+    }
+
+    const res = await api.post<ApiResponse<TicketType>>('/accounts/tickets/', body);
     return res.data.data;
   } catch (error: unknown) {
     if (isAxiosError(error)) {
@@ -71,15 +83,27 @@ export const getTicketMessages = async (ticketId: number | string) => {
   }
 };
 
-// ارسال پیام جدید در تیکت
+// ارسال پیام جدید در تیکت (در صورت وجود فایل پیوست، به‌صورت multipart/form-data ارسال می‌شود)
 export const sendTicketMessage = async (
   ticketId: number | string,
   payload: SendMessagePayload,
 ) => {
   try {
+    let body: FormData | Omit<SendMessagePayload, 'attachment'> = payload;
+
+    if (payload.attachment) {
+      const formData = new FormData();
+      formData.append('message', payload.message);
+      formData.append('attachment', payload.attachment);
+      body = formData;
+    } else {
+      const { attachment: _attachment, ...rest } = payload;
+      body = rest;
+    }
+
     const res = await api.post<ApiResponse<TicketMessageType>>(
       `/accounts/tickets/${ticketId}/messages/`,
-      payload,
+      body,
     );
     return res.data.data;
   } catch (error: unknown) {
