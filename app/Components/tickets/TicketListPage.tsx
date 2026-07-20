@@ -4,10 +4,6 @@ import { useRouter } from 'next/navigation';
 import {
   Box,
   Typography,
-  Grid,
-  Card,
-  CardActionArea,
-  CardContent,
   Stack,
   Button,
   Badge,
@@ -17,6 +13,7 @@ import {
   useTheme,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ConfirmationNumberOutlinedIcon from '@mui/icons-material/ConfirmationNumberOutlined';
 import { PriorityChip, StatusChip } from './TicketChips';
 import CreateTicketDialog from './CreateTicketDialog';
@@ -34,6 +31,114 @@ function formatDate(iso: string) {
   } catch {
     return iso;
   }
+}
+
+function TicketRow({ ticket, onClick }: { ticket: TicketType; onClick: () => void }) {
+  return (
+    <Box
+      onClick={onClick}
+      sx={{
+        display: 'flex',
+        flexDirection: { xs: 'column', sm: 'row' },
+        alignItems: { xs: 'stretch', sm: 'center' },
+        gap: { xs: 1.5, sm: 2 },
+        p: { xs: 2, sm: 2.5 },
+        borderRadius: '12px',
+        border: '1px solid',
+        borderColor: 'background.border',
+        bgcolor: 'background.paper',
+        cursor: 'pointer',
+        transition: 'border-color 0.15s, background-color 0.15s',
+        '&:hover': {
+          borderColor: 'primary.main',
+        },
+      }}
+    >
+      {/* شماره تیکت */}
+      <Box
+        sx={{
+          display: { xs: 'none', sm: 'flex' },
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: 44,
+          height: 44,
+          flexShrink: 0,
+          borderRadius: '10px',
+          bgcolor: 'background.default',
+        }}
+      >
+        <Typography variant="caption" fontWeight={700} color="text.subtitle">
+          #{ticket.id}
+        </Typography>
+      </Box>
+
+      {/* عنوان و توضیحات */}
+      <Box sx={{ flex: 1, minWidth: 0 }}>
+        <Stack direction="row" alignItems="center" spacing={1}>
+          <Typography
+            variant="subtitle1"
+            fontWeight={700}
+            color="text.title"
+            sx={{
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {ticket.title}
+          </Typography>
+          {!!ticket.unread_count && (
+            <Badge badgeContent={ticket.unread_count} color="error" />
+          )}
+        </Stack>
+        <Typography
+          variant="body2"
+          color="text.muted"
+          sx={{
+            mt: 0.5,
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {ticket.description}
+        </Typography>
+      </Box>
+
+      {/* چیپ‌های وضعیت و اولویت */}
+      <Stack
+        direction="row"
+        spacing={1}
+        sx={{ flexShrink: 0, order: { xs: 2, sm: 0 } }}
+      >
+        <StatusChip status={ticket.status} />
+        <PriorityChip priority={ticket.priority} />
+      </Stack>
+
+      {/* تاریخ */}
+      <Typography
+        variant="caption"
+        color="text.subtitle"
+        sx={{
+          flexShrink: 0,
+          width: { sm: 110 },
+          textAlign: { xs: 'left', sm: 'center' },
+          order: { xs: 3, sm: 0 },
+        }}
+      >
+        {formatDate(ticket.created_at)}
+      </Typography>
+
+      {/* فلش */}
+      <ChevronLeftIcon
+        sx={{
+          display: { xs: 'none', sm: 'block' },
+          color: 'text.subtitle',
+          flexShrink: 0,
+        }}
+      />
+    </Box>
+  );
 }
 
 export default function TicketListPage() {
@@ -59,8 +164,7 @@ export default function TicketListPage() {
   }, [loadTickets]);
 
   return (
-      <Container
-          style={{
+    <Container style={{
             px: {
               xs: 0,
               sm: 4,
@@ -72,8 +176,7 @@ export default function TicketListPage() {
             borderColor: {
               sm: 'background.paper',
             },
-          }}
-        >
+          }}>
       <Stack
         direction={{ xs: 'column', sm: 'row' }}
         justifyContent="space-between"
@@ -109,13 +212,11 @@ export default function TicketListPage() {
       </Stack>
 
       {loading ? (
-        <Grid container spacing={2}>
+        <Stack spacing={1.5}>
           {Array.from({ length: 6 }).map((_, i) => (
-            <Grid size={{xs:12,sm:6,lg:4}}  key={i}>
-              <Skeleton variant="rounded" height={140} sx={{ borderRadius: '12px' }} />
-            </Grid>
+            <Skeleton key={i} variant="rounded" height={isMobile ? 96 : 76} sx={{ borderRadius: '12px' }} />
           ))}
-        </Grid>
+        </Stack>
       ) : tickets.length === 0 ? (
         <Box
           sx={{
@@ -142,78 +243,15 @@ export default function TicketListPage() {
           </Button>
         </Box>
       ) : (
-        <Grid container spacing={2}>
+        <Stack spacing={1.5}>
           {tickets.map((ticket) => (
-            <Grid size={{xs:12,sm:6,lg:4}} key={ticket.id}>
-              <Card
-                variant="outlined"
-                sx={{
-                  borderRadius: '12px',
-                  borderColor: 'background.border',
-                  bgcolor: 'background.paper',
-                  height: '100%',
-                }}
-              >
-                <CardActionArea
-                  onClick={() => router.push(`/dashboard/tickets/${ticket.id}`)}
-                  sx={{ height: '100%', p: 0.5 }}
-                >
-                  <CardContent>
-                    <Stack
-                      direction="row"
-                      justifyContent="space-between"
-                      alignItems="flex-start"
-                      spacing={1}
-                    >
-                      <Typography
-                        variant="subtitle1"
-                        fontWeight={700}
-                        color="text.title"
-                        sx={{
-                          overflow: 'hidden',
-                          textOverflow: 'ellipsis',
-                          display: '-webkit-box',
-                          WebkitLineClamp: 1,
-                          WebkitBoxOrient: 'vertical',
-                        }}
-                      >
-                        {ticket.title}
-                      </Typography>
-                      {!!ticket.unread_count && (
-                        <Badge badgeContent={ticket.unread_count} color="error" />
-                      )}
-                    </Stack>
-
-                    <Typography
-                      variant="body2"
-                      color="text.muted"
-                      sx={{
-                        mt: 1,
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        display: '-webkit-box',
-                        WebkitLineClamp: 2,
-                        WebkitBoxOrient: 'vertical',
-                        minHeight: '2.6em',
-                      }}
-                    >
-                      {ticket.description}
-                    </Typography>
-
-                    <Stack direction="row" spacing={1} sx={{ mt: 2 }}>
-                      <StatusChip status={ticket.status} />
-                      <PriorityChip priority={ticket.priority} />
-                    </Stack>
-
-                    <Typography variant="caption" color="text.subtitle" sx={{ mt: 1.5, display: 'block' }}>
-                      {formatDate(ticket.created_at)}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </Grid>
+            <TicketRow
+              key={ticket.id}
+              ticket={ticket}
+              onClick={() => router.push(`/dashboard/tickets/${ticket.id}`)}
+            />
           ))}
-        </Grid>
+        </Stack>
       )}
 
       {isMobile && (
