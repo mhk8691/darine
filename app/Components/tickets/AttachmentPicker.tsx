@@ -6,8 +6,10 @@ import CloseIcon from '@mui/icons-material/Close';
 import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutlined';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 
-const MAX_FILE_SIZE_MB = 5;
-const ACCEPTED_TYPES = 'image/*,.pdf,.doc,.docx,.zip';
+// بر اساس مستندات API: حداکثر ۱۰ مگابایت
+const MAX_FILE_SIZE_MB = 10;
+// فرمت‌های مجاز طبق مستندات
+const ACCEPTED_TYPES = '.jpg,.jpeg,.png,.gif,.pdf,.doc,.docx,.zip,.rar';
 
 function formatFileSize(bytes: number) {
   if (bytes < 1024) return `${bytes} بایت`;
@@ -37,7 +39,7 @@ export default function AttachmentPicker({
 
   const handleFileSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.files?.[0];
-    e.target.value = ''; // امکان انتخاب دوباره همان فایل
+    e.target.value = '';
 
     if (!selected) return;
 

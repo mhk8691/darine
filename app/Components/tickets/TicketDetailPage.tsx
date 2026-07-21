@@ -28,19 +28,6 @@ import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutl
 import { TicketMessageType, TicketType } from '@/app/core/Types';
 import { closeTicket, getTicket, getTicketMessages, sendTicketMessage } from '@/lib/tickets/tickets';
 
-function formatTime(iso: string) {
-  try {
-    return new Intl.DateTimeFormat('fa-IR', {
-      hour: '2-digit',
-      minute: '2-digit',
-      day: '2-digit',
-      month: '2-digit',
-    }).format(new Date(iso));
-  } catch {
-    return iso;
-  }
-}
-
 interface TicketDetailPageProps {
   ticketId: string;
 }
@@ -67,7 +54,10 @@ export default function TicketDetailPage({ ticketId }: TicketDetailPageProps) {
       getTicketMessages(ticketId),
     ]);
     setTicket(ticketData ?? null);
-    setMessages(messagesData ?? []);
+    
+    // اگر messages درون ticketData ارائه‌شده بود یا از endpoint پیام‌ها آمد
+    const finalMessages = messagesData ?? ticketData?.messages ?? [];
+    setMessages(finalMessages);
     setLoading(false);
   }, [ticketId]);
 
@@ -90,7 +80,6 @@ export default function TicketDetailPage({ ticketId }: TicketDetailPageProps) {
     });
     setSending(false);
 
-    // در صورت خطا، خود sendTicketMessage با showSnackbar پیام را نمایش می‌دهد
     if (newMessage) {
       setMessages((prev) => [...prev, newMessage]);
       setReply('');
@@ -132,7 +121,6 @@ export default function TicketDetailPage({ ticketId }: TicketDetailPageProps) {
 
   return (
     <Container maxWidth="md" sx={{ py: { xs: 3, md: 5 } }}>
-      {/* هدر */}
       <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 2 }}>
         <IconButton onClick={() => router.push('/tickets')} size="small">
           <ArrowForwardIcon fontSize="small" />
@@ -162,12 +150,17 @@ export default function TicketDetailPage({ ticketId }: TicketDetailPageProps) {
             <Typography variant="h6" fontWeight={700} color="text.title">
               {ticket.title}
             </Typography>
-            <Typography variant="body2" color="text.muted" sx={{ mt: 1 }}>
-              {ticket.description}
+            <Typography variant="caption" color="text.subtitle" sx={{ display: 'block', mt: 0.5 }}>
+              کد رهگیری: {ticket.tracking_code}
             </Typography>
+            {ticket.description && (
+              <Typography variant="body2" color="text.muted" sx={{ mt: 1 }}>
+                {ticket.description}
+              </Typography>
+            )}
           </Box>
 
-          {!isClosed && (
+          {!isClosed && ticket.can_close !== false && (
             <Button
               variant="outlined"
               color="error"
@@ -183,9 +176,9 @@ export default function TicketDetailPage({ ticketId }: TicketDetailPageProps) {
         <Stack direction="row" spacing={1} sx={{ mt: 2 }}>
           <StatusChip status={ticket.status} />
           <PriorityChip priority={ticket.priority} />
-          {typeof ticket.category === 'object' && ticket.category && (
+          {ticket.category_name && (
             <Chip
-              label={ticket.category.name}
+              label={ticket.category_name}
               size="small"
               variant="outlined"
               sx={{ borderRadius: '6px' }}
@@ -194,7 +187,6 @@ export default function TicketDetailPage({ ticketId }: TicketDetailPageProps) {
         </Stack>
       </Paper>
 
-      {/* بدنه پیام‌ها */}
       <Typography variant="subtitle2" color="text.subtitle" sx={{ mb: 1 }}>
         گفتگو
       </Typography>
@@ -237,10 +229,10 @@ export default function TicketDetailPage({ ticketId }: TicketDetailPageProps) {
                   }}
                 >
                   {msg.message && <Typography variant="body2">{msg.message}</Typography>}
-                  {msg.attachment && (
+                  {msg.attachment_url && (
                     <Box
                       component="a"
-                      href={msg.attachment}
+                      href={msg.attachment_url}
                       target="_blank"
                       rel="noopener noreferrer"
                       sx={{
@@ -255,7 +247,9 @@ export default function TicketDetailPage({ ticketId }: TicketDetailPageProps) {
                       }}
                     >
                       <InsertDriveFileOutlinedIcon fontSize="small" />
-                      <Typography variant="caption">مشاهده فایل پیوست</Typography>
+                      <Typography variant="caption">
+                        {msg.attachment_name || 'مشاهده فایل پیوست'}
+                      </Typography>
                     </Box>
                   )}
                 </Paper>
@@ -264,7 +258,7 @@ export default function TicketDetailPage({ ticketId }: TicketDetailPageProps) {
                   color="text.subtitle"
                   sx={{ display: 'block', mt: 0.5, px: 0.5 }}
                 >
-                  {msg.is_admin ? 'پشتیبانی' : 'شما'} · {formatTime(msg.created_at)}
+                  {msg.user_name || (msg.is_admin ? 'پشتیبانی' : 'شما')}
                 </Typography>
               </Box>
             ))}
@@ -273,7 +267,6 @@ export default function TicketDetailPage({ ticketId }: TicketDetailPageProps) {
         )}
       </Paper>
 
-      {/* باکس ارسال پیام */}
       <Divider sx={{ my: 2, borderColor: 'background.border' }} />
 
       {isClosed ? (
@@ -344,7 +337,6 @@ export default function TicketDetailPage({ ticketId }: TicketDetailPageProps) {
         </Stack>
       )}
 
-      {/* دیالوگ تایید بستن تیکت */}
       <Dialog open={closeDialogOpen} onClose={() => setCloseDialogOpen(false)} maxWidth="xs" fullWidth>
         <DialogTitle>بستن تیکت</DialogTitle>
         <DialogContent>

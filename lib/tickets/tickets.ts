@@ -1,48 +1,53 @@
-
 import api, { ApiResponse } from '../api';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
-import { CreateTicketPayload, SendMessagePayload, TicketCategoryType, TicketMessageType, TicketType, UnreadCountType } from '@/app/core/Types';
+import { 
+  CreateTicketPayload, 
+  SendTicketMessagePayload, 
+  TicketCategoryType, 
+  TicketMessageType, 
+  TicketType 
+} from '@/app/core/Types';
 
-// دریافت لیست دسته‌بندی‌های تیکت
+// ۱. دریافت دسته‌بندی‌های تیکت
 export const getTicketCategories = async () => {
   try {
     const res = await api.get<ApiResponse<TicketCategoryType[]>>(
-      '/accounts/tickets/categories/',
+      '/accounts/tickets/categories/'
     );
     return res.data.data;
   } catch (error: unknown) {
     if (isAxiosError(error)) {
-      showSnackbar(error.response?.data.message);
+      showSnackbar(error.response?.data?.message || 'خطا در دریافت دسته‌بندی‌ها');
     }
   }
 };
 
-// دریافت لیست تیکت‌ها
-export const getTickets = async () => {
+// ۲. دریافت لیست تیکت‌ها (به همراه فیلترها)
+export const getTickets = async (params?: { status?: string; priority?: string; search?: string }) => {
   try {
-    const res = await api.get<ApiResponse<TicketType[]>>('/accounts/tickets/');
+    const res = await api.get<ApiResponse<TicketType[]>>('/accounts/tickets/', { params });
     return res.data.data;
   } catch (error: unknown) {
     if (isAxiosError(error)) {
-      showSnackbar(error.response?.data.message);
+      showSnackbar(error.response?.data?.message || 'خطا در دریافت لیست تیکت‌ها');
     }
   }
 };
 
-// دریافت جزییات یک تیکت
+// ۳. دریافت جزییات یک تیکت
 export const getTicket = async (id: number | string) => {
   try {
     const res = await api.get<ApiResponse<TicketType>>(`/accounts/tickets/${id}/`);
     return res.data.data;
   } catch (error: unknown) {
     if (isAxiosError(error)) {
-      showSnackbar(error.response?.data.message);
+      showSnackbar(error.response?.data?.message || 'خطا در دریافت اطلاعات تیکت');
     }
   }
 };
 
-// ایجاد تیکت جدید (در صورت وجود فایل پیوست، به‌صورت multipart/form-data ارسال می‌شود)
+// ۴. ایجاد تیکت جدید
 export const createTicket = async (payload: CreateTicketPayload) => {
   try {
     let body: FormData | Omit<CreateTicketPayload, 'attachment'> = payload;
@@ -61,81 +66,84 @@ export const createTicket = async (payload: CreateTicketPayload) => {
     }
 
     const res = await api.post<ApiResponse<TicketType>>('/accounts/tickets/', body);
+    showSnackbar(res.data.message || 'تیکت با موفقیت ایجاد شد');
     return res.data.data;
   } catch (error: unknown) {
     if (isAxiosError(error)) {
-      showSnackbar(error.response?.data.message);
+      showSnackbar(error.response?.data?.message || 'خطا در ثبت تیکت');
     }
   }
 };
 
-// دریافت پیام‌های یک تیکت
-export const getTicketMessages = async (ticketId: number | string) => {
+// ۵. بستن تیکت
+export const closeTicket = async (id: number | string) => {
   try {
-    const res = await api.get<ApiResponse<TicketMessageType[]>>(
-      `/accounts/tickets/${ticketId}/messages/`,
-    );
-    return res.data.data;
-  } catch (error: unknown) {
-    if (isAxiosError(error)) {
-      showSnackbar(error.response?.data.message);
-    }
-  }
-};
-
-// ارسال پیام جدید در تیکت (در صورت وجود فایل پیوست، به‌صورت multipart/form-data ارسال می‌شود)
-export const sendTicketMessage = async (
-  ticketId: number | string,
-  payload: SendMessagePayload,
-) => {
-  try {
-    let body: FormData | Omit<SendMessagePayload, 'attachment'> = payload;
-
-    if (payload.attachment) {
-      const formData = new FormData();
-      formData.append('message', payload.message);
-      formData.append('attachment', payload.attachment);
-      body = formData;
-    } else {
-      const { attachment: _attachment, ...rest } = payload;
-      body = rest;
-    }
-
-    const res = await api.post<ApiResponse<TicketMessageType>>(
-      `/accounts/tickets/${ticketId}/messages/`,
-      body,
-    );
-    return res.data.data;
-  } catch (error: unknown) {
-    if (isAxiosError(error)) {
-      showSnackbar(error.response?.data.message);
-    }
-  }
-};
-
-// بستن تیکت
-export const closeTicket = async (ticketId: number | string) => {
-  try {
-    await api.delete<ApiResponse<null>>(`/accounts/tickets/${ticketId}/`);
+    const res = await api.delete<ApiResponse<null>>(`/accounts/tickets/${id}/`);
+    showSnackbar(res.data.message || 'تیکت با موفقیت بسته شد');
     return true;
   } catch (error: unknown) {
     if (isAxiosError(error)) {
-      showSnackbar(error.response?.data.message);
+      showSnackbar(error.response?.data?.message || 'خطا در بستن تیکت');
     }
     return false;
   }
 };
 
-// تعداد پیام‌های خوانده‌نشده
+// ۶. دریافت پیام‌های یک تیکت
+export const getTicketMessages = async (ticketId: number | string) => {
+  try {
+    const res = await api.get<ApiResponse<TicketMessageType[]>>(`/accounts/tickets/${ticketId}/messages/`);
+    return res.data.data;
+  } catch (error: unknown) {
+    if (isAxiosError(error)) {
+      showSnackbar(error.response?.data?.message || 'خطا در دریافت پیام‌ها');
+    }
+  }
+};
+
+// ۷. ارسال پیام جدید در تیکت
+export const sendTicketMessage = async (ticketId: number | string, payload: SendTicketMessagePayload) => {
+  try {
+    let body: FormData | { message: string } = { message: payload.message };
+
+    if (payload.attachment) {
+      const formData = new FormData();
+      if (payload.message) formData.append('message', payload.message);
+      formData.append('attachment', payload.attachment);
+      body = formData;
+    }
+
+    const res = await api.post<ApiResponse<TicketMessageType>>(`/accounts/tickets/${ticketId}/messages/`, body);
+    showSnackbar(res.data.message || 'پیام با موفقیت ارسال شد');
+    return res.data.data;
+  } catch (error: unknown) {
+    if (isAxiosError(error)) {
+      showSnackbar(error.response?.data?.message || 'خطا در ارسال پیام');
+    }
+  }
+};
+
+// ۸. دریافت تعداد پیام‌های خوانده نشده
 export const getUnreadCount = async () => {
   try {
-    const res = await api.get<ApiResponse<UnreadCountType>>(
-      '/accounts/tickets/unread/count/',
-    );
+    const res = await api.get<ApiResponse<{ unread_count: number }>>('/accounts/tickets/unread/count/');
     return res.data.data.unread_count;
   } catch (error: unknown) {
     if (isAxiosError(error)) {
-      showSnackbar(error.response?.data.message);
+      showSnackbar(error.response?.data?.message);
+    }
+    return 0;
+  }
+};
+
+// ۹. بررسی وضعیت تیکت با کد رهگیری (بدون نیاز به احراز هویت)
+export const getTicketStatusByTrackingCode = async (trackingCode: string) => {
+  try {
+    const res = await api.get<ApiResponse<any>>(`/accounts/tickets/tracking/${trackingCode}/`);
+    return res.data.data;
+  } catch (error: unknown) {
+    if (isAxiosError(error)) {
+      showSnackbar(error.response?.data?.message || 'تیکتی با این کد رهگیری یافت نشد');
     }
   }
 };

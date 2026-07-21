@@ -370,35 +370,41 @@ export interface LimitOrderCalculateType {
 // app/core/Types/ticket.ts
 // در صورت نیاز، این تایپ‌ها را داخل ماژول اصلی '@/app/core/Types' خودتان merge/export کنید
 
+export type TicketStatus = 'open' | 'pending' | 'answered' | 'resolved' | 'closed';
+export type TicketPriority = 'low' | 'medium' | 'high' | 'urgent';
+
 export interface TicketCategoryType {
   id: number;
   name: string;
-}
-
-export type TicketPriority = 'low' | 'medium' | 'high' | 'urgent';
-
-export type TicketStatus = 'open' | 'pending' | 'answered' | 'closed';
-
-export interface TicketType {
-  id: number;
-  title: string;
-  description: string;
-  category: number | TicketCategoryType;
-  priority: TicketPriority;
-  status: TicketStatus;
-  created_at: string;
-  updated_at?: string;
-  unread_count?: number;
-  attachment?: string | null; // URL فایل پیوست تیکت (در صورت وجود)
+  slug?: string;
+  description?: string;
+  is_active?: boolean;
 }
 
 export interface TicketMessageType {
   id: number;
+  user_name?: string;
   message: string;
-  is_admin?: boolean;
-  sender_name?: string;
-  created_at: string;
-  attachment?: string | null; // URL فایل پیوست پیام (در صورت وجود)
+  is_admin: boolean;
+  attachment_url?: string;
+  attachment_name?: string;
+}
+
+export interface TicketType {
+  id: number;
+  tracking_code: string;
+  title: string;
+  description?: string;
+  category_name?: string;
+  status: TicketStatus;
+  priority: TicketPriority;
+  created_at?: string;
+  last_activity_at?: string;
+  unread_messages_count?: number;
+  last_message_user_type?: 'user' | 'admin';
+  can_edit?: boolean;
+  can_close?: boolean;
+  messages?: TicketMessageType[];
 }
 
 export interface CreateTicketPayload {
@@ -409,11 +415,7 @@ export interface CreateTicketPayload {
   attachment?: File | null;
 }
 
-export interface SendMessagePayload {
+export interface SendTicketMessagePayload {
   message: string;
   attachment?: File | null;
-}
-
-export interface UnreadCountType {
-  unread_count: number;
 }

@@ -22,6 +22,7 @@ import { getTickets, getUnreadCount } from '@/lib/tickets/tickets';
 import Container from '../Containers/Container/Container';
 
 function formatDate(iso: string) {
+  if (!iso) return '-';
   try {
     return new Intl.DateTimeFormat('fa-IR', {
       year: 'numeric',
@@ -54,7 +55,6 @@ function TicketRow({ ticket, onClick }: { ticket: TicketType; onClick: () => voi
         },
       }}
     >
-      {/* شماره تیکت */}
       <Box
         sx={{
           display: { xs: 'none', sm: 'flex' },
@@ -72,7 +72,6 @@ function TicketRow({ ticket, onClick }: { ticket: TicketType; onClick: () => voi
         </Typography>
       </Box>
 
-      {/* عنوان و توضیحات */}
       <Box sx={{ flex: 1, minWidth: 0 }}>
         <Stack direction="row" alignItems="center" spacing={1}>
           <Typography
@@ -87,35 +86,20 @@ function TicketRow({ ticket, onClick }: { ticket: TicketType; onClick: () => voi
           >
             {ticket.title}
           </Typography>
-          {!!ticket.unread_count && (
-            <Badge badgeContent={ticket.unread_count} color="error" />
+          {!!ticket.unread_messages_count && ticket.unread_messages_count > 0 && (
+            <Badge badgeContent={ticket.unread_messages_count} color="error" />
           )}
         </Stack>
-        <Typography
-          variant="body2"
-          color="text.muted"
-          sx={{
-            mt: 0.5,
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          {ticket.description}
+        <Typography variant="caption" color="text.subtitle" sx={{ mt: 0.5, display: 'block' }}>
+          کد رهگیری: {ticket.tracking_code}
         </Typography>
       </Box>
 
-      {/* چیپ‌های وضعیت و اولویت */}
-      <Stack
-        direction="row"
-        spacing={1}
-        sx={{ flexShrink: 0, order: { xs: 2, sm: 0 } }}
-      >
+      <Stack direction="row" spacing={1} sx={{ flexShrink: 0, order: { xs: 2, sm: 0 } }}>
         <StatusChip status={ticket.status} />
         <PriorityChip priority={ticket.priority} />
       </Stack>
 
-      {/* تاریخ */}
       <Typography
         variant="caption"
         color="text.subtitle"
@@ -126,10 +110,9 @@ function TicketRow({ ticket, onClick }: { ticket: TicketType; onClick: () => voi
           order: { xs: 3, sm: 0 },
         }}
       >
-        {formatDate(ticket.created_at)}
+        {formatDate(ticket.last_activity_at || '')}
       </Typography>
 
-      {/* فلش */}
       <ChevronLeftIcon
         sx={{
           display: { xs: 'none', sm: 'block' },
@@ -164,19 +147,13 @@ export default function TicketListPage() {
   }, [loadTickets]);
 
   return (
-    <Container style={{
-            px: {
-              xs: 0,
-              sm: 4,
-            },
-            border: {
-              xs: 0,
-              sm: 1,
-            },
-            borderColor: {
-              sm: 'background.paper',
-            },
-          }}>
+    <Container
+      style={{
+        px: { xs: 0, sm: 4 },
+        border: { xs: 0, sm: 1 },
+        borderColor: { sm: 'background.paper' },
+      }}
+    >
       <Stack
         direction={{ xs: 'column', sm: 'row' }}
         justifyContent="space-between"
