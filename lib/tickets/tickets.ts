@@ -66,7 +66,7 @@ export const createTicket = async (payload: CreateTicketPayload) => {
     }
 
     const res = await api.post<ApiResponse<TicketType>>('/accounts/tickets/', body);
-    showSnackbar(res.data.message || 'تیکت با موفقیت ایجاد شد');
+    showSnackbar(res.data.message || 'تیکت با موفقیت ایجاد شد','success');
     return res.data.data;
   } catch (error: unknown) {
     if (isAxiosError(error)) {
@@ -79,7 +79,7 @@ export const createTicket = async (payload: CreateTicketPayload) => {
 export const closeTicket = async (id: number | string) => {
   try {
     const res = await api.delete<ApiResponse<null>>(`/accounts/tickets/${id}/`);
-    showSnackbar(res.data.message || 'تیکت با موفقیت بسته شد');
+    showSnackbar(res.data.message || 'تیکت با موفقیت بسته شد','success');
     return true;
   } catch (error: unknown) {
     if (isAxiosError(error)) {
@@ -114,7 +114,7 @@ export const sendTicketMessage = async (ticketId: number | string, payload: Send
     }
 
     const res = await api.post<ApiResponse<TicketMessageType>>(`/accounts/tickets/${ticketId}/messages/`, body);
-    showSnackbar(res.data.message || 'پیام با موفقیت ارسال شد');
+    showSnackbar(res.data.message || 'پیام با موفقیت ارسال شد','success');
     return res.data.data;
   } catch (error: unknown) {
     if (isAxiosError(error)) {

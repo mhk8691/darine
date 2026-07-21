@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Box,
-  Container,
+  Container as MuiContainer,
   Typography,
   Stack,
   Paper,
@@ -11,22 +11,33 @@ import {
   IconButton,
   Button,
   Skeleton,
-  Divider,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Chip,
+  Avatar,
 } from '@mui/material';
-import SendIcon from '@mui/icons-material/Send';
+import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
+import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutlined';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
 
 import { PriorityChip, StatusChip } from './TicketChips';
 import AttachmentPicker from './AttachmentPicker';
-import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutlined';
 import { TicketMessageType, TicketType } from '@/app/core/Types';
 import { closeTicket, getTicket, getTicketMessages, sendTicketMessage } from '@/lib/tickets/tickets';
+import Container from '../Containers/Container/Container';
+import CustomModal from '../CustomModal/CustomModal';
+
+function formatTime(iso?: string) {
+  if (!iso) return '';
+  try {
+    return new Intl.DateTimeFormat('fa-IR', {
+      hour: '2-digit',
+      minute: '2-digit',
+    }).format(new Date(iso));
+  } catch {
+    return iso;
+  }
+}
 
 interface TicketDetailPageProps {
   ticketId: string;
@@ -45,7 +56,17 @@ export default function TicketDetailPage({ ticketId }: TicketDetailPageProps) {
   const [closeDialogOpen, setCloseDialogOpen] = useState(false);
   const [closing, setClosing] = useState(false);
 
-  const bottomRef = useRef<HTMLDivElement | null>(null);
+  // رفرنس کانتینر چت برای اسکرول داخلی دقیق
+  const chatContainerRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollToBottom = (smooth = true) => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTo({
+        top: chatContainerRef.current.scrollHeight,
+        behavior: smooth ? 'smooth' : 'auto',
+      });
+    }
+  };
 
   const loadData = useCallback(async () => {
     setLoading(true);
@@ -55,7 +76,6 @@ export default function TicketDetailPage({ ticketId }: TicketDetailPageProps) {
     ]);
     setTicket(ticketData ?? null);
     
-    // اگر messages درون ticketData ارائه‌شده بود یا از endpoint پیام‌ها آمد
     const finalMessages = messagesData ?? ticketData?.messages ?? [];
     setMessages(finalMessages);
     setLoading(false);
@@ -65,9 +85,12 @@ export default function TicketDetailPage({ ticketId }: TicketDetailPageProps) {
     loadData();
   }, [loadData]);
 
+  // اسکرول هوشمند فقط درون باکس پیام‌ها
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages.length]);
+    if (!loading && messages.length > 0) {
+      scrollToBottom(true);
+    }
+  }, [messages.length, loading]);
 
   const isClosed = ticket?.status === 'closed';
 
@@ -100,265 +123,359 @@ export default function TicketDetailPage({ ticketId }: TicketDetailPageProps) {
 
   if (loading) {
     return (
-      <Container maxWidth="md" sx={{ py: { xs: 3, md: 5 } }}>
-        <Skeleton variant="text" width={200} height={40} />
-        <Skeleton variant="rounded" height={100} sx={{ my: 2, borderRadius: '12px' }} />
-        <Skeleton variant="rounded" height={300} sx={{ borderRadius: '12px' }} />
-      </Container>
+      <MuiContainer maxWidth="md" sx={{ py: { xs: 2, md: 4 } }}>
+        <Skeleton variant="rounded" height={70} sx={{ borderRadius: '16px', mb: 2 }} />
+        <Skeleton variant="rounded" height={480} sx={{ borderRadius: '16px' }} />
+      </MuiContainer>
     );
   }
 
   if (!ticket) {
     return (
-      <Container maxWidth="md" sx={{ py: { xs: 3, md: 5 } }}>
-        <Typography color="text.secondary">تیکت یافت نشد</Typography>
-        <Button sx={{ mt: 2 }} onClick={() => router.push('/tickets')}>
-          بازگشت به لیست تیکت‌ها
+      <MuiContainer maxWidth="md" sx={{ py: 5, textAlign: 'center' }}>
+        <Typography color="text.secondary" variant="h6">تیکت مورد نظر یافت نشد</Typography>
+        <Button variant="contained" sx={{ mt: 2, borderRadius: '10px' }} onClick={() => router.push('/tickets')}>
+          بازگشت به تیکت‌ها
         </Button>
-      </Container>
+      </MuiContainer>
     );
   }
 
   return (
-    <Container maxWidth="md" sx={{ py: { xs: 3, md: 5 } }}>
-      <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 2 }}>
-        <IconButton onClick={() => router.push('/tickets')} size="small">
-          <ArrowForwardIcon fontSize="small" />
-        </IconButton>
-        <Typography variant="body2" color="text.subtitle">
-          بازگشت به لیست تیکت‌ها
-        </Typography>
-      </Stack>
-
+    <Container
+      style={{
+        px: { xs: 0, sm: 4 },
+        border: { xs: 0, sm: 1 },
+        borderColor: { sm: 'background.paper' },
+      }}
+    >
+      {/* Container اصلی چت به سبک پیام‌رسان */}
       <Paper
-        variant="outlined"
+        elevation={3}
         sx={{
-          p: { xs: 2, sm: 3 },
-          borderRadius: '12px',
-          borderColor: 'background.border',
+          borderRadius: { xs: '12px', sm: '20px' },
+          overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'column',
+          height: { xs: '85vh', sm: '80vh' },
           bgcolor: 'background.paper',
-          mb: 3,
+          border: '1px solid',
+          borderColor: 'divider',
         }}
       >
-        <Stack
-          direction={{ xs: 'column', sm: 'row' }}
-          justifyContent="space-between"
-          alignItems={{ xs: 'flex-start', sm: 'flex-start' }}
-          spacing={2}
+        {/* ۱. هدر چت (Chat Header) */}
+        <Box
+          sx={{
+            p: 2,
+            bgcolor: 'background.paper',
+            borderBottom: '1px solid',
+            borderColor: 'divider',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            zIndex: 2,
+          }}
         >
-          <Box sx={{ minWidth: 0 }}>
-            <Typography variant="h6" fontWeight={700} color="text.title">
-              {ticket.title}
-            </Typography>
-            <Typography variant="caption" color="text.subtitle" sx={{ display: 'block', mt: 0.5 }}>
-              کد رهگیری: {ticket.tracking_code}
-            </Typography>
-            {ticket.description && (
-              <Typography variant="body2" color="text.muted" sx={{ mt: 1 }}>
+          <Stack direction="row" alignItems="center" spacing={1.5}>
+            <IconButton onClick={() => router.push('/dashboard/tickets')} size="small">
+              <ArrowForwardIcon />
+            </IconButton>
+            <Avatar sx={{ bgcolor: 'primary.main', color: 'primary.contrastText' }}>
+              <SupportAgentIcon />
+            </Avatar>
+            <Box>
+              <Typography variant="subtitle1" fontWeight={700} lineHeight={1.2}>
+                {ticket.title}
+              </Typography>
+              <Typography variant="caption" color="text.secondary">
+                کد رهگیری: {ticket.tracking_code}
+              </Typography>
+            </Box>
+          </Stack>
+
+          <Stack direction="row" alignItems="center" spacing={1}>
+            <StatusChip status={ticket.status} />
+            <PriorityChip priority={ticket.priority} />
+            {!isClosed && ticket.can_close !== false && (
+              <Button
+                variant="outlined"
+                color="error"
+                size="small"
+                onClick={() => setCloseDialogOpen(true)}
+                sx={{ borderRadius: '8px', ml: 1, display: { xs: 'none', sm: 'inline-flex' } }}
+              >
+                بستن تیکت
+              </Button>
+            )}
+          </Stack>
+        </Box>
+
+        {/* ۲. بدنه گفتگو (Chat Messages List) */}
+        <Box
+          ref={chatContainerRef}
+          sx={{
+            flex: 1,
+            p: { xs: 1.5, sm: 2.5 },
+            overflowY: 'auto',
+            bgcolor: (theme) =>
+              theme.palette.mode === 'dark' ? '#0f172a' : '#f1f5f9',
+            backgroundImage: `radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 0)`,
+            backgroundSize: '16px 16px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 1.5,
+          }}
+        >
+          {/* شرح اولیه تیکت */}
+          {ticket.description && (
+            <Box
+              sx={{
+                alignSelf: 'center',
+                maxWidth: '85%',
+                bgcolor: 'action.hover',
+                p: 1.5,
+                borderRadius: '12px',
+                textAlign: 'center',
+                mb: 1,
+                border: '1px dashed',
+                borderColor: 'divider',
+              }}
+            >
+              <Typography variant="caption" color="text.secondary" fontWeight={700} display="block">
+                توضیحات اولیه تیکت:
+              </Typography>
+              <Typography variant="body2" color="text.primary">
                 {ticket.description}
               </Typography>
-            )}
-          </Box>
-
-          {!isClosed && ticket.can_close !== false && (
-            <Button
-              variant="outlined"
-              color="error"
-              size="small"
-              onClick={() => setCloseDialogOpen(true)}
-              sx={{ borderRadius: '8px', whiteSpace: 'nowrap' }}
-            >
-              بستن تیکت
-            </Button>
+            </Box>
           )}
-        </Stack>
 
-        <Stack direction="row" spacing={1} sx={{ mt: 2 }}>
-          <StatusChip status={ticket.status} />
-          <PriorityChip priority={ticket.priority} />
-          {ticket.category_name && (
-            <Chip
-              label={ticket.category_name}
-              size="small"
-              variant="outlined"
-              sx={{ borderRadius: '6px' }}
-            />
-          )}
-        </Stack>
-      </Paper>
-
-      <Typography variant="subtitle2" color="text.subtitle" sx={{ mb: 1 }}>
-        گفتگو
-      </Typography>
-
-      <Paper
-        variant="outlined"
-        sx={{
-          borderRadius: '12px',
-          borderColor: 'background.border',
-          bgcolor: 'background.default',
-          p: { xs: 1.5, sm: 2 },
-          minHeight: 240,
-          maxHeight: 480,
-          overflowY: 'auto',
-        }}
-      >
-        {messages.length === 0 ? (
-          <Typography variant="body2" color="text.subtitle" sx={{ textAlign: 'center', py: 4 }}>
-            هنوز پیامی ثبت نشده است
-          </Typography>
-        ) : (
-          <Stack spacing={1.5}>
-            {messages.map((msg) => (
-              <Box
-                key={msg.id}
-                sx={{
-                  alignSelf: msg.is_admin ? 'flex-start' : 'flex-end',
-                  maxWidth: { xs: '85%', sm: '70%' },
-                }}
-              >
-                <Paper
-                  elevation={0}
+          {messages.length === 0 ? (
+            <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center', my: 'auto' }}>
+              هیچ پیامی ارسال نشده است. اولین پیام را شما بفرستید!
+            </Typography>
+          ) : (
+            messages.map((msg) => {
+              const isMe = !msg.is_admin;
+              return (
+                <Box
+                  key={msg.id}
                   sx={{
-                    p: 1.5,
-                    borderRadius: '10px',
-                    bgcolor: msg.is_admin ? 'background.paper' : 'primary.light',
-                    color: msg.is_admin ? 'text.primary' : '#10100F',
-                    border: msg.is_admin ? '1px solid' : 'none',
-                    borderColor: 'background.border',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: isMe ? 'flex-end' : 'flex-start',
                   }}
                 >
-                  {msg.message && <Typography variant="body2">{msg.message}</Typography>}
-                  {msg.attachment_url && (
+                  <Paper
+                    elevation={1}
+                    sx={{
+                      p: 1.5,
+                      px: 2,
+                      maxWidth: { xs: '85%', sm: '65%' },
+                      borderRadius: isMe
+                        ? '16px 16px 2px 16px'
+                        : '16px 16px 16px 2px',
+                      bgcolor: isMe ? 'primary.main' : 'background.paper',
+                      color: isMe ? 'primary.contrastText' : 'text.primary',
+                      position: 'relative',
+                      wordBreak: 'break-word',
+                    }}
+                  >
+                    {!isMe && (
+                      <Typography
+                        variant="caption"
+                        fontWeight={700}
+                        color="primary.main"
+                        sx={{ display: 'block', mb: 0.5 }}
+                      >
+                        {msg.user_name || 'پشتیبانی'}
+                      </Typography>
+                    )}
+
+                    {msg.message && (
+                      <Typography variant="body2" sx={{ lineHeight: 1.6, whitespace: 'pre-line' }}>
+                        {msg.message}
+                      </Typography>
+                    )}
+
+                    {/* فایل پیوست */}
+                    {msg.attachment_url && (
+                      <Paper
+                        variant="outlined"
+                        component="a"
+                        href={msg.attachment_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 1,
+                          mt: msg.message ? 1 : 0,
+                          p: 1,
+                          borderRadius: '8px',
+                          bgcolor: isMe ? 'rgba(255,255,255,0.15)' : 'action.hover',
+                          color: 'inherit',
+                          textDecoration: 'none',
+                          transition: '0.2s',
+                          '&:hover': { opacity: 0.8 },
+                        }}
+                      >
+                        <InsertDriveFileOutlinedIcon fontSize="small" />
+                        <Typography variant="caption" noWrap sx={{ maxWidth: 180 }}>
+                          {msg.attachment_name || 'دانلود فایل پیوست'}
+                        </Typography>
+                      </Paper>
+                    )}
+
+                    {/* زمان و آیکون تیک */}
                     <Box
-                      component="a"
-                      href={msg.attachment_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
                       sx={{
                         display: 'flex',
                         alignItems: 'center',
+                        justifyContent: 'flex-end',
                         gap: 0.5,
-                        mt: msg.message ? 1 : 0,
-                        color: 'inherit',
-                        textDecoration: 'none',
-                        opacity: 0.85,
-                        '&:hover': { opacity: 1, textDecoration: 'underline' },
+                        mt: 0.5,
+                        opacity: 0.75,
                       }}
                     >
-                      <InsertDriveFileOutlinedIcon fontSize="small" />
-                      <Typography variant="caption">
-                        {msg.attachment_name || 'مشاهده فایل پیوست'}
+                      <Typography variant="caption" sx={{ fontSize: '0.68rem' }}>
+                        {formatTime((msg as any).created_at)}
                       </Typography>
+                      {isMe && <DoneAllIcon sx={{ fontSize: 14 }} />}
                     </Box>
-                  )}
-                </Paper>
-                <Typography
-                  variant="caption"
-                  color="text.subtitle"
-                  sx={{ display: 'block', mt: 0.5, px: 0.5 }}
-                >
-                  {msg.user_name || (msg.is_admin ? 'پشتیبانی' : 'شما')}
-                </Typography>
-              </Box>
-            ))}
-            <div ref={bottomRef} />
-          </Stack>
-        )}
-      </Paper>
+                  </Paper>
+                </Box>
+              );
+            })
+          )}
+        </Box>
 
-      <Divider sx={{ my: 2, borderColor: 'background.border' }} />
-
-      {isClosed ? (
-        <Stack
-          direction="row"
-          alignItems="center"
-          spacing={1}
+        {/* ۳. بخش ارسال پیام (Input Area) */}
+        <Box
           sx={{
-            p: 2,
-            borderRadius: '12px',
+            p: 1.5,
             bgcolor: 'background.paper',
-            border: '1px dashed',
-            borderColor: 'background.border',
+            borderTop: '1px solid',
+            borderColor: 'divider',
           }}
         >
-          <LockOutlinedIcon fontSize="small" sx={{ color: 'text.subtitle' }} />
-          <Typography variant="body2" color="text.subtitle">
-            این تیکت بسته شده و امکان ارسال پیام جدید وجود ندارد
-          </Typography>
-        </Stack>
-      ) : (
-        <Stack spacing={1}>
-          {replyAttachment && (
-            <AttachmentPicker
-              file={replyAttachment}
-              onChange={setReplyAttachment}
-              disabled={sending}
-            />
-          )}
-          <Stack direction="row" spacing={1} alignItems="flex-end">
-            {!replyAttachment && (
-              <AttachmentPicker
-                file={replyAttachment}
-                onChange={setReplyAttachment}
-                disabled={sending}
-              />
-            )}
-            <TextField
-              fullWidth
-              multiline
-              maxRows={4}
-              placeholder="پیام خود را بنویسید..."
-              value={reply}
-              onChange={(e) => setReply(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                  e.preventDefault();
-                  handleSend();
-                }
-              }}
-              disabled={sending}
-            />
-            <IconButton
-              color="primary"
-              onClick={handleSend}
-              disabled={(!reply.trim() && !replyAttachment) || sending}
-              sx={{
-                bgcolor: 'primary.main',
-                color: '#10100F',
-                borderRadius: '8px',
-                '&:hover': { bgcolor: 'primary.light' },
-                '&.Mui-disabled': { bgcolor: 'background.paper' },
-              }}
+          {isClosed ? (
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="center"
+              spacing={1}
+              sx={{ py: 1, color: 'text.secondary' }}
             >
-              <SendIcon sx={{ transform: 'scaleX(-1)' }} fontSize="small" />
-            </IconButton>
-          </Stack>
-        </Stack>
-      )}
+              <LockOutlinedIcon fontSize="small" />
+              <Typography variant="body2">
+                این تیکت بسته شده است و امکان ارسال پیام جدید وجود ندارد.
+              </Typography>
+            </Stack>
+          ) : (
+            <Stack spacing={1}>
+              {/* نمایش فایل پیوست پیش از ارسال */}
+              {replyAttachment && (
+                <Box sx={{ px: 1 }}>
+                  <AttachmentPicker
+                    file={replyAttachment}
+                    onChange={setReplyAttachment}
+                    disabled={sending}
+                  />
+                </Box>
+              )}
 
-      <Dialog open={closeDialogOpen} onClose={() => setCloseDialogOpen(false)} maxWidth="xs" fullWidth>
-        <DialogTitle>بستن تیکت</DialogTitle>
-        <DialogContent>
+              <Stack direction="row" spacing={1} alignItems="center">
+                {/* دکمه پیوست فایل */}
+                {!replyAttachment && (
+                  <AttachmentPicker
+                    file={replyAttachment}
+                    onChange={setReplyAttachment}
+                    disabled={sending}
+                  />
+                )}
+
+                {/* ورودی متن */}
+                <TextField
+                  fullWidth
+                  multiline
+                  maxRows={4}
+                  size="small"
+                  placeholder="پیام خود را بنویسید..."
+                  value={reply}
+                  onChange={(e) => setReply(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                      e.preventDefault();
+                      handleSend();
+                    }
+                  }}
+                  disabled={sending}
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      borderRadius: '24px',
+                      bgcolor: 'action.hover',
+                      '& fieldset': { borderColor: 'transparent' },
+                      '&:hover fieldset': { borderColor: 'divider' },
+                      '&.Mui-focused fieldset': { borderColor: 'primary.main' },
+                    },
+                  }}
+                />
+
+                {/* دکمه ارسال دایره‌ای */}
+                <IconButton
+                  color="primary"
+                  onClick={handleSend}
+                  disabled={(!reply.trim() && !replyAttachment) || sending}
+                  sx={{
+                    bgcolor: 'primary.main',
+                    color: 'primary.contrastText',
+                    width: 42,
+                    height: 42,
+                    borderRadius: '50%',
+                    boxShadow: 2,
+                    '&:hover': { bgcolor: 'primary.dark' },
+                    '&.Mui-disabled': { bgcolor: 'action.disabledBackground' },
+                  }}
+                >
+                  <SendRoundedIcon sx={{ transform: 'scaleX(-1)', fontSize: 20 }} />
+                </IconButton>
+              </Stack>
+            </Stack>
+          )}
+        </Box>
+      </Paper>
+
+      {/* کاستوم مودال بستن تیکت */}
+      <CustomModal open={closeDialogOpen} setOpen={setCloseDialogOpen}>
+        <Stack spacing={2} sx={{ p: 2 }}>
+          <Typography variant="h6" fontWeight={700}>
+            بستن تیکت
+          </Typography>
           <Typography variant="body2" color="text.secondary">
             آیا از بستن این تیکت مطمئن هستید؟ پس از بستن، امکان ارسال پیام جدید وجود نخواهد داشت.
           </Typography>
-        </DialogContent>
-        <DialogActions sx={{ p: 2 }}>
-          <Button onClick={() => setCloseDialogOpen(false)} color="inherit" disabled={closing}>
-            انصراف
-          </Button>
-          <Button
-            onClick={handleClose}
-            color="error"
-            variant="contained"
-            disabled={closing}
-            sx={{ borderRadius: '8px' }}
-          >
-            {closing ? 'در حال بستن...' : 'بستن تیکت'}
-          </Button>
-        </DialogActions>
-      </Dialog>
+          <Stack direction="row" spacing={1} justifyContent="flex-end" sx={{ mt: 2 }}>
+            <Button
+              onClick={() => setCloseDialogOpen(false)}
+              color="inherit"
+              disabled={closing}
+              sx={{ borderRadius: '8px' }}
+            >
+              انصراف
+            </Button>
+            <Button
+              onClick={handleClose}
+              color="error"
+              variant="contained"
+              disabled={closing}
+              sx={{ borderRadius: '8px' }}
+            >
+              {closing ? 'در حال بستن...' : 'بستن تیکت'}
+            </Button>
+          </Stack>
+        </Stack>
+      </CustomModal>
     </Container>
   );
 }

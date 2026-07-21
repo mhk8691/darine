@@ -6,9 +6,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutlined';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 
-// بر اساس مستندات API: حداکثر ۱۰ مگابایت
 const MAX_FILE_SIZE_MB = 10;
-// فرمت‌های مجاز طبق مستندات
 const ACCEPTED_TYPES = '.jpg,.jpeg,.png,.gif,.pdf,.doc,.docx,.zip,.rar';
 
 function formatFileSize(bytes: number) {

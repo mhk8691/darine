@@ -1,16 +1,10 @@
 'use client';
 import { useEffect, useState } from 'react';
 import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
   TextField,
   MenuItem,
   Button,
   Stack,
-  useMediaQuery,
-  useTheme,
   IconButton,
   Typography,
 } from '@mui/material';
@@ -18,6 +12,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import AttachmentPicker from './AttachmentPicker';
 import { createTicket, getTicketCategories } from '@/lib/tickets/tickets';
 import { TicketCategoryType, TicketPriority } from '@/app/core/Types';
+import CustomModal from '../CustomModal/CustomModal';
 
 const priorityOptions: { value: TicketPriority; label: string }[] = [
   { value: 'low', label: 'کم' },
@@ -33,9 +28,6 @@ interface CreateTicketDialogProps {
 }
 
 export default function CreateTicketDialog({ open, onClose, onCreated }: CreateTicketDialogProps) {
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-
   const [categories, setCategories] = useState<TicketCategoryType[]>([]);
   const [categoriesLoading, setCategoriesLoading] = useState(false);
 
@@ -69,6 +61,13 @@ export default function CreateTicketDialog({ open, onClose, onCreated }: CreateT
     onClose();
   };
 
+  const setOpenHandler = (isOpen: boolean | ((prevState: boolean) => boolean)) => {
+    const nextValue = typeof isOpen === 'function' ? isOpen(open) : isOpen;
+    if (!nextValue) {
+      handleClose();
+    }
+  };
+
   const isValid = title.trim().length > 2 && description.trim().length > 4 && category !== '';
 
   const handleSubmit = async () => {
@@ -83,7 +82,6 @@ export default function CreateTicketDialog({ open, onClose, onCreated }: CreateT
     });
     setSubmitting(false);
 
-    // در صورت خطا، تابع createTicket خودش با showSnackbar پیام را نمایش می‌دهد
     if (created) {
       resetForm();
       onCreated();
@@ -92,25 +90,20 @@ export default function CreateTicketDialog({ open, onClose, onCreated }: CreateT
   };
 
   return (
-    <Dialog
-      open={open}
-      onClose={handleClose}
-      fullScreen={fullScreen}
-      fullWidth
-      maxWidth="sm"
-      PaperProps={{ sx: { borderRadius: fullScreen ? 0 : '12px' } }}
-    >
-      <DialogTitle sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <Typography variant="h6" fontWeight={700} color="text.title">
-          ایجاد تیکت جدید
-        </Typography>
-        <IconButton onClick={handleClose} size="small">
-          <CloseIcon fontSize="small" />
-        </IconButton>
-      </DialogTitle>
+    <CustomModal open={open} setOpen={setOpenHandler}>
+      <Stack spacing={2} sx={{ p: 2 }}>
+        {/* هدر مودال */}
+        <Stack direction="row" alignItems="center" justifyContent="space-between">
+          <Typography variant="h6" fontWeight={700} color="text.title">
+            ایجاد تیکت جدید
+          </Typography>
+          <IconButton onClick={handleClose} size="small" disabled={submitting}>
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        </Stack>
 
-      <DialogContent dividers sx={{ borderColor: 'background.border' }}>
-        <Stack spacing={2.5} sx={{ pt: 1 }}>
+        {/* ورودی‌های فرم */}
+        <Stack spacing={2} sx={{ pt: 1 }}>
           <TextField
             label="عنوان تیکت"
             value={title}
@@ -118,6 +111,7 @@ export default function CreateTicketDialog({ open, onClose, onCreated }: CreateT
             fullWidth
             required
             placeholder="مثلاً: مشکل در ثبت سفارش"
+            size="small"
           />
 
           <TextField
@@ -127,8 +121,10 @@ export default function CreateTicketDialog({ open, onClose, onCreated }: CreateT
             fullWidth
             required
             multiline
-            minRows={4}
+            minRows={3}
+            maxRows={5}
             placeholder="مشکل خود را با جزئیات شرح دهید..."
+            size="small"
           />
 
           <TextField
@@ -139,7 +135,8 @@ export default function CreateTicketDialog({ open, onClose, onCreated }: CreateT
             fullWidth
             required
             disabled={categoriesLoading}
-            helperText={categoriesLoading ? 'در حال بارگذاری دسته‌بندی‌ها...' : ' '}
+            size="small"
+            helperText={categoriesLoading ? 'در حال بارگذاری دسته‌بندی‌ها...' : undefined}
           >
             {categories.map((cat) => (
               <MenuItem key={cat.id} value={cat.id}>
@@ -154,6 +151,7 @@ export default function CreateTicketDialog({ open, onClose, onCreated }: CreateT
             value={priority}
             onChange={(e) => setPriority(e.target.value as TicketPriority)}
             fullWidth
+            size="small"
           >
             {priorityOptions.map((opt) => (
               <MenuItem key={opt.value} value={opt.value}>
@@ -162,29 +160,30 @@ export default function CreateTicketDialog({ open, onClose, onCreated }: CreateT
             ))}
           </TextField>
 
-          <Stack direction="row" alignItems="center" spacing={1}>
+          <Stack direction="row" alignItems="center" spacing={1} sx={{ pt: 1 }}>
             <Typography variant="body2" color="text.subtitle">
               پیوست فایل (اختیاری)
             </Typography>
             <AttachmentPicker file={attachment} onChange={setAttachment} disabled={submitting} />
           </Stack>
         </Stack>
-      </DialogContent>
 
-      <DialogActions sx={{ p: 2 }}>
-        <Button onClick={handleClose} color="inherit" disabled={submitting}>
-          انصراف
-        </Button>
-        <Button
-          onClick={handleSubmit}
-          variant="contained"
-          color="primary"
-          disabled={!isValid || submitting}
-          sx={{ borderRadius: '8px', px: 3, fontWeight: 700 }}
-        >
-          {submitting ? 'در حال ارسال...' : 'ثبت تیکت'}
-        </Button>
-      </DialogActions>
-    </Dialog>
+        {/* دکمه‌های اقدام (فوتر) */}
+        <Stack direction="row" spacing={1} justifyContent="flex-end" sx={{ pt: 2 }}>
+          <Button onClick={handleClose} color="inherit" disabled={submitting}>
+            انصراف
+          </Button>
+          <Button
+            onClick={handleSubmit}
+            variant="contained"
+            color="primary"
+            disabled={!isValid || submitting}
+            sx={{ borderRadius: '8px', px: 3, fontWeight: 700 }}
+          >
+            {submitting ? 'در حال ارسال...' : 'ثبت تیکت'}
+          </Button>
+        </Stack>
+      </Stack>
+    </CustomModal>
   );
 }
