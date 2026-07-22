@@ -68,7 +68,7 @@ export default function CreateTicketDialog({ open, onClose, onCreated }: CreateT
     }
   };
 
-  const isValid = title.trim().length > 2 && description.trim().length > 4 && category !== '';
+  const isValid = title.trim().length > 4 && description.trim().length > 9 && category !== '';
 
   const handleSubmit = async () => {
     if (!isValid) return;
