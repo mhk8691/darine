@@ -366,3 +366,48 @@ export interface LimitOrderCalculateType {
     remaining_toman: number
   }
 }
+export interface GuaranteePlan {
+  id: number;
+  name: string;
+  duration_days: number;
+  service_fee_percent: string;
+  is_active: boolean;
+  description: string;
+  created_at?: string;
+}
+
+export interface GuaranteeInfoData {
+  accessible_gold: number;
+  gold_price: number;
+  accessible_toman: number;
+  plans: GuaranteePlan[];
+  min_fee_percent: number;
+  max_fee_percent: number;
+}
+
+export interface CreateGuaranteePayload {
+  plan_id: number;
+  gold_weight: string;
+}
+
+export type GuaranteeStatus = 'ACTIVE' | 'EXPIRED' | 'CANCELLED' | 'EXECUTED';
+
+export interface GuaranteeCreateResult {
+  id: number;
+  plan: number;
+  plan_name: string;
+  plan_duration_days: number;
+  gold_weight: string;
+  guaranteed_price: number;
+  service_fee: number;
+  service_fee_percent: string;
+  start_date: string;
+  end_date: string;
+  status: GuaranteeStatus;
+  status_display: string;
+  days_remaining: number;
+  profit_loss: number;
+  is_expired: boolean;
+  can_cancel: boolean;
+  can_execute: boolean;
+}
