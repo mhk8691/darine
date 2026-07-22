@@ -411,3 +411,55 @@ export interface GuaranteeCreateResult {
   can_cancel: boolean;
   can_execute: boolean;
 }
+
+
+// آیتم خلاصه در لیست
+export interface UserGuaranteeListItem {
+  id: number;
+  plan_name: string;
+  gold_weight: string;
+  guaranteed_price: number;
+  service_fee: number;
+  status: GuaranteeStatus;
+  status_display: string;
+  days_remaining: number;
+  end_date_shamsi: string;
+}
+
+// جزئیات کامل یک تضمین
+export interface UserGuaranteeDetail {
+  id: number;
+  plan_name: string;
+  gold_weight: string;
+  guaranteed_price: number;
+  service_fee: number;
+  status: GuaranteeStatus;
+  status_display: string;
+  start_date: string;
+  end_date: string;
+  days_remaining: number;
+  can_cancel: boolean;
+  can_execute: boolean;
+}
+
+// پاسخ لغو طرح
+export interface CancelGuaranteeData {
+  id: number;
+  status: GuaranteeStatus;
+  status_display: string;
+  cancelled_at: string;
+  can_cancel: boolean;
+  can_execute: boolean;
+}
+
+// پاسخ اجرای طرح
+export interface ExecuteGuaranteeData {
+  id: number;
+  status: GuaranteeStatus;
+  status_display: string;
+  executed_at?: string;
+  executed_price?: number;
+  profit_loss?: number;
+  can_cancel: boolean;
+  can_execute: boolean;
+}

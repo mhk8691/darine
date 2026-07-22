@@ -1,6 +1,6 @@
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
-import { CreateGuaranteePayload, GuaranteeCreateResult, GuaranteeInfoData, GuaranteePlan } from '@/app/core/Types';
+import { CancelGuaranteeData, CreateGuaranteePayload, ExecuteGuaranteeData, GuaranteeCreateResult, GuaranteeInfoData, GuaranteePlan, UserGuaranteeDetail, UserGuaranteeListItem } from '@/app/core/Types';
 import api, { ApiResponse } from '../api';
 
 
@@ -47,4 +47,30 @@ export const createGuarantee = async (
     }
     return undefined;
   }
+};
+
+export const guaranteeService = {
+  // ۱. دریافت لیست تضمین‌های کاربر
+  getUserGuarantees: async (): Promise<ApiResponse<UserGuaranteeListItem[]>> => {
+    const response = await api.get('/gold/guarantee/list/');
+    return response.data;
+  },
+
+  // ۲. دریافت جزئیات یک تضمین
+  getGuaranteeDetail: async (id: number): Promise<ApiResponse<UserGuaranteeDetail>> => {
+    const response = await api.get(`/gold/guarantee/${id}/`);
+    return response.data;
+  },
+
+  // ۳. لغو طرح تضمین
+  cancelGuarantee: async (id: number): Promise<ApiResponse<CancelGuaranteeData>> => {
+    const response = await api.post(`/gold/guarantee/${id}/cancel/`);
+    return response.data;
+  },
+
+  // ۴. اجرای طرح تضمین
+  executeGuarantee: async (id: number): Promise<ApiResponse<ExecuteGuaranteeData>> => {
+    const response = await api.post(`/gold/guarantee/${id}/execute/`);
+    return response.data;
+  },
 };

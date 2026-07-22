@@ -1,12 +1,16 @@
 'use client';
 
 import * as React from 'react';
-import { Box, Container, Button, useTheme } from '@mui/material';
+import { Box, Container, Button, Typography, Stack, useTheme } from '@mui/material';
+import ShieldMoonRoundedIcon from '@mui/icons-material/ShieldMoonRounded';
+
 import GuaranteeHero from './GuaranteeHero';
 import DurationSelector from './DurationSelector';
 import WeightInput from './WeightInput';
 import GuaranteeInvoice from './GuaranteeInvoice';
 import GuaranteeNotice from './GuaranteeNotice';
+import UserGuaranteesList, { UserGuaranteesListRef } from './UserGuaranteesList';
+
 import { GuaranteeInfoData, GuaranteePlan } from '@/app/core/Types';
 import { createGuarantee, getGuaranteeInfo } from '@/lib/guaranteeService/guaranteeService';
 
@@ -19,6 +23,9 @@ export default function InsurancePage() {
   const [infoData, setInfoData] = React.useState<GuaranteeInfoData | null>(null);
   const [selectedPlanId, setSelectedPlanId] = React.useState<number | null>(null);
   const [goldWeight, setGoldWeight] = React.useState<string>('1');
+
+  // رفرنس به کامپوننت لیست جهت ریفرش شدن پس از ثبت موفق
+  const userGuaranteesRef = React.useRef<UserGuaranteesListRef>(null);
 
   // دریافت اطلاعات اولیه از بک‌اند
   const fetchData = React.useCallback(async () => {
@@ -68,8 +75,10 @@ export default function InsurancePage() {
     });
 
     if (response) {
-      // به‌روزرسانی مجدد اطلاعات بعد از ایجاد موفق
+      // به‌روزرسانی اطلاعات حساب کاربر
       await fetchData();
+      // به‌روزرسانی لیست تضمین‌های کاربر در پایین صفحه
+      userGuaranteesRef.current?.refreshList();
     }
     setSubmitting(false);
   };
@@ -81,9 +90,10 @@ export default function InsurancePage() {
         bgcolor: theme.palette.background.default,
         transition: 'background-color 0.3s ease',
         display: 'flex',
-        alignItems: { xs: 'flex-start', sm: 'center' },
-        justifyContent: 'center',
-        p: { xs: 0, sm: 2, md: 4, lg: 6 },
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        p: { xs: 2, sm: 3, md: 4, lg: 6 },
       }}
     >
       <Container
@@ -91,100 +101,136 @@ export default function InsurancePage() {
         disableGutters
         sx={{
           width: '100%',
-          boxShadow: isDark
-            ? '0 20px 50px rgba(0,0,0,0.4)'
-            : '0 16px 48px rgba(28,28,26,0.06)',
-          borderRadius: { xs: 0, sm: 4, md: 6 },
-          border: { xs: 'none', sm: `1px solid ${theme.palette.background.border}` },
           display: 'flex',
           flexDirection: 'column',
-          overflow: 'hidden',
-          bgcolor: theme.palette.background.default,
+          gap: { xs: 4, md: 6 },
         }}
       >
+        {/* ۱. کارت اصلی ثبت تضمین */}
         <Box
           sx={{
+            boxShadow: isDark
+              ? '0 20px 50px rgba(0,0,0,0.4)'
+              : '0 16px 48px rgba(28,28,26,0.06)',
+            borderRadius: { xs: 3, sm: 4, md: 6 },
+            border: `1px solid ${theme.palette.background.border}`,
             display: 'flex',
-            flexDirection: { xs: 'column', md: 'row' },
-            alignItems: 'stretch',
+            flexDirection: 'column',
+            overflow: 'hidden',
+            bgcolor: theme.palette.background.default,
           }}
         >
-          {/* ستون راست: اطلاعات و توضیحات هیرو */}
-          <GuaranteeHero />
-
           <Box
             sx={{
-              flex: 1,
-              minWidth: 0,
-              px: { xs: 2.5, sm: 3.5, md: 4 },
-              py: { xs: 2, md: 3 },
+              display: 'flex',
+              flexDirection: { xs: 'column', md: 'row' },
+              alignItems: 'stretch',
             }}
           >
-            <DurationSelector
-              plans={infoData?.plans || []}
-              selectedPlanId={selectedPlanId}
-              onSelectPlan={(id) => setSelectedPlanId(id)}
-              loading={loading}
-            />
+            {/* ستون راست: اطلاعات و توضیحات هیرو */}
+            <GuaranteeHero />
 
-            <WeightInput
-              goldWeight={goldWeight}
-              setGoldWeight={setGoldWeight}
-              accessibleGold={infoData?.accessible_gold || 0}
-              loading={loading}
-            />
+            {/* ستون چپ: فرم انتخاب دوره، وزن و فاکتور */}
+            <Box
+              sx={{
+                flex: 1,
+                minWidth: 0,
+                px: { xs: 2.5, sm: 3.5, md: 4 },
+                py: { xs: 2, md: 3 },
+              }}
+            >
+              <DurationSelector
+                plans={infoData?.plans || []}
+                selectedPlanId={selectedPlanId}
+                onSelectPlan={(id) => setSelectedPlanId(id)}
+                loading={loading}
+              />
 
-            <GuaranteeInvoice
-              accessibleGold={infoData?.accessible_gold || 0}
-              accessibleToman={infoData?.accessible_toman || 0}
-              goldPrice={infoData?.gold_price || 0}
-              selectedPlan={selectedPlan}
-              goldWeightNum={goldWeightNum}
-              loading={loading}
-            />
+              <WeightInput
+                goldWeight={goldWeight}
+                setGoldWeight={setGoldWeight}
+                accessibleGold={infoData?.accessible_gold || 0}
+                loading={loading}
+              />
 
-            <GuaranteeNotice />
+              <GuaranteeInvoice
+                accessibleGold={infoData?.accessible_gold || 0}
+                accessibleToman={infoData?.accessible_toman || 0}
+                goldPrice={infoData?.gold_price || 0}
+                selectedPlan={selectedPlan}
+                goldWeightNum={goldWeightNum}
+                loading={loading}
+              />
+
+              <GuaranteeNotice />
+            </Box>
+          </Box>
+
+          {/* دکمه ثبت فرم */}
+          <Box
+            sx={{
+              p: { xs: 2.5, sm: 3, md: 4 },
+              borderTop: `1px solid ${theme.palette.background.border}`,
+              bgcolor: isDark ? '#1C1C1A' : '#FFFFFF',
+            }}
+          >
+            <Button
+              fullWidth
+              variant="contained"
+              size="large"
+              disabled={!isValid || loading || submitting}
+              onClick={handleConfirm}
+              sx={{
+                py: { xs: 1.5, md: 1.8 },
+                fontSize: { xs: 15, md: 16 },
+                fontWeight: 800,
+                borderRadius: 3,
+                bgcolor: theme.palette.primary.main,
+                color: '#10100F',
+                boxShadow: isDark ? 'none' : '0 10px 24px rgba(252, 213, 53, 0.25)',
+                transition: 'all 0.2s ease',
+                '&:hover': {
+                  bgcolor: theme.palette.primary.light,
+                  transform: 'translateY(-1px)',
+                  boxShadow: isDark ? 'none' : '0 12px 28px rgba(252, 213, 53, 0.35)',
+                },
+                '&:active': {
+                  transform: 'translateY(1px)',
+                },
+                '&.Mui-disabled': {
+                  bgcolor: isDark ? '#292926' : '#EFEEEC',
+                  color: theme.palette.text.muted,
+                },
+              }}
+            >
+              {submitting ? 'در حال ثبت تراکنش...' : 'تایید و فعال‌سازی تضمین'}
+            </Button>
           </Box>
         </Box>
 
-        <Box
-          sx={{
-            p: { xs: 2.5, sm: 3, md: 4 },
-            borderTop: `1px solid ${theme.palette.background.border}`,
-            bgcolor: isDark ? '#1C1C1A' : '#FFFFFF',
-          }}
-        >
-          <Button
-            fullWidth
-            variant="contained"
-            size="large"
-            disabled={!isValid || loading || submitting}
-            onClick={handleConfirm}
-            sx={{
-              py: { xs: 1.5, md: 1.8 },
-              fontSize: { xs: 15, md: 16 },
-              fontWeight: 800,
-              borderRadius: 3,
-              bgcolor: theme.palette.primary.main,
-              color: '#10100F',
-              boxShadow: isDark ? 'none' : '0 10px 24px rgba(252, 213, 53, 0.25)',
-              transition: 'all 0.2s ease',
-              '&:hover': {
-                bgcolor: theme.palette.primary.light,
-                transform: 'translateY(-1px)',
-                boxShadow: isDark ? 'none' : '0 12px 28px rgba(252, 213, 53, 0.35)',
-              },
-              '&:active': {
-                transform: 'translateY(1px)',
-              },
-              '&.Mui-disabled': {
-                bgcolor: isDark ? '#292926' : '#EFEEEC',
-                color: theme.palette.text.muted,
-              },
-            }}
-          >
-            {submitting ? 'در حال ثبت تراکنش...' : 'تایید و فعال‌سازی تضمین'}
-          </Button>
+        {/* ۲. بخش لیست تضمین‌های فعال و قبلی کاربر */}
+        <Box sx={{ width: '100%' }}>
+          <Stack direction="row" alignItems="center" spacing={1.5} sx={{ mb: 2.5, px: 0.5 }}>
+            <ShieldMoonRoundedIcon
+              sx={{
+                color: theme.palette.primary.main,
+                fontSize: { xs: 24, sm: 28 },
+              }}
+            />
+            <Typography
+              variant="h6"
+              fontWeight={800}
+              sx={{
+                color: theme.palette.text.title,
+                fontSize: { xs: '1.1rem', sm: '1.25rem', md: '1.35rem' },
+              }}
+            >
+              تضمین‌های فعال و قبلی شما
+            </Typography>
+          </Stack>
+
+          {/* کامپوننت لیست تضمین‌ها */}
+          <UserGuaranteesList ref={userGuaranteesRef} />
         </Box>
       </Container>
     </Box>
