@@ -226,29 +226,7 @@ export default function TicketDetailPage({ ticketId }: TicketDetailPageProps) {
             gap: 1.5,
           }}
         >
-          {/* شرح اولیه تیکت */}
-          {ticket.description && (
-            <Box
-              sx={{
-                alignSelf: 'center',
-                maxWidth: '85%',
-                bgcolor: 'action.hover',
-                p: 1.5,
-                borderRadius: '12px',
-                textAlign: 'center',
-                mb: 1,
-                border: '1px dashed',
-                borderColor: 'divider',
-              }}
-            >
-              <Typography variant="caption" color="text.secondary" fontWeight={700} display="block">
-                توضیحات اولیه تیکت:
-              </Typography>
-              <Typography variant="body2" color="text.primary">
-                {ticket.description}
-              </Typography>
-            </Box>
-          )}
+         
 
           {messages.length === 0 ? (
             <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center', my: 'auto' }}>
@@ -288,7 +266,7 @@ export default function TicketDetailPage({ ticketId }: TicketDetailPageProps) {
                         color="primary.main"
                         sx={{ display: 'block', mb: 0.5 }}
                       >
-                        {msg.user_name || 'پشتیبانی'}
+                        {msg.user_name || 'پشتیبانی'} (پشتیبان پلتفرم)
                       </Typography>
                     )}
 

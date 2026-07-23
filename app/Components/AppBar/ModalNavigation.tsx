@@ -156,12 +156,6 @@ const items: ItemsType[] = [
         link: '/profile',
         comingSoon: false,
       },
-      {
-        name: 'تیکت',
-        image: '/support.png',
-        link: '/tickets',
-        comingSoon: false,
-      },
     ],
   },
 ];

@@ -122,9 +122,14 @@ export default function CreateTicketDialog({ open, onClose, onCreated }: CreateT
             required
             multiline
             minRows={3}
-            maxRows={5}
+            maxRows={6}
             placeholder="مشکل خود را با جزئیات شرح دهید..."
             size="small"
+            slotProps={{
+  htmlInput: {
+    spellCheck: false,
+  },
+}}
           />
 
           <TextField

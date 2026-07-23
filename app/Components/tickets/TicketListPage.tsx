@@ -175,7 +175,6 @@ export default function TicketListPage() {
           </Typography>
         </Box>
 
-        {!isMobile && (
           <Button
             variant="contained"
             color="primary"
@@ -185,7 +184,6 @@ export default function TicketListPage() {
           >
             ثبت تیکت جدید
           </Button>
-        )}
       </Stack>
 
       {loading ? (
@@ -231,16 +229,7 @@ export default function TicketListPage() {
         </Stack>
       )}
 
-      {isMobile && (
-        <Fab
-          color="primary"
-          onClick={() => setDialogOpen(true)}
-          sx={{ position: 'fixed', bottom: 24, left: 24 }}
-          aria-label="ثبت تیکت جدید"
-        >
-          <AddIcon />
-        </Fab>
-      )}
+   
 
       <CreateTicketDialog
         open={dialogOpen}
