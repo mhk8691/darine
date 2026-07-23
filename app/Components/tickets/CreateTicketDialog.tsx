@@ -7,18 +7,22 @@ import {
   Stack,
   IconButton,
   Typography,
+  Box,
+  ToggleButton,
+  ToggleButtonGroup,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import CircleIcon from '@mui/icons-material/Circle';
 import AttachmentPicker from './AttachmentPicker';
 import { createTicket, getTicketCategories } from '@/lib/tickets/tickets';
 import { TicketCategoryType, TicketPriority } from '@/app/core/Types';
 import CustomModal from '../CustomModal/CustomModal';
 
-const priorityOptions: { value: TicketPriority; label: string }[] = [
-  { value: 'low', label: 'کم' },
-  { value: 'medium', label: 'متوسط' },
-  { value: 'high', label: 'زیاد' },
-  { value: 'urgent', label: 'فوری' },
+const priorityOptions: { value: TicketPriority; label: string; color: string }[] = [
+  { value: 'low', label: 'کم', color: '#64748B' },
+  { value: 'medium', label: 'متوسط', color: '#2563EB' },
+  { value: 'high', label: 'زیاد', color: '#EA8C00' },
+  { value: 'urgent', label: 'فوری', color: '#DC2626' },
 ];
 
 interface CreateTicketDialogProps {
@@ -94,7 +98,7 @@ export default function CreateTicketDialog({ open, onClose, onCreated }: CreateT
       <Stack spacing={2} sx={{ p: 2 }}>
         {/* هدر مودال */}
         <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <Typography variant="h6" fontWeight={700} color="text.title">
+          <Typography variant="h6" fontWeight={700} color="secondary">
             ایجاد تیکت جدید
           </Typography>
           <IconButton onClick={handleClose} size="small" disabled={submitting}>
@@ -126,10 +130,10 @@ export default function CreateTicketDialog({ open, onClose, onCreated }: CreateT
             placeholder="مشکل خود را با جزئیات شرح دهید..."
             size="small"
             slotProps={{
-  htmlInput: {
-    spellCheck: false,
-  },
-}}
+              htmlInput: {
+                spellCheck: false,
+              },
+            }}
           />
 
           <TextField
@@ -150,20 +154,58 @@ export default function CreateTicketDialog({ open, onClose, onCreated }: CreateT
             ))}
           </TextField>
 
-          <TextField
-            select
-            label="اولویت"
-            value={priority}
-            onChange={(e) => setPriority(e.target.value as TicketPriority)}
-            fullWidth
-            size="small"
-          >
-            {priorityOptions.map((opt) => (
-              <MenuItem key={opt.value} value={opt.value}>
-                {opt.label}
-              </MenuItem>
-            ))}
-          </TextField>
+          {/* بخش اولویت جدید */}
+          <Box>
+            <Typography
+              component="span"
+              sx={{
+                display: 'block',
+                fontSize: 12,
+                fontWeight: 700,
+                letterSpacing: 0.2,
+                color: 'text.subtitle',
+                mb: 0.75,
+              }}
+            >
+              اولویت
+            </Typography>
+            <ToggleButtonGroup
+              exclusive
+              fullWidth
+              size="small"
+              value={priority}
+              onChange={(_, val) => val && setPriority(val)}
+              sx={{
+                gap: 1,
+                '& .MuiToggleButtonGroup-grouped': {
+                  border: '1px solid',
+                  borderColor: 'divider',
+                  borderRadius: '8px !important',
+                },
+              }}
+            >
+              {priorityOptions.map((opt) => (
+                <ToggleButton
+                  key={opt.value}
+                  value={opt.value}
+                  sx={{
+                    textTransform: 'none',
+                    fontWeight: 600,
+                    py: 0.75,
+                    '&.Mui-selected': {
+                      bgcolor: `${opt.color}1A`,
+                      borderColor: `${opt.color} !important`,
+                      color: opt.color,
+                      '&:hover': { bgcolor: `${opt.color}26` },
+                    },
+                  }}
+                >
+                  <CircleIcon sx={{ fontSize: 8, mr: 0.75, color: opt.color }} />
+                  {opt.label}
+                </ToggleButton>
+              ))}
+            </ToggleButtonGroup>
+          </Box>
 
           <Stack direction="row" alignItems="center" spacing={1} sx={{ pt: 1 }}>
             <Typography variant="body2" color="text.subtitle">

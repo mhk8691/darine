@@ -47,6 +47,7 @@ export default async function page({ searchParams }: Props) {
         }}
         fontWeight={"500"}
         sx={{ mt: 1 }}
+        color='success'
       >
        کد تایید علاوه بر پیامک در پیامرسان بله نیز ارسال میشود.
       </Typography>
