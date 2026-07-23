@@ -367,8 +367,6 @@ export interface LimitOrderCalculateType {
   }
 }
 
-// app/core/Types/ticket.ts
-// در صورت نیاز، این تایپ‌ها را داخل ماژول اصلی '@/app/core/Types' خودتان merge/export کنید
 
 export type TicketStatus = 'open' | 'pending' | 'answered' | 'resolved' | 'closed';
 export type TicketPriority = 'low' | 'medium' | 'high' | 'urgent';
@@ -418,4 +416,101 @@ export interface CreateTicketPayload {
 export interface SendTicketMessagePayload {
   message: string;
   attachment?: File | null;
+  }
+export interface GuaranteePlan {
+  id: number;
+  name: string;
+  duration_days: number;
+  service_fee_percent: string;
+  is_active: boolean;
+  description: string;
+  created_at?: string;
+}
+
+export interface GuaranteeInfoData {
+  accessible_gold: number;
+  gold_price: number;
+  accessible_toman: number;
+  plans: GuaranteePlan[];
+  min_fee_percent: number;
+  max_fee_percent: number;
+}
+
+export interface CreateGuaranteePayload {
+  plan_id: number;
+  gold_weight: string;
+}
+
+export type GuaranteeStatus = 'ACTIVE' | 'EXPIRED' | 'CANCELLED' | 'EXECUTED';
+
+export interface GuaranteeCreateResult {
+  id: number;
+  plan: number;
+  plan_name: string;
+  plan_duration_days: number;
+  gold_weight: string;
+  guaranteed_price: number;
+  service_fee: number;
+  service_fee_percent: string;
+  start_date: string;
+  end_date: string;
+  status: GuaranteeStatus;
+  status_display: string;
+  days_remaining: number;
+  profit_loss: number;
+  is_expired: boolean;
+  can_cancel: boolean;
+  can_execute: boolean;
+}
+
+
+// آیتم خلاصه در لیست
+export interface UserGuaranteeListItem {
+  id: number;
+  plan_name: string;
+  gold_weight: string;
+  guaranteed_price: number;
+  service_fee: number;
+  status: GuaranteeStatus;
+  status_display: string;
+  days_remaining: number;
+  end_date_shamsi: string;
+}
+
+// جزئیات کامل یک تضمین
+export interface UserGuaranteeDetail {
+  id: number;
+  plan_name: string;
+  gold_weight: string;
+  guaranteed_price: number;
+  service_fee: number;
+  status: GuaranteeStatus;
+  status_display: string;
+  start_date: string;
+  end_date: string;
+  days_remaining: number;
+  can_cancel: boolean;
+  can_execute: boolean;
+}
+
+// پاسخ لغو طرح
+export interface CancelGuaranteeData {
+  id: number;
+  status: GuaranteeStatus;
+  status_display: string;
+  cancelled_at: string;
+  can_cancel: boolean;
+  can_execute: boolean;
+}
+
+// پاسخ اجرای طرح
+export interface ExecuteGuaranteeData {
+  id: number;
+  status: GuaranteeStatus;
+  status_display: string;
+  executed_at?: string;
+  executed_price?: number;
+  profit_loss?: number;
+  can_cancel: boolean;
+  can_execute: boolean;
 }
