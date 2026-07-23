@@ -29,8 +29,8 @@ const CardItem = ({ item }: { item: BankCardDataType }) => (
   >
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
       {/* <Image src={item.icon} width={24} height={24} alt="" /> */}
-      <Typography fontSize={12} sx={{ color: 'text.muted' }}>
-        {item.bank_name}
+      <Typography fontSize={12} sx={{ color: 'text.muted',whiteSpace:'nowrap'  }}>
+       {item.owner_full_name}
       </Typography>
     </Box>
 
