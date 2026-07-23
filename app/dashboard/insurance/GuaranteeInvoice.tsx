@@ -108,11 +108,7 @@ export default function GuaranteeInvoice({
       hasInfo: true,
       onInfoClick: () => handleOpenHelp('goldPrice'),
     },
-    {
-      label: 'ارزش کل طلای انتخابی',
-      value: `${priceFormatter(guaranteedPriceTotal)} تومان`,
-      icon: <ShieldMoonRoundedIcon sx={{ fontSize: 18, color: theme.palette.secondary.main }} />,
-    },
+
     {
       label: 'تاریخ سررسید',
       value: dueDateFormatted,

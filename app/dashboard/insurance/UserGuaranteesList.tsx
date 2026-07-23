@@ -298,6 +298,9 @@ const UserGuaranteesList = React.forwardRef<UserGuaranteesListRef>((_, ref) => {
                   {detail.days_remaining} روز
                 </Typography>
               </Stack>
+              <Typography variant="body2" color="info">
+                توجه: در صورت لغو طرح تضمین، کارمزد پرداختی شما بابت طرح تضمین قابل استرداد نیست.
+              </Typography>
             </Stack>
           ) : null}
 
