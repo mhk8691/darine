@@ -48,11 +48,11 @@ export function middleware(req: NextRequest) {
       );
     }
 
-    // if (!refreshToken && !isPublic) {
-    //   return NextResponse.redirect(
-    //     new URL('/login/login-password', req.url)
-    //   );
-    // }
+    if (!refreshToken && !isPublic) {
+      return NextResponse.redirect(
+        new URL('/login/login-password', req.url)
+      );
+    }
 
   return NextResponse.next();
 }
