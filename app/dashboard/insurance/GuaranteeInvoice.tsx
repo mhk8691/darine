@@ -102,7 +102,7 @@ export default function GuaranteeInvoice({
       icon: <AccountBalanceWalletRoundedIcon sx={{ fontSize: 18, color: theme.palette.secondary.main }} />,
     },
     {
-      label: 'قیمت لحظه‌ای طلا (۱۸ عیار)',
+      label: 'قیمت لحظه‌ای طلا',
       value: `${priceFormatter(goldPrice)} تومان`,
       icon: <AccountBalanceWalletRoundedIcon sx={{ fontSize: 18, color: theme.palette.secondary.main }} />,
       hasInfo: true,
@@ -119,7 +119,7 @@ export default function GuaranteeInvoice({
       icon: <EventAvailableRoundedIcon sx={{ fontSize: 18, color: theme.palette.secondary.main }} />,
     },
     {
-      label: `هزینه کارمزد (${fa(feePercent)}٪)`,
+      label: `هزینه طرح تضمین طلا`,
       value: `${priceFormatter(serviceFeeTotal)} تومان`,
       icon: <AccountBalanceWalletRoundedIcon sx={{ fontSize: 18, color: theme.palette.secondary.main }} />,
       hasInfo: true,
@@ -142,7 +142,8 @@ export default function GuaranteeInvoice({
           <Box
             key={index}
             sx={{
-              p: 2,
+              px: { xs: 1.5, sm: 2 },
+              py: { xs: 1.25, sm: 2 },
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
@@ -150,11 +151,24 @@ export default function GuaranteeInvoice({
               borderBottom: index < rows.length - 1 ? `1px solid ${theme.palette.background.border}` : 'none',
             }}
           >
-            <Stack direction="row" spacing={1} alignItems="center">
-              {row.icon}
-              <Typography variant="caption" sx={{ color: theme.palette.text.secondary, fontWeight: 600 }}>
+            <Stack direction="row" spacing={{ xs: 0.5, sm: 1 }} alignItems="center">
+              {/* آیکون اصلی: مخفی در موبایل */}
+              <Box sx={{ display: { xs: 'none', sm: 'inline-flex' }, alignItems: 'center' }}>
+                {row.icon}
+              </Box>
+
+              <Typography
+                variant="caption"
+                sx={{
+                  color: theme.palette.text.secondary,
+                  fontWeight: 600,
+                  fontSize: { xs: '0.72rem', sm: '0.75rem' }, // فونت کوچکتر در موبایل
+                  whiteSpace: 'nowrap',
+                }}
+              >
                 {row.label}
               </Typography>
+
               {row.hasInfo && (
                 <IconButton
                   size="small"
@@ -165,12 +179,21 @@ export default function GuaranteeInvoice({
                     '&:hover': { bgcolor: 'rgba(252, 213, 53, 0.1)' },
                   }}
                 >
-                  <InfoRoundedIcon sx={{ fontSize: 16 }} />
+                  <InfoRoundedIcon sx={{ fontSize: { xs: 14, sm: 16 } }} />
                 </IconButton>
               )}
             </Stack>
-            <Typography variant="body2" fontWeight={700} sx={{ color: theme.palette.text.title }}>
-              {loading ? <Skeleton width={70} /> : row.value}
+
+            <Typography
+              variant="body2"
+              fontWeight={700}
+              sx={{
+                color: theme.palette.text.title,
+                fontSize: { xs: '0.75rem', sm: '0.875rem' }, // فونت کوچکتر برای مقادیر و قیمت‌ها
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {loading ? <Skeleton width={60} /> : row.value}
             </Typography>
           </Box>
         ))}
@@ -179,23 +202,40 @@ export default function GuaranteeInvoice({
 
         <Box
           sx={{
-            p: 2,
+            px: { xs: 1.5, sm: 2 },
+            py: { xs: 1.5, sm: 2 },
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             bgcolor: isDark ? 'rgba(252, 213, 53, 0.05)' : 'rgba(252, 213, 53, 0.1)',
           }}
         >
-          <Typography variant="body2" fontWeight={700} sx={{ color: theme.palette.text.primary }}>
+          <Typography
+            variant="body2"
+            fontWeight={700}
+            sx={{
+              color: theme.palette.text.primary,
+              fontSize: { xs: '0.75rem', sm: '0.875rem' },
+              whiteSpace: 'nowrap',
+            }}
+          >
             کارمزد قابل پرداخت
           </Typography>
-          <Typography variant="subtitle1" fontWeight={900} sx={{ color: theme.palette.primary.main }}>
-            {loading ? <Skeleton width={90} /> : `${priceFormatter(serviceFeeTotal)} تومان`}
+          <Typography
+            variant="subtitle1"
+            fontWeight={900}
+            sx={{
+              color: theme.palette.primary.main,
+              fontSize: { xs: '0.85rem', sm: '1rem' }, // فونت فشرده‌تر برای کارمزد نهایی
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {loading ? <Skeleton width={80} /> : `${priceFormatter(serviceFeeTotal)} تومان`}
           </Typography>
         </Box>
       </Box>
 
-      {/* مودال راهنما با استفاده از CustomModal */}
+      {/* مودال راهنما */}
       <CustomModal
         open={modalOpen}
         setOpen={setModalOpen}
@@ -226,7 +266,7 @@ export default function GuaranteeInvoice({
             sx={{
               color: theme.palette.text.secondary,
               lineHeight: 1.8,
-              textAlign: 'justify', // تنظیم متن به‌صورت Justify
+              textAlign: 'justify',
               mb: 3,
             }}
           >

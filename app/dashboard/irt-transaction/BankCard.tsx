@@ -1,4 +1,5 @@
 'use client';
+
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import {
   Box,
@@ -18,36 +19,91 @@ import { BankCardDataType } from '@/app/core/Types';
 import Image from 'next/image';
 import { getBankInfoWithSheba } from 'ir-banks-info';
 
-const CardItem = ({ item }: { item: BankCardDataType }) => (
-  <Box
-    sx={{
-      display: 'flex',
-      alignItems: 'center',
-      gap: 1,
-      width: '100%',
-    }}
-  >
-    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-      {/* <Image src={item.icon} width={24} height={24} alt="" /> */}
-      <Typography fontSize={12} sx={{ color: 'text.muted',whiteSpace:'nowrap'  }}>
-       {item.owner_full_name}
+const CardItem = ({ item }: { item: BankCardDataType }) => {
+  const bankInfo = item?.shaba_number ? getBankInfoWithSheba(item.shaba_number) : null;
+
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        width: '100%',
+        maxWidth: '100%',
+        overflow: 'hidden',
+        boxSizing: 'border-box',
+        gap: 0.5,
+      }}
+    >
+      {/* بخش نام دارنده حساب - با اولویت کوچک شدن در صورت کمبود فضا */}
+      <Typography
+        sx={{
+          fontSize: { xs: 10, sm: 12 },
+          color: 'text.muted',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          flexShrink: 1, // اجازه کوچکتر شدن نام در صورت کمبود فضا
+          minWidth: 0,
+        }}
+      >
+        {item.owner_full_name}
       </Typography>
+
+      {/* بخش شماره شبا و لوگو */}
+      {item.shaba_number && (
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+            gap: { xs: 0.5, sm: 1 },
+            direction: 'ltr',
+            flexShrink: 0, // شماره شبا نباید کلا محو شود
+            maxWidth: '75%', // حداکثر ۷۵ درصد از کادر را اشغال کند
+            overflow: 'hidden',
+          }}
+        >
+        
+
+          <Typography
+            variant="body2"
+            sx={{
+              color: 'text.muted',
+              fontSize: { xs: '0.68rem', sm: '0.85rem' }, // سایز دقیق و ریسپونسیو
+              fontFamily: 'monospace',
+              fontWeight: 600,
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              direction: 'ltr',
+            }}
+          >
+            IR{item.shaba_number}
+          </Typography>
+            {bankInfo?.logo && (
+            <Box
+              sx={{
+                width: { xs: 18, sm: 24 },
+                height: { xs: 18, sm: 24 },
+                position: 'relative',
+                flexShrink: 0,
+              }}
+            >
+              <Image
+                src={bankInfo.logo + ''}
+                alt={bankInfo.name || 'بانک'}
+                width={24}
+                height={24}
+                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+              />
+            </Box>
+          )}
+        </Box>
+      )}
     </Box>
-
-         {item.shaba_number && <Stack direction={'row'} gap={getBankInfoWithSheba(item?.shaba_number)?.logo ? 1 :0} alignItems={'center'} justifyContent={'end' } width={'100%'}>
-          <Typography variant="body2" fontSize={16} sx={{ color: 'text.muted' }}>
-                      IR{item.shaba_number}
-                    </Typography>
-                    {
-                      getBankInfoWithSheba(item?.shaba_number)?.logo && (
-                        <Image src={getBankInfoWithSheba(item?.shaba_number)?.logo + '' || ''} alt={''} width={27} height={27} />
-
-                      )
-                    }
-                    
-                  </Stack>}
-  </Box>
-);
+  );
+};
 
 export default function BankCards({
   bankCardsData,
@@ -64,6 +120,7 @@ export default function BankCards({
   const [openModal, setOpenModal] = React.useState(false);
   const selectedItem = bankCardsData.find((item) => item.id === selectedCard);
   const [cardValue, setCardValue] = React.useState('');
+
   const handleSelect = (id: number) => {
     setSelectedCard(id);
     setOpen(false);
@@ -71,134 +128,158 @@ export default function BankCards({
 
   return (
     <>
-      <Stack>
-        {
-      bankCardsData.length > 0 && 
-        <ClickAwayListener onClickAway={() => setOpen(false)}>
-          <FormControl
-            sx={{
-              width: '100%',
-              position: 'relative',
-              '& .MuiOutlinedInput-notchedOutline': {
-                borderColor: 'background.paper',
-              },
-
-              '&:hover .MuiOutlinedInput-notchedOutline': {
-                borderColor: 'background.paper',
-              },
-
-              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                borderColor: 'background.paper',
-              },
-              borderColor: 'background.paper !imporant',
-            }}
-          >
-            <InputLabel
-              shrink={open || !!selectedCard}
+      <Stack sx={{ width: '100%', maxWidth: '100%', boxSizing: 'border-box' }}>
+        {bankCardsData.length > 0 && (
+          <ClickAwayListener onClickAway={() => setOpen(false)}>
+            <FormControl
               sx={{
-                position: 'absolute',
-                right: 12,
-                bgcolor: 'background.default',
-                px: 1,
-                fontSize: 16,
-                color: 'text.muted',
-                width: 'fit-content',
+                width: '100%',
+                maxWidth: '100%',
+                boxSizing: 'border-box',
+                position: 'relative',
+                '& .MuiOutlinedInput-notchedOutline': {
+                  borderColor: 'background.paper',
+                },
+                '&:hover .MuiOutlinedInput-notchedOutline': {
+                  borderColor: 'background.paper',
+                },
+                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                  borderColor: 'background.paper',
+                },
               }}
             >
-             انتخاب شماره شبا
-            </InputLabel>
-
-            <Box
-              onClick={() => setOpen((prev) => !prev)}
-              sx={{
-                border: '1px solid',
-                borderRadius: '8px',
-                height: '56px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                px: 1.5,
-                cursor: 'pointer',
-                transition: '0.2s',
-                borderColor: 'background.paper',
-              }}
-            >
-              {selectedItem ? <CardItem item={selectedItem} /> : <Stack></Stack>}
-
-              <KeyboardArrowDownIcon
-                style={{
-                  transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
-                  transition: '0.2s',
+              <InputLabel
+                shrink={open || !!selectedCard}
+                sx={{
+                  position: 'absolute',
+                  right: 12,
+                  bgcolor: 'background.default',
+                  px: 0.8,
+                  fontSize: { xs: 12, sm: 14 },
                   color: 'text.muted',
-                  zIndex: 2,
+                  width: 'fit-content',
                 }}
-              />
-            </Box>
+              >
+                انتخاب شماره شبا
+              </InputLabel>
 
-            <Paper
-              sx={{
-                position: 'absolute',
-                top: '100%',
-                left: 0,
-                width: '98%',
-                opacity: open ? 1 : 0,
-                transform: open ? 'translateY(-10px)' : 'translateY(-40px)',
-                pointerEvents: open ? 'auto' : 'none',
-                transition: '0.25s',
-                zIndex: 10,
-                bgcolor: 'background.default',
-                borderRadius: 0,
-                mx: 0.5,
-              }}
-            >
-              {bankCardsData.map((item) => (
-                <MenuItem
-                  key={item.id}
-                  onClick={() => handleSelect(item.id)}
+              {/* کانتینر اصلی باکس انتخاب */}
+              <Box
+                onClick={() => setOpen((prev) => !prev)}
+                sx={{
+                  border: '1px solid',
+                  borderRadius: '8px',
+                  minHeight: '56px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  px: { xs: 1, sm: 1.5 },
+                  cursor: 'pointer',
+                  transition: '0.2s',
+                  borderColor: 'background.paper',
+                  width: '100%',
+                  maxWidth: '100%',
+                  boxSizing: 'border-box',
+                  overflow: 'hidden', // جلوگیری از بیرون زدن محتوا از background
+                  gap: 0.5,
+                }}
+              >
+                <Box sx={{ flexGrow: 1, minWidth: 0, overflow: 'hidden' }}>
+                  {selectedItem ? <CardItem item={selectedItem} /> : <Stack />}
+                </Box>
+
+                <KeyboardArrowDownIcon
                   sx={{
-                    py: 2,
-                    px: 2,
-                    '&.Mui-selected': {
-                      bgcolor: 'background.default',
-                    },
+                    transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
+                    transition: '0.2s',
+                    color: 'text.muted',
+                    zIndex: 2,
+                    flexShrink: 0,
+                    fontSize: { xs: 20, sm: 24 },
                   }}
-                >
-                  <CardItem item={item} />
-                </MenuItem>
-              ))}
-            </Paper>
-          </FormControl>
-        </ClickAwayListener>
-         }
+                />
+              </Box>
+
+              {/* منوی بازشونده (Dropdown) - دقیقاً هم‌عرض باکس اصلی بدون زدگی */}
+              <Paper
+                elevation={4}
+                sx={{
+                  position: 'absolute',
+                  top: '100%',
+                  left: 0,
+                  width: '100%',
+                  maxWidth: '100%',
+                  boxSizing: 'border-box',
+                  maxHeight: '220px',
+                  overflowY: 'auto',
+                  opacity: open ? 1 : 0,
+                  transform: open ? 'translateY(4px)' : 'translateY(-10px)',
+                  pointerEvents: open ? 'auto' : 'none',
+                  transition: '0.2s ease-in-out',
+                  zIndex: 10,
+                  bgcolor: 'background.default',
+                  borderRadius: '8px',
+                  border: '1px solid',
+                  borderColor: 'divider',
+                  mt: 0.5,
+                }}
+              >
+                {bankCardsData.map((item) => (
+                  <MenuItem
+                    key={item.id}
+                    onClick={() => handleSelect(item.id)}
+                    sx={{
+                      py: { xs: 1.25, sm: 1.5 },
+                      px: { xs: 1, sm: 2 },
+                      width: '100%',
+                      boxSizing: 'border-box',
+                      overflow: 'hidden',
+                      borderBottom: '1px solid',
+                      borderColor: 'divider',
+                      '&:last-child': {
+                        borderBottom: 'none',
+                      },
+                      '&.Mui-selected': {
+                        bgcolor: 'action.selected',
+                      },
+                    }}
+                  >
+                    <CardItem item={item} />
+                  </MenuItem>
+                ))}
+              </Paper>
+            </FormControl>
+          </ClickAwayListener>
+        )}
+
         <Button
           onClick={() => setOpenModal(true)}
           variant="outlined"
           color="inherit"
-           
           sx={{
             '&:hover': {
               bgcolor: 'background.default',
             },
             width: 'fit-content',
             fontSize: {
-              xs: 12,
-              sm: 16,
+              xs: 11,
+              sm: 14,
             },
             borderRadius: 2,
-            py: 0.75,
-            px: 3,
-            mt: 2.5,
+            py: { xs: 0.6, sm: 0.75 },
+            px: { xs: 1.5, sm: 3 },
+            mt: 2,
           }}
           startIcon={
             <SvgIcon
               sx={{
                 width: {
-                  xs: 20,
-                  sm: 30,
+                  xs: 18,
+                  sm: 24,
                 },
                 height: {
-                  xs: 20,
-                  sm: 30,
+                  xs: 18,
+                  sm: 24,
                 },
               }}
             >
@@ -259,8 +340,7 @@ export default function BankCards({
           افزودن شماره شبا
         </Button>
       </Stack>
-   
-    
+
       <AddCard
         open={openModal}
         setOpen={setOpenModal}
