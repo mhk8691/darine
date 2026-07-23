@@ -19,6 +19,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutlined';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 
 import { PriorityChip, StatusChip } from './TicketChips';
 import AttachmentPicker from './AttachmentPicker';
@@ -92,7 +93,7 @@ export default function TicketDetailPage({ ticketId }: TicketDetailPageProps) {
     }
   }, [messages.length, loading]);
 
-  const isClosed = ticket?.status === 'closed';
+  const isClosed = ticket?.status === 'closed' || ticket?.status === 'resolved';
 
   const handleSend = async () => {
     if ((!reply.trim() && !replyAttachment) || isClosed) return;
@@ -163,46 +164,117 @@ export default function TicketDetailPage({ ticketId }: TicketDetailPageProps) {
           borderColor: 'divider',
         }}
       >
-        {/* ۱. هدر چت (Chat Header) */}
+        {/* ۱. هدر چت (Chat Header - ریسپانسیو بدون غیب شدن هیچ متنی) */}
         <Box
           sx={{
-            p: 2,
+            p: { xs: 1.25, sm: 2 },
             bgcolor: 'background.paper',
             borderBottom: '1px solid',
             borderColor: 'divider',
             display: 'flex',
-            alignItems: 'center',
+            flexDirection: { xs: 'column', sm: 'row' },
+            alignItems: { xs: 'stretch', sm: 'center' },
             justifyContent: 'space-between',
+            gap: { xs: 1.25, sm: 2 },
             zIndex: 2,
           }}
         >
-          <Stack direction="row" alignItems="center" spacing={1.5}>
-            <IconButton onClick={() => router.push('/dashboard/tickets')} size="small">
-              <ArrowForwardIcon />
+          {/* بخش راست: دکمه بازگشت، آواتار و مشخصات تیکت (بدون محدودیت طول متن) */}
+          <Stack
+            direction="row"
+            alignItems="flex-start"
+            spacing={{ xs: 1, sm: 1.5 }}
+            sx={{ width: '100%', minWidth: 0, flex: 1 }}
+          >
+            <IconButton
+              onClick={() => router.push('/dashboard/tickets')}
+              size="small"
+              edge="start"
+              sx={{
+                p: { xs: 0.75, sm: 1 },
+                bgcolor: 'action.hover',
+                flexShrink: 0,
+                mt: 0.25,
+                '&:hover': { bgcolor: 'action.selected' },
+              }}
+            >
+              <ArrowForwardIcon fontSize="small" />
             </IconButton>
-            <Avatar sx={{ bgcolor: 'primary.main', color: 'primary.contrastText' }}>
-              <SupportAgentIcon />
+
+            <Avatar
+              sx={{
+                width: { xs: 36, sm: 44 },
+                height: { xs: 36, sm: 44 },
+                bgcolor: 'primary.main',
+                color: 'primary.contrastText',
+                flexShrink: 0,
+              }}
+            >
+              <SupportAgentIcon sx={{ fontSize: { xs: 20, sm: 24 } }} />
             </Avatar>
-            <Box>
-              <Typography variant="subtitle1" fontWeight={700} lineHeight={1.2}>
+
+            <Box sx={{ minWidth: 0, flex: 1 }}>
+              <Typography
+                variant="subtitle1"
+                fontWeight={700}
+                sx={{
+                  fontSize: { xs: '0.85rem', sm: '0.95rem' },
+                  lineHeight: 1.35,
+                  color: 'text.primary',
+                  wordBreak: 'break-word',
+                }}
+              >
                 {ticket.title}
               </Typography>
-              <Typography variant="caption" color="text.secondary">
+              <Typography
+                variant="caption"
+                color="text.secondary"
+                sx={{
+                  fontSize: { xs: '0.725rem', sm: '0.75rem' },
+                  mt: 0.4,
+                  display: 'block',
+                  wordBreak: 'break-all',
+                }}
+              >
                 کد رهگیری: {ticket.tracking_code}
               </Typography>
             </Box>
           </Stack>
 
-          <Stack direction="row" alignItems="center" spacing={1}>
-            <StatusChip status={ticket.status} />
-            <PriorityChip priority={ticket.priority} />
+          {/* بخش چپ: وضعیت، اولویت و دکمه بستن (چیدمان بهینه در موبایل) */}
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent={{ xs: 'space-between', sm: 'flex-end' }}
+            spacing={1}
+            sx={{
+              width: { xs: '100%', sm: 'auto' },
+              flexShrink: 0,
+              pt: { xs: 0.75, sm: 0 },
+              borderTop: { xs: '1px dashed', sm: 'none' },
+              borderColor: { xs: 'divider' },
+            }}
+          >
+            <Stack direction="row" spacing={0.75} alignItems="center" sx={{ flex: 1 }}>
+              <StatusChip status={ticket.status} />
+              <PriorityChip priority={ticket.priority} />
+            </Stack>
+
             {!isClosed && ticket.can_close !== false && (
               <Button
                 variant="outlined"
                 color="error"
                 size="small"
                 onClick={() => setCloseDialogOpen(true)}
-                sx={{ borderRadius: '8px', ml: 1, display: { xs: 'none', sm: 'inline-flex' } }}
+                startIcon={<CancelOutlinedIcon fontSize="small" />}
+                sx={{
+                  borderRadius: '8px',
+                  whiteSpace: 'nowrap',
+                  px: 1.25,
+                  py: 0.4,
+                  fontSize: { xs: '0.75rem', sm: '0.8rem' },
+                  flexShrink: 0,
+                }}
               >
                 بستن تیکت
               </Button>
@@ -226,8 +298,6 @@ export default function TicketDetailPage({ ticketId }: TicketDetailPageProps) {
             gap: 1.5,
           }}
         >
-         
-
           {messages.length === 0 ? (
             <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center', my: 'auto' }}>
               هیچ پیامی ارسال نشده است. اولین پیام را شما بفرستید!
@@ -249,7 +319,7 @@ export default function TicketDetailPage({ ticketId }: TicketDetailPageProps) {
                     sx={{
                       p: 1.5,
                       px: 2,
-                      maxWidth: { xs: '85%', sm: '65%' },
+                      maxWidth: { xs: '88%', sm: '65%' },
                       borderRadius: isMe
                         ? '16px 16px 2px 16px'
                         : '16px 16px 16px 2px',
