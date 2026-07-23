@@ -79,16 +79,7 @@ export default function DurationSelector({
             >
               {plan.name}
             </Typography>
-            <Typography
-              component="span"
-              sx={{
-                fontSize: { xs: '0.65rem', sm: '0.75rem' },
-                color: theme.palette.text.subtitle,
-                whiteSpace: 'nowrap',
-              }}
-            >
-              کارمزد {plan.service_fee_percent}٪
-            </Typography>
+         
           </ToggleButton>
         ))}
       </ToggleButtonGroup>

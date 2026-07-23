@@ -24,6 +24,7 @@ import GuaranteeStatusChip from './GuaranteeStatusChip';
 import { guaranteeService } from '@/lib/guaranteeService/guaranteeService';
 import { UserGuaranteeDetail, UserGuaranteeListItem } from '@/app/core/Types';
 import CustomModal from '@/app/Components/CustomModal/CustomModal';
+import priceFormatter from '@/app/core/PriceFormater';
 
 export interface UserGuaranteesListRef {
   refreshList: () => void;
@@ -198,7 +199,7 @@ const UserGuaranteesList = React.forwardRef<UserGuaranteesListRef>((_, ref) => {
                       قیمت تضمین‌شده:
                     </Typography>
                     <Typography variant="body2" fontWeight={700}>
-                      {item.guaranteed_price.toLocaleString()} تومان
+                      {priceFormatter(item.guaranteed_price)} تومان
                     </Typography>
                   </Stack>
                   <Stack direction="row" justifyContent="space-between">
@@ -277,7 +278,7 @@ const UserGuaranteesList = React.forwardRef<UserGuaranteesListRef>((_, ref) => {
                   قیمت تضمین‌شده:
                 </Typography>
                 <Typography variant="body2" fontWeight={700}>
-                  {detail.guaranteed_price.toLocaleString()} تومان
+                  {priceFormatter(detail.guaranteed_price)} تومان
                 </Typography>
               </Stack>
               <Stack direction="row" justifyContent="space-between">
@@ -285,7 +286,7 @@ const UserGuaranteesList = React.forwardRef<UserGuaranteesListRef>((_, ref) => {
                   کارمزد پرداخت‌شده:
                 </Typography>
                 <Typography variant="body2">
-                  {detail.service_fee.toLocaleString()} تومان
+                  {priceFormatter(detail.service_fee)} تومان
                 </Typography>
               </Stack>
               <Divider />

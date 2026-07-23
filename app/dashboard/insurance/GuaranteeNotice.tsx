@@ -29,6 +29,7 @@ export default function GuaranteeNotice() {
             display: 'block',
             lineHeight: 1.6,
             fontWeight: 500,
+            textAlign:'justify'
           }}
         >
           محاسبه قیمت مبنای تضمین بر اساس قیمت لحظه‌ای طلا در زمان ثبت انجام می‌شود. کارمزد از کیف پول تومانی کسر شده و طلای تضمین‌شده تا انقضای دوره بلوکه خواهد شد.

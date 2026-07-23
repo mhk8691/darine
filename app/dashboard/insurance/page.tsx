@@ -75,9 +75,7 @@ export default function InsurancePage() {
     });
 
     if (response) {
-      // به‌روزرسانی اطلاعات حساب کاربر
       await fetchData();
-      // به‌روزرسانی لیست تضمین‌های کاربر در پایین صفحه
       userGuaranteesRef.current?.refreshList();
     }
     setSubmitting(false);

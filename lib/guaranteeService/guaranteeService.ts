@@ -39,7 +39,7 @@ export const createGuarantee = async (
       '/gold/guarantee/create/',
       payload
     );
-    showSnackbar(res.data.message || 'طرح تضمین با موفقیت ثبت شد');
+    showSnackbar(res.data.message || 'طرح تضمین با موفقیت ثبت شد','success');
     return res.data.data;
   } catch (error: unknown) {
     if (isAxiosError(error)) {
