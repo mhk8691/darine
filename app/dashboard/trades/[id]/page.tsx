@@ -32,7 +32,7 @@ export default function InvoicePage() {
       }
     }
     getData()
-  })
+  },[params.id])
 
   return (
     <Container
@@ -49,12 +49,12 @@ export default function InvoicePage() {
     >
       <SalesInvoiceCard data={invoice} />
 
-      {/* <Stack sx={{ mt: { xs: 2, sm: 3 } }}>
+      <Stack sx={{ mt: { xs: 2, sm: 3 } }}>
         <InvoiceActionButtons
           onBack={handleBack}
           id={params?.id || '0'}
         />
-      </Stack> */}
+      </Stack>
     </Container>
   );
 }

@@ -22,19 +22,31 @@ export default function InvoiceActionButtons({
   const [loading,setLoading] = useState(false)
   const router = useRouter()
 
-  const handleDownload = async ()=>{
-    try{
-      setLoading(true)
-      const response = await downloadInvoices(id)
-      router.push(response.buyer_address)
-    }catch(error:unknown){
-      if (isAxiosError(error)){
-        showSnackbar(error.response?.data.message,'error')
-      }
-    }finally{
-        setLoading(false)
+  const handleDownload = async () => {
+  try {
+    setLoading(true);
+
+    const { blob, fileName } = await downloadInvoices(id);
+
+    const url = window.URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = fileName;
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    window.URL.revokeObjectURL(url);
+  } catch (error: unknown) {
+    if (isAxiosError(error)) {
+      showSnackbar(error.response?.data.message, 'error');
     }
+  } finally {
+    setLoading(false);
   }
+};
   return (
     <Stack
       direction={{ xs: 'column', sm: 'row' }}

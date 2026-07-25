@@ -124,7 +124,7 @@ const items: ItemsType[] = [
        {
         name: 'سرمایه گذاری',
         image: '/staking-active.svg',
-        link: '/staking',
+        link: '/investment',
         comingSoon: false,
       },
          {
