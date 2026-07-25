@@ -514,3 +514,29 @@ export interface ExecuteGuaranteeData {
   can_cancel: boolean;
   can_execute: boolean;
 }
+
+export interface InvoiceType {
+   "id": number,
+      "invoice_number": string,
+      "invoice_type": "BUY" | 'SELL',
+      "invoice_type_display": string,
+      "invoice_date": string,
+      "status_display":string,
+      "buyer_name": string,
+      "buyer_national_id": string,
+      "buyer_phone": string,
+      "buyer_address": string,
+      "seller_name": string,
+      "seller_national_id": string,
+      "seller_phone": string,
+      "seller_address": string,
+      "gold_weight": string,
+      "gold_carat": number,
+      "gold_price_per_gram": string,
+      "pure_gold_price": string,
+      "fee_rate": string,
+      "fee_amount": string,
+      "total_amount": number,
+      "tracking_code": string,
+      "description": string
+}

@@ -2,19 +2,39 @@
 
 import { Stack, Button, CircularProgress } from '@mui/material';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
+import { useRouter } from 'next/navigation';
+import { downloadInvoices } from '@/lib/getInvoices/getInvoices';
+import { isAxiosError } from 'axios';
+import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+import { useState } from 'react';
+import Loading from '@/app/Components/Loading/Loading';
 
 export interface InvoiceActionButtonsProps {
-  onDownload?: () => void;
   onBack?: () => void;
-  downloading?: boolean;
+  id:string
 }
 
 
 export default function InvoiceActionButtons({
-  onDownload,
   onBack,
-  downloading = false,
+  id
 }: InvoiceActionButtonsProps) {
+  const [loading,setLoading] = useState(false)
+  const router = useRouter()
+
+  const handleDownload = async ()=>{
+    try{
+      setLoading(true)
+      const response = await downloadInvoices(id)
+      router.push(response.buyer_address)
+    }catch(error:unknown){
+      if (isAxiosError(error)){
+        showSnackbar(error.response?.data.message,'error')
+      }
+    }finally{
+        setLoading(false)
+    }
+  }
   return (
     <Stack
       direction={{ xs: 'column', sm: 'row' }}
@@ -25,15 +45,9 @@ export default function InvoiceActionButtons({
         variant="contained"
         color="primary"
         size="large"
-        disableElevation
-        onClick={onDownload}
-        disabled={downloading}
+        onClick={handleDownload}
         startIcon={
-          downloading ? (
-            <CircularProgress size={18} thickness={5} sx={{ color: '#10100F' }} />
-          ) : (
-            <FileDownloadOutlinedIcon />
-          )
+       !loading ? <FileDownloadOutlinedIcon />:<></>
         }
         sx={{
           flex: { xs: '1 1 auto', sm: 1 },
@@ -42,15 +56,10 @@ export default function InvoiceActionButtons({
           fontSize: '0.95rem',
           py: 1.4,
           color: '#10100F',
-          '&:hover': { backgroundColor: 'primary.light' },
-          '&.Mui-disabled': {
-            color: 'rgba(16,16,15,0.6)',
-            backgroundColor: 'primary.main',
-            opacity: 0.7,
-          },
+      
         }}
       >
-        {downloading ? 'در حال آماده‌سازی...' : 'دانلود فاکتور'}
+        {loading ? <Loading size={30} />:'دانلود فاکتور'}
       </Button>
 
       <Button
