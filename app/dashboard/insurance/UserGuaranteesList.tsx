@@ -25,6 +25,7 @@ import { guaranteeService } from '@/lib/guaranteeService/guaranteeService';
 import { UserGuaranteeDetail, UserGuaranteeListItem } from '@/app/core/Types';
 import CustomModal from '@/app/Components/CustomModal/CustomModal';
 import priceFormatter from '@/app/core/PriceFormater';
+import { formatDate } from '@/app/core/FormatDate';
 
 export interface UserGuaranteesListRef {
   refreshList: () => void;
@@ -287,6 +288,22 @@ const UserGuaranteesList = React.forwardRef<UserGuaranteesListRef>((_, ref) => {
                 </Typography>
                 <Typography variant="body2">
                   {priceFormatter(detail.service_fee)} تومان
+                </Typography>
+              </Stack>
+               <Stack direction="row" justifyContent="space-between">
+                <Typography variant="body2" color="text.secondary">
+                 تاریخ شروع:
+                </Typography>
+                <Typography variant="body2">
+                  {formatDate(detail.start_date)} 
+                </Typography>
+              </Stack>
+                <Stack direction="row" justifyContent="space-between">
+                <Typography variant="body2" color="text.secondary">
+                 تاریخ سررسید:
+                </Typography>
+                <Typography variant="body2">
+                  {formatDate(detail.end_date)} 
                 </Typography>
               </Stack>
               <Divider />
