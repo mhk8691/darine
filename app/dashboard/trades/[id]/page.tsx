@@ -53,6 +53,7 @@ export default function InvoicePage() {
         <InvoiceActionButtons
           onBack={handleBack}
           id={params?.id || '0'}
+          date={invoice.invoice_date}
         />
       </Stack>
     </Container>

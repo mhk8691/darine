@@ -67,11 +67,11 @@ export default function SalesInvoiceCard({ data }: SalesInvoiceCardProps) {
         </Grid>
 
         <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-          <InfoItem label="شماره ملی" value={data.buyer_national_id} />
+          <InfoItem label="شماره ملی" value={data.buyer_national_id ? data.buyer_national_id : '--'} />
         </Grid>
 
         <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-          <InfoItem label="شماره تماس" value={data.buyer_phone} />
+          <InfoItem label="شماره تماس" value={data.buyer_phone?data.buyer_phone:'--'} />
         </Grid>
 
         <Grid size={{ xs: 12, md: 3 }}>
@@ -89,11 +89,11 @@ export default function SalesInvoiceCard({ data }: SalesInvoiceCardProps) {
         </Grid>
 
         <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-          <InfoItem label="شماره ملی" value={data.seller_national_id} />
+          <InfoItem label="شماره ملی" value={data.seller_national_id ? data.seller_national_id :'--'} />
         </Grid>
 
         <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-          <InfoItem label="شماره تماس" value={data.seller_phone} />
+          <InfoItem label="شماره تماس" value={data.seller_phone ?data.seller_phone:'--'} />
         </Grid>
 
         <Grid size={{ xs: 12, md: 3 }}>
@@ -187,14 +187,14 @@ export default function SalesInvoiceCard({ data }: SalesInvoiceCardProps) {
           <Grid size={{ xs: 12, sm: 3 }}>
             <InfoItem
               label="قیمت هر گرم"
-              value={data.gold_price_per_gram}
+              value={`${priceFormatter(+data.gold_price_per_gram)} تومان`}
             />
           </Grid>
 
           <Grid size={{ xs: 12, sm: 3 }}>
             <InfoItem
               label="کارمزد"
-              value={data.fee_amount}
+              value={`${priceFormatter(+data.fee_amount)} تومان`} 
             />
           </Grid>
         </Grid>

@@ -12,12 +12,14 @@ import Loading from '@/app/Components/Loading/Loading';
 export interface InvoiceActionButtonsProps {
   onBack?: () => void;
   id:string
+  date:string
 }
 
 
 export default function InvoiceActionButtons({
   onBack,
-  id
+  id,
+  date
 }: InvoiceActionButtonsProps) {
   const [loading,setLoading] = useState(false)
   const router = useRouter()
@@ -26,7 +28,7 @@ export default function InvoiceActionButtons({
   try {
     setLoading(true);
 
-    const { blob, fileName } = await downloadInvoices(id);
+    const { blob, fileName } = await downloadInvoices(id,date);
 
     const url = window.URL.createObjectURL(blob);
 

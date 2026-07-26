@@ -475,6 +475,7 @@ export interface UserGuaranteeListItem {
   status_display: string;
   days_remaining: number;
   end_date_shamsi: string;
+
 }
 
 // جزئیات کامل یک تضمین
@@ -491,6 +492,9 @@ export interface UserGuaranteeDetail {
   days_remaining: number;
   can_cancel: boolean;
   can_execute: boolean;
+    executed_price:number
+  end_price_display:string
+  user_payout:number
 }
 
 // پاسخ لغو طرح
