@@ -493,7 +493,6 @@ export interface UserGuaranteeDetail {
   can_cancel: boolean;
   can_execute: boolean;
     executed_price:number
-  end_price_display:string
   user_payout:number
 }
 

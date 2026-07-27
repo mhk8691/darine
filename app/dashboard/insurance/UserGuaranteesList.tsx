@@ -293,20 +293,13 @@ const UserGuaranteesList = React.forwardRef<UserGuaranteesListRef>((_, ref) => {
               </Stack>
                    <Stack direction="row" justifyContent="space-between">
                     <Typography variant="body2" color="text.secondary">
-                قیمت سررسید (در زمان اجرا):
+                قیمت سررسید:
                     </Typography>
                     <Typography variant="body2" fontWeight={700}>
                       {priceFormatter(detail.executed_price)} تومان
                     </Typography>
                   </Stack>
-                    <Stack direction="row" justifyContent="space-between">
-                    <Typography variant="body2" color="text.secondary">
-               قیمت سررسید (نمایش فعلی):
-                    </Typography>
-                    <Typography variant="body2" fontWeight={700}>
-                      {detail.end_price_display} 
-                    </Typography>
-                  </Stack>
+               
                   <Stack direction="row" justifyContent="space-between">
                     <Typography variant="body2" color="text.secondary">
                مبلغ پرداخت شده:
