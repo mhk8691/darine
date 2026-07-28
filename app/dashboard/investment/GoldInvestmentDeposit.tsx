@@ -21,7 +21,8 @@ import priceFormatter from '@/app/core/PriceFormater';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { isAxiosError } from 'axios';
  
-import { InvestmentPlan, createInvestment,getInvestmentInfo, } from '@/lib/investment/investment';
+import { InvestmentPlan, createInvestment, getInvestmentInfo } from '@/lib/investment/investment';
+import { formatDate } from '@/app/core/FormatDate';
 
 interface GoldInvestmentDepositProps {
   onIncreaseBalance?: () => void;
@@ -47,10 +48,10 @@ export default function GoldInvestmentDeposit({
     try {
       setIsFetchLoading(true);
       const res = await getInvestmentInfo();
-        setPlans(res.data.plans.filter((p) => p.is_active));
-        setAccessibleGold(res.data.accessible_gold);
-        if (res.data.plans.length > 0) {
-          setSelectedPlan(res.data.plans[0]);
+      setPlans(res.data.plans.filter((p) => p.is_active));
+      setAccessibleGold(res.data.accessible_gold);
+      if (res.data.plans.length > 0) {
+        setSelectedPlan(res.data.plans[0]);
       }
     } catch (error) {
       if (isAxiosError(error)) {
@@ -82,6 +83,32 @@ export default function GoldInvestmentDeposit({
     const totalRate = Number(selectedPlan.total_profit_percent);
     return (numericAmount * totalRate) / 100;
   }, [numericAmount, selectedPlan, insufficientBalance]);
+
+  // ۱. محاسبه مجموع اصل سرمایه و سود
+  const totalPrincipalAndProfit = useMemo(() => {
+    if (!numericAmount || insufficientBalance || !selectedPlan) return 0;
+    return numericAmount + totalGold;
+  }, [numericAmount, totalGold, insufficientBalance, selectedPlan]);
+
+  // ۲. محاسبه تاریخ سررسید پایان طرح با استفاده از تابع formatDate
+  const maturityDate = useMemo(() => {
+    if (!selectedPlan) return '-';
+
+    const date = new Date();
+    // اگر در selectedPlan مدت زمان به ماه (مثلا duration_months یا duration) وجود دارد
+    const durationMonths = (selectedPlan as any).duration_months || (selectedPlan as any).duration || 0;
+    
+    if (durationMonths > 0) {
+      date.setMonth(date.getMonth() + Number(durationMonths));
+    } else {
+      // اگر مدت به روز است (مثلا duration_days)
+      const durationDays = (selectedPlan as any).duration_days || 0;
+      date.setDate(date.getDate() + Number(durationDays));
+    }
+
+    // تبدیل تاریخ به فرمت ISO و پاس دادن به تابع شما
+    return formatDate(date.toISOString());
+  }, [selectedPlan]);
 
   const handleConfirm = async () => {
     if (!numericAmount || insufficientBalance || !selectedPlan) return;
@@ -254,31 +281,48 @@ export default function GoldInvestmentDeposit({
             </Stack>
           )}
 
-          <Stack
-            direction="row"
-            justifyContent="space-between"
-            alignItems="center"
-            mt={3}
-          >
-            <Typography variant="body2" color="text.subtitle">
-              طلای دریافتی ماهانه
-            </Typography>
-            <Typography fontWeight={600} color="text.primary">
-              {priceFormatter(monthlyGold)} گرم
-            </Typography>
-          </Stack>
-          <Stack
-            direction="row"
-            justifyContent="space-between"
-            alignItems="center"
-            mt={1}
-          >
-            <Typography variant="body2" color="text.subtitle">
-              طلای دریافتی طرح
-            </Typography>
-            <Typography fontWeight={600} color="text.primary">
-              {priceFormatter(totalGold)} گرم
-            </Typography>
+          {/* بخش اطلاعات و محاسبات طرح */}
+          <Stack spacing={1.5} mt={3}>
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <Typography variant="body2" color="text.subtitle">
+                سود طلای دریافتی طرح
+              </Typography>
+              <Typography fontWeight={600} color="text.primary">
+                {priceFormatter(totalGold)} گرم
+              </Typography>
+            </Stack>
+
+            {/* فیلد ۱: سررسید پایان طرح */}
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <Typography variant="body2" color="text.subtitle">
+                تاریخ سررسید پایان طرح
+              </Typography>
+              <Typography fontWeight={600} color="text.primary">
+                {maturityDate}
+              </Typography>
+            </Stack>
+
+            {/* فیلد ۲: مجموع طلای سرمایه‌گذاری شده و سود طرح */}
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <Typography variant="body2" color="text.subtitle">
+                مجموع طلا و سود در پایان دوره
+              </Typography>
+              <Typography fontWeight={700} color="primary.main">
+                {priceFormatter(totalPrincipalAndProfit)} گرم
+              </Typography>
+            </Stack>
           </Stack>
 
           <Button
@@ -332,17 +376,14 @@ export default function GoldInvestmentDeposit({
             variant="body2"
             color="text.subtitle"
             mt={1.5}
-            textAlign="left"
+            textAlign="justify"
             lineHeight={2}
           >
-            مقداری از طلای خود را برای مدت مشخص در طرح سرمایه‌گذاری قرار دهید و بدون
-            نیاز به فروش، سود دریافت کنید. هرچه مدت زمان طرح بیشتر باشد، سود بیشتر
-            به شما تعلق می‌گیرد و سود شما به‌صورت ماهانه به کیف پول طلای شما اضافه
-            می‌شود. در پایان دوره نیز اصل طلای سپرده‌گذاری‌شده، آزاد و به کیف پولتان
-            بازمی‌گردد.
+            مقداری از طلای خود را برای مدت‌زمان مشخص در طرح سرمایه‌گذاری سپرده‌گذاری کنید و بدون نیاز به فروش، سود دریافت کنید. هرچه مدت‌زمان سرمایه‌گذاری بیشتر باشد، سود بیشتری به شما تعلق می‌گیرد. در پایان دوره، اصل طلای سپرده‌گذاری‌شده به همراه سود آن به کیف پول طلای شما اضافه و قابل استفاده خواهد بود.
           </Typography>
         </Container>
       </Grid>
     </Grid>
   );
 }
+

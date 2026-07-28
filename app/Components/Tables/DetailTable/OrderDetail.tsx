@@ -127,7 +127,7 @@ export default function OrderDetail({
             },
           }}
         >
-          <SelectField label="وضعیت" itemsList={statuses}  isOrederDetail maxWidth="260px"  value={status}
+          <SelectField label="وضعیت" itemsList={statuses}  isOrederDetail maxWidth="260px"  value={status} 
             setValue={setStatus} />
           <CustomDatePicker style={{
             maxWidth:'270px'
