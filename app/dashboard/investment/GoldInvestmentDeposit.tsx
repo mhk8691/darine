@@ -435,17 +435,17 @@ export default function GoldInvestmentDeposit({
         </Typography>
           <Stack direction={'row'} gap={1} alignItems={'center'} mt={2}>
                      <Typography variant="body2" >
-                       موجودی کیف پول:
+                       موجودی طلا:
                       </Typography>
                       <Typography 
                         variant="body2" 
                         sx={{ 
                           fontWeight: 'bold',
-                                  color:investmentData?.accessible_toman >=0?'success.main':'error.main'
+                                  color:investmentData?.accessible_gold >=0?'success.main':'error.main'
                   
                         }}
                       >
-                        {priceFormatter(investmentData.accessible_toman)} تومان
+                        {priceFormatter(investmentData.accessible_gold)} گرم
                       </Typography>
                   </Stack>
       </CustomOrderConfirmation>

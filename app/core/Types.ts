@@ -361,7 +361,7 @@ export interface InvestmentCalculateType {
   start_date: string;
   end_date: string;
   enough_balance: boolean;
-  accessible_toman:number
+  accessible_gold:number
 }
 
 export interface LimitOrderCalculateType {

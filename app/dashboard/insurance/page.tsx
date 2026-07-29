@@ -50,19 +50,28 @@ export default function InsurancePage() {
 
   const goldWeightNum = parseFloat(goldWeight) || 0;
 
-  // اعتبارسنجی فرم
-  const isValid = React.useMemo(() => {
-    if (!selectedPlanId || goldWeightNum <= 0 || !infoData) return false;
-    if (goldWeightNum > infoData.accessible_gold) return false;
+  // ۱. بررسی موجودی طلا
+  const hasEnoughGold = React.useMemo(() => {
+    if (!infoData) return true;
+    return goldWeightNum <= infoData.accessible_gold;
+  }, [goldWeightNum, infoData]);
+
+  // ۲. بررسی موجودی تومانی برای کارمزد
+  const hasEnoughToman = React.useMemo(() => {
+    if (!infoData || !selectedPlan || goldWeightNum <= 0) return true;
 
     const guaranteedPriceTotal = infoData.gold_price * goldWeightNum;
-    const feePercent = selectedPlan ? parseFloat(selectedPlan.service_fee_percent) : 0;
+    const feePercent = parseFloat(selectedPlan.service_fee_percent) || 0;
     const serviceFeeTotal = (guaranteedPriceTotal * feePercent) / 100;
 
-    if (serviceFeeTotal > infoData.accessible_toman) return false;
+    return serviceFeeTotal <= infoData.accessible_toman;
+  }, [infoData, selectedPlan, goldWeightNum]);
 
-    return true;
-  }, [selectedPlanId, goldWeightNum, infoData, selectedPlan]);
+  // اعتبارسنجی کلی فرم
+  const isValid = React.useMemo(() => {
+    if (!selectedPlanId || goldWeightNum <= 0 || !infoData) return false;
+    return hasEnoughGold && hasEnoughToman;
+  }, [selectedPlanId, goldWeightNum, infoData, hasEnoughGold, hasEnoughToman]);
 
   // ثبت نهایی تضمین
   const handleConfirm = async () => {
@@ -160,7 +169,11 @@ export default function InsurancePage() {
                 loading={loading}
               />
 
-              <GuaranteeNotice />
+              {/* کامپوننت نوتیس همراه با پاس دادن وضعیت موجودی‌ها */}
+              <GuaranteeNotice 
+                hasEnoughGold={hasEnoughGold} 
+                hasEnoughToman={hasEnoughToman} 
+              />
             </Box>
           </Box>
 
