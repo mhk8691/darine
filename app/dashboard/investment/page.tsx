@@ -62,7 +62,7 @@ export default function InvestmentPage() {
           dateRange={dateRange}
           setDateRange={setDateRange}
           setParams={setParams}
-          onRefresh={fetchInvestmentList} // ارسال اکشن بازخوانی لیست
+          onRefresh={fetchInvestmentList}
         />
       </Grid>
     </Grid>

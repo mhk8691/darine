@@ -345,6 +345,25 @@ export interface BuyCalculateType{
     }
 } 
 
+export interface InvestmentCalculateType {
+  plan: {
+    name: string;
+    duration_days: number;
+    daily_profit_percent: number;
+    total_profit_percent: number;
+  };
+  gold_weight: number;
+  investment_price: number;
+  total_profit: number;
+  total_return: number;
+  total_profit_toman: number;
+  total_return_toman: number;
+  start_date: string;
+  end_date: string;
+  enough_balance: boolean;
+  accessible_toman:number
+}
+
 export interface LimitOrderCalculateType {
   order_type: 'BUY' | 'SELL'
   current_price: number
