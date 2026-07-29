@@ -11,10 +11,10 @@ import { goldSell } from '@/lib/gold/goldSell'
 import { Button, Stack, Typography, useMediaQuery, useTheme } from '@mui/material'
 import { isAxiosError } from 'axios'
 import React, { Dispatch, SetStateAction,  useState } from 'react'
-import TradeGoldConfirmation from './TradeGoldConfirmation'
 import TradeGuide from './TradeGuide'
 import priceFormater from '@/app/core/PriceFormater'
 import { buyCalculate, sellCalculate } from '@/lib/calculate/calculate'
+import CustomOrderConfirmation, { OrderListType } from '@/app/Components/CustomOrderConfirmation/CustomOrderConfirmation'
 
 
 
@@ -140,6 +140,21 @@ export default function Trading({setData,reportsParams,filter,dateRange}:Props) 
     setPrice('')
     setGold('')
   }
+  const title = select === 'buy' ? 'تایید خرید طلا':'تایید فروش طلا'
+  const tradeDataList: OrderListType[] = [
+  {
+    title: 'وزن طلا:',
+    value: `${priceFormater(calculateData.gold_weight)} گرم`,
+  },
+  {
+    title: 'قیمت لحظه ای هر گرم طلا:',
+    value: `${priceFormater(calculateData.gold_price)} تومان`,
+  },
+  {
+    title: `مبلغ کل ${select === 'buy' ? 'خرید' : 'فروش'}:`,
+    value: `${priceFormater(calculateData.total_toman)} تومان`,
+  },
+];
   return (
       <>
       <Container
@@ -243,7 +258,34 @@ export default function Trading({setData,reportsParams,filter,dateRange}:Props) 
           {select === 'buy' ? 'خرید' : 'فروش'}
         </Button>
       </Container>
-       <TradeGoldConfirmation select={select} title={select === 'buy' ? 'تایید خرید طلا':'تایید فروش طلا'} isLoading={isLoading} handleSubmit={select === 'buy' ? handleBuyGold : handleSellGold} open={open} setOpen={setOpen} data={calculateData} /> 
+       <CustomOrderConfirmation
+        handleSubmit={select === 'buy' ? handleBuyGold : handleSellGold}
+        isEnoughBalance={calculateData.enough_balance}
+        isLoading={isLoading}
+        open={open}
+        setOpen={setOpen}
+        title={title}
+        data={tradeDataList}
+        >
+          <Typography variant="body2" sx={{mt:2}}>
+                  شما درحال {title.split(' ')[1]} {priceFormater(calculateData.gold_weight)} گرم طلا با حساب {calculateData.fee_rate} درصد کارمزد معادل {priceFormater(calculateData.total_toman)} تومان هستید
+          </Typography>
+          <Stack direction={'row'} gap={1} alignItems={'center'} mt={2}>
+             <Typography variant="body2" >
+               {select === 'buy' ? ' موجودی کیف پول:':'موجودی طلا:'}
+              </Typography>
+              <Typography 
+                variant="body2" 
+                sx={{ 
+                  fontWeight: 'bold',
+                          color:select === 'buy' ?calculateData?.wallet?.accessible_toman >=0?'success.main':'error.main':  assets.gold_accessible >= 0 ? 'success.main':'error.main'
+          
+                }}
+              >
+                {priceFormater(select === 'buy'?calculateData.wallet?.accessible_toman:assets.gold_accessible)} {select === 'buy' ? 'تومان':'گرم'} 
+              </Typography>
+          </Stack>
+        </CustomOrderConfirmation>
        <TradeGuide open={openModal} setOpen={setOpenModal} />
       </>
   )
