@@ -183,7 +183,7 @@ export default function InvestmentTableContainer({
 
                 {/* نرخ سود */}
                 <TableCell align="center" sx={{ py: 2, px: 1.5 }}>
-                  {row.monthly_profit * 100}% ماهانه / {row.total_expected_profit * 100}% کل
+                   {row.total_expected_profit * 100}% کل
                 </TableCell>
 
                 {/* سود واریزی */}
@@ -196,11 +196,7 @@ export default function InvestmentTableContainer({
                   {priceFormater(+row.total_return)} گرم
                 </TableCell>
 
-                {/* کارکرد */}
-                <TableCell align="center" sx={{ py: 2, px: 1.5 }}>
-                  {row.months_passed} از {row.months_passed + row.remaining_months} ماه
-                </TableCell>
-
+            
                 {/* سود لغو */}
                 <TableCell align="center" sx={{ py: 2, px: 1.5 }}>
                   {priceFormater(+row.cancellation_profit)} گرم
@@ -243,7 +239,6 @@ export default function InvestmentTableContainer({
           'نرخ سود',
           'سود واریزی',
           'بازگشت کل',
-          'کارکرد',
           'سود لغو',
           'تاریخ پایان',
           'عملیات',
