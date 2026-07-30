@@ -54,7 +54,7 @@ export default function notfound() {
           px: 5,
         }}
       >
-        <Link href={'/dashboard'}>بازگشت به صفحه اصلی</Link>
+        <Link href={'/dashboard'} prefetch={false}>بازگشت به صفحه اصلی</Link>
       </Button>
     </Container>
   );

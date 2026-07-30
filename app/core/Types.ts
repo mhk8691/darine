@@ -41,6 +41,7 @@ export interface AppbarItemsType {
   image: string;
   link?: string;
   comingSoon?:boolean
+  isPrefetch?:boolean
 }
 
 

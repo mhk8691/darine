@@ -108,7 +108,7 @@ export default function page() {
             <Image src={'main.webp'} width={'400'} height={322} alt='' />
         </Stack>
         <Typography variant="body2" >
-            اپلیکیشن طلاسی، بستری برای خرید و فروش آنلاین و راحت طلای خام و بدون اجرت است. با بھره مندی از امکانات اپلیکیشن طلاسی، سرمایه شما همیشه در دسترس شما بوده و برای <Link style={{color:'#FCD535',textDecoration:'underline'}} href={'/dashboard'}>
+            اپلیکیشن طلاسی، بستری برای خرید و فروش آنلاین و راحت طلای خام و بدون اجرت است. با بھره مندی از امکانات اپلیکیشن طلاسی، سرمایه شما همیشه در دسترس شما بوده و برای <Link style={{color:'#FCD535',textDecoration:'underline'}} href={'/dashboard'} prefetch={false}>
                 خرید طلای آب شده
                 </Link> نیازی به مراجعه و حضور فیزیکی به بازار طلا نیست.
 

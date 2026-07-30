@@ -11,11 +11,10 @@ import {
   Chip,
 } from '@mui/material';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import { Dispatch, SetStateAction } from 'react';
 import CustomModal from '../CustomModal/CustomModal';
 import { AppbarItemsType } from '@/app/core/Types';
-import ShieldMoonRoundedIcon from "@mui/icons-material/ShieldMoonRounded";
+import Link from 'next/link';
 
 interface Props {
   open: boolean;
@@ -44,6 +43,7 @@ const items: ItemsType[] = [
         image: '/trade-active-dark.svg',
         link: '/trades',
         comingSoon: false,
+        isPrefetch:true
       },
       {
         name: 'سفارش با قیمت',
@@ -67,12 +67,16 @@ const items: ItemsType[] = [
         image: '/wallet-active-dark.svg',
         link: '/wallet',
         comingSoon: false,
+        isPrefetch:true
+
       },
       {
         name: 'واریز و برداشت',
         image: '/irtTransaction-active-dark.svg',
         link: '/irt-transaction',
         comingSoon: false,
+        isPrefetch:true
+
       },
       {
         name: 'کارت های بانکی',
@@ -102,12 +106,16 @@ const items: ItemsType[] = [
         image: '/shop-active-dark.svg',
         link: '/gold-receive',
         comingSoon: false,
+        isPrefetch:true
+
       },
       {
         name: 'کارت هدیه',
         image: '/giftCard-active-dark.svg',
         link: '/gift-card-menu',
         comingSoon: false, 
+        isPrefetch:true
+
       },
       {
         name: 'پس انداز خودکار',
@@ -143,6 +151,8 @@ const items: ItemsType[] = [
         image: '/reports-active-dark.svg',
         link: '/reports',
         comingSoon: false,
+        isPrefetch:true
+
       },
       {
         name: 'طلا فروش شو',
@@ -161,7 +171,6 @@ const items: ItemsType[] = [
 ];
 
 const Content = ({ setOpen }: { setOpen: Dispatch<SetStateAction<boolean>> }) => {
-  const router = useRouter();
 
   return (
     <>
@@ -230,72 +239,80 @@ const Content = ({ setOpen }: { setOpen: Dispatch<SetStateAction<boolean>> }) =>
                 }}
               >
                 {item.navigation.map((navigate) => (
-                  <Grid
-                    size={4}
-                    bgcolor={'background.paper'}
-                    borderRadius={2}
-                    key={navigate.name}
-                    py={1}
-                    px={1.5}
-                    component={'div'}
-                    onClick={() => {
-                      if (!navigate.comingSoon) {
-                        router.push(`/dashboard${navigate.link}`);
-                        setOpen(false);
-                      }
-                    }}
-                    sx={{
-                      cursor: navigate.comingSoon ? 'default' : 'pointer',
-                      position: 'relative',
-                      opacity: navigate.comingSoon ? 0.6 : 1,
-                      transition: 'all 0.2s ease',
-                      '&:hover': {
-                        opacity: navigate.comingSoon ? 0.6 : 0.8,
-                        transform: navigate.comingSoon ? 'none' : 'scale(1.02)',
-                      },
-                    }}
-                  >
-                    <Stack direction={'column'} alignItems={'center'} gap={1.5}>
-                      <Image
-                        src={`/images/appbar${navigate.image}`}
-                        alt=""
-                        width={30}
-                        height={30}
-                      />
-                      <Typography
-                        variant="body1"
-                        fontSize={{
-                          xs: 12,
-                          sm: 14,
-                        }}
-                        fontWeight={500}
-                        sx={{ whiteSpace: 'nowrap' }}
-                      >
-                        {navigate.name}
-                      </Typography>
+                <Grid size={4} key={navigate.name}>
+  <Link
+    href={`/dashboard${navigate.link}`}
+    prefetch={navigate.isPrefetch}
+    onClick={(e) => {
+      if (navigate.comingSoon) {
+        e.preventDefault();
+        return;
+      }
+      setOpen(false);
+    }}
+    style={{
+      textDecoration: 'none',
+      color: 'inherit',
+      display: 'block',
+      height: '100%',
+    }}
+  >
+    <Stack
+      bgcolor="background.paper"
+      borderRadius={2}
+      py={1}
+      px={1.5}
+      sx={{
+        cursor: navigate.comingSoon ? 'default' : 'pointer',
+        position: 'relative',
+        opacity: navigate.comingSoon ? 0.6 : 1,
+        transition: 'all 0.2s ease',
+        '&:hover': {
+          opacity: navigate.comingSoon ? 0.6 : 0.8,
+          transform: navigate.comingSoon ? 'none' : 'scale(1.02)',
+        },
+      }}
+    >
+      <Stack direction="column" alignItems="center" gap={1.5}>
+        <Image
+          src={`/images/appbar${navigate.image}`}
+          alt=""
+          width={30}
+          height={30}
+        />
 
-                      {/* نشانگر "به زودی" */}
-                      {navigate.comingSoon && (
-                        <Chip
-                          label="به زودی"
-                          size="small"
-                          sx={{
-                            position: 'absolute',
-                            top: -8,
-                            right: -8,
-                            backgroundColor: '#FF6B6B',
-                            color: 'white',
-                            fontSize: '10px',
-                            height: '20px',
-                            fontWeight: 'bold',
-                            '& .MuiChip-label': {
-                              px: 1,
-                            },
-                          }}
-                        />
-                      )}
-                    </Stack>
-                  </Grid>
+        <Typography
+          variant="body1"
+          fontSize={{ xs: 12, sm: 14 }}
+          fontWeight={500}
+          sx={{ whiteSpace: 'nowrap' }}
+        >
+          {navigate.name}
+        </Typography>
+
+        {navigate.comingSoon && (
+          <Chip
+            label="به زودی"
+            size="small"
+            sx={{
+              position: 'absolute',
+              top: -8,
+              right: -8,
+              backgroundColor: '#FF6B6B',
+              color: 'white',
+              fontSize: '10px',
+              height: '20px',
+              fontWeight: 'bold',
+              '& .MuiChip-label': {
+                px: 1,
+              },
+            }}
+          />
+        )}
+      </Stack>
+    </Stack>
+  </Link>
+</Grid>
                 ))}
               </Grid>
             </Stack>

@@ -113,7 +113,7 @@ export default function ButtonGroupe() {
               sx={{ height: 35, borderColor: 'text.primary', mr: 1 }}
             />
           </Stack>
-          <Link href={'/dashboard'}>
+          <Link href={'/dashboard'} prefetch={false}>
             {isDesktop ? (
               <IconButton>
                 <UserCircleIcon />

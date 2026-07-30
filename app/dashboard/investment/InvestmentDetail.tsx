@@ -68,7 +68,7 @@ export default function InvestmentDetail({ open, setOpen, data }: Props) {
     },
     {
       label: 'تاریخ اتمام طرح',
-      value: <Typography variant="body2" dir="ltr">{formatDate(data.end_date) || '-'}</Typography>,
+      value: <Typography variant="body2">{formatDate(data.end_date) || '-'}</Typography>,
     },
       {
       label: 'سود سرمایه‌گذاری',

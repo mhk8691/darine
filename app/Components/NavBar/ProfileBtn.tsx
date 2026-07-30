@@ -202,7 +202,7 @@ React.useEffect(()=>{
           </Stack>
           <MenuList>
             {options.map((option) => (
-              <Box component={Link} href={option.link} key={option.title}>
+              <Box component={Link} href={option.link} key={option.title} prefetch={false}>
                 <MenuItem
                   onClick={() => setOpen(false)}
                   sx={{
