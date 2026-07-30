@@ -10,7 +10,7 @@ import { RecentTransactionDataType, ToggleItemsType } from '@/app/core/Types';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
 import { statuses } from '../reports/DepositTable';
 import { getReports } from '@/lib/getReports/getReports';
-import TransactionDetailModal from '../reports/TransactionDetailModal';
+import TransactionDetailModal from '../reports/TransactionDetail';
 import BackLink from '../BackLink';
 import TransactionsGuide from './TransactionsGuide';
 import TransactionHint from './TransactionHint';

@@ -5,19 +5,17 @@ import { OrdersDataType, ToggleItemsType } from '@/app/core/Types';
 import {
   Box,
   Collapse,
-  Stack,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
-  Typography,
   Button,
 } from '@mui/material';
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { statuses } from './DepositTable';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
-import OrderDetailModal, { handleColorStatus, handleTitleStatus } from './OrderDetailModal';
+import OrderDetailModal, { orderStatusMap } from './OrderDetail';
 
 const receiveItems: ToggleItemsType[] = [
   {
@@ -53,6 +51,11 @@ interface OrderRowProps {
 function OrderRow({ row, onOpenDetail }: OrderRowProps) {
   const [open, setOpen] = useState(false);
 
+  // استخراج مشخصات وضعیت مستقیماً از Map
+  const statusInfo = orderStatusMap[row.status];
+  const statusTitle = statusInfo?.title ?? row.status;
+  const statusColor = statusInfo?.color ?? 'default';
+
   return (
     <>
       <TableRow
@@ -65,22 +68,22 @@ function OrderRow({ row, onOpenDetail }: OrderRowProps) {
         <TableCell align="center">{row.tracking_code}</TableCell>
         
         {/* status */}
-        <TableCell align="center" sx={{ color: `${handleColorStatus(row.status)}.main` }}>
-          {handleTitleStatus(row.status)}
+        <TableCell align="center" sx={{ color: `${statusColor}.main` }}>
+          {statusTitle}
         </TableCell>
 
         {/* amount */}
         <TableCell align="center">
           {priceFormater(row.total_toman_amount)} تومان
         </TableCell>
-         <TableCell align="center">
+        <TableCell align="center">
           {priceFormater(row.total_gold_amount)} گرم
         </TableCell>
 
         {/* date */}
         <TableCell align="center">{formatDate(row.created_at)}</TableCell>
 
-        {/* delivery type (IMPORTANT ADDED) */}
+        {/* delivery type */}
         <TableCell align="center">{row.payment_method_display}</TableCell>
 
         {/* detail modal */}
@@ -111,29 +114,29 @@ function OrderRow({ row, onOpenDetail }: OrderRowProps) {
       </TableRow>
 
       <TableRow>
-        <TableCell colSpan={7} sx={{ p: 0 }}>
+        <TableCell colSpan={8} sx={{ p: 0 }}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ m: 2, border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
               <Table size="small">
                 <TableHead>
                   <TableRow>
-                    <TableCell align="center" sx={{py:2}}>نام</TableCell>
-                    <TableCell align="center" sx={{py:2}}>تعداد</TableCell>
-                    <TableCell align="center" sx={{py:2}}>قیمت</TableCell>
-                    <TableCell align="center" sx={{py:2}}>وزن</TableCell>
-                    <TableCell align="center" sx={{py:2}}>جمع</TableCell>
+                    <TableCell align="center" sx={{ py: 2 }}>نام</TableCell>
+                    <TableCell align="center" sx={{ py: 2 }}>تعداد</TableCell>
+                    <TableCell align="center" sx={{ py: 2 }}>قیمت</TableCell>
+                    <TableCell align="center" sx={{ py: 2 }}>وزن</TableCell>
+                    <TableCell align="center" sx={{ py: 2 }}>جمع</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {row.items?.map((item) => (
                     <TableRow key={item.id}>
-                      <TableCell align="center" sx={{py:2}}>{item.product_name}</TableCell>
-                      <TableCell align="center" sx={{py:2}}>{item.quantity}</TableCell>
-                      <TableCell align="center" sx={{py:2}}>
+                      <TableCell align="center" sx={{ py: 2 }}>{item.product_name}</TableCell>
+                      <TableCell align="center" sx={{ py: 2 }}>{item.quantity}</TableCell>
+                      <TableCell align="center" sx={{ py: 2 }}>
                         {priceFormater(item.price_at_time)} تومان
                       </TableCell>
-                      <TableCell align="center" sx={{py:2}}>{item.weight_at_time} گرم</TableCell>
-                      <TableCell align="center" sx={{py:2}}>
+                      <TableCell align="center" sx={{ py: 2 }}>{item.weight_at_time} گرم</TableCell>
+                      <TableCell align="center" sx={{ py: 2 }}>
                         {priceFormater(item.price_at_time * item.quantity)} تومان
                       </TableCell>
                     </TableRow>
@@ -195,7 +198,7 @@ export default function OrdersTable({
           '',
           '',
         ]}
-        listLength={data.length}
+        listLength={data?.length || 0}
       />
 
       <OrderDetailModal open={modalOpen} setOpen={setModalOpen} data={selectedOrder} />

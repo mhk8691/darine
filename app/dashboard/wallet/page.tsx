@@ -16,7 +16,7 @@ import Statistics from './Statistics';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { getRecentTransaction } from '@/lib/transactions/recent-transactions/recentTransactions';
-import TransactionDetailModal from '../reports/TransactionDetailModal';
+import TransactionDetailModal from '../reports/TransactionDetail';
 // export const metadata: Metadata = {
 //   title: 'کیف پول | دارینه',
 //   description: '',

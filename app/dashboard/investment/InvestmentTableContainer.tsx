@@ -12,6 +12,7 @@ import {
   Box,
 } from '@mui/material';
 import WarningAmberRoundedIcon from '@mui/icons-material/WarningAmberRounded';
+import { ArrowBackIos } from '@mui/icons-material';
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import priceFormater from '@/app/core/PriceFormater';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
@@ -22,6 +23,7 @@ import Loading from '@/app/Components/Loading/Loading';
 import { cancelInvestment } from '@/lib/investment/investment';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { isAxiosError } from 'axios';
+import InvestmentDetail from './InvestmentDetail';
 
 export interface InvestmentTableItem {
   id: number;
@@ -74,6 +76,10 @@ export default function InvestmentTableContainer({
   const [selectedItem, setSelectedItem] = useState<InvestmentTableItem | null>(null);
   const [isCancelling, setIsCancelling] = useState<boolean>(false);
 
+  // استیت‌های مربوط به مودال جزئیات
+  const [openDetailModal, setOpenDetailModal] = useState<boolean>(false);
+  const [detailItem, setDetailItem] = useState<InvestmentTableItem | null>(null);
+
   const handleColorStatus = (status: string) => {
     switch (status) {
       case 'ACTIVE':
@@ -87,9 +93,18 @@ export default function InvestmentTableContainer({
     }
   };
 
-  // باز کردن مودال و ذخیره آیتم انتخابی
+  // کلیک روی سطر برای باز کردن مودال جزئیات
+  const handleRowClick = (row: InvestmentTableItem) => {
+    setDetailItem(row);
+    setOpenDetailModal(true);
+    if (onRowClick) {
+      onRowClick(row);
+    }
+  };
+
+  // باز کردن مودال لغو و ذخیره آیتم انتخابی
   const handleOpenCancelModal = (e: React.MouseEvent, item: InvestmentTableItem) => {
-    e.stopPropagation();
+    e.stopPropagation(); // جلوگیری از باز شدن همزمان مودال جزئیات
     setSelectedItem(item);
     setOpenCancelModal(true);
   };
@@ -105,7 +120,6 @@ export default function InvestmentTableContainer({
       setSelectedItem(null);
       showSnackbar(res.message || 'سرمایه‌گذاری با موفقیت لغو شد', 'success');
 
-      // ریفرش دیتای جدول
       if (onRefresh) {
         await onRefresh();
       }
@@ -137,7 +151,7 @@ export default function InvestmentTableContainer({
                 key={row?.id}
                 onMouseEnter={() => !isMobile && setHoveredId(row.id)}
                 onMouseLeave={() => !isMobile && setHoveredId(null)}
-                onClick={() => onRowClick?.(row)}
+                onClick={() => handleRowClick(row)}
                 sx={{
                   '&:last-child td': { border: 0 },
                   '&:last-child th': { border: 0 },
@@ -183,7 +197,7 @@ export default function InvestmentTableContainer({
 
                 {/* نرخ سود */}
                 <TableCell align="center" sx={{ py: 2, px: 1.5 }}>
-                   {row.total_expected_profit * 100}% کل
+                  {row.total_expected_profit * 100}% کل
                 </TableCell>
 
                 {/* سود واریزی */}
@@ -196,7 +210,6 @@ export default function InvestmentTableContainer({
                   {priceFormater(+row.total_return)} گرم
                 </TableCell>
 
-            
                 {/* سود لغو */}
                 <TableCell align="center" sx={{ py: 2, px: 1.5 }}>
                   {priceFormater(+row.cancellation_profit)} گرم
@@ -226,6 +239,34 @@ export default function InvestmentTableContainer({
                   )}
                 </TableCell>
 
+                {/* آیکون فلش هنگام هاور */}
+                <TableCell
+                  align="center"
+                  sx={{
+                    py: 2,
+                    px: 0,
+                    width: 0,
+                    minWidth: 0,
+                    overflow: 'hidden',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  <ArrowBackIos
+                    sx={{
+                      fontSize: 13,
+                      color: 'primary.main',
+                      display: 'block',
+                      opacity: isMobile || hoveredId === row.id ? 1 : 0,
+                      transition: isMobile
+                        ? 'none'
+                        : 'opacity 0.15s ease, transform 0.15s ease',
+                      transform:
+                        isMobile || hoveredId === row.id
+                          ? 'translateX(0)'
+                          : 'translateX(6px)',
+                    }}
+                  />
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -242,8 +283,16 @@ export default function InvestmentTableContainer({
           'سود لغو',
           'تاریخ پایان',
           'عملیات',
+          '',
         ]}
         listLength={data?.length || 0}
+      />
+
+      {/* مودال جزئیات سرمایه‌گذاری */}
+      <InvestmentDetail
+        open={openDetailModal}
+        setOpen={setOpenDetailModal}
+        data={detailItem}
       />
 
       {/* مودال تأییدیه لغو طرح */}

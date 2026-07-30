@@ -16,7 +16,7 @@ import {
 import { ArrowBackIos } from '@mui/icons-material';
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { statuses } from './DepositTable';
-import TradeDetailModal from './TradeDetailModal';
+import TradeDetail from './TradeDetail';
 
 const trades: ToggleItemsType[] = [
   {
@@ -265,7 +265,7 @@ export default function TradesTable({
       />
 
       {/* مودال دیتیل */}
-      <TradeDetailModal
+      <TradeDetail
         open={modalOpen}
         setOpen={setModalOpen}
         data={selectedTransaction}

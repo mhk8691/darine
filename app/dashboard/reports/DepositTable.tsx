@@ -3,7 +3,7 @@ import { RecentTransactionDataType, ToggleItemsType } from '@/app/core/Types';
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import TransactionTable from '../irt-transaction/TransactionTable';
 import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
-import TransactionDetailModal from './TransactionDetailModal';
+import TransactionDetail from './TransactionDetail';
 export const statuses = [
   { label: 'در انتظار تایید', value: 'PENDING' },
   { label: 'تکمیل شده', value: 'COMPLETED' },
@@ -72,7 +72,7 @@ export default function DepositTable({data,setDepositParams,setDateRange,setFilt
       ]}
       listLength={data.length}
     />
-    <TransactionDetailModal
+    <TransactionDetail
               open={modalOpen}
               setOpen={setModalOpen}
               data={selectedTransaction}
