@@ -241,6 +241,8 @@ admin_note:string
                     "weight_at_time": number
                 }[]
 }
+
+
 export interface CartDataType {
   items	:{
     id:number,

@@ -1,7 +1,6 @@
 'use client'
 import { formatDate } from "@/app/core/FormatDate";
 import { AnnouncementsType } from "@/app/core/Types";
-import { getAnnouncements, markAllRead } from "@/lib/announcements/announcements";
 import {
   Button,
   Stack,
@@ -9,12 +8,9 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import Image from "next/image";
 import Link from "next/link";
-import { showSnackbar } from "../Snackbar/Snackbar";
-import { Dispatch, SetStateAction, useState } from "react";
-import { isAxiosError } from "axios";
 import Loading from "../Loading/Loading";
+import EmptyMessage from "../EmptyMessage/EmptyMessage";
 
 interface Props {
   isNotif?: boolean;
@@ -26,7 +22,6 @@ interface Props {
 export default function MessageCard({  isNotif,announcements,isLoading,handleMarkReadAll}: Props) {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
-  const isDarkMode = theme.palette.mode === 'dark'
 
   return (
     <>
@@ -77,34 +72,7 @@ export default function MessageCard({  isNotif,announcements,isLoading,handleMar
             </Typography>
           </Stack>
         ))
-        :<Stack
-                my={8}
-                direction={'column'}
-                alignItems={'center'}
-                justifyContent={'center'}
-                gap={3}
-              >
-                <Stack
-                  sx={{
-                    width: 150,
-                    height:135,
-                  }}
-                >
-                  <Image
-                    src={`/images/${isDarkMode ? 'emptyTableDark.png' : 'emptyTable.webp'}`}
-                    width={300}
-                    height={270}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                    }}
-                    alt=""
-                  />
-                </Stack>
-                <Typography variant="body2" fontSize={12} sx={{ color: 'text.muted' }}>
-                  اطلاعیه ای وجود ندارد
-                </Typography>
-        </Stack>
+        :<EmptyMessage title='اطلاعیه ای وجود ندارد' />
         }
 
         

@@ -10,7 +10,7 @@ import MobileCart from './MobileCart';
 import OrderConfirmation from './OrderConfirmation';
 import { getCart } from '@/lib/cart/cart';
 import { CartItem } from '../core/Types';
-import Image from 'next/image';
+import EmptyMessage from '../Components/EmptyMessage/EmptyMessage';
 
 export interface DirectAddressesType {
   address:string,
@@ -47,7 +47,6 @@ export default function Cart() {
       setStep((prev) => prev - 1);
     }
   };
-  const isDarkMode = theme.palette.mode === 'dark'
   return (
     <>
       {step === 0 && (
@@ -57,25 +56,10 @@ export default function Cart() {
               سبد خرید شما
             </Typography>
           )}
-          {cartData.length > 0 ?isMobile ? <MobileCart setCartData={setCartData}  cartData={cartData} /> : <DesktopCart  setCartData={setCartData} cartData={cartData} />:<Stack
-                    mt={10}
-                    mb={8}
-                    direction={'column'}
-                    alignItems={'center'}
-                    justifyContent={'center'}
-                    width={'100%'}
-                    gap={4}
-                  >
-                    <Image
-                      src={`/images/${isDarkMode ? 'emptyTableDark.png' : 'emptyTable.webp'}`}
-                      width={300}
-                      height={270}
-                      alt=""
-                    />
-                    <Typography variant="body2" fontSize={12} sx={{ color: 'text.muted' }}>
-                     سبد خرید خالی است
-                    </Typography>
-                  </Stack>}
+          {cartData.length > 0 ?isMobile ? <MobileCart setCartData={setCartData}  cartData={cartData} /> : <DesktopCart  setCartData={setCartData} cartData={cartData} />:
+                   <EmptyMessage title='سبد خرید خالی است' />
+               
+                  }
         </>
       )}
       {step === 1 && <Delivery addressId={addressId} setAddressId={setAddressId} deliveryType={deliveryType} setDirectAddresses={setDirectAddresses}

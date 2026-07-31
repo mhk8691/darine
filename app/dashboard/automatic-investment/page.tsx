@@ -1,13 +1,11 @@
 import Card from '@/app/Components/Containers/Container/Container';
-import OrderDetail from '@/app/Components/Tables/DetailTable/OrderDetail';
 import { ToggleItemsType } from '@/app/core/Types';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { Button, Grid, Stack, Typography } from '@mui/material';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import BackLink from '../BackLink';
-import EmptyTable from './EmptyTable';
-import WalletHeader from '@/app/Components/Wallet/WalletHeader';
+import EmptyMessage from '@/app/Components/EmptyMessage/EmptyMessage';
 export const metadata: Metadata = {
   title: 'پس انداز خودکار | دارینه',
   description: '',
@@ -74,12 +72,7 @@ export default function page() {
              افزودن شماره شبا
             </Button>
           </Link>
-          <Stack direction={'column'} alignItems={'center'} justifyContent={'center'} gap={4}>
-            <EmptyTable />
-            <Typography variant="body2" fontSize={12} sx={{ color: 'text.muted' }}>
-              متاسفانه کارت‌های ثبت شده در پنل شما جزو بانک‌های پشتیبانی شده نیست.
-            </Typography>
-          </Stack>
+         <EmptyMessage title='متاسفانه کارت‌های ثبت شده در پنل شما جزو بانک‌های پشتیبانی شده نیست.' />
         </Card>
       </Grid>
       <Grid
