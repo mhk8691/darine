@@ -6,7 +6,6 @@ import {
   Box,
   Typography,
   Button,
-  CircularProgress,
   Paper,
   Stack,
   useTheme,
@@ -16,6 +15,7 @@ import DnsIcon from '@mui/icons-material/Dns';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import {  User } from '@/lib/auth';
 import api, { ApiResponse } from '@/lib/api';
+import Loading from '../Components/Loading/Loading';
 
 export default function ConnectionErrorPage() {
   const [loading, setLoading] = useState(false);
@@ -130,7 +130,7 @@ export default function ConnectionErrorPage() {
             disableElevation
             startIcon={
               loading ? (
-                <CircularProgress size={18} sx={{ color: 'text.primary' }} />
+                <Loading size={30} />
               ) : (
                 <RefreshIcon />
               )

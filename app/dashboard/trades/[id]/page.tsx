@@ -1,13 +1,14 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Stack, CircularProgress, Box } from '@mui/material';
+import { Stack, Box } from '@mui/material';
 import Container from '@/app/Components/Containers/Container/Container';
 import { TradeInvoiceType } from '@/app/core/Types';
 import { getInvoices, downloadInvoices } from '@/lib/getInvoices/getInvoices';
 import { useParams } from 'next/navigation';
 import InvoiceActionButtons from './InvoiceActionButtons';
 import SalesInvoiceCard from './SalesInvoiceCard';
+import Loading from '@/app/Components/Loading/Loading';
 
 export default function TradeInvoicePage() {
   const params = useParams<{ id: string }>();
@@ -20,7 +21,7 @@ export default function TradeInvoicePage() {
       .finally(() => setLoading(false));
   }, [params.id]);
 
-  if (loading) return <Box sx={{ py: 10, textAlign: 'center' }}><CircularProgress /></Box>;
+  if (loading) return <Box sx={{ py: 10, textAlign: 'center' }}><Loading size={30} /></Box>;
   if (!invoice) return null;
 
   return (

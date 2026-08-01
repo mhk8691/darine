@@ -13,6 +13,7 @@ import Filter from "./Filter";
 import OrdersTable from "../reports/OrdersTable";
 import { DatePickerValue } from "@/app/Components/DatePicker/CustomDatePicker";
 import { getReports } from "@/lib/getReports/getReports";
+import EmptyMessage from "@/app/Components/EmptyMessage/EmptyMessage";
 
 
 export default function Products() {
@@ -70,7 +71,9 @@ export default function Products() {
           },
         }}
       >
-        <Grid size={12}>
+      {
+        productData.length > 0 ? <>
+          <Grid size={12}>
           <Filter cart={cart}
 setProductParams={setProductParams} />
         </Grid>
@@ -100,10 +103,12 @@ setCart={setCart}
         item={item} 
       />
     </Grid>
-))}
+                ))}
           </Grid>
           <Cart cart={cart} />
         </Grid>
+        </>:<EmptyMessage title="محصولی یافت نشد" />
+      }
       </Container>
  <Grid size={12}>
        <OrdersTable type="chip" data={deliveryData} noCard={false} dateRange={dateRange} filter={filter} setDateRange={setDateRange} setFilter={setFilter} setOrdersParams={setOrderParams} />

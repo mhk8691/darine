@@ -9,7 +9,6 @@ import {
   useTheme,
   alpha,
   Grid,
-  CircularProgress,
 } from '@mui/material';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
@@ -32,6 +31,8 @@ import CustomOrderConfirmation, {
   OrderListType,
 } from '@/app/Components/CustomOrderConfirmation/CustomOrderConfirmation';
 import { InvestmentCalculateType } from '@/app/core/Types';
+import Loadable from 'next/dist/shared/lib/loadable.shared-runtime';
+import Loading from '@/app/Components/Loading/Loading';
 
 
 
@@ -280,7 +281,7 @@ export default function GoldInvestmentDeposit({
 
             {isFetchLoading ? (
               <Stack alignItems="center" py={3}>
-                <CircularProgress size={28} />
+                <Loading size={30} />
               </Stack>
             ) : (
               <Stack spacing={1.25}>

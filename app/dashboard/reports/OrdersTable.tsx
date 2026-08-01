@@ -24,12 +24,7 @@ const receiveItems: ToggleItemsType[] = [
     id: 1,
     emptyMessage: 'سفارشی برای شما به ثبت نرسیده است',
   },
-  {
-    title: 'درب منزل',
-    value: 'recive',
-    id: 2,
-    emptyMessage: 'سفارشی برای شما به ثبت نرسیده است',
-  },
+
 ];
 
 interface Props {

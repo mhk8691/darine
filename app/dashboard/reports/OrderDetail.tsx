@@ -1,9 +1,10 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { Chip } from '@mui/material';
+import { Button, Chip } from '@mui/material';
 import priceFormater from '@/app/core/PriceFormater';
 import { OrdersDataType } from '@/app/core/Types';
 import { formatDate } from '@/app/core/FormatDate';
 import DetailModal, { DetailItem } from '@/app/Components/DetailModal/DetailModal';
+import Link from 'next/link';
 
 type OrderStatus = 'REQUESTED' | 'PREPARING' | 'DELIVERING' | 'DELIVERED' | 'CANCELLED';
 type StatusColor = 'default' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';
@@ -42,6 +43,15 @@ export default function OrderDetail({ open, setOpen, data }: Props) {
     { label: 'تاریخ ثبت', value: formatDate(data.created_at) },
     { label: 'روش پرداخت', value: data.payment_method_display },
     { label: 'یادداشت', value: data.admin_note || '--' },
+        {
+      label: 'عملیات',
+      show: !!data.physical_invoice_id,
+      value: (
+        <Button size="small" variant="outlined" color="secondary" LinkComponent={Link} href={`/dashboard/gold-receive/${data.physical_invoice_id}`}>
+          مشاهده فاکتور
+        </Button>
+      ),
+    },
   ];
 
   return (

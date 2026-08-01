@@ -1,13 +1,14 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Stack, CircularProgress, Box } from '@mui/material';
+import { Stack, Box } from '@mui/material';
 import Container from '@/app/Components/Containers/Container/Container';
 import { PhysicalInvoiceType } from '@/app/core/Types';
 import { getPhysicalInvoice, downloadPhysicalInvoice } from '@/lib/getInvoices/getInvoices';
 import { useParams } from 'next/navigation';
 import SalesInvoiceCard from '../../trades/[id]/SalesInvoiceCard';
 import InvoiceActionButtons from '../../trades/[id]/InvoiceActionButtons';
+import Loading from '@/app/Components/Loading/Loading';
 
 export default function PhysicalInvoicePage() {
   const params = useParams<{ id: string }>();
@@ -20,7 +21,7 @@ export default function PhysicalInvoicePage() {
       .finally(() => setLoading(false));
   }, [params.id]);
 
-  if (loading) return <Box sx={{ py: 10, textAlign: 'center' }}><CircularProgress /></Box>;
+  if (loading) return <Box sx={{ py: 10, textAlign: 'center' }}><Loading size={30} /></Box>;
   if (!invoice) return null;
 
   return (

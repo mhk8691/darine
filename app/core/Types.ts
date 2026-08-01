@@ -221,7 +221,7 @@ export interface TradeTableDataType {
 }
 export interface OrdersDataType {
 admin_note:string
-
+physical_invoice_id:number
   id: number;
   tracking_code: string;
   status: 'REQUESTED' | 'PREPARING' | 'DELIVERING' | 'DELIVERED' | 'CANCELLED';
