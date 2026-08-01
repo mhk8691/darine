@@ -72,7 +72,7 @@ export default function MessageCard({  isNotif,announcements,isLoading,handleMar
             </Typography>
           </Stack>
         ))
-        :<EmptyMessage title='اطلاعیه ای وجود ندارد' />
+        :<EmptyMessage width={150} height={130} style={{mt:5}} title='اطلاعیه ای وجود ندارد' />
         }
 
         

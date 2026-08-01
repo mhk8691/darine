@@ -1,11 +1,14 @@
 'use client';
 
-import { Stack, Typography, useTheme } from '@mui/material';
+import { Stack, SxProps, Typography, useTheme } from '@mui/material';
 import Image from 'next/image';
 interface Props{
   title:string
+    width?:number
+  height?:number
+  style?:SxProps
 }
-export default function EmptyMessage({title}:Props) {
+export default function EmptyMessage({title,style,width,height}:Props) {
   const theme = useTheme();
   const isDarkMode = theme.palette.mode === 'dark';
   return (
@@ -17,11 +20,12 @@ export default function EmptyMessage({title}:Props) {
                     justifyContent={'center'}
                     width={'100%'}
                     gap={4}
+                    sx={style}
                   >
     <Image
       src={`/images/${isDarkMode ? 'emptyTableDark.png' : 'emptyTable.webp'}`}
-      width={300}
-      height={270}
+      width={width || 300}
+      height={height || 270}
       alt=""
     />
          <Typography variant="body2" fontSize={12} sx={{ color: 'text.muted' }}>
