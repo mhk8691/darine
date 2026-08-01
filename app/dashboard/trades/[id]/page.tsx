@@ -1,59 +1,37 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Stack } from '@mui/material';
+import { Stack, CircularProgress, Box } from '@mui/material';
 import Container from '@/app/Components/Containers/Container/Container';
-import SalesInvoiceCard from './SalesInvoiceCard';
-import InvoiceActionButtons from './InvoiceActionButtons';
-import { InvoiceType } from '@/app/core/Types';
-import { getInvoices } from '@/lib/getInvoices/getInvoices';
-import { isAxiosError } from 'axios';
-import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
+import { TradeInvoiceType } from '@/app/core/Types';
+import { getInvoices, downloadInvoices } from '@/lib/getInvoices/getInvoices';
 import { useParams } from 'next/navigation';
+import InvoiceActionButtons from './InvoiceActionButtons';
+import SalesInvoiceCard from './SalesInvoiceCard';
 
+export default function TradeInvoicePage() {
+  const params = useParams<{ id: string }>();
+  const [invoice, setInvoice] = useState<TradeInvoiceType | null>(null);
+  const [loading, setLoading] = useState(true);
 
-export default function InvoicePage() {
-    const params = useParams<{ id: string }>();
+  useEffect(() => {
+    getInvoices(params.id)
+      .then((res) => setInvoice(res))
+      .finally(() => setLoading(false));
+  }, [params.id]);
 
-  const [invoice,setInvoice] = useState<InvoiceType>({} as InvoiceType)
-  const handleBack = () => {
-    window.history.back();
-  };
-
-  useEffect(()=>{
-    const getData = async ()=>{
-      try{
-        const response = await getInvoices(params.id)
-        setInvoice(response)
-      }catch(error:unknown){
-        if (isAxiosError(error)){
-          showSnackbar(error.response?.data.message,'error')
-        }
-      }
-    }
-    getData()
-  },[params.id])
+  if (loading) return <Box sx={{ py: 10, textAlign: 'center' }}><CircularProgress /></Box>;
+  if (!invoice) return null;
 
   return (
-    <Container
-      style={{
-        gap: 3.15,
-        py: 3,
-        px: {
-          xs: 2,
-          sm: 4,
-          md: 2,
-          lg: 4,
-        },
-      }}
-    >
+    <Container style={{ py: 3 }}>
+      {/* پاس دادن دیتای آب‌شده به کامپوننت مشترک */}
       <SalesInvoiceCard data={invoice} />
 
-      <Stack sx={{ mt: { xs: 2, sm: 3 } }}>
+      <Stack sx={{ mt: 3 }}>
         <InvoiceActionButtons
-          onBack={handleBack}
-          id={params?.id || '0'}
-          date={invoice.invoice_date}
+          onBack={() => window.history.back()}
+          onDownload={() => downloadInvoices(params.id, invoice.invoice_date)}
         />
       </Stack>
     </Container>

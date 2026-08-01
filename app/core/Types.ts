@@ -540,28 +540,79 @@ export interface ExecuteGuaranteeData {
   can_execute: boolean;
 }
 
-export interface InvoiceType {
-   "id": number,
-      "invoice_number": string,
-      "invoice_type": "BUY" | 'SELL',
-      "invoice_type_display": string,
-      "invoice_date": string,
-      "status_display":string,
-      "buyer_name": string,
-      "buyer_national_id": string,
-      "buyer_phone": string,
-      "buyer_address": string,
-      "seller_name": string,
-      "seller_national_id": string,
-      "seller_phone": string,
-      "seller_address": string,
-      "gold_weight": string,
-      "gold_carat": number,
-      "gold_price_per_gram": string,
-      "pure_gold_price": string,
-      "fee_rate": string,
-      "fee_amount": string,
-      "total_amount": number,
-      "tracking_code": string,
-      "description": string
+
+export interface TradeInvoiceType {
+  id: number;
+  invoice_number: string;
+  invoice_type: 'BUY' | 'SELL';
+  invoice_type_display?: string;
+  invoice_date: string;
+  status_display?: string;
+  buyer_name: string;
+  buyer_national_id: string;
+  buyer_phone: string;
+  buyer_address: string;
+  seller_name: string;
+  seller_national_id: string;
+  seller_phone: string;
+  seller_address: string;
+  gold_weight?: string | number;
+  gold_price_per_gram?: string | number;
+  pure_gold_price?: string | number;
+  fee_rate?: string;
+  fee_amount?: string | number;
+  total_amount: number;
+  tracking_code?: string;
+  description?: string;
 }
+
+export interface PhysicalProduct {
+  quantity: number;
+  product_id: number;
+  total_price: number;
+  product_code: string;
+  product_name: string;
+  total_weight: number;
+  price_at_time: number;
+  weight_at_time: number;
+}
+
+export interface PhysicalInvoiceType {
+  id: number;
+  invoice_number: string;
+  invoice_type: 'BUY' | 'SELL';
+  invoice_type_display: string;
+  status: string;
+  status_display: string;
+  invoice_date: string;
+  buyer_name: string;
+  buyer_national_id: string;
+  buyer_phone: string;
+  buyer_address: string;
+  buyer_province?: string;
+  buyer_city?: string;
+  buyer_postal_code?: string;
+  seller_name: string;
+  seller_national_id: string;
+  seller_phone: string;
+  seller_address: string;
+  seller_province?: string;
+  order_tracking_code: string;
+  payment_method: string;
+  payment_method_display: string;
+  gold_weight: number;
+  gold_weight_display: string;
+  gold_carat: number;
+  gold_price_per_gram: number;
+  pure_gold_price: number;
+  pure_gold_price_display: string;
+  shipping_fee: number;
+  tax_amount: number;
+  discount_amount: number;
+  total_amount: number;
+  total_amount_display: string;
+  products: PhysicalProduct[];
+  description: string;
+}
+
+export type AnyInvoiceType = TradeInvoiceType | PhysicalInvoiceType;

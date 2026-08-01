@@ -1,9 +1,7 @@
 'use client';
 
-import { Stack, Button, CircularProgress } from '@mui/material';
+import { Stack, Button } from '@mui/material';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
-import { useRouter } from 'next/navigation';
-import { downloadInvoices } from '@/lib/getInvoices/getInvoices';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { useState } from 'react';
@@ -11,69 +9,55 @@ import Loading from '@/app/Components/Loading/Loading';
 
 export interface InvoiceActionButtonsProps {
   onBack?: () => void;
-  id:string
-  date:string
+  onDownload?: () => Promise<{ blob: Blob; fileName: string }>;
 }
 
-
-export default function InvoiceActionButtons({
-  onBack,
-  id,
-  date
-}: InvoiceActionButtonsProps) {
-  const [loading,setLoading] = useState(false)
-  const router = useRouter()
+export default function InvoiceActionButtons({ onBack, onDownload }: InvoiceActionButtonsProps) {
+  const [loading, setLoading] = useState(false);
 
   const handleDownload = async () => {
-  try {
-    setLoading(true);
+    if (!onDownload) return;
 
-    const { blob, fileName } = await downloadInvoices(id,date);
+    try {
+      setLoading(true);
+      const { blob, fileName } = await onDownload();
 
-    const url = window.URL.createObjectURL(blob);
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = fileName;
 
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = fileName;
-
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-
-    window.URL.revokeObjectURL(url);
-  } catch (error: unknown) {
-    if (isAxiosError(error)) {
-      showSnackbar(error.response?.data.message, 'error');
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (error: unknown) {
+      if (isAxiosError(error)) {
+        showSnackbar(error.response?.data?.message || 'خطا در دانلود فاکتور', 'error');
+      }
+    } finally {
+      setLoading(false);
     }
-  } finally {
-    setLoading(false);
-  }
-};
+  };
+
   return (
-    <Stack
-      direction={{ xs: 'column', sm: 'row' }}
-      spacing={1.5}
-      sx={{ width: '100%' }}
-    >
+    <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.5} sx={{ width: '100%' }}>
       <Button
         variant="contained"
         color="primary"
         size="large"
         onClick={handleDownload}
-        startIcon={
-       !loading ? <FileDownloadOutlinedIcon />:<></>
-        }
+        disabled={loading}
+        startIcon={!loading ? <FileDownloadOutlinedIcon /> : null}
         sx={{
           flex: { xs: '1 1 auto', sm: 1 },
           borderRadius: '10px',
           fontWeight: 700,
           fontSize: '0.95rem',
           py: 1.4,
-          color: '#10100F',
-      
         }}
       >
-        {loading ? <Loading size={30} />:'دانلود فاکتور'}
+        {loading ? <Loading size={30} /> : 'دانلود فاکتور'}
       </Button>
 
       <Button
@@ -87,15 +71,6 @@ export default function InvoiceActionButtons({
           fontWeight: 600,
           fontSize: '0.95rem',
           py: 1.4,
-          borderColor: 'background.border',
-          color: 'text.primary',
-          '&:hover': {
-            borderColor: 'text.subtitle',
-            backgroundColor: (theme) =>
-              theme.palette.mode === 'dark'
-                ? 'rgba(255,255,255,0.04)'
-                : 'rgba(0,0,0,0.03)',
-          },
         }}
       >
         بازگشت
