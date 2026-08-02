@@ -22,15 +22,33 @@ export default function InvoiceActionButtons({ onBack, onDownload }: InvoiceActi
       setLoading(true);
       const { blob, fileName } = await onDownload();
 
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = fileName;
+const mimeType = blob.type || 'application/octet-stream';
 
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      window.URL.revokeObjectURL(url);
+if (window.AndroidBlobDownloader) {
+  const reader = new FileReader();
+
+  reader.onloadend = () => {
+    window.AndroidBlobDownloader?.getBase64FromBlobData(
+      reader.result,
+      mimeType,
+      fileName
+    );
+  };
+
+  reader.readAsDataURL(blob);
+} else {
+  const url = window.URL.createObjectURL(blob);
+
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = fileName;
+
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+
+  window.URL.revokeObjectURL(url);
+}
     } catch (error: unknown) {
       if (isAxiosError(error)) {
         showSnackbar(error.response?.data?.message || 'خطا در دانلود فاکتور', 'error');
