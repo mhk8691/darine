@@ -68,8 +68,8 @@ export default function AppDownloadItem({ image, url, isSuggested = false, onCli
         onClick={handleClick}
         sx={{
           display: 'block',
-          borderColor: isSuggested ? '#FCD535' : isHover ? 'background.border' : 'transparent',
-          borderWidth: isSuggested ? 2 : 1,
+          borderColor:  isHover ? 'background.border' : 'transparent',
+          borderWidth: 1,
           borderStyle: 'solid',
           bgcolor: isHover ? 'background.default' : 'transparent',
           borderRadius: 2,
@@ -77,11 +77,7 @@ export default function AppDownloadItem({ image, url, isSuggested = false, onCli
           position: 'relative',
           zIndex: 3,
           cursor: 'pointer',
-          ...(isSuggested && {
-            boxShadow: isHover
-              ? '0 0 0 4px rgba(252, 213, 53, 0.25)'
-              : '0 0 0 2px rgba(252, 213, 53, 0.15)',
-          }),
+        
         }}
         href={url || '#'}
       >
