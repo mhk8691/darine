@@ -77,6 +77,28 @@ export default function VerifyOtpCode({ phone }: { phone: string }) {
     return cleanup;
   }, []);
 
+  useEffect(() => {
+    if (step !== 0) return; 
+
+    const handleAndroidOtp = (event: MessageEvent) => {
+      if (
+        event.origin !== 'https://gold.darine.shop' &&
+        !event.origin.startsWith('android-app://')
+      ) {
+        return;
+      }
+
+      const otpCode = event.data;
+      if (typeof otpCode === 'string' && /^\d{4,6}$/.test(otpCode)) {
+        setVerifyCode(otpCode);
+        handleLoginVerifyOtp(otpCode);
+      }
+    };
+
+    window.addEventListener('message', handleAndroidOtp);
+    return () => window.removeEventListener('message', handleAndroidOtp);
+  }, [step]);
+
   return (
     <>
       {step === 0 ? (

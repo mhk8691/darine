@@ -6,6 +6,7 @@ declare global {
         mimeType: string,
         fileName: string
       ) => void;
+      notifyUserLogin: (userId?: string) => void;
     };
   }
 }

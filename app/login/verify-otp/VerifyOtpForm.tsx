@@ -24,6 +24,11 @@ export default function VerifyOtpForm({ phoneNumber }: Props) {
       setIsLoading(true);
       const res = await verifyLoginOtp(phoneNumber, finalCode);
       showSnackbar(res.data.message, 'success');
+
+      if (typeof window !== 'undefined' && window.AndroidBridge) {
+        window.AndroidBridge.notifyUserLogin(String(res.data.data.user.id));
+      }
+
       router.push('/dashboard');
     } catch (error: unknown) {
       if (isAxiosError(error)) {
@@ -46,11 +51,31 @@ export default function VerifyOtpForm({ phoneNumber }: Props) {
     return cleanup;
   }, []);
 
+  useEffect(() => {
+    const handleAndroidOtp = (event: MessageEvent) => {
+      if (
+        event.origin !== 'https://gold.darine.shop' &&
+        !event.origin.startsWith('android-app://')
+      ) {
+        return;
+      }
+
+      const otpCode = event.data;
+      if (typeof otpCode === 'string' && /^\d{4,6}$/.test(otpCode)) {
+        setVerifyCode(otpCode);
+        handleLoginVerifyOtp(otpCode);
+      }
+    };
+
+    window.addEventListener('message', handleAndroidOtp);
+    return () => window.removeEventListener('message', handleAndroidOtp);
+  }, []);
+
   return (
     <>
       <Field type='number' value={verifyCode} setValue={setVerifyCode} label="کد تایید" />
       <SendCode phoneNumber={phoneNumber} />
-      <SubmitButton title={'تایید'} isLoading={isLoading} handleSubmit={()=>handleLoginVerifyOtp(undefined)} />
+      <SubmitButton title={'تایید'} isLoading={isLoading} handleSubmit={() => handleLoginVerifyOtp(undefined)} />
     </>
   );
 }
