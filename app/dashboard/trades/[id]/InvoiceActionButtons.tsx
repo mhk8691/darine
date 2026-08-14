@@ -24,11 +24,11 @@ export default function InvoiceActionButtons({ onBack, onDownload }: InvoiceActi
 
 const mimeType = blob.type || 'application/octet-stream';
 
-if (window.AndroidBlobDownloader) {
+if (window.AndroidBridge) {
   const reader = new FileReader();
 
   reader.onloadend = () => {
-    window.AndroidBlobDownloader?.getBase64FromBlobData(
+    window.AndroidBridge?.getBase64FromBlobData(
       reader.result,
       mimeType,
       fileName

@@ -1,6 +1,6 @@
 declare global {
   interface Window {
-    AndroidBlobDownloader?: {
+    AndroidBridge?: {
       getBase64FromBlobData: (
         base64Data: string | ArrayBuffer | null,
         mimeType: string,
