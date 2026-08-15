@@ -11,17 +11,22 @@ import CompletePassword from './CompletePassword';
 import Loading from '@/app/Components/Loading/Loading';
 import { useRouter } from 'next/navigation';
 import AddIcon from '@mui/icons-material/Add';
-  export  const handleLogout = async ()=>{
-      try{
-        const response = await logout()
-        showSnackbar(response.data.message,'success')
-        return response
-      }catch(error:unknown){
-        if (isAxiosError(error)){
-          showSnackbar(error.response?.data.message)
-        }
-      }
+export const handleLogout = async () => {
+  try {
+    const response = await logout();
+    showSnackbar(response.data.message, 'success');
+
+    if (typeof window !== 'undefined' && window.AndroidBridge) {
+      window.AndroidBridge.notifyUserLogout();
     }
+
+    return response;
+  } catch (error: unknown) {
+    if (isAxiosError(error)) {
+      showSnackbar(error.response?.data.message);
+    }
+  }
+};
 export default function ChangePassword() {
   const [open, setOpen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');

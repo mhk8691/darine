@@ -1,6 +1,6 @@
 'use client';
 import { Grid, Stack, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Field from '../Field';
 import SubmitButton from '../SubmitButton';
 import { register } from '@/lib/auth';
@@ -9,7 +9,6 @@ import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { useRouter } from 'next/navigation';
 import PasswordField from '../PasswordField';
 import CustomDatePicker, { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
-import { handleLogout } from '@/app/dashboard/profile/ChangePassword';
 
 export interface RegisterFormType {
   mobile: string;
@@ -19,14 +18,14 @@ export interface RegisterFormType {
   last_name: string;
   password: string;
 }
-export default function RegisterForm({ phoneNumber }: { phoneNumber: string }) {
+export default function RegisterForm({ phoneNumber,referral }: { phoneNumber: string,referral:string }) {
   const [birthDay, setBirthDay] = React.useState<DatePickerValue>(null);
   const [nationalCode, setNationalCode] = useState('');
  const [isLoading,setIsLoading] = useState(false)
 
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
- const [referralCode, setReferralCode] = useState('');
+ const [referralCode, setReferralCode] = useState(referral);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const router = useRouter();
@@ -146,6 +145,7 @@ export default function RegisterForm({ phoneNumber }: { phoneNumber: string }) {
         value={referralCode}
         setValue={setReferralCode}
         label="کد نمایندگی (اختیاری)"
+        style={{direction:'rtl'}}
       />
     </Grid>
 

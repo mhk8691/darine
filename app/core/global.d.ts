@@ -7,6 +7,7 @@ declare global {
         fileName: string
       ) => void;
       notifyUserLogin: (userId?: string) => void;
+      notifyUserLogout: () => void;
     };
   }
 }

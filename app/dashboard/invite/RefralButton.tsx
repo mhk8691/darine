@@ -3,11 +3,12 @@
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { RefrraDataType } from '@/app/core/Types';
 import { Stack, SvgIcon, Typography, useTheme } from '@mui/material';
+import QRCode from 'react-qr-code';
 
 export default function RefralButton({ referralData }: { referralData: RefrraDataType }) {
   const handleClick = async () => {
     try {
-      await navigator.clipboard.writeText(referralData.referral_code);
+      await navigator.clipboard.writeText(referralData.referral_link);
       showSnackbar('کپی شد', 'success');
     } catch (err) {
       console.error('failed to copy', err);
@@ -112,6 +113,7 @@ export default function RefralButton({ referralData }: { referralData: RefrraDat
       >
         {referralData.referral_code}
       </Typography>
+    
     </Stack>
   );
 }

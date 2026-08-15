@@ -2,11 +2,10 @@
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
 import { loginOtp } from '@/lib/auth';
 import { isAxiosError } from 'axios';
-import React, { ReactNode, useEffect, useState } from 'react'
+import React, { ReactNode, useState } from 'react'
 import Field from '../Field';
 import SubmitButton from '../SubmitButton';
 import { useRouter } from 'next/navigation';
-import { handleLogout } from '@/app/dashboard/profile/ChangePassword';
 interface Props {
   children: ReactNode;
 }

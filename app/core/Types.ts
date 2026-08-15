@@ -40,8 +40,8 @@ export interface AppbarItemsType {
   name: string;
   image: string;
   link?: string;
-  comingSoon?:boolean
-  isPrefetch?:boolean
+  comingSoon?: boolean
+  isPrefetch?: boolean
 }
 
 
@@ -72,12 +72,12 @@ export interface BankCardDataType {
   shaba_number: string;
   bank_name: string;
   is_active: boolean;
-  owner_full_name:string
+  owner_full_name: string
 }
 export interface DepositDataType {
   card_number: string;
   sheba: string;
-full_name:string
+  full_name: string
 }
 
 export interface WithdrawDataType {
@@ -86,7 +86,7 @@ export interface WithdrawDataType {
 }
 
 export interface AllAssetsDataType {
-"total_asset_value": number,
+  "total_asset_value": number,
   "gold_balance": number,
   "silver_balance": number,
   "wallet_balance": number,
@@ -94,15 +94,15 @@ export interface AllAssetsDataType {
   "silver_asset_value": number,
   "gold_price": number,
   "silver_price": number
-  gold_accessible:number
-   "gold_price_with_fees": {
-        "buy": number,
-        "sell": number
-    },
-      "fees": {
-        "gold_buy_fee": number,
-        "gold_sell_fee": number,
-    },
+  gold_accessible: number
+  "gold_price_with_fees": {
+    "buy": number,
+    "sell": number
+  },
+  "fees": {
+    "gold_buy_fee": number,
+    "gold_sell_fee": number,
+  },
 }
 
 export interface StatisticsDataType {
@@ -120,16 +120,16 @@ export interface StatisticsDataType {
   pending_toman: number
   pending_gold: number
 }
-  export interface ProductDateType {
-    id: number;
-    name: string;
-    category?: string;
-    weight: number;
-    product_weight_with_fee?:number;
-    total_price: number;
-    image: string;
-    inventory_count?:number
-  }
+export interface ProductDateType {
+  id: number;
+  name: string;
+  category?: string;
+  weight: number;
+  product_weight_with_fee?: number;
+  total_price: number;
+  image: string;
+  inventory_count?: number
+}
 
 
 export interface OrderItemDataType {
@@ -156,11 +156,12 @@ export interface WalletHeaderDataType {
   toman_balance: number;
 }
 export interface RefrraDataType {
- "referral_code": string,
-        "referral_percent": number,
-        "total_gold_sales":number,
-        "total_earnings":number,
-        "referrals_count":number,
+  "referral_code": string,
+  "referral_percent": number,
+  "total_gold_sales": number,
+  "total_earnings": number,
+  "referrals_count": number,
+  referral_link: string
 }
 
 export interface PriceAlertsDataType {
@@ -170,183 +171,185 @@ export interface PriceAlertsDataType {
   alert_type_display: string;
   is_active: boolean;
   created_at: string;
-  max_notifications:number
+  max_notifications: number
 }
 export interface ChartGoldDataType {
   "chart": {
-      "labels": string[],
-      "prices": number[]  },
-    "stats": {
-      "current_price": number,
-      "highest_price": number,
-      "lowest_price": number,
-      "change_percent": number,
-        "daily_change_percent":number,
-            "weekly_change_percent": number,
-            "monthly_change_percent": number
-    
-    } 
-    
-     "bubble": {
-            "buy_price": number,
-            "sell_price": number,
-            "bubble_amount":number,
-            "bubble_percent":number,
-            "is_positive": boolean
-        }}
+    "labels": string[],
+    "prices": number[]
+  },
+  "stats": {
+    "current_price": number,
+    "highest_price": number,
+    "lowest_price": number,
+    "change_percent": number,
+    "daily_change_percent": number,
+    "weekly_change_percent": number,
+    "monthly_change_percent": number
 
-export interface RecentTransactionDataType{
-      id: number;
-      amount: number;
-      type: string;
-      type_display: string;
-      method: string;
-      method_display: string;
-      status: StatusType;
-      status_display: string;
-      receipt_image_url: string | null;
-      user_card: string | null;
-      user_card_number: string | null;
-      admin_note: string | null;
-      tracking_code: string;
-      description: string;
-      created_at: string;
-      updated_at: string;
+  }
+
+  "bubble": {
+    "buy_price": number,
+    "sell_price": number,
+    "bubble_amount": number,
+    "bubble_percent": number,
+    "is_positive": boolean
+  }
+}
+
+export interface RecentTransactionDataType {
+  id: number;
+  amount: number;
+  type: string;
+  type_display: string;
+  method: string;
+  method_display: string;
+  status: StatusType;
+  status_display: string;
+  receipt_image_url: string | null;
+  user_card: string | null;
+  user_card_number: string | null;
+  admin_note: string | null;
+  tracking_code: string;
+  description: string;
+  created_at: string;
+  updated_at: string;
 }
 
 
-export type StatusType="COMPLETED" | 'FAILED' | 'PENDING'
+export type StatusType = "COMPLETED" | 'FAILED' | 'PENDING'
 export interface TradeTableDataType {
-    "id": number,invoice_id?:number,      "type": "BUY" | 'SELL',      "status": StatusType,      "amount_gr": number,      "price_per_gram": number,      "fee": number,      "total_amount": number,      "tracking_code": string,      "created_at": string
+  "id": number, invoice_id?: number, "type": "BUY" | 'SELL', "status": StatusType, "amount_gr": number, "price_per_gram": number, "fee": number, "total_amount": number, "tracking_code": string, "created_at": string
 }
 export interface OrdersDataType {
-admin_note:string
-physical_invoice_id:number
+  admin_note: string
+  physical_invoice_id: number
   id: number;
   tracking_code: string;
   status: 'REQUESTED' | 'PREPARING' | 'DELIVERING' | 'DELIVERED' | 'CANCELLED';
   payment_method_display: string;
   delivery_type_display: string;
   total_toman_amount: number;
-  payment_method:'GOLD' | 'TOMAN'
+  payment_method: 'GOLD' | 'TOMAN'
   created_at: string;
-  total_gold_amount:number
+  total_gold_amount: number
 
   items: {
-                    "id": number,
-                    "product": number,
-                    "product_name": string,
-                    "quantity": number,
-                    "price_at_time": number,
-                    "weight_at_time": number
-                }[]
+    "id": number,
+    "product": number,
+    "product_name": string,
+    "quantity": number,
+    "price_at_time": number,
+    "weight_at_time": number
+  }[]
 }
 
 
 export interface CartDataType {
-  items	:{
-    id:number,
-    product:number,
-    porudct_details:ProductDateType
-    quantity	:number
-total_gold:number
-total_price	:number
+  items: {
+    id: number,
+    product: number,
+    porudct_details: ProductDateType
+    quantity: number
+    total_gold: number
+    total_price: number
   }[],
-total_price:	number,
-total_gold:	number,
-count	:number,
+  total_price: number,
+  total_gold: number,
+  count: number,
 }
 export interface AddressesDataType {
-    "id"?: number,
-      "type"?: string,
-      "province": string,
-      "city":string,
-      "address":string
-      "postal_code": string,
-      "plaque": string,
-      "unit": string
+  "id"?: number,
+  "type"?: string,
+  "province": string,
+  "city": string,
+  "address": string
+  "postal_code": string,
+  "plaque": string,
+  "unit": string
 }
 
 export interface LimitOrderDataType {
   "id": number,
-            "type": "BUY" | 'SELL',
-            "type_display": string,
-            "status": "EXECUTED" | 'CANCELLED' | 'PENDING',
-            "status_display": string,
-            "amount_gr":string,
-            "price_per_gram": string,
-            "total_amount": string,
-            "tracking_code": string,
-            "created_at": string,
+  "type": "BUY" | 'SELL',
+  "type_display": string,
+  "status": "EXECUTED" | 'CANCELLED' | 'PENDING',
+  "status_display": string,
+  "amount_gr": string,
+  "price_per_gram": string,
+  "total_amount": string,
+  "tracking_code": string,
+  "created_at": string,
 }
 
-export interface MarginOrderDataType    {
-        "id": number,
-        "order_type_display": string,
-        "status_display": string,
-        "profit_loss_display": string,
-        "leverage_display": "1x",
-        "weight": string,
-        "entry_price": string,
-        "target_price": string,
-        "take_profit": string,
-        "stop_loss": string,
-        "close_price": string,
-        "created_at": string,
-        status:'ACTIVE' | 'CLOSED'
-      }
+export interface MarginOrderDataType {
+  "id": number,
+  "order_type_display": string,
+  "status_display": string,
+  "profit_loss_display": string,
+  "leverage_display": "1x",
+  "weight": string,
+  "entry_price": string,
+  "target_price": string,
+  "take_profit": string,
+  "stop_loss": string,
+  "close_price": string,
+  "created_at": string,
+  status: 'ACTIVE' | 'CLOSED'
+}
 
 export interface PricesDataType {
   "type": string,
-        "currentRate": number,
-        "minPriceDay": number,
-        "maxPriceDay": number,
-        "dayChange": number,
-        "percentChange": number,
+  "currentRate": number,
+  "minPriceDay": number,
+  "maxPriceDay": number,
+  "dayChange": number,
+  "percentChange": number,
 }
 export interface CategoriesDataType {
-            "id": number,
-            "name": string,
-            "slug": string
+  "id": number,
+  "name": string,
+  "slug": string
 }
 export interface CheckoutDataType {
-  products:{
-    product_id:number
-    quantity:number
+  products: {
+    product_id: number
+    quantity: number
   }[],
-    "payment_method": string,
+  "payment_method": string,
 
 }
 export interface BannersType {
-  link:string
-  image:string
-  
+  link: string
+  image: string
+
 }
 
 export interface AnnouncementsType {
-  notifList:{
-  link:string
-  title:string
-  description:string
-  created_at:string
+  notifList: {
+    link: string
+    title: string
+    description: string
+    created_at: string
   }[]
-  unread_count:number
+  unread_count: number
 }
 
-export interface BuyCalculateType{
+export interface BuyCalculateType {
   "gold_price": number,
-        "gold_weight":number,
-        "pure_gold_price": 19790472.0,
-        "fee_rate": number,
-        "fee": number,
-        "total_toman": number,
-        "enough_balance": true
-           "wallet": {
-        "accessible_toman": number,
-        "blocked_toman": number,
-        "remaining_toman":number
-    }
-} 
+  "gold_weight": number,
+  "pure_gold_price": 19790472.0,
+  "fee_rate": number,
+  "fee": number,
+  "total_toman": number,
+  "enough_balance": true
+  "wallet": {
+    "accessible_toman": number,
+    "blocked_toman": number,
+    "remaining_toman": number
+  }
+}
 
 export interface InvestmentCalculateType {
   plan: {
@@ -364,7 +367,7 @@ export interface InvestmentCalculateType {
   start_date: string;
   end_date: string;
   enough_balance: boolean;
-  accessible_gold:number
+  accessible_gold: number
 }
 
 export interface LimitOrderCalculateType {
@@ -438,7 +441,7 @@ export interface CreateTicketPayload {
 export interface SendTicketMessagePayload {
   message: string;
   attachment?: File | null;
-  }
+}
 export interface GuaranteePlan {
   id: number;
   name: string;
@@ -514,8 +517,8 @@ export interface UserGuaranteeDetail {
   days_remaining: number;
   can_cancel: boolean;
   can_execute: boolean;
-    executed_price:number
-  user_payout:number
+  executed_price: number
+  user_payout: number
 }
 
 // پاسخ لغو طرح
