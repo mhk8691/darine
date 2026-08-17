@@ -13,12 +13,15 @@ import { useRouter } from 'next/navigation';
 import AddIcon from '@mui/icons-material/Add';
 export const handleLogout = async () => {
   try {
-    const response = await logout();
-    showSnackbar(response.data.message, 'success');
-
     if (typeof window !== 'undefined' && window.AndroidBridge) {
       window.AndroidBridge.notifyUserLogout();
+
+      await new Promise((resolve) => setTimeout(resolve, 1000));
     }
+
+    const response = await logout();
+
+    showSnackbar(response.data.message, 'success');
 
     return response;
   } catch (error: unknown) {

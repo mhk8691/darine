@@ -96,23 +96,7 @@ export default function MessageCard({  isNotif,announcements,isLoading,handleMar
           >
           {isLoading ? <Loading size={30} />:' خواندن همه'}
           </Button>
-          {isNotif && (
-            <Button
-              disableRipple
-              variant="outlined"
-              color="inherit"
-              sx={{
-                width: "50%",
-                py: 1,
-                borderRadius: 2,
-                "&:hover": {
-                  bgcolor: "background.default",
-                },
-              }}
-            >
-              همه خوانده شود
-            </Button>
-          )}
+            
         </Stack>
       )}
     </>
