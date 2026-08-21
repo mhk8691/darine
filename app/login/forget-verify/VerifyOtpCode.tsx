@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { isAxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 
@@ -26,42 +26,51 @@ export default function VerifyOtpCode({ phone }: Props) {
   const [step, setStep] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleLoginVerifyOtp = async (code?: string) => {
-    const finalCode = code ?? verifyCode;
+  // استفاده از ref برای جلوگیری از Stale Closure در Listenerها
+  const phoneRef = useRef(phone);
+  useEffect(() => {
+    phoneRef.current = phone;
+  }, [phone]);
 
-    if (!finalCode || !/^\d{4,6}$/.test(finalCode)) {
-      return;
-    }
+  const handleLoginVerifyOtp = useCallback(
+    async (code?: string) => {
+      const finalCode = code ?? verifyCode;
 
-    try {
-      setIsLoading(true);
-
-      const res = await verifyForgetOtp(phone, finalCode);
-
-      showSnackbar(res.data.message, 'success');
-
-      setStep(1);
-    } catch (error: unknown) {
-      if (isAxiosError(error)) {
-        showSnackbar(
-          error.response?.data?.message?.message ||
-            error.response?.data?.message ||
-            'کد تایید صحیح نیست'
-        );
-      } else {
-        showSnackbar('خطایی رخ داده است');
+      if (!finalCode || !/^\d{4,6}$/.test(finalCode)) {
+        return;
       }
-    } finally {
-      setIsLoading(false);
-    }
-  };
+
+      try {
+        setIsLoading(true);
+
+        const res = await verifyForgetOtp(phoneRef.current, finalCode);
+
+        showSnackbar(res.data.message, 'success');
+
+        setStep(1);
+      } catch (error: unknown) {
+        if (isAxiosError(error)) {
+          showSnackbar(
+            error.response?.data?.message?.message ||
+              error.response?.data?.message ||
+              'کد تایید صحیح نیست'
+          );
+        } else {
+          showSnackbar('خطایی رخ داده است');
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [verifyCode]
+  );
 
   const handleCompleteLogin = async () => {
     try {
       setIsLoading(true);
 
       const res = await fogetPasswordComplete(
-        phone,
+        phoneRef.current,
         verifyCode,
         password,
         repeatPassword
@@ -76,7 +85,7 @@ export default function VerifyOtpCode({ phone }: Props) {
           error.response?.data?.message?.message ||
             error.response?.data?.message ||
             'خطایی رخ داده است'
-        );
+          );
       } else {
         showSnackbar('خطایی رخ داده است');
       }
@@ -94,56 +103,61 @@ export default function VerifyOtpCode({ phone }: Props) {
     await handleCompleteLogin();
   };
 
-  // دریافت خودکار OTP از SMS
+  // دریافت خودکار OTP از SMS (مرورگر استاندارد)
   useEffect(() => {
     if (step !== 0) return;
 
-    const cleanup = autoCompleteCode(
-      setVerifyCode,
-      (code) => {
-        handleLoginVerifyOtp(code);
-      }
-    );
+    const cleanup = autoCompleteCode(setVerifyCode, (code) => {
+      handleLoginVerifyOtp(code);
+    });
 
     return cleanup;
-  }, [step]);
+  }, [step, handleLoginVerifyOtp]);
 
   // دریافت OTP از Android WebView
   useEffect(() => {
     if (step !== 0) return;
 
     const handleAndroidOtp = (event: MessageEvent) => {
-      // فقط پیام‌های مورد اعتماد را قبول کن
-      if (
-        event.origin !== 'https://gold.darine.shop' &&
-        !event.origin.startsWith('android-app://')
-      ) {
+      let rawData = event.data;
+
+      // اگر داده به صورت JSON ارسال شده باشد آن را پارس می‌کنیم
+      if (typeof rawData === 'string' && rawData.startsWith('{')) {
+        try {
+          const parsed = JSON.parse(rawData);
+          rawData = parsed.code || parsed.otp || rawData;
+        } catch {
+          // ignore error
+        }
+      }
+
+      const otpCode = String(rawData || '').trim();
+
+      // بررسی معتبر بودن OTP
+      if (!/^\d{4,6}$/.test(otpCode)) {
         return;
       }
 
-      const otpCode = event.data;
-
-      // OTP باید فقط عدد و بین 4 تا 6 رقم باشد
-      if (
-        typeof otpCode !== 'string' ||
-        !/^\d{4,6}$/.test(otpCode)
-      ) {
-        return;
-      }
-
-      // قرار دادن OTP داخل input
       setVerifyCode(otpCode);
-
-      // تایید خودکار OTP
       handleLoginVerifyOtp(otpCode);
+    };
+
+    // اضافه کردن تابع گلوبال جهت فراخوانی مستقیم از سمت Kotlin با evaluateJavascript
+    window.onReceiveAndroidOtp = (code: string) => {
+      const cleanCode = String(code).trim();
+      if (/^\d{4,6}$/.test(cleanCode)) {
+        setVerifyCode(cleanCode);
+        handleLoginVerifyOtp(cleanCode);
+      }
     };
 
     window.addEventListener('message', handleAndroidOtp);
 
     return () => {
       window.removeEventListener('message', handleAndroidOtp);
+      delete window.onReceiveAndroidOtp;
     };
-  }, [step]);
+  }, [step, handleLoginVerifyOtp]);
 
   return (
     <>

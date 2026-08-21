@@ -13,6 +13,8 @@ declare global {
 
       updateUnreadCount: (count: number) => void;
     };
+
+    onReceiveAndroidOtp?: (code: string) => void;
   }
 }
 

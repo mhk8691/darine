@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { isAxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 
@@ -16,13 +16,21 @@ interface Props {
   phoneNumber: string;
 }
 
+
+
 export default function VerifyOtpForm({ phoneNumber }: Props) {
   const [verifyCode, setVerifyCode] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
+  
+  // استفاده از ref برای جلوگیری از Stale Closure در event listener ها
+  const phoneNumberRef = useRef(phoneNumber);
+  useEffect(() => {
+    phoneNumberRef.current = phoneNumber;
+  }, [phoneNumber]);
 
-  const handleLoginVerifyOtp = async (code?: string) => {
+  const handleLoginVerifyOtp = useCallback(async (code?: string) => {
     const finalCode = code ?? verifyCode;
 
     if (!finalCode || !/^\d{4,6}$/.test(finalCode)) {
@@ -32,7 +40,7 @@ export default function VerifyOtpForm({ phoneNumber }: Props) {
     try {
       setIsLoading(true);
 
-      const res = await verifyLoginOtp(phoneNumber, finalCode);
+      const res = await verifyLoginOtp(phoneNumberRef.current, finalCode);
 
       showSnackbar(res.data.message, 'success');
 
@@ -49,7 +57,7 @@ export default function VerifyOtpForm({ phoneNumber }: Props) {
           error.response?.status === 404 &&
           error.response?.data?.message?.need_register
         ) {
-          router.push(`/login/register/?phone=${phoneNumber}`);
+          router.push(`/login/register/?phone=${phoneNumberRef.current}`);
 
           showSnackbar(
             error.response?.data?.message?.message,
@@ -68,8 +76,9 @@ export default function VerifyOtpForm({ phoneNumber }: Props) {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [verifyCode, router]);
 
+  // WebOTP API standard listener
   useEffect(() => {
     const cleanup = autoCompleteCode(
       setVerifyCode,
@@ -79,37 +88,55 @@ export default function VerifyOtpForm({ phoneNumber }: Props) {
     );
 
     return cleanup;
-  }, []);
+  }, [handleLoginVerifyOtp]);
 
+  // Android PostMessage Listener + Global Callback Fallback
   useEffect(() => {
     const handleAndroidOtp = (event: MessageEvent) => {
-      if (
-        event.origin !== 'https://gold.darine.shop' &&
-        !event.origin.startsWith('android-app://')
-      ) {
+      // 1. استخراج داده (داده ممکن است در event.data یا event.ports باشد)
+      let rawData = event.data;
+
+      if (!rawData && event.ports && event.ports.length > 0) {
+        // در برخی پیاده‌سازی‌های WebMessage
         return;
       }
 
-      const otpCode = event.data;
+      // اگر داده به‌صورت JSON ارسال شده باشد آن را parse می‌کنیم
+      if (typeof rawData === 'string' && rawData.startsWith('{')) {
+        try {
+          const parsed = JSON.parse(rawData);
+          rawData = parsed.code || parsed.otp || rawData;
+        } catch {
+          // ignore error
+        }
+      }
 
-      if (
-        typeof otpCode !== 'string' ||
-        !/^\d{4,6}$/.test(otpCode)
-      ) {
+      const otpCode = String(rawData || '').trim();
+
+      if (!/^\d{4,6}$/.test(otpCode)) {
         return;
       }
 
       setVerifyCode(otpCode);
-
       handleLoginVerifyOtp(otpCode);
+    };
+
+    // اضافه کردن تابع گلوبال جهت تماس مستقیم از سمت Kotlin در صورت عدم دریافت MessageEvent
+    window.onReceiveAndroidOtp = (code: string) => {
+      const cleanCode = String(code).trim();
+      if (/^\d{4,6}$/.test(cleanCode)) {
+        setVerifyCode(cleanCode);
+        handleLoginVerifyOtp(cleanCode);
+      }
     };
 
     window.addEventListener('message', handleAndroidOtp);
 
     return () => {
       window.removeEventListener('message', handleAndroidOtp);
+      delete window.onReceiveAndroidOtp;
     };
-  }, []);
+  }, [handleLoginVerifyOtp]);
 
   return (
     <>
