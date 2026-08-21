@@ -1,6 +1,6 @@
 'use client';
 
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import Field from '../Field';
 import PasswordField from '../PasswordField';
 import { Stack } from '@mui/material';
@@ -9,7 +9,6 @@ import { useRouter } from 'next/navigation';
 import { loginPassword } from '@/lib/auth';
 import { isAxiosError } from 'axios';
 import { showSnackbar } from '@/app/Components/Snackbar/Snackbar';
-import { handleLogout } from '@/app/dashboard/profile/ChangePassword';
 
 interface Props {
   children: ReactNode;
@@ -29,6 +28,11 @@ export default function LoginPassForm({ children }: Props) {
       const response = await loginPassword(phoneNumber, password);
 
       showSnackbar(response?.data.message, 'success');
+
+      if (typeof window !== 'undefined' && window.AndroidBridge) {
+        window.AndroidBridge.notifyUserLogin(String(response.data.data.user.id));
+      }
+
       router.push('/dashboard');
     } catch (error: unknown) {
       if (isAxiosError(error)) {

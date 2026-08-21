@@ -97,7 +97,7 @@ export default function LaptopLinks() {
 
                 <AccordionDetails>
                   {item.items.map((link) => (
-                    <Link href={link.link} key={link.title}>
+                    <Link href={link.link} key={link.title} prefetch={false}>
                       <Typography
                         variant="body2"
                         sx={{

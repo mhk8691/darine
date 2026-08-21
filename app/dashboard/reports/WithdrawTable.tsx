@@ -4,7 +4,7 @@
   import TransactionTable from '../irt-transaction/TransactionTable';
   import { DatePickerValue } from '@/app/Components/DatePicker/CustomDatePicker';
   import { statuses } from './DepositTable';
-import TransactionDetailModal from './TransactionDetailModal';
+import TransactionDetail from './TransactionDetail';
 
   const withdrawItems: ToggleItemsType[] = [
     {
@@ -78,7 +78,7 @@ import TransactionDetailModal from './TransactionDetailModal';
           listLength={data.length}
         />
 
-        <TransactionDetailModal
+        <TransactionDetail
           open={modalOpen}
           setOpen={setModalOpen}
           data={selectedTransaction}

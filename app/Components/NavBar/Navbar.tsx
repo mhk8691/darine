@@ -120,6 +120,7 @@ export default function Navbar() {
         <Stack
   component={Link}
   href="/dashboard"
+  prefetch={false}
   sx={{
     width: 60,
     height: 60,
@@ -257,7 +258,7 @@ export default function Navbar() {
             <Stack direction={'row'} gap={2.5} alignItems={'center'}>
               {menu.map((item) =>
                 item.link ? (
-                  <Link href={item.link} key={item.id}>
+                  <Link href={item.link} key={item.id} prefetch={false}>
                     <Typography
                       variant="body1"
                       sx={{

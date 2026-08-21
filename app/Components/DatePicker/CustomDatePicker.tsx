@@ -196,9 +196,10 @@ function CustomRangeInput({
 
   return (
     <TextField
-      placeholder={label || 'انتخاب تاریخ'}
       value={displayValue}
-      onFocus={onFocus}
+      label={label ? label : undefined}
+  placeholder={!label ? 'انتخاب تاریخ' : undefined}
+      onFocus={onFocus} 
       fullWidth
       sx={{
         direction: 'ltr',

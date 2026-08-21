@@ -10,17 +10,26 @@ import { useState } from 'react';
 import CompletePassword from './CompletePassword';
 import Loading from '@/app/Components/Loading/Loading';
 import { useRouter } from 'next/navigation';
-  export  const handleLogout = async ()=>{
-      try{
-        const response = await logout()
-        showSnackbar(response.data.message,'success')
-        return response
-      }catch(error:unknown){
-        if (isAxiosError(error)){
-          showSnackbar(error.response?.data.message)
-        }
-      }
+import AddIcon from '@mui/icons-material/Add';
+export const handleLogout = async () => {
+  try {
+    if (typeof window !== 'undefined' && window.AndroidBridge) {
+      window.AndroidBridge.notifyUserLogout();
+
+      await new Promise((resolve) => setTimeout(resolve, 1000));
     }
+
+    const response = await logout();
+
+    showSnackbar(response.data.message, 'success');
+
+    return response;
+  } catch (error: unknown) {
+    if (isAxiosError(error)) {
+      showSnackbar(error.response?.data.message);
+    }
+  }
+};
 export default function ChangePassword() {
   const [open, setOpen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -133,6 +142,24 @@ export default function ChangePassword() {
        خروج
       </Button>
     </Stack>
+          <Button
+        variant="outlined"
+        color='secondary'
+        startIcon={<AddIcon/>}
+        sx={{
+          fontSize: 14,
+          fontWeight: 800,
+          py: 1,
+          px: 2,
+          borderRadius: '7px',
+         whiteSpace:'nowrap',
+         width:'100%',
+          mt: 2,
+        }}
+        onClick={()=>router.push('/dashboard/tickets')}
+      >
+       ثبت تیکت
+      </Button>
       <CustomModal open={open} setOpen={setOpen} modalStyle={{ py: 3, px: 2 }}>
         <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
           <Typography variant="body1" fontSize={16}>

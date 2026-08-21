@@ -84,18 +84,21 @@ export default function ProfileBtn() {
   const handleToggle = () => setOpen((prev) => !prev);
   const isDarkMode = theme.palette.mode == 'dark';
 
-   const fetchUser = React.useCallback(async () => {
-    try {
-      const me = await getMe();
-      setUser(me);
-    } catch (error:unknown) {
-      if (isAxiosError(error)){
-        showSnackbar(error.response?.data.message)
+const fetchUser = React.useCallback(async () => {
+  try {
+    const me = await getMe();
+    setUser(me);
 
-      }
-      setUser(null);
+    if (typeof window !== 'undefined' && window.AndroidBridge) {
+      window.AndroidBridge.notifyUserLogin();
     }
-  }, []);
+  } catch (error: unknown) {
+    if (isAxiosError(error)) {
+      showSnackbar(error.response?.data.message);
+    }
+    setUser(null);
+  }
+}, []);
 React.useEffect(()=>{
   fetchUser()
 },[fetchUser])
@@ -202,7 +205,7 @@ React.useEffect(()=>{
           </Stack>
           <MenuList>
             {options.map((option) => (
-              <Box component={Link} href={option.link} key={option.title}>
+              <Box component={Link} href={option.link} key={option.title} prefetch={false}>
                 <MenuItem
                   onClick={() => setOpen(false)}
                   sx={{

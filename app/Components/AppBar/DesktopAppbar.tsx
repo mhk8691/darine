@@ -69,6 +69,7 @@ export default function DesktopAppbar() {
           <Stack
             component={item.link ? Link : 'div'}
             href={item.link}
+            prefetch={item.link === '/dashboard' ? false :true}
             onClick={() => {
               if (!item.link) {
                 setOpen(true);

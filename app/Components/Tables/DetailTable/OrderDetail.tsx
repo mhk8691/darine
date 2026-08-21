@@ -1,8 +1,7 @@
 'use client';
 import { ToggleItemsType } from '@/app/core/Types';
 import FilterListIcon from '@mui/icons-material/FilterList';
-import { Stack, Typography, useTheme } from '@mui/material';
-import Image from 'next/image';
+import { Stack, Typography } from '@mui/material';
 import { Dispatch, ReactNode, SetStateAction, useState } from 'react';
 import Card from '../../Containers/Container/Container';
 import CustomDatePicker, { DatePickerValue } from '../../DatePicker/CustomDatePicker';
@@ -10,6 +9,7 @@ import FilterToggleButton from '../../FilterToggleButton/FilterToggleButton';
 import SelectField, { SelectItem } from '../../InputField/SelectField';
 import FilterButton from './FilterButton';
 import CustomTable from '../CustomTable';
+import EmptyMessage from '../../EmptyMessage/EmptyMessage';
 interface Props {
   title?: string;
   type: 'chip' | 'toggle';
@@ -42,8 +42,6 @@ export default function OrderDetail({
 }: Props) {
   const [active, setActive] = useState(toggleItems[0]?.value);
   const [message, setMessage] = useState(toggleItems[0]?.emptyMessage || '');
-  const theme = useTheme();
-  const isDarkMode = theme.palette.mode === 'dark';
   const handleDateChange = (val:DatePickerValue)=>{
    setDateRange(val) 
   }
@@ -127,7 +125,7 @@ export default function OrderDetail({
             },
           }}
         >
-          <SelectField label="وضعیت" itemsList={statuses}  isOrederDetail maxWidth="260px"  value={status}
+          <SelectField label="وضعیت" itemsList={statuses}  isOrederDetail maxWidth="260px"  value={status} 
             setValue={setStatus} />
           <CustomDatePicker style={{
             maxWidth:'270px'
@@ -139,41 +137,7 @@ export default function OrderDetail({
           <CustomTable heads={tableHead}>{tableBody}</CustomTable>
         </Stack>
       ) : (
-      <Stack
-        mt={10}
-        mb={8}
-        direction={'column'}
-        alignItems={'center'}
-        justifyContent={'center'}
-        gap={4}
-      >
-        <Stack
-          sx={{
-            width: {
-              xs: 184,
-              sm: 300,
-            },
-            height: {
-              xs: 166,
-              sm: 270,
-            },
-          }}
-        >
-          <Image
-            src={`/images/${isDarkMode ? 'emptyTableDark.png' : 'emptyTable.webp'}`}
-            width={300}
-            height={270}
-            style={{
-              width: '100%',
-              height: '100%',
-            }}
-            alt=""
-          />
-        </Stack>
-        <Typography variant="body2" fontSize={12} sx={{ color: 'text.muted' }}>
-          {emptyMessage || message}
-        </Typography>
-      </Stack>
+      <EmptyMessage title={emptyMessage || message} />
       )}
     </>
   ) : (
@@ -290,24 +254,7 @@ export default function OrderDetail({
           <CustomTable heads={tableHead}>{tableBody}</CustomTable>
         </Stack>
       ) : (
-        <Stack
-          mt={10}
-          mb={8}
-          direction={'column'}
-          alignItems={'center'}
-          justifyContent={'center'}
-          gap={4}
-        >
-          <Image
-            src={`/images/${isDarkMode ? 'emptyTableDark.png' : 'emptyTable.webp'}`}
-            width={300}
-            height={270}
-            alt=""
-          />
-          <Typography variant="body2" fontSize={12} sx={{ color: 'text.muted' }}>
-            {emptyMessage || message}
-          </Typography>
-        </Stack>
+     <EmptyMessage title={emptyMessage || message} />
       )}
     </Card>
   );

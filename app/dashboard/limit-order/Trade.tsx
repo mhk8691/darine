@@ -12,9 +12,9 @@ import { Button, Stack, Typography } from '@mui/material';
 import { isAxiosError } from 'axios';
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { buyItems, sellItems } from './LimitOrder';
-import LimitOrderConfirmation from './LimitOrderConfirmation';
 import { limitOrderBuyCalculate, limitOrderSellCalculate } from '@/lib/calculate/calculate';
 import { LimitOrderCalculateType } from '@/app/core/Types';
+import CustomOrderConfirmation, { OrderListType } from '@/app/Components/CustomOrderConfirmation/CustomOrderConfirmation';
 
 interface Props {
   type: 'BUY' | 'SELL';
@@ -160,7 +160,7 @@ useEffect(() => {
   assets?.fees?.gold_buy_fee,
   assets?.fees?.gold_sell_fee,
 ]);
-  const handleClick = async () => {
+  const handleSubmit = async () => {
     setIsLoading(true);
     try {
       if (editMode) {
@@ -224,7 +224,36 @@ useEffect(() => {
     setPrice('')
     setGold('')
   }
-
+  const limitOrderDataList: OrderListType[] = [
+  {
+    title: 'وزن طلا:',
+    value: `${priceFormater(data.gold_weight)} گرم`,
+  },
+  {
+    title: 'قیمت لحظه ای هر گرم طلا:',
+    value: `${priceFormater(data.current_price)} تومان`,
+  },
+  {
+    title: 'قیمت هدف (سفارش):',
+    value: `${priceFormater(data.target_price)} تومان`,
+  },
+  {
+    title: 'قیمت خالص:',
+    value: `${priceFormater(data.pure_price)} تومان`,
+  },
+  {
+    title: 'کارمزد:',
+    value: `${priceFormater(data.fee)} تومان`,
+  },
+  {
+    title: `مبلغ کل ${select === 'min' ? 'خرید' : 'فروش'}:`,
+    value: `${priceFormater(data.total_price)} تومان`,
+  },
+];
+ const accessibleAmount = select === 'min'
+    ? data.wallet?.accessible_toman
+    : (data.inventory?.accessible_balance ?? assets.gold_accessible)
+  const title = select === 'min' ? 'تایید خرید طلا':'تایید فروش طلا'
   return (
     <>
     <Stack component={'div'} id="trade">
@@ -314,7 +343,34 @@ useEffect(() => {
         </Button>
       </Card>
     </Stack>
-      <LimitOrderConfirmation select={select} title={select === 'min' ? 'تایید خرید طلا':'تایید فروش طلا'} isLoading={isLoading} handleSubmit={handleClick} open={open} setOpen={setOpen} data={data}   /> 
+      <CustomOrderConfirmation
+        handleSubmit={handleSubmit}
+        isEnoughBalance={data.enough_balance}
+        isLoading={isLoading}
+        open={open}
+        setOpen={setOpen}
+        title={title}
+        data={limitOrderDataList}
+      >
+ <Typography variant="body2" sx={{ mt: 2 }}>
+        شما درحال {title.split(' ')[1]} {priceFormater(data.gold_weight)} گرم طلا با حساب {data.fee_rate} درصد کارمزد معادل {priceFormater(data.total_price)} تومان هستید
+      </Typography>
+
+      <Stack direction={'row'} gap={1} alignItems={'center'} mt={2}>
+        <Typography variant="body2">
+          {select === 'min' ? 'موجودی کیف پول:' : 'موجودی طلا:'}
+        </Typography>
+        <Typography
+          variant="body2"
+          sx={{
+            fontWeight: 'bold',
+            color: (accessibleAmount ?? 0) >= 0 ? 'success.main' : 'error.main'
+          }}
+        >
+          {priceFormater(accessibleAmount)} {select === 'min' ? 'تومان' : 'گرم'}
+        </Typography>
+      </Stack>
+      </CustomOrderConfirmation>
     </>
   );
 }

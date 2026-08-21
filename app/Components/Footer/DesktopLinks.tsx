@@ -41,7 +41,7 @@ export default function DesktopLinks() {
           </Typography>
           <Stack direction={'column'} gap={1.5}>
             {aboutLink.map((item) => (
-              <Link href={`/${item.link}`} key={item.title}>
+              <Link href={`/${item.link}`} key={item.title} prefetch={false}>
                 <Typography
                   variant="body1"
                   fontSize={14}
@@ -66,7 +66,7 @@ export default function DesktopLinks() {
           </Typography>
           <Stack direction={'column'} gap={1.5}>
             {contentLink.map((item) => (
-              <Link href={item.link} key={item.title}>
+              <Link href={item.link} key={item.title} prefetch={false}>
                 <Typography
                   variant="body1"
                   fontSize={14}

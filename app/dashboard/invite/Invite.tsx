@@ -1,14 +1,17 @@
 'use client'
-import { Divider, Grid, Stack, Typography } from '@mui/material'
+import { Divider, Grid, Stack, Typography, useTheme } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import RefralButton from './RefralButton'
 import Container from '@/app/Components/Containers/Container/Container'
 import priceFormater from '@/app/core/PriceFormater'
 import { RefrraDataType } from '@/app/core/Types'
 import { getreferral } from '@/lib/getRefrral/getRefrral'
+import QRCode from 'react-qr-code'
 
 export default function Invite() {
       const [referralData, setreferralData] = useState<RefrraDataType>({} as RefrraDataType);
+      const theme = useTheme()
+      const isDarkMode = theme.palette.mode === 'dark'
       useEffect(() => {
         const getData = async () => {
           const response = await getreferral();
@@ -72,7 +75,8 @@ export default function Invite() {
           >
             کد نمایندگی شما
           </Typography>
-          <RefralButton referralData={referralData} />
+          
+            <RefralButton referralData={referralData} />
           <Container
             style={{
               px: {
@@ -164,6 +168,18 @@ export default function Invite() {
                 {priceFormater(referralData.total_gold_sales)} تومان
               </Typography>
             </Stack>
+              <Stack width={'100%'} mt={5} direction={'column'} justifyContent={'center'} alignItems={'center'} gap={3}>
+                <Typography variant="body2" >
+                  برای دعوت دوستان، لطفا کیو  آر کد  زیر را اسکن کنید.
+                </Typography>
+                 <QRCode
+                  bgColor={isDarkMode ? "#ffffff" : '#000000'}
+                  fgColor={isDarkMode ? "#000000" : '#ffffff'}
+                  size={120}
+                  style={{ height: "auto", maxWidth: "100%", width: "30%" }}
+                  value={referralData.referral_link}
+                />
+              </Stack>
           </Container>
         </Grid>
   )

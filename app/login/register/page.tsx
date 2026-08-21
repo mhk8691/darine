@@ -3,13 +3,14 @@ import BackLink from '@/app/dashboard/BackLink';
 import RegisterForm from './RegisterForm';
 
 interface Props {
-  searchParams: {
+  searchParams: Promise<{
     phone: string;
-  };
+    ref: string;
+  }>;
 }
 
 export default async function page({ searchParams }: Props) {
-  const { phone } = await searchParams;
+  const { phone, ref } = await searchParams;
   return (
     <Stack>
      <Stack direction={'row'} gap={1} alignItems={'center'}>
@@ -37,7 +38,7 @@ export default async function page({ searchParams }: Props) {
       >
         اطلاعات زیر را با توجه به صاحب شماره {phone} وارد کنید
       </Typography>
-      <RegisterForm phoneNumber={phone} />
+      <RegisterForm phoneNumber={phone} referral={ref} />
     </Stack>
   );
 }

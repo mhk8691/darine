@@ -56,7 +56,7 @@ export default function ButtonGroupe() {
             variant="outlined"
             color="secondary"
              
-            onClick={() => router.push('http://silver.darine.shop/dashboard')}
+            onClick={() => router.push('https://silver.darine.shop/dashboard')}
             sx={{
               px: 1,
               border: 1,
@@ -113,7 +113,7 @@ export default function ButtonGroupe() {
               sx={{ height: 35, borderColor: 'text.primary', mr: 1 }}
             />
           </Stack>
-          <Link href={'/dashboard'}>
+          <Link href={'/dashboard'} prefetch={false}>
             {isDesktop ? (
               <IconButton>
                 <UserCircleIcon />

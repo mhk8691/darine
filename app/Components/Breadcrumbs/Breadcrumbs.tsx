@@ -83,7 +83,7 @@ export default function CustomBreadcrumbs() {
           },
         }}
       >
-        <Link color="inherit" href="/dashboard">
+        <Link color="inherit" href="/dashboard" prefetch={false}>
           <Typography
             variant="body2"
             fontSize={12}

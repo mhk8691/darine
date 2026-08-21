@@ -120,7 +120,7 @@ export default function Withdraw({setTransactionData,transactionParams,filter,da
         برداشت
       </Button>
     </Card>
-    <WithdrawConfirm open={open} setOpen={setOpen} isSilverWithdraw={select === 'silver' ? true:false} handleWithdraw={handleWithdraw} isLoading={isLoading} finalPrice={price}  />
+    <WithdrawConfirm open={open} setOpen={setOpen} isSilverWithdraw={select === 'silver' ? true:false} bankCardsData={bankCardsData.find((bank) => bank.id === selectedCard) || {} as BankCardDataType} handleWithdraw={handleWithdraw} isLoading={isLoading} finalPrice={price}  />
     </>
   );
 }
