@@ -1,7 +1,7 @@
 'use client';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TelegramIcon from '@mui/icons-material/Telegram';
-import {  Grid, Stack, Typography, useTheme } from '@mui/material';
+import { Grid, Stack, Typography, useTheme } from '@mui/material';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import React from 'react';
@@ -27,7 +27,6 @@ export const certificate = [
   '/images/simple/nikecert.webp',
   '/images/simple/tuwWorld.webp',
 ];
-
 
 export default function Footer() {
   const pathname = usePathname();
@@ -90,8 +89,8 @@ export default function Footer() {
               }}
               sx={{ color: 'text.secondary' }}
             >
-              دارینه، پلتفرم خرید و فروش آنلاین طلا خام و بدون اجرت، آسان‌ترین و امن‌ترین راه را برای
-              حفظ ارزش سرمایه شما ارائه می‌کند.
+              دارینه، پلتفرم خرید و فروش آنلاین طلا خام و بدون اجرت، آسان‌ترین و امن‌ترین راه را
+              برای حفظ ارزش سرمایه شما ارائه می‌کند.
             </Typography>
             <Typography
               variant="h6"
@@ -101,13 +100,12 @@ export default function Footer() {
               }}
               sx={{ color: 'text.secondary' }}
             >
-             قم، میدان توحید، پاساژ شهر طلا
+              قم، میدان توحید، پاساژ شهر طلا
             </Typography>
           </Grid>
           <LinkContainer />
           {/* <DesktopCertificate /> */}
         </Grid>
-      
       </Grid>
       <Grid
         container
@@ -176,48 +174,47 @@ export default function Footer() {
                 md: 3,
               }}
             >
-              <Link href={'https://wa.me/989191608771'} target='_blank' rel="noopener noreferrer">
-              <Stack
-                direction={'row'}
-                gap={{
-                  xs: 0.5,
-                  sm: 0.7,
-                }}
-                alignItems={'center'}
-              >
-                <WhatsAppIcon />
+              <Link href={'https://wa.me/989191608771'} target="_blank" rel="noopener noreferrer">
+                <Stack
+                  direction={'row'}
+                  gap={{
+                    xs: 0.5,
+                    sm: 0.7,
+                  }}
+                  alignItems={'center'}
+                >
+                  <WhatsAppIcon />
 
-                <Typography
-                  variant="body2"
-                  color="text.primary"
-                  fontSize={14}
-                  sx={{ whiteSpace: 'nowrap' }}
+                  <Typography
+                    variant="body2"
+                    color="text.primary"
+                    fontSize={14}
+                    sx={{ whiteSpace: 'nowrap' }}
+                  >
+                    پشتیبانی واتساپ
+                  </Typography>
+                </Stack>
+              </Link>
+              <Link href={'tel:09191608771'}>
+                <Stack
+                  direction={'row'}
+                  gap={{
+                    xs: 0.5,
+                    sm: 0.7,
+                  }}
+                  alignItems={'center'}
                 >
-                  پشتیبانی واتساپ
-                </Typography>
-              </Stack>
-                </Link>
-                <Link href={'tel:09191608771'}>
-              <Stack
-                direction={'row'}
-                gap={{
-                  xs: 0.5,
-                  sm: 0.7,
-                }}
-                alignItems={'center'}
-              >
-                <CallIcon />
-                <Typography
-                  variant="body2"
-                  color="text.primary"
-                  fontSize={14}
-                  sx={{ whiteSpace: 'nowrap' }}
-                >
-                  ۰۹۱۹۱۶۰۸۷۷۱
-                </Typography>
-              </Stack>
-                </Link>
-           
+                  <CallIcon />
+                  <Typography
+                    variant="body2"
+                    color="text.primary"
+                    fontSize={14}
+                    sx={{ whiteSpace: 'nowrap' }}
+                  >
+                    ۰۹۱۹۱۶۰۸۷۷۱
+                  </Typography>
+                </Stack>
+              </Link>
             </Stack>
             <Stack direction={'row'} gap={1.5}>
               <Stack
@@ -235,7 +232,7 @@ export default function Footer() {
                   }}
                 />
               </Stack>
-          
+
               <Stack
                 sx={{
                   bgcolor: 'primary.main',
@@ -243,7 +240,7 @@ export default function Footer() {
                   p: 0.75,
                 }}
                 component={Link}
-                target='_blank'
+                target="_blank"
                 href={'https://t.me/darine_app'}
               >
                 <TelegramIcon
@@ -254,7 +251,6 @@ export default function Footer() {
                   }}
                 />
               </Stack>
-          
             </Stack>
           </Stack>
         </Grid>
@@ -262,16 +258,42 @@ export default function Footer() {
       {/* <LaptopCertificate /> */}
       <Stack
         p={2}
-        direction={'row'}
-        alignItems={'center'}
-        justifyContent={'center'}
-       
+        alignItems="center"
+        justifyContent="center"
+        gap={1}
         bgcolor={{
           xs: 'transparent',
           sm: 'background.paper',
         }}
       >
-        <Typography variant="body2" fontSize={12} sx={{ color: 'text.muted' }}>
+        <Typography
+          component={Link}
+          href="https://talasea.ir/"
+          target="_blank"
+          rel="noopener noreferrer"
+          variant="body2"
+          fontSize={11}
+          sx={{
+            color: 'text.secondary',
+            textDecoration: 'none',
+            fontWeight: 400,
+            opacity: 0.75,
+            transition: 'all 0.2s ease',
+            '&:hover': {
+              opacity: 1,
+              color: 'text.primary',
+            },
+          }}
+        >
+          قدرت گرفته از طلاسی
+        </Typography>
+        <Typography
+          variant="body2"
+          fontSize={12}
+          sx={{
+            color: 'text.muted',
+          }}
+        >
           ©️ ۱۴۰۵ دارینه | تمامی حقوق محفوظ است.
         </Typography>
       </Stack>
