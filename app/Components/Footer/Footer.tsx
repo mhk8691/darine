@@ -216,6 +216,39 @@ export default function Footer() {
                 </Stack>
               </Link>
             </Stack>
+             <Typography
+              component={Link}
+              href="https://talasea.ir/"
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="body2"
+              fontSize={{
+                xs: 12,
+                md: 16,
+              }}
+
+              sx={{
+                display:{
+
+                  md:'none'
+                },
+                color: 'text.secondary',
+                textDecoration: 'none',
+                fontWeight: 400,
+                opacity: 0.75,
+                transition: 'all 0.2s ease',
+                mb: {
+                  xs: 1,
+                  md: 0,
+                },
+                '&:hover': {
+                  opacity: 1,
+                  color: 'text.primary',
+                },
+              }}
+            >
+              قدرت گرفته از طلاسی
+            </Typography>
             <Stack direction={'row'} gap={1.5}>
               <Stack
                 sx={{
@@ -253,7 +286,10 @@ export default function Footer() {
               </Stack>
             </Stack>
           </Stack>
-          <Stack direction={'row'} justifyContent={'center'}>
+          <Stack direction={'row'} justifyContent={'center'} display={{
+            xs:'none',
+            md:'flex'
+          }}>
             <Typography
               component={Link}
               href="https://talasea.ir/"
