@@ -253,6 +253,37 @@ export default function Footer() {
               </Stack>
             </Stack>
           </Stack>
+          <Stack direction={'row'} justifyContent={'center'}>
+            <Typography
+              component={Link}
+              href="https://talasea.ir/"
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="body2"
+              fontSize={{
+                xs: 12,
+                md: 16,
+              }}
+              sx={{
+                color: 'text.secondary',
+                textDecoration: 'none',
+                fontWeight: 400,
+                opacity: 0.75,
+                transition: 'all 0.2s ease',
+                mt: 3,
+                mb: {
+                  xs: 3,
+                  md: 0,
+                },
+                '&:hover': {
+                  opacity: 1,
+                  color: 'text.primary',
+                },
+              }}
+            >
+              قدرت گرفته از طلاسی
+            </Typography>
+          </Stack>
         </Grid>
       </Grid>
       {/* <LaptopCertificate /> */}
@@ -266,27 +297,6 @@ export default function Footer() {
           sm: 'background.paper',
         }}
       >
-        <Typography
-          component={Link}
-          href="https://talasea.ir/"
-          target="_blank"
-          rel="noopener noreferrer"
-          variant="body2"
-          fontSize={11}
-          sx={{
-            color: 'text.secondary',
-            textDecoration: 'none',
-            fontWeight: 400,
-            opacity: 0.75,
-            transition: 'all 0.2s ease',
-            '&:hover': {
-              opacity: 1,
-              color: 'text.primary',
-            },
-          }}
-        >
-          قدرت گرفته از طلاسی
-        </Typography>
         <Typography
           variant="body2"
           fontSize={12}
