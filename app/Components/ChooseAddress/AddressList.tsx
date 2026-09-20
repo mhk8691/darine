@@ -27,41 +27,52 @@ interface Props {
   setOpenAddAddress: Dispatch<SetStateAction<boolean>>;
   addresses: AddressesDataType[];
   setAddressId: Dispatch<SetStateAction<number>>;
+  setTalaseaCityId: Dispatch<SetStateAction<number>>;
   addressId: number;
 }
 
-export default function AddressList({ setOpenAddAddress, addresses, setAddressId, addressId }: Props) {
+export default function AddressList({
+  setOpenAddAddress,
+  addresses,
+  setAddressId,
+  addressId,
+  setTalaseaCityId,
+}: Props) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     if (addresses.length > 0 && !addressId) {
       setAddressId(addresses[0].id || 0);
+      setTalaseaCityId(Number(addresses[0].city || 0));
     }
-  }, [addresses, addressId, setAddressId]);
+  }, [addresses, addressId, setAddressId, setTalaseaCityId]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setAddressId(+(event.target as HTMLInputElement).value);
+    const selectedId = +(event.target as HTMLInputElement).value;
+    const selected = addresses.find((addr) => addr.id === selectedId);
+
+    setAddressId(selectedId);
+    setTalaseaCityId(Number(selected?.city || 0));
     setOpen(false);
   };
 
   if (addresses.length === 0) return null;
 
-  const currentAddress = addresses.find(addr => addr.id === addressId);
-  
+  const currentAddress = addresses.find((addr) => addr.id === addressId);
+
   const selectedAddress = currentAddress || addresses[0];
 
   const displayText = `${selectedAddress.province}،${selectedAddress.city}،${selectedAddress.address}،${selectedAddress.plaque}،${selectedAddress.unit}`;
-  const handleRemoveAddress = async (id:number)=>{
-    try{
-      const response = await removeAddress(id)
-      showSnackbar(response.message,'success')
-    }catch(error:unknown){
-      if (isAxiosError(error)){
-        showSnackbar(error.response?.data.message)
-
+  const handleRemoveAddress = async (id: number) => {
+    try {
+      const response = await removeAddress(id);
+      showSnackbar(response.message, 'success');
+    } catch (error: unknown) {
+      if (isAxiosError(error)) {
+        showSnackbar(error.response?.data.message);
       }
     }
-  }
+  };
   return (
     <>
       <TextField
@@ -113,7 +124,7 @@ export default function AddressList({ setOpenAddAddress, addresses, setAddressId
           },
         }}
       />
-      
+
       <CustomModal open={open} setOpen={setOpen} modalStyle={{ pb: 2 }}>
         <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
           <Typography variant="body1" fontSize={16} fontWeight={600}>
@@ -123,20 +134,17 @@ export default function AddressList({ setOpenAddAddress, addresses, setAddressId
             onClick={() => {
               setOpen(false);
             }}
-             
           >
             <Close />
           </IconButton>
         </Stack>
-        
+
         <FormControl sx={{ width: '100%', mt: 2 }}>
           <RadioGroup
             name="controlled-radio-buttons-group"
             value={addressId}
             onChange={handleChange}
-            sx={{flexDirection: 'column',
-              gap: 1,
-            }}
+            sx={{ flexDirection: 'column', gap: 1 }}
           >
             {addresses.map((address) => (
               <Stack
@@ -154,7 +162,7 @@ export default function AddressList({ setOpenAddAddress, addresses, setAddressId
                 <Stack direction={'column'}>
                   <FormControlLabel
                     value={address.id}
-                    control={<Radio   disableTouchRipple />}
+                    control={<Radio disableTouchRipple />}
                     label={`${address.province}،${address.city}،${address.address}،${address.plaque}،${address.unit}`}
                     sx={{
                       '& .MuiTypography-root': {
@@ -184,15 +192,14 @@ export default function AddressList({ setOpenAddAddress, addresses, setAddressId
                     <Typography variant="body2">{address.postal_code}</Typography>
                   </Stack>
                 </Stack>
-                <IconButton onClick={()=>handleRemoveAddress(address?.id ?? 0)}>
-                <DeleteOutlineOutlinedIcon sx={{ mt: 1 }} />
+                <IconButton onClick={() => handleRemoveAddress(address?.id ?? 0)}>
+                  <DeleteOutlineOutlinedIcon sx={{ mt: 1 }} />
                 </IconButton>
-
               </Stack>
             ))}
           </RadioGroup>
         </FormControl>
-        
+
         <Button
           variant="contained"
           color="primary"
@@ -209,5 +216,3 @@ export default function AddressList({ setOpenAddAddress, addresses, setAddressId
     </>
   );
 }
-
-

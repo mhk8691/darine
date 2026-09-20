@@ -17,6 +17,7 @@ interface Props {
   cardStyle?: SxProps;
   addressId: number;
   setAddressId: Dispatch<SetStateAction<number>>;
+  setTalaseaCityId: Dispatch<SetStateAction<number>>;
   setActiveStep?: Dispatch<SetStateAction<number>>;
   addresses: AddressesDataType[];
   setAddresses: Dispatch<SetStateAction<AddressesDataType[]>>;
@@ -25,6 +26,7 @@ interface Props {
 export default function ChooseAddress({
   addressId,
   setAddressId,
+  setTalaseaCityId,
   open,
   setOpen,
   description,
@@ -63,6 +65,7 @@ export default function ChooseAddress({
           addresses={addresses}
           addressId={addressId}
           setAddressId={setAddressId}
+          setTalaseaCityId={setTalaseaCityId}
         />
       ) : (
         <Stack
@@ -102,6 +105,7 @@ export default function ChooseAddress({
         postCode={postCode}
         setPostCode={setPostCode}
         setAddressId={setAddressId}
+        setTalaseaCityId={setTalaseaCityId}
       />
     </Stack>
   );

@@ -28,6 +28,7 @@ export default function Cart() {
   const theme = useTheme();
   const [cartData, setCartData] = useState<CartItem[]>(getCart());
   const [addressId, setAddressId] = useState(0);
+  const [talaseaCityId, setTalaseaCityId] = useState(0);
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'), {
     noSsr: true,
   });
@@ -72,6 +73,7 @@ export default function Cart() {
         <Delivery
           addressId={addressId}
           setAddressId={setAddressId}
+          setTalaseaCityId={setTalaseaCityId}
           deliveryType={deliveryType}
           setDirectAddresses={setDirectAddresses}
           setDeliveryType={setDeliveryType}
@@ -153,7 +155,7 @@ export default function Cart() {
           </IconButton>
         </Stack>
         <Stack mt={1} pr={1} pb={4}>
-          <OrderConfirmation setOpen={setOpen} deliveryType={deliveryType} addressId={addressId} />
+          <OrderConfirmation setOpen={setOpen} deliveryType={deliveryType} addressId={addressId} talaseaCityId={talaseaCityId} />
         </Stack>
       </CustomModal>
     </>

@@ -38,9 +38,10 @@ interface Props {
   setOpen: Dispatch<SetStateAction<boolean>>;
   deliveryType: string;
   addressId: number;
+  talaseaCityId:number
 }
 
-export default function OrderConfirmation({ setOpen, deliveryType, addressId }: Props) {
+export default function OrderConfirmation({ setOpen, deliveryType, addressId,talaseaCityId }: Props) {
   const [checked, setChecked] = useState(false);
   const [active, setActive] = useState('TOMAN');
   const router = useRouter();
@@ -88,7 +89,8 @@ export default function OrderConfirmation({ setOpen, deliveryType, addressId }: 
         quantity: item.quantity,
       })),
       payment_method: active,
-      delivery_method:deliveryType
+      delivery_method:deliveryType,
+     ...(deliveryType === "HOME_DELIVERY" && { address_id: addressId,talasea_city_id:talaseaCityId }),
     };
     try {
       const response = await checkout(newData);

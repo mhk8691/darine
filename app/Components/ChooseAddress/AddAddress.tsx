@@ -31,6 +31,7 @@ interface Props {
   postCode: string;
   setPostCode: StringSetter;
   setAddressId: Dispatch<SetStateAction<number>>;
+  setTalaseaCityId: Dispatch<SetStateAction<number>>;
 }
 
 export default function AddAddress({
@@ -51,6 +52,7 @@ export default function AddAddress({
   postCode,
   setPostCode,
   setAddressId,
+  setTalaseaCityId
 }: Props) {
   const [step, setStep] = useState(0);
 
@@ -79,6 +81,7 @@ export default function AddAddress({
       await getData();
       showSnackbar(response.message, 'success');
       setAddressId(response.data.id || 0);
+      setTalaseaCityId(Number(response.data.city || 0));
       resetFields();
       setActiveStep?.(2);
       setOpen(false);

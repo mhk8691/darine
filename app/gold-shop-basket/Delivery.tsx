@@ -11,16 +11,22 @@ const toggleItems: ToggleItemsType[] = [
   { title: 'تحویل درب منزل', value: 'HOME_DELIVERY', id: 1 },
   { title: 'تحویل حضوری', value: 'IN_PERSON', id: 2 },
 ];
-interface Props{
-  deliveryType:string
-setDeliveryType:Dispatch<SetStateAction<string>>
-addressId:number
-setAddressId:Dispatch<SetStateAction<number>>
-setDirectAddresses:Dispatch<SetStateAction<DirectAddressesType>>
+interface Props {
+  deliveryType: string;
+  setDeliveryType: Dispatch<SetStateAction<string>>;
+  addressId: number;
+  setAddressId: Dispatch<SetStateAction<number>>;
+  setTalaseaCityId: Dispatch<SetStateAction<number>>;
+  setDirectAddresses: Dispatch<SetStateAction<DirectAddressesType>>;
 }
-export default function Delivery({deliveryType,setDeliveryType,addressId,setAddressId,setDirectAddresses}:Props) {
-
-
+export default function Delivery({
+  deliveryType,
+  setDeliveryType,
+  addressId,
+  setAddressId,
+  setDirectAddresses,
+  setTalaseaCityId
+}: Props) {
   return (
     <Grid container spacing={3}>
       <Grid
@@ -38,10 +44,14 @@ export default function Delivery({deliveryType,setDeliveryType,addressId,setAddr
           items={toggleItems}
           style={{ py: 1.5 }}
         />
-        {deliveryType === 'HOME_DELIVERY' ? <HouseDelivery  addressId={addressId} setAddressId={setAddressId} /> : <DirectDelivery   />}
-       {/* <HouseDelivery  addressId={addressId} setAddressId={setAddressId} />
-        */}
-         {/* <DirectDelivery   /> */}
+        {deliveryType === 'HOME_DELIVERY' ? (
+          <HouseDelivery addressId={addressId} setAddressId={setAddressId} setTalaseaCityId={setTalaseaCityId} />
+        ) : (
+          <DirectDelivery />
+        )}
+        {/* <HouseDelivery  addressId={addressId} setAddressId={setAddressId} />
+         */}
+        {/* <DirectDelivery   /> */}
       </Grid>
       <Grid
         size={{
