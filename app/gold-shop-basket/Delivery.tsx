@@ -5,10 +5,11 @@ import FilterToggleButton from '../Components/FilterToggleButton/FilterToggleBut
 import { ToggleItemsType } from '../core/Types';
 import DirectDelivery from './DirectDelivery';
 import { DirectAddressesType } from './Cart';
+import HouseDelivery from './HouseDelivery';
 
 const toggleItems: ToggleItemsType[] = [
-  // { title: 'تحویل درب منزل', value: 'HOME', id: 1 },
-  { title: 'تحویل حضوری', value: 'directDelivery', id: 1 },
+  { title: 'تحویل درب منزل', value: 'HOME_DELIVERY', id: 1 },
+  { title: 'تحویل حضوری', value: 'IN_PERSON', id: 2 },
 ];
 interface Props{
   deliveryType:string
@@ -37,10 +38,10 @@ export default function Delivery({deliveryType,setDeliveryType,addressId,setAddr
           items={toggleItems}
           style={{ py: 1.5 }}
         />
-        {/* {deliveryType === 'HOME' ? <HouseDelivery  addressId={addressId} setAddressId={setAddressId} /> : <DirectDelivery setDirectAddresses={setDirectAddresses}  />} */}
+        {deliveryType === 'HOME_DELIVERY' ? <HouseDelivery  addressId={addressId} setAddressId={setAddressId} /> : <DirectDelivery   />}
        {/* <HouseDelivery  addressId={addressId} setAddressId={setAddressId} />
         */}
-         <DirectDelivery   />
+         {/* <DirectDelivery   /> */}
       </Grid>
       <Grid
         size={{

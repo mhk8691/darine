@@ -127,7 +127,7 @@ export interface ProductDateType {
   weight: number;
   product_weight_with_fee?: number;
   total_price: number;
-  image: string;
+  image_url: string;
   inventory_count?: number
 }
 
@@ -318,7 +318,7 @@ export interface CheckoutDataType {
     quantity: number
   }[],
   "payment_method": string,
-
+  delivery_method: string
 }
 export interface BannersType {
   link: string

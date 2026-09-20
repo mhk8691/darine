@@ -24,7 +24,7 @@ export default function MobileCart({cartData,setCartData}:Props) {
           gap={2}
         >
           <Stack direction={'row'} gap={1.5} alignItems={'center'}>
-            <Image src={item.image} alt={item.name} width={120} height={120} style={{
+            <Image src={item.image_url} alt={item.name} width={120} height={120} style={{
               marginTop:8,
               borderRadius:8
             }} />

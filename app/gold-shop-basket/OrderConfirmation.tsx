@@ -36,14 +36,14 @@ const titleStyle: SxProps = {
 
 interface Props {
   setOpen: Dispatch<SetStateAction<boolean>>;
-  deliveryType:string
-  addressId:number
+  deliveryType: string;
+  addressId: number;
 }
 
-export default function OrderConfirmation({ setOpen,deliveryType,addressId}: Props) {
+export default function OrderConfirmation({ setOpen, deliveryType, addressId }: Props) {
   const [checked, setChecked] = useState(false);
   const [active, setActive] = useState('TOMAN');
-  const router = useRouter()
+  const router = useRouter();
   const { assets } = useAssets();
 
   const handleChangeRadio = (event: ChangeEvent<HTMLInputElement>) => {
@@ -62,111 +62,95 @@ export default function OrderConfirmation({ setOpen,deliveryType,addressId}: Pro
     }, 0);
   };
   const getTotalWeight = (): number => {
-  const cart = getCart();
+    const cart = getCart();
 
-  return cart.reduce((total, item) => {
-    return total +( item.product_weight_with_fee || 0) * item.quantity;
-  }, 0);
-};
+    return cart.reduce((total, item) => {
+      return total + (item.product_weight_with_fee || 0) * item.quantity;
+    }, 0);
+  };
 
   const totalPrice = getTotalPrice();
   const totalWeight = getTotalWeight();
 
   const walletBalance = assets?.wallet_balance ?? 0;
 
-  const selectedBalanceValue =walletBalance
-  const goldDiff = (assets.gold_accessible - totalWeight)
+  const selectedBalanceValue = walletBalance;
+  const goldDiff = assets.gold_accessible - totalWeight;
 
   const diff = selectedBalanceValue - totalPrice;
 
   const isEnough = diff >= 0;
 
-  const handleClick = async ()=>{
+  const handleClick = async () => {
     const newData: CheckoutDataType = {
-  products: getCart().map((item) => ({
-    product_id: item.id,
-    quantity: item.quantity,
-  })),
-  payment_method: active,
-
-};
-    try{
-      const response = await checkout(newData)
-      showSnackbar(response.data.message,'success')
-      router.push('/dashboard/gold-receive')
-      clearCart()
-    }catch (error:unknown){
-      if (isAxiosError(error)){
-        showSnackbar(error.response?.data.message)
+      products: getCart().map((item) => ({
+        product_id: item.id,
+        quantity: item.quantity,
+      })),
+      payment_method: active,
+      delivery_method:deliveryType
+    };
+    try {
+      const response = await checkout(newData);
+      showSnackbar(response.data.message, 'success');
+      router.push('/dashboard/gold-receive');
+      clearCart();
+    } catch (error: unknown) {
+      if (isAxiosError(error)) {
+        showSnackbar(error.response?.data.message);
       }
     }
-  }
+  };
   return (
     <Stack direction="column">
- {
-    active !== 'TOMAN' &&     <Stack sx={rowStyle}>
-        <Typography sx={titleStyle}>موجودی طلا</Typography>
-        <Typography fontSize={18}>
-          {priceFormater(assets.gold_accessible)} گرم
-        </Typography>
-      </Stack>
-  }
+      {active !== 'TOMAN' && (
+        <Stack sx={rowStyle}>
+          <Typography sx={titleStyle}>موجودی طلا</Typography>
+          <Typography fontSize={18}>{priceFormater(assets.gold_accessible)} گرم</Typography>
+        </Stack>
+      )}
 
-      {
-        active === 'TOMAN' && <Stack sx={rowStyle}>
-        <Typography sx={titleStyle}>موجودی کیف پول</Typography>
-        <Typography fontSize={18}>
-          {priceFormater(walletBalance)} تومان
-        </Typography>
-      </Stack>
-      }
-     {
-      active === 'TOMAN' &&  <Stack sx={rowStyle}>
-        <Typography sx={titleStyle}>مجموع سفارش</Typography>
-        <Typography fontSize={18}>
-          {priceFormater(totalPrice)} تومان
-        </Typography>
-      </Stack>
-     }
-     {
-      active !== 'TOMAN' &&  <Stack sx={rowStyle}>
-        <Typography sx={titleStyle}>مجموع گرم وزنی سفارش</Typography>
-        <Typography fontSize={18}>
-          {priceFormater(totalWeight)} گرم
-        </Typography>
-      </Stack>
-     }
+      {active === 'TOMAN' && (
+        <Stack sx={rowStyle}>
+          <Typography sx={titleStyle}>موجودی کیف پول</Typography>
+          <Typography fontSize={18}>{priceFormater(walletBalance)} تومان</Typography>
+        </Stack>
+      )}
+      {active === 'TOMAN' && (
+        <Stack sx={rowStyle}>
+          <Typography sx={titleStyle}>مجموع سفارش</Typography>
+          <Typography fontSize={18}>{priceFormater(totalPrice)} تومان</Typography>
+        </Stack>
+      )}
+      {active !== 'TOMAN' && (
+        <Stack sx={rowStyle}>
+          <Typography sx={titleStyle}>مجموع گرم وزنی سفارش</Typography>
+          <Typography fontSize={18}>{priceFormater(totalWeight)} گرم</Typography>
+        </Stack>
+      )}
 
       <Divider />
 
-
-  {
-    active !== 'TOMAN' &&     <Stack sx={rowStyle}>
-        <Typography sx={titleStyle}>موجودی طلای باقی مانده</Typography>
-        <Typography fontSize={18} color={goldDiff>=0 ? 'success.main' : 'error.main'}>
-          {priceFormater(goldDiff)} گرم
-        </Typography>
-      </Stack>
-  }
+      {active !== 'TOMAN' && (
+        <Stack sx={rowStyle}>
+          <Typography sx={titleStyle}>موجودی طلای باقی مانده</Typography>
+          <Typography fontSize={18} color={goldDiff >= 0 ? 'success.main' : 'error.main'}>
+            {priceFormater(goldDiff)} گرم
+          </Typography>
+        </Stack>
+      )}
 
       <Divider />
 
-    {
-      active === 'TOMAN' &&   <Stack sx={rowStyle}>
-        <Typography sx={titleStyle}>
-          {isEnough ? 'موجودی باقی‌مانده' : 'کمبود موجودی'}
-        </Typography>
+      {active === 'TOMAN' && (
+        <Stack sx={rowStyle}>
+          <Typography sx={titleStyle}>{isEnough ? 'موجودی باقی‌مانده' : 'کمبود موجودی'}</Typography>
 
-        <Typography
-          fontSize={18}
-          color={isEnough ? 'success.main' : 'error.main'}
-        >
-          {priceFormater(Math.abs(diff))} تومان
-        </Typography>
-      </Stack>
-    }
-
-     
+          <Typography fontSize={18} color={isEnough ? 'success.main' : 'error.main'}>
+            {priceFormater(Math.abs(diff))} تومان
+          </Typography>
+        </Stack>
+      )}
 
       <FormControl sx={{ mt: 2 }}>
         <RadioGroup

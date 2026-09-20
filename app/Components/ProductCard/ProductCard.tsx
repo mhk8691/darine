@@ -90,7 +90,7 @@ export default function ProductCard({
                 },
                 width: '100%',
               }}
-              image={item.image}
+              image={item.image_url}
               title={item.name}
             />
           </Stack>
@@ -165,7 +165,7 @@ export default function ProductCard({
               onClick={() => {
                 setCart(
                   addToCart({
-                    image: item.image,
+                    image_url: item.image_url,
                     id: item.id,
                     name: item.name,
                     product_weight_with_fee: item.product_weight_with_fee,

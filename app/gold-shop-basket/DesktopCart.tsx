@@ -162,7 +162,7 @@ const DesktopCart = ({cartData,setCartData}:Props) => {
                     }}
                   >
                     <Image
-                      src={item.image}
+                      src={item.image_url}
                       alt={item.name}
                       width={112}
                       height={112}
