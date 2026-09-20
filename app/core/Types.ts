@@ -617,5 +617,20 @@ export interface PhysicalInvoiceType {
   products: PhysicalProduct[];
   description: string;
 }
+// types
+export interface ReceiveTimeItem {
+  time: string;
+  id: string;
+}
 
+export interface ReceiveDateItem {
+  date: string;
+  day: string;
+  times: ReceiveTimeItem[];
+}
+
+export interface ReceiveAddressItem {
+  address: string;
+  dates: ReceiveDateItem[];
+}
 export type AnyInvoiceType = TradeInvoiceType | PhysicalInvoiceType;

@@ -29,6 +29,7 @@ interface Props {
   maxWidth?: string;
   value?: string;
   setValue?: React.Dispatch<React.SetStateAction<string>>;
+  disabled?: boolean;
 }
 
 export default function SelectField({
@@ -39,6 +40,7 @@ export default function SelectField({
   maxWidth,
   value = '',
   setValue,
+  disabled = false,
 }: Props) {
   const [open, setOpen] = React.useState(false);
 
@@ -71,6 +73,7 @@ export default function SelectField({
         displayEmpty
         value={value}
         open={open}
+        disabled={disabled}
         onOpen={() => setOpen(true)}
         onClose={() => setOpen(false)}
         onChange={handleChange}

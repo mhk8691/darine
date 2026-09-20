@@ -18,9 +18,6 @@ export interface DirectAddressesType {
   date: string;
 }
 export default function Cart() {
-  const [directAddresses, setDirectAddresses] = useState<DirectAddressesType>(
-    {} as DirectAddressesType,
-  );
   const [deliveryType, setDeliveryType] = useState('HOME_DELIVERY');
   const [step, setStep] = useState(0);
   const [open, setOpen] = useState(false);
@@ -29,6 +26,7 @@ export default function Cart() {
   const [cartData, setCartData] = useState<CartItem[]>(getCart());
   const [addressId, setAddressId] = useState(0);
   const [talaseaCityId, setTalaseaCityId] = useState(0);
+  const [selectedTimeId, setSelectedTimeId] = useState('');
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'), {
     noSsr: true,
   });
@@ -75,8 +73,9 @@ export default function Cart() {
           setAddressId={setAddressId}
           setTalaseaCityId={setTalaseaCityId}
           deliveryType={deliveryType}
-          setDirectAddresses={setDirectAddresses}
           setDeliveryType={setDeliveryType}
+          selectedTimeId={selectedTimeId}
+          setSelectedTimeId={setSelectedTimeId}
         />
       )}
       {cartData.length > 0 && (
@@ -155,7 +154,13 @@ export default function Cart() {
           </IconButton>
         </Stack>
         <Stack mt={1} pr={1} pb={4}>
-          <OrderConfirmation setOpen={setOpen} deliveryType={deliveryType} addressId={addressId} talaseaCityId={talaseaCityId} />
+          <OrderConfirmation
+            setOpen={setOpen}
+            deliveryType={deliveryType}
+            addressId={addressId}
+            talaseaCityId={talaseaCityId}
+            selectedTimeId={selectedTimeId}
+          />
         </Stack>
       </CustomModal>
     </>

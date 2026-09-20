@@ -4,7 +4,6 @@ import { Dispatch, SetStateAction } from 'react';
 import FilterToggleButton from '../Components/FilterToggleButton/FilterToggleButton';
 import { ToggleItemsType } from '../core/Types';
 import DirectDelivery from './DirectDelivery';
-import { DirectAddressesType } from './Cart';
 import HouseDelivery from './HouseDelivery';
 
 const toggleItems: ToggleItemsType[] = [
@@ -17,15 +16,17 @@ interface Props {
   addressId: number;
   setAddressId: Dispatch<SetStateAction<number>>;
   setTalaseaCityId: Dispatch<SetStateAction<number>>;
-  setDirectAddresses: Dispatch<SetStateAction<DirectAddressesType>>;
+  selectedTimeId: string;
+  setSelectedTimeId: Dispatch<SetStateAction<string>>;
 }
 export default function Delivery({
   deliveryType,
   setDeliveryType,
   addressId,
   setAddressId,
-  setDirectAddresses,
-  setTalaseaCityId
+  setTalaseaCityId,
+  selectedTimeId,
+setSelectedTimeId
 }: Props) {
   return (
     <Grid container spacing={3}>
@@ -45,9 +46,13 @@ export default function Delivery({
           style={{ py: 1.5 }}
         />
         {deliveryType === 'HOME_DELIVERY' ? (
-          <HouseDelivery addressId={addressId} setAddressId={setAddressId} setTalaseaCityId={setTalaseaCityId} />
+          <HouseDelivery
+            addressId={addressId}
+            setAddressId={setAddressId}
+            setTalaseaCityId={setTalaseaCityId}
+          />
         ) : (
-          <DirectDelivery />
+          <DirectDelivery selectedTimeId={selectedTimeId} setSelectedTimeId={setSelectedTimeId} />
         )}
         {/* <HouseDelivery  addressId={addressId} setAddressId={setAddressId} />
          */}
