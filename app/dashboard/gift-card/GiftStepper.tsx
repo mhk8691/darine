@@ -77,40 +77,40 @@ function CustomStepIcon(props: StepIconProps) {
 const steps = ['تعیین وزن', 'تعیین آدرس', 'تایید نهایی'];
 
 export default function GiftStepper() {
-  const router = useRouter()
+  const router = useRouter();
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set<number>());
   const [weight, setWeight] = React.useState('');
   const [price, setPrice] = React.useState('');
   const [count, setCount] = React.useState<number>(1);
   const [open, setOpen] = React.useState(false);
-      const [addresses,setAddresses] = React.useState<AddressesDataType[]>([])
-  
+  const [addresses, setAddresses] = React.useState<AddressesDataType[]>([]);
+
   const [addressId, setAddressId] = React.useState(0);
-const [isLoading,setIsLoading]= React.useState(false)
-  const {assets} = useAssets()
-  const giftCard = async ()=>{
+  const [isLoading, setIsLoading] = React.useState(false);
+  const { assets } = useAssets();
+  const giftCard = async () => {
     if (assets.wallet_balance === 0) {
-      router.push('/dashboard/irt-transaction')
+      router.push('/dashboard/irt-transaction');
     }
-    try{
-      setIsLoading(true)
-      const response = await giftCardOrder(weight,count,addressId)
-      showSnackbar(response.message,'success')
-      router.push('/dashboard/gift-cards')
-    }catch(error:unknown){
-      if (isAxiosError(error)){
-        showSnackbar(error.response?.data.message)
+    try {
+      setIsLoading(true);
+      const response = await giftCardOrder(weight, count, addressId);
+      showSnackbar(response.message, 'success');
+      router.push('/dashboard/gift-cards');
+    } catch (error: unknown) {
+      if (isAxiosError(error)) {
+        showSnackbar(error.response?.data.message);
       }
-    }finally{
-      setIsLoading(false)
+    } finally {
+      setIsLoading(false);
     }
-  }
+  };
   const isStepSkipped = (step: number) => {
     return skipped.has(step);
   };
 
-  const handleNext =async () => {
+  const handleNext = async () => {
     let newSkipped = skipped;
 
     if (activeStep === 0) {
@@ -122,17 +122,16 @@ const [isLoading,setIsLoading]= React.useState(false)
         setSkipped(newSkipped);
       }
     } else if (activeStep === 1) {
-      if (addresses.length === 0){
+      if (addresses.length === 0) {
         setOpen(true);
-      } else{
-          setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      } else {
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
         setSkipped(newSkipped);
       }
-      
     } else {
       // newSkipped = new Set(newSkipped.values());
       // newSkipped.delete(activeStep);
-          await giftCard()
+      await giftCard();
       setSkipped(newSkipped);
     }
   };
@@ -239,22 +238,19 @@ const [isLoading,setIsLoading]= React.useState(false)
                 setCount={setCount}
               />
             )}
-            {activeStep === 1 && (
+            {/* {activeStep === 1 && (
               <ChooseAddress
-               addresses={addresses}
-               setAddresses={setAddresses}
-              setActiveStep={setActiveStep}
+                addresses={addresses}
+                setAddresses={setAddresses}
+                setActiveStep={setActiveStep}
                 open={open}
                 setOpen={setOpen}
                 description=" آدرس مورد نظر خود را اضافه کنید."
-
-addressId={addressId} 
-setAddressId={setAddressId
-}
+                addressId={addressId}
+                setAddressId={setAddressId}
               />
-            )}
-            {activeStep === 2 && <FinalApproval 
- price={price} count={count} weight={weight} />}
+            )} */}
+            {activeStep === 2 && <FinalApproval price={price} count={count} weight={weight} />}
 
             <Stack direction={'row'} gap={3} mt={activeStep === 2 ? 2 : 7}>
               <Button
@@ -279,7 +275,15 @@ setAddressId={setAddressId
                 }}
                 disabled={isLoading}
               >
-                {isLoading ? <Loading size={30}/>:activeStep === 2 ? 'تایید سفارش' : activeStep === 1 && addresses.length ===0 ? 'افزودن آدرس' : 'ادامه'}
+                {isLoading ? (
+                  <Loading size={30} />
+                ) : activeStep === 2 ? (
+                  'تایید سفارش'
+                ) : activeStep === 1 && addresses.length === 0 ? (
+                  'افزودن آدرس'
+                ) : (
+                  'ادامه'
+                )}
               </Button>
 
               {activeStep !== 0 && (

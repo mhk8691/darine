@@ -69,7 +69,7 @@ export default function AddAddress({
   const handleAddress = async () => {
     const newAddress: AddressesDataType = {
       address,
-      city,
+      talasea_city_id:city,
       plaque,
       postal_code: postCode,
       province,
@@ -81,7 +81,7 @@ export default function AddAddress({
       await getData();
       showSnackbar(response.message, 'success');
       setAddressId(response.data.id || 0);
-      setTalaseaCityId(Number(response.data.city || 0));
+      setTalaseaCityId(Number(response.data.talasea_city_id || 0));
       resetFields();
       setActiveStep?.(2);
       setOpen(false);

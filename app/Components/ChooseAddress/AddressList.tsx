@@ -43,7 +43,7 @@ export default function AddressList({
   useEffect(() => {
     if (addresses.length > 0 && !addressId) {
       setAddressId(addresses[0].id || 0);
-      setTalaseaCityId(Number(addresses[0].city || 0));
+      setTalaseaCityId(Number(addresses[0].talasea_city_id || 0));
     }
   }, [addresses, addressId, setAddressId, setTalaseaCityId]);
 
@@ -52,7 +52,7 @@ export default function AddressList({
     const selected = addresses.find((addr) => addr.id === selectedId);
 
     setAddressId(selectedId);
-    setTalaseaCityId(Number(selected?.city || 0));
+    setTalaseaCityId(Number(selected?.talasea_city_id || 0));
     setOpen(false);
   };
 
@@ -62,7 +62,7 @@ export default function AddressList({
 
   const selectedAddress = currentAddress || addresses[0];
 
-  const displayText = `${selectedAddress.province}،${selectedAddress.city}،${selectedAddress.address}،${selectedAddress.plaque}،${selectedAddress.unit}`;
+  const displayText = `${selectedAddress.province_name}،${selectedAddress.city_name}،${selectedAddress.address}،${selectedAddress.plaque}،${selectedAddress.unit}`;
   const handleRemoveAddress = async (id: number) => {
     try {
       const response = await removeAddress(id);
@@ -163,7 +163,7 @@ export default function AddressList({
                   <FormControlLabel
                     value={address.id}
                     control={<Radio disableTouchRipple />}
-                    label={`${address.province}،${address.city}،${address.address}،${address.plaque}،${address.unit}`}
+                    label={`${address.province_name}،${address.city_name}،${address.address}،${address.plaque}،${address.unit}`}
                     sx={{
                       '& .MuiTypography-root': {
                         fontSize: 14,
@@ -179,7 +179,7 @@ export default function AddressList({
                     pb={1}
                   >
                     <LocationPinIcon fontSize="small" />
-                    <Typography variant="body2">{address.province}</Typography>
+                    <Typography variant="body2">{address.province_name}</Typography>
                   </Stack>
                   <Stack
                     direction={'row'}

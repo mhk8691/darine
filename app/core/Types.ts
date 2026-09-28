@@ -263,11 +263,13 @@ export interface AddressesDataType {
   "id"?: number,
   "type"?: string,
   "province": string,
-  "city": string,
+  "talasea_city_id": string,
   "address": string
   "postal_code": string,
   "plaque": string,
   "unit": string
+  province_name?:string
+  city_name?:string
 }
 
 export interface LimitOrderDataType {
